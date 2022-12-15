@@ -1,0 +1,3 @@
+packages:
+  - 'ember-toucan-core'
+  - 'test-app'
