@@ -1,10 +1,14 @@
 {
-  "name": "ember-toucan-core",
+  "name": "ember-toucan-core-monorepo",
   "version": "0.0.0",
   "private": true,
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:CrowdStrike/ember-toucan-core.git",
+    "directory": "ember-toucan-core"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "CrowdStrike UX Team",
   "scripts": {
     "prepare": "pnpm build",
     "build": "pnpm --filter ember-toucan-core build",

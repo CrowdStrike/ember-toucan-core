@@ -1,37 +1,20 @@
-ember-toucan-core
-==============================================================================
+# @crowdstrike/ember-toucan-core
 
-[Short description of the addon.]
+Toucan provides a set of accessible and reusable components that make it easy to create visually consistent and efficient Ember applications.
 
+## Install
 
-Compatibility
-------------------------------------------------------------------------------
+```bash
+pnpm add @crowdstrike/ember-toucan-core
+# or
+yarn add @crowdstrike/ember-toucan-core
+# or
+npm install @crowdstrike/ember-toucan-core
+# or
+ember install @crowdstrike/ember-toucan-core
+```
+
+### Compatibility
 
 * Ember.js v3.28 or above
 * Embroider or ember-auto-import v2
-
-
-Installation
-------------------------------------------------------------------------------
-
-```
-ember install ember-toucan-core
-```
-
-
-Usage
-------------------------------------------------------------------------------
-
-[Longer description of how to use the addon in apps.]
-
-
-Contributing
-------------------------------------------------------------------------------
-
-See the [Contributing](CONTRIBUTING.md) guide for details.
-
-
-License
-------------------------------------------------------------------------------
-
-This project is licensed under the [MIT License](LICENSE.md).
