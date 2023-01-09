@@ -8,10 +8,7 @@
         {
           "name": "@embroider/addon-blueprint",
           "isBaseBlueprint": true,
-          "options": [
-            "--pnpm",
-            "--ci-provider=github"
-          ]
+          "options": ["--pnpm", "--ci-provider=github", "--typescript"]
         }
       ]
     }
