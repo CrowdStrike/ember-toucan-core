@@ -1,7 +1,9 @@
-// Types for compiled templates
-declare module 'test-app/templates/*' {
-  import { TemplateFactory } from 'ember-cli-htmlbars';
+import '@glint/environment-ember-loose';
 
-  const tmpl: TemplateFactory;
-  export default tmpl;
+import type ToucanCoreRegistry from '@crowdstrike/ember-toucan-core/registry';
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry extends ToucanCoreRegistry, /* other addon registries */ {
+    // local entries
+  }
 }
