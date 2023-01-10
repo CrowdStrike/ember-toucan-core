@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 module.exports = {
   root: true,
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 'latest',
   },
-  plugins: ["ember"],
+  plugins: ['ember'],
   extends: [
-    "eslint:recommended",
-    "plugin:ember/recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'plugin:ember/recommended',
+    'plugin:prettier/recommended',
   ],
   env: {
     browser: true,
@@ -19,10 +19,10 @@ module.exports = {
   overrides: [
     // ts files
     {
-      files: ["**/*.ts"],
+      files: ['**/*.ts'],
       extends: [
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
       ],
       rules: {
         // Add any custom rules here
@@ -31,20 +31,20 @@ module.exports = {
     // node files
     {
       files: [
-        "./.eslintrc.js",
-        "./.prettierrc.js",
-        "./.template-lintrc.js",
-        "./addon-main.js",
+        './.eslintrc.js',
+        './.prettierrc.js',
+        './.template-lintrc.js',
+        './addon-main.js',
       ],
       parserOptions: {
-        sourceType: "script",
+        sourceType: 'script',
       },
       env: {
         browser: false,
         node: true,
       },
-      plugins: ["node"],
-      extends: ["plugin:node/recommended"],
+      plugins: ['node'],
+      extends: ['plugin:node/recommended'],
     },
   ],
 };
