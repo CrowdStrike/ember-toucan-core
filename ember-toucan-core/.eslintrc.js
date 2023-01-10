@@ -28,6 +28,12 @@ module.exports = {
         // Add any custom rules here
       },
     },
+    {
+      files: ['**/*.d.ts'],
+      rules: {
+        '@typescript-eslint/no-empty-interface': 'off',
+      },
+    },
     // node files
     {
       files: [
