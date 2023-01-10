@@ -23,6 +23,22 @@
     "concurrently": "^7.2.1",
     "prettier": "^2.5.1"
   },
+  "pnpm": {
+    "overrides": {
+      "@types/eslint": "^7.0.0"
+    },
+    "overrides-notes": {
+      "@types/eslint": "webpack brings in v8, but we use v7"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack"
+      ],
+      "ignore-notes": {
+        "webpack": "required by anything that depends on ember-auto-import: solution: convert ember-source & co to v2 addons"
+      }
+    }
+  },
   "workspaces": [
     "ember-toucan-core",
     "test-app"

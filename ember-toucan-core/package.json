@@ -29,6 +29,9 @@
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
     "prepack": "rollup --config"
   },
+  "peerDependencies": {
+    "ember-source": "^4.8.0"
+  },
   "dependencies": {
     "@embroider/addon-shim": "^1.0.0"
   },
