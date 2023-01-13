@@ -57,7 +57,9 @@ module.exports = function (defaults) {
           // we set to global mode to avoid hashing tailwind classes
           mode: 'global',
           // class naming template
-          localIdentName: isProduction() ? '[sha512:hash:base64:5]' : '[path][name]__[local]',
+          localIdentName: isProduction()
+            ? '[sha512:hash:base64:5]'
+            : '[path][name]__[local]',
         },
       },
       webpackConfig: {

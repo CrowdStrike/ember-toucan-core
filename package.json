@@ -22,8 +22,8 @@
     "lint:fix": "pnpm --filter '*' lint:fix"
   },
   "devDependencies": {
-    "concurrently": "^7.2.1",
-    "prettier": "^2.5.1"
+    "concurrently": "^7.6.0",
+    "prettier": "^2.8.2"
   },
   "pnpm": {
     "overrides": {

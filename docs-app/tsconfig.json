@@ -1,10 +1,7 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
   "glint": {
-    "environment": [
-       "ember-loose",
-       "ember-template-imports"
-    ]
+    "environment": ["ember-loose", "ember-template-imports"]
   },
   "compilerOptions": {
     "noEmitOnError": false,
@@ -14,20 +11,10 @@
     // work with TypeScript.
     "baseUrl": ".",
     "paths": {
-      "docs-app/tests/*": [
-        "tests/*"
-      ],
-      "docs-app/*": [
-        "app/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "docs-app/tests/*": ["tests/*"],
+      "docs-app/*": ["app/*"],
+      "*": ["types/*"]
     }
   },
-  "include": [
-    "app/**/*",
-    "tests/**/*",
-    "types/**/*"
-  ]
+  "include": ["app/**/*", "tests/**/*", "types/**/*"]
 }
