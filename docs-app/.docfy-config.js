@@ -6,7 +6,7 @@ const monorepoRoot = path.resolve(__dirname, '..');
 
 module.exports = {
   repository: {
-    url: 'https://github.com/CrowdStrike/ember-headless-table',
+    url: 'https://github.com/CrowdStrike/ember-toucan-core',
     editBranch: 'main',
   },
   sources: [
