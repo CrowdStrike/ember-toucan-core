@@ -1,3 +1,4 @@
 packages:
   - 'ember-toucan-core'
   - 'test-app'
+  - 'docs-app'
