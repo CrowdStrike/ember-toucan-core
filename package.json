@@ -12,9 +12,11 @@
   "scripts": {
     "prepare": "pnpm build",
     "build": "pnpm --filter ember-toucan-core build",
+    "build:docs-app": "pnpm --filter 'docs-app' build",
     "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
     "start:tests": "pnpm --filter test-app start",
     "start:addon": "pnpm --filter ember-toucan-core start --no-watch.clearScreen",
+    "start:docs-app": "pnpm --filter 'docs-app' start -p 4201",
     "test": "pnpm --filter test-app test",
     "lint": "pnpm --filter '*' lint",
     "lint:fix": "pnpm --filter '*' lint:fix"
@@ -41,6 +43,7 @@
   },
   "workspaces": [
     "ember-toucan-core",
-    "test-app"
+    "test-app",
+    "docs-app"
   ]
 }
