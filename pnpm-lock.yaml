@@ -1,8 +1,5 @@
 lockfileVersion: 5.4
 
-overrides:
-  '@types/eslint': ^7.0.0
-
 importers:
 
   .:
