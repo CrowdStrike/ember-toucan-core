@@ -16,5 +16,5 @@ ember install @crowdstrike/ember-toucan-core
 
 ### Compatibility
 
-* Ember.js v3.28 or above
-* Embroider or ember-auto-import v2
+- Ember.js v3.28 or above
+- Embroider or ember-auto-import v2
