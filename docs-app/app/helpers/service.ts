@@ -10,7 +10,9 @@ interface Signature<Key extends keyof Registry> {
   };
 }
 
-export default class GetService<Key extends keyof Registry> extends Helper<Signature<Key>> {
+export default class GetService<Key extends keyof Registry> extends Helper<
+  Signature<Key>
+> {
   compute([name]: [Key]): Registry[Key] {
     let owner = getOwner(this);
 

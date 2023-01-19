@@ -19,19 +19,15 @@
     "start:docs-app": "pnpm --filter 'docs-app' start -p 4201",
     "test": "pnpm --filter test-app test",
     "lint": "pnpm --filter '*' lint",
-    "lint:fix": "pnpm --filter '*' lint:fix"
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "format": "pnpm --filter '*' format",
+    "format:check": "pnpm --filter '*' format:check"
   },
   "devDependencies": {
-    "concurrently": "^7.2.1",
-    "prettier": "^2.5.1"
+    "concurrently": "^7.6.0",
+    "prettier": "^2.8.2"
   },
   "pnpm": {
-    "overrides": {
-      "@types/eslint": "^7.0.0"
-    },
-    "overrides-notes": {
-      "@types/eslint": "webpack brings in v8, but we use v7"
-    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "webpack"
@@ -40,10 +36,5 @@
         "webpack": "required by anything that depends on ember-auto-import: solution: convert ember-source & co to v2 addons"
       }
     }
-  },
-  "workspaces": [
-    "ember-toucan-core",
-    "test-app",
-    "docs-app"
-  ]
+  }
 }
