@@ -40,6 +40,7 @@
     "tailwindcss": "^2.2.15 || ^3.0.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.20.7",
     "@embroider/addon-shim": "^1.0.0"
   },
   "devDependencies": {
@@ -107,7 +108,9 @@
     "version": 2,
     "type": "addon",
     "main": "addon-main.cjs",
-    "app-js": {}
+    "app-js": {
+      "./components/button/index.js": "./dist/_app_/components/button/index.js"
+    }
   },
   "exports": {
     ".": "./dist/index.js",

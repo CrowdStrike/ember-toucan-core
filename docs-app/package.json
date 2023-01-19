@@ -118,6 +118,7 @@
   },
   "dependencies": {
     "@crowdstrike/ember-oss-docs": "^1.1.0",
+    "@crowdstrike/ember-toucan-core": "^0.0.0",
     "@ember/test-waiters": "^3.0.2",
     "@embroider/router": "^1.9.0",
     "dompurify": "^2.4.0",

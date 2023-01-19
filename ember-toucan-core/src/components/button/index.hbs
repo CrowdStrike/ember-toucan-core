@@ -1,0 +1,19 @@
+<button
+  aria-disabled={{if @isDisabled "true"}}
+  class={{this.styles}}
+  type={{this.type}}
+  {{on "click" this.onClick}}
+  ...attributes
+>
+  {{#if @isLoading}}
+    {{yield to="loading"}}
+    <span class="sr-only">{{yield}}</span>
+  {{else if @isDisabled}}
+    <span class="flex items-center gap-x-2">
+      {{yield}}
+      {{yield to="disabled"}}
+    </span>
+  {{else}}
+    {{yield}}
+  {{/if}}
+</button>
