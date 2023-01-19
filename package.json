@@ -19,7 +19,9 @@
     "start:docs-app": "pnpm --filter 'docs-app' start -p 4201",
     "test": "pnpm --filter test-app test",
     "lint": "pnpm --filter '*' lint",
-    "lint:fix": "pnpm --filter '*' lint:fix"
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "format": "pnpm --filter '*' format",
+    "format:check": "pnpm --filter '*' format:check"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

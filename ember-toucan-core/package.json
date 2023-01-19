@@ -27,7 +27,9 @@
     "lint:types": "glint",
     "start": "rollup --config --watch",
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
-    "prepack": "rollup --config"
+    "prepack": "rollup --config",
+    "format:check": "prettier -c .",
+    "format": "prettier -w ."
   },
   "peerDependencies": {
     "ember-source": "^4.8.0",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.0",
     "@babel/plugin-syntax-decorators": "^7.17.0",
@@ -51,6 +54,7 @@
     "@glint/core": "^0.9.7",
     "@glint/environment-ember-loose": "^0.9.7",
     "@glint/template": "^0.9.7",
+    "@nullvoxpopuli/eslint-configs": "^3.0.4",
     "@tsconfig/ember": "^1.0.0",
     "@types/ember": "^4.0.0",
     "@types/ember__application": "^4.0.0",
@@ -87,12 +91,11 @@
     "rollup-plugin-ts": "^3.0.2",
     "typescript": "^4.7.4",
     "tailwindcss": "^2.2.15",
+    "prettier-plugin-ember-template-tag": "^0.3.0",
     "postcss": "^8.2.14",
     "autoprefixer": "^10.0.2",
-    "@nullvoxpopuli/eslint-configs": "^3.0.4",
     "@glimmer/tracking": "^1.1.2",
-    "@crowdstrike/ember-toucan-styles": "^1.0.5",
-    "@babel/eslint-parser": "^7.19.1"
+    "@crowdstrike/ember-toucan-styles": "^1.0.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
