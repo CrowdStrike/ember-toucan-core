@@ -8,6 +8,12 @@ module.exports = {
   // we should roll this back once that issue has been fixed!
   overrides: [
     {
+      files: '*.hbs',
+      options: {
+        singleQuote: false,
+      },
+    },
+    {
       files: '*.gjs',
       options: {
         parser: 'ember-template-tag',
