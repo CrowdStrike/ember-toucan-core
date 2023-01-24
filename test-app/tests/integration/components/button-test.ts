@@ -101,16 +101,6 @@ module('Integration | Component | button', function (hooks) {
     assert.dom('button').hasAttribute('aria-disabled', 'true');
   });
 
-  test('it sets `type` based on `@type', async function (assert) {
-    await render(hbs`
-      <Button @type="submit">
-        button
-      </Button>
-    `);
-
-    assert.dom('button').hasAttribute('type', 'submit');
-  });
-
   test('it calls the provided `@onClick`', async function (assert) {
     this.set('onClick', () => assert.step('clicked'));
 

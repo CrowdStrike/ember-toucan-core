@@ -39,7 +39,6 @@ export interface ButtonSignature {
     isDisabled?: boolean;
     isLoading?: boolean;
     onClick?: (event: MouseEvent) => void;
-    type?: HTMLButtonElement['type'];
     variant?: ButtonVariant;
   };
   Blocks: { default: []; disabled: []; loading: [] };
@@ -47,10 +46,6 @@ export interface ButtonSignature {
 }
 
 export default class Button extends Component<ButtonSignature> {
-  get type() {
-    return this.args?.type || 'button';
-  }
-
   get variant() {
     const { variant } = this.args;
 

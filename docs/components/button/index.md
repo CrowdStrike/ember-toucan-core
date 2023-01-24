@@ -15,14 +15,6 @@ You can customize the appearance of the button with the `@variant` component arg
   <Button @variant="bare">Bare</Button>
 </div>
 
-## Type
-
-To provide the [type attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) to the Button, the `@type` component argument is used.
-
-```hbs
-<Button @type='submit'>Submit</Button>
-```
-
 ## Handling Clicks
 
 To handle click events use the `@onClick` component argument.
