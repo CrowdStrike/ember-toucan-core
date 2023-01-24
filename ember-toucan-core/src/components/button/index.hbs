@@ -7,7 +7,7 @@
 >
   {{#if @isLoading}}
     {{yield to="loading"}}
-    <span class="sr-only">{{yield}}</span>
+    <span class="sr-only" data-loading>{{yield}}</span>
   {{else if @isDisabled}}
     <span class="flex items-center gap-x-2">
       {{yield}}
