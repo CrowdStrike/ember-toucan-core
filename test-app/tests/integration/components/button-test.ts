@@ -25,13 +25,13 @@ module('Integration | Component | button', function (hooks) {
     await render(hbs`
       <Button @isLoading={{true}}>
         <:loading>
-          <span data-test-selector="loading">loading state</span>
+          <span data-test-loading>loading state</span>
         </:loading>
       </Button>
     `);
 
     assert
-      .dom('[data-test-selector="loading"]')
+      .dom('[data-test-loading]')
       .exists('Expect to have loading named block rendered');
   });
 
@@ -39,20 +39,20 @@ module('Integration | Component | button', function (hooks) {
     await render(hbs`
       <Button @isLoading={{false}}>
         <:loading>
-          <span data-test-selector="loading">should not be visible since isLoading is false</span>
+          <span data-test-loading>should not be visible since isLoading is false</span>
         </:loading>
         <:default>
-          <span data-test-selector="default" />
+          <span data-test-default />
         </:default>
       </Button>
     `);
 
     assert
-      .dom('[data-test-selector="loading"]')
+      .dom('[data-test-loading]')
       .doesNotExist('Expected to NOT have loading named block rendered');
 
     assert
-      .dom('[data-test-selector="default"]')
+      .dom('[data-test-default]')
       .exists('Expect to have default named block rendered');
   });
 
@@ -60,13 +60,13 @@ module('Integration | Component | button', function (hooks) {
     await render(hbs`
       <Button @isDisabled={{true}}>
         <:disabled>
-          <span data-test-selector="disabled">disabled state</span>
+          <span data-test-disabled>disabled state</span>
         </:disabled>
       </Button>
     `);
 
     assert
-      .dom('[data-test-selector="disabled"]')
+      .dom('[data-test-disabled]')
       .exists('Expect to have disabled named block rendered');
   });
 
@@ -74,20 +74,20 @@ module('Integration | Component | button', function (hooks) {
     await render(hbs`
       <Button @isDisabled={{false}}>
         <:disabled>
-          <span data-test-selector="disabled">should not be visible since isDisabled is false</span>
+          <span data-test-disabled>should not be visible since isDisabled is false</span>
         </:disabled>
         <:default>
-          <span data-test-selector="default" />
+          <span data-test-default />
         </:default>
       </Button>
     `);
 
     assert
-      .dom('[data-test-selector="disabled"]')
+      .dom('[data-test-disabled]')
       .doesNotExist('Expected to NOT have disabled named block rendered');
 
     assert
-      .dom('[data-test-selector="default"]')
+      .dom('[data-test-default]')
       .exists('Expect to have default named block rendered');
   });
 
