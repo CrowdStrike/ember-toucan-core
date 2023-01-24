@@ -15,7 +15,7 @@ importers:
       '@babel/core': ^7.19.6
       '@babel/eslint-parser': ^7.19.1
       '@crowdstrike/ember-oss-docs': ^1.1.0
-      '@crowdstrike/ember-toucan-core': ^0.0.0
+      '@crowdstrike/ember-toucan-core': workspace:../ember-toucan-core
       '@crowdstrike/ember-toucan-styles': ^1.0.5
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
       '@docfy/core': ^0.5.0
@@ -89,7 +89,6 @@ importers:
       ember-source: ~4.8.0
       ember-template-imports: ^3.1.2
       ember-template-lint: ^4.14.0
-      ember-toucan-core: workspace:../ember-toucan-core
       eslint: ^8.32.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-ember: ^11.4.3
@@ -112,7 +111,7 @@ importers:
       webpack: ^5.74.0
     dependencies:
       '@crowdstrike/ember-oss-docs': 1.1.2_z5tbqp6wpcajf367rd44tqmo3q
-      '@crowdstrike/ember-toucan-core': link:../ember-toucan-core
+      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_klsnessjbjtgbh3mky2dbd2ewm
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 1.9.0_y6i5noi7i27x4xrxls7lvmorjy
       dompurify: 2.4.3
@@ -120,7 +119,6 @@ importers:
       ember-cached-decorator-polyfill: 1.0.1_pw24d3fagqiayxz2ergmekr3ea
       ember-modifier: 3.2.7_@babel+core@7.20.12
       ember-resources: 5.6.1_4qsvyqd24vj77ipig3crizgzei
-      ember-toucan-core: file:ember-toucan-core_klsnessjbjtgbh3mky2dbd2ewm
       highlight.js: 11.7.0
       highlightjs-glimmer: 1.4.1_highlight.js@11.7.0
       tracked-built-ins: 3.1.0
@@ -211,7 +209,7 @@ importers:
       typescript: 4.9.4
       webpack: 5.75.0
     dependenciesMeta:
-      ember-toucan-core:
+      '@crowdstrike/ember-toucan-core':
         injected: true
 
   ember-toucan-core:
@@ -333,7 +331,8 @@ importers:
     specifiers:
       '@babel/core': ^7.0.0
       '@babel/eslint-parser': ^7.19.1
-      '@crowdstrike/ember-toucan-core': ^0.0.0
+      '@crowdstrike/ember-toucan-core': workspace:../ember-toucan-core
+      '@crowdstrike/ember-toucan-styles': ^1.0.5
       '@ember/optional-features': ^2.0.0
       '@ember/test-helpers': ^2.8.1
       '@embroider/test-setup': ^1.7.1
@@ -373,6 +372,7 @@ importers:
       '@types/rsvp': ^4.0.4
       '@typescript-eslint/eslint-plugin': ^5.45.1
       '@typescript-eslint/parser': ^5.45.1
+      autoprefixer: ^10.0.2
       broccoli-asset-rev: ^3.0.0
       concurrently: ^7.6.0
       ember-auto-import: ^2.5.0
@@ -403,16 +403,19 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-qunit: ^7.3.4
       loader.js: ^4.7.0
+      postcss: ^8.2.14
       prettier: ^2.8.3
       prettier-plugin-ember-template-tag: ^0.3.0
       qunit: ^2.19.3
       qunit-dom: ^2.0.0
+      tailwindcss: ^2.2.15
       typescript: ^4.9.4
       webpack: ^5.75.0
     devDependencies:
       '@babel/core': 7.20.12
       '@babel/eslint-parser': 7.19.1_2je5tsgpdnpnp4f5qs5fqust6m
-      '@crowdstrike/ember-toucan-core': link:../ember-toucan-core
+      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_byl773byoia6s3h7ftlz5thvo4
+      '@crowdstrike/ember-toucan-styles': 1.0.5_viok2jzmtam62hmmaribhhsgpm
       '@ember/optional-features': 2.0.0
       '@ember/test-helpers': 2.9.3_wac6mb43gwopsgc7yvlsdnrice
       '@embroider/test-setup': 1.8.3
@@ -452,6 +455,7 @@ importers:
       '@types/rsvp': 4.0.4
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
       '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
+      autoprefixer: 10.4.13_postcss@8.4.21
       broccoli-asset-rev: 3.0.0
       concurrently: 7.6.0
       ember-auto-import: 2.5.0_webpack@5.75.0
@@ -482,12 +486,17 @@ importers:
       eslint-plugin-prettier: 4.2.1_cn4lalcyadplruoxa5mhp7j3dq
       eslint-plugin-qunit: 7.3.4_eslint@8.32.0
       loader.js: 4.7.0
+      postcss: 8.4.21
       prettier: 2.8.3
       prettier-plugin-ember-template-tag: 0.3.0
       qunit: 2.19.3
       qunit-dom: 2.0.0
+      tailwindcss: 2.2.19_gbtt6ss3tbiz4yjtvdr6fbrj44
       typescript: 4.9.4
       webpack: 5.75.0
+    dependenciesMeta:
+      '@crowdstrike/ember-toucan-core':
+        injected: true
 
 packages:
 
@@ -551,6 +560,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/eslint-parser/7.19.1_2je5tsgpdnpnp4f5qs5fqust6m:
     resolution: {integrity: sha512-AqNf2QWt1rtu2/1rLswy6CDP7H9Oh3mMhk177Y67Rg8d7RD9WfOLLv8CGn6tisFvS2htm86yIe1yLF6I1UDaGQ==}
@@ -707,6 +717,7 @@ packages:
       '@babel/types': 7.20.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/helper-optimise-call-expression/7.18.6:
     resolution: {integrity: sha512-HP59oD9/fEHQkdcbgFCnbmgH5vIQTJbxh2yf+CdM89/glUNnuzr87Q8GIjGEnOktTROemO0Pe0iPAYbqZuOUiA==}
@@ -805,6 +816,7 @@ packages:
       '@babel/types': 7.20.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/highlight/7.18.6:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
@@ -941,7 +953,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.20.12_supports-color@8.1.1
+      '@babel/core': 7.20.12
       '@babel/helper-plugin-utils': 7.20.2
       '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3_@babel+core@7.20.12
 
@@ -984,7 +996,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.20.12_supports-color@8.1.1
+      '@babel/core': 7.20.12
       '@babel/helper-plugin-utils': 7.20.2
       '@babel/helper-skip-transparent-expression-wrappers': 7.20.0
       '@babel/plugin-syntax-optional-chaining': 7.8.3_@babel+core@7.20.12
@@ -1105,7 +1117,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.20.12_supports-color@8.1.1
+      '@babel/core': 7.20.12
       '@babel/helper-plugin-utils': 7.20.2
 
   /@babel/plugin-syntax-numeric-separator/7.10.4_@babel+core@7.20.12:
@@ -1137,7 +1149,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.20.12_supports-color@8.1.1
+      '@babel/core': 7.20.12
       '@babel/helper-plugin-utils': 7.20.2
 
   /@babel/plugin-syntax-private-property-in-object/7.14.5_@babel+core@7.20.12:
@@ -1730,6 +1742,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/types/7.20.7:
     resolution: {integrity: sha512-69OnhBxSSgK0OzTJai4kyPDiKTIe3j+ctaHdIGVbRahTLAT7L3R9oeXHC2aVSuGYt3cVnoAMDmOCgJ2yaiLMvg==}
@@ -1799,7 +1812,7 @@ packages:
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
       ember-browser-services: 4.0.3
-      ember-source: 4.9.3_c3orkilwrfpslrcifldsn6fmua
+      ember-source: 4.9.3_ipwtokbwlukr3yko7oz5lbj6xy
       postcss: 8.4.21
       postcss-import: 14.1.0_postcss@8.4.21
       tailwindcss: 2.2.19_gbtt6ss3tbiz4yjtvdr6fbrj44
@@ -4677,7 +4690,7 @@ packages:
       webpack:
         optional: true
     dependencies:
-      '@babel/core': 7.20.12_supports-color@8.1.1
+      '@babel/core': 7.20.12
       find-cache-dir: 3.3.2
       loader-utils: 2.0.4
       make-dir: 3.1.0
@@ -7189,6 +7202,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 8.1.1
+    dev: true
 
   /decimal.js/10.4.3:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
@@ -9109,7 +9123,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.32.0
-      eslint-plugin-import: 2.27.5_sh23p2fdp733j6fs6as24ncqym
+      eslint-plugin-import: 2.27.5_bzolr7xl6xcwr64wsu2tr4eimm
       get-tsconfig: 4.3.0
       globby: 13.1.3
       is-core-module: 2.11.0
@@ -16908,6 +16922,31 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+
+  file:ember-toucan-core_byl773byoia6s3h7ftlz5thvo4:
+    resolution: {directory: ember-toucan-core, type: directory}
+    id: file:ember-toucan-core
+    name: '@crowdstrike/ember-toucan-core'
+    version: 0.0.0
+    peerDependencies:
+      '@crowdstrike/ember-toucan-styles': ^1.0.5
+      '@glimmer/tracking': ^1.1.2
+      autoprefixer: ^10.0.2
+      ember-source: ^4.8.0
+      postcss: ^8.2.14
+      tailwindcss: ^2.2.15 || ^3.0.0
+    dependencies:
+      '@babel/runtime': 7.20.7
+      '@crowdstrike/ember-toucan-styles': 1.0.5_viok2jzmtam62hmmaribhhsgpm
+      '@embroider/addon-shim': 1.8.4
+      '@glimmer/tracking': 1.1.2
+      autoprefixer: 10.4.13_postcss@8.4.21
+      ember-source: 4.9.3_ipwtokbwlukr3yko7oz5lbj6xy
+      postcss: 8.4.21
+      tailwindcss: 2.2.19_gbtt6ss3tbiz4yjtvdr6fbrj44
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   file:ember-toucan-core_klsnessjbjtgbh3mky2dbd2ewm:
     resolution: {directory: ember-toucan-core, type: directory}
