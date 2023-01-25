@@ -112,10 +112,10 @@ module('Integration | Component | button', function (hooks) {
   });
 
   test('it calls the provided `@onClick`', async function (assert) {
-    let onClick = () => assert.step('clicked');
+    let handleClick = () => assert.step('clicked');
 
     await render(<template>
-      <Button @onClick={{onClick}} data-button>
+      <Button @onClick={{handleClick}} data-button>
         button
       </Button>
     </template>);
@@ -128,10 +128,10 @@ module('Integration | Component | button', function (hooks) {
   });
 
   test('it does NOT call the provided `@onClick` if `@isDisabled={{true}}', async function (assert) {
-    let onClick = () => assert.step('clicked');
+    let handleClick = () => assert.step('clicked');
 
     await render(<template>
-      <Button @isDisabled={{true}} @onClick={{onClick}} data-button>
+      <Button @isDisabled={{true}} @onClick={{handleClick}} data-button>
         button
       </Button>
     </template>);
