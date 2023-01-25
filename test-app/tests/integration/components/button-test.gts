@@ -1,7 +1,7 @@
 import { render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import Button from '@crowdstrike/ember-toucan-core/components/button/index';
+import Button from '@crowdstrike/ember-toucan-core/components/button';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 import { Button as TestButton } from '@crowdstrike/ember-toucan-core/test-support';
