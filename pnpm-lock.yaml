@@ -346,9 +346,11 @@ importers:
       '@glimmer/tracking': ^1.1.2
       '@glint/core': ^0.9.7
       '@glint/environment-ember-loose': ^0.9.7
+      '@glint/environment-ember-template-imports': ^0.9.6
       '@glint/template': ^0.9.7
       '@nullvoxpopuli/eslint-configs': ^3.0.4
       '@tsconfig/ember': ^2.0.0
+      '@types/babel__traverse': ^7.18.3
       '@types/ember': ^4.0.3
       '@types/ember-data': ^4.4.6
       '@types/ember-data__adapter': ^4.0.1
@@ -399,6 +401,7 @@ importers:
       ember-resolver: ^8.0.3
       ember-source: ~4.9.2
       ember-source-channel-url: ^3.0.0
+      ember-template-imports: ^3.1.2
       ember-template-lint: ^5.2.0
       ember-try: ^2.0.0
       eslint: ^8.32.0
@@ -430,9 +433,11 @@ importers:
       '@glimmer/tracking': 1.1.2
       '@glint/core': 0.9.7_typescript@4.9.4
       '@glint/environment-ember-loose': 0.9.7_t5ycb63yys2yccfcq5mlxlwezm
+      '@glint/environment-ember-template-imports': 0.9.7_bcsri5pb4wp67pnaf33w2f4jlm
       '@glint/template': 0.9.7_@glimmer+component@1.1.2
       '@nullvoxpopuli/eslint-configs': 3.0.4_rntmzx2gjiwmuydpmf4m5g2spa
       '@tsconfig/ember': 2.0.0
+      '@types/babel__traverse': 7.18.3
       '@types/ember': 4.0.3_@babel+core@7.20.12
       '@types/ember-data': 4.4.6_@babel+core@7.20.12
       '@types/ember-data__adapter': 4.0.1_@babel+core@7.20.12
@@ -483,6 +488,7 @@ importers:
       ember-resolver: 8.1.0_@babel+core@7.20.12
       ember-source: 4.9.3_ipwtokbwlukr3yko7oz5lbj6xy
       ember-source-channel-url: 3.0.0
+      ember-template-imports: 3.4.0_ember-cli-htmlbars@6.1.1
       ember-template-lint: 5.3.1_ember-cli-htmlbars@6.1.1
       ember-try: 2.0.0
       eslint: 8.32.0
@@ -3152,6 +3158,12 @@ packages:
 
   /@types/babel__code-frame/7.0.3:
     resolution: {integrity: sha512-2TN6oiwtNjOezilFVl77zwdNPwQWaDBBCCWWxyo1ctiO3vAtd7H/aB/CBJdw9+kqq3+latD0SXoedIuHySSZWw==}
+    dev: true
+
+  /@types/babel__traverse/7.18.3:
+    resolution: {integrity: sha512-1kbcJ40lLB7MHsj39U4Sh1uTd2E7rLEa79kmDpI6cy+XiXsteB3POdQomoq4FxszMrO3ZYchkhYJw7A2862b3w==}
+    dependencies:
+      '@babel/types': 7.20.7
     dev: true
 
   /@types/body-parser/1.19.2:
