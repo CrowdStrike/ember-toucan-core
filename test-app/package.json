@@ -20,7 +20,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "lint:types": "tsc --noEmit",
+    "lint:types": "glint",
     "start": "ember serve",
     "test": "npm-run-all lint \"test:!(watch)\"",
     "test:ember": "ember test",
@@ -29,7 +29,8 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/eslint-parser": "^7.19.1",
-    "@crowdstrike/ember-toucan-core": "^0.0.0",
+    "@crowdstrike/ember-toucan-core": "workspace:../ember-toucan-core",
+    "@crowdstrike/ember-toucan-styles": "^1.0.5",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.8.1",
     "@embroider/test-setup": "^1.7.1",
@@ -37,9 +38,11 @@
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^0.9.7",
     "@glint/environment-ember-loose": "^0.9.7",
+    "@glint/environment-ember-template-imports": "^0.9.6",
     "@glint/template": "^0.9.7",
     "@nullvoxpopuli/eslint-configs": "^3.0.4",
     "@tsconfig/ember": "^2.0.0",
+    "@types/babel__traverse": "^7.18.3",
     "@types/ember": "^4.0.3",
     "@types/ember-data": "^4.4.6",
     "@types/ember-data__adapter": "^4.0.1",
@@ -69,6 +72,7 @@
     "@types/rsvp": "^4.0.4",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
+    "autoprefixer": "^10.0.2",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^7.6.0",
     "ember-auto-import": "^2.5.0",
@@ -89,6 +93,7 @@
     "ember-resolver": "^8.0.3",
     "ember-source": "~4.9.2",
     "ember-source-channel-url": "^3.0.0",
+    "ember-template-imports": "^3.1.2",
     "ember-template-lint": "^5.2.0",
     "ember-try": "^2.0.0",
     "eslint": "^8.32.0",
@@ -98,13 +103,21 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-qunit": "^7.3.4",
+    "fractal-page-object": "^0.3.0",
     "loader.js": "^4.7.0",
+    "postcss": "^8.2.14",
     "prettier": "^2.8.3",
     "prettier-plugin-ember-template-tag": "^0.3.0",
     "qunit": "^2.19.3",
     "qunit-dom": "^2.0.0",
+    "tailwindcss": "^2.2.15",
     "typescript": "^4.9.4",
     "webpack": "^5.75.0"
+  },
+  "dependenciesMeta": {
+    "@crowdstrike/ember-toucan-core": {
+      "injected": true
+    }
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

@@ -98,6 +98,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-qunit": "^7.3.1",
+    "fractal-page-object": "^0.3.0",
     "loader.js": "^4.7.0",
     "postcss": "^8.4.17",
     "postcss-import": "^15.0.0",
@@ -118,6 +119,7 @@
   },
   "dependencies": {
     "@crowdstrike/ember-oss-docs": "^1.1.0",
+    "@crowdstrike/ember-toucan-core": "workspace:../ember-toucan-core",
     "@ember/test-waiters": "^3.0.2",
     "@embroider/router": "^1.9.0",
     "dompurify": "^2.4.0",
@@ -125,13 +127,12 @@
     "ember-cached-decorator-polyfill": "^1.0.1",
     "ember-modifier": "^3.2.7",
     "ember-resources": "^5.4.0",
-    "ember-toucan-core": "workspace:../ember-toucan-core",
     "highlight.js": "^11.6.0",
     "highlightjs-glimmer": "^1.4.1",
     "tracked-built-ins": "^3.1.0"
   },
   "dependenciesMeta": {
-    "ember-toucan-core": {
+    "@crowdstrike/ember-toucan-core": {
       "injected": true
     }
   }
