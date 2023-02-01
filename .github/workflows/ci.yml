@@ -127,7 +127,7 @@ jobs:
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/download-built-package
       - name: Run Tests
-        working-directory: ./testing/ember-app
+        working-directory: ./test-app
         run: >-
           node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
           --skip-cleanup
