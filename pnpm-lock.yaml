@@ -18,7 +18,7 @@ importers:
     specifiers:
       '@babel/core': ^7.19.6
       '@babel/eslint-parser': ^7.19.1
-      '@crowdstrike/ember-oss-docs': ^1.1.0
+      '@crowdstrike/ember-oss-docs': ^1.1.2
       '@crowdstrike/ember-toucan-core': workspace:../ember-toucan-core
       '@crowdstrike/ember-toucan-styles': ^1.0.5
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
