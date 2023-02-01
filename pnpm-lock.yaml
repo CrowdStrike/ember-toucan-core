@@ -72,7 +72,7 @@ importers:
       cssnano: ^5.1.13
       dompurify: ^2.4.0
       ember-auto-import: ^2.4.2
-      ember-browser-services: ^4.0.3
+      ember-browser-services: ^4.0.4
       ember-cached-decorator-polyfill: ^1.0.1
       ember-cli: ~4.7.0
       ember-cli-app-version: ^5.0.0
@@ -120,7 +120,7 @@ importers:
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 1.9.0_y6i5noi7i27x4xrxls7lvmorjy
       dompurify: 2.4.3
-      ember-browser-services: 4.0.3
+      ember-browser-services: 4.0.4
       ember-cached-decorator-polyfill: 1.0.1_pw24d3fagqiayxz2ergmekr3ea
       ember-modifier: 3.2.7_@babel+core@7.20.12
       ember-resources: 5.6.1_4qsvyqd24vj77ipig3crizgzei
@@ -2028,7 +2028,7 @@ packages:
       '@crowdstrike/tailwind-toucan-base': 3.3.1_gbtt6ss3tbiz4yjtvdr6fbrj44
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
-      ember-browser-services: 4.0.3
+      ember-browser-services: 4.0.4
       ember-source: 4.9.3_c3orkilwrfpslrcifldsn6fmua
       postcss: 8.4.21
       postcss-import: 14.1.0_postcss@8.4.21
@@ -2049,7 +2049,7 @@ packages:
       '@crowdstrike/tailwind-toucan-base': 3.3.1_gbtt6ss3tbiz4yjtvdr6fbrj44
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
-      ember-browser-services: 4.0.3
+      ember-browser-services: 4.0.4
       ember-source: 4.8.4_ipwtokbwlukr3yko7oz5lbj6xy
       postcss: 8.4.21
       postcss-import: 14.1.0_postcss@8.4.21
@@ -7981,9 +7981,8 @@ packages:
       - supports-color
       - webpack
 
-  /ember-browser-services/4.0.3:
-    resolution: {integrity: sha512-TRWgPIwQp+wltNm+afWyNy8TYY4e3WPP8A4tGnq9uLIbPiLvLpRSj3dW75b6mpvhfciC0pTKr0TFE6VyR/vavQ==}
-    engines: {node: 12.* || >= 14}
+  /ember-browser-services/4.0.4:
+    resolution: {integrity: sha512-ZjQPD7wlqMhHIq+uuesW+SWYCN+TsQtyY2Fy7QpluxEQff/j2JHiQAk3K0GUtEwef1gJ8/dRsBqSnaG2/Fxhmg==}
     dependencies:
       '@embroider/addon-shim': 1.8.4
       ember-window-mock: 0.8.1
