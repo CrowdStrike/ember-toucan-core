@@ -202,7 +202,7 @@ jobs:
         with:
           apiToken: ${{ secrets.UX_OSS_CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.UX_OSS_CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ember-headless-table
+          projectName: ember-toucan-core
           directory: ./docs-app/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
