@@ -195,7 +195,7 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/download-built-package
-      - run: pnpm build:docs
+      - run: pnpm build:docs-app
       - name: Publish to Cloudflare Pages
         id: publishStep
         uses: cloudflare/pages-action@1
