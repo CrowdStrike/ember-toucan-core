@@ -391,6 +391,7 @@ importers:
       broccoli-asset-rev: ^3.0.0
       concurrently: ^7.6.0
       ember-auto-import: ^2.5.0
+      ember-browser-services: ^4.0.4
       ember-cli: ~4.9.2
       ember-cli-app-version: ^5.0.0
       ember-cli-babel: ^7.26.11
@@ -478,6 +479,7 @@ importers:
       broccoli-asset-rev: 3.0.0
       concurrently: 7.6.0
       ember-auto-import: 2.6.0_webpack@5.75.0
+      ember-browser-services: 4.0.4
       ember-cli: 4.9.2
       ember-cli-app-version: 5.0.0
       ember-cli-babel: 7.26.11
@@ -3541,7 +3543,7 @@ packages:
   /@types/ember-qunit/5.0.2_oxe6qvwktwfke73lkx4hrkubm4:
     resolution: {integrity: sha512-LXp0Ew4wPhaCMuw49cNDHWs/bROn+Msb4ypMG1t60EMBx0UaEoX0tZlkf5bQJfdD249WZTu5cCtKvl47xbQzxA==}
     dependencies:
-      '@types/ember-resolver': 5.0.13_@babel+core@7.20.12
+      '@types/ember-resolver': 9.0.0_@babel+core@7.20.12
       '@types/ember__test': 4.0.1_@babel+core@7.20.12
       '@types/ember__test-helpers': 2.9.1_oxe6qvwktwfke73lkx4hrkubm4
       '@types/qunit': 2.19.4
@@ -3775,7 +3777,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.21.0
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.21.0:
     resolution: {integrity: sha512-35EhHNOXgxnUgh4XCJsGhE7zdlDhYDN/aMG6UbkByCFFNgQ7b3U+uVoqBpicFydR8JEfgdjCF7SJ7MiJfzuiTA==}

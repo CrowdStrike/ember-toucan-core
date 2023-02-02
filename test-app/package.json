@@ -76,6 +76,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^7.6.0",
     "ember-auto-import": "^2.5.0",
+    "ember-browser-services": "^4.0.4",
     "ember-cli": "~4.9.2",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.11",
