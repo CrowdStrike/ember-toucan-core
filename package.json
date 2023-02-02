@@ -28,7 +28,7 @@
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "concurrently": "^7.6.0",
-    "prettier": "^2.8.2"
+    "prettier": "^2.8.3"
   },
   "pnpm": {
     "peerDependencyRules": {
