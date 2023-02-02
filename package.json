@@ -31,6 +31,9 @@
     "prettier": "^2.8.3"
   },
   "pnpm": {
+    "overrides": {
+      "@types/eslint": "^8.0.0"
+    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "webpack"
