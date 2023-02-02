@@ -89,77 +89,141 @@ jobs:
       - uses: ./.github/actions/download-built-package
       - run: pnpm --filter test-app test:ember
 
-  # floating_tests:
-  #   name: Floating Deps Test
-  #   timeout-minutes: 5
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: ./.github/actions/pnpm
-  #     - name: Install Dependencies (without lockfile)
-  #       run: rm pnpm-lock.yaml && pnpm install
-  #     - uses: ./.github/actions/download-built-package
-  #     - run: pnpm --filter test-app test:ember
+  floating_tests:
+    name: Floating Deps Test
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm
+      - name: Install Dependencies (without lockfile)
+        run: rm pnpm-lock.yaml && pnpm install
+      - uses: ./.github/actions/download-built-package
+      - run: pnpm --filter test-app test:ember
 
 
-  # try_scenarios:
-  #   name: ${{ matrix.try-scenario }}
-  #   timeout-minutes: 5
-  #   runs-on: ubuntu-latest
-  #   needs: [default_tests]
+  try_scenarios:
+    name: ${{ matrix.try-scenario }}
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    needs: [default_tests]
 
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       try-scenario:
-  #         - ember-3.28
-  #         - ember-4.0.0
-  #         - ember-4.4
-  #         - ember-release
-  #         - ember-beta
-  #         - ember-canary
-  #         - embroider-safe
-  #         - embroider-optimized
+    strategy:
+      fail-fast: false
+      matrix:
+        try-scenario:
+          - ember-4.8
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - "'ember-release + embroider-optimized'"
+          - "'ember-lts-4.8 + embroider-optimized'"
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: ./.github/actions/pnpm
-  #     - uses: ./.github/actions/download-built-package
-  #     - name: Run Tests
-  #       working-directory: ./testing/ember-app
-  #       run: >-
-  #         node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
-  #         --skip-cleanup
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm
+      - uses: ./.github/actions/download-built-package
+      - name: Run Tests
+        working-directory: ./test-app
+        run: >-
+          node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
+          --skip-cleanup
 
 
 
-#   # https://github.com/changesets/action
-#   release:
-#     name: Release
-#     timeout-minutes: 5
-#     runs-on: ubuntu-latest
-#     if: github.ref == 'refs/heads/main'
-#     needs:
-#       - default_tests
-#       - floating_tests
-#       - typecheck
-#       - try_scenarios
+  # https://github.com/changesets/action
+  release:
+    name: Release
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - default_tests
+      - floating_tests
+      - typecheck
+      - try_scenarios
 
-#     steps:
-#       - uses: actions/checkout@v3
-#         with:
-#           persist-credentials: false
-#       - uses: ./.github/actions/pnpm
-#       - uses: ./.github/actions/download-built-package
-#       - name: Create Release Pull Request or Publish to npm
-#         id: changesets
-#         uses: changesets/action@v1
-#         with:
-#           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-#           publish: pnpm release
-#           title: "Release Preview"
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - uses: ./.github/actions/download-built-package
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+          title: "Release Preview"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
+  TypecheckDocs:
+    name: Typecheck Docs
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - uses: ./.github/actions/download-built-package
+      - run: pnpm glint
+        working-directory: docs-app
+
+
+
+  PublishDocstoCloudflarePages:
+    name: Publish Docs to Cloudflare Pages
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      deployments: write
+    outputs:
+      url: ${{ steps.publishStep.outputs.url }}
+      env: ${{ steps.publishStep.outputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - uses: ./.github/actions/download-built-package
+      - run: pnpm build:docs-app
+      - name: Publish to Cloudflare Pages
+        id: publishStep
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.UX_OSS_CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.UX_OSS_CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ember-toucan-core
+          directory: ./docs-app/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+  PostPreviewURLascommenttoPR:
+    name: Post Preview URL as comment to PR
+    runs-on: ubuntu-latest
+    needs: PublishDocstoCloudflarePages
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - uses: ./.github/actions/download-built-package
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |+
+            ## Preview URLs
+            GH Env: ${{ needs.PublishDocstoCloudflarePages.outputs.env }}
+            docs: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}
+            api docs: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}/api/modules.html
+
+
+
 
