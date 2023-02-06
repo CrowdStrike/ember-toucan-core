@@ -6,7 +6,7 @@ Buttons are clickable elements used primarily for actions. Button content expres
 
 You can customize the appearance of the button with the `@variant` component argument.
 
-<div class="flex gap-x-4">
+<div class="flex flex-col gap-4 md:flex-row">
   <Button @variant="primary">Primary</Button>
   <Button @variant="secondary">Secondary</Button>
   <Button @variant="destructive">Destructive</Button>
@@ -59,7 +59,7 @@ A disabled named block is provided so that users can optionally render additiona
 </Button>
 ```
 
-<div class="flex gap-x-4">
+<div class="flex flex-col items-center gap-4 md:flex-row">
   {{#each (array "primary" "secondary" "destructive" "link" "quiet" "bare") as |variant|}}
     <Button @variant={{variant}} @isDisabled={{true}}>
       <:disabled>
@@ -123,7 +123,7 @@ A loading named block is also provided for providing custom loading content.
 </Button>
 ```
 
-<div class="flex gap-x-4">
+<div class="flex flex-col items-center gap-4 md:flex-row">
   {{#each (array "primary" "secondary" "destructive" "link" "quiet" "bare") as |variant|}}
     <Button @variant={{variant}} @isLoading={{true}}>
       <:loading>
