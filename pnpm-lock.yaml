@@ -78,7 +78,7 @@ importers:
       ember-browser-services: ^4.0.4
       ember-cached-decorator-polyfill: ^1.0.1
       ember-cli: ~4.10.0
-      ember-cli-app-version: ^5.0.0
+      ember-cli-app-version: ^6.0.0
       ember-cli-babel: ^7.26.11
       ember-cli-dependency-checker: ^3.3.1
       ember-cli-deprecation-workflow: ^2.1.0
@@ -183,7 +183,7 @@ importers:
       cssnano: 5.1.14_postcss@8.4.21
       ember-auto-import: 2.6.0_webpack@5.75.0
       ember-cli: 4.10.0
-      ember-cli-app-version: 5.0.0
+      ember-cli-app-version: 6.0.0_ember-source@4.10.0
       ember-cli-babel: 7.26.11
       ember-cli-dependency-checker: 3.3.1_ember-cli@4.10.0
       ember-cli-deprecation-workflow: 2.1.0
@@ -393,7 +393,7 @@ importers:
       ember-auto-import: ^2.5.0
       ember-browser-services: ^4.0.4
       ember-cli: ~4.10.0
-      ember-cli-app-version: ^5.0.0
+      ember-cli-app-version: ^6.0.0
       ember-cli-babel: ^7.26.11
       ember-cli-dependency-checker: ^3.3.1
       ember-cli-htmlbars: ^6.1.1
@@ -481,7 +481,7 @@ importers:
       ember-auto-import: 2.6.0_webpack@5.75.0
       ember-browser-services: 4.0.4
       ember-cli: 4.10.0
-      ember-cli-app-version: 5.0.0
+      ember-cli-app-version: 6.0.0_ember-source@4.10.0
       ember-cli-babel: 7.26.11
       ember-cli-dependency-checker: 3.3.1_ember-cli@4.10.0
       ember-cli-htmlbars: 6.2.0
@@ -7904,11 +7904,14 @@ packages:
       - '@babel/core'
       - supports-color
 
-  /ember-cli-app-version/5.0.0:
-    resolution: {integrity: sha512-afhx/CXDOMNXzoe4NDPy5WUfxWmYYHUzMCiTyvPBxCDBXYcMrtxNWxvgaSaeqcoHVEmqzeyBj8V82tzmT1dcyw==}
-    engines: {node: 10.* || >= 12}
+  /ember-cli-app-version/6.0.0_ember-source@4.10.0:
+    resolution: {integrity: sha512-XhzETSTy+RMTIyxM/FaZ/8aJvAwT/iIp8HC9zukpOaSPEm5i6Vm4tskeXY4OBnY3VwFWNXWssDt1hgIkUP76WQ==}
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      ember-source: ^3.28.0 || ^4.0.0
     dependencies:
       ember-cli-babel: 7.26.11
+      ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
       git-repo-info: 2.1.1
     transitivePeerDependencies:
       - supports-color
