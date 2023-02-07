@@ -91,7 +91,7 @@ importers:
       ember-modifier: ^3.2.7
       ember-page-title: ^8.0.0-beta.0
       ember-qunit: ^5.1.5
-      ember-resolver: ^8.0.3
+      ember-resolver: ^10.0.0
       ember-resources: ^5.4.0
       ember-source: ~4.10.0
       ember-template-imports: ^3.1.2
@@ -195,7 +195,7 @@ importers:
       ember-load-initializers: 2.1.2_@babel+core@7.20.12
       ember-page-title: 8.0.0-beta.0
       ember-qunit: 5.1.5_hhhw54x36ihnlwj35uv57vllua
-      ember-resolver: 8.1.0_@babel+core@7.20.12
+      ember-resolver: 10.0.0_ember-source@4.10.0
       ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
       ember-template-imports: 3.4.1
       ember-template-lint: 4.18.2
@@ -406,7 +406,7 @@ importers:
       ember-fetch: ^8.1.2
       ember-load-initializers: ^2.1.2
       ember-qunit: ^6.0.0
-      ember-resolver: ^8.0.3
+      ember-resolver: ^10.0.0
       ember-source: ~4.10.0
       ember-source-channel-url: ^3.0.0
       ember-template-imports: ^3.1.2
@@ -453,7 +453,7 @@ importers:
       '@types/ember-data__serializer': 4.0.1_@babel+core@7.20.12
       '@types/ember-data__store': 4.0.2_@babel+core@7.20.12
       '@types/ember-qunit': 6.1.1_6j2wkb4dcyok242cgjvcmw6rjq
-      '@types/ember-resolver': 9.0.0_@babel+core@7.20.12
+      '@types/ember-resolver': 9.0.0_ember-source@4.10.0
       '@types/ember__application': 4.0.5_@babel+core@7.20.12
       '@types/ember__array': 4.0.3_@babel+core@7.20.12
       '@types/ember__component': 4.0.12_@babel+core@7.20.12
@@ -494,7 +494,7 @@ importers:
       ember-fetch: 8.1.2
       ember-load-initializers: 2.1.2_@babel+core@7.20.12
       ember-qunit: 6.1.1_6j2wkb4dcyok242cgjvcmw6rjq
-      ember-resolver: 8.1.0_@babel+core@7.20.12
+      ember-resolver: 10.0.0_ember-source@4.10.0
       ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
       ember-source-channel-url: 3.0.0
       ember-template-imports: 3.4.1
@@ -3503,12 +3503,13 @@ packages:
   /@types/ember-qunit/5.0.2_iwkhadex2lejqv2d6alw3shs24:
     resolution: {integrity: sha512-LXp0Ew4wPhaCMuw49cNDHWs/bROn+Msb4ypMG1t60EMBx0UaEoX0tZlkf5bQJfdD249WZTu5cCtKvl47xbQzxA==}
     dependencies:
-      '@types/ember-resolver': 9.0.0_@babel+core@7.20.12
+      '@types/ember-resolver': 9.0.0_ember-source@4.10.0
       '@types/ember__test': 4.0.1_@babel+core@7.20.12
       '@types/ember__test-helpers': 2.9.1_iwkhadex2lejqv2d6alw3shs24
       '@types/qunit': 2.19.4
     transitivePeerDependencies:
       - '@babel/core'
+      - '@ember/string'
       - '@glint/template'
       - ember-source
       - supports-color
@@ -3536,13 +3537,14 @@ packages:
       - supports-color
     dev: true
 
-  /@types/ember-resolver/9.0.0_@babel+core@7.20.12:
+  /@types/ember-resolver/9.0.0_ember-source@4.10.0:
     resolution: {integrity: sha512-lEuC2QD8K6rRAbELMejrALFBgelRPt6OQtapny4Oke07ZtK/Lbf9zn5KIDl7PNkirxMD0AStsQTdUqFu6eVbVw==}
     deprecated: This is a stub types definition. ember-resolver provides its own type definitions, so you do not need this installed.
     dependencies:
-      ember-resolver: 8.1.0_@babel+core@7.20.12
+      ember-resolver: 10.0.0_ember-source@4.10.0
     transitivePeerDependencies:
-      - '@babel/core'
+      - '@ember/string'
+      - ember-source
       - supports-color
     dev: true
 
@@ -8708,18 +8710,19 @@ packages:
       - supports-color
     dev: true
 
-  /ember-resolver/8.1.0_@babel+core@7.20.12:
-    resolution: {integrity: sha512-MGD7X2ztZVswGqs1mLgzhZJRhG7XiF6Mg4DgC7xJFWRYQQUHyGJpGdNWY9nXyrYnRIsCrQoL1do41zpxbrB/cg==}
-    engines: {node: '>= 10.*'}
+  /ember-resolver/10.0.0_ember-source@4.10.0:
+    resolution: {integrity: sha512-e99wFJ4ZpleJ6JMEcIk4WEYP4s3nc+9/iNSXtwBHXC8ADJHJTeN3HjnT/eEbFbswdui4FYxIYuK+UCdP09811Q==}
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      '@ember/string': ^3.0.1
+      ember-source: ^4.8.3
+    peerDependenciesMeta:
+      ember-source:
+        optional: true
     dependencies:
-      babel-plugin-debug-macros: 0.3.4_@babel+core@7.20.12
-      broccoli-funnel: 3.0.8
-      broccoli-merge-trees: 4.2.0
       ember-cli-babel: 7.26.11
-      ember-cli-version-checker: 5.1.2
-      resolve: 1.22.1
+      ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
     transitivePeerDependencies:
-      - '@babel/core'
       - supports-color
     dev: true
 
