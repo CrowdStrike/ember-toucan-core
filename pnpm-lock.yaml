@@ -43,7 +43,7 @@ importers:
       '@html-next/vertical-collection': ^4.0.0
       '@nullvoxpopuli/eslint-configs': ^3.0.4
       '@tailwindcss/typography': ^0.5.7
-      '@tsconfig/ember': ^1.0.1
+      '@tsconfig/ember': ^2.0.0
       '@types/dompurify': ^2.3.4
       '@types/ember': ^4.0.1
       '@types/ember-qunit': ^5.0.2
@@ -151,7 +151,7 @@ importers:
       '@html-next/vertical-collection': 4.0.2
       '@nullvoxpopuli/eslint-configs': 3.1.1_ytph5u5mfdxsjdormhnx6ts4ca
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
-      '@tsconfig/ember': 1.1.0
+      '@tsconfig/ember': 2.0.0
       '@types/dompurify': 2.4.0
       '@types/ember': 4.0.3_@babel+core@7.20.12
       '@types/ember-qunit': 5.0.2_iwkhadex2lejqv2d6alw3shs24
@@ -3258,10 +3258,6 @@ packages:
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
-    dev: true
-
-  /@tsconfig/ember/1.1.0:
-    resolution: {integrity: sha512-VzIrPO7ZpnIEmU+dJe3ubEPhxUIyavwIh2vxg8rXrwSnB99hdVcq0ZFPQ4KRP0LrSNzaPI1QA2sATIPwnBYPQg==}
     dev: true
 
   /@tsconfig/ember/2.0.0:
