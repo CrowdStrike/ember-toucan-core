@@ -1,4 +1,4 @@
-import { render } from '@ember/test-helpers';
+import { findAll, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import Field from '@crowdstrike/ember-toucan-core/components/form/field';
@@ -58,9 +58,9 @@ module('Integration | Component | Field', function (hooks) {
       assert.dom(hint).exists('Expected to have hint text rendered');
       assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
 
-      let childDivs = document.querySelectorAll('[data-test-field] > div');
+      let children = findAll('[data-test-field] > div');
       assert.strictEqual(
-        childDivs.length,
+        children.length,
         2,
         'Expect 1 div for hint, 1 div for error'
       );
@@ -102,22 +102,23 @@ module('Integration | Component | Field', function (hooks) {
         .hasText('error', 'Expected to have error text rendered');
     });
 
-    // TODO: Checkpoint: finish this
     test('it renders conditionally', async function (assert) {
       await render(<template>
-        <Field as |field|>
-          <field.Label>label</field.Label>
-          <field.Hint><span data-test-hint>hint</span></field.Hint>
-          <field.Control>
-            <input type="text" data-test-input />
-          </field.Control>
-        </Field>
+        <div data-test-field>
+          <Field as |field|>
+            <field.Label>label</field.Label>
+            <field.Hint><span data-test-hint>hint</span></field.Hint>
+            <field.Control>
+              <input type="text" data-test-input />
+            </field.Control>
+          </Field>
+        </div>
       </template>);
 
       const label = 'label';
       const hint = '[data-test-hint]';
-      const error = '[data-test-error]';
       const control = '[data-test-input]';
+      const children = findAll('[data-test-field] > div');
 
       assert.dom(label).exists('Expected to have label block rendered');
       assert.dom(label).hasText('label', 'Expected to have label text "label"');
@@ -130,9 +131,12 @@ module('Integration | Component | Field', function (hooks) {
       assert
         .dom('svg')
         .doesNotExist('Error block does not exist (no error icon shown)');
-      assert
-        .dom(error)
-        .hasText('error', 'Expected to have error text rendered');
+
+      assert.strictEqual(
+        children.length,
+        1,
+        'Form only has div which is the hint'
+      );
     });
   });
 });
