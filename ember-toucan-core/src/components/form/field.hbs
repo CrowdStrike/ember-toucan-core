@@ -1,0 +1,20 @@
+{{#if (has-block)}}
+  <this.Wrapper as |components|>
+    {{yield components}}
+  </this.Wrapper>
+{{else}}
+  <this.Wrapper>
+    <:label as |Label|>
+      <Label>{{yield to="label"}}</Label>
+    </:label>
+    <:hint as |Hint|>
+      <Hint>{{yield to="hint"}}</Hint>
+    </:hint>
+    <:control as |Control|>
+      <Control>{{yield to="control"}}</Control>
+    </:control>
+    <:error as |Error|>
+      <Error>{{yield to="error"}}</Error>
+    </:error>
+  </this.Wrapper>
+{{/if}}

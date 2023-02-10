@@ -1,0 +1,15 @@
+{{#if (has-block)}}
+  {{yield
+    (hash
+      Label=(component this.Label)
+      Hint=(component this.Hint)
+      Control=(component this.Control)
+      Error=(component this.Error)
+    )
+  }}
+{{else}}
+  {{yield (component this.Label) to="label"}}
+  {{yield (component this.Hint) to="hint"}}
+  {{yield (component this.Control) to="control"}}
+  {{yield (component this.Error) to="error"}}
+{{/if}}
