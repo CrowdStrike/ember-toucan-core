@@ -102,7 +102,7 @@ importers:
       eslint-plugin-node: ^11.1.0
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-qunit: ^7.3.1
-      fractal-page-object: ^0.3.0
+      fractal-page-object: ^0.4.0
       highlight.js: ^11.6.0
       highlightjs-glimmer: ^1.4.1
       loader.js: ^4.7.0
@@ -119,7 +119,7 @@ importers:
       webpack: ^5.74.0
     dependencies:
       '@crowdstrike/ember-oss-docs': 1.1.3_z5tbqp6wpcajf367rd44tqmo3q
-      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_zye25yb7nrvbi2xr2g4oppsica
+      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_qufwcqdzbsbj3teo5aemskus4y
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 2.0.0_htqm3qg3nmvfkwq4ngma65xhmi
       dompurify: 2.4.3
@@ -205,7 +205,7 @@ importers:
       eslint-plugin-node: 11.1.0_eslint@8.33.0
       eslint-plugin-prettier: 4.2.1_jqplj6qf3uqpxpu4gdyhwwasnq
       eslint-plugin-qunit: 7.3.4_eslint@8.33.0
-      fractal-page-object: 0.3.0
+      fractal-page-object: 0.4.0
       loader.js: 4.7.0
       postcss: 8.4.21
       postcss-import: 15.1.0_postcss@8.4.21
@@ -271,7 +271,7 @@ importers:
       eslint-plugin-n: ^15.6.0
       eslint-plugin-node: ^11.1.0
       eslint-plugin-prettier: ^4.0.0
-      fractal-page-object: ^0.3.0
+      fractal-page-object: ^0.4.0
       postcss: ^8.2.14
       prettier: ^2.8.3
       prettier-plugin-ember-template-tag: ^0.3.0
@@ -330,7 +330,7 @@ importers:
       eslint-plugin-n: 15.6.1_eslint@8.33.0
       eslint-plugin-node: 11.1.0_eslint@8.33.0
       eslint-plugin-prettier: 4.2.1_jqplj6qf3uqpxpu4gdyhwwasnq
-      fractal-page-object: 0.3.0
+      fractal-page-object: 0.4.0
       postcss: 8.4.21
       prettier: 2.8.3
       prettier-plugin-ember-template-tag: 0.3.2
@@ -419,7 +419,7 @@ importers:
       eslint-plugin-node: ^11.1.0
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-qunit: ^7.3.4
-      fractal-page-object: ^0.3.0
+      fractal-page-object: ^0.4.0
       loader.js: ^4.7.0
       postcss: ^8.2.14
       prettier: ^2.8.3
@@ -432,7 +432,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.12
       '@babel/eslint-parser': 7.19.1_b3mcivpi6zqbotlvqqcfprcnry
-      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_hipimerljzmvifmqgxbohatfa4
+      '@crowdstrike/ember-toucan-core': file:ember-toucan-core_nhzqjtvb2ui3lidsw2bxpuylai
       '@crowdstrike/ember-toucan-styles': 1.0.5_ktzjmto5ia3us3ctfio5acuna4
       '@ember/optional-features': 2.0.0
       '@ember/test-helpers': 2.9.3_iwkhadex2lejqv2d6alw3shs24
@@ -507,7 +507,7 @@ importers:
       eslint-plugin-node: 11.1.0_eslint@8.33.0
       eslint-plugin-prettier: 4.2.1_jqplj6qf3uqpxpu4gdyhwwasnq
       eslint-plugin-qunit: 7.3.4_eslint@8.33.0
-      fractal-page-object: 0.3.0
+      fractal-page-object: 0.4.0
       loader.js: 4.7.0
       postcss: 8.4.21
       prettier: 2.8.3
@@ -10151,8 +10151,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /fractal-page-object/0.3.0:
-    resolution: {integrity: sha512-Jrbcm1eIFN/dY/RuTiTjr5K7YpfJbP4inGdt9f9n/jEnqBPi7gqM5WTKIIc4DnyBOWtWs9HE1treSoCYl1HUpg==}
+  /fractal-page-object/0.4.0:
+    resolution: {integrity: sha512-QVNMx5qSKuh+qDwrTNTwgeabQwPnme7Jbmzna6P5fp4XBaBXZB8GI+6l1CuRxxNgrhub92hcFWNKjfCA4Uex1Q==}
     engines: {node: 10.* || >= 12}
 
   /fraction.js/4.2.0:
@@ -17292,7 +17292,7 @@ packages:
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
-  file:ember-toucan-core_hipimerljzmvifmqgxbohatfa4:
+  file:ember-toucan-core_nhzqjtvb2ui3lidsw2bxpuylai:
     resolution: {directory: ember-toucan-core, type: directory}
     id: file:ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -17314,14 +17314,14 @@ packages:
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.13_postcss@8.4.21
       ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
-      fractal-page-object: 0.3.0
+      fractal-page-object: 0.4.0
       postcss: 8.4.21
       tailwindcss: 2.2.19_gbtt6ss3tbiz4yjtvdr6fbrj44
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  file:ember-toucan-core_zye25yb7nrvbi2xr2g4oppsica:
+  file:ember-toucan-core_qufwcqdzbsbj3teo5aemskus4y:
     resolution: {directory: ember-toucan-core, type: directory}
     id: file:ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -17343,7 +17343,7 @@ packages:
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.13_postcss@8.4.21
       ember-source: 4.10.0_ipwtokbwlukr3yko7oz5lbj6xy
-      fractal-page-object: 0.3.0
+      fractal-page-object: 0.4.0
       postcss: 8.4.21
       tailwindcss: 3.2.4_postcss@8.4.21
     transitivePeerDependencies:
