@@ -1,7 +1,7 @@
 import templateOnlyComponent from '@ember/component/template-only';
 
 export interface ToucanFormControlComponentSignature {
-  Element: null;
+  Element: HTMLDivElement;
   Args: {};
   Blocks: {
     default: [];

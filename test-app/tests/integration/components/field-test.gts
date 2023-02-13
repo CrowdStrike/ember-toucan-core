@@ -60,8 +60,8 @@ module('Integration | Component | Field', function (hooks) {
     const children = findAll('[data-test-field] > div');
     assert.strictEqual(
       children.length,
-      1,
-      'Expected only one child element ("hint")'
+      2,
+      'Expected two child divs, one for hint, one for control'
     );
 
     assert.dom(hint).exists('Expected to have hint text rendered');
