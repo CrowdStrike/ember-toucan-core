@@ -9,7 +9,7 @@ Field is a component to aid in creating form components. It provides a label, hi
 - `Control`: Renders a control of your choosing, for example, you can provide `<input>`, `<textarea>`, etc.
 - `Error`: Renders a `<div>` element. Error information is normally rendered here.
 
-## Optionally Displaying Components
+## Optionally Rendering Components
 
 The yielded components from Field can be optionally rendered by using the `{{if}}` helper. For example, control when helper text or errors may be displayed.
 
@@ -31,9 +31,9 @@ The yielded components from Field can be optionally rendered by using the `{{if}
 </Form::Field>
 ```
 
-### Extending the Components
+### Attributes and Modifiers
 
-We have `...attributes` added to each sub component of the Field, so HTML attributes Ember modifiers can be added.
+We have `...attributes` added to each sub component of the Field, so HTML attributes and Ember modifiers can be added.
 
 ```hbs
 <Form::Field as |field|>
@@ -42,9 +42,9 @@ We have `...attributes` added to each sub component of the Field, so HTML attrib
 </Form::Field>
 ```
 
-### Changing The Order Of The Components
+### Ordering of Components
 
-You can change the order of elements, for example, swapping the Label and the hint block:
+Ordering of the elements can be changed by adjusting the children order. For example, if you'd prefer putting help text below the control:
 
 ```hbs
 <Form::Field as |field|>
