@@ -7,136 +7,72 @@ import { setupRenderingTest } from 'test-app/tests/helpers';
 module('Integration | Component | Field', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('named blocks', function () {
-    test('it renders', async function (assert) {
-      await render(<template>
-        <Field>
-          <:label>label</:label>
-          <:hint><span data-test-hint>hint</span></:hint>
-          <:control>
-            <input type="text" data-test-input />
-          </:control>
-          <:error><span data-test-error>error</span></:error>
-        </Field>
-      </template>);
+  test('it renders', async function (assert) {
+    await render(<template>
+      <Field as |field|>
+        <field.Label>label</field.Label>
+        <field.Hint data-test-hint>hint</field.Hint>
+        <field.Control>
+          <input type="text" data-test-input />
+        </field.Control>
+        <field.Error data-test-error>error</field.Error>
+      </Field>
+    </template>);
 
-      const label = 'label';
-      const hint = '[data-test-hint]';
-      const error = '[data-test-error]';
-      const control = '[data-test-input]';
+    const label = 'label';
+    const hint = '[data-test-hint]';
+    const error = '[data-test-error]';
+    const control = '[data-test-input]';
 
-      assert.dom(label).exists('Expected to have label block rendered');
-      assert.dom(label).hasText('label', 'Expected to have label text "label"');
+    assert.dom(label).exists('Expected to have label block rendered');
+    assert.dom(label).hasText('label', 'Expected to have label text "label"');
 
-      assert.dom(hint).exists('Expected to have hint text rendered');
-      assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
+    assert.dom(hint).exists('Expected to have hint text rendered');
+    assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
 
-      assert.dom(control).exists('Control named block is rendered');
+    assert.dom(control).exists('Expected control block to be rendered');
 
-      assert.dom(error).exists('Error block exists');
-      assert
-        .dom(error)
-        .hasText('error', 'Expected to have error text rendered');
-    });
-
-    test('does not conditionally render blocks', async function (assert) {
-      await render(<template>
-        <div data-test-field>
-          <Field>
-            <:label>label</:label>
-            <:hint><span data-test-hint>hint</span></:hint>
-          </Field>
-        </div>
-      </template>);
-
-      const label = 'label';
-      const hint = '[data-test-hint]';
-
-      assert.dom(label).exists('Expected to have label block rendered');
-      assert.dom(label).hasText('label', 'Expected to have label text "label"');
-
-      assert.dom(hint).exists('Expected to have hint text rendered');
-      assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
-
-      let children = findAll('[data-test-field] > div');
-      assert.strictEqual(
-        children.length,
-        2,
-        'Expect 1 div for hint, 1 div for error'
-      );
-
-      assert.dom('svg').exists('The error icon is still displayed');
-      assert.dom('input').doesNotExist('The control does not exist');
-    });
+    assert.dom(error).exists('Expected error block to be rendered');
+    assert.dom(error).hasText('error', 'Expected to have error text rendered');
   });
 
-  module('contextual components', function () {
-    test('it renders', async function (assert) {
-      await render(<template>
+  test('it renders conditionally', async function (assert) {
+    await render(<template>
+      <div data-test-field>
         <Field as |field|>
           <field.Label>label</field.Label>
-          <field.Hint><span data-test-hint>hint</span></field.Hint>
+          <field.Hint data-test-hint>hint</field.Hint>
           <field.Control>
             <input type="text" data-test-input />
           </field.Control>
-          <field.Error><span data-test-error>error</span></field.Error>
+          {{! explicitly not render field.Error! }}
         </Field>
-      </template>);
+      </div>
+    </template>);
 
-      const label = 'label';
-      const hint = '[data-test-hint]';
-      const error = '[data-test-error]';
-      const control = '[data-test-input]';
+    const label = 'label';
+    const hint = '[data-test-hint]';
+    const control = '[data-test-input]';
 
-      assert.dom(label).exists('Expected to have label block rendered');
-      assert.dom(label).hasText('label', 'Expected to have label text "label"');
+    assert.dom(label).exists('Expected to have label block rendered');
+    assert.dom(label).hasText('label', 'Expected to have label text "label"');
 
-      assert.dom(hint).exists('Expected to have hint text rendered');
-      assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
+    const children = findAll('[data-test-field] > div');
+    assert.strictEqual(
+      children.length,
+      1,
+      'Expected only one child element ("hint")'
+    );
 
-      assert.dom(control).exists('Control named block is rendered');
+    assert.dom(hint).exists('Expected to have hint text rendered');
+    assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
 
-      assert.dom(error).exists('Error block exists');
-      assert
-        .dom(error)
-        .hasText('error', 'Expected to have error text rendered');
-    });
+    assert.dom(control).exists('Expected control block to be rendered');
 
-    test('it renders conditionally', async function (assert) {
-      await render(<template>
-        <div data-test-field>
-          <Field as |field|>
-            <field.Label>label</field.Label>
-            <field.Hint><span data-test-hint>hint</span></field.Hint>
-            <field.Control>
-              <input type="text" data-test-input />
-            </field.Control>
-          </Field>
-        </div>
-      </template>);
-
-      const label = 'label';
-      const hint = '[data-test-hint]';
-      const control = '[data-test-input]';
-      const children = findAll('[data-test-field] > div');
-
-      assert.dom(label).exists('Expected to have label block rendered');
-      assert.dom(label).hasText('label', 'Expected to have label text "label"');
-
-      assert.dom(hint).exists('Expected to have hint text rendered');
-      assert.dom(hint).hasText('hint', 'Expected to have hint text "hint"');
-
-      assert.dom(control).exists('Control named block is rendered');
-
-      assert
-        .dom('svg')
-        .doesNotExist('Error block does not exist (no error icon shown)');
-
-      assert.strictEqual(
-        children.length,
-        1,
-        'Form only has div which is the hint'
+    assert
+      .dom('svg')
+      .doesNotExist(
+        'Expected error icon not to be shown as error block is not rendered'
       );
-    });
   });
 });

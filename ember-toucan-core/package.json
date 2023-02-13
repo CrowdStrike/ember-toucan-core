@@ -118,8 +118,7 @@
       "./components/form/error.js": "./dist/_app_/components/form/error.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/hint.js": "./dist/_app_/components/form/hint.js",
-      "./components/form/label.js": "./dist/_app_/components/form/label.js",
-      "./components/form/wrapper.js": "./dist/_app_/components/form/wrapper.js"
+      "./components/form/label.js": "./dist/_app_/components/form/label.js"
     }
   },
   "exports": {

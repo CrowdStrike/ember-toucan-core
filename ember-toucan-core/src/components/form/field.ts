@@ -1,20 +1,28 @@
 import Component from '@glimmer/component';
 
-import Wrapper from './wrapper';
+import Control from './control';
+import Error from './error';
+import Hint from './hint';
+import Label from './label';
 
 interface ToucanFormFieldComponentSignature {
-  Element: HTMLDivElement;
+  Element: null;
   Args: {};
   Blocks: {
-    // TODO - type these properly!
-    default: any;
-    label?: any;
-    hint?: any;
-    control?: any;
-    error?: any;
+    default: [
+      {
+        Label: typeof Label;
+        Hint: typeof Hint;
+        Control: typeof Control;
+        Error: typeof Error;
+      }
+    ];
   };
 }
 
 export default class ToucanFormFieldComponent extends Component<ToucanFormFieldComponentSignature> {
-  Wrapper = Wrapper;
+  Label = Label;
+  Hint = Hint;
+  Control = Control;
+  Error = Error;
 }
