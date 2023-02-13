@@ -11,20 +11,18 @@ interface ToucanFormWrapperComponentSignature {
   Blocks: {
     default?: [
       {
-        // TODO: Figure out how to resolve these type errors
-        // (property) Label: typeof Label
-        // Type 'abstract new () => PartiallyAppliedComponent<EmptyObject, {}, AcceptsBlocks<FlattenBlockParams<{ default: { Params: { Positional: []; }; }; }>, HTMLLabelElement>>' is not assignable to type 'typeof ToucanFormLabel'.
-        // Cannot assign an abstract constructor type to a non-abstract constructor type.glint:ts(2322)
-        Label: any;
-        Hint: any;
-        Control: any;
-        Error: any;
+        Label: typeof Label;
+        Hint: typeof Hint;
+        Control: typeof Control;
+        Error: typeof Error;
       }
     ];
-    // TODO: Figure out how to resolve these type errors
-    // Error: Property '[Data]' is missing in type 'abstract new () => PartiallyAppliedComponent<EmptyObject, {}, AcceptsBlocks<FlattenBlockParams<{ default: { Params: { Positional: []; }; }; }>, HTMLDivElement>>' but required in type 'TemplateOnlyComponent<ToucanFormHintComponentSignature>'
     hint?: any;
     control?: any;
+    // (property) ToucanFormWrapperComponent.Hint: TemplateOnlyComponent<ToucanFormHintComponentSignature>
+    // Argument of type '[TemplateOnlyComponent<ToucanFormHintComponentSignature>]' is not assignable to parameter of type 'TemplateOnlyComponent<ToucanFormLabelComponentSignature>'.
+    // Property '[Data]' is missing in type '[TemplateOnlyComponent<ToucanFormHintComponentSignature>]' but required in type 'TemplateOnlyComponent<ToucanFormLabelComponentSignature>'.glint:ts(2345)
+    // label?: typeof Label;
     label?: any;
     error?: any;
   };
