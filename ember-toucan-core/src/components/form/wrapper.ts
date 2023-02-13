@@ -8,23 +8,20 @@ import Label from './label';
 interface ToucanFormWrapperComponentSignature {
   Element: HTMLDivElement;
   Args: {};
-  Blocks:
-    | {
-        default: [
-          {
-            Label: typeof Label;
-            Hint: typeof Hint;
-            Control: typeof Control;
-            Error: typeof Error;
-          }
-        ];
+  Blocks: {
+    default: [
+      {
+        Label: typeof Label;
+        Hint: typeof Hint;
+        Control: typeof Control;
+        Error: typeof Error;
       }
-    | {
-        hint: typeof Hint;
-        control: typeof Control;
-        label: typeof Label;
-        error: typeof Error;
-      };
+    ];
+    hint: [typeof Hint];
+    control: [typeof Control];
+    label: [typeof Label];
+    error: [typeof Error];
+  };
 }
 
 export default class ToucanFormWrapperComponent extends Component<ToucanFormWrapperComponentSignature> {

@@ -1,10 +1,7 @@
-{{#if (has-block)}}
-  {{yield
-    (hash Label=this.Label Hint=this.Hint Control=this.Control Error=this.Error)
-  }}
-{{else}}
-  {{yield this.Label to="label"}}
-  {{yield this.Hint to="hint"}}
-  {{yield this.Control to="control"}}
-  {{yield this.Error to="error"}}
-{{/if}}
+{{yield
+  (hash Label=this.Label Hint=this.Hint Control=this.Control Error=this.Error)
+}}
+{{yield this.Label to="label"}}
+{{yield this.Hint to="hint"}}
+{{yield this.Control to="control"}}
+{{yield this.Error to="error"}}
