@@ -1,3 +1,6 @@
+/* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
+/* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
+
 import { findAll, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
@@ -12,6 +15,8 @@ module('Integration | Component | Field', function (hooks) {
       <Field as |field|>
         <field.Label>label</field.Label>
         <field.Hint data-test-hint>hint</field.Hint>
+        {{! we'll handle the wiring of the label }}
+        {{! template-lint-disable require-input-label }}
         <field.Control>
           <input type="text" data-test-input />
         </field.Control>
@@ -42,6 +47,8 @@ module('Integration | Component | Field', function (hooks) {
         <Field as |field|>
           <field.Label>label</field.Label>
           <field.Hint data-test-hint>hint</field.Hint>
+          {{! we'll handle the wiring of the label }}
+          {{! template-lint-disable require-input-label }}
           <field.Control>
             <input type="text" data-test-input />
           </field.Control>
