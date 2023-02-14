@@ -82,4 +82,18 @@ module('Integration | Component | Field', function (hooks) {
         'Expected error icon not to be shown as error block is not rendered'
       );
   });
+
+  test('it provides ids for accessibility attributes', async function (assert) {
+    await render(<template>
+      <Field as |field|>
+        <span data-test-id>{{field.id}}</span>
+        <span data-test-hintId>{{field.hintId}}</span>
+        <span data-test-errorId>{{field.errorId}}</span>
+      </Field>
+    </template>);
+
+    assert.dom('[data-test-id]').hasAnyText();
+    assert.dom('[data-test-hintId]').hasAnyText();
+    assert.dom('[data-test-errorId]').hasAnyText();
+  });
 });

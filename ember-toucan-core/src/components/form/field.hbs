@@ -1,3 +1,13 @@
-{{yield
-  (hash Label=this.Label Hint=this.Hint Control=this.Control Error=this.Error)
-}}
+{{#let (unique-id) (unique-id) (unique-id) as |uniqueId hintId errorId|}}
+  {{yield
+    (hash
+      Label=this.Label
+      Hint=this.Hint
+      Control=this.Control
+      Error=this.Error
+      id=uniqueId
+      hintId=hintId
+      errorId=errorId
+    )
+  }}
+{{/let}}
