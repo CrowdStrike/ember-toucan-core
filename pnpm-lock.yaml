@@ -73,7 +73,7 @@ importers:
       broccoli-asset-rev: ^3.0.0
       concurrently: ^7.4.0
       cssnano: ^5.1.13
-      dompurify: ^2.4.0
+      dompurify: ^3.0.0
       ember-auto-import: ^2.4.2
       ember-browser-services: ^4.0.4
       ember-cached-decorator-polyfill: ^1.0.1
@@ -122,7 +122,7 @@ importers:
       '@crowdstrike/ember-toucan-core': file:ember-toucan-core_c3kkohttmdjfdvgo34vti4qtke
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 2.0.0_htqm3qg3nmvfkwq4ngma65xhmi
-      dompurify: 2.4.3
+      dompurify: 3.0.0
       ember-browser-services: 4.0.4
       ember-cached-decorator-polyfill: 1.0.1_2lbu44dmrdozuoe4jwbycbgazy
       ember-modifier: 3.2.7_@babel+core@7.20.12
@@ -7131,6 +7131,10 @@ packages:
 
   /dompurify/2.4.3:
     resolution: {integrity: sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==}
+    dev: false
+
+  /dompurify/3.0.0:
+    resolution: {integrity: sha512-0g/yr2IJn4nTbxwL785YxS7/AvvgGFJw6LLWP+BzWzB1+BYOqPUT9Hy0rXrZh5HLdHnxH72aDdzvC9SdTjsuaA==}
     dev: false
 
   /domutils/2.8.0:
