@@ -1,14 +1,17 @@
 ```hbs template
 <Form::Field as |field|>
-  <field.Label>First name</field.Label>
-  <field.Hint>What should we call you?</field.Hint>
+  <field.Label for={{field.id}}>Label</field.Label>
+  <field.Hint id={{field.hintId}}>Extra information about the field</field.Hint>
   <field.Control>
     <input
-      class='border bg-basement text-titles-and-attributes'
+      class='border bg-basement text-titles-and-attributes p-1 rounded-sm'
+      id={{field.id}}
+      aria-invalid='true'
+      aria-describedby='{{field.hintId}} {{field.errorId}}'
       ...attributes
     />
   </field.Control>
-  <field.Error>error</field.Error>
+  <field.Error id={{field.errorId}}>Error message</field.Error>
 </Form::Field>
 ```
 
