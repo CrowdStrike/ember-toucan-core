@@ -16,16 +16,15 @@ export default {
     // These are the modules that users should be able to import from your
     // addon. Anything not listed here may get optimized away.
     addon.publicEntrypoints([
-      'components/**/*.js',
-      'index.js',
-      'template-registry.js',
-      'test-support/index.js',
+      // For our own build we treat all JS modules as entry points, to not cause rollup-plugin-ts to mess things up badly when trying to tree-shake TS declarations
+      // but the actual importable modules are further restricted by the package.json entry points!
+      '**/*.js',
     ]),
 
     // These are the modules that should get reexported into the traditional
     // "app" tree. Things in here should also be in publicEntrypoints above, but
     // not everything in publicEntrypoints necessarily needs to go here.
-    addon.appReexports(['components/**/*.js']),
+    addon.appReexports(['components/*.js', 'components/form/*.js']),
 
     // compile TypeScript to latest JavaScript, including Babel transpilation
     typescript({

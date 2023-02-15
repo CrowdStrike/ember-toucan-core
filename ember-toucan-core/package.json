@@ -114,11 +114,7 @@
     "main": "addon-main.cjs",
     "app-js": {
       "./components/button.js": "./dist/_app_/components/button.js",
-      "./components/form/control.js": "./dist/_app_/components/form/control.js",
-      "./components/form/error.js": "./dist/_app_/components/form/error.js",
-      "./components/form/field.js": "./dist/_app_/components/form/field.js",
-      "./components/form/hint.js": "./dist/_app_/components/form/hint.js",
-      "./components/form/label.js": "./dist/_app_/components/form/label.js"
+      "./components/form/field.js": "./dist/_app_/components/form/field.js"
     }
   },
   "exports": {
@@ -127,6 +123,7 @@
       "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     },
+    "./components/**/-private/*": null,
     "./test-support": "./dist/test-support/index.js",
     "./addon-main.js": "./addon-main.cjs"
   },
