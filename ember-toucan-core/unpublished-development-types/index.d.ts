@@ -3,8 +3,11 @@
 
 import '@glint/environment-ember-loose';
 
+import type FieldComponent from '../src/components/form/field';
+
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry /* extends EmberPageTitle, etc, other addon registries */ {
     // local entries
+    'Form::Field': typeof FieldComponent;
   }
 }
