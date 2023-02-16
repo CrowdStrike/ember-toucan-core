@@ -57,9 +57,9 @@
     "@embroider/addon-dev": "^3.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@glint/core": "^0.9.7",
-    "@glint/environment-ember-loose": "^0.9.7",
-    "@glint/template": "^0.9.7",
+    "@glint/core": "^1.0.0-beta.3",
+    "@glint/environment-ember-loose": "^1.0.0-beta.3",
+    "@glint/template": "^1.0.0-beta.3",
     "@nullvoxpopuli/eslint-configs": "^3.0.4",
     "@tsconfig/ember": "^2.0.0",
     "@types/ember": "^4.0.0",
@@ -113,7 +113,8 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
-      "./components/button.js": "./dist/_app_/components/button.js"
+      "./components/button.js": "./dist/_app_/components/button.js",
+      "./components/form/field.js": "./dist/_app_/components/form/field.js"
     }
   },
   "exports": {
@@ -122,6 +123,7 @@
       "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     },
+    "./components/**/-private/*": null,
     "./test-support": "./dist/test-support/index.js",
     "./addon-main.js": "./addon-main.cjs"
   },
