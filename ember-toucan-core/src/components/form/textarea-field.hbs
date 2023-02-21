@@ -10,7 +10,7 @@
       <textarea
         aria-invalid={{if @error "true"}}
         aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
-        class="block h-20 p-1
+        class="block h-20 min-h-6 p-1 bg-overlay-1 focus:outline-none rounded-sm shadow-focusable-outline focus:shadow-focus-outline
           {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
         disabled={{@isDisabled}}
         id={{field.id}}
