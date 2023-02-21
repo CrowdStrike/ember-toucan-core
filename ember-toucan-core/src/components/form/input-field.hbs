@@ -1,0 +1,32 @@
+<div
+  class="flex flex-col {{if @isDisabled 'text-disabled cursor-not-allowed'}}"
+>
+  <Form::Field as |field|>
+    <field.Label for={{field.id}}>{{@label}}</field.Label>
+
+    {{#if @hint}}
+      <field.Hint id={{field.hintId}}>{{@hint}}</field.Hint>
+    {{/if}}
+
+    <field.Control class="flex">
+      <input
+        class="m-1 h-6 w-0 flex-grow bg-transparent p-1
+          {{if
+            @isDisabled
+            'text-disabled cursor-not-allowed'
+            'text-titles-and-attributes'
+          }}
+          "
+        id={{field.id}}
+        aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
+        aria-invalid={{if @error "true"}}
+        disabled={{@isDisabled}}
+        ...attributes
+      />
+    </field.Control>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}}>{{@error}}</field.Error>
+    {{/if}}
+  </Form::Field>
+</div>
