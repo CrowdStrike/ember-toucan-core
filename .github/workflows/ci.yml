@@ -116,7 +116,8 @@ jobs:
           - ember-4.8
           - ember-release
           - ember-beta
-          - ember-canary
+          # @todo enable this again: https://github.com/CrowdStrike/ember-toucan-core/issues/38
+          # - ember-canary
           - "'ember-release + embroider-optimized'"
           - "'ember-lts-4.8 + embroider-optimized'"
 
