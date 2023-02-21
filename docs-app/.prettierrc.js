@@ -11,6 +11,7 @@ module.exports = {
       files: '*.hbs',
       options: {
         singleQuote: false,
+        plugins: ['prettier-plugin-tailwindcss'],
       },
     },
     {
