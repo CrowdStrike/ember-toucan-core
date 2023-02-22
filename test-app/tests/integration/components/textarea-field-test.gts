@@ -12,7 +12,7 @@ module('Integration | Component | TextareaField', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      <TextareaField @label="Label" data-test-textarea />
+      <TextareaField @label="Label" data-textarea />
     </template>);
 
     assert.dom('[data-textarea-label]').hasText('Label');
@@ -23,9 +23,9 @@ module('Integration | Component | TextareaField', function (hooks) {
         'Expected hint block not to be displayed as a hint was not provided'
       );
 
-    assert.dom('[data-test-textarea]').hasTagName('textarea');
-    assert.dom('[data-test-textarea]').hasAttribute('id');
-    assert.dom('[data-test-textarea]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-textarea]').hasTagName('textarea');
+    assert.dom('[data-textarea]').hasAttribute('id');
+    assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-textarea-error]')
@@ -36,7 +36,7 @@ module('Integration | Component | TextareaField', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <TextareaField @label="Label" @hint="Hint text" data-test-textarea />
+      <TextareaField @label="Label" @hint="Hint text" data-textarea />
     </template>);
 
     let hint = find('[data-textarea-hint]');
@@ -48,7 +48,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.ok(hintId, 'Expected hint ID to be truthy');
 
     let describedby =
-      find('[data-test-textarea]')?.getAttribute('aria-describedby') || '';
+      find('[data-textarea]')?.getAttribute('aria-describedby') || '';
     assert.ok(
       describedby.includes(hintId),
       'Expected hintId to be included in the aria-describedby'
@@ -57,7 +57,7 @@ module('Integration | Component | TextareaField', function (hooks) {
 
   test('it renders with an error', async function (assert) {
     await render(<template>
-      <TextareaField @label="Label" @error="Error text" data-test-textarea />
+      <TextareaField @label="Label" @error="Error text" data-textarea />
     </template>);
 
     let error = find('[data-textarea-error]');
@@ -69,13 +69,13 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.ok(errorId, 'Expected error ID to be truthy');
 
     let describedby =
-      find('[data-test-textarea]')?.getAttribute('aria-describedby') || '';
+      find('[data-textarea]')?.getAttribute('aria-describedby') || '';
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
     );
 
-    assert.dom('[data-test-textarea]').hasAttribute('aria-invalid', 'true');
+    assert.dom('[data-textarea]').hasAttribute('aria-invalid', 'true');
   });
 
   test('it sets aria-describedby when both a hint and error are provided using the hint and error IDs', async function (assert) {
@@ -84,7 +84,7 @@ module('Integration | Component | TextareaField', function (hooks) {
         @label="Label"
         @error="Error text"
         @hint="Hint text"
-        data-test-textarea
+        data-textarea
       />
     </template>);
 
@@ -95,17 +95,17 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.ok(hintId, 'Expected hint ID to be truthy');
 
     assert
-      .dom('[data-test-textarea]')
+      .dom('[data-textarea]')
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
   test('it disables the textarea using `@isDisabled`', async function (assert) {
     await render(<template>
-      <TextareaField @label="Label" @isDisabled={{true}} data-test-textarea />
+      <TextareaField @label="Label" @isDisabled={{true}} data-textarea />
     </template>);
 
-    assert.dom('[data-test-textarea]').isDisabled();
-    assert.dom('[data-test-textarea]').hasClass('text-disabled');
+    assert.dom('[data-textarea]').isDisabled();
+    assert.dom('[data-textarea]').hasClass('text-disabled');
   });
 
   test('it spreads attributes to the underlying textarea', async function (assert) {
@@ -113,12 +113,12 @@ module('Integration | Component | TextareaField', function (hooks) {
       <TextareaField
         @label="Label"
         placeholder="Placeholder text"
-        data-test-textarea
+        data-textarea
       />
     </template>);
 
     assert
-      .dom('[data-test-textarea]')
+      .dom('[data-textarea]')
       .hasAttribute('placeholder', 'Placeholder text');
   });
 });
