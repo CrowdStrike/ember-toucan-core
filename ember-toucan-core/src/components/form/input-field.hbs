@@ -21,10 +21,11 @@
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
         disabled={{@isDisabled}}
+        value={{@value}}
         ...attributes
+        {{on "input" this.handleInput}}
       />
     </field.Control>
-
     {{#if @error}}
       <field.Error id={{field.errorId}}>{{@error}}</field.Error>
     {{/if}}
