@@ -3,8 +3,8 @@
   @label='Label'
   @hint='Type "textarea" into the field'
   @error={{this.errorMessage}}
-  value={{this.value}}
-  {{on 'input' this.updateValue}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
 />
 ```
 
@@ -18,10 +18,10 @@ export default class extends Component {
   @tracked errorMessage;
 
   @action
-  updateValue(e) {
-    this.value = e.target.value;
+  updateValue(value, e) {
+    this.value = value;
 
-    if (e.target.value !== 'textarea') {
+    if (value !== 'textarea') {
       this.errorMessage = 'Input must match "textarea"';
       return;
     }
