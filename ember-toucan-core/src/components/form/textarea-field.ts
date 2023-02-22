@@ -1,6 +1,7 @@
-import templateOnlyComponent from '@ember/component/template-only';
+import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 
-import type { ToucanFormTextareaControlArguments } from './controls/textarea';
+import type { ToucanFormTextareaControlComponentSignature } from './controls/textarea';
 
 export interface ToucanFormTextareaFieldComponentSignature {
   Element: HTMLTextAreaElement;
@@ -9,13 +10,21 @@ export interface ToucanFormTextareaFieldComponentSignature {
     hint?: string;
     isDisabled?: boolean;
     label: string;
-    onChange?: ToucanFormTextareaControlArguments['onChange'];
+    onChange?: ToucanFormTextareaControlComponentSignature['Args']['onChange'];
     /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
-    value?: ToucanFormTextareaControlArguments['value'];
+    value?: ToucanFormTextareaControlComponentSignature['Args']['value'];
   };
 }
 
-export default templateOnlyComponent<ToucanFormTextareaFieldComponentSignature>();
+export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {
+  constructor(
+    owner: unknown,
+    args: ToucanFormTextareaFieldComponentSignature['Args']
+  ) {
+    assert('A "@label" argument is required', args.label);
+    super(owner, args);
+  }
+}
