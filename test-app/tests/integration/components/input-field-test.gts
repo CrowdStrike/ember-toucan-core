@@ -2,7 +2,6 @@ import { fillIn, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
-import sinon from 'sinon';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 
@@ -105,7 +104,14 @@ module('Integration | Component | InputField', function (hooks) {
   });
 
   test('it accepts @value and @onChange', async function (assert) {
-    const onChangeCallback = sinon.spy();
+    assert.expect(8);
+    
+    const onChangeCallback = (value: string, e: Event | InputEvent) => {
+      assert.strictEqual(value, 'Banana', 'Expected input to match');
+      assert.ok(e, 'Expected `e` to be available as the second argument');
+      assert.ok(e.target, 'Expected direct access to target from `e`');
+      assert.step('handleChange');
+    };
   
     await render(<template>
         <InputField
@@ -115,6 +121,8 @@ module('Integration | Component | InputField', function (hooks) {
           @onChange={{onChangeCallback}}
           />
       </template>);
+
+    assert.verifySteps([]);
 
     const input: HTMLInputElement | null  = document.querySelector('input.m-1');
 
@@ -127,12 +135,8 @@ module('Integration | Component | InputField', function (hooks) {
     await fillIn('input.m-1', 'Banana');
 
     assert.strictEqual(input.value, 'Banana', 'input has the set @value');
-    assert.true(onChangeCallback.called, '@onChange has been called');
 
-    assert.strictEqual(onChangeCallback.getCall(0).firstArg, 'Banana', '@onChange called with @value and event');
-
-    // the input event is quite large, so testing just for the value
-    assert.strictEqual(onChangeCallback.getCall(0).lastArg.target.value, 'Banana', '@onChange called with @value and event');
+    assert.verifySteps(['handleChange']);
   });
 
 });
