@@ -1,105 +1,52 @@
 # Input field
 
-Use the input field where you want to be able to have a standard field with a set position for
-- label
-- hint text
-- error text
+Provides an underlying `<input>` element building on top of the Field component.
 
-## Arguments
+## Label
 
-`error: string`
-- Optional
-- adds an `id` attribute to the underlying `field.Error` component. This is linked to the `aria-describedBy` in the input component.
+Provide a string to `@label` to render the text into the `<label>` of the Field.
 
-`hint: string`
-- Optional
-- adds an `id` attribute to the underlying `field.Hint` component. This is linked ot the `aria-describedBy` in the input component.
+## Hint
 
-`label: string`
-- Required
+Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
 
-`onChange: (value:string, e: Event | InputEvent) => void`
-- Optional
-- use with @value for controlled components
+## Error
 
-`isDisabled: boolean`
-- Optional 
+Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
 
-`rootTestSelector: string`
-- Optional
-- Use this to add a custom test selector, which is added as a value to `data-root-field`
+## Value and onChange
 
-`value: string`
-- Optional
-- use with @onChange for controlled components
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments, the first being the value, while the second being the raw event object. It's most common to use this in combination with `@value` which will set the value for the input based on the input received from the change event.
 
-## Attributes
-
-You can pass HTML attributes with `...attributes`
-
-<div class="mb-4">
-  <Form::InputField
-    @label="Label"
-    @hint="extra information about the field"
-    type="text"
-    placeholder="Example text" 
-  />
-</div>
-
-```hbs template
+```hbs
 <Form::InputField
-  @label="Label"
-  @hint="extra information about the field"
-  type="text"
-  placeholder="Example text" 
+  @label='Label'
+  @value={{this.value}}
+  @onChange={{this.handleChange}}
 />
 ```
 
-
-## Errors
-
-Use `@error` to add an error message for the input field.
-
-<div class="mb-4">
-  <Form::InputField
-    @label="Label"
-    @hint="extra information about the field"
-    type="text"
-    @error="This field is required" 
-  />
-</div>
-
-```hbs template
-<Form::InputField
-  @label="Label"
-  @hint="extra information about the field"
-  type="text"
-  @error="This field is required" 
-/>
+```js
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+export default class extends Component {
+  @tracked value;
+  @action
+  handleChange(value, e) {
+    console.log({ e, value });
+    this.value = value;
+  }
+}
 ```
 
+## Disabled State
 
-## isDisabled
+Set the `@isDisabled` argument to disable the `<input>`.
 
-Use `@isDisabled` to disable the entire InputField.
+## Attributes and Modifiers
 
-<div class="mb-4">
-  <Form::InputField
-    @label="Label"
-    @hint="extra information about the field"
-    type="text"
-    @isDisabled={{true}}
-  />
-</div>
-
-```hbs template
-<Form::InputField
-  @label="Label"
-  @hint="extra information about the field"
-  type="text"
-  @isDisabled={{true}}
-/>
-```
+Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.
 
 ## Test Selectors
 
@@ -116,6 +63,18 @@ assert.dom('[data-root-field="example"]');
 // targeting this field's specific label
 assert.dom('[data-root-field="example"] > [data-label]');
 ```
+
+### Label
+
+Target the label element via `data-label`.
+
+### Hint
+
+Target the hint block via `data-hint`.
+
+### Error
+
+Target the error block via `data-error`.
 
 ## UI States
 
