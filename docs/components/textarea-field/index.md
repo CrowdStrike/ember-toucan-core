@@ -50,6 +50,35 @@ Set the `@isDisabled` argument to disable the `<textarea>`.
 
 Consumers have direct access to the underlying [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea), so all attributes are supported. Modifiers can also be added directly to the textarea as shown in the demo.
 
+## Test Selectors
+
+### Root Element
+
+Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
+
+```hbs
+<Form::TextareaField @label='Label' @rootTestSelector='example' />
+```
+
+```js
+assert.dom('[data-root-field="example"]');
+
+// targeting this field's specific label
+assert.dom('[data-root-field="example"] > [data-label]');
+```
+
+### Label
+
+Target the label element via `data-label`.
+
+### Hint
+
+Target the hint block via `data-hint`.
+
+### Error
+
+Target the error block via `data-error`.
+
 ## All UI States
 
 <div class="flex flex-col space-y-4">

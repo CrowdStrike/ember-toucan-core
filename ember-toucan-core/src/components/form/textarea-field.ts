@@ -10,6 +10,10 @@ export interface ToucanFormTextareaFieldComponentSignature {
     isDisabled?: boolean;
     label: string;
     onChange?: ToucanFormTextareaControlArguments['onChange'];
+    /**
+     * A test selector for targeting the root element of the field. In this case, the wrapping div element.
+     */
+    rootTestSelector?: string;
     value?: ToucanFormTextareaControlArguments['value'];
   };
 }
