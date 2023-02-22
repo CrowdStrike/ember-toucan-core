@@ -12,6 +12,8 @@
         aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
         id={{field.id}}
         @isDisabled={{@isDisabled}}
+        @value={{@value}}
+        @onChange={{@onChange}}
         ...attributes
       />
     </field.Control>
