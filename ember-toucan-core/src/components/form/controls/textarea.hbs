@@ -1,0 +1,7 @@
+<textarea
+  class="block h-20 min-h-6 p-1 bg-overlay-1 focus:outline-none rounded-sm shadow-focusable-outline focus:shadow-focus-outline
+    {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+  disabled={{@isDisabled}}
+  ...attributes
+  {{on "input" this.handleInput}}
+>{{@value}}</textarea>

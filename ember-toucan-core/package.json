@@ -114,6 +114,7 @@
     "main": "addon-main.cjs",
     "app-js": {
       "./components/button.js": "./dist/_app_/components/button.js",
+      "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/textarea-field.js": "./dist/_app_/components/form/textarea-field.js"
     }
