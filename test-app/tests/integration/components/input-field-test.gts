@@ -1,10 +1,11 @@
-import { render } from '@ember/test-helpers';
+import { render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | Field', function (hooks) {
+
+module('Integration | Component | InputField', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
@@ -24,6 +25,21 @@ module('Integration | Component | Field', function (hooks) {
     assert.dom(input).exists('Expected to have input tag rendered');
     assert.dom(input).hasAttribute('type', 'text');
   });
+
+  test('it encourages @label via assert', async function (assert) {
+    assert.expect(1)
+
+    setupOnerror((e:Error) => {
+      assert.strictEqual(e.message, 'Assertion Failed: input field requires a label', 'Expected an error message if @label is not provided')
+    })
+    await render(<template>
+      {{! @glint-expect-error: should have an error here for missing @label }} 
+      <InputField
+        type="text"
+        />
+    </template>);
+
+  })
   
   test('it renders an error', async function (assert) {
     await render(<template>

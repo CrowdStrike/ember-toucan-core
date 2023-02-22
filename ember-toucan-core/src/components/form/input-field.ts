@@ -1,9 +1,10 @@
 import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 
 interface ToucanFormInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
-    label?: string;
+    label: string;
     hint?: string;
     error?: string;
     isDisabled?: boolean;
@@ -14,5 +15,12 @@ interface ToucanFormInputFieldComponentSignature {
   };
 }
 
-// eslint-disable-next-line ember/no-empty-glimmer-component-classes
-export default class ToucanFormInputFieldComponent extends Component<ToucanFormInputFieldComponentSignature> {}
+export default class ToucanFormInputFieldComponent extends Component<ToucanFormInputFieldComponentSignature> {
+  constructor(
+    owner: unknown,
+    args: ToucanFormInputFieldComponentSignature['Args']
+  ) {
+    assert('input field requires a label', args.label !== undefined);
+    super(owner, args);
+  }
+}
