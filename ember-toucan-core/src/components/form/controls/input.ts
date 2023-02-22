@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
-interface ToucanFormControlInputComponentSignature {
+interface ToucanFormControlsInputComponentSignature {
   Element: HTMLInputElement;
   Args: {
     isDisabled?: boolean;
@@ -12,7 +12,7 @@ interface ToucanFormControlInputComponentSignature {
   };
 }
 
-export default class ToucanFormControlInputComponent extends Component<ToucanFormControlInputComponentSignature> {
+export default class ToucanFormControlsInputComponent extends Component<ToucanFormControlsInputComponentSignature> {
   @action
   handleInput(e: Event | InputEvent): void {
     assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);
