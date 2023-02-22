@@ -4,7 +4,8 @@
 import { fillIn, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import Input from '@crowdstrike/ember-toucan-core/components/form/controls/input';
+// outside of tests, in everyday use, use <Form::Controls::Input />
+import InputControl from '@crowdstrike/ember-toucan-core/components/form/controls/input';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | Input', function (hooks) {
@@ -14,7 +15,7 @@ module('Integration | Component | Input', function (hooks) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <Input data-input />
+      <InputControl data-input />
     </template>);
 
     assert.dom('[data-input]').hasTagName('input');
@@ -26,7 +27,7 @@ module('Integration | Component | Input', function (hooks) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <Input @isDisabled={{true}} data-input />
+      <InputControl @isDisabled={{true}} data-input />
     </template>);
 
     assert.dom('[data-input]').isDisabled();
@@ -40,7 +41,7 @@ module('Integration | Component | Input', function (hooks) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <Input placeholder="Placeholder text" data-input />
+      <InputControl placeholder="Placeholder text" data-input />
     </template>);
 
     assert
@@ -52,7 +53,7 @@ module('Integration | Component | Input', function (hooks) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <Input @value="tony" data-input />
+      <InputControl @value="tony" data-input />
     </template>);
 
     assert.dom('[data-input]').hasValue('tony');
@@ -71,7 +72,7 @@ module('Integration | Component | Input', function (hooks) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <Input @onChange={{handleChange}} data-input />
+      <InputControl @onChange={{handleChange}} data-input />
     </template>);
 
     assert.verifySteps([]);
