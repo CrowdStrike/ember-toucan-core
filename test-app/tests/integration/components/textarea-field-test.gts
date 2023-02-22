@@ -15,10 +15,10 @@ module('Integration | Component | TextareaField', function (hooks) {
       <TextareaField @label="Label" data-textarea />
     </template>);
 
-    assert.dom('[data-textarea-label]').hasText('Label');
+    assert.dom('[data-label]').hasText('Label');
 
     assert
-      .dom('[data-textarea-hint]')
+      .dom('[data-hint]')
       .doesNotExist(
         'Expected hint block not to be displayed as a hint was not provided'
       );
@@ -28,7 +28,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
 
     assert
-      .dom('[data-textarea-error]')
+      .dom('[data-error]')
       .doesNotExist(
         'Expected hint block not to be displayed as an error was not provided'
       );
@@ -39,7 +39,7 @@ module('Integration | Component | TextareaField', function (hooks) {
       <TextareaField @label="Label" @hint="Hint text" data-textarea />
     </template>);
 
-    let hint = find('[data-textarea-hint]');
+    let hint = find('[data-hint]');
 
     assert.dom(hint).hasText('Hint text');
     assert.dom(hint).hasAttribute('id');
@@ -60,7 +60,7 @@ module('Integration | Component | TextareaField', function (hooks) {
       <TextareaField @label="Label" @error="Error text" data-textarea />
     </template>);
 
-    let error = find('[data-textarea-error]');
+    let error = find('[data-error]');
 
     assert.dom(error).hasText('Error text');
     assert.dom(error).hasAttribute('id');
@@ -88,10 +88,10 @@ module('Integration | Component | TextareaField', function (hooks) {
       />
     </template>);
 
-    let errorId = find('[data-textarea-error]')?.getAttribute('id') || '';
+    let errorId = find('[data-error]')?.getAttribute('id') || '';
     assert.ok(errorId, 'Expected error ID to be truthy');
 
-    let hintId = find('[data-textarea-hint]')?.getAttribute('id') || '';
+    let hintId = find('[data-hint]')?.getAttribute('id') || '';
     assert.ok(hintId, 'Expected hint ID to be truthy');
 
     assert
