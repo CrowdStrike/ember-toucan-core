@@ -148,4 +148,16 @@ module('Integration | Component | TextareaField', function (hooks) {
 
     assert.verifySteps(['handleChange']);
   });
+
+  test('it applies the provided `@rootTestSelector` to the data-root-field attribute', async function (assert) {
+    await render(<template>
+      <TextareaField
+        @label="Label"
+        @rootTestSelector="selector"
+        data-textarea
+      />
+    </template>);
+
+    assert.dom('[data-root-field="selector"]').exists();
+  });
 });
