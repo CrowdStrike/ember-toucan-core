@@ -10,6 +10,14 @@ Use the input field where you want to be able to have a standard field with a se
 `label: string`
 - Required
 
+`value: string`
+- Optional
+- use with @onChange for controlled components
+
+`onChange: (value:string, e: Event | InputEvent) => void`
+- Optional
+- use with @value for controlled components
+
 `isDisabled: boolean`
 - Optional 
 
