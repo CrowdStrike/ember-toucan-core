@@ -7,12 +7,16 @@ Use the input field where you want to be able to have a standard field with a se
 
 ## Arguments
 
+`error: string`
+- Optional
+- adds an `id` attribute to the underlying `field.Error` component. This is linked to the `aria-describedBy` in the input component.
+
+`hint: string`
+- Optional
+- adds an `id` attribute to the underlying `field.Hint` component. This is linked ot the `aria-describedBy` in the input component.
+
 `label: string`
 - Required
-
-`value: string`
-- Optional
-- use with @onChange for controlled components
 
 `onChange: (value:string, e: Event | InputEvent) => void`
 - Optional
@@ -21,13 +25,13 @@ Use the input field where you want to be able to have a standard field with a se
 `isDisabled: boolean`
 - Optional 
 
-`hint: string`
+`rootTestSelector: string`
 - Optional
-- adds an `id` attribute to the underlying `field.Hint` component. This is linked ot the `aria-describedBy` in the input component.
+- Use this to add a custom test selector, which is added as a value to `data-root-field`
 
-`error: string`
+`value: string`
 - Optional
-- adds an `id` attribute to the underlying `field.Error` component. This is linked to the `aria-describedBy` in the input component.
+- use with @onChange for controlled components
 
 ## Attributes
 
@@ -95,6 +99,22 @@ Use `@isDisabled` to disable the entire InputField.
   type="text"
   @isDisabled={{true}}
 />
+```
+
+## Test Selectors
+
+### Root Element
+
+Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
+
+```hbs
+<Form::InputField @label='Label' @rootTestSelector='example' />
+```
+
+```js
+assert.dom('[data-root-field="example"]');
+// targeting this field's specific label
+assert.dom('[data-root-field="example"] > [data-label]');
 ```
 
 ## UI States

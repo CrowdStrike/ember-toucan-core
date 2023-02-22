@@ -1,11 +1,12 @@
 <div
   class="flex flex-col {{if @isDisabled 'text-disabled cursor-not-allowed'}}"
+  data-root-field={{if @rootTestSelector @rootTestSelector null}}
 >
   <Form::Field as |field|>
-    <field.Label for={{field.id}}>{{@label}}</field.Label>
+    <field.Label for={{field.id}} data-label>{{@label}}</field.Label>
 
     {{#if @hint}}
-      <field.Hint id={{field.hintId}}>{{@hint}}</field.Hint>
+      <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
     {{/if}}
 
     <field.Control class="flex">
@@ -27,7 +28,7 @@
       />
     </field.Control>
     {{#if @error}}
-      <field.Error id={{field.errorId}}>{{@error}}</field.Error>
+      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
     {{/if}}
   </Form::Field>
 </div>

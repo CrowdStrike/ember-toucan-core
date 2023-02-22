@@ -13,11 +13,12 @@ module('Integration | Component | InputField', function (hooks) {
       <InputField
         @label="Label"
         type="text"
+        data-input
         />
     </template>);
 
-    const label = 'label'
-    const input = 'input';
+    const label = '[data-label]'
+    const input = '[data-input]';
 
     assert.dom(label).exists('Expected to have label block rendered');
     assert.dom(label).hasText('Label', 'Expected to have label text "label"');
@@ -47,14 +48,15 @@ module('Integration | Component | InputField', function (hooks) {
         @label="Label"
         type="text"
         @error="There is an error"
+        data-input
         />
     </template>);
 
-    const label = 'label'
-    const input = 'input';
-    const error = 'div.text-critical';
+    const label = '[data-label]'
+    const input = '[data-input]';
+    const error = '[data-error]';
    
-    const inputElement = document.querySelector('input.m-1');
+    const inputElement = document.querySelector('[data-input]');
  
     const [id] = inputElement?.getAttribute('aria-describedby')?.trim().split(' ') ?? '';
   
@@ -78,14 +80,15 @@ module('Integration | Component | InputField', function (hooks) {
         @label="Label"
         type="text"
         @hint="Hint text visible here"
+        data-input
         />
     </template>);
 
-    const label = 'label'
-    const input = 'input';
-    const hint = 'div.type-xs-tight';
+    const label = '[data-label]'
+    const input = '[data-input]';
+    const hint = '[data-hint]';
     
-    const inputElement = document.querySelector('input.m-1');
+    const inputElement = document.querySelector('[data-input]');
  
     const [id] = inputElement?.getAttribute('aria-describedby')?.trim().split(' ') ?? '';
 
@@ -119,6 +122,7 @@ module('Integration | Component | InputField', function (hooks) {
           type="text"
           @value="Avocado"
           @onChange={{onChangeCallback}}
+          data-input
           />
       </template>);
 
@@ -132,7 +136,7 @@ module('Integration | Component | InputField', function (hooks) {
     
     assert.strictEqual(input.value, 'Avocado', 'input has the set @value');
 
-    await fillIn('input.m-1', 'Banana');
+    await fillIn('[data-input]', 'Banana');
 
     assert.strictEqual(input.value, 'Banana', 'input has the set @value');
 
