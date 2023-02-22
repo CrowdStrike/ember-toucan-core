@@ -10,21 +10,14 @@
     {{/if}}
 
     <field.Control class="flex">
-      <input
-        class="m-1 h-6 w-0 flex-grow bg-transparent p-1
-          {{if
-            @isDisabled
-            'text-disabled cursor-not-allowed'
-            'text-titles-and-attributes'
-          }}
-          "
+      <Form::Controls::Input
         id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
-        disabled={{@isDisabled}}
-        value={{@value}}
+        @isDisabled={{@isDisabled}}
+        @value={{@value}}
+        @onChange={{@onChange}}
         ...attributes
-        {{on "input" this.handleInput}}
       />
     </field.Control>
     {{#if @error}}

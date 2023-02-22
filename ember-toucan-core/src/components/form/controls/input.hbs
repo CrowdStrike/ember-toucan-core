@@ -1,0 +1,8 @@
+<input
+  class="bg-overlay-1 focus:outline-none shadow-focusable-outline focus:shadow-focus-outline block rounded-sm p-1
+    {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+  disabled={{@isDisabled}}
+  value={{@value}}
+  ...attributes
+  {{on "input" this.handleInput}}
+/>
