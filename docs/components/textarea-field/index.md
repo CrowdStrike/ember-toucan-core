@@ -16,7 +16,7 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 ## Disabled State
 
-Set the `@isDisabled` to disabled the Field.
+Set the `@isDisabled` argument to disable the `<textarea>`.
 
 ## Attributes and Modifiers
 
