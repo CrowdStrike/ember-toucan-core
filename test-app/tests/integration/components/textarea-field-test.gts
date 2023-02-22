@@ -1,7 +1,7 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
-import { find, fillIn, render } from '@ember/test-helpers';
+import { find, fillIn, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import TextareaField from '@crowdstrike/ember-toucan-core/components/form/textarea-field';
@@ -161,5 +161,21 @@ module('Integration | Component | TextareaField', function (hooks) {
     </template>);
 
     assert.dom('[data-root-field="selector"]').exists();
+  });
+
+  test('it throws an assertion error if no `@label` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('A "@label" argument is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      {{! @glint-expect-error: we are not providing @label, so this is expected }}
+      <TextareaField />
+    </template>);
   });
 });
