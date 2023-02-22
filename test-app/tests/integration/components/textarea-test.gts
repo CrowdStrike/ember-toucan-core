@@ -4,14 +4,18 @@
 import { fillIn, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import Textarea from '@crowdstrike/ember-toucan-core/components/form/controls/textarea';
+import TextareaControl from '@crowdstrike/ember-toucan-core/components/form/controls/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | Textarea', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template><Textarea data-textarea /></template>);
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl data-textarea />
+    </template>);
 
     assert.dom('[data-textarea]').hasTagName('textarea');
     assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
@@ -20,7 +24,9 @@ module('Integration | Component | Textarea', function (hooks) {
 
   test('it disables the textarea using `@isDisabled`', async function (assert) {
     await render(<template>
-      <Textarea @isDisabled={{true}} data-textarea />
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @isDisabled={{true}} data-textarea />
     </template>);
 
     assert.dom('[data-textarea]').isDisabled();
@@ -32,7 +38,9 @@ module('Integration | Component | Textarea', function (hooks) {
 
   test('it spreads attributes to the underlying textarea', async function (assert) {
     await render(<template>
-      <Textarea placeholder="Placeholder text" data-textarea />
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl placeholder="Placeholder text" data-textarea />
     </template>);
 
     assert
@@ -41,12 +49,18 @@ module('Integration | Component | Textarea', function (hooks) {
   });
 
   test('it sets the value attribute via `@value`', async function (assert) {
-    await render(<template><Textarea @value="tony" data-textarea /></template>);
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @value="tony" data-textarea />
+    </template>);
 
     assert.dom('[data-textarea]').hasValue('tony');
   });
 
   test('it calls `@onChange` when input is received', async function (assert) {
+    assert.expect(6);
+
     let handleChange = (value: string, e: Event | InputEvent) => {
       assert.strictEqual(value, 'test', 'Expected input to match');
       assert.ok(e, 'Expected `e` to be available as the second argument');
@@ -55,7 +69,9 @@ module('Integration | Component | Textarea', function (hooks) {
     };
 
     await render(<template>
-      <Textarea @onChange={{handleChange}} data-textarea />
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @onChange={{handleChange}} data-textarea />
     </template>);
 
     assert.verifySteps([]);

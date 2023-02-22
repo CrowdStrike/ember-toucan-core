@@ -131,6 +131,8 @@ module('Integration | Component | TextareaField', function (hooks) {
   });
 
   test('it calls `@onChange` when input is received', async function (assert) {
+    assert.expect(6);
+
     let handleChange = (value: string, e: Event | InputEvent) => {
       assert.strictEqual(value, 'test', 'Expected input to match');
       assert.ok(e, 'Expected `e` to be available as the second argument');
