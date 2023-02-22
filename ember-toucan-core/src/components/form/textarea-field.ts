@@ -8,9 +8,6 @@ export interface ToucanFormTextareaFieldComponentSignature {
     isDisabled?: boolean;
     label: string;
   };
-  Blocks: {
-    default: [];
-  };
 }
 
 export default templateOnlyComponent<ToucanFormTextareaFieldComponentSignature>();
