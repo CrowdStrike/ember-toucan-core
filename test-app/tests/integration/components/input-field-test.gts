@@ -1,7 +1,8 @@
-import { render, setupOnerror } from '@ember/test-helpers';
+import { fillIn, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
+import sinon from 'sinon';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 
@@ -101,6 +102,37 @@ module('Integration | Component | InputField', function (hooks) {
     if (id) {
      assert.dom(hint).hasAttribute('id', id);
     }
+  });
+
+  test('it accepts @value and @onChange', async function (assert) {
+    const onChangeCallback = sinon.spy();
+  
+    await render(<template>
+        <InputField
+          @label="Label"
+          type="text"
+          @value="Avocado"
+          @onChange={{onChangeCallback}}
+          />
+      </template>);
+
+    const input: HTMLInputElement | null  = document.querySelector('input.m-1');
+
+    if (!input) {
+      throw new Error('an input was not detected');
+    }
+    
+    assert.strictEqual(input.value, 'Avocado', 'input has the set @value');
+
+    await fillIn('input.m-1', 'Banana');
+
+    assert.strictEqual(input.value, 'Banana', 'input has the set @value');
+    assert.true(onChangeCallback.called, '@onChange has been called');
+
+    assert.strictEqual(onChangeCallback.getCall(0).firstArg, 'Banana', '@onChange called with @value and event');
+
+    // the input event is quite large, so testing just for the value
+    assert.strictEqual(onChangeCallback.getCall(0).lastArg.target.value, 'Banana', '@onChange called with @value and event');
   });
 
 });
