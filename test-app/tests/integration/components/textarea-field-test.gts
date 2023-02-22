@@ -1,7 +1,7 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
-import { find, render } from '@ember/test-helpers';
+import { find, fillIn, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import TextareaField from '@crowdstrike/ember-toucan-core/components/form/textarea-field';
@@ -120,5 +120,32 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert
       .dom('[data-textarea]')
       .hasAttribute('placeholder', 'Placeholder text');
+  });
+
+  test('it sets the value attribute via `@value`', async function (assert) {
+    await render(<template>
+      <TextareaField @label="Label" @value="tony" data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasValue('tony');
+  });
+
+  test('it calls `@onChange` when input is received', async function (assert) {
+    let handleChange = (value: string, e: Event | InputEvent) => {
+      assert.strictEqual(value, 'test', 'Expected input to match');
+      assert.ok(e, 'Expected `e` to be available as the second argument');
+      assert.ok(e.target, 'Expected direct access to target from `e`');
+      assert.step('handleChange');
+    };
+
+    await render(<template>
+      <TextareaField @label="Label" @onChange={{handleChange}} data-textarea />
+    </template>);
+
+    assert.verifySteps([]);
+
+    await fillIn('[data-textarea]', 'test');
+
+    assert.verifySteps(['handleChange']);
   });
 });
