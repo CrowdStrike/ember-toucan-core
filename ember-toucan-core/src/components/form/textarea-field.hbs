@@ -1,6 +1,6 @@
 <div
   class="flex flex-col"
-  data-root-field={{if @rootTestSelector @rootTestSelector null}}
+  data-root-field={{if @rootTestSelector @rootTestSelector}}
 >
   <Form::Field as |field|>
     <field.Label for={{field.id}} data-label>{{@label}}</field.Label>
