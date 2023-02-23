@@ -126,7 +126,7 @@
       "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     },
-    "./components/**/-private/*": null,
+    "./-private/*": null,
     "./test-support": "./dist/test-support/index.js",
     "./addon-main.js": "./addon-main.cjs"
   },
