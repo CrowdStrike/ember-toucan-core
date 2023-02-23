@@ -43,3 +43,7 @@ export default class extends Component {
 ## Disabled State
 
 Set the `@isDisabled` argument to disable the `<textarea>`.
+
+## Error State
+
+Set the `@hasError` argument to apply an error box shadow to the `<textarea>`.

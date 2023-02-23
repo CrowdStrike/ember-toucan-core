@@ -27,4 +27,8 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
     assert('A "@label" argument is required', args.label);
     super(owner, args);
   }
+
+  get hasError() {
+    return Boolean(this.args?.error);
+  }
 }

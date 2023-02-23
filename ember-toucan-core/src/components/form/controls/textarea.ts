@@ -7,6 +7,7 @@ import type { OnChangeCallback } from '../../../-private/types';
 export interface ToucanFormTextareaControlComponentSignature {
   Element: HTMLTextAreaElement;
   Args: {
+    hasError?: boolean;
     isDisabled?: boolean;
     onChange?: OnChangeCallback<string>;
     value?: string;
