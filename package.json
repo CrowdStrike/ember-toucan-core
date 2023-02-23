@@ -11,15 +11,15 @@
   "author": "CrowdStrike UX Team",
   "scripts": {
     "release": "changeset publish",
-    "prepare": "pnpm build",
-    "build": "pnpm --filter ember-toucan-core build",
-    "build:docs-app": "pnpm --filter 'docs-app' build",
-    "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
-    "start:tests": "pnpm --filter test-app start",
-    "start:addon": "pnpm --filter ember-toucan-core start --no-watch.clearScreen",
-    "start:docs-app": "pnpm --filter 'docs-app' start -p 4201",
-    "test": "pnpm --filter test-app test",
-    "lint": "pnpm --filter '*' lint",
+    "build:docs": "pnpm turbo build --filter docs-app",
+    "start": "pnpm start:tests",
+    "start:docs": "pnpm turbo --filter docs-app start",
+    "start:tests": "pnpm turbo --filter test-app start",
+    "start:addon": "pnpm --filter !test-app start --no-watch.clearScreen",
+    "build": "pnpm turbo build",
+    "test": "pnpm turbo --filter test-app test",
+    "test:docs": "pnpm turbo --filter docs-app test",
+    "lint": "pnpm turbo lint",
     "lint:fix": "pnpm --filter '*' lint:fix",
     "format": "pnpm --filter '*' format",
     "format:check": "pnpm --filter '*' format:check"
@@ -28,7 +28,8 @@
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "concurrently": "^8.0.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "turbo": "^1.8.8"
   },
   "pnpm": {
     "overrides": {

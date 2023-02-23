@@ -21,7 +21,8 @@
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
-    "test:ember": "ember test"
+    "test:ember": "ember test",
+    "_syncPnpm": "pnpm sync-pnpm"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -113,6 +114,7 @@
     "prettier-plugin-tailwindcss": "^0.2.3",
     "qunit": "^2.19.1",
     "qunit-dom": "^2.0.0",
+    "sync-pnpm": "workspace:*",
     "tailwindcss": "^3.1.8",
     "typescript": "^5.0.0",
     "validated-changeset": "^1.3.4",
