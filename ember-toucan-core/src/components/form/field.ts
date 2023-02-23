@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
 
-import Control from './-private/control';
-import Error from './-private/error';
-import Hint from './-private/hint';
-import Label from './-private/label';
+import Control from '../../-private/components/control';
+import Error from '../../-private/components/error';
+import Hint from '../../-private/components/hint';
+import Label from '../../-private/components/label';
 
 interface ToucanFormFieldComponentSignature {
   Element: null;
