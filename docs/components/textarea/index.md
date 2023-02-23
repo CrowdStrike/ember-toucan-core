@@ -12,7 +12,10 @@ To set the `value` attribute of the `<textarea>`, provide `@value`.
 
 ## onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments, the first being the value, while the second being the raw event.
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
+
+1. the value from the target
+2. the raw event object
 
 ```hbs
 <Form::Controls::Textarea

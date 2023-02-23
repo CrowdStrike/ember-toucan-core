@@ -16,7 +16,12 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 ## Value and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments, the first being the value, while the second being the raw event object. It's most common to use this in combination with `@value` which will set the value for the textarea based on the input received from the change event.
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
+
+1. the value from the target
+2. the raw event object
+
+It's most common to use this in combination with `@value` which will set the value for the textarea based on the input received from the change event.
 
 ```hbs
 <Form::TextareaField
