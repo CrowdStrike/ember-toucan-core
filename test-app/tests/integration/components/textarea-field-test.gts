@@ -45,7 +45,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.dom(hint).hasAttribute('id');
 
     let hintId = hint?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hint ID to be truthy');
+    assert.ok(hintId, 'Expected hintId to be truthy');
 
     let describedby =
       find('[data-textarea]')?.getAttribute('aria-describedby') || '';
@@ -66,7 +66,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.dom(error).hasAttribute('id');
 
     let errorId = error?.getAttribute('id') || '';
-    assert.ok(errorId, 'Expected error ID to be truthy');
+    assert.ok(errorId, 'Expected errorId to be truthy');
 
     let describedby =
       find('[data-textarea]')?.getAttribute('aria-describedby') || '';
@@ -78,7 +78,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.dom('[data-textarea]').hasAttribute('aria-invalid', 'true');
   });
 
-  test('it sets aria-describedby when both a hint and error are provided using the hint and error IDs', async function (assert) {
+  test('it sets aria-describedby when both a hint and error are provided using the hint and errorIds', async function (assert) {
     await render(<template>
       <TextareaField
         @label="Label"
@@ -89,10 +89,10 @@ module('Integration | Component | TextareaField', function (hooks) {
     </template>);
 
     let errorId = find('[data-error]')?.getAttribute('id') || '';
-    assert.ok(errorId, 'Expected error ID to be truthy');
+    assert.ok(errorId, 'Expected errorId to be truthy');
 
     let hintId = find('[data-hint]')?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hint ID to be truthy');
+    assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
       .dom('[data-textarea]')
@@ -131,7 +131,7 @@ module('Integration | Component | TextareaField', function (hooks) {
   });
 
   test('it calls `@onChange` when input is received', async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
 
     let handleChange = (value: string, e: Event | InputEvent) => {
       assert.strictEqual(value, 'test', 'Expected input to match');
@@ -149,6 +149,8 @@ module('Integration | Component | TextareaField', function (hooks) {
     await fillIn('[data-textarea]', 'test');
 
     assert.verifySteps(['handleChange']);
+
+    assert.dom('[data-textarea]').hasValue('test');
   });
 
   test('it applies the provided `@rootTestSelector` to the data-root-field attribute', async function (assert) {
