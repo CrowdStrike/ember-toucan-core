@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 export interface ToucanFormTextareaControlComponentSignature {
@@ -13,6 +14,11 @@ export interface ToucanFormTextareaControlComponentSignature {
 export default class ToucanFormTextareaControlComponent extends Component<ToucanFormTextareaControlComponentSignature> {
   @action
   handleInput(e: Event | InputEvent): void {
-    this.args.onChange?.((e.target as HTMLTextAreaElement)?.value, e);
+    assert(
+      'Expected HTMLTextAreaElement',
+      e.target instanceof HTMLTextAreaElement
+    );
+
+    this.args.onChange?.(e.target?.value, e);
   }
 }
