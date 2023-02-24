@@ -12,9 +12,7 @@
   />
 
   {{#if this.isCheckedOrIndeterminate}}
-    <div
-      class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform-gpu"
-    >
+    <div class="pointer-events-none absolute">
       {{#if this.isIndeterminate}}
         {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 - Placeholder icon }}
         <svg
