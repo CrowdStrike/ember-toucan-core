@@ -89,6 +89,10 @@ Target the hint block via `data-hint`.
 
 Target the error block via `data-error`.
 
+### Control
+
+The checkbox control is wrapped in a `<div>` so that an error box shadow can be added. Target the control block via `data-control`.
+
 ## All UI States
 
 <div class="flex flex-col space-y-4" style="max-width: 14rem">

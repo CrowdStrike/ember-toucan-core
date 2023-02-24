@@ -4,8 +4,9 @@
 >
   <Form::Field as |field|>
     <field.Control
-      class="focus-within:shadow-focus-outline flex flex-row items-start space-x-3 p-1
+      class="focus-within:shadow-focus-outline flex flex-row items-start space-x-3 rounded-sm p-1
         {{if @error 'shadow-error-outline'}}"
+      data-control
     >
       <Form::Controls::Checkbox
         aria-invalid={{if @error "true"}}
