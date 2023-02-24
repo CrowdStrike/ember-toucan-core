@@ -13,7 +13,7 @@ To set the `checked` attribute of the checkbox, provide `@value`.
 
 ## Indeterminate
 
-Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state. The [aria-checked](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked) attribute is set to either "true", "false", or "mixed" depending on the state (where "mixed" is set if `@isIndeterminate={{true}}`).
+Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state. The [data-checked](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked) attribute is set to either "true", "false", or "mixed" depending on the state (where "mixed" is set if `@isIndeterminate={{true}}`).
 
 ```hbs
 <Form::Controls::Checkbox @isIndeterminate={{true}} />

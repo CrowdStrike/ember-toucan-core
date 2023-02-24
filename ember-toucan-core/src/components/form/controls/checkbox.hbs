@@ -1,14 +1,12 @@
 <div class="min-w-4 min-h-4 relative flex h-4 w-4 items-center justify-center">
-  {{! I think this is only valid if role="checkbox" (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked) - maybe we should use our own data attribute instead? }}
-  {{! template-lint-disable no-unsupported-role-attributes }}
   <input
-    aria-checked={{this.ariaChecked}}
     class="border-body-and-labels focus:outline-none inline-block h-4 w-4 appearance-none rounded-sm border p-0 align-middle
       {{this.styles}}"
     type="checkbox"
     checked={{this.isChecked}}
     indeterminate={{this.isIndeterminate}}
     disabled={{@isDisabled}}
+    data-checked={{this.checkedState}}
     ...attributes
     {{on "click" this.handleInput}}
   />
