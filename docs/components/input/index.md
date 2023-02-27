@@ -1,10 +1,10 @@
 # Input 
 
-Provides a Toucan-styled [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea). If you are building forms, you may be interested in the TextareaField component instead.
+Provides a Toucan-styled [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input). If you are building forms, you may be interested in the TextareaField component instead.
 
 ## Value
 
-To set the `value` attribute of the `<textarea>`, provide `@value`.
+To set the `value` attribute of the `<input>`, provide `@value`.
 
 ```hbs
 <Form::Controls::Input @value='value' />
