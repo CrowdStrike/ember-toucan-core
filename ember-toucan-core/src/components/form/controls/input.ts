@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 interface ToucanFormControlsInputComponentSignature {
   Element: HTMLInputElement;
   Args: {
+    hasError?: boolean;
     isDisabled?: boolean;
     onChange?: (value: string, e: Event | InputEvent) => void;
     readonly?: boolean;
