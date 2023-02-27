@@ -19,6 +19,7 @@ module('Integration | Component | Textarea', function (hooks) {
 
     assert.dom('[data-textarea]').hasTagName('textarea');
     assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-textarea]').hasClass('shadow-focusable-outline');
     assert.dom('[data-textarea]').doesNotHaveClass('text-disabled');
   });
 
@@ -79,5 +80,16 @@ module('Integration | Component | Textarea', function (hooks) {
     await fillIn('[data-textarea]', 'test');
 
     assert.verifySteps(['handleChange']);
+  });
+
+  test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @hasError={{true}} data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasClass('shadow-error-outline');
+    assert.dom('[data-textarea]').doesNotHaveClass('shadow-focusable-outline');
   });
 });
