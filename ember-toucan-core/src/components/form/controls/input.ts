@@ -2,12 +2,14 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
+import type { OnChangeCallback } from '../../../-private/types';
+
 interface ToucanFormControlsInputComponentSignature {
   Element: HTMLInputElement;
   Args: {
     hasError?: boolean;
     isDisabled?: boolean;
-    onChange?: (value: string, e: Event | InputEvent) => void;
+    onChange?: OnChangeCallback<string>; 
     readonly?: boolean;
     value?: string;
   };
