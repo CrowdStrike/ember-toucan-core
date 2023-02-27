@@ -5,7 +5,7 @@ import type InputControlComponent from './components/form/controls/input';
 import type TextareaControlComponent from './components/form/controls/textarea';
 import type FieldComponent from './components/form/field';
 import type FieldsetComponent from './components/form/fieldset';
-import type InputField from './components/form/input-field';
+import type InputFieldComponent from './components/form/input-field';
 import type TextareaFieldComponent from './components/form/textarea-field';
 
 export default interface Registry {
@@ -13,7 +13,7 @@ export default interface Registry {
   'Form::Field': typeof FieldComponent;
   'Form::Fieldset': typeof FieldsetComponent;
   'Form::CheckboxField': typeof CheckboxFieldComponent;
-  'Form::InputField': typeof InputField;
+  'Form::InputField': typeof InputFieldComponent;
   'Form::Controls::Checkbox': typeof CheckboxControlComponent;
   'Form::Controls::Input': typeof InputControlComponent;
   'Form::Controls::Textarea': typeof TextareaControlComponent;
