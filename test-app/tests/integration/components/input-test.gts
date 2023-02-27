@@ -13,7 +13,7 @@ module('Integration | Component | Input', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! we do not require a label, but instead suggest using Field / InputField }}
       {{! template-lint-disable require-input-label }}
       <InputControl data-input />
     </template>);
@@ -23,9 +23,9 @@ module('Integration | Component | Input', function (hooks) {
     assert.dom('[data-input]').doesNotHaveClass('text-disabled');
   });
 
-  test('it disables the textarea using `@isDisabled`', async function (assert) {
+  test('it disables the input using `@isDisabled`', async function (assert) {
     await render(<template>
-      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! we do not require a label, but instead suggest using Field / InputField }}
       {{! template-lint-disable require-input-label }}
       <InputControl @isDisabled={{true}} data-input />
     </template>);
@@ -37,9 +37,9 @@ module('Integration | Component | Input', function (hooks) {
       .doesNotHaveClass('text-titles-and-attributes');
   });
 
-  test('it spreads attributes to the underlying textarea', async function (assert) {
+  test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
-      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! we do not require a label, but instead suggest using Field / InputField }}
       {{! template-lint-disable require-input-label }}
       <InputControl placeholder="Placeholder text" data-input />
     </template>);
@@ -51,7 +51,7 @@ module('Integration | Component | Input', function (hooks) {
 
   test('it sets the value attribute via `@value`', async function (assert) {
     await render(<template>
-      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! we do not require a label, but instead suggest using Field / InputField }}
       {{! template-lint-disable require-input-label }}
       <InputControl @value="tony" data-input />
     </template>);
@@ -70,7 +70,7 @@ module('Integration | Component | Input', function (hooks) {
     };
 
     await render(<template>
-      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! we do not require a label, but instead suggest using Field / InputField }}
       {{! template-lint-disable require-input-label }}
       <InputControl @onChange={{handleChange}} data-input />
     </template>);

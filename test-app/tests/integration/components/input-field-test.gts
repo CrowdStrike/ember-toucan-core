@@ -1,6 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import { fillIn, render, setupOnerror } from '@ember/test-helpers';
+import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
@@ -21,12 +21,14 @@ module('Integration | Component | InputField', function (hooks) {
 
     const label = '[data-label]'
     const input = '[data-input]';
-
+    const inputId = find(input)?.getAttribute('id') || '';
+ 
     assert.dom(label).exists('Expected to have label block rendered');
     assert.dom(label).hasText('Label', 'Expected to have label text "label"');
-
+    assert.dom(label).hasAttribute('for', inputId);
     assert.dom(input).exists('Expected to have input tag rendered');
     assert.dom(input).hasAttribute('type', 'text');
+    assert.dom(input).hasAttribute('id');
   });
 
   test('it encourages @label via assert', async function (assert) {
@@ -57,23 +59,21 @@ module('Integration | Component | InputField', function (hooks) {
     const label = '[data-label]'
     const input = '[data-input]';
     const error = '[data-error]';
-   
-    const inputElement = document.querySelector('[data-input]');
- 
-    const [id] = inputElement?.getAttribute('aria-describedby')?.trim().split(' ') ?? '';
   
     assert.dom(label).exists('Expected to have label component rendered');
-    assert.dom(label).hasText('Label', 'Expected to have label text "label"');
+    assert.dom(label).hasText('Label', 'Expected to have label text "Label"');
 
     assert.dom(input).exists('Expected to have input tag rendered');
-    assert.dom(input).hasAttribute('type', 'text');
    
     assert.dom(error).exists('Expected to have error component rendered');
     assert.dom(error).hasText('There is an error', 'Expected to have error text "error"');
+    assert.dom(error).hasAttribute('id');
 
-    if (id) {
-      assert.dom(error).hasAttribute('id', id);
-    }
+    const errorId = find(error)?.getAttribute('id') || '';
+    const describedby = find(input)?.getAttribute('aria-describedby') || '';
+
+    assert.ok(describedby.includes(errorId), 'Expected errorId to be included in the aria-describedby');
+    assert.dom(input).hasAttribute('aria-invalid', 'true');
   });
 
   test('it renders hint text', async function (assert) {
@@ -89,10 +89,6 @@ module('Integration | Component | InputField', function (hooks) {
     const label = '[data-label]'
     const input = '[data-input]';
     const hint = '[data-hint]';
-    
-    const inputElement = document.querySelector('[data-input]');
- 
-    const [id] = inputElement?.getAttribute('aria-describedby')?.trim().split(' ') ?? '';
 
     assert.dom(label).exists('Expected to have label component rendered');
     assert.dom(label).hasText('Label', 'Expected to have label text "label"');
@@ -102,10 +98,31 @@ module('Integration | Component | InputField', function (hooks) {
    
     assert.dom(hint).exists('Expected to have hint component rendered');
     assert.dom(hint).hasText('Hint text visible here', 'Expected to have hint text "error"');
+    assert.dom(hint).hasAttribute('id');
+    const hintId = find(hint)?.getAttribute('id') || '';
+    const describedby = find(input)?.getAttribute('aria-describedby') || '';
 
-    if (id) {
-     assert.dom(hint).hasAttribute('id', id);
-    }
+    assert.ok(describedby.includes(hintId), 'Expected hintId to be included in the aria-describedby');
+  });
+
+  test('it sets aria-describedby when both a hint and error are provided using the hint and error ids', async function(assert) {
+    await render(<template>
+      <InputField
+        @label="Label"
+        type="text"
+        @hint="Hint text visible here"
+        @error="Error text"
+        data-input
+        />
+    </template>);
+
+    const errorId = find('[data-error]')?.getAttribute('id') || '';
+    assert.ok(errorId, 'Expected errorId to be truthy');
+
+    const hintId = find('[data-hint]')?.getAttribute('id') || '';
+    assert.ok(hintId, 'Expected hintId to be truthy');
+
+    assert.dom('[data-input]').hasAttribute('aria-describedby', `${hintId} ${errorId}`);
   });
 
   test('it accepts @value and @onChange', async function (assert) {
@@ -130,17 +147,17 @@ module('Integration | Component | InputField', function (hooks) {
 
     assert.verifySteps([]);
 
-    const input: HTMLInputElement | null  = document.querySelector('[data-input]');
+    const input: HTMLInputElement | null  = find('[data-input]') as HTMLInputElement;
 
     if (!input) {
       throw new Error('an input was not detected');
     }
-    
-    assert.strictEqual(input.value, 'Avocado', 'input has the set @value');
+   
+    assert.dom(input).hasValue('Avocado', 'input has the original value');
 
     await fillIn('[data-input]', 'Banana');
 
-    assert.strictEqual(input.value, 'Banana', 'input has the set @value');
+    assert.dom(input).hasValue('Banana', 'input has the set @value');
 
     assert.verifySteps(['handleChange']);
   });
