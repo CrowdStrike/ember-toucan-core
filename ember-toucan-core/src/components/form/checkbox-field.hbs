@@ -4,32 +4,34 @@
 >
   <Form::Field as |field|>
     <field.Control
-      class="flex flex-row items-start space-x-3 rounded-sm p-1
-        {{if @error 'shadow-error-outline'}}"
+      class="rounded-sm p-1 {{if @error 'shadow-error-outline'}}"
       data-control
     >
-      <Form::Controls::Checkbox
-        aria-invalid={{if @error "true"}}
-        aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
-        id={{field.id}}
-        @isDisabled={{@isDisabled}}
-        @isIndeterminate={{@isIndeterminate}}
-        @value={{@value}}
-        @onChange={{@onChange}}
-        ...attributes
-      />
 
-      <div class="flex flex-col">
-        <label
-          class="type-md-tight text-titles-and-attributes block leading-4"
-          for={{field.id}}
-          data-label
-        >{{@label}}</label>
+      <label class="flex flex-row space-x-3" for={{field.id}}>
+        <Form::Controls::Checkbox
+          aria-invalid={{if @error "true"}}
+          aria-describedby="{{if @error field.errorId}}"
+          id={{field.id}}
+          @isDisabled={{@isDisabled}}
+          @isIndeterminate={{@isIndeterminate}}
+          @value={{@value}}
+          @onChange={{@onChange}}
+          ...attributes
+        />
 
-        {{#if @hint}}
-          <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
-        {{/if}}
-      </div>
+        <div class="flex flex-col">
+          <span
+            class="type-md-tight block leading-4
+              {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+            data-label
+          >{{@label}}</span>
+
+          {{#if @hint}}
+            <field.Hint data-hint>{{@hint}}</field.Hint>
+          {{/if}}
+        </div>
+      </label>
     </field.Control>
 
     {{#if @error}}

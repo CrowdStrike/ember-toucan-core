@@ -45,17 +45,6 @@ module('Integration | Component | CheckboxField', function (hooks) {
     let hint = find('[data-hint]');
 
     assert.dom(hint).hasText('Hint text');
-    assert.dom(hint).hasAttribute('id');
-
-    let hintId = hint?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hintId to be truthy');
-
-    let describedby =
-      find('[data-checkbox]')?.getAttribute('aria-describedby') || '';
-    assert.ok(
-      describedby.includes(hintId),
-      'Expected hintId to be included in the aria-describedby'
-    );
   });
 
   test('it renders with an error', async function (assert) {
@@ -76,6 +65,10 @@ module('Integration | Component | CheckboxField', function (hooks) {
     let errorId = error?.getAttribute('id') || '';
     assert.ok(errorId, 'Expected errorId to be truthy');
 
+    // For the checkbox-field component, the only aria-describedby
+    // value should be the errorId.  This is due to the way the component
+    // is structured, where the label+hint are rendered inside of the
+    // wrapping <label> element
     let describedby =
       find('[data-checkbox]')?.getAttribute('aria-describedby') || '';
     assert.ok(
@@ -88,27 +81,6 @@ module('Integration | Component | CheckboxField', function (hooks) {
     assert
       .dom('[data-root-field="test"] > [data-control]')
       .hasClass('shadow-error-outline');
-  });
-
-  test('it sets aria-describedby when both a hint and error are provided using the hint and errorIds', async function (assert) {
-    await render(<template>
-      <CheckboxField
-        @label="Label"
-        @error="Error text"
-        @hint="Hint text"
-        data-checkbox
-      />
-    </template>);
-
-    let errorId = find('[data-error]')?.getAttribute('id') || '';
-    assert.ok(errorId, 'Expected errorId to be truthy');
-
-    let hintId = find('[data-hint]')?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hintId to be truthy');
-
-    assert
-      .dom('[data-checkbox]')
-      .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
   test('it disables the checkbox using `@isDisabled`', async function (assert) {
