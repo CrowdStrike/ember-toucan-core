@@ -1,36 +1,28 @@
 <h2 id="title">Welcome to Ember</h2>
 
-{{!-- template-lint-disable require-input-label --}}
+{{! template-lint-disable require-input-label }}
 <Input />
-{{!-- template-lint-disable require-input-label --}}
+{{! template-lint-disable require-input-label }}
 <Input hasError={{true}} />
 <Input isDisabled={{true}} />
 
-<Form::InputField
-@label="Label"
-@hint="hint text"
-type="text"
-/>
+<Form::InputField @label="Label" @hint="hint text" type="text" />
 
-<Form::InputField
-  @label="Label"
-  type="text"
-  @error="There is an error"
-/>
-<Form::InputField
-  @label="Label"
-  type="text"
-  @isDisabled={{true}} 
-/>
-  
+<Form::InputField @label="Label" type="text" @error="There is an error" />
+<Form::InputField @label="Label" type="text" @isDisabled={{true}} />
 
-<Textarea/>
+<Textarea />
 <Textarea hasError={{true}} />
 <Textarea isDisabled={{true}} />
 
 <Form::TextareaField @label="Label" @hint="Hint text" />
 <Form::TextareaField @label="Label" @hint="Hint text" @error="Error text" />
-<Form::TextareaField @label="Label" @hint="Hint text" @error="Error text" isDisabled={{true}} />
+<Form::TextareaField
+  @label="Label"
+  @hint="Hint text"
+  @error="Error text"
+  isDisabled={{true}}
+/>
 
 <Form::Field as |field|>
   <field.Label>label</field.Label>
@@ -42,4 +34,3 @@ type="text"
   </field.Control>
   <field.Error>error</field.Error>
 </Form::Field>
-
