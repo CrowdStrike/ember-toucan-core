@@ -83,6 +83,22 @@ module('Integration | Component | CheckboxField', function (hooks) {
       .hasClass('shadow-error-outline');
   });
 
+  test('it sets the "for" attribute on the label to the "id" attribute of the checkbox', async function (assert) {
+    await render(<template>
+      <CheckboxField @label="Label" data-checkbox />
+    </template>);
+
+    let labelFor = find('[data-control] > label')?.getAttribute('for') || '';
+    assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
+
+    let checkboxId = find('[data-checkbox]')?.getAttribute('id') || '';
+    assert.strictEqual(
+      checkboxId,
+      labelFor,
+      'Expected the for attribute on the label to match the id attribute on the checkbox'
+    );
+  });
+
   test('it disables the checkbox using `@isDisabled`', async function (assert) {
     await render(<template>
       <CheckboxField @label="Label" @isDisabled={{true}} data-checkbox />
