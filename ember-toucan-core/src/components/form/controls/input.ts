@@ -20,8 +20,6 @@ export default class ToucanFormControlsInputComponent extends Component<ToucanFo
   handleInput(e: Event | InputEvent): void {
     assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);
 
-    if (this.args.onChange) {
-      this.args.onChange(e.target.value, e);
-    }
+    this.args.onChange?.(e.target.value, e);
   }
 }
