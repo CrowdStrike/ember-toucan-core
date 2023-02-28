@@ -21,8 +21,9 @@ module('Integration | Component | InputField', function (hooks) {
 
     const label = '[data-label]'
     const input = '[data-input]';
-    const inputId = find(input)?.getAttribute('id') || '';
- 
+    const inputId = find(input)?.getAttribute('id') || ''; 
+
+    assert.ok(inputId, 'Expected to have id');
     assert.dom(label).exists('Expected to have label block rendered');
     assert.dom(label).hasText('Label', 'Expected to have label text "label"');
     assert.dom(label).hasAttribute('for', inputId);
