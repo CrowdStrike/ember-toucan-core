@@ -13,7 +13,6 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked value = false;
-  @tracked errorMessage;
 
   @action
   updateValue(value) {
