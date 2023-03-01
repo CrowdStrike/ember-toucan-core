@@ -172,7 +172,7 @@ module('Integration | Component | CheckboxField', function (hooks) {
     ) => {
       assert.false(
         isIndeterminate,
-        'Expected indeterminate state to be false as we did not provide `@isIndeterminate={{true}}`'
+        'Expected indeterminate state to be false as the indeterminate property on the input element was changed by clicking it'
       );
       assert.step('handleChange');
     };
