@@ -61,6 +61,7 @@ module('Integration | Component | Checkbox', function (hooks) {
     </template>);
 
     assert.dom('[data-checkbox]').hasAttribute('data-checked', 'mixed');
+    assert.dom('[data-checkbox]').hasProperty('indeterminate', true);
 
     assert.dom('[data-checkbox]').hasClass('bg-primary-idle');
     assert.dom('[data-checkbox]').hasClass('border-none');

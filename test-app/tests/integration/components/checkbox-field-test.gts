@@ -42,9 +42,7 @@ module('Integration | Component | CheckboxField', function (hooks) {
       <CheckboxField @label="Label" @hint="Hint text" data-checkbox />
     </template>);
 
-    let hint = find('[data-hint]');
-
-    assert.dom(hint).hasText('Hint text');
+    assert.dom('[data-hint]').hasText('Hint text');
   });
 
   test('it renders with an error', async function (assert) {
@@ -91,12 +89,13 @@ module('Integration | Component | CheckboxField', function (hooks) {
     let labelFor = find('[data-control] > label')?.getAttribute('for') || '';
     assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
 
-    let checkboxId = find('[data-checkbox]')?.getAttribute('id') || '';
-    assert.strictEqual(
-      checkboxId,
-      labelFor,
-      'Expected the for attribute on the label to match the id attribute on the checkbox'
-    );
+    assert
+      .dom('[data-checkbox]')
+      .hasAttribute(
+        'id',
+        labelFor,
+        'Expected the for attribute on the label to match the id attribute on the checkbox'
+      );
   });
 
   test('it disables the checkbox using `@isDisabled`', async function (assert) {
