@@ -21,7 +21,7 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasAttribute('type', 'checkbox');
 
     assert.dom('[data-checkbox]').isNotChecked();
-    assert.dom('[data-checkbox]').hasAttribute('data-checked', 'false');
+    assert.dom('[data-checkbox]').hasProperty('indeterminate', false);
 
     assert.dom('[data-checkbox]').hasClass('bg-normal-idle');
     assert.dom('[data-checkbox]').doesNotHaveClass('border-disabled');
@@ -50,7 +50,6 @@ module('Integration | Component | Checkbox', function (hooks) {
     </template>);
 
     assert.dom('[data-checkbox]').isChecked();
-    assert.dom('[data-checkbox]').hasAttribute('data-checked', 'true');
   });
 
   test('it makes the checkbox indeterminate using `@isIndeterminate`', async function (assert) {
@@ -60,7 +59,6 @@ module('Integration | Component | Checkbox', function (hooks) {
       <CheckboxControl @isIndeterminate={{true}} data-checkbox />
     </template>);
 
-    assert.dom('[data-checkbox]').hasAttribute('data-checked', 'mixed');
     assert.dom('[data-checkbox]').hasProperty('indeterminate', true);
 
     assert.dom('[data-checkbox]').hasClass('bg-primary-idle');

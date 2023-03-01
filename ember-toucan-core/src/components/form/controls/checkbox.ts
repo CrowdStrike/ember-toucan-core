@@ -30,26 +30,6 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
     return this.isChecked || this.isIndeterminate;
   }
 
-  /**
-   * We use the data-checked attribute to help signal what state the checkbox is in.
-   * This is most helpful in tests. The "mixed" value is used for the indeterminate state.
-   * We don't use aria-checked directly, as we are a valid <input type="checkbox", but
-   * we follow the possible states outlined by aria-checked.
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
-   */
-  get checkedState() {
-    if (this.isIndeterminate) {
-      return 'mixed';
-    }
-
-    if (this.isChecked) {
-      return 'true';
-    }
-
-    return 'false';
-  }
-
   get styles() {
     let { isDisabled } = this.args;
     let isCheckedOrIndeterminate = this.isCheckedOrIndeterminate;

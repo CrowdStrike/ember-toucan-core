@@ -7,19 +7,29 @@ Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/
 To set the `checked` attribute of the checkbox, provide `@value`.
 
 ```hbs
-<Form::Controls::Checkbox @value={{true}} />
-<Form::Controls::Checkbox @value={{false}} />
+<Form::Controls::Checkbox @value={{true}} data-checkbox-1 />
+<Form::Controls::Checkbox @value={{false}} data-checkbox-2 />
 ```
 
-- When `@value={{true}}` the `data-checked` attribute will be set to "true".
-- When `@value={{false}}` the `data-checked` attribute will be set to "false".
+To check the checked attribute in tests, use:
+
+```js
+assert.dom('[data-checkbox-1]').isChecked();
+assert.dom('[data-checkbox-2]').isNotChecked();
+```
 
 ## Indeterminate
 
-Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state. The `data-checked` attribute will be set to "mixed".
+Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state.
 
 ```hbs
-<Form::Controls::Checkbox @isIndeterminate={{true}} />
+<Form::Controls::Checkbox @isIndeterminate={{true}} data-checkbox />
+```
+
+To check the indeterminate property in tests, use:
+
+```js
+assert.dom('[data-checkbox]').hasProperty('indeterminate', true);
 ```
 
 ## onChange
