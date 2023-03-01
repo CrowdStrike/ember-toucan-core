@@ -20,7 +20,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will return three 
 
 1. the checked attribute from the target
 2. the raw event object
-3. the indeterminate attribute from the target
+3. the indeterminate property from the target
 
 It's most common to use this in combination with `@value` which will set the `checked` attribute for the Checkbox.
 

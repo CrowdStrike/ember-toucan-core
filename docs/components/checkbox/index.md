@@ -28,7 +28,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will return three 
 
 1. the checked attribute from the target (e.target.checked directly)
 2. the raw event object
-3. the indeterminate attribute from the target
+3. the indeterminate property from the target
 
 ```hbs
 <Form::Controls::Checkbox
