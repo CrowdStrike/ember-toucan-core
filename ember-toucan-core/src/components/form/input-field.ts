@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
-import { action } from '@ember/object';
 
 interface ToucanFormInputFieldComponentSignature {
   Element: HTMLInputElement;
@@ -26,14 +25,5 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
   ) {
     assert('input field requires a label', args.label !== undefined);
     super(owner, args);
-  }
-
-  @action
-  handleInput(e: Event | InputEvent): void {
-    assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);
-
-    if (this.args.onChange) {
-      this.args.onChange(e.target.value, e);
-    }
   }
 }
