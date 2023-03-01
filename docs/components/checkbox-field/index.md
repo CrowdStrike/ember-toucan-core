@@ -16,13 +16,14 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 ## Value and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return three arguments:
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the checked attribute from the target
 2. the raw event object
-3. the indeterminate property from the target
 
 It's most common to use this in combination with `@value` which will set the `checked` attribute for the Checkbox.
+
+To access the indeterminate property of the checkbox, use `e.target.indeterminate`.
 
 ```hbs
 <Form::CheckboxField
@@ -41,8 +42,8 @@ export default class extends Component {
   @tracked value;
 
   @action
-  handleChange(value, e, indeterminate) {
-    console.log({ e, indeterminate, value });
+  handleChange(value, e) {
+    console.log({ e, indeterminate: e.target.indeterminate, value });
     this.value = value;
   }
 }

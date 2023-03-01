@@ -24,11 +24,12 @@ Checkboxes have the ability to be in the [indeterminate state](https://developer
 
 ## onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return three arguments:
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
-1. the checked attribute from the target (e.target.checked directly)
+1. the checked attribute from the target (e.target.checked)
 2. the raw event object
-3. the indeterminate property from the target
+
+To access the indeterminate property of the checkbox, use `e.target.indeterminate`.
 
 ```hbs
 <Form::Controls::Checkbox
@@ -46,8 +47,8 @@ export default class extends Component {
   @tracked value = false;
 
   @action
-  handleChange(value, e, indeterminate) {
-    console.log({ e, indeterminate, value });
+  handleChange(value, e) {
+    console.log({ e, indeterminate: e.target.indeterminate, value });
     this.value = value;
   }
 }

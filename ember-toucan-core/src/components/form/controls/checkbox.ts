@@ -2,15 +2,13 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
+import type { OnChangeCallback } from '../../../-private/types';
+
 export interface ToucanFormCheckboxControlComponentSignature {
   Element: HTMLInputElement;
   Args: {
     isDisabled?: boolean;
-    onChange?: (
-      isChecked: boolean,
-      e: Event | InputEvent,
-      isIndeterminate: boolean
-    ) => void;
+    onChange?: OnChangeCallback<boolean>;
     isIndeterminate?: boolean;
     value?: boolean;
   };
@@ -69,6 +67,6 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
   handleInput(e: Event | InputEvent): void {
     assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);
 
-    this.args.onChange?.(e.target.checked, e, e.target.indeterminate);
+    this.args.onChange?.(e.target.checked, e);
   }
 }

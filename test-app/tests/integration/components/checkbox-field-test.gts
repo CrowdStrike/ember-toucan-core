@@ -123,23 +123,15 @@ module('Integration | Component | CheckboxField', function (hooks) {
   });
 
   test('it calls `@onChange` when clicked with the expected checked state', async function (assert) {
-    assert.expect(8);
+    assert.expect(7);
 
-    let handleChange = (
-      checked: boolean,
-      e: Event | InputEvent,
-      isIndeterminate: boolean
-    ) => {
+    let handleChange = (checked: boolean, e: Event | InputEvent) => {
       assert.true(
         checked,
         'Expected to be checked since we started un-checked'
       );
       assert.ok(e, 'Expected `e` to be available as the second argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
-      assert.false(
-        isIndeterminate,
-        'Expected indeterminate state to be false as we did not provide `@isIndeterminate={{true}}`'
-      );
       assert.step('handleChange');
     };
 
@@ -164,13 +156,9 @@ module('Integration | Component | CheckboxField', function (hooks) {
   test('it calls `@onChange` when clicked with the expected indeterminate state', async function (assert) {
     assert.expect(4);
 
-    let handleChange = (
-      _checked: boolean,
-      _e: Event | InputEvent,
-      isIndeterminate: boolean
-    ) => {
+    let handleChange = (_checked: boolean, e: Event | InputEvent) => {
       assert.false(
-        isIndeterminate,
+        (e.target as HTMLInputElement).indeterminate,
         'Expected indeterminate state to be false as the indeterminate property on the input element was changed by clicking it'
       );
       assert.step('handleChange');
