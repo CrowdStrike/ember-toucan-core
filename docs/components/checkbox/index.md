@@ -11,9 +11,12 @@ To set the `checked` attribute of the checkbox, provide `@value`.
 <Form::Controls::Checkbox @value={{false}} />
 ```
 
+- When `@value={{true}}` the `data-checked` attribute will be set to "true".
+- When `@value={{false}}` the `data-checked` attribute will be set to "false".
+
 ## Indeterminate
 
-Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state. The [data-checked](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked) attribute is set to either "true", "false", or "mixed" depending on the state (where "mixed" is set if `@isIndeterminate={{true}}`).
+Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state. The `data-checked` attribute will be set to "mixed".
 
 ```hbs
 <Form::Controls::Checkbox @isIndeterminate={{true}} />
@@ -23,7 +26,7 @@ Checkboxes have the ability to be in the [indeterminate state](https://developer
 
 To tie into the input event, provide `@onChange`. `@onChange` will return three arguments:
 
-1. the checked attribute from the target
+1. the checked attribute from the target (e.target.checked directly)
 2. the raw event object
 3. the indeterminate attribute from the target
 
