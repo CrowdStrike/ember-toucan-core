@@ -1,0 +1,41 @@
+<div
+  class="flex flex-col"
+  data-root-field={{if @rootTestSelector @rootTestSelector}}
+>
+  <Form::Field as |field|>
+    <field.Control
+      class="rounded-sm p-1 {{if @error 'shadow-error-outline'}}"
+      data-control
+    >
+
+      <label class="flex flex-row space-x-3" for={{field.id}}>
+        <Form::Controls::Checkbox
+          aria-invalid={{if @error "true"}}
+          aria-describedby="{{if @error field.errorId}}"
+          id={{field.id}}
+          @isDisabled={{@isDisabled}}
+          @isIndeterminate={{@isIndeterminate}}
+          @value={{@value}}
+          @onChange={{@onChange}}
+          ...attributes
+        />
+
+        <div class="flex flex-col">
+          <span
+            class="type-md-tight block leading-4
+              {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+            data-label
+          >{{@label}}</span>
+
+          {{#if @hint}}
+            <field.Hint data-hint>{{@hint}}</field.Hint>
+          {{/if}}
+        </div>
+      </label>
+    </field.Control>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+    {{/if}}
+  </Form::Field>
+</div>
