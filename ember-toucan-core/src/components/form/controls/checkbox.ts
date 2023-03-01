@@ -69,6 +69,6 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
   handleInput(e: Event | InputEvent): void {
     assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);
 
-    this.args.onChange?.(e.target?.checked, e, e.target?.indeterminate);
+    this.args.onChange?.(e.target.checked, e, e.target.indeterminate);
   }
 }
