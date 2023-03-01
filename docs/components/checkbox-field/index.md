@@ -54,7 +54,7 @@ Set the `@isDisabled` argument to disable the checkbox.
 
 ## Indeterminate State
 
-Set the `@isIndeterminate` argument. To learn more, view the documentation Checkbox documentation.
+Set the `@isIndeterminate` argument. To learn more, view the [Checkbox documentation](./checkbox).
 
 ## Attributes and Modifiers
 
