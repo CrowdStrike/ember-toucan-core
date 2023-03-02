@@ -8,8 +8,8 @@ on:
   pull_request: {}
 
 concurrency:
-   group: ci-${{ github.head_ref || github.ref }}
-   cancel-in-progress: true
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 env:
   CI: true
@@ -74,10 +74,6 @@ jobs:
           pnpm --filter ember-app exec glint --version;
           pnpm --filter ember-app exec glint;
 
-
-
-
-
   default_tests:
     name: Default Tests
     timeout-minutes: 5
@@ -101,7 +97,6 @@ jobs:
         run: rm pnpm-lock.yaml && pnpm install
       - uses: ./.github/actions/download-built-package
       - run: pnpm --filter test-app test:ember
-
 
   try_scenarios:
     name: ${{ matrix.try-scenario }}
@@ -131,8 +126,6 @@ jobs:
           node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
           --skip-cleanup
 
-
-
   # https://github.com/changesets/action
   release:
     name: Release
@@ -157,11 +150,10 @@ jobs:
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
-          title: "Release Preview"
+          title: 'Release Preview'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 
   TypecheckDocs:
     name: Typecheck Docs
@@ -175,8 +167,6 @@ jobs:
       - uses: ./.github/actions/download-built-package
       - run: pnpm glint
         working-directory: docs-app
-
-
 
   PublishDocstoCloudflarePages:
     name: Publish Docs to Cloudflare Pages
@@ -205,8 +195,6 @@ jobs:
           directory: ./docs-app/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-
-
   PostPreviewURLascommenttoPR:
     name: Post Preview URL as comment to PR
     runs-on: ubuntu-latest
@@ -224,7 +212,3 @@ jobs:
             GH Env: ${{ needs.PublishDocstoCloudflarePages.outputs.env }}
             docs: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}
 #            api docs: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}/api/modules.html
-
-
-
-
