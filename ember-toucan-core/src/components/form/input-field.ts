@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
+import type { OnChangeCallback } from '../../-private/types';
+
 interface ToucanFormInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
@@ -8,8 +10,7 @@ interface ToucanFormInputFieldComponentSignature {
     label: string;
     hint?: string;
     isDisabled?: boolean;
-    onChange?: (value: string, e: Event | InputEvent) => void;
-    readonly?: boolean;
+    onChange?: OnChangeCallback<string>;
     rootTestSelector?: string;
     value?: string;
   };

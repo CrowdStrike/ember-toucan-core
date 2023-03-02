@@ -10,7 +10,6 @@ interface ToucanFormControlsInputComponentSignature {
     hasError?: boolean;
     isDisabled?: boolean;
     onChange?: OnChangeCallback<string>;
-    readonly?: boolean;
     value?: string;
   };
 }
