@@ -38,3 +38,6 @@ export default class extends Component {
 ## Disabled State
 
 Set the `@isDisabled` argument to disable the `<input>`.
+
+## Error State
+Set the `@hasError` argument to apply an error box shadow to the `<input>`.
