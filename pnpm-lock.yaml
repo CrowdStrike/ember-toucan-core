@@ -89,9 +89,9 @@ importers:
       ember-cli-terser: ^4.0.2
       ember-fetch: ^8.1.2
       ember-load-initializers: ^2.1.2
-      ember-modifier: ^3.2.7
+      ember-modifier: ^4.1.0
       ember-page-title: ^8.0.0-beta.0
-      ember-qunit: ^6.0.0
+      ember-qunit: ^6.2.0
       ember-resolver: ^10.0.0
       ember-resources: ^5.4.0
       ember-source: ~4.11.0
@@ -120,14 +120,14 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.74.0
     dependencies:
-      '@crowdstrike/ember-oss-docs': 1.1.3_z5tbqp6wpcajf367rd44tqmo3q
+      '@crowdstrike/ember-oss-docs': 1.1.3_s6albaz2vfnr6s5sy2ggmogehq
       '@crowdstrike/ember-toucan-core': file:ember-toucan-core_c62kkjskxqbpmxwcikoriz42fm
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 2.0.0_htqm3qg3nmvfkwq4ngma65xhmi
       dompurify: 3.0.0
       ember-browser-services: 4.0.4
       ember-cached-decorator-polyfill: 1.0.1_4gwf5qe42h4jyi7rum37j2phty
-      ember-modifier: 3.2.7_@babel+core@7.20.12
+      ember-modifier: 4.1.0_ember-source@4.11.0
       ember-resources: 5.6.2_4376avmrbby2cvtzugaganqyau
       highlight.js: 11.7.0
       highlightjs-glimmer: 1.4.1_highlight.js@11.7.0
@@ -148,7 +148,7 @@ importers:
       '@glimmer/component': 1.1.2_@babel+core@7.20.12
       '@glimmer/tracking': 1.1.2
       '@glint/core': 0.9.7_typescript@4.9.5
-      '@glint/environment-ember-loose': 0.9.7_7uoxyf2fjn3exl6zsfbvgh3u7q
+      '@glint/environment-ember-loose': 0.9.7_nizcnflgfvg4rkjiudbuv432tm
       '@glint/environment-ember-template-imports': 0.9.7_jdm4rknf25lrbfjws65nrszjsi
       '@glint/template': 0.9.7_@glimmer+component@1.1.2
       '@html-next/vertical-collection': 4.0.2
@@ -197,7 +197,7 @@ importers:
       ember-fetch: 8.1.2
       ember-load-initializers: 2.1.2_@babel+core@7.20.12
       ember-page-title: 8.0.0-beta.0
-      ember-qunit: 6.1.1_ctcbkj4xro4mdfer2osyhq5z4q
+      ember-qunit: 6.2.0_qzpscdypvst2a7p4oplhefmfda
       ember-resolver: 10.0.0_kzwsaxkqup2inborfmd55uo3na
       ember-source: 4.11.0_ipwtokbwlukr3yko7oz5lbj6xy
       ember-template-imports: 3.4.1
@@ -412,7 +412,7 @@ importers:
       ember-disable-prototype-extensions: ^1.1.3
       ember-fetch: ^8.1.2
       ember-load-initializers: ^2.1.2
-      ember-qunit: ^6.0.0
+      ember-qunit: ^6.2.0
       ember-resolver: ^10.0.0
       ember-source: ~4.11.0
       ember-source-channel-url: ^3.0.0
@@ -460,7 +460,7 @@ importers:
       '@types/ember-data__model': 4.0.0_@babel+core@7.20.12
       '@types/ember-data__serializer': 4.0.1_@babel+core@7.20.12
       '@types/ember-data__store': 4.0.2_@babel+core@7.20.12
-      '@types/ember-qunit': 6.1.1_ctcbkj4xro4mdfer2osyhq5z4q
+      '@types/ember-qunit': 6.1.1_qzpscdypvst2a7p4oplhefmfda
       '@types/ember-resolver': 9.0.0_kzwsaxkqup2inborfmd55uo3na
       '@types/ember__application': 4.0.5_@babel+core@7.20.12
       '@types/ember__array': 4.0.3_@babel+core@7.20.12
@@ -501,7 +501,7 @@ importers:
       ember-disable-prototype-extensions: 1.1.3
       ember-fetch: 8.1.2
       ember-load-initializers: 2.1.2_@babel+core@7.20.12
-      ember-qunit: 6.1.1_ctcbkj4xro4mdfer2osyhq5z4q
+      ember-qunit: 6.2.0_qzpscdypvst2a7p4oplhefmfda
       ember-resolver: 10.0.0_kzwsaxkqup2inborfmd55uo3na
       ember-source: 4.11.0_ipwtokbwlukr3yko7oz5lbj6xy
       ember-source-channel-url: 3.0.0
@@ -1998,7 +1998,7 @@ packages:
     dev: true
     optional: true
 
-  /@crowdstrike/ember-oss-docs/1.1.3_z5tbqp6wpcajf367rd44tqmo3q:
+  /@crowdstrike/ember-oss-docs/1.1.3_s6albaz2vfnr6s5sy2ggmogehq:
     resolution: {integrity: sha512-2GiPPy4G4BDP+4BZpFd8dJ3CQSCrp2FobrxUE9uszSaPyF2wTim5ZH46IwKzrozF+fHB6EaDZG/hls7S8nyhQg==}
     peerDependencies:
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
@@ -2017,17 +2017,18 @@ packages:
       '@docfy/ember': 0.5.0
       '@embroider/addon-shim': 1.8.4
       '@glimmer/component': 1.1.2_@babel+core@7.20.12
-      '@glint/environment-ember-loose': 0.9.7_7uoxyf2fjn3exl6zsfbvgh3u7q
+      '@glint/environment-ember-loose': 0.9.7_nizcnflgfvg4rkjiudbuv432tm
       '@glint/template': 0.9.7_@glimmer+component@1.1.2
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
       dompurify: 2.4.3
-      ember-modifier: 3.2.7_@babel+core@7.20.12
+      ember-modifier: 4.1.0_ember-source@4.11.0
       ember-url-hash-polyfill: 1.0.8_@babel+core@7.20.12
       highlight.js: 11.7.0
       highlightjs-glimmer: 1.4.1_highlight.js@11.7.0
       lodash.merge: 4.6.2
     transitivePeerDependencies:
       - '@babel/core'
+      - ember-source
       - supports-color
     dev: false
 
@@ -2879,7 +2880,7 @@ packages:
       - supports-color
     dev: true
 
-  /@glint/environment-ember-loose/0.9.7_7uoxyf2fjn3exl6zsfbvgh3u7q:
+  /@glint/environment-ember-loose/0.9.7_nizcnflgfvg4rkjiudbuv432tm:
     resolution: {integrity: sha512-MlCGZtB1Clp4vQWIm2APSnCm7nL8wVhFMOhVy2qzpV0nfLyg3pcN9CQHNpfdJvCydBB72cA4/ahPj7VEFL6xsg==}
     peerDependencies:
       '@glimmer/component': ^1.1.2
@@ -2895,7 +2896,7 @@ packages:
       '@glint/config': 0.9.7
       '@glint/template': 0.9.7_@glimmer+component@1.1.2
       ember-cli-htmlbars: 6.2.0
-      ember-modifier: 3.2.7_@babel+core@7.20.12
+      ember-modifier: 4.1.0_ember-source@4.11.0
     transitivePeerDependencies:
       - supports-color
 
@@ -2943,7 +2944,7 @@ packages:
       '@glint/environment-ember-loose': ^0.9.7
       ember-template-imports: ^3.0.0
     dependencies:
-      '@glint/environment-ember-loose': 0.9.7_7uoxyf2fjn3exl6zsfbvgh3u7q
+      '@glint/environment-ember-loose': 0.9.7_nizcnflgfvg4rkjiudbuv432tm
       '@glint/template': 0.9.7_@glimmer+component@1.1.2
       ember-template-imports: 3.4.1
     transitivePeerDependencies:
@@ -3492,12 +3493,13 @@ packages:
       - supports-color
     dev: true
 
-  /@types/ember-qunit/6.1.1_ctcbkj4xro4mdfer2osyhq5z4q:
+  /@types/ember-qunit/6.1.1_qzpscdypvst2a7p4oplhefmfda:
     resolution: {integrity: sha512-1g5A3vPKhvB/CuN/EP9rBLXYaJOjzKyLYWeBtNDEQNkTuG1dAo/Hg0CCixgbBgLlzaDP8mR/n1xpg8HqQ8SUKg==}
     deprecated: This is a stub types definition. ember-qunit provides its own type definitions, so you do not need this installed.
     dependencies:
-      ember-qunit: 6.1.1_ctcbkj4xro4mdfer2osyhq5z4q
+      ember-qunit: 6.2.0_qzpscdypvst2a7p4oplhefmfda
     transitivePeerDependencies:
+      - '@ember/test-helpers'
       - ember-source
       - qunit
       - supports-color
@@ -8021,17 +8023,19 @@ packages:
       - supports-color
     dev: true
 
-  /ember-modifier/3.2.7_@babel+core@7.20.12:
-    resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
-    engines: {node: 12.* || >= 14}
+  /ember-modifier/4.1.0_ember-source@4.11.0:
+    resolution: {integrity: sha512-YFCNpEYj6jdyy3EjslRb2ehNiDvaOrXTilR9+ngq+iUqSHYto2zKV0rleiA1XJQ27ELM1q8RihT29U6Lq5EyqQ==}
+    peerDependencies:
+      ember-source: '*'
+    peerDependenciesMeta:
+      ember-source:
+        optional: true
     dependencies:
-      ember-cli-babel: 7.26.11
+      '@embroider/addon-shim': 1.8.4
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-string-utils: 1.1.0
-      ember-cli-typescript: 5.2.1
-      ember-compatibility-helpers: 1.2.6_@babel+core@7.20.12
+      ember-source: 4.11.0_ipwtokbwlukr3yko7oz5lbj6xy
     transitivePeerDependencies:
-      - '@babel/core'
       - supports-color
 
   /ember-page-title/8.0.0-beta.0:
@@ -8043,13 +8047,15 @@ packages:
       - supports-color
     dev: true
 
-  /ember-qunit/6.1.1_ctcbkj4xro4mdfer2osyhq5z4q:
-    resolution: {integrity: sha512-3/jCpoecltFV6vm7GCtSDNRxBzWx96nP+QrbereJAnioSaGeLe+slKL3l80mGzMYDTvn7ESobZ+Ba+OQ1vMMKQ==}
+  /ember-qunit/6.2.0_qzpscdypvst2a7p4oplhefmfda:
+    resolution: {integrity: sha512-mC+0bp8DwWzJLn8SW3GS8KDZIkl4yLsNYwMi5Dw6+aFllq7FM2crd/dfY4MuOIHK7GKdjtmWJTMGnjSpeSayaw==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
-      ember-source: ^3.28 || ^4.0
+      '@ember/test-helpers': ^2.9.3
+      ember-source: '>=3.28'
       qunit: ^2.13.0
     dependencies:
+      '@ember/test-helpers': 2.9.3_ecu2h4qxeokkkqmgswqpdyhfg4
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 3.0.2
       common-tags: 1.8.2
@@ -16112,7 +16118,7 @@ packages:
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
       autoprefixer: ^10.0.2
-      ember-source: ^4.8.0
+      ember-source: '>=4.8.0'
       fractal-page-object: ^0.3.0
       postcss: ^8.2.14
       tailwindcss: ^2.2.15 || ^3.0.0
@@ -16141,7 +16147,7 @@ packages:
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
       autoprefixer: ^10.0.2
-      ember-source: ^4.8.0
+      ember-source: '>=4.8.0'
       fractal-page-object: ^0.3.0
       postcss: ^8.2.14
       tailwindcss: ^2.2.15 || ^3.0.0
