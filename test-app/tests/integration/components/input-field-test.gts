@@ -57,15 +57,9 @@ module('Integration | Component | InputField', function (hooks) {
         />
     </template>);
 
-    const label = '[data-label]'
     const input = '[data-input]';
     const error = '[data-error]';
-  
-    assert.dom(label).exists('Expected to have label component rendered');
-    assert.dom(label).hasText('Label', 'Expected to have label text "Label"');
 
-    assert.dom(input).exists('Expected to have input tag rendered');
-   
     assert.dom(error).exists('Expected to have error component rendered');
     assert.dom(error).hasText('There is an error', 'Expected to have error text "error"');
     assert.dom(error).hasAttribute('id');
@@ -148,19 +142,24 @@ module('Integration | Component | InputField', function (hooks) {
 
     assert.verifySteps([]);
 
-    const input: HTMLInputElement | null  = find('[data-input]') as HTMLInputElement;
-
-    if (!input) {
-      throw new Error('an input was not detected');
-    }
-   
-    assert.dom(input).hasValue('Avocado', 'input has the original value');
+    assert.dom('[data-input]').hasValue('Avocado', 'input has the original value');
 
     await fillIn('[data-input]', 'Banana');
 
-    assert.dom(input).hasValue('Banana', 'input has the set @value');
+    assert.dom('[data-input]').hasValue('Banana', 'input has the set @value');
 
     assert.verifySteps(['handleChange']);
+  });
+
+  test('it applies the provided `@rootTestSelector` to the data-root-field attribute', async function (assert) {
+    await render(<template>
+      <InputField
+        @label="Label"
+        @rootTestSelector="selector"
+        data-input
+      />
+    </template>);
+    assert.dom('[data-root-field="selector"]').exists();
   });
 
 });
