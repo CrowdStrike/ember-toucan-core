@@ -27,4 +27,8 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
     assert('input field requires a label', args.label !== undefined);
     super(owner, args);
   }
+
+  get hasError() {
+    return Boolean(this.args?.error);
+  }
 }
