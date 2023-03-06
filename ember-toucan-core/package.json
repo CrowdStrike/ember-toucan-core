@@ -119,6 +119,7 @@
       "./components/form/controls/checkbox.js": "./dist/_app_/components/form/controls/checkbox.js",
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
+      "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
       "./components/form/textarea-field.js": "./dist/_app_/components/form/textarea-field.js"
     }
   },

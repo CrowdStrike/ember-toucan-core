@@ -1,0 +1,27 @@
+<Form::Field as |field|>
+  <fieldset
+    aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
+    disabled={{@isDisabled}}
+    ...attributes
+  >
+    <legend
+      class="type-md-tight text-body-and-labels block"
+      data-label
+    >{{@label}}</legend>
+
+    {{#if @hint}}
+      <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
+    {{/if}}
+
+    <div
+      class="mt-2 flex flex-col rounded-sm {{if @error 'shadow-error-outline'}}"
+      data-control
+    >
+      {{yield}}
+    </div>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+    {{/if}}
+  </fieldset>
+</Form::Field>
