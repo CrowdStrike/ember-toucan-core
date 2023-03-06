@@ -117,9 +117,11 @@
       "./components/button.js": "./dist/_app_/components/button.js",
       "./components/form/checkbox-field.js": "./dist/_app_/components/form/checkbox-field.js",
       "./components/form/controls/checkbox.js": "./dist/_app_/components/form/controls/checkbox.js",
+      "./components/form/controls/input.js": "./dist/_app_/components/form/controls/input.js",
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
+      "./components/form/input-field.js": "./dist/_app_/components/form/input-field.js",
       "./components/form/textarea-field.js": "./dist/_app_/components/form/textarea-field.js"
     }
   },
