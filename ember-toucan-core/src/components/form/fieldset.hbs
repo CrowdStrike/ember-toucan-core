@@ -14,12 +14,12 @@
       <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
     {{/if}}
 
-    <div
+    <field.Control
       class="flex flex-col rounded-sm {{if @error 'shadow-error-outline'}}"
       data-control
     >
       {{yield}}
-    </div>
+    </field.Control>
 
     {{#if @error}}
       <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
