@@ -19,7 +19,6 @@ interface ToucanFormFileInputFieldComponentSignature {
     isDisabled?: boolean;
     multiple?: boolean;
     onChange?: OnFileUploadChangeCallback;
-    value?: string;
     rootTestSelector?: string;
   };
   Blocks: {
@@ -40,10 +39,6 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
       args.label !== undefined
     );
     super(owner, args);
-
-    if (args.value) {
-      this.value = args.value;
-    }
 
     if (args.files) {
       this.files = args.files;
