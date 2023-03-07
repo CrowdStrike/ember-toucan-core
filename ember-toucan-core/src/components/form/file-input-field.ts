@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
+// Note, unlike other inputs the first parameter is not @value but @files
 export type OnFileUploadChangeCallback = (
   files: FileList,
   e: Event | InputEvent
