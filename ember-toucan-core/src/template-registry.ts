@@ -7,6 +7,7 @@ import type RadioControlComponent from './components/form/controls/radio';
 import type TextareaControlComponent from './components/form/controls/textarea';
 import type FieldComponent from './components/form/field';
 import type FieldsetComponent from './components/form/fieldset';
+import type FileInputFieldComponent from './components/form/file-input-field';
 import type InputFieldComponent from './components/form/input-field';
 import type RadioFieldComponent from './components/form/radio-field';
 import type RadioGroupFieldComponent from './components/form/radio-group-field';
@@ -25,5 +26,6 @@ export default interface Registry {
   'Form::Controls::Textarea': typeof TextareaControlComponent;
   'Form::RadioField': typeof RadioFieldComponent;
   'Form::RadioGroupField': typeof RadioGroupFieldComponent;
+  'Form::FileInputField': typeof FileInputFieldComponent;
   'Form::TextareaField': typeof TextareaFieldComponent;
 }

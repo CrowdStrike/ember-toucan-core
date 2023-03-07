@@ -123,6 +123,7 @@
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
+      "./components/form/file-input-field.js": "./dist/_app_/components/form/file-input-field.js",
       "./components/form/input-field.js": "./dist/_app_/components/form/input-field.js",
       "./components/form/radio-field.js": "./dist/_app_/components/form/radio-field.js",
       "./components/form/radio-group-field.js": "./dist/_app_/components/form/radio-group-field.js",
