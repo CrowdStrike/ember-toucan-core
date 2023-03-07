@@ -199,7 +199,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     let handleChange = (files: FileList, e: Event | InputEvent) => {
       assert.ok(e, 'Expected `e` to be available as the second argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
-      assert.ok(files, 'Expected a single file to be uploaded');
+      assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
       assert.step('handleChange');
     };
 
