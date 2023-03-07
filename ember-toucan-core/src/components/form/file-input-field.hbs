@@ -28,8 +28,8 @@
             disabled={{@isDisabled}}
             id={{field.id}}
             type="file"
-            accept={{@accept}}
-            multiple={{@multiple}}
+            accept={{this.accept}}
+            multiple={{this.multiple}}
             {{! template-lint-disable no-bare-strings no-inline-styles  }}
             style="clip: rect(1px, 1px, 1px, 1px);"
             ...attributes
