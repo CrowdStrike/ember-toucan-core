@@ -1,59 +1,46 @@
 ```hbs template
 <HeadlessForm
-  @data={{data}}
-  @dataMode="mutable"
-  {{! @glint-expect-error --  a type error is expected here, as this test intentionally has a type mismatch when data not being a changeset }}
-  @validate={{validateChangeset}}
-  @onSubmit={{submitHandler}}
+  @data={{changeset this.data this.validations}}
+  @dataMode='mutable'
+  @onSubmit={{this.handleSubmit}}
+  @validate={{validate-changeset}}
   as |form|
 >
-  <form.Field @name="firstName" as |field|>
-    <field.Label>First Name</field.Label>
-    <field.Input data-test-first-name />
+  <form.Field @name='name' as |field|>
+    <div class='my-2 flex flex-col'>
+      <field.Label>Name</field.Label>
+      <field.Input class='border rounded px-2' />
+      <field.Errors />
+    </div>
   </form.Field>
-  <button type="submit" data-test-submit>Submit</button>
+  <form.Field @name='email' as |field|>
+    <div class='my-2 flex flex-col'>
+      <field.Label>Email</field.Label>
+      <field.Input class='border rounded px-2' />
+      <field.Errors />
+    </div>
+  </form.Field>
+  <button type='submit'>Submit</button>
 </HeadlessForm>
 ```
 
 ```js component
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { Changeset } from 'ember-changeset';
-import { validateChangeset } from 'ember-headless-form-changeset';
-import type { ValidatorAction } from 'ember-changeset/types';
+import {
+  validatePresence,
+  validateFormat,
+} from 'ember-changeset-validations/validators';
 
-const validator: ValidatorAction = ({ key, newValue }) => {
-    const errors: string[] = [];
+export default class MyFormComponent extends Component {
+  data = {};
 
-    if (newValue == undefined) {
-      errors.push(`${key} is required!`);
-    } else if (typeof newValue !== 'string') {
-      errors.push('Unexpected type');
-    } else {
-      if (newValue.charAt(0).toUpperCase() !== newValue.charAt(0)) {
-        errors.push(`${key} must be upper case!`);
-      }
-
-      if (newValue.toLowerCase() === 'foo') {
-        errors.push(`Foo is an invalid ${key}!`);
-      }
-    }
-
-    return errors.length > 0 ? errors : true;
-  };
-
-export default class extends Component {
-  data: TestFormData = { firstName: 'Foo', lastName: 'Smith' };
-  changeset = Changeset(data, validator);
-
-  @action
-  validateChangeset() {
-
+  validations = {
+    name: validatePresence(true),
+    email: validateFormat({ type: 'email' }),
+  } 
+  
+  handleSubmit({ name, email }) {
+    alert(`Form submitted with: ${name} ${email}`);
   }
-
-  @action
-  submitHandler() {
-    console.log('submitted');
-  }
-}
+};
 ```
