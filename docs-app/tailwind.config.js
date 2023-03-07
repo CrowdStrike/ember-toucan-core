@@ -12,7 +12,7 @@ const config = tailwindConfig(__dirname, {
     extend: {
       boxShadow: {
         'form-error-focus':
-          'inset 0 0 0 2px var(--critical), 0 0 0 1px var(--surface-base), 0 0 0 3px var(--focus)',
+          'inset 0 0 0 2px var(--critical), 0 0 0 2px var(--surface-base), 0 0 0 4px var(--focus)',
       },
     },
   },
