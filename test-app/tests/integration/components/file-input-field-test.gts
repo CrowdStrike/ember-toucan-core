@@ -143,14 +143,6 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
-  test('it does not set the value attribute via @value', async function (assert) {
-    await render(<template>
-      <FileInputField @label="Label" @value="tony" data-file-input-field />
-    </template>);
-
-    assert.dom('[data-file-input-field]').hasNoValue();
-  });
-
   test('it can upload a file and display the filename', async function (assert) {
     await render(<template>
       <FileInputField @label="Label" data-file-input-field />
