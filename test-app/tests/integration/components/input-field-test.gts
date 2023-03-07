@@ -21,7 +21,7 @@ module('Integration | Component | InputField', function (hooks) {
 
     const label = '[data-label]'
     const input = '[data-input]';
-    const inputId = find(input)?.getAttribute('id') || ''; 
+    const inputId = find(input)?.getAttribute('id') || '';
 
     assert.ok(inputId, 'Expected to have id');
     assert.dom(label).exists('Expected to have label block rendered');
@@ -30,6 +30,7 @@ module('Integration | Component | InputField', function (hooks) {
     assert.dom(input).exists('Expected to have input tag rendered');
     assert.dom(input).hasAttribute('type', 'text');
     assert.dom(input).hasAttribute('id');
+    assert.dom(input).hasNoClass('shadow-error-outline');
   });
 
   test('it encourages @label via assert', async function (assert) {
@@ -39,14 +40,14 @@ module('Integration | Component | InputField', function (hooks) {
       assert.strictEqual(e.message, 'Assertion Failed: input field requires a label', 'Expected an error message if @label is not provided')
     })
     await render(<template>
-      {{! @glint-expect-error: should have an error here for missing @label }} 
+      {{! @glint-expect-error: should have an error here for missing @label }}
       <InputField
         type="text"
         />
     </template>);
 
   })
-  
+
   test('it renders an error', async function (assert) {
     await render(<template>
       <InputField
@@ -69,6 +70,8 @@ module('Integration | Component | InputField', function (hooks) {
 
     assert.ok(describedby.includes(errorId), 'Expected errorId to be included in the aria-describedby');
     assert.dom(input).hasAttribute('aria-invalid', 'true');
+
+    assert.dom(input).hasClass('shadow-error-outline');
   });
 
   test('it renders hint text', async function (assert) {
@@ -90,7 +93,7 @@ module('Integration | Component | InputField', function (hooks) {
 
     assert.dom(input).exists('Expected to have input tag rendered');
     assert.dom(input).hasAttribute('type', 'text');
-   
+
     assert.dom(hint).exists('Expected to have hint component rendered');
     assert.dom(hint).hasText('Hint text visible here', 'Expected to have hint text "error"');
     assert.dom(hint).hasAttribute('id');
@@ -122,14 +125,14 @@ module('Integration | Component | InputField', function (hooks) {
 
   test('it accepts @value and @onChange', async function (assert) {
     assert.expect(8);
-    
+
     const onChangeCallback = (value: string, e: Event | InputEvent) => {
       assert.strictEqual(value, 'Banana', 'Expected input to match');
       assert.ok(e, 'Expected `e` to be available as the second argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
       assert.step('handleChange');
     };
-  
+
     await render(<template>
         <InputField
           @label="Label"
