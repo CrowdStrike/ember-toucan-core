@@ -123,6 +123,7 @@
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
       "./components/form/input-field.js": "./dist/_app_/components/form/input-field.js",
+      "./components/form/radio-field.js": "./dist/_app_/components/form/radio-field.js",
       "./components/form/textarea-field.js": "./dist/_app_/components/form/textarea-field.js"
     }
   },
