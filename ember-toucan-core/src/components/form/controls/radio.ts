@@ -15,6 +15,14 @@ export interface ToucanFormRadioControlComponentSignature {
 }
 
 export default class ToucanFormRadioControlComponent extends Component<ToucanFormRadioControlComponentSignature> {
+  constructor(
+    owner: unknown,
+    args: ToucanFormRadioControlComponentSignature['Args']
+  ) {
+    assert('A "@value" argument is required', args.value);
+    super(owner, args);
+  }
+
   get styles() {
     let { isDisabled, isChecked } = this.args;
 
