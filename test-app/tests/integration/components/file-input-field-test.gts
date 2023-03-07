@@ -13,6 +13,25 @@ import { module, test } from 'qunit';
 import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+// https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
+function createFile(
+  content = ['Some sample content'],
+  options: Options = { name: '', type: '' }
+) {
+  const { name, type } = options;
+
+  const file = new File(content, name, {
+    type: type ? type : 'text/plain',
+  });
+
+  return file;
+}
+
+type Options = {
+  name: string;
+  type?: string;
+};
+
 module('Integration | Component | FileInputField', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -148,24 +167,6 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField @label="Label" data-file-input-field />
     </template>);
 
-    type Options = {
-      name: string;
-      type?: string;
-    };
-    // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
-    function createFile(
-      content = ['Some sample content'],
-      options: Options = { name: '', type: '' }
-    ) {
-      const { name, type } = options;
-
-      const file = new File(content, name, {
-        type: type ? type : 'text/plain',
-      });
-
-      return file;
-    }
-
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
       type: 'text/plain',
@@ -176,16 +177,13 @@ module('Integration | Component | FileInputField', function (hooks) {
     await settled();
 
     assert.dom('[data-files] [data-file-name]').hasText('sample.txt');
+
     // currently: rounding to the nearest KB
     // this file is very small so result is 0 KB
     assert.dom('[data-files] [data-file-size]').hasText('0 KB');
   });
 
   test('it calls @onChange when input is received', async function (assert) {
-    type Options = {
-      name: string;
-      type?: string;
-    };
     assert.expect(6);
 
     let handleChange = (files: FileList, e: Event | InputEvent) => {
@@ -204,20 +202,6 @@ module('Integration | Component | FileInputField', function (hooks) {
     </template>);
 
     assert.verifySteps([]);
-
-    // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
-    function createFile(
-      content = ['Some sample content'],
-      options: Options = { name: '', type: '' }
-    ) {
-      const { name, type } = options;
-
-      const file = new File(content, name, {
-        type: type ? type : 'text/plain',
-      });
-
-      return file;
-    }
 
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
