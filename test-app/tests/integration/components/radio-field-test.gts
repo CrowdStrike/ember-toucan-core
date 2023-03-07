@@ -81,7 +81,7 @@ module('Integration | Component | RadioField', function (hooks) {
     assert.dom('[data-radio]').hasAttribute('aria-invalid', 'true');
   });
 
-  test('it sets the "for" attribute on the label to the "id" attribute of the checkbox', async function (assert) {
+  test('it sets the "for" attribute on the label to the "id" attribute of the radio', async function (assert) {
     await render(<template>
       <RadioField @value="option" @label="Label" data-radio />
     </template>);
@@ -94,7 +94,7 @@ module('Integration | Component | RadioField', function (hooks) {
       .hasAttribute(
         'id',
         labelFor,
-        'Expected the for attribute on the label to match the id attribute on the checkbox'
+        'Expected the for attribute on the label to match the id attribute on the radio'
       );
   });
 
