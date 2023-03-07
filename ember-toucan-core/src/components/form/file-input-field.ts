@@ -68,7 +68,7 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value
       this.value = event.target.files[0]?.name ?? '';
       this.files = event.target.files;
-        
+
       return this.args.onChange?.(event.target.files, event);
     }
 
