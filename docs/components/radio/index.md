@@ -4,7 +4,7 @@ Provides a Toucan-styled [radio element](https://developer.mozilla.org/en-US/doc
 
 ## Value
 
-To set the `value` attribute of the radio, provide `@value`.
+To set the `value` attribute of the radio, provide `@value`. This is required.
 
 ```hbs
 <Form::Controls::Radio @value='value-1' data-radio-1 />

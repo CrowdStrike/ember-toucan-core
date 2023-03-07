@@ -16,12 +16,12 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 ## Value, Checked State, and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
+The `@value` argument is required. To tie into the change event, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the value attribute from the target
 2. the raw event object
 
-It's most common to use this in combination with `@value` which will set the `checked` attribute for the Checkbox.
+To set the checked state of the radio, provide `@isChecked`.
 
 ```hbs
 <Form::RadioField
@@ -36,8 +36,6 @@ It's most common to use this in combination with `@value` which will set the `ch
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-
-function eq(params) {}
 
 export default class extends Component {
   @tracked selectedValue = 'option-1';
