@@ -28,14 +28,18 @@
           >{{@label}}</span>
 
           {{#if @hint}}
-            <field.Hint data-hint>{{@hint}}</field.Hint>
+            <field.Hint class="mt-0.5" data-hint>{{@hint}}</field.Hint>
           {{/if}}
         </div>
       </label>
     </field.Control>
 
     {{#if @error}}
-      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+      <field.Error
+        class="mt-0.5"
+        id={{field.errorId}}
+        data-error
+      >{{@error}}</field.Error>
     {{/if}}
   </Form::Field>
 </div>

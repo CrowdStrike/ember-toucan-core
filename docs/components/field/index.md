@@ -12,6 +12,10 @@ Field is a component to aid in creating form components. It provides a label, hi
 - `Control`: A control block where a form element is rendered, for example, an `<input>`, `<textarea>`, etc.
 - `Error`: Renders a `<div>` element. Error information is normally rendered here.
 
+## Design Guidelines
+
+- All components should have 0.125rem or 2px of spacing between the elements. We recommend using `space-y-0.5` or `gap-y-5` with `mt-0.5` being used as a last resort. It is up to consumers to apply these classes themselves. If using our Toucan `*Field` components, we handle this automatically.
+
 ## Accessibility
 
 The Field component does not handle accessibility automatically for the label, hint, and error sections of the component; however, it does provide identifiers to assist here. Each code example on this page also shows how to take advantage of these IDs.
