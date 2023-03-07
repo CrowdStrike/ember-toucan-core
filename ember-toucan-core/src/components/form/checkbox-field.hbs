@@ -28,7 +28,7 @@
           >{{@label}}</span>
 
           {{#if @hint}}
-            <field.Hint class="mt-0.5" data-hint>{{@hint}}</field.Hint>
+            <field.Hint class="mt-1" data-hint>{{@hint}}</field.Hint>
           {{/if}}
         </div>
       </label>
@@ -36,7 +36,7 @@
 
     {{#if @error}}
       <field.Error
-        class="mt-0.5"
+        class="mt-1"
         id={{field.errorId}}
         data-error
       >{{@error}}</field.Error>
