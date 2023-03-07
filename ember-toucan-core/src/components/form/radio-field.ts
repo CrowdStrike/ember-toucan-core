@@ -16,7 +16,7 @@ export interface ToucanFormRadioFieldComponentSignature {
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
-    value?: ToucanFormRadioControlComponentSignature['Args']['value'];
+    value: ToucanFormRadioControlComponentSignature['Args']['value'];
   };
 }
 
