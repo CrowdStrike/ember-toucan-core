@@ -76,6 +76,7 @@
     "concurrently": "^7.4.0",
     "cssnano": "^5.1.13",
     "ember-auto-import": "^2.4.2",
+    "ember-changeset": "^4.1.2",
     "ember-cli": "~4.11.0",
     "ember-cli-app-version": "^6.0.0",
     "ember-cli-babel": "^7.26.11",
