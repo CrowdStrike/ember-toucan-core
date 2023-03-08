@@ -8,8 +8,9 @@
       <label class="flex flex-row space-x-3" for={{field.id}}>
         <Form::Controls::Radio
           id={{field.id}}
+          name={{@name}}
           @isDisabled={{@isDisabled}}
-          @isChecked={{@isChecked}}
+          @isChecked={{this.isChecked}}
           @value={{@value}}
           @onChange={{@onChange}}
           ...attributes

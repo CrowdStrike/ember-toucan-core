@@ -79,17 +79,43 @@ module('Integration | Component | RadioField', function (hooks) {
     assert.dom('[data-radio]').hasAttribute('name', 'radio-name');
   });
 
-  test('it sets the checked-state via `@isChecked`', async function (assert) {
+  test('it sets the checked-state when `@selectedValue` and `@value` are equal', async function (assert) {
     await render(<template>
       <RadioField
         @value="option"
         @label="Label"
-        @isChecked={{true}}
+        @selectedValue="option"
         data-radio
       />
     </template>);
 
     assert.dom('[data-radio]').isChecked();
+  });
+
+  test('it does not set the checked-state when `@selectedValue` and `@value` are different', async function (assert) {
+    await render(<template>
+      <RadioField
+        @value="not-the-same-as-selected-value"
+        @label="Label"
+        @selectedValue="selected-value"
+        data-radio
+      />
+    </template>);
+
+    assert.dom('[data-radio]').isNotChecked();
+  });
+
+  test('it sets the radio name attribute via `@name`', async function (assert) {
+    await render(<template>
+      <RadioField
+        @value="option"
+        @label="Label"
+        @name="radio-name"
+        data-radio
+      />
+    </template>);
+
+    assert.dom('[data-radio]').hasAttribute('name', 'radio-name');
   });
 
   test('it calls `@onChange` when clicked with the expected checked state', async function (assert) {

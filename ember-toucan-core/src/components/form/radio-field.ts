@@ -7,14 +7,19 @@ export interface ToucanFormRadioFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     hint?: string;
-    isChecked?: ToucanFormRadioControlComponentSignature['Args']['isChecked'];
     isDisabled?: boolean;
     label: string;
+    name?: string;
     onChange?: ToucanFormRadioControlComponentSignature['Args']['onChange'];
     /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
+    /**
+     * This component argument is used to determine if the underlying radio is checked.
+     * When `selectedValue` and `value` are equal, the radio will have the checked attribute applied.
+     */
+    selectedValue?: string;
     value: ToucanFormRadioControlComponentSignature['Args']['value'];
   };
 }
@@ -26,5 +31,9 @@ export default class ToucanFormRadioFieldComponent extends Component<ToucanFormR
   ) {
     assert('A "@label" argument is required', args.label);
     super(owner, args);
+  }
+
+  get isChecked() {
+    return this.args?.selectedValue === this.args.value;
   }
 }

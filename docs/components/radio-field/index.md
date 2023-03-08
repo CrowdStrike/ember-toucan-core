@@ -1,6 +1,6 @@
 # Radio Field
 
-Provides an underlying radio element building on top of the Field component.
+Provides an opinionated radio element building on top of the Field component. If you are building real radio groups in forms, you'll want to check out our [RadioGroupField](./radio-group-field) component.
 
 ## Label
 
@@ -17,14 +17,14 @@ The `@value` argument is required. To tie into the change event, provide `@onCha
 1. the value attribute from the target
 2. the raw event object
 
-To set the checked state of the radio, provide `@isChecked`.
+To set the checked state of the radio, the `@selectedValue` and `@value` must match. If these two arguments do not match, the radio will not be checked.
 
 ```hbs
 <Form::RadioField
   @label='Label'
   @value='option-1'
   @onChange={{this.handleChange}}
-  @isChecked={{this.eq 'option-1' this.selectedValue}}
+  @selectedValue={{this.selectedValue}}
 />
 ```
 
@@ -35,10 +35,6 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked selectedValue = 'option-1';
-
-  eq = (value, selectedValue) => {
-    return value === selectedValue;
-  };
 
   @action
   updateValue(value, e) {
@@ -99,7 +95,7 @@ Target the hint block via `data-hint`.
 @label='Label'
 @hint='Checked'
 @value="option-1"
-@isChecked={{true}}
+@selectedValue="option-1"
 />
 
 <Form::RadioField
@@ -128,7 +124,7 @@ Target the hint block via `data-hint`.
 
 <Form::RadioField
 @label='Disabled + checked'
-@isChecked={{true}}
+@selectedValue="option-1"
 @isDisabled={{true}}
 @value="option-1"
 />
