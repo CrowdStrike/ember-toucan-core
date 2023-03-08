@@ -7,8 +7,6 @@
 
       <label class="flex flex-row space-x-3" for={{field.id}}>
         <Form::Controls::Radio
-          aria-invalid={{if @error "true"}}
-          aria-describedby="{{if @error field.errorId}}"
           id={{field.id}}
           @isDisabled={{@isDisabled}}
           @isChecked={{@isChecked}}
@@ -30,13 +28,5 @@
         </div>
       </label>
     </field.Control>
-
-    {{#if @error}}
-      <field.Error
-        class="mt-0.5"
-        id={{field.errorId}}
-        data-error
-      >{{@error}}</field.Error>
-    {{/if}}
   </Form::Field>
 </div>

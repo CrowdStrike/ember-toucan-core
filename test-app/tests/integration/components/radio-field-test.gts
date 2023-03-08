@@ -31,13 +31,6 @@ module('Integration | Component | RadioField', function (hooks) {
     assert.dom('[data-radio]').hasTagName('input');
     assert.dom('[data-radio]').hasAttribute('id');
     assert.dom('[data-radio]').hasNoAttribute('aria-invalid');
-
-    assert
-      .dom('[data-error]')
-      .doesNotExist(
-        'Expected error block not to be displayed as an error was not provided'
-      );
-    assert.dom('[data-control]').hasNoClass('shadow-error-outline');
   });
 
   test('it renders with a hint', async function (assert) {
@@ -46,39 +39,6 @@ module('Integration | Component | RadioField', function (hooks) {
     </template>);
 
     assert.dom('[data-hint]').hasText('Hint text');
-  });
-
-  test('it renders with an error', async function (assert) {
-    await render(<template>
-      <RadioField
-        @value="option"
-        @label="Label"
-        @error="Error text"
-        @rootTestSelector="test"
-        data-radio
-      />
-    </template>);
-
-    let error = find('[data-error]');
-
-    assert.dom(error).hasText('Error text');
-    assert.dom(error).hasAttribute('id');
-
-    let errorId = error?.getAttribute('id') || '';
-    assert.ok(errorId, 'Expected errorId to be truthy');
-
-    // For the radio-field component, the only aria-describedby
-    // value should be the errorId.  This is due to the way the component
-    // is structured, where the label+hint are rendered inside of the
-    // wrapping <label> element
-    let describedby =
-      find('[data-radio]')?.getAttribute('aria-describedby') || '';
-    assert.ok(
-      describedby.includes(errorId),
-      'Expected errorId to be included in the aria-describedby'
-    );
-
-    assert.dom('[data-radio]').hasAttribute('aria-invalid', 'true');
   });
 
   test('it sets the "for" attribute on the label to the "id" attribute of the radio', async function (assert) {

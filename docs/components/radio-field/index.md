@@ -10,10 +10,6 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
 
-## Error
-
-Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
-
 ## Value, Checked State, and onChange
 
 The `@value` argument is required. To tie into the change event, provide `@onChange`. `@onChange` will return two arguments:
@@ -85,10 +81,6 @@ Target the label element via `data-label`.
 
 Target the hint block via `data-hint`.
 
-### Error
-
-Target the error block via `data-error`.
-
 ## All UI States
 
 <div class="flex flex-col space-y-4" style="max-width: 14rem">
@@ -99,20 +91,7 @@ Target the error block via `data-error`.
 
 <Form::RadioField
 @label='Label'
-@error="With error"
-@value="option-1"
-/>
-
-<Form::RadioField
-@label='Label'
 @hint='With hint text'
-@value="option-1"
-/>
-
-<Form::RadioField
-@label='Label'
-@hint='With hint text'
-@error="With error"
 @value="option-1"
 />
 
@@ -131,12 +110,6 @@ Target the error block via `data-error`.
 <Form::RadioField
 @label='This is an option that expands to multiple lines'
 @hint="Here is helper text that overflows onto multiple lines"
-@value="option-1"
-/>
-
-<Form::RadioField
-@label='This is an option that expands to multiple lines'
-@error="With error"
 @value="option-1"
 />
 

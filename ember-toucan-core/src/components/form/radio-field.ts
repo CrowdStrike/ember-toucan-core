@@ -6,7 +6,6 @@ import type { ToucanFormRadioControlComponentSignature } from './controls/radio'
 export interface ToucanFormRadioFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
-    error?: string;
     hint?: string;
     isChecked?: ToucanFormRadioControlComponentSignature['Args']['isChecked'];
     isDisabled?: boolean;
