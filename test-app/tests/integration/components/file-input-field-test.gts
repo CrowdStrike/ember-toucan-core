@@ -66,20 +66,13 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField @label="Label" @hint="Hint text" data-file-input-field />
     </template>);
 
+    // For the file input field component, the only aria-describedby
+    // value should be the errorId.  This is due to the way the component
+    // is structured, where the label+hint are rendered inside of the
+    // wrapping <label> element
     const hint = find('[data-hint]');
 
     assert.dom(hint).hasText('Hint text');
-    assert.dom(hint).hasAttribute('id');
-
-    const hintId = hint?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hintId to be truthy');
-
-    const describedby =
-      find('[data-file-input-field]')?.getAttribute('aria-describedby') || '';
-    assert.ok(
-      describedby.includes(hintId),
-      'Expected hintId to be included in the aria-describedby'
-    );
   });
 
   test('it renders with an error', async function (assert) {
@@ -99,6 +92,10 @@ module('Integration | Component | FileInputField', function (hooks) {
     let errorId = error?.getAttribute('id') || '';
     assert.ok(errorId, 'Expected errorId to be truthy');
 
+    // For the file input field component, the only aria-describedby
+    // value should be the errorId.  This is due to the way the component
+    // is structured, where the label+hint are rendered inside of the
+    // wrapping <label> element
     let describedby =
       find('[data-file-input-field]')?.getAttribute('aria-describedby') || '';
     assert.ok(
@@ -114,25 +111,22 @@ module('Integration | Component | FileInputField', function (hooks) {
       .doesNotHaveClass('shadow-focusable-outline');
   });
 
-  test('it sets aria-describedby when both a hint and error are provided using the hint and error ids', async function (assert) {
+
+  test('it sets the "for" attribute on the label to the "id" attribute of the file input field', async function (assert) {
     await render(<template>
-      <FileInputField
-        @label="Label"
-        @error="Error text"
-        @hint="Hint text"
-        data-file-input-field
-      />
+      <FileInputField @label="Label" data-file-input-field />
     </template>);
 
-    let errorId = find('[data-error]')?.getAttribute('id') || '';
-    assert.ok(errorId, 'Expected errorId to be truthy');
-
-    let hintId = find('[data-hint]')?.getAttribute('id') || '';
-    assert.ok(hintId, 'Expected hintId to be truthy');
+    let labelFor = find('label')?.getAttribute('for') || '';
+    assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
 
     assert
       .dom('[data-file-input-field]')
-      .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
+      .hasAttribute(
+        'id',
+        labelFor,
+        'Expected the for attribute on the label to match the id attribute on the checkbox'
+      );
   });
 
   test('it disables the file input using @isDisabled', async function (assert) {
@@ -147,7 +141,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-file-input-field]').isDisabled();
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
   });
-
+ 
   test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       <FileInputField

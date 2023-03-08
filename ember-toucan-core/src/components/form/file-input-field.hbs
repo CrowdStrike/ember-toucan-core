@@ -6,7 +6,7 @@
     <field.Label for={{field.id}} data-label>
       {{@label}}
       {{#if @hint}}
-        <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
+        <field.Hint data-hint>{{@hint}}</field.Hint>
       {{/if}}
 
       <field.Control class="flex">
@@ -14,10 +14,7 @@
           class="bg-overlay-1 shadow-focusable-outline focus-within:shadow-focus-outline relative inline-flex h-8 w-full flex-wrap items-center rounded-sm"
         >
           <input
-            aria-describedby="{{if @error field.errorId}} {{if
-              @hint
-              field.hintId
-            }}"
+            aria-describedby="{{if @error field.errorId}}"
             {{! template lint thinks this input is a button, and so doesn't not support aria-invalid }}
             {{! template-lint-disable no-unsupported-role-attributes }}
             aria-invalid={{if @error "true"}}
