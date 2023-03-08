@@ -73,6 +73,7 @@
               >{{(this.formatSize file.size)}}</span>
             </div>
             <button
+              type="button"
               class="flex-none bg-transparent"
               {{on "click" (fn this.deleteFile file)}}
             >
