@@ -120,7 +120,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         @label="Label"
         @error="Error text"
         @hint="Hint text"
-        data-textarea
+        data-file-input-field
       />
     </template>);
 
@@ -131,7 +131,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
-      .dom('[data-textarea]')
+      .dom('[data-file-input-field]')
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
@@ -148,7 +148,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
   });
 
-  test('it spreads attributes to the underlying textarea', async function (assert) {
+  test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       <FileInputField
         @label="Label"
