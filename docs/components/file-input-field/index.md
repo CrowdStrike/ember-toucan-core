@@ -52,7 +52,7 @@ Set the `@isDisabled` argument to disable the `<input type="file">`.
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.
+Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.
 
 ## Test Selectors
 
