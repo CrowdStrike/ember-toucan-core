@@ -1,5 +1,10 @@
 ```hbs template
-<HeadlessForm @data={{this.data}} @onSubmit={{this.handleSubmit}} as |form|>
+<HeadlessForm
+  class='space-y-4'
+  @data={{this.data}}
+  @onSubmit={{this.handleSubmit}}
+  as |form|
+>
   <form.Field @name='name' as |field|>
     <Form::InputField
       @label='Name'
@@ -12,7 +17,7 @@
     <field.Errors />
   </form.Field>
 
-  <button type='submit'>Submit</button>
+  <Button type='submit'>Submit</Button>
 </HeadlessForm>
 ```
 

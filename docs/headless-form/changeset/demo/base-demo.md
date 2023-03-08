@@ -1,5 +1,6 @@
 ```hbs template
 <HeadlessForm
+  class='space-y-4'
   @data={{changeset this.data this.validations}}
   @dataMode='mutable'
   @onSubmit={{this.handleSubmit}}
@@ -28,7 +29,7 @@
     />
     <field.Errors />
   </form.Field>
-  <button type='submit'>Submit</button>
+  <Button type='submit'>Submit</Button>
 </HeadlessForm>
 ```
 
