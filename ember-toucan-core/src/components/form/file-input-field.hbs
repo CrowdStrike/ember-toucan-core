@@ -1,9 +1,8 @@
 <div
-  class="flex flex-col {{if @isDisabled 'text-disabled cursor-not-allowed'}}"
-  data-root-field={{if @rootTestSelector @rootTestSelector null}}
+  class="flex flex-col {{if @isDisabled 'text-disabled'}}"
+  data-root-field={{if @rootTestSelector @rootTestSelector}}
 >
   <Form::Field as |field|>
-    {{!-- <field.Label for={{field.id}} data-label>{{@label}}</field.Label> --}}
     <field.Label for={{field.id}} data-label>
       {{@label}}
       {{#if @hint}}
@@ -36,9 +35,9 @@
             {{on "change" this.handleChange}}
           />
           <div
-            class="text-titles-and-attributes inline-flex w-full cursor-pointer items-center pl-2"
+            class="text-titles-and-attributes inline-flex w-full cursor-pointer items-center gap-x-2 pl-2"
           >
-            {{! TODO: replace with official icon later }}
+            {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -64,49 +63,51 @@
     {{#if @error}}
       <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
     {{/if}}
-    <ul class="px-0" data-files>
-      {{#each this.files as |file|}}
-        <li class="flex items-center p-0">
-          <section class="flex-1 p-0">
-            <p
-              class="text-titles-and-attributes m-0 truncate p-0"
-              data-file-name
-            >{{file.name}}</p>
-            <span
-              class="body-and-labels block"
-              data-file-size
-            >{{(this.formatSize file.size)}}</span>
-          </section>
-          <div id="trash" class="flex-none">
-            <svg
-              width="13"
-              height="15"
-              viewBox="0 0 13 15"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M0.146484 3C0.146484 2.72386 0.370342 2.5 0.646484 2.5H11.6465C11.9226 2.5 12.1465 2.72386 12.1465 3C12.1465 3.27614 11.9226 3.5 11.6465 3.5V13C11.6465 13.8284 10.9749 14.5 10.1465 14.5H2.14648C1.31806 14.5 0.646484 13.8284 0.646484 13V3.5C0.370342 3.5 0.146484 3.27614 0.146484 3ZM1.64648 3.5V13C1.64648 13.2761 1.87034 13.5 2.14648 13.5H10.1465C10.4226 13.5 10.6465 13.2761 10.6465 13V3.5H1.64648Z"
-                fill="#FAFAFA"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M4.14648 11.5V5.5H5.14648V11.5H4.14648ZM7.14648 11.5V5.5H8.14648V11.5H7.14648Z"
-                fill="#FAFAFA"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M6.14648 1C5.31806 1 4.64648 1.67157 4.64648 2.5H3.64648C3.64648 1.11929 4.76577 0 6.14648 0C7.5272 0 8.64648 1.11929 8.64648 2.5H7.64648C7.64648 1.67157 6.97491 1 6.14648 1Z"
-                fill="#FAFAFA"
-              />
-            </svg>
-          </div>
-        </li>
-      {{/each}}
-    </ul>
+    {{#if this.files.length}}
+      <ul class="list-none" data-files>
+        {{#each this.files as |file|}}
+          <li class="flex items-center p-0">
+            <div class="flex-1 px-4 py-2">
+              <p
+                class="text-titles-and-attributes m-0 truncate p-0"
+                data-file-name
+              >{{file.name}}</p>
+              <span
+                class="text-body-and-labels block"
+                data-file-size
+              >{{(this.formatSize file.size)}}</span>
+            </div>
+            <div id="trash" class="flex-none">
+              <svg
+                width="13"
+                height="15"
+                viewBox="0 0 13 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M0.146484 3C0.146484 2.72386 0.370342 2.5 0.646484 2.5H11.6465C11.9226 2.5 12.1465 2.72386 12.1465 3C12.1465 3.27614 11.9226 3.5 11.6465 3.5V13C11.6465 13.8284 10.9749 14.5 10.1465 14.5H2.14648C1.31806 14.5 0.646484 13.8284 0.646484 13V3.5C0.370342 3.5 0.146484 3.27614 0.146484 3ZM1.64648 3.5V13C1.64648 13.2761 1.87034 13.5 2.14648 13.5H10.1465C10.4226 13.5 10.6465 13.2761 10.6465 13V3.5H1.64648Z"
+                  fill="#FAFAFA"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4.14648 11.5V5.5H5.14648V11.5H4.14648ZM7.14648 11.5V5.5H8.14648V11.5H7.14648Z"
+                  fill="#FAFAFA"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M6.14648 1C5.31806 1 4.64648 1.67157 4.64648 2.5H3.64648C3.64648 1.11929 4.76577 0 6.14648 0C7.5272 0 8.64648 1.11929 8.64648 2.5H7.64648C7.64648 1.67157 6.97491 1 6.14648 1Z"
+                  fill="#FAFAFA"
+                />
+              </svg>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   </Form::Field>
 </div>
