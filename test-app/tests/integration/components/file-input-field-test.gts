@@ -186,7 +186,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it calls @onChange when input is received', async function (assert) {
     assert.expect(6);
 
-    let handleChange = (files: FileList, e: Event | InputEvent) => {
+    const handleChange = (files: File[], e: Event | InputEvent) => {
       assert.ok(e, 'Expected `e` to be available as the second argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
       assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
@@ -213,6 +213,41 @@ module('Integration | Component | FileInputField', function (hooks) {
     await settled();
 
     assert.verifySteps(['handleChange']);
+  });
+
+  test('it calls deleteFile and onDeleteFile when a file is deleted', async function(assert) {
+    assert.expect(4)
+    
+    const deleteFile = (file: File) => {
+      assert.ok(file,'Expected direct access to target from `e`');
+      assert.step('deleteFile');
+    };
+
+    await render(<template>
+      <FileInputField
+        @label="Label"
+        @onDeleteFile={{deleteFile}}
+        data-file-input-field
+      />
+    </template>);
+
+    assert.verifySteps([]);
+
+
+    const file = createFile(['Upload file sample'], {
+      name: 'sample.txt',
+      type: 'text/plain',
+    });
+
+    triggerEvent('[data-file-input-field]', 'change', { files: [file] });
+
+    await settled();
+
+    triggerEvent('button', 'click');
+    
+    await settled();
+
+    assert.verifySteps(['deleteFile']);
   });
 
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {

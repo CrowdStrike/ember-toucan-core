@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 
 // Note, unlike other inputs the first parameter is not @value but @files
 export type OnFileUploadChangeCallback = (
-  files: FileList,
+  files: File[],
   e: Event | InputEvent
 ) => void;
 
@@ -14,12 +14,13 @@ interface ToucanFormFileInputFieldComponentSignature {
   Args: {
     accept?: string;
     error?: string;
-    files?: FileList;
+    files?: File[];
     hint?: string;
     label: string;
     isDisabled?: boolean;
     multiple?: boolean;
     onChange?: OnFileUploadChangeCallback;
+    onDeleteFile?: (file:File) => void; 
     rootTestSelector?: string;
   };
   Blocks: {
@@ -28,7 +29,7 @@ interface ToucanFormFileInputFieldComponentSignature {
 }
 
 export default class ToucanFormFileInputFieldComponent extends Component<ToucanFormFileInputFieldComponentSignature> {
-  @tracked files;
+  @tracked files: File[] = [];
 
   constructor(
     owner: unknown,
@@ -57,6 +58,13 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     return `${Math.round(size / 1000)} KB`;
   }
 
+  @action 
+  deleteFile(file: File) {
+    this.files = this.files?.filter(currentFile => currentFile !== file);
+    
+    return this.args.onDeleteFile?.(file);
+  }
+
   @action
   handleChange(event: Event | InputEvent): void {
     assert(
@@ -65,11 +73,13 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     );
 
     if (event.target.files) {
-      this.files = event.target.files;
+      // https://w3c.github.io/FileAPI/#filelist-section
+      // FileList is getting replaced with Array
+      this.files = [...event.target.files]; 
 
-      return this.args.onChange?.(event.target.files, event);
+      return this.args.onChange?.(this.files, event);
     }
 
-    return this.args.onChange?.(new FileList(), event);
+    return this.args.onChange?.([], event);
   }
 }

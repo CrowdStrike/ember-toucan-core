@@ -77,7 +77,7 @@
                 data-file-size
               >{{(this.formatSize file.size)}}</span>
             </div>
-            <div id="trash" class="flex-none">
+            <button class="bg-transparent flex-none" {{on "click" (fn this.deleteFile file)}}>
               <svg
                 width="13"
                 height="15"
@@ -104,7 +104,7 @@
                   fill="#FAFAFA"
                 />
               </svg>
-            </div>
+            </button>
           </li>
         {{/each}}
       </ul>
