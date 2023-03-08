@@ -9,7 +9,7 @@ export interface ToucanFormRadioFieldComponentSignature {
     hint?: string;
     isDisabled?: boolean;
     label: string;
-    name?: string;
+    name: string;
     onChange?: ToucanFormRadioControlComponentSignature['Args']['onChange'];
     /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
@@ -30,6 +30,7 @@ export default class ToucanFormRadioFieldComponent extends Component<ToucanFormR
     args: ToucanFormRadioFieldComponentSignature['Args']
   ) {
     assert('A "@label" argument is required', args.label);
+    assert('A "@name" argument is required', args.name);
     super(owner, args);
   }
 

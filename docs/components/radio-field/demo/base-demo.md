@@ -2,12 +2,14 @@
 <div class='space-y-4'>
   <Form::RadioField
     @label='Option 1'
+    @name='options'
     @value='option-1'
     @onChange={{this.updateValue}}
     @isChecked={{this.eq 'option-1' this.selectedValue}}
   />
   <Form::RadioField
     @label='Option 2'
+    @name='options'
     @value='option-2'
     @onChange={{this.updateValue}}
     @selectedValue='option-2'

@@ -4,7 +4,11 @@ Provides an opinionated radio element building on top of the Field component. If
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field.
+Provide a string to `@label` to render the text into the `<label>` of the Field. This is required.
+
+## Name
+
+Provide a string to `@name` set the `name` attribute of the Field. This is required.
 
 ## Hint
 
@@ -22,6 +26,7 @@ To set the checked state of the radio, the `@selectedValue` and `@value` must ma
 ```hbs
 <Form::RadioField
   @label='Label'
+  @name='options'
   @value='option-1'
   @onChange={{this.handleChange}}
   @selectedValue={{this.selectedValue}}
@@ -82,51 +87,59 @@ Target the hint block via `data-hint`.
 <div class="flex flex-col space-y-4" style="max-width: 14rem">
 <Form::RadioField
 @label='Label'
-@value="option-1"
+@name='options'
+@value='option-1'
 />
 
 <Form::RadioField
 @label='Label'
+@name='options'
 @hint='With hint text'
 @value="option-1"
 />
 
 <Form::RadioField
 @label='Label'
+@name='options'
 @hint='Checked'
-@value="option-1"
-@selectedValue="option-1"
+@value='option-1'
+@selectedValue='option-1'
 />
 
 <Form::RadioField
 @label='This is an option that expands to multiple lines'
-@value="option-1"
+@name='options'
+@value='option-1'
 />
 
 <Form::RadioField
 @label='This is an option that expands to multiple lines'
-@hint="Here is helper text that overflows onto multiple lines"
-@value="option-1"
+@name='options'
+@hint='Here is helper text that overflows onto multiple lines'
+@value='option-1'
 />
 
 <Form::RadioField
 @label='Disabled'
+@name='options'
 @isDisabled={{true}}
-@value="option-1"
+@value='option-1'
 />
 
 <Form::RadioField
 @label='Disabled'
-@hint="With hint"
+@name='options'
+@hint='With hint'
 @isDisabled={{true}}
-@value="option-1"
+@value='option-1'
 />
 
 <Form::RadioField
 @label='Disabled + checked'
-@selectedValue="option-1"
+@name='options'
+@selectedValue='option-1'
 @isDisabled={{true}}
-@value="option-1"
+@value='option-1'
 />
 
 </div>

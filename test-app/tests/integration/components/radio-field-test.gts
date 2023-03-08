@@ -16,6 +16,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="option"
         @label="Label"
         @rootTestSelector="test"
+        @name="name"
         data-radio
       />
     </template>);
@@ -35,7 +36,13 @@ module('Integration | Component | RadioField', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <RadioField @value="option" @label="Label" @hint="Hint text" data-radio />
+      <RadioField
+        @value="option"
+        @label="Label"
+        @hint="Hint text"
+        @name="name"
+        data-radio
+      />
     </template>);
 
     assert.dom('[data-hint]').hasText('Hint text');
@@ -43,7 +50,7 @@ module('Integration | Component | RadioField', function (hooks) {
 
   test('it sets the "for" attribute on the label to the "id" attribute of the radio', async function (assert) {
     await render(<template>
-      <RadioField @value="option" @label="Label" data-radio />
+      <RadioField @value="option" @label="Label" @name="name" data-radio />
     </template>);
 
     let labelFor = find('[data-control] > label')?.getAttribute('for') || '';
@@ -64,6 +71,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="option"
         @label="Label"
         @isDisabled={{true}}
+        @name="name"
         data-radio
       />
     </template>);
@@ -73,10 +81,16 @@ module('Integration | Component | RadioField', function (hooks) {
 
   test('it spreads attributes to the underlying radio', async function (assert) {
     await render(<template>
-      <RadioField @value="option" @label="Label" name="radio-name" data-radio />
+      <RadioField
+        @value="option"
+        @label="Label"
+        data-test-selector="test"
+        @name="name"
+        data-radio
+      />
     </template>);
 
-    assert.dom('[data-radio]').hasAttribute('name', 'radio-name');
+    assert.dom('[data-radio]').hasAttribute('data-test-selector', 'test');
   });
 
   test('it sets the checked-state when `@selectedValue` and `@value` are equal', async function (assert) {
@@ -85,6 +99,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="option"
         @label="Label"
         @selectedValue="option"
+        @name="name"
         data-radio
       />
     </template>);
@@ -98,6 +113,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="not-the-same-as-selected-value"
         @label="Label"
         @selectedValue="selected-value"
+        @name="name"
         data-radio
       />
     </template>);
@@ -133,6 +149,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="option"
         @label="Label"
         @onChange={{handleChange}}
+        @name="name"
         data-radio
       />
     </template>);
@@ -152,6 +169,7 @@ module('Integration | Component | RadioField', function (hooks) {
         @value="option"
         @label="Label"
         @rootTestSelector="selector"
+        @name="name"
         data-radio
       />
     </template>);
@@ -171,7 +189,7 @@ module('Integration | Component | RadioField', function (hooks) {
 
     await render(<template>
       {{! @glint-expect-error: we are not providing @label, so this is expected }}
-      <RadioField @value="option" />
+      <RadioField @value="option" @name="name" />
     </template>);
   });
 
@@ -187,7 +205,23 @@ module('Integration | Component | RadioField', function (hooks) {
 
     await render(<template>
       {{! @glint-expect-error: we are not providing @value, so this is expected }}
-      <RadioField @label="Label" />
+      <RadioField @label="Label" @name="name" />
+    </template>);
+  });
+
+  test('it throws an assertion error if no `@name` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('A "@name" argument is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      {{! @glint-expect-error: we are not providing @name, so this is expected }}
+      <RadioField @label="Label" @value="value" />
     </template>);
   });
 });
