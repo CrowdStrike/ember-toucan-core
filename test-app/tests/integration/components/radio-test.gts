@@ -22,9 +22,6 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').hasAttribute('value', 'option');
 
     assert.dom('[data-radio]').isNotChecked();
-
-    assert.dom('[data-radio]').hasClass('bg-normal-idle');
-    assert.dom('[data-radio]').doesNotHaveClass('border-disabled');
   });
 
   test('it disables the radio using `@isDisabled`', async function (assert) {
@@ -39,6 +36,7 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').hasClass('border-disabled');
     assert.dom('[data-radio]').hasClass('bg-transparent');
     assert.dom('[data-radio]').doesNotHaveClass('bg-primary-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-disabled');
     assert.dom('[data-radio]').doesNotHaveClass('border-none');
   });
 
@@ -52,6 +50,20 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').isChecked();
   });
 
+  test('it applies the expected classes when idle (not disabled, not checked)', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field }}
+      {{! template-lint-disable require-input-label }}
+      <RadioControl @value="option" data-radio />
+    </template>);
+
+    assert.dom('[data-radio]').hasClass('bg-normal-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('border-disabled');
+    assert.dom('[data-radio]').doesNotHaveClass('border-none');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-disabled');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-primary-idle');
+  });
+
   test('it applies the expected classes when `@isDisabled={{true}}', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field }}
@@ -61,8 +73,9 @@ module('Integration | Component | Radio', function (hooks) {
 
     assert.dom('[data-radio]').hasClass('bg-transparent');
     assert.dom('[data-radio]').hasClass('border-disabled');
-    assert.dom('[data-radio]').hasNoClass('bg-primary-idle');
-    assert.dom('[data-radio]').hasNoClass('border-none');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-primary-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('border-none');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-normal-idle');
   });
 
   test('it applies the expected classes when `@isChecked={{true}}` and `@isDisabled={{false}}', async function (assert) {
@@ -79,10 +92,10 @@ module('Integration | Component | Radio', function (hooks) {
 
     assert.dom('[data-radio]').hasClass('bg-primary-idle');
     assert.dom('[data-radio]').hasClass('border-none');
-    assert.dom('[data-radio]').hasNoClass('bg-disabled');
-    assert.dom('[data-radio]').hasNoClass('bg-transparent');
-    assert.dom('[data-radio]').hasNoClass('bg-normal-idle');
-    assert.dom('[data-radio]').hasNoClass('border-disabled');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-disabled');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-transparent');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-normal-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('border-disabled');
   });
 
   test('it applies the expected classes when `@isChecked={{true}}` and `@isDisabled={{true}}', async function (assert) {
@@ -99,10 +112,10 @@ module('Integration | Component | Radio', function (hooks) {
 
     assert.dom('[data-radio]').hasClass('bg-disabled');
     assert.dom('[data-radio]').hasClass('border-none');
-    assert.dom('[data-radio]').hasNoClass('bg-primary-idle');
-    assert.dom('[data-radio]').hasNoClass('bg-transparent');
-    assert.dom('[data-radio]').hasNoClass('bg-normal-idle');
-    assert.dom('[data-radio]').hasNoClass('border-disabled');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-primary-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-transparent');
+    assert.dom('[data-radio]').doesNotHaveClass('bg-normal-idle');
+    assert.dom('[data-radio]').doesNotHaveClass('border-disabled');
   });
 
   test('it spreads attributes to the underlying radio', async function (assert) {
