@@ -20,7 +20,7 @@ interface ToucanFormFileInputFieldComponentSignature {
     isDisabled?: boolean;
     multiple?: boolean;
     onChange?: OnFileUploadChangeCallback;
-    onDeleteFile?: (file:File) => void; 
+    onDeleteFile?: (file: File) => void;
     rootTestSelector?: string;
   };
   Blocks: {
@@ -58,10 +58,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     return `${Math.round(size / 1000)} KB`;
   }
 
-  @action 
+  @action
   deleteFile(file: File) {
-    this.files = this.files?.filter(currentFile => currentFile !== file);
-    
+    this.files = this.files?.filter((currentFile) => currentFile !== file);
+
     return this.args.onDeleteFile?.(file);
   }
 
@@ -75,7 +75,7 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     if (event.target.files) {
       // https://w3c.github.io/FileAPI/#filelist-section
       // FileList is getting replaced with Array
-      this.files = [...event.target.files]; 
+      this.files = [...event.target.files];
 
       return this.args.onChange?.(this.files, event);
     }
