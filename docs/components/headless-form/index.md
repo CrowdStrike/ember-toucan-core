@@ -1,1 +1,0 @@
-# Ember headless form integration
