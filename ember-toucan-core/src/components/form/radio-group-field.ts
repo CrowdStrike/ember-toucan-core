@@ -7,7 +7,7 @@ import type { ToucanFormRadioFieldComponentSignature } from './radio-field';
 import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormRadioGroupFieldComponentSignature {
-  Element: null;
+  Element: HTMLFieldSetElement;
   Args: {
     error?: string;
     hint?: string;
@@ -26,7 +26,7 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
       {
         RadioField: WithBoundArgs<
           typeof RadioFieldComponent,
-          'name' | 'onChange' | 'selectedValue'
+          'isDisabled' | 'name' | 'onChange' | 'selectedValue'
         >;
       }
     ];

@@ -57,7 +57,27 @@ export default class extends Component {
 
 ## Disabled State
 
-To disable individual radio fields, set the `@isDisabled` argument.
+### Fieldset
+
+To disable the fieldset and all child radios, set the `@isDisabled` argument directly on the radio group field.
+
+```hbs
+<Form::RadioGroupField
+  @label='Label'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+  @isDisabled={{true}}
+  as |group|
+>
+  <!-- This will now be disabled as well! -->
+  <group.RadioField @label='Option 1' @value='option-1' />
+</Form::RadioGroupField>
+```
+
+### Individual Radios
+
+To disable individual radio fields, set the `@isDisabled` argument directly on the radio field.
 
 ```hbs
 <Form::RadioGroupField
@@ -102,6 +122,12 @@ Consumers have direct access to the underlying [radio element](https://developer
 </Form::RadioGroupField>
 
 <Form::RadioGroupField @label="Label" @name="options" @hint="Select an option" @error="With error" as |group|>
+<group.RadioField @label="Option 1" @value="option-1" />
+<group.RadioField @label="Option 2" @value="option-2" />
+<group.RadioField @label="Option 3" @value="option-3" />
+</Form::RadioGroupField>
+
+<Form::RadioGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />

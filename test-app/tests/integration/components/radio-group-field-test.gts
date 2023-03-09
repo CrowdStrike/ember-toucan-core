@@ -78,6 +78,25 @@ module('Integration | Component | RadioGroupField', function (hooks) {
     assert.dom('[data-radio-2]').isChecked();
   });
 
+  test('it disables the fieldset and all child radios using `@isDisabled`', async function (assert) {
+    await render(<template>
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @isDisabled={{true}}
+        data-group-field
+        as |group|
+      >
+        <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
+        <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-group-field]').isDisabled();
+    assert.dom('[data-radio-1]').isDisabled();
+    assert.dom('[data-radio-2]').isDisabled();
+  });
+
   test('it calls `@onChange` when a radio is clicked and can update `@value`', async function (assert) {
     assert.expect(8);
 
