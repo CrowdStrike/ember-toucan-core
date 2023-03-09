@@ -8,7 +8,11 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 ## Name
 
-Provide a string to `@name` set the `name` attribute of the Field. This is required.
+Provide a string to `@name` to set the `name` attribute of the Field. This is required.
+
+## Value
+
+Provide a string to `@value` to set the `value` attribute of the radio. This is required.
 
 ## Hint
 
