@@ -87,20 +87,20 @@ Target the hint block via `data-hint`.
 <div class="flex flex-col space-y-4" style="max-width: 14rem">
 <Form::RadioField
 @label='Label'
-@name='options'
+@name='options-a'
 @value='option-1'
 />
 
 <Form::RadioField
 @label='Label'
-@name='options'
+@name='options-b'
 @hint='With hint text'
 @value="option-1"
 />
 
 <Form::RadioField
 @label='Label'
-@name='options'
+@name='options-c'
 @hint='Checked'
 @value='option-1'
 @selectedValue='option-1'
@@ -108,27 +108,27 @@ Target the hint block via `data-hint`.
 
 <Form::RadioField
 @label='This is an option that expands to multiple lines'
-@name='options'
+@name='options-d'
 @value='option-1'
 />
 
 <Form::RadioField
 @label='This is an option that expands to multiple lines'
-@name='options'
+@name='options-e'
 @hint='Here is helper text that overflows onto multiple lines'
 @value='option-1'
 />
 
 <Form::RadioField
 @label='Disabled'
-@name='options'
+@name='options-f'
 @isDisabled={{true}}
 @value='option-1'
 />
 
 <Form::RadioField
 @label='Disabled'
-@name='options'
+@name='options-g'
 @hint='With hint'
 @isDisabled={{true}}
 @value='option-1'
@@ -136,7 +136,7 @@ Target the hint block via `data-hint`.
 
 <Form::RadioField
 @label='Disabled + checked'
-@name='options'
+@name='options-h'
 @selectedValue='option-1'
 @isDisabled={{true}}
 @value='option-1'

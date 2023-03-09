@@ -100,7 +100,7 @@ Consumers have direct access to the underlying [radio element](https://developer
 <div class="flex flex-col space-y-4" style="max-width: 14rem">
 <Form::RadioGroupField
   @label='Label'
-  @name='options'
+  @name='options-a'
   as |group|
 >
   <group.RadioField @label='Option 1' @value='option-1' />
@@ -109,19 +109,19 @@ Consumers have direct access to the underlying [radio element](https://developer
   <group.RadioField @label='Option 4' @value='option-4'/>
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options" @hint="Select an option" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-b" @hint="Select an option" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options" @error="With error" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-c" @error="With error" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options" @hint="Select an option" @error="With error" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-d" @hint="Select an option" @error="With error" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
