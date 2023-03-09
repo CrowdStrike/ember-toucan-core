@@ -1,5 +1,18 @@
 # Developing ember-toucan-core
 
+- [Developing ember-toucan-core](#developing-ember-toucan-core)
+  - [Overview](#overview)
+  - [Clone the repo](#clone-the-repo)
+  - [Install dependencies](#install-dependencies)
+  - [Adding components](#adding-components)
+  - [Running the docs/test-app](#running-the-docstest-app)
+  - [Viewing changes in the docs/test-app](#viewing-changes-in-the-docstest-app)
+  - [Tests](#tests)
+  - [Documentation](#documentation)
+  - [VSCode setup](#vscode-setup)
+    - [Glint](#glint)
+    - [VSCode recommended extensions](#vscode-recommended-extensions)
+
 ## Overview
 
 The ember-toucan-core repo is an [Ember v2 addon](https://rfcs.emberjs.com/id/0507-embroider-v2-package-format/). It is setup as a monorepo with the following structure:
@@ -70,6 +83,7 @@ Now the docs-app and addon are linked! Now you'll want to run the addon in watch
 # In one terminal
 cd ember-toucan-core
 pnpm start
+# ember-toucan-core is now in watch mode and will rebuild automatically
 
 # In a second terminal
 cd docs-app
@@ -78,7 +92,7 @@ pnpm start
 
 When making a change in `ember-toucan-core`, the `docs-app` should now auto-refresh and you should see your changes.
 
-**NOTE**: By linking, you will notice changes in each `package.json` and the `pnpm-lock.yaml` file. You **do not** want to check these changes in. Please discard them or ignore them when committing!
+⚠️ **NOTE**: By linking, you will notice changes in each `package.json` and the `pnpm-lock.yaml` file. You **do not** want to check these changes in. Please discard them or ignore them when committing! ⚠️
 
 ## Tests
 
@@ -101,7 +115,7 @@ Documentation lives in both the `docs` and `docs-app` directories. For most case
 
 ### Glint
 
-⚠️ **NOTE**: To successfully use Glint in the `test-app` you'll need to follow the directions [in the Glint VSCode extension](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) instructions under "Setup". If you do not do this step, you will see a lot of red lines in your editor!
+⚠️ **NOTE**: To successfully use Glint in the `test-app` you'll need to follow the directions [in the Glint VSCode extension](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) instructions under "Setup". If you do not do this step, you will see a lot of red lines in your editor! ⚠️
 
 ### VSCode recommended extensions
 
