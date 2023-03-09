@@ -6,10 +6,14 @@
     <field.Label for={{field.id}} data-label>{{@label}}</field.Label>
 
     {{#if @hint}}
-      <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
+      <field.Hint
+        class="mt-0.5"
+        id={{field.hintId}}
+        data-hint
+      >{{@hint}}</field.Hint>
     {{/if}}
 
-    <field.Control class="flex">
+    <field.Control class="mt-1.5 flex">
       <Form::Controls::Input
         id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
@@ -21,8 +25,13 @@
         ...attributes
       />
     </field.Control>
+
     {{#if @error}}
-      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+      <field.Error
+        class="mt-1.5"
+        id={{field.errorId}}
+        data-error
+      >{{@error}}</field.Error>
     {{/if}}
   </Form::Field>
 </div>
