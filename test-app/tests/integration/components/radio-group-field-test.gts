@@ -12,7 +12,12 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" data-group-field />
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @value="na"
+        data-group-field
+      />
     </template>);
 
     assert.dom('[data-group-field]').exists();
@@ -22,7 +27,13 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
   test('it renders yielded RadioFields', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" data-group-field as |group|>
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @value="na"
+        data-group-field
+        as |group|
+      >
         <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
         <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
       </RadioGroupField>
@@ -35,7 +46,13 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
   test('it curries the `name` attribute to yielded RadioFields from the `@name` argument', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" data-group-field as |group|>
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @value="na"
+        data-group-field
+        as |group|
+      >
         <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
         <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
       </RadioGroupField>
@@ -47,7 +64,12 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" @hint="Hint text" />
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @hint="Hint text"
+        @value="na"
+      />
     </template>);
 
     assert.dom('[data-hint]').hasText('Hint text');
@@ -55,7 +77,12 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
   test('it renders with an error', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" @error="Error text" />
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @error="Error text"
+        @value="na"
+      />
     </template>);
 
     assert.dom('[data-error]').hasText('Error text');
@@ -84,6 +111,7 @@ module('Integration | Component | RadioGroupField', function (hooks) {
         @label="Label"
         @name="group"
         @isDisabled={{true}}
+        @value="na"
         data-group-field
         as |group|
       >

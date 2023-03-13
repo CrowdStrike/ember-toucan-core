@@ -15,11 +15,7 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
     label: string;
     name: string;
     onChange?: ToucanFormRadioFieldComponentSignature['Args']['onChange'];
-    /**
-     * A test selector for targeting the root element of the field. In this case, the wrapping div element.
-     */
-    rootTestSelector?: string;
-    value?: ToucanFormRadioFieldComponentSignature['Args']['value'];
+    value: ToucanFormRadioFieldComponentSignature['Args']['value'];
   };
   Blocks: {
     default: [

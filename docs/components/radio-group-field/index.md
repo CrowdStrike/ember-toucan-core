@@ -20,7 +20,7 @@ Provide a string to `@error` to render the text into the Error section of the fi
 
 ## Value and onChange
 
-To tie into the input event when a radio is clicked, provide `@onChange`. `@onChange` will return two arguments:
+The `@value` argument is required. To tie into the input event when a radio is clicked, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the value from the target
 2. the raw event object
