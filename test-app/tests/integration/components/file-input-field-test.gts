@@ -7,6 +7,7 @@ import {
   setupOnerror,
   triggerEvent,
 } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 
 import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
@@ -36,13 +37,21 @@ type Options = {
 module('Integration | Component | FileInputField', function (hooks) {
   setupRenderingTest(hooks);
 
-  function onChange(event: FileEvent) { 
-    console.info('onChange', event.target?.files);
+  function onChange() { 
+    console.info('onChange');
+  }
+
+  function onDelete() {
+    console.info('onDelete')
   }
 
   test('it renders', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" @onChange={{onChange}} data-file-input-field />
+      <FileInputField
+        @label="Label"
+        @onChange={{onChange}}
+        @onDelete={{onDelete}}
+        data-file-input-field />
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
@@ -68,7 +77,12 @@ module('Integration | Component | FileInputField', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" @hint="Hint text" @onChange={{onChange}} data-file-input-field />
+      <FileInputField
+        @label="Label"
+        @hint="Hint text"
+        @onChange={{onChange}}
+        @onDelete={{onDelete}}
+        data-file-input-field />
     </template>);
 
     // For the file input field component, the only aria-describedby
@@ -86,6 +100,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         @label="Label"
         @error="Error text"
         @onChange={{onChange}}
+        @onDelete={{onDelete}}
         data-file-input-field
       />
     </template>);
@@ -120,7 +135,11 @@ module('Integration | Component | FileInputField', function (hooks) {
 
   test('it sets the "for" attribute on the label to the "id" attribute of the file input field', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" @onChange={{onChange}} data-file-input-field />
+      <FileInputField
+        @label="Label"
+        @onChange={{onChange}}
+        @onDelete={{onDelete}}
+        data-file-input-field />
     </template>);
 
     let labelFor = find('label')?.getAttribute('for') || '';
@@ -141,6 +160,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         @label="Label"
         @isDisabled={{true}}
         @onChange={{onChange}}
+        @onDelete={{onDelete}}
         data-file-input-field
       />
     </template>);
@@ -154,6 +174,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField
         @label="Label"
         @onChange={{onChange}}
+        @onDelete={{onDelete}}
         placeholder="Placeholder text"
         data-file-input-field
       />
@@ -165,25 +186,53 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it can upload a file and display the filename', async function (assert) {
-    let currentFiles: File[] = [];
+    console.log('uploading')
+    assert.expect(10);
+
+    class Context {
+      @tracked currentFiles: File[] = [] 
+    }
+
+    let ctx = new Context();
+    
     const realOnChange = (event: FileEvent) => {
+      let firstFile, firstFileName, filesLength;
       if (event.target?.files) {
-        currentFiles = [...event.target.files]; 
+        firstFile = event.target.files[0] ?? null;
+        firstFileName = firstFile?.name ?? '';
+        filesLength = event.target.files.length;
+        ctx.currentFiles = [...event.target.files]; 
       }
+      assert.ok(event, 'Expected `e` to be available as the only argument');
+      assert.ok(event.target, 'Expected direct access to target from `e`');
+      assert.ok(firstFile, 'Expected a single file to exist in the target');
+      assert.strictEqual(firstFileName, 'sample.txt', 'Expected the correct filename');
+      assert.strictEqual(filesLength, 1, 'Expected a single file to be uploaded');
+      assert.step('realOnChange');
     }
 
     await render(<template>
-      <FileInputField @label="Label" @onChange={{realOnChange}} @files={{currentFiles}} data-file-input-field />
+      <FileInputField 
+        @label="Label" 
+        @onChange={{realOnChange}}
+        @onDelete={{onDelete}}
+        @files={{ctx.currentFiles}}
+        data-file-input-field />
     </template>);
+
+    assert.verifySteps([]);
 
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
       type: 'text/plain',
     });
 
+
     triggerEvent('[data-file-input-field]', 'change', { files: [file] });
 
     await settled();
+
+    assert.verifySteps(['realOnChange']);
 
     assert.dom('[data-files] [data-file-name]').hasText('sample.txt');
 
@@ -197,13 +246,13 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     let currentFiles: File[] = [];
     
-    const handleChange = (e: FileEvent) => {
+    const realOnChange = (e: FileEvent) => {
       let firstFile, firstFileName, filesLength;
       if (e.target?.files) {
         currentFiles = [...e.target.files]; 
-         firstFile = e.target.files[0] ?? null;
-         firstFileName = firstFile?.name ?? '';
-         filesLength = e.target.files.length;
+        firstFile = e.target.files[0] ?? null;
+        firstFileName = firstFile?.name ?? '';
+        filesLength = e.target.files.length;
       }
       assert.ok(e, 'Expected `e` to be available as the only argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
@@ -217,7 +266,8 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
-        @onChange={{handleChange}}
+        @onChange={{realOnChange}}
+        @onDelete={{onDelete}}
         @files={{currentFiles}}
         data-file-input-field
       />
@@ -238,13 +288,38 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it deletes a file', async function(assert) {
+    assert.expect(5)
+
+    class Context {
+      @tracked currentFiles: File[] = [];
+    }
+
+    let ctx = new Context();
+
+    const realOnChange = (event: FileEvent) => {
+      if (event.target?.files) {
+        ctx.currentFiles = [...event.target.files];
+      }
+    }
+    
+    const realOnDelete = (file: File, event: FileEvent) => {
+      assert.ok(file, 'Expected a single file to exist in the target');
+      assert.step('realOnDelete');
+      // the entire array gets replaced here, so no used of trackedArray
+      ctx.currentFiles = ctx.currentFiles.filter(currentFile => currentFile !== file); 
+    }
+
     await render(<template>
       <FileInputField
         @label="Label"
-        @onChange={{onChange}}
+        @onChange={{realOnChange}}
+        @onDelete={{realOnDelete}}
+        @files={{ctx.currentFiles}}
         data-file-input-field
       />
     </template>);
+
+    assert.verifySteps([]);
 
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
@@ -258,6 +333,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     triggerEvent('button', 'click');
     
     await settled();
+    assert.verifySteps(['realOnDelete'])
 
     assert.dom('ul').doesNotExist();
   });
@@ -267,6 +343,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField
         @label="Label"
         @onChange={{onChange}}
+        @onDelete={{onDelete}}
         @rootTestSelector="selector"
         data-file-input-field
       />

@@ -4,6 +4,7 @@
   @hint='Hint text'
   @files={{this.files}}
   @onChange={{this.handleChange}}
+  @onDelete={{this.handleDelete}}
 >
   <:triggerText>
     Select files
@@ -17,7 +18,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked files = createFile(['Here is a file'], { name: 'sample-file.txt' });
+  @tracked files = [createFile(['Here is a file'], { name: 'sample-file.txt' })];
 
   @action
   handleChange(event) {
@@ -26,6 +27,11 @@ export default class extends Component {
       // FileList is getting replaced with Array
       this.files = [...event.target.files];
     }
+  }
+
+  @action
+  handleDelete(currentFile, event) {
+    this.files = this.files.filter(file => currentFile !== file);
   }
 }
 

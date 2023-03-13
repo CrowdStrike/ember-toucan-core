@@ -60,7 +60,7 @@
     {{/if}}
     {{#if @files.length}}
       <ul class="list-none" data-files>
-        {{#each this.files as |file|}}
+        {{#each @files as |file|}}
           <li class="flex items-center p-0">
             <div class="flex-1 px-4 py-2">
               <p
@@ -75,7 +75,7 @@
             <button
               type="button"
               class="flex-none bg-transparent"
-              {{on "click" (fn this.deleteFile file)}}
+              {{on "click" (fn @onDelete file)}}
             >
               <svg
                 width="13"

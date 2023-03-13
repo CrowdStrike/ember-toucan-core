@@ -1,16 +1,55 @@
 Here are some ui states.
 
 ```hbs template
-<Form::FileInputField
-  @label='Label'
-  @hint='Hint text'
-  @files={{this.files}}
-  @onChange={{this.handleChange}}
->
-  <:triggerText>
-    Select files
-  </:triggerText>
-</Form::FileInputField>
+<div class="flex flex-col gap-y-5">
+  <Form::FileInputField
+    @label='Label'
+    @files={{this.files}}
+    @onChange={{this.handleChange}}
+    @onDelete={{this.handleDelete}}
+  >
+    <:triggerText>
+      Select files
+    </:triggerText>
+  </Form::FileInputField>
+
+  <Form::FileInputField
+    @label='Label'
+    @hint='Hint text'
+    @files={{this.files}}
+    @onChange={{this.handleChange}}
+    @onDelete={{this.handleDelete}}
+  >
+    <:triggerText>
+      Select files
+    </:triggerText>
+  </Form::FileInputField>
+
+  <Form::FileInputField
+    @label='Label'
+    @error='Here is an error'
+    @files={{this.files}}
+    @onChange={{this.handleChange}}
+    @onDelete={{this.handleDelete}}
+  >
+    <:triggerText>
+      Select files
+    </:triggerText>
+  </Form::FileInputField>
+
+  <Form::FileInputField
+    @label='Label'
+    @isDisabled={{true}}
+    @files={{this.files}}
+    @onChange={{this.handleChange}}
+    @onDelete={{this.handleDelete}}
+  >
+    <:triggerText>
+      Select files
+    </:triggerText>
+  </Form::FileInputField>
+
+</div>
 ```
 
 ```js component
@@ -19,7 +58,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked files = createFile(['Here is a file'], { name: 'sample-file.txt' });
+  @tracked files = [];
 
   @action
   handleChange(event) {
@@ -28,6 +67,11 @@ export default class extends Component {
       // FileList is getting replaced with Array
       this.files = [...event.target.files];
     }
+  }
+  
+  @action
+  handleDelete(currentFile, event) {
+    this.files = this.files.filter(file => currentFile !== file);
   }
 }
 
