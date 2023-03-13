@@ -1,0 +1,19 @@
+<Form::Fieldset
+  @label={{@label}}
+  @hint={{@hint}}
+  @error={{@error}}
+  @isDisabled={{@isDisabled}}
+  ...attributes
+>
+  {{yield
+    (hash
+      RadioField=(component
+        (ensure-safe-component this.RadioFieldComponent)
+        name=@name
+        onChange=this.handleInput
+        selectedValue=@value
+        isDisabled=@isDisabled
+      )
+    )
+  }}
+</Form::Fieldset>

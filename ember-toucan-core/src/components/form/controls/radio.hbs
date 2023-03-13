@@ -1,0 +1,18 @@
+<div class="min-w-4 min-h-4 relative flex h-4 w-4 items-center justify-center">
+  <input
+    class="border-body-and-labels focusable-outer focus:outline-none inline-block h-4 w-4 appearance-none rounded-full border p-0 align-middle
+      {{this.styles}}"
+    type="radio"
+    checked={{@isChecked}}
+    disabled={{@isDisabled}}
+    value={{@value}}
+    ...attributes
+    {{on "change" this.handleInput}}
+  />
+
+  {{#if @isChecked}}
+    <div
+      class="bg-surface-inner pointer-events-none absolute h-2.5 w-2.5 rounded-full"
+    />
+  {{/if}}
+</div>

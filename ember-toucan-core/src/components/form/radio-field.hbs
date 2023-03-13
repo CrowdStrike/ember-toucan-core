@@ -1,0 +1,33 @@
+<div
+  class="flex flex-col"
+  data-root-field={{if @rootTestSelector @rootTestSelector}}
+>
+  <Form::Field as |field|>
+    <field.Control class="rounded-sm" data-control>
+
+      <label class="flex flex-row space-x-3" for={{field.id}}>
+        <Form::Controls::Radio
+          id={{field.id}}
+          name={{@name}}
+          @isDisabled={{@isDisabled}}
+          @isChecked={{this.isChecked}}
+          @value={{@value}}
+          @onChange={{@onChange}}
+          ...attributes
+        />
+
+        <div class="flex flex-col">
+          <span
+            class="type-md-tight block leading-4
+              {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+            data-label
+          >{{@label}}</span>
+
+          {{#if @hint}}
+            <field.Hint class="mt-0.5" data-hint>{{@hint}}</field.Hint>
+          {{/if}}
+        </div>
+      </label>
+    </field.Control>
+  </Form::Field>
+</div>
