@@ -1,6 +1,5 @@
 # File Input Field
 
-
 Provides an underlying `<input type="file">` element building on top of the Field component.
 
 ## Label
@@ -15,14 +14,19 @@ Provide a string to `@hint` to render the text into the Hint section of the Fiel
 
 Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
 
+## files
+
+Provide a list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input.
+
+**:lightbulb: Note:** To make things easier, the `@files` argument is an array. This makes it convenient to use existing Array methods like `find` and `filter`.
+
+However, the `files` from the `event.target` in the `@onChange` callback is a FileList.
+
+To convert from a `FileList` to an array of `Files`, use the `...` (spread) operator.
+
 ## Value and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
-
-1. the list of files (`File[]`) from the target. **Note:** we convert the FileList we get from the event target to an array of [Files](https://developer.mozilla.org/en-US/docs/Web/API/File) to make it easier to use existing Array methods like `filter`.
-2. the raw event object
-
-It's most common to use this in combination with `@files` which will set the files (FileList) for the input based on the input received from the change event.
+To tie into the input event, provide `@onChange`. `@onChange` will take a FileEvent argument, which should contain an `event.target.files` which is a [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList).
 
 ```hbs
 <Form::FileInputField
@@ -38,16 +42,16 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked files = [];
+  // Note that a File object is different from a FileList!
+  @tracked files: File[] = [];
 
   @action
   handleChange(e) {
-    console.log({ files: e.target.files});
-    this.files = event.target.files;
+    console.log({ files: e.target.files });
+    // convert to a File[] by using the spread operator
+    this.files = [...event.target.files];
   }
-
 }
-
 ```
 
 ## Disabled State
@@ -83,10 +87,9 @@ export default class extends Component {
 
   @action
   handleChange(e) {
-    console.log({ files: e.target.files});
+    console.log({ files: e.target.files });
     this.files = event.target.files;
   }
-
 }
 ```
 
@@ -101,4 +104,3 @@ Target the hint block via `data-hint`.
 ### Error
 
 Target the error block via `data-error`.
-
