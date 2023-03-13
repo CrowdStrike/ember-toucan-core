@@ -47,7 +47,7 @@ When developing a new component, add it to the `ember-toucan-core` directory. A 
 
 ## Running the docs/test-app
 
-Prior to running the `docs-app` or `test-app` you'll need to install dependencies:
+Prior to running the `docs-app` or `test-app`, you'll need to install dependencies:
 
 ```bash
 cd docs-app
