@@ -1,6 +1,5 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-
 import {
   find,
   render,
@@ -12,6 +11,8 @@ import { module, test } from 'qunit';
 
 import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 import { setupRenderingTest } from 'test-app/tests/helpers';
+
+import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 
 // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
 function createFile(
@@ -35,9 +36,13 @@ type Options = {
 module('Integration | Component | FileInputField', function (hooks) {
   setupRenderingTest(hooks);
 
+  function onChange(event: FileEvent) { 
+    console.info('onChange', event.target?.files);
+  }
+
   test('it renders', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" data-file-input-field />
+      <FileInputField @label="Label" @onChange={{onChange}} data-file-input-field />
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
@@ -63,7 +68,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" @hint="Hint text" data-file-input-field />
+      <FileInputField @label="Label" @hint="Hint text" @onChange={{onChange}} data-file-input-field />
     </template>);
 
     // For the file input field component, the only aria-describedby
@@ -80,6 +85,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField
         @label="Label"
         @error="Error text"
+        @onChange={{onChange}}
         data-file-input-field
       />
     </template>);
@@ -97,7 +103,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     // is structured, where the label+hint are rendered inside of the
     // wrapping <label> element
     let describedby =
-      find('[data-file-input-field]')?.getAttribute('aria-describedby') || '';
+      find('[data-file-input-field]')?.getAttribute('aria-describedby') ?? '';
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
@@ -114,7 +120,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
   test('it sets the "for" attribute on the label to the "id" attribute of the file input field', async function (assert) {
     await render(<template>
-      <FileInputField @label="Label" data-file-input-field />
+      <FileInputField @label="Label" @onChange={{onChange}} data-file-input-field />
     </template>);
 
     let labelFor = find('label')?.getAttribute('for') || '';
@@ -134,6 +140,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       <FileInputField
         @label="Label"
         @isDisabled={{true}}
+        @onChange={{onChange}}
         data-file-input-field
       />
     </template>);
@@ -146,6 +153,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @onChange={{onChange}}
         placeholder="Placeholder text"
         data-file-input-field
       />
@@ -157,8 +165,15 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it can upload a file and display the filename', async function (assert) {
+    let currentFiles: File[] = [];
+    const realOnChange = (event: FileEvent) => {
+      if (event.target?.files) {
+        currentFiles = [...event.target.files]; 
+      }
+    }
+
     await render(<template>
-      <FileInputField @label="Label" data-file-input-field />
+      <FileInputField @label="Label" @onChange={{realOnChange}} @files={{currentFiles}} data-file-input-field />
     </template>);
 
     const file = createFile(['Upload file sample'], {
@@ -178,19 +193,32 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it calls @onChange when input is received', async function (assert) {
-    assert.expect(6);
+    assert.expect(8);
 
-    const handleChange = (files: File[], e: Event | InputEvent) => {
-      assert.ok(e, 'Expected `e` to be available as the second argument');
+    let currentFiles: File[] = [];
+    
+    const handleChange = (e: FileEvent) => {
+      let firstFile, firstFileName, filesLength;
+      if (e.target?.files) {
+        currentFiles = [...e.target.files]; 
+         firstFile = e.target.files[0] ?? null;
+         firstFileName = firstFile?.name ?? '';
+         filesLength = e.target.files.length;
+      }
+      assert.ok(e, 'Expected `e` to be available as the only argument');
       assert.ok(e.target, 'Expected direct access to target from `e`');
-      assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
+      assert.ok(firstFile, 'Expected a single file to exist in the target');
+      assert.strictEqual(firstFileName, 'sample.txt', 'Expected the correct filename');
+      assert.strictEqual(filesLength, 1, 'Expected a single file to be uploaded');
       assert.step('handleChange');
+      
     };
 
     await render(<template>
       <FileInputField
         @label="Label"
         @onChange={{handleChange}}
+        @files={{currentFiles}}
         data-file-input-field
       />
     </template>);
@@ -209,24 +237,14 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.verifySteps(['handleChange']);
   });
 
-  test('it calls deleteFile and onDeleteFile when a file is deleted', async function(assert) {
-    assert.expect(4)
-    
-    const deleteFile = (file: File) => {
-      assert.ok(file,'Expected direct access to target from `e`');
-      assert.step('deleteFile');
-    };
-
+  test('it deletes a file', async function(assert) {
     await render(<template>
       <FileInputField
         @label="Label"
-        @onDeleteFile={{deleteFile}}
+        @onChange={{onChange}}
         data-file-input-field
       />
     </template>);
-
-    assert.verifySteps([]);
-
 
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
@@ -241,13 +259,14 @@ module('Integration | Component | FileInputField', function (hooks) {
     
     await settled();
 
-    assert.verifySteps(['deleteFile']);
+    assert.dom('ul').doesNotExist();
   });
 
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @onChange={{onChange}}
         @rootTestSelector="selector"
         data-file-input-field
       />
@@ -268,7 +287,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     await render(<template>
       {{! @glint-expect-error: we are not providing @label, so this is expected }}
-      <FileInputField />
+      <FileInputField @onChange={{onChange}} />
     </template>);
   });
 });
