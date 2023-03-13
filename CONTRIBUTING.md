@@ -43,7 +43,7 @@ pnpm install
 When developing a new component, add it to the `ember-toucan-core` directory. A few things to remember:
 
 1. Components are added under `ember-toucan-core/src/components`
-2. When adding a new component it needs to be added to the template registry so that Glint picks it up. To do that, add a line in `ember-toucan-core/src/template-registry.ts`.
+2. When adding a new component, it needs to be added to the template registry so that Glint picks it up. To do that, add a line in `ember-toucan-core/src/template-registry.ts`.
 
 ## Running the docs/test-app
 
