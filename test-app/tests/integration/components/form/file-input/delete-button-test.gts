@@ -1,9 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import {
-  render,
-  triggerEvent,
-} from '@ember/test-helpers'
+import { render, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import DeleteButton from '@crowdstrike/ember-toucan-core/components/form/file-input/delete-button';
@@ -29,37 +26,38 @@ export function createFile(
   return file;
 }
 
-module('Integration | Component | Form | FileInput | DeleteButton', function (hooks) {
-  setupRenderingTest(hooks);
+module(
+  'Integration | Component | Form | FileInput | DeleteButton',
+  function (hooks) {
+    setupRenderingTest(hooks);
 
+    const file = createFile();
 
-  const file = createFile();
+    test('it renders', async function (assert) {
+      assert.expect(8);
 
-  test('it renders', async function (assert) {
-    assert.expect(8);
-    
-    function onDelete(file:File, event: Event | InputEvent) { 
-      assert.ok(file)
-      assert.ok(event)
-      assert.strictEqual(file.name, '', 'File has correct name');
-      assert.strictEqual(file.size, 19, 'File has the correct size');
-      assert.step('onDelete');
-    }
+      function onDelete(file: File, event: Event | InputEvent) {
+        assert.ok(file);
+        assert.ok(event);
+        assert.strictEqual(file.name, '', 'File has correct name');
+        assert.strictEqual(file.size, 19, 'File has the correct size');
+        assert.step('onDelete');
+      }
 
-    await render(<template>
-      <DeleteButton
-        @deleteLabel='Delete File'
-        @onDelete={{onDelete}}
-        @file={{file}}
+      await render(<template>
+        <DeleteButton
+          @deleteLabel="Delete File"
+          @onDelete={{onDelete}}
+          @file={{file}}
         />
-    </template>);
-      assert.dom('button').exists()
+      </template>);
+      assert.dom('button').exists();
 
       assert.verifySteps([]);
 
       await triggerEvent('button', 'click', { file });
 
       assert.verifySteps(['onDelete']);
-    })
-
-});
+    });
+  }
+);

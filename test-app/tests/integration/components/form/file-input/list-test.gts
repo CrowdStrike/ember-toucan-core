@@ -1,8 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import {
-  render,
-} from '@ember/test-helpers'
+import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import List from '@crowdstrike/ember-toucan-core/components/form/file-input/list';
@@ -35,19 +33,18 @@ module('Integration | Component | Form | FileInput | List', function (hooks) {
   const file2 = createFile(['Dosa'], { name: 'Dosa.txt' });
 
   test('it renders', async function (assert) {
-   
     const files = [file1, file2];
 
-    function onDelete(file:File, event: Event | InputEvent) { 
+    function onDelete(file: File, event: Event | InputEvent) {
       console.info('onDelete', file, event);
     }
 
     await render(<template>
       <List
-        @deleteLabel='Delete File'
+        @deleteLabel="Delete File"
         @onDelete={{onDelete}}
         @files={{files}}
-        />
+      />
     </template>);
 
     assert.dom('ul').exists();

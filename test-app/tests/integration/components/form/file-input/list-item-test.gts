@@ -1,9 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import {
-  render,
-  triggerEvent,
-} from '@ember/test-helpers'
+import { render, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import ListItem from '@crowdstrike/ember-toucan-core/components/form/file-input/list-item';
@@ -29,41 +26,42 @@ export function createFile(
   return file;
 }
 
-module('Integration | Component | Form | FileInput | ListItem', function (hooks) {
-  setupRenderingTest(hooks);
+module(
+  'Integration | Component | Form | FileInput | ListItem',
+  function (hooks) {
+    setupRenderingTest(hooks);
 
+    const file = createFile(['Beef patty'], { name: 'Hello.txt' });
 
-  const file = createFile(['Beef patty'], { name: 'Hello.txt' });
+    test('it renders', async function (assert) {
+      assert.expect(10);
 
-  test('it renders', async function (assert) {
-    assert.expect(10);
-    
-    function onDelete(file:File, event: Event | InputEvent) { 
-      assert.ok(file)
-      assert.ok(event)
-      assert.strictEqual(file.name, 'Hello.txt', 'File has correct name');
-      assert.strictEqual(file.size, 10, 'File has the correct size');
-      assert.step('onDelete');
-    }
+      function onDelete(file: File, event: Event | InputEvent) {
+        assert.ok(file);
+        assert.ok(event);
+        assert.strictEqual(file.name, 'Hello.txt', 'File has correct name');
+        assert.strictEqual(file.size, 10, 'File has the correct size');
+        assert.step('onDelete');
+      }
 
-    await render(<template>
-      <ListItem
-        @deleteLabel='Delete File'
-        @onDelete={{onDelete}}
-        @file={{file}}
+      await render(<template>
+        <ListItem
+          @deleteLabel="Delete File"
+          @onDelete={{onDelete}}
+          @file={{file}}
         />
-    </template>);
-      assert.dom('button').exists()
+      </template>);
+      assert.dom('button').exists();
 
-      assert.dom('[data-file-name]').hasText('Hello.txt')
+      assert.dom('[data-file-name]').hasText('Hello.txt');
 
       // 19 bytes is rounded down to 0
-      assert.dom('[data-file-size]').hasText('0 KB')
+      assert.dom('[data-file-size]').hasText('0 KB');
       assert.verifySteps([]);
 
       await triggerEvent('button', 'click', { file });
 
       assert.verifySteps(['onDelete']);
-    })
-
-});
+    });
+  }
+);
