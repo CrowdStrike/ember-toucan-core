@@ -19,7 +19,7 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
-1. the list of files (as a FileList) from the target
+1. the list of files (`File[]`) from the target. **Note:** we convert the FileList we get from the event target to an array of [Files](https://developer.mozilla.org/en-US/docs/Web/API/File) to make it easier to use existing Array methods like `filter`.
 2. the raw event object
 
 It's most common to use this in combination with `@files` which will set the files (FileList) for the input based on the input received from the change event.
@@ -27,6 +27,7 @@ It's most common to use this in combination with `@files` which will set the fil
 ```hbs
 <Form::FileInputField
   @label='Label'
+  @files={{this.files}}
   @onChange={{this.handleChange}}
 />
 ```
@@ -37,13 +38,16 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked value;
+  @tracked files = [];
 
   @action
-  handleChange(files, e) {
-    console.log({ files, e});
+  handleChange(e) {
+    console.log({ files: e.target.files});
+    this.files = event.target.files;
   }
+
 }
+
 ```
 
 ## Disabled State
@@ -69,6 +73,21 @@ assert.dom('[data-root-field="example"]');
 
 // targeting this field's specific label
 assert.dom('[data-root-field="example"] > [data-label]');
+
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+
+export default class extends Component {
+  @tracked files = [];
+
+  @action
+  handleChange(e) {
+    console.log({ files: e.target.files});
+    this.files = event.target.files;
+  }
+
+}
 ```
 
 ### Label
@@ -83,31 +102,3 @@ Target the hint block via `data-hint`.
 
 Target the error block via `data-error`.
 
-## All UI States
-
-<div class="flex flex-col space-y-4">
-  <Form::FileInputField
-  @label='Label'
-  />
-
-  <Form::FileInputField
-  @label='Label'
-  @error="With error"
-  />
-
-  <Form::FileInputField
-  @label='Label'
-  @hint='With hint text'
-  />
-
-  <Form::FileInputField
-    @label='Label'
-    @hint='With hint text'
-    @error="With error"
-  />
-
-  <Form::FileInputField
-    @label='Label'
-    @hint='With hint text'
-  />
-</div>
