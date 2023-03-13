@@ -108,7 +108,7 @@ Like other Ember projects, navigate to localhost:4200/tests to view your tests.
 
 ## Documentation
 
-Documentation lives in both the `docs` and `docs-app` directories. For most cases when adding compponents, you'll only need to add markdown files in `docs`. The `docs-app` directory is the Ember app powering the documentation, so it's not as likely to be edited when adding new functionality to ember-toucan-core.
+Documentation lives in both the `docs` and `docs-app` directories. For most cases when adding components, you'll only need to add markdown files in `docs`. The `docs-app` directory is the Ember app powering the documentation, so it's not as likely to be edited when adding new functionality to ember-toucan-core.
 
 ## VSCode setup
 
