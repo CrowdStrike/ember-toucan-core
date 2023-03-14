@@ -1,15 +1,12 @@
 ```hbs template
 <Form::FileInputField
   @label='Label'
-  @hint='Hint text'
   @files={{this.files}}
+  @hint='Hint text'
+  @trigger='Select Files'
   @onChange={{this.handleChange}}
   @onDelete={{this.handleDelete}}
->
-  <:triggerText>
-    Select files
-  </:triggerText>
-</Form::FileInputField>
+/>
 ```
 
 ```js component

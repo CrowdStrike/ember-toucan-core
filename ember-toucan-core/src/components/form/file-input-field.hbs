@@ -48,9 +48,7 @@
                 stroke-linejoin="round"
                 stroke-width="2"
               ></path></svg>
-            {{#if (has-block "triggerText")}}
-              {{yield to="triggerText"}}
-            {{/if}}
+            {{@trigger}}
           </div>
         </div>
       </field.Control>

@@ -13,14 +13,12 @@ interface ToucanFormFileInputFieldComponentSignature {
     files?: File[];
     hint?: string;
     label: string;
+    trigger: string;
     isDisabled?: boolean;
     multiple?: boolean;
     onChange: (files: File[], event: FileEvent) => void;
     onDelete: (file: File, event: Event | InputEvent) => void;
     rootTestSelector?: string;
-  };
-  Blocks: {
-    triggerText: [];
   };
 }
 
@@ -32,6 +30,11 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     assert(
       'A "@label" argument is required for FileInputField',
       args.label !== undefined
+    );
+
+    assert(
+      'A "@trigger" argument is required for FileInputField, this prompts the user to select files',
+      args.trigger !== undefined
     );
 
     assert(

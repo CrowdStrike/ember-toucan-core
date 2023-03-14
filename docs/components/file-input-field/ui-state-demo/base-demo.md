@@ -4,50 +4,38 @@ Here are some ui states.
 <div class='flex flex-col gap-y-5'>
   <Form::FileInputField
     @label='Label'
+    @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
     @onDelete={{this.handleDelete}}
-  >
-    <:triggerText>
-      Select files
-    </:triggerText>
-  </Form::FileInputField>
+  />
 
   <Form::FileInputField
     @label='Label'
     @hint='Hint text'
+    @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
     @onDelete={{this.handleDelete}}
-  >
-    <:triggerText>
-      Select files
-    </:triggerText>
-  </Form::FileInputField>
+  />
 
   <Form::FileInputField
     @label='Label'
     @error='Here is an error'
+    @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
     @onDelete={{this.handleDelete}}
-  >
-    <:triggerText>
-      Select files
-    </:triggerText>
-  </Form::FileInputField>
+  />
 
   <Form::FileInputField
     @label='Label'
     @isDisabled={{true}}
+    @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
     @onDelete={{this.handleDelete}}
-  >
-    <:triggerText>
-      Select files
-    </:triggerText>
-  </Form::FileInputField>
+  />
 
 </div>
 ```

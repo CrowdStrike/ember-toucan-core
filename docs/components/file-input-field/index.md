@@ -31,6 +31,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will take a FileEv
 ```hbs
 <Form::FileInputField
   @label='Label'
+  @trigger='Select files'
   @files={{this.files}}
   @onChange={{this.handleChange}}
 />
@@ -69,7 +70,11 @@ Consumers have direct access to the underlying [input element](https://developer
 Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
 
 ```hbs
-<Form::FileInputField @label='Label' @rootTestSelector='example' />
+<Form::FileInputField
+  @label='Label'
+  @trigger='Select Files'
+  @rootTestSelector='example'
+/>
 ```
 
 ```js

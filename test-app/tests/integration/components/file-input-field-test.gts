@@ -49,12 +49,14 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
         data-file-input-field />
     </template>);
 
-    assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').includesText('Label');
+    assert.dom('[data-label]').includesText('Select Files');
 
     assert
       .dom('[data-hint]')
@@ -79,6 +81,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @hint="Hint text"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
@@ -98,6 +101,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @error="Error text"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
@@ -137,6 +141,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
         data-file-input-field />
@@ -158,6 +163,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @isDisabled={{true}}
         @onChange={{onChange}}
         @onDelete={{onDelete}}
@@ -173,6 +179,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
         placeholder="Placeholder text"
@@ -209,6 +216,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField 
         @label="Label" 
+        @trigger="Select Files"
         @onChange={{realOnChange}}
         @onDelete={{onDelete}}
         @files={{ctx.currentFiles}}
@@ -259,6 +267,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @onChange={{realOnChange}}
         @onDelete={{realOnDelete}}
         @files={{ctx.currentFiles}}
@@ -289,6 +298,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     await render(<template>
       <FileInputField
         @label="Label"
+        @trigger="Select Files"
         @onChange={{onChange}}
         @onDelete={{onDelete}}
         @rootTestSelector="selector"
