@@ -14,7 +14,11 @@ Field is a component to aid in creating form components. It provides a label, hi
 
 ## Design Guidelines
 
-- All components should have 0.125rem or 2px of spacing between the elements. We recommend using `space-y-0.5` or `gap-y-5` with `mt-0.5` being used as a last resort. It is up to consumers to apply these classes themselves. If using our Toucan `*Field` components, we handle this automatically.
+- Spacing between the label and the hint should be 0.125rem/2px.
+- Spacing between the hint and the control should be 0.375rem/6px.
+- Spacing between the control and the error blcok should be 0.375rem/6px.
+
+It is up to consumers to apply these classes themselves. If using our Toucan `*Field` components, we handle this automatically.
 
 ## Accessibility
 

@@ -1,6 +1,6 @@
 ```hbs template
 <Form::Field as |field|>
-  <div class='space-y-0.5'>
+  <div class='space-y-1'>
     <field.Label for={{field.id}}>Label</field.Label>
     <field.Hint id={{field.hintId}}>Extra information about the field</field.Hint>
     <field.Control>

@@ -2,7 +2,6 @@
   <fieldset
     aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
     disabled={{@isDisabled}}
-    class="space-y-0.5"
     ...attributes
   >
     <legend
@@ -11,11 +10,15 @@
     >{{@label}}</legend>
 
     {{#if @hint}}
-      <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
+      <field.Hint
+        class="mt-0.5"
+        id={{field.hintId}}
+        data-hint
+      >{{@hint}}</field.Hint>
     {{/if}}
 
     <field.Control
-      class="flex flex-col space-y-2 rounded-sm p-1
+      class="mt-1.5 flex flex-col space-y-2 rounded-sm p-1
         {{if @error 'shadow-error-outline'}}"
       data-control
     >
@@ -23,7 +26,11 @@
     </field.Control>
 
     {{#if @error}}
-      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+      <field.Error
+        class="mt-1.5"
+        id={{field.errorId}}
+        data-error
+      >{{@error}}</field.Error>
     {{/if}}
   </fieldset>
 </Form::Field>
