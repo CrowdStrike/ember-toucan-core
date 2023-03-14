@@ -3,10 +3,9 @@
 import {
   find,
   render,
-  settled,
   setupOnerror,
   triggerEvent,
-} from '@ember/test-helpers';
+} from '@ember/test-helpers'
 import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 
@@ -114,7 +113,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom(error).hasText('Error text');
     assert.dom(error).hasAttribute('id');
 
-    let errorId = error?.getAttribute('id') || '';
+    let errorId = error?.getAttribute('id') ?? '';
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     // For the file input field component, the only aria-describedby
@@ -147,7 +146,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         data-file-input-field />
     </template>);
 
-    let labelFor = find('label')?.getAttribute('for') || '';
+    let labelFor = find('label')?.getAttribute('for') ?? '';
     assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
 
     assert
@@ -193,7 +192,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it can accept a file using @Change and display the filename', async function (assert) {
-    assert.expect(10);
+    assert.expect(12);
 
     class Context {
       @tracked currentFiles: File[] = [] 
@@ -208,7 +207,9 @@ module('Integration | Component | FileInputField', function (hooks) {
       assert.ok(event, 'Expected `e` to be available as the only argument');
       assert.ok(event.target, 'Expected direct access to target from `e`');
       assert.ok(firstFile, 'Expected a single file to exist in the target');
+      assert.ok(firstFile instanceof File, 'Expected first file to be an instanceOf File');
       assert.strictEqual(firstFile?.name, 'sample.txt', 'Expected the correct filename');
+      assert.strictEqual(firstFile?.size, 18, 'Expected the correct filename');
       assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
       assert.step('realOnChange');
     }
@@ -231,9 +232,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     });
 
 
-    triggerEvent('[data-file-input-field]', 'change', { files: [file] });
-
-    await settled();
+    await triggerEvent('[data-file-input-field]', 'change', { files: [file] });
 
     assert.verifySteps(['realOnChange']);
 
@@ -245,7 +244,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   });
 
   test('it deletes a file', async function(assert) {
-    assert.expect(5)
+    assert.expect(8)
 
     class Context {
       @tracked currentFiles: File[] = [];
@@ -259,6 +258,9 @@ module('Integration | Component | FileInputField', function (hooks) {
     
     const realOnDelete = (file: File) => {
       assert.ok(file, 'Expected a single file to exist in the target');
+      assert.ok(file instanceof File, 'Expected a single file to be a File object');
+      assert.strictEqual(file.name, 'sample.txt', 'Expected a single file to have a name');
+      assert.strictEqual(file.size, 18, 'Expected a single file to have a size');
       assert.step('realOnDelete');
       // the entire array gets replaced here, so no used of trackedArray
       ctx.currentFiles = ctx.currentFiles.filter(currentFile => currentFile !== file); 
@@ -282,13 +284,10 @@ module('Integration | Component | FileInputField', function (hooks) {
       type: 'text/plain',
     });
 
-    triggerEvent('[data-file-input-field]', 'change', { files: [file] });
+    await triggerEvent('[data-file-input-field]', 'change', { files: [file] });
 
-    await settled();
-
-    triggerEvent('button', 'click');
+    await triggerEvent('button', 'click');
     
-    await settled();
     assert.verifySteps(['realOnDelete'])
 
     assert.dom('ul').doesNotExist();
