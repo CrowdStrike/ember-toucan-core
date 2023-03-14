@@ -16,13 +16,9 @@ Provide a string to `@error` to render the text into the Error section of the Fi
 
 ## files
 
-Provide a list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input.
+Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input.
 
 **:lightbulb: Note:** To make things easier, the `@files` argument is an array. This makes it convenient to use existing Array methods like `find` and `filter`.
-
-However, the `files` from the `event.target` in the `@onChange` callback is a FileList.
-
-To convert from a `FileList` to an array of `Files`, use the `...` (spread) operator.
 
 ## Value and onChange
 
@@ -48,8 +44,7 @@ export default class extends Component {
 
   @action
   handleChange(files, event) {
-    console.log({ files, event });
-    // convert to a File[] by using the spread operator
+    console.log({ files, event, eventFiles: event.target.files });
     this.files = files;
   }
 }
