@@ -174,7 +174,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
   });
  
-  test('it spreads attributes to the underlying input', async function (assert) {
+  test('it spreads attributes to the underlying file-input-field', async function (assert) {
     await render(<template>
       <FileInputField
         @label="Label"
