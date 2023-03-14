@@ -3,6 +3,8 @@
   @hint={{@hint}}
   @error={{@error}}
   @isDisabled={{@isDisabled}}
+  aria-invalid={{if @error "true"}}
+  role="radiogroup"
   ...attributes
 >
   {{yield
