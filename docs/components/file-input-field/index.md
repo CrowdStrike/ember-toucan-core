@@ -46,10 +46,10 @@ export default class extends Component {
   @tracked files: File[] = [];
 
   @action
-  handleChange(e) {
-    console.log({ files: e.target.files });
+  handleChange(files, event) {
+    console.log({ files, event });
     // convert to a File[] by using the spread operator
-    this.files = [...event.target.files];
+    this.files = files;
   }
 }
 ```
@@ -86,9 +86,9 @@ export default class extends Component {
   @tracked files = [];
 
   @action
-  handleChange(e) {
-    console.log({ files: e.target.files });
-    this.files = event.target.files;
+  handleChange(files, event) {
+    console.log({ files, event });
+    this.files = files;
   }
 }
 ```

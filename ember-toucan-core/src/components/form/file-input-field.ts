@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
+import { action } from '@ember/object';
 
 type FileTarget = EventTarget & { files?: FileList };
 export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
@@ -14,7 +15,7 @@ interface ToucanFormFileInputFieldComponentSignature {
     label: string;
     isDisabled?: boolean;
     multiple?: boolean;
-    onChange: (event: FileEvent) => void;
+    onChange: (files: File[], event: FileEvent) => void;
     onDelete: (file: File, event: Event | InputEvent) => void;
     rootTestSelector?: string;
   };
@@ -56,5 +57,16 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   formatSize(size: number) {
     return `${Math.round(size / 1000)} KB`;
+  }
+
+  @action
+  onChange(event: FileEvent) {
+    if (event.target?.files) {
+      const files = [...event.target.files];
+
+      return this.args.onChange(files, event);
+    }
+
+    return this.args.onChange([], event);
   }
 }

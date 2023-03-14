@@ -18,20 +18,20 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked files = [createFile(['Here is a file'], { name: 'sample-file.txt' })];
+  @tracked files = [
+    createFile(['Here is a file'], { name: 'sample-file.txt' }),
+  ];
 
   @action
-  handleChange(event) {
-    if (event.target.files) {
-      // https://w3c.github.io/FileAPI/#filelist-section
-      // FileList is getting replaced with Array
-      this.files = [...event.target.files];
-    }
+  handleChange(files, event) {
+    // https://w3c.github.io/FileAPI/#filelist-section
+    // FileList is getting replaced with Array
+    this.files = files;
   }
 
   @action
   handleDelete(currentFile, event) {
-    this.files = this.files.filter(file => currentFile !== file);
+    this.files = this.files.filter((file) => currentFile !== file);
   }
 }
 

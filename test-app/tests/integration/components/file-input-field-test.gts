@@ -185,8 +185,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
-  test('it can upload a file and display the filename', async function (assert) {
-    console.log('uploading')
+  test('it can accept a file using @Change and display the filename', async function (assert) {
     assert.expect(10);
 
     class Context {
@@ -195,19 +194,15 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     let ctx = new Context();
     
-    const realOnChange = (event: FileEvent) => {
-      let firstFile, firstFileName, filesLength;
-      if (event.target?.files) {
-        firstFile = event.target.files[0] ?? null;
-        firstFileName = firstFile?.name ?? '';
-        filesLength = event.target.files.length;
-        ctx.currentFiles = [...event.target.files]; 
-      }
+    const realOnChange = (files: File[], event: FileEvent) => {
+      const [firstFile] = files;
+
+      ctx.currentFiles = files; 
       assert.ok(event, 'Expected `e` to be available as the only argument');
       assert.ok(event.target, 'Expected direct access to target from `e`');
       assert.ok(firstFile, 'Expected a single file to exist in the target');
-      assert.strictEqual(firstFileName, 'sample.txt', 'Expected the correct filename');
-      assert.strictEqual(filesLength, 1, 'Expected a single file to be uploaded');
+      assert.strictEqual(firstFile?.name, 'sample.txt', 'Expected the correct filename');
+      assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
       assert.step('realOnChange');
     }
 
@@ -241,52 +236,6 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-files] [data-file-size]').hasText('0 KB');
   });
 
-  test('it calls @onChange when input is received', async function (assert) {
-    assert.expect(8);
-
-    let currentFiles: File[] = [];
-    
-    const realOnChange = (e: FileEvent) => {
-      let firstFile, firstFileName, filesLength;
-      if (e.target?.files) {
-        currentFiles = [...e.target.files]; 
-        firstFile = e.target.files[0] ?? null;
-        firstFileName = firstFile?.name ?? '';
-        filesLength = e.target.files.length;
-      }
-      assert.ok(e, 'Expected `e` to be available as the only argument');
-      assert.ok(e.target, 'Expected direct access to target from `e`');
-      assert.ok(firstFile, 'Expected a single file to exist in the target');
-      assert.strictEqual(firstFileName, 'sample.txt', 'Expected the correct filename');
-      assert.strictEqual(filesLength, 1, 'Expected a single file to be uploaded');
-      assert.step('handleChange');
-      
-    };
-
-    await render(<template>
-      <FileInputField
-        @label="Label"
-        @onChange={{realOnChange}}
-        @onDelete={{onDelete}}
-        @files={{currentFiles}}
-        data-file-input-field
-      />
-    </template>);
-
-    assert.verifySteps([]);
-
-    const file = createFile(['Upload file sample'], {
-      name: 'sample.txt',
-      type: 'text/plain',
-    });
-
-    triggerEvent('[data-file-input-field]', 'change', { files: [file] });
-
-    await settled();
-
-    assert.verifySteps(['handleChange']);
-  });
-
   test('it deletes a file', async function(assert) {
     assert.expect(5)
 
@@ -296,13 +245,11 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     let ctx = new Context();
 
-    const realOnChange = (event: FileEvent) => {
-      if (event.target?.files) {
-        ctx.currentFiles = [...event.target.files];
-      }
+    const realOnChange = (files: File[]) => {
+      ctx.currentFiles = files;
     }
     
-    const realOnDelete = (file: File, event: FileEvent) => {
+    const realOnDelete = (file: File) => {
       assert.ok(file, 'Expected a single file to exist in the target');
       assert.step('realOnDelete');
       // the entire array gets replaced here, so no used of trackedArray
