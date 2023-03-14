@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import RadioFieldComponent from './radio-field';
@@ -31,6 +32,14 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
 
 export default class ToucanFormRadioGroupFieldComponent extends Component<ToucanFormRadioGroupFieldComponentSignature> {
   RadioFieldComponent = RadioFieldComponent;
+
+  constructor(
+    owner: unknown,
+    args: ToucanFormRadioGroupFieldComponentSignature['Args']
+  ) {
+    assert('A "@value" argument is required', args.value);
+    super(owner, args);
+  }
 
   @action
   handleInput(value: string, e: Event | InputEvent): void {

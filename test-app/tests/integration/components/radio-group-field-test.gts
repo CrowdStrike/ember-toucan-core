@@ -1,7 +1,7 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
-import { click, render } from '@ember/test-helpers';
+import { click, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import RadioGroupField from '@crowdstrike/ember-toucan-core/components/form/radio-group-field';
@@ -161,5 +161,21 @@ module('Integration | Component | RadioGroupField', function (hooks) {
     assert.verifySteps(['handleChange']);
 
     assert.dom('[data-radio-1]').isChecked();
+  });
+
+  test('it throws an assertion error if no `@value` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('A "@value" argument is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      {{! @glint-expect-error: we are not providing @value, so this is expected }}
+      <RadioGroupField @label="Label" @name="name" />
+    </template>);
   });
 });

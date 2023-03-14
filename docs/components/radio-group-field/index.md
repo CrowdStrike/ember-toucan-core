@@ -101,6 +101,7 @@ Consumers have direct access to the underlying [radio element](https://developer
 <Form::RadioGroupField
   @label='Label'
   @name='options-a'
+  @value="option-1"
   as |group|
 >
   <group.RadioField @label='Option 1' @value='option-1' />
@@ -109,25 +110,25 @@ Consumers have direct access to the underlying [radio element](https://developer
   <group.RadioField @label='Option 4' @value='option-4'/>
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options-b" @hint="Select an option" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-b" @hint="Select an option" @value="option-1" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options-c" @error="With error" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-c" @error="With error" @value="option-1" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="options-d" @hint="Select an option" @error="With error" as |group|>
+<Form::RadioGroupField @label="Label" @name="options-d" @hint="Select an option" @error="With error" @value="option-1" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
 </Form::RadioGroupField>
 
-<Form::RadioGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} as |group|>
+<Form::RadioGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} @value="option-1" as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />
