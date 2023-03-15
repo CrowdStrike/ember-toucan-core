@@ -36,13 +36,14 @@
           >
             {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
             <svg
+              class="h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               stroke="currentColor"
               viewBox="0 0 24 24"
             ><path
-                d="M3.4 6.2h17.2m-15.3 0V19a2.063 2.063 0 00.538 1.413A1.836 1.836 0 007.2 21h9.6a1.861 1.861 0 001.325-.587A2.039 2.039 0 0018.7 19V6.2M10 15.6v-4m4 0v4M9.4 6.2V3.9a.98.98 0 01.212-.637A.746.746 0 0110.2 3h3.6a.743.743 0 01.587.263.975.975 0 01.213.637v2.3"
+                d="M16.2 7.6l-2.1-2.3L12 3v13.1M12 3L9.9 5.3 7.8 7.6M21 15.1V19a2 2 0 01-2 2H5a2.006 2.006 0 01-2-2v-3.9"
                 fill="none"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -76,31 +77,19 @@
               {{on "click" (fn @onDelete file)}}
             >
               <svg
-                width="13"
-                height="15"
-                viewBox="0 0 13 15"
-                fill="none"
+                class="text-text-and-icons h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M0.146484 3C0.146484 2.72386 0.370342 2.5 0.646484 2.5H11.6465C11.9226 2.5 12.1465 2.72386 12.1465 3C12.1465 3.27614 11.9226 3.5 11.6465 3.5V13C11.6465 13.8284 10.9749 14.5 10.1465 14.5H2.14648C1.31806 14.5 0.646484 13.8284 0.646484 13V3.5C0.370342 3.5 0.146484 3.27614 0.146484 3ZM1.64648 3.5V13C1.64648 13.2761 1.87034 13.5 2.14648 13.5H10.1465C10.4226 13.5 10.6465 13.2761 10.6465 13V3.5H1.64648Z"
-                  fill="#FAFAFA"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M4.14648 11.5V5.5H5.14648V11.5H4.14648ZM7.14648 11.5V5.5H8.14648V11.5H7.14648Z"
-                  fill="#FAFAFA"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M6.14648 1C5.31806 1 4.64648 1.67157 4.64648 2.5H3.64648C3.64648 1.11929 4.76577 0 6.14648 0C7.5272 0 8.64648 1.11929 8.64648 2.5H7.64648C7.64648 1.67157 6.97491 1 6.14648 1Z"
-                  fill="#FAFAFA"
-                />
-              </svg>
+                width="24"
+                height="24"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              ><path
+                  d="M3.4 6.2h17.2m-15.3 0V19a2.063 2.063 0 00.538 1.413A1.836 1.836 0 007.2 21h9.6a1.861 1.861 0 001.325-.587A2.039 2.039 0 0018.7 19V6.2M10 15.6v-4m4 0v4M9.4 6.2V3.9a.98.98 0 01.212-.637A.746.746 0 0110.2 3h3.6a.743.743 0 01.587.263.975.975 0 01.213.637v2.3"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></path></svg>
             </button>
           </li>
         {{/each}}
