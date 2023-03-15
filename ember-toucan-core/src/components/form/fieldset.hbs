@@ -2,7 +2,6 @@
   <fieldset
     aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
     disabled={{@isDisabled}}
-    class="space-y-0.5"
     ...attributes
   >
     <legend
@@ -15,7 +14,7 @@
     {{/if}}
 
     <field.Control
-      class="flex flex-col space-y-2 rounded-sm p-1
+      class="mt-1.5 flex flex-col space-y-2 rounded-sm p-1
         {{if @error 'shadow-error-outline'}}"
       data-control
     >
