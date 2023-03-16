@@ -10,11 +10,6 @@ interface ToucanFormFieldsetComponentSignature {
     error?: string;
 
     /**
-     * Sets the fieldset to an errored-state via styling.
-     */
-    hasError?: boolean;
-
-    /**
      * Provide a string to this argument to render a hint message to help describe the control.
      */
     hint?: string;
