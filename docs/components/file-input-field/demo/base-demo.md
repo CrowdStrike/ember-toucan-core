@@ -40,7 +40,7 @@ function createFile(
   const { name, type } = options;
 
   const file = new File(content, name, {
-    type: type ? type : 'text/plain',
+    type: type ?? 'text/plain',
   });
 
   return file;
