@@ -1,0 +1,35 @@
+<div
+  class="flex flex-col {{if @isDisabled 'text-disabled'}}"
+  data-root-field={{if @rootTestSelector @rootTestSelector}}
+>
+  <Form::Field as |field|>
+    <field.Label for={{field.id}}>
+      <span data-label>{{@label}}</span>
+      {{#if @hint}}
+        <field.Hint data-hint>{{@hint}}</field.Hint>
+      {{/if}}
+
+      <field.Control>
+        <Form::Controls::FileInput
+          aria-describedby="{{if this.hasError field.errorId}}"
+          aria-invalid={{if this.hasError true}}
+          @hasError={{this.hasError}}
+          accept={{this.accept}}
+          multiple={{this.multiple}}
+          id={{field.id}}
+          @onChange={{@onChange}}
+          @trigger={{@trigger}}
+          @isDisabled={{@isDisabled}}
+          ...attributes
+        />
+      </field.Control>
+
+    </field.Label>
+    {{#if @error}}
+      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+    {{/if}}
+    {{#if @files.length}}
+      <Form::FileInput::List @files={{@files}} @onDelete={{@onDelete}} @deleteLabel={{@deleteLabel}} />
+    {{/if}}
+  </Form::Field>
+</div>

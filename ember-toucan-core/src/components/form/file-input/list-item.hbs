@@ -1,0 +1,16 @@
+<li class="flex items-center p-0">
+  <div class="flex-1 px-4 py-2">
+    <p
+      class="text-titles-and-attributes m-0 truncate p-0"
+      data-file-name
+    >{{@file.name}}</p>
+    <span class="text-body-and-labels block" data-file-size>{{(this.formatSize
+        @file.size
+      )}}</span>
+  </div>
+  <Form::FileInput::DeleteButton
+    @deleteLabel={{@deleteLabel}}
+    @onDelete={{@onDelete}}
+    @file={{@file}}
+  />
+</li>
