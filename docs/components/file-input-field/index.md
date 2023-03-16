@@ -69,19 +69,18 @@ Consumers have direct access to the underlying [input element](https://developer
 Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
 
 ```hbs
+// in a test: assert.dom('[data-root-field="example"]');
+
 <Form::FileInputField
   @label='Label'
   @trigger='Select Files'
   @rootTestSelector='example'
 />
+// targeting this field's specific label in a test
+// assert.dom('[data-root-field="example"] > [data-label]');
 ```
 
 ```js
-assert.dom('[data-root-field="example"]');
-
-// targeting this field's specific label
-assert.dom('[data-root-field="example"] > [data-label]');
-
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
