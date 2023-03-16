@@ -17,6 +17,7 @@ module('Integration | Component | RadioGroupField', function (hooks) {
 
     assert.dom('[data-group-field]').exists();
     assert.dom('[data-group-field]').hasNoAttribute('aria-invalid');
+    assert.dom('[data-group-field]').hasAttribute('aria-required');
 
     assert.dom('[data-label]').hasText('Label');
   });
