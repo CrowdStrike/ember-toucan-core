@@ -9,10 +9,10 @@ import {
 import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 
-import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input/field';
+import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input/field';
+import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 
 // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
 function createFile(

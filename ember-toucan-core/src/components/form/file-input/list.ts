@@ -3,7 +3,7 @@ import { assert } from '@ember/debug';
 
 import ListItem from './list-item';
 
-import type { onDeleteFileHandler } from './field';
+import type { onDeleteFileHandler } from './delete-button';
 import type { WithBoundArgs } from '@glint/template';
 
 interface ToucanFormFileInputListComponentSignature {

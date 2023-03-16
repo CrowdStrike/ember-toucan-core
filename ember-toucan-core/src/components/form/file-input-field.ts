@@ -4,10 +4,6 @@ import { action } from '@ember/object';
 
 type FileTarget = EventTarget & { files?: FileList };
 export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
-export type onDeleteFileHandler = (
-  file: File,
-  event: Event | InputEvent
-) => void;
 
 interface ToucanFormFileInputFieldComponentSignature {
   Element: HTMLInputElement;

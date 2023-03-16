@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
-import type { onDeleteFileHandler } from './field';
+import type { onDeleteFileHandler } from './delete-button';
 
 interface ToucanFormFileInputListItemComponentSignature {
   Element: HTMLInputElement;

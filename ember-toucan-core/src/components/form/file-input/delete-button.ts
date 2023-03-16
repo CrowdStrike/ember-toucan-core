@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
 
-import type { onDeleteFileHandler } from './field';
+export type onDeleteFileHandler = (
+  file: File,
+  event: Event | InputEvent
+) => void;
 
 interface ToucanFormFileInputDeleteButtonComponentSignature {
   Element: HTMLInputElement;
