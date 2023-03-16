@@ -7,9 +7,24 @@ import type { OnChangeCallback } from '../../../-private/types';
 export interface ToucanFormTextareaControlComponentSignature {
   Element: HTMLTextAreaElement;
   Args: {
+    /**
+     * Sets the textarea to an errored-state via styling.
+     */
     hasError?: boolean;
+
+    /**
+     * Sets the disabled attribute of the textarea.
+     */
     isDisabled?: boolean;
+
+    /**
+     * The function called when the element is typed into.
+     */
     onChange?: OnChangeCallback<string>;
+
+    /**
+     * Sets the value attribute of the textarea.
+     */
     value?: string;
   };
 }

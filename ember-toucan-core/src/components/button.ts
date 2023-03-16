@@ -36,9 +36,24 @@ const STYLES = {
 
 export interface ButtonSignature {
   Args: {
+    /**
+     * Sets the disabled attribute on the button.
+     */
     isDisabled?: boolean;
+
+    /**
+     * Puts the button in a loading state.
+     */
     isLoading?: boolean;
+
+    /**
+     * The function called when the element is clicked.
+     */
     onClick?: (event: MouseEvent) => void;
+
+    /**
+     * Setting the variant of the button changes the styling.
+     */
     variant?: ButtonVariant;
   };
   Blocks: { default: []; disabled: []; loading: [] };
