@@ -30,7 +30,7 @@ export default class extends Component {
 
 function createFile(
   content = ['Some sample content'],
-  options: Options = { name: '', type: '' }
+  options = { name: '', type: '' }
 ) {
   const { name, type } = options;
 
@@ -40,9 +40,4 @@ function createFile(
 
   return file;
 }
-
-type Options = {
-  name: string,
-  type?: string,
-};
 ```
