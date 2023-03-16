@@ -2,7 +2,8 @@ Here are some ui states.
 
 ```hbs template
 <div class='flex flex-col gap-y-5'>
-  <Form::FileInputField
+  <Form::FileInput::Field
+    @deleteLabel='Delete file'
     @label='Label'
     @trigger='Select Files'
     @files={{this.files}}
@@ -10,7 +11,8 @@ Here are some ui states.
     @onDelete={{this.handleDelete}}
   />
 
-  <Form::FileInputField
+  <Form::FileInput::Field
+    @deleteLabel='Delete file'
     @label='Label'
     @hint='Hint text'
     @trigger='Select Files'
@@ -19,7 +21,8 @@ Here are some ui states.
     @onDelete={{this.handleDelete}}
   />
 
-  <Form::FileInputField
+  <Form::FileInput::Field
+    @deleteLabel='Delete file'
     @label='Label'
     @error='Here is an error'
     @trigger='Select Files'
@@ -28,7 +31,8 @@ Here are some ui states.
     @onDelete={{this.handleDelete}}
   />
 
-  <Form::FileInputField
+  <Form::FileInput::Field
+    @deleteLabel='Delete file'
     @label='Label'
     @isDisabled={{true}}
     @trigger='Select Files'

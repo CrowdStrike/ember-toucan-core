@@ -22,10 +22,14 @@ Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File
 
 ## Value and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will take a FileEvent argument, which should contain an `event.target.files` which is a [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList).
+To tie into the input event, provide `@onChange`. `@onChange` will return two arguments: 
+
+1. the list of files selected
+2. the raw FileEvent
 
 ```hbs
 <Form::FileInputField
+  @deleteLabel='Delete'
   @label='Label'
   @trigger='Select files'
   @files={{this.files}}
