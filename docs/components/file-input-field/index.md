@@ -28,7 +28,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will return two ar
 2. the raw FileEvent
 
 ```hbs
-<Form::FileInputField
+<Form::FileInput::Field
   @deleteLabel='Delete'
   @label='Label'
   @trigger='Select files'

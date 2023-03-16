@@ -40,10 +40,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
     console.info('onChange');
   }
 
-  function onDelete() {
-    console.info('onDelete')
-  }
-
   test('it renders', async function (assert) {
     await render(<template>
       <FileInputField
@@ -51,7 +47,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         data-file-input-field />
     </template>);
 
@@ -85,7 +80,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @trigger="Select Files"
         @hint="Hint text"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         data-file-input-field />
     </template>);
 
@@ -106,7 +100,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @trigger="Select Files"
         @error="Error text"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         data-file-input-field
       />
     </template>);
@@ -146,7 +139,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         data-file-input-field />
     </template>);
 
@@ -170,7 +162,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @trigger="Select Files"
         @isDisabled={{true}}
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         data-file-input-field
       />
     </template>);
@@ -186,7 +177,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         placeholder="Placeholder text"
         data-file-input-field
       />
@@ -226,7 +216,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label" 
         @trigger="Select Files"
         @onChange={{realOnChange}}
-        @onDelete={{onDelete}}
         @files={{ctx.currentFiles}}
         data-file-input-field />
     </template>);
@@ -251,8 +240,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
   });
 
   test('it deletes a file', async function(assert) {
-    assert.expect(8)
-
     class Context {
       @tracked currentFiles: File[] = [];
     }
@@ -262,16 +249,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
     const realOnChange = (files: File[]) => {
       ctx.currentFiles = files;
     }
-    
-    const realOnDelete = (file: File) => {
-      assert.ok(file, 'Expected a single file to exist in the target');
-      assert.ok(file instanceof File, 'Expected a single file to be a File object');
-      assert.strictEqual(file.name, 'sample.txt', 'Expected a single file to have a name');
-      assert.strictEqual(file.size, 18, 'Expected a single file to have a size');
-      assert.step('realOnDelete');
-      // the entire array gets replaced here, so no used of trackedArray
-      ctx.currentFiles = ctx.currentFiles.filter(currentFile => currentFile !== file); 
-    }
 
     await render(<template>
       <FileInputField
@@ -279,13 +256,10 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label"
         @trigger="Select Files"
         @onChange={{realOnChange}}
-        @onDelete={{realOnDelete}}
         @files={{ctx.currentFiles}}
         data-file-input-field
       />
     </template>);
-
-    assert.verifySteps([]);
 
     const file = createFile(['Upload file sample'], {
       name: 'sample.txt',
@@ -295,8 +269,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
     await triggerEvent('[data-file-input-field]', 'change', { files: [file] });
 
     await triggerEvent('button', 'click');
-    
-    assert.verifySteps(['realOnDelete'])
 
     assert.dom('ul').doesNotExist();
   });
@@ -308,7 +280,6 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
-        @onDelete={{onDelete}}
         @rootTestSelector="selector"
         data-file-input-field
       />

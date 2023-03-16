@@ -8,7 +8,6 @@ Here are some ui states.
     @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
-    @onDelete={{this.handleDelete}}
   />
 
   <Form::FileInput::Field
@@ -18,7 +17,6 @@ Here are some ui states.
     @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
-    @onDelete={{this.handleDelete}}
   />
 
   <Form::FileInput::Field
@@ -28,7 +26,6 @@ Here are some ui states.
     @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
-    @onDelete={{this.handleDelete}}
   />
 
   <Form::FileInput::Field
@@ -38,7 +35,6 @@ Here are some ui states.
     @trigger='Select Files'
     @files={{this.files}}
     @onChange={{this.handleChange}}
-    @onDelete={{this.handleDelete}}
   />
 
 </div>
@@ -54,15 +50,12 @@ export default class extends Component {
 
   @action
   handleChange(files) {
+    // Note: files is an array of File objects (File[]) NOT a FileList
     // https://w3c.github.io/FileAPI/#filelist-section
     // FileList is getting replaced with Array
     this.files = files;
   }
 
-  @action
-  handleDelete(currentFile, event) {
-    this.files = this.files.filter((file) => currentFile !== file);
-  }
 }
 
 function createFile(
@@ -72,7 +65,7 @@ function createFile(
   const { name, type } = options;
 
   const file = new File(content, name, {
-    type: type ? type : 'text/plain',
+    type: type ?? 'text/plain',
   });
 
   return file;

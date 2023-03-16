@@ -22,7 +22,6 @@ interface ToucanFormFileInputFieldComponentSignature {
     isDisabled?: boolean;
     multiple?: boolean;
     onChange: (files: File[], event: FileEvent) => void;
-    onDelete: (file: File, event: Event | InputEvent) => void;
     rootTestSelector?: string;
   };
 }
@@ -50,11 +49,6 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     assert(
       'An "@onChange" argument is required for FileInputField',
       args.onChange !== undefined
-    );
-
-    assert(
-      'An "@onDelete" argument is required for FileInputField',
-      args.onDelete !== undefined
     );
 
     super(owner, args);
@@ -85,5 +79,19 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     }
 
     return this.args.onChange([], event);
+  }
+
+  @action
+  handleDelete(file: File, event: Event | InputEvent) {
+    if (!this.args.files) {
+      // unlikely to happen since this only associated with a visible delete button, but to satisfy typescript
+      return;
+    }
+
+    const files = [...this.args.files].filter(
+      (currentFile) => currentFile !== file
+    );
+
+    this.args.onChange(files, event);
   }
 }

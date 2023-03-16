@@ -31,7 +31,7 @@
     {{#if @files.length}}
       <Form::FileInput::List
         @files={{@files}}
-        @onDelete={{@onDelete}}
+        @onDelete={{this.handleDelete}}
         @deleteLabel={{@deleteLabel}}
       />
     {{/if}}

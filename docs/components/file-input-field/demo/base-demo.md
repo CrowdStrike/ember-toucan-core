@@ -6,7 +6,6 @@
   @hint='Hint text'
   @trigger='Select Files'
   @onChange={{this.handleChange}}
-  @onDelete={{this.handleDelete}}
 />
 ```
 
@@ -22,15 +21,12 @@ export default class extends Component {
 
   @action
   handleChange(files, event) {
+    // note: files is an array of File objects here (File[]) NOT a FileList
     // https://w3c.github.io/FileAPI/#filelist-section
     // FileList is getting replaced with Array
     this.files = files;
   }
 
-  @action
-  handleDelete(currentFile, event) {
-    this.files = this.files.filter((file) => currentFile !== file);
-  }
 }
 
 function createFile(
