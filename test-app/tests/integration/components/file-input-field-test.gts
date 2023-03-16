@@ -303,4 +303,36 @@ module('Integration | Component | Form | FileInput | Field', function (hooks) {
       <FileInputField @onChange={{onChange}} />
     </template>);
   });
+
+  test('it throws an assertion error if no @trigger is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('A "@trigger" argument is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      {{! @glint-expect-error: we are not providing @label, so this is expected }}
+      <FileInputField @onChange={{onChange}} @label="Label" @deleteLabel="Delete File" />
+    </template>);
+  });
+
+  test('it throws an assertion error if no @deleteLabel is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('A "@deleteLabel" argument is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      {{! @glint-expect-error: we are not providing @label, so this is expected }}
+      <FileInputField @onChange={{onChange}} @label="Label" @trigger="Select Files" />
+    </template>);
+  });
 });
