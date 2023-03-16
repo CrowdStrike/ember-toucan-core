@@ -1,6 +1,7 @@
 <div
   class="bg-overlay-1 focus-within:shadow-focus-outline relative inline-flex h-8 items-center rounded-sm px-2
     {{if @hasError 'shadow-error-outline' 'shadow-focusable-outline'}}"
+  data-control-file-input-container
 >
   <input
     class="text-titles-and-attributes focus:outline-none absolute m-1 h-6 w-0 cursor-pointer bg-transparent p-1
@@ -30,6 +31,6 @@
         stroke-linejoin="round"
         stroke-width="2"
       ></path></svg>
-    {{@trigger}}
+    <span data-trigger>{{@trigger}}</span>
   </div>
 </div>

@@ -11,7 +11,6 @@ import type FieldsetComponent from './components/form/fieldset';
 import type FormFileInputDeleteButtonComponent from './components/form/file-input/delete-button';
 import type FormFileInputFieldComponent from './components/form/file-input/field';
 import type FormFileInputListComponent from './components/form/file-input/list';
-import type FileInputFieldComponent from './components/form/file-input-field';
 import type InputFieldComponent from './components/form/input-field';
 import type RadioFieldComponent from './components/form/radio-field';
 import type RadioGroupFieldComponent from './components/form/radio-group-field';
@@ -34,6 +33,5 @@ export default interface Registry {
   'Form::FileInput::DeleteButton': typeof FormFileInputDeleteButtonComponent;
   'Form::RadioField': typeof RadioFieldComponent;
   'Form::RadioGroupField': typeof RadioGroupFieldComponent;
-  'Form::FileInputField': typeof FileInputFieldComponent;
   'Form::TextareaField': typeof TextareaFieldComponent;
 }

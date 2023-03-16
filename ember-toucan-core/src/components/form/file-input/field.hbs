@@ -12,7 +12,7 @@
       <field.Control>
         <Form::Controls::FileInput
           aria-describedby="{{if this.hasError field.errorId}}"
-          aria-invalid={{if this.hasError true}}
+          aria-invalid={{if this.hasError "true"}}
           @hasError={{this.hasError}}
           accept={{this.accept}}
           multiple={{this.multiple}}
@@ -29,7 +29,11 @@
       <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
     {{/if}}
     {{#if @files.length}}
-      <Form::FileInput::List @files={{@files}} @onDelete={{@onDelete}} @deleteLabel={{@deleteLabel}} />
+      <Form::FileInput::List
+        @files={{@files}}
+        @onDelete={{@onDelete}}
+        @deleteLabel={{@deleteLabel}}
+      />
     {{/if}}
   </Form::Field>
 </div>

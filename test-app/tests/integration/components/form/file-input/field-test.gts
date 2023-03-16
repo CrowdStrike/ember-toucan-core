@@ -9,10 +9,10 @@ import {
 import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 
-import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
+import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input/field';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
+import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input/field';
 
 // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
 function createFile(
@@ -33,7 +33,7 @@ type Options = {
   type?: string;
 };
 
-module('Integration | Component | FileInputField', function (hooks) {
+module('Integration | Component | Form | FileInput | Field', function (hooks) {
   setupRenderingTest(hooks);
 
   function onChange() { 
@@ -47,6 +47,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it renders', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
@@ -54,8 +55,8 @@ module('Integration | Component | FileInputField', function (hooks) {
         data-file-input-field />
     </template>);
 
-    assert.dom('[data-label]').includesText('Label');
-    assert.dom('[data-label]').includesText('Select Files');
+    assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-trigger]').hasText('Select Files');
 
     assert
       .dom('[data-hint]')
@@ -79,6 +80,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it renders with a hint', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @hint="Hint text"
@@ -99,6 +101,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it renders with an error', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @error="Error text"
@@ -129,7 +132,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     assert.dom('[data-file-input-field]').hasAttribute('aria-invalid', 'true');
 
-    assert.dom('[data-file-input-field]').hasClass('shadow-error-outline');
+    assert.dom('[data-control-file-input-container]').hasClass('shadow-error-outline');
     assert
       .dom('[data-file-input-field]')
       .doesNotHaveClass('shadow-focusable-outline');
@@ -139,6 +142,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it sets the "for" attribute on the label to the "id" attribute of the file input field', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
@@ -161,6 +165,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it disables the file input using @isDisabled', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @isDisabled={{true}}
@@ -177,6 +182,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it spreads attributes to the underlying file-input-field', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
@@ -216,6 +222,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     await render(<template>
       <FileInputField 
+        @deleteLabel='Delete File'
         @label="Label" 
         @trigger="Select Files"
         @onChange={{realOnChange}}
@@ -268,6 +275,7 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @onChange={{realOnChange}}
@@ -296,6 +304,7 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {
     await render(<template>
       <FileInputField
+        @deleteLabel='Delete File'
         @label="Label"
         @trigger="Select Files"
         @onChange={{onChange}}
