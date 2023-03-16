@@ -9,7 +9,7 @@
         <field.Hint data-hint>{{@hint}}</field.Hint>
       {{/if}}
 
-      <field.Control>
+      <field.Control class="mt-1.5">
         <Form::Controls::FileInput
           aria-describedby="{{if this.hasError field.errorId}}"
           aria-invalid={{if this.hasError "true"}}
