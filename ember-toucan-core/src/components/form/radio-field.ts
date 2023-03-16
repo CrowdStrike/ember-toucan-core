@@ -22,7 +22,7 @@ export interface ToucanFormRadioFieldComponentSignature {
     label: string;
 
     /**
-     * Sets the name attribute of the radio.
+     * Sets the name attribute of the radio. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
      *
      * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name
      */
