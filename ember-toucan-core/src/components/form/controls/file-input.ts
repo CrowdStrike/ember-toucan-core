@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 type FileTarget = EventTarget & { files?: FileList };
@@ -7,16 +8,10 @@ export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
 interface ToucanFormControlsFileInputComponentSignature {
   Element: HTMLInputElement;
   Args: {
-    accept?: string;
-    error?: string;
-    files?: File[];
-    hint?: string;
-    trigger: string;
     hasError?: boolean;
+    trigger: string;
     isDisabled?: boolean;
-    multiple?: boolean;
-    onChange: (files: File[], event: FileEvent) => void;
-    rootTestSelector?: string;
+    onChange?: (files: File[], event: FileEvent) => void;
   };
 }
 
@@ -25,21 +20,26 @@ export default class ToucanFormControlsFileInputComponent extends Component<Touc
     owner: unknown,
     args: ToucanFormControlsFileInputComponentSignature['Args']
   ) {
-    super(owner, args);
-  }
+    assert(
+      'A "@trigger" argument is required for Form::Controls::FileInput. If using the Form::FileInputField, this should be provided automatically.',
+      args.trigger !== undefined
+    );
 
-  get hasError() {
-    return Boolean(this.args?.error);
+    super(owner, args);
   }
 
   @action
   onChange(event: FileEvent) {
-    if (event.target?.files) {
-      const files = [...event.target.files];
+    if (!event.target?.files) {
+      return;
+    }
 
+    const files = [...event.target.files];
+
+    if (this.args.onChange) {
       return this.args.onChange(files, event);
     }
 
-    return this.args.onChange([], event);
+    return;
   }
 }

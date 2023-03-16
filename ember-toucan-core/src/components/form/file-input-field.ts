@@ -17,7 +17,7 @@ interface ToucanFormFileInputFieldComponentSignature {
     trigger: string;
     isDisabled?: boolean;
     multiple?: boolean;
-    onChange: (files: File[], event: FileEvent) => void;
+    onChange?: (files: File[], event: FileEvent) => void;
     rootTestSelector?: string;
   };
 }
@@ -41,12 +41,7 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
       'A "@trigger" argument is required for FileInputField, this prompts the user to select files',
       args.trigger !== undefined
     );
-
-    assert(
-      'An "@onChange" argument is required for FileInputField',
-      args.onChange !== undefined
-    );
-
+    
     super(owner, args);
   }
 
@@ -68,13 +63,17 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   @action
   onChange(event: FileEvent) {
-    if (event.target?.files) {
-      const files = [...event.target.files];
+    if (!event.target?.files) {
+      return;
+    }
 
+    const files = [...event.target.files];
+
+    if (this.args.onChange) {
       return this.args.onChange(files, event);
     }
 
-    return this.args.onChange([], event);
+    return;
   }
 
   @action
@@ -88,6 +87,8 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
       (currentFile) => currentFile !== file
     );
 
-    this.args.onChange(files, event);
+    if (this.args.onChange) {
+      this.args.onChange(files, event);
+    }
   }
 }

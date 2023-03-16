@@ -26,7 +26,6 @@ export default class extends Component {
     // FileList is getting replaced with Array
     this.files = files;
   }
-
 }
 
 function createFile(
