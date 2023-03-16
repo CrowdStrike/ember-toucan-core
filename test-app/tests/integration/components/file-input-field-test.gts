@@ -14,6 +14,11 @@ import { setupRenderingTest } from 'test-app/tests/helpers';
 
 import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
 
+type Options = {
+  name: string;
+  type?: string;
+};
+
 // https://medium.com/@chrisdmasters/acceptance-testing-file-uploads-in-ember-2-5-1c9c8dbe5368
 function createFile(
   content = ['Some sample content'],
@@ -28,12 +33,8 @@ function createFile(
   return file;
 }
 
-type Options = {
-  name: string;
-  type?: string;
-};
 
-module('Integration | Component | Form | FileInput | Field', function (hooks) {
+module('Integration | Component | FileInputField', function (hooks) {
   setupRenderingTest(hooks);
 
   function onChange() { 

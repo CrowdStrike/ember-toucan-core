@@ -41,7 +41,7 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
       'A "@trigger" argument is required for FileInputField, this prompts the user to select files',
       args.trigger !== undefined
     );
-    
+
     super(owner, args);
   }
 
