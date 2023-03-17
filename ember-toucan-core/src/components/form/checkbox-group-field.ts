@@ -41,11 +41,6 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
     onChange?: (selectedValues: Array<string>, e: Event | InputEvent) => void;
 
     /**
-     * A test selector for targeting the root element of the field. In this case, the wrapping div element.
-     */
-    rootTestSelector?: string;
-
-    /**
      * The currently selected checkbox elements. The elements with the matching `@option` / underlying value attribute will be checked.
      */
     value?: Array<string>;
