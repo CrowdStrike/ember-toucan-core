@@ -37,7 +37,7 @@ const STYLES = {
 export interface ButtonSignature {
   Args: {
     /**
-     * Sets the disabled attribute on the button.
+     * Sets `aria-disabled` on the button.  `aria-disabled` is used over the `disabled` attribute so that screenreaders can still focus the element.
      */
     isDisabled?: boolean;
 
