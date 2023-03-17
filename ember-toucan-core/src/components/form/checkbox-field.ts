@@ -6,16 +6,46 @@ import type { ToucanFormCheckboxControlComponentSignature } from './controls/che
 export interface ToucanFormCheckboxFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
+    /**
+     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     */
     error?: string;
+
+    /**
+     * Provide a string to this argument to render a hint message to help describe the control.
+     */
     hint?: string;
+
+    /**
+     * Sets the disabled attribute on the control.
+     */
     isDisabled?: boolean;
+
+    /**
+     * Sets the indeterminate state of the checkbox.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
+     */
     isIndeterminate?: ToucanFormCheckboxControlComponentSignature['Args']['isIndeterminate'];
+
+    /**
+     * Provide a string to this argument to render inside of the label tag.
+     */
     label: string;
+
+    /**
+     * The function called when the element is clicked.
+     */
     onChange?: ToucanFormCheckboxControlComponentSignature['Args']['onChange'];
+
     /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
+
+    /**
+     * Sets the checked state of the checkbox.
+     */
     value?: ToucanFormCheckboxControlComponentSignature['Args']['value'];
   };
 }

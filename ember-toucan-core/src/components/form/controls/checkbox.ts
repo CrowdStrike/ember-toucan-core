@@ -7,9 +7,26 @@ import type { OnChangeCallback } from '../../../-private/types';
 export interface ToucanFormCheckboxControlComponentSignature {
   Element: HTMLInputElement;
   Args: {
+    /**
+     * Sets the disabled attribute of the checkbox.
+     */
     isDisabled?: boolean;
+
+    /**
+     * The function called when the element is clicked.
+     */
     onChange?: OnChangeCallback<boolean>;
+
+    /**
+     * Sets the indeterminate state of the checkbox.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
+     */
     isIndeterminate?: boolean;
+
+    /**
+     * Sets the checked state of the checkbox.
+     */
     value?: boolean;
   };
 }

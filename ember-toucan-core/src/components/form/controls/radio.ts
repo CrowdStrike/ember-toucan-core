@@ -7,9 +7,24 @@ import type { OnChangeCallback } from '../../../-private/types';
 export interface ToucanFormRadioControlComponentSignature {
   Element: HTMLInputElement;
   Args: {
+    /**
+     * Sets the checked attribute of the radio.
+     */
     isChecked?: boolean;
+
+    /**
+     * Sets the disabled attribute of the radio.
+     */
     isDisabled?: boolean;
+
+    /**
+     * The function called when the element is clicked.
+     */
     onChange?: OnChangeCallback<string>;
+
+    /**
+     * Sets the value attribute of the radio.
+     */
     value: string;
   };
 }

@@ -18,6 +18,7 @@ interface ToucanFormFieldComponentSignature {
          * - Provide this to the `for` attribute on the Label component.
          */
         id: string;
+
         /**
          * A provided ID for element descriptors. Normally used to link the
          * hint section with the control so that it is read by screenreaders.
@@ -26,6 +27,7 @@ interface ToucanFormFieldComponentSignature {
          * - Add this to the `aria-describedby` of the control element.
          */
         hintId: string;
+
         /**
          * A provided ID for element descriptors. Normally used to link the
          * error section with the control so that it is read by screenreaders.
@@ -34,9 +36,27 @@ interface ToucanFormFieldComponentSignature {
          * - Add this to the `aria-describedby` or `aria-errormessage` of the control element.
          */
         errorId: string;
+
+        /**
+         * Renders a Toucan-styled label tag.
+         */
         Label: typeof Label;
+
+        /**
+         * Renders a Toucan-styled hint block.
+         */
         Hint: typeof Hint;
+
+        /**
+         * A wrapping element to provide a control, meaning whatever element
+         * the user interacts with.  This is normally an underlying input, textarea,
+         * or other common form element.
+         */
         Control: typeof Control;
+
+        /**
+         * Renders a Toucan-styled error block.
+         */
         Error: typeof Error;
       }
     ];

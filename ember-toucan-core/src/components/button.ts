@@ -36,9 +36,24 @@ const STYLES = {
 
 export interface ButtonSignature {
   Args: {
+    /**
+     * Sets `aria-disabled` on the button.  `aria-disabled` is used over the `disabled` attribute so that screenreaders can still focus the element.
+     */
     isDisabled?: boolean;
+
+    /**
+     * Puts the button in a loading state.
+     */
     isLoading?: boolean;
+
+    /**
+     * The function called when the element is clicked.
+     */
     onClick?: (event: MouseEvent) => void;
+
+    /**
+     * Setting the variant of the button changes the styling.
+     */
     variant?: ButtonVariant;
   };
   Blocks: { default: []; disabled: []; loading: [] };
