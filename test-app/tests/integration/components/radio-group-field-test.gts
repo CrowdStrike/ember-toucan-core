@@ -16,8 +16,18 @@ module('Integration | Component | RadioGroupField', function (hooks) {
     </template>);
 
     assert.dom('[data-group-field]').exists();
+    assert.dom('[data-group-field]').hasNoAttribute('aria-invalid');
+    assert.dom('[data-group-field]').hasAttribute('aria-required');
 
     assert.dom('[data-label]').hasText('Label');
+  });
+
+  test('it sets "role" by default', async function (assert) {
+    await render(<template>
+      <RadioGroupField @label="Label" @name="group" data-group-field />
+    </template>);
+
+    assert.dom('[data-group-field]').hasAttribute('role', 'radiogroup');
   });
 
   test('it renders yielded RadioFields', async function (assert) {
@@ -133,5 +143,18 @@ module('Integration | Component | RadioGroupField', function (hooks) {
     assert.verifySteps(['handleChange']);
 
     assert.dom('[data-radio-1]').isChecked();
+  });
+
+  test('it sets "aria-invalid" when provided with `@error`', async function (assert) {
+    await render(<template>
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @error="Error message"
+        data-group-field
+      />
+    </template>);
+
+    assert.dom('[data-group-field]').hasAttribute('aria-invalid', 'true');
   });
 });
