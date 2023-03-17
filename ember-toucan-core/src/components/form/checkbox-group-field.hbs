@@ -1,0 +1,20 @@
+<Form::Fieldset
+  @label={{@label}}
+  @hint={{@hint}}
+  @error={{@error}}
+  @isDisabled={{@isDisabled}}
+  aria-invalid={{if @error "true"}}
+  ...attributes
+>
+  {{yield
+    (hash
+      CheckboxField=(component
+        (ensure-safe-component this.CheckboxFieldComponent)
+        name=@name
+        onChange=this.handleInput
+        isDisabled=@isDisabled
+        selectedValues=@value
+      )
+    )
+  }}
+</Form::Fieldset>

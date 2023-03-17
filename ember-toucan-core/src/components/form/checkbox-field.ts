@@ -34,14 +34,36 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     label: string;
 
     /**
+     * Sets the name attribute of the checkbox. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name
+     */
+    name?: string;
+
+    /**
      * The function called when the element is clicked.
      */
     onChange?: ToucanFormCheckboxControlComponentSignature['Args']['onChange'];
 
     /**
+     * The option argument gets mapped to the underlying value attribute of the checkbox. This should only be used
+     * for checkbox groups via CheckboxGroupField.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#handling_multiple_checkboxes
+     */
+    option?: string;
+
+    /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
+
+    /**
+     * This component argument is used to determine if the underlying checkbox is checked.
+     * When the `selectedValues` array contains the `option`, the checkbox will be checked.
+     * This should only be used for checkbox groups via CheckboxGroupField.
+     */
+    selectedValues?: Array<string>;
 
     /**
      * Sets the checked state of the checkbox.
@@ -57,5 +79,17 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
   ) {
     assert('A "@label" argument is required', args.label);
     super(owner, args);
+  }
+
+  get isChecked() {
+    if (!this.args?.option) {
+      return this.args.value;
+    }
+
+    if (!this.args.selectedValues || this.args.selectedValues?.length === 0) {
+      return false;
+    }
+
+    return this.args.selectedValues?.includes(this.args.option);
   }
 }
