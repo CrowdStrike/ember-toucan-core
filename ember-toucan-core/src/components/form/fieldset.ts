@@ -15,7 +15,7 @@ interface ToucanFormFieldsetComponentSignature {
     hint?: string;
 
     /**
-     * Sets the disabled attribute on the control.
+     * Sets the disabled attribute on the fieldset.
      */
     isDisabled?: boolean;
 
