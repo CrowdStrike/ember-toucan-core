@@ -45,7 +45,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^3.0.4
       '@tailwindcss/typography': ^0.5.7
       '@tsconfig/ember': ^2.0.0
-      '@types/dompurify': ^2.3.4
+      '@types/dompurify': ^3.0.0
       '@types/ember': ^4.0.1
       '@types/ember-qunit': ^5.0.2
       '@types/ember-resolver': ^5.0.11
@@ -155,7 +155,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': 3.1.1_ytph5u5mfdxsjdormhnx6ts4ca
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
       '@tsconfig/ember': 2.0.0
-      '@types/dompurify': 2.4.0
+      '@types/dompurify': 3.0.0
       '@types/ember': 4.0.3_@babel+core@7.20.12
       '@types/ember-qunit': 5.0.2_7aeajqsirjp2cmhovyqb7y3iim
       '@types/ember-resolver': 5.0.13_@babel+core@7.20.12
@@ -3343,8 +3343,8 @@ packages:
       '@types/node': 18.11.18
     dev: true
 
-  /@types/dompurify/2.4.0:
-    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
+  /@types/dompurify/3.0.0:
+    resolution: {integrity: sha512-EcSqmgm/xJwH8CcJPy9AHNypp/j58CYga3nWdl93/wLxX6OH+rSD3aAj75NQazcZd1YKHJ/pjNZ9qmgVajggwQ==}
     dependencies:
       '@types/trusted-types': 2.0.2
     dev: true
