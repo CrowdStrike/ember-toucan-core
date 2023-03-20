@@ -11,12 +11,13 @@
 
       <field.Control class="mt-1.5">
         <Form::Controls::FileInput
-          aria-describedby="{{if this.hasError field.errorId}}"
+          aria-describedby={{if this.hasError field.errorId}}
           aria-invalid={{if this.hasError "true"}}
-          @hasError={{this.hasError}}
           accept={{this.accept}}
-          multiple={{this.multiple}}
           id={{field.id}}
+          @files={{@files}}
+          @hasError={{this.hasError}}
+          @multiple={{this.multiple}}
           @onChange={{@onChange}}
           @trigger={{@trigger}}
           @isDisabled={{@isDisabled}}

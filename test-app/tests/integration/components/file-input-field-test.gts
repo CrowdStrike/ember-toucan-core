@@ -188,7 +188,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
-  test('it can accept a file using @Change and display the filename', async function (assert) {
+  test('it can accept a file using @onChange and display the filename', async function (assert) {
     assert.expect(12);
 
     class Context {
@@ -196,11 +196,15 @@ module('Integration | Component | FileInputField', function (hooks) {
     }
 
     let ctx = new Context();
-    
+   
+    // Note: typescript can't tell the assert is checking the event
+    // so it's complaining that the event is unused
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     const realOnChange = (files: File[], event: FileEvent) => {
       const [firstFile] = files;
 
       ctx.currentFiles = files; 
+
       assert.ok(event, 'Expected `e` to be available as the only argument');
       assert.ok(event.target, 'Expected direct access to target from `e`');
       assert.ok(firstFile, 'Expected a single file to exist in the target');
@@ -218,6 +222,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         @trigger="Select Files"
         @onChange={{realOnChange}}
         @files={{ctx.currentFiles}}
+        multiple="true"
         data-file-input-field />
     </template>);
 
@@ -258,6 +263,7 @@ module('Integration | Component | FileInputField', function (hooks) {
         @trigger="Select Files"
         @onChange={{realOnChange}}
         @files={{ctx.currentFiles}}
+        multiple="true"
         data-file-input-field
       />
     </template>);
@@ -272,6 +278,76 @@ module('Integration | Component | FileInputField', function (hooks) {
     await triggerEvent('button', 'click');
 
     assert.dom('ul').doesNotExist();
+  });
+
+  test('it can handle the multiple attribute correctly', async function (assert) {
+    class Context {
+      @tracked currentFiles: File[] | [] = [];
+    }
+
+    let ctx = new Context();
+
+    const realOnChange = (files: File[], event: FileEvent) => {
+      ctx.currentFiles = files;
+    }
+
+    await render(<template>
+      <FileInputField
+        @deleteLabel='Delete File'
+        @label="Label"
+        @trigger="Select Files"
+        @onChange={{realOnChange}}
+        @files={{ctx.currentFiles}}
+        @multiple={{false}}
+        data-file-input-field
+      />
+    </template>);
+
+    assert.dom('[data-file-input-field]').doesNotHaveAttribute('multiple');
+
+    const avocado = createFile(['Upload file sample'], {
+      name: 'avocado.txt',
+      type: 'text/plain',
+    });
+
+    const banana = createFile(['Upload file sample'], {
+      name: 'banana.txt',
+      type: 'text/plain',
+    });
+
+    await triggerEvent('[data-file-input-field]', 'change', { files: [avocado, banana] });
+    assert.dom('ul').exists('List of files exist');
+    assert.dom('li').exists('First list item exists');
+    assert.dom('li [data-file-name]').hasText('avocado.txt');
+    assert.dom('ul > li:nth-child(2)').doesNotExist('there is only 1 list element');
+  
+    // replace with the banana.txt file
+    await triggerEvent('[data-file-input-field]', 'change', { files: [banana] });
+
+    assert.dom('li [data-file-name]').hasText('banana.txt', 'Without multiple, files are replaced');
+    
+    await render(<template>
+      <FileInputField
+        @deleteLabel='Delete File'
+        @label="Label"
+        @trigger="Select Files"
+        @onChange={{realOnChange}}
+        @files={{ctx.currentFiles}}
+        @multiple={{true}}
+        data-file-input-field
+      />
+    </template>);
+    
+    await triggerEvent('[data-file-input-field]', 'change', { files: [avocado, banana] });
+    
+    assert.dom('ul').exists('List of files exist');
+    assert.dom('li').exists('First list item exists');
+    assert.dom('ul > li:nth-child(2)').exists('there is more than 1 list element');
+
+    // banana.txt existed from before, then avocado.txt and banana.txt are added to the list
+    assert.dom('ul > li:nth-child(1) [data-file-name]').hasText('banana.txt');
+    assert.dom('ul > li:nth-child(2) [data-file-name]').hasText('avocado.txt', 'With multiple, files are additive');
+    assert.dom('ul > li:nth-child(3) [data-file-name]').hasText('banana.txt');
   });
 
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {

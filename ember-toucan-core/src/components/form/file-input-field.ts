@@ -62,24 +62,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
   }
 
   @action
-  onChange(event: FileEvent) {
-    if (!event.target?.files) {
-      return;
-    }
-
-    const files = [...event.target.files];
-
-    if (this.args.onChange) {
-      return this.args.onChange(files, event);
-    }
-
-    return;
-  }
-
-  @action
   handleDelete(file: File, event: Event | InputEvent) {
     if (!this.args.files) {
-      // unlikely to happen since this only associated with a visible delete button, but to satisfy typescript
+      // unlikely to happen since having a list of files is
+      // associated with a visible delete button, but to satisfy typescript
       return;
     }
 

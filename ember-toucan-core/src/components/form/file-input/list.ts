@@ -20,6 +20,7 @@ interface ToucanFormFileInputListComponentSignature {
           typeof ListItem,
           'file' | 'onDelete' | 'deleteLabel'
         >;
+        file: File;
       }
     ];
   };
