@@ -90,7 +90,7 @@ importers:
       ember-cli-sri: ^2.1.1
       ember-cli-terser: ^4.0.2
       ember-fetch: ^8.1.2
-      ember-headless-form: 1.0.0-beta.0
+      ember-headless-form: 1.0.0-beta.1
       ember-headless-form-changeset: 1.0.0-beta.0
       ember-load-initializers: ^2.1.2
       ember-modifier: ^4.1.0
@@ -202,8 +202,8 @@ importers:
       ember-cli-sri: 2.1.1
       ember-cli-terser: 4.0.2
       ember-fetch: 8.1.2
-      ember-headless-form: 1.0.0-beta.0_75nsunfos7lzy6svk2ukeoc4li
-      ember-headless-form-changeset: 1.0.0-beta.0_dd47zjlgyfs74qrn22rpkxaes4
+      ember-headless-form: 1.0.0-beta.1_75nsunfos7lzy6svk2ukeoc4li
+      ember-headless-form-changeset: 1.0.0-beta.0_5ijfjkgszm3mcpbxie63nhlrqm
       ember-load-initializers: 2.1.2_@babel+core@7.20.12
       ember-page-title: 8.0.0-beta.0
       ember-qunit: 6.2.0_qzpscdypvst2a7p4oplhefmfda
@@ -7687,7 +7687,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-headless-form-changeset/1.0.0-beta.0_dd47zjlgyfs74qrn22rpkxaes4:
+  /ember-headless-form-changeset/1.0.0-beta.0_5ijfjkgszm3mcpbxie63nhlrqm:
     resolution: {integrity: sha512-skWG70S+I+zlhH7rAxWRbRcy1RfMITEibuy7CPoBaQLqbiL2AAqC7aydkoQYYWnPgOQXb/L9sakWNfzCIwuHdA==}
     peerDependencies:
       ember-changeset: ^4.1.2
@@ -7697,15 +7697,15 @@ packages:
     dependencies:
       '@embroider/addon-shim': 1.8.4
       ember-changeset: 4.1.2_webpack@5.75.0
-      ember-headless-form: 1.0.0-beta.0_75nsunfos7lzy6svk2ukeoc4li
+      ember-headless-form: 1.0.0-beta.1_75nsunfos7lzy6svk2ukeoc4li
       ember-source: 4.11.0_ipwtokbwlukr3yko7oz5lbj6xy
       validated-changeset: 1.3.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /ember-headless-form/1.0.0-beta.0_75nsunfos7lzy6svk2ukeoc4li:
-    resolution: {integrity: sha512-Jh8+/IYPBq0zednL47L3y1rif3QqWS0nEYnxfTIixPwXx0/z1fGLYsz4LuFpVlUj0XiGZfSIVWyaJXvPzVfdDw==}
+  /ember-headless-form/1.0.0-beta.1_75nsunfos7lzy6svk2ukeoc4li:
+    resolution: {integrity: sha512-WwV2UFAliQEMVFVN4JNJKN9Oq1NT+K5fUXHpXnVOwBBM/wJmUVT0u+XAri6yI4Eg/RfTH+KYKtp6IBgee18fPA==}
     peerDependencies:
       '@glimmer/component': ^1.1.2
       '@glimmer/tracking': ^1.1.2
