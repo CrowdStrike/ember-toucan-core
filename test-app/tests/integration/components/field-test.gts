@@ -20,7 +20,7 @@ module('Integration | Component | Field', function (hooks) {
         <field.Control>
           <input type="text" data-test-input />
         </field.Control>
-        <field.Error data-test-error>error</field.Error>
+        <field.Error @error="error" data-test-error />
       </Field>
     </template>);
 
@@ -95,5 +95,29 @@ module('Integration | Component | Field', function (hooks) {
     assert.dom('[data-test-id]').hasAnyText();
     assert.dom('[data-test-hintId]').hasAnyText();
     assert.dom('[data-test-errorId]').hasAnyText();
+  });
+
+  test('it renders an array of errors', async function (assert) {
+    let testErrors = ['error 1', 'error 2'];
+
+    await render(<template>
+      <Field as |field|>
+        <field.Error @error={{testErrors}} data-test-error />
+      </Field>
+    </template>);
+
+    assert
+      .dom('[data-test-error]')
+      .exists('Expected error block to be rendered');
+
+    assert.dom('[data-error-item]').exists({ count: 2 });
+
+    assert
+      .dom('[data-error-item="0"]')
+      .hasText('error 1', 'Expected to have first error text rendered');
+
+    assert
+      .dom('[data-error-item="1"]')
+      .hasText('error 2', 'Expected to have first error text rendered');
   });
 });

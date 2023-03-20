@@ -10,7 +10,7 @@ Field is a component to aid in creating form components. It provides a label, hi
 - `Label`: Renders a `<label>` element. Form element label text is normally rendered here.
 - `Hint`: Renders a `<div>` element. Help text or supplemental information is normally rendered here.
 - `Control`: A control block where a form element is rendered, for example, an `<input>`, `<textarea>`, etc.
-- `Error`: Renders a `<div>` element. Error information is normally rendered here.
+- `Error`: Renders a `<div>` element. Error information is normally rendered here. It accepts an `@error` argument that is either a string or array of strings. If provided with an array of strings, the errors will be rendered in a `<ul>` + `<li>`.
 
 ## Design Guidelines
 
@@ -49,7 +49,7 @@ The yielded components from Field can be optionally rendered by using the `{{#if
   </field.Control>
 
   {{#if @error}}
-    <field.Error id={{field.errorId}}>{{@error}}</field.Error>
+    <field.Error id={{field.errorId}} @error={{@error}} />
   {{/if}}
 </Form::Field>
 ```

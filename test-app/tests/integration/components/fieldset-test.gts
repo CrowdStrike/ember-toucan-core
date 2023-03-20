@@ -55,6 +55,28 @@ module('Integration | Component | Fieldset', function (hooks) {
     assert.dom('[data-control]').hasClass('shadow-error-outline');
   });
 
+  test('it renders with multiple errors', async function (assert) {
+    let testErrors = ['error 1', 'error 2'];
+
+    await render(<template>
+      <Fieldset @label="Label" @error={{testErrors}} data-fieldset />
+    </template>);
+
+    assert.dom('[data-control]').hasClass('shadow-error-outline');
+
+    assert.dom('[data-error]').hasAttribute('id');
+
+    assert.dom('[data-error-item]').exists({ count: 2 });
+
+    assert
+      .dom('[data-error-item="0"]')
+      .hasText('error 1', 'Expected to have first error text rendered');
+
+    assert
+      .dom('[data-error-item="1"]')
+      .hasText('error 2', 'Expected to have first error text rendered');
+  });
+
   test('it sets aria-describedby when both a hint and error are provided', async function (assert) {
     await render(<template>
       <Fieldset

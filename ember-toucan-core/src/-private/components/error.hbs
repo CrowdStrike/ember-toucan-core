@@ -1,4 +1,8 @@
-<div class="type-xs-tight text-critical mt-1.5 flex items-center" ...attributes>
+<div
+  class="type-xs-tight text-critical mt-1.5 flex
+    {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+  ...attributes
+>
   {{! Icon taken from Tony's open source icon set, this is temporary! }}
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -18,5 +22,15 @@
     />
   </svg>
 
-  {{yield}}
+  {{#if this.hasMoreThanOneError}}
+    {{! Unfortunately we need this inline style to help with the ul offset  }}
+    {{! template-lint-disable no-inline-styles}}
+    <ul class="m-0 list-none space-y-1 p-0" style="margin-top: -2px">
+      {{#each this.errors as |error index|}}
+        <li class="m-0 p-0" data-error-item={{index}}>{{error}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <span>{{get this.errors 0}}</span>
+  {{/if}}
 </div>
