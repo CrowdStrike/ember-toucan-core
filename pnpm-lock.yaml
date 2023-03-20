@@ -25,7 +25,7 @@ importers:
       '@crowdstrike/ember-toucan-core': workspace:../ember-toucan-core
       '@crowdstrike/ember-toucan-styles': ^2.0.0
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
-      '@docfy/core': ^0.5.0
+      '@docfy/core': ^0.6.0
       '@docfy/ember': ^0.5.0
       '@ember/optional-features': ^2.0.0
       '@ember/string': ^3.0.1
@@ -120,7 +120,7 @@ importers:
       typescript: ^5.0.0
       webpack: ^5.74.0
     dependencies:
-      '@crowdstrike/ember-oss-docs': 1.1.3_bpwz2zcpg5ltvn4vqr6wtc7r7e
+      '@crowdstrike/ember-oss-docs': 1.1.3_xxptkem7ixibbhokywmx44dpay
       '@crowdstrike/ember-toucan-core': file:ember-toucan-core_c62kkjskxqbpmxwcikoriz42fm
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 2.0.0_htqm3qg3nmvfkwq4ngma65xhmi
@@ -137,7 +137,7 @@ importers:
       '@babel/eslint-parser': 7.19.1_b3mcivpi6zqbotlvqqcfprcnry
       '@crowdstrike/ember-toucan-styles': 2.0.0_mfv5drjkgyacqn3e4obtqf67r4
       '@crowdstrike/tailwind-toucan-base': 3.3.1_gbtt6ss3tbiz4yjtvdr6fbrj44
-      '@docfy/core': 0.5.0
+      '@docfy/core': 0.6.0
       '@docfy/ember': 0.5.0
       '@ember/optional-features': 2.0.0
       '@ember/string': 3.0.1
@@ -1998,7 +1998,7 @@ packages:
     dev: true
     optional: true
 
-  /@crowdstrike/ember-oss-docs/1.1.3_bpwz2zcpg5ltvn4vqr6wtc7r7e:
+  /@crowdstrike/ember-oss-docs/1.1.3_xxptkem7ixibbhokywmx44dpay:
     resolution: {integrity: sha512-2GiPPy4G4BDP+4BZpFd8dJ3CQSCrp2FobrxUE9uszSaPyF2wTim5ZH46IwKzrozF+fHB6EaDZG/hls7S8nyhQg==}
     peerDependencies:
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
@@ -2013,7 +2013,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.13
       '@crowdstrike/tailwind-toucan-base': 3.3.1_gbtt6ss3tbiz4yjtvdr6fbrj44
-      '@docfy/core': 0.5.0
+      '@docfy/core': 0.6.0
       '@docfy/ember': 0.5.0
       '@embroider/addon-shim': 1.8.4
       '@glimmer/component': 1.1.2_@babel+core@7.20.12
@@ -2083,6 +2083,33 @@ packages:
 
   /@docfy/core/0.5.0:
     resolution: {integrity: sha512-4SBim8DAveFju1CiUfiHXGiWc+zC7CMWKid+jbwPW1AiVlwitrY2KJYGe+LN1dNxd3EcIVV8QULl7Po7ZTqxgg==}
+    engines: {node: '>= 12.*'}
+    dependencies:
+      debug: 4.3.4
+      fast-glob: 3.2.12
+      git-repo-info: 2.1.1
+      github-slugger: 1.5.0
+      hosted-git-info: 3.0.8
+      mdast-util-to-string: 2.0.0
+      mdast-util-toc: 5.1.0
+      rehype-stringify: 8.0.0
+      remark-extract-frontmatter: 3.2.0
+      remark-frontmatter: 3.0.0
+      remark-gfm: 1.0.0
+      remark-normalize-headings: 2.0.0
+      remark-parse: 9.0.0
+      remark-rehype: 8.1.0
+      remark-slug: 6.1.0
+      to-vfile: 6.1.0
+      trough: 1.0.5
+      unified: 9.2.2
+      unist-util-visit: 2.0.3
+      yaml: 1.10.2
+    transitivePeerDependencies:
+      - supports-color
+
+  /@docfy/core/0.6.0:
+    resolution: {integrity: sha512-2L5UiE720h6tmkTxvB43Q+nZybKV/8UC6jYVBqiyP9YriVjWxxVpTkR80Egg4rrMnGfYKedOI4ZgxekgdoHDMQ==}
     engines: {node: '>= 12.*'}
     dependencies:
       debug: 4.3.4
