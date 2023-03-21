@@ -15,7 +15,11 @@
       @value={{field.value}}
       @onChange={{field.setValue}}
     />
-    <field.Errors />
+    {{#if field.rawErrors.length}}
+      {{#each field.rawErrors as |error|}}
+        <p>{{error.message}}</p>
+      {{/each}}
+    {{/if}}
   </form.Field>
 
   <form.Field @name='email' as |field|>
@@ -27,7 +31,11 @@
       @value={{field.value}}
       @onChange={{field.setValue}}
     />
-    <field.Errors />
+    {{#if field.rawErrors.length}}
+      {{#each field.rawErrors as |error|}}
+        <p>{{error.message}}</p>
+      {{/each}}
+    {{/if}}
   </form.Field>
   <Button type='submit'>Submit</Button>
 </HeadlessForm>
