@@ -207,4 +207,21 @@ module('Integration | Component | CheckboxField', function (hooks) {
       <CheckboxField />
     </template>);
   });
+
+  test('it throws an assertion error if provided with both "@option" and "@value"', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Both "@option" and "@value" arguments were supplied.'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <CheckboxField @label="Label" @value={{true}} @option="option" />
+    </template>);
+  });
 });

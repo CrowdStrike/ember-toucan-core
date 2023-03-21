@@ -13,9 +13,11 @@
           aria-invalid={{if @error "true"}}
           aria-describedby="{{if @error field.errorId}}"
           id={{field.id}}
+          name={{@name}}
+          value={{@option}}
           @isDisabled={{@isDisabled}}
           @isIndeterminate={{@isIndeterminate}}
-          @value={{@value}}
+          @value={{this.isChecked}}
           @onChange={{@onChange}}
           ...attributes
         />

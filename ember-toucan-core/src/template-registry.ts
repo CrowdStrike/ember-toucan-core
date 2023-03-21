@@ -1,5 +1,6 @@
 import type ButtonComponent from './components/button';
 import type CheckboxFieldComponent from './components/form/checkbox-field';
+import type CheckboxGroupFieldComponent from './components/form/checkbox-group-field';
 import type CheckboxControlComponent from './components/form/controls/checkbox';
 import type InputControlComponent from './components/form/controls/input';
 import type RadioControlComponent from './components/form/controls/radio';
@@ -16,6 +17,7 @@ export default interface Registry {
   'Form::Field': typeof FieldComponent;
   'Form::Fieldset': typeof FieldsetComponent;
   'Form::CheckboxField': typeof CheckboxFieldComponent;
+  'Form::CheckboxGroupField': typeof CheckboxGroupFieldComponent;
   'Form::InputField': typeof InputFieldComponent;
   'Form::Controls::Checkbox': typeof CheckboxControlComponent;
   'Form::Controls::Input': typeof InputControlComponent;
