@@ -62,6 +62,8 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      * This component argument is used to determine if the underlying checkbox is checked.
      * When the `selectedValues` array contains the `option`, the checkbox will be checked.
      * This should only be used for checkbox groups via CheckboxGroupField.
+     *
+     * @internal
      */
     selectedValues?: Array<string>;
 
