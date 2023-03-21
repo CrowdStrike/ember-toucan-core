@@ -78,6 +78,12 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     args: ToucanFormCheckboxFieldComponentSignature['Args']
   ) {
     assert('A "@label" argument is required', args.label);
+
+    assert(
+      'Both "@option" and "@value" arguments were supplied. "@option" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@option" or "@value", but not both.',
+      !(args.value && args.option)
+    );
+
     super(owner, args);
   }
 
