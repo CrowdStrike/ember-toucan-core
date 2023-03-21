@@ -50,7 +50,7 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
       {
         CheckboxField: WithBoundArgs<
           typeof CheckboxFieldComponent,
-          'isDisabled' | 'name' | 'value'
+          'isDisabled' | 'name' | 'onChange' | 'selectedValues'
         >;
       }
     ];
