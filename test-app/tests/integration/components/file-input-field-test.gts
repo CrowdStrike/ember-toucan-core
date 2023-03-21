@@ -33,6 +33,16 @@ function createFile(
   return file;
 }
 
+// some sample files for the "multiple" tests
+const avocado = createFile(['Upload file sample'], {
+  name: 'avocado.txt',
+  type: 'text/plain',
+});
+
+const banana = createFile(['Upload file sample'], {
+  name: 'banana.txt',
+  type: 'text/plain',
+});
 
 module('Integration | Component | FileInputField', function (hooks) {
   setupRenderingTest(hooks);
@@ -280,7 +290,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('ul').doesNotExist();
   });
 
-  test('it can handle the multiple attribute correctly', async function (assert) {
+  test('it can handle the multiple attribute correctly when multiple=false', async function (assert) {
     class Context {
       @tracked currentFiles: File[] | [] = [];
     }
@@ -305,27 +315,30 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     assert.dom('[data-file-input-field]').doesNotHaveAttribute('multiple');
 
-    const avocado = createFile(['Upload file sample'], {
-      name: 'avocado.txt',
-      type: 'text/plain',
-    });
-
-    const banana = createFile(['Upload file sample'], {
-      name: 'banana.txt',
-      type: 'text/plain',
-    });
-
     await triggerEvent('[data-file-input-field]', 'change', { files: [avocado, banana] });
     assert.dom('ul').exists('List of files exist');
-    assert.dom('li').exists('First list item exists');
+    assert.dom('li').exists({ count: 1 }, 'A single list item exists');
     assert.dom('li [data-file-name]').hasText('avocado.txt');
-    assert.dom('ul > li:nth-child(2)').doesNotExist('there is only 1 list element');
-  
+    
     // replace with the banana.txt file
     await triggerEvent('[data-file-input-field]', 'change', { files: [banana] });
 
     assert.dom('li [data-file-name]').hasText('banana.txt', 'Without multiple, files are replaced');
-    
+  });
+
+  test('it can handle the multiple attribute correctly when multiple=true', async function (assert) {
+    class Context {
+      @tracked currentFiles: File[] | [] = [];
+    }
+
+    let ctx = new Context();
+
+    const realOnChange = (files: File[], event: FileEvent) => {
+      ctx.currentFiles = files;
+    }
+
+    ctx.currentFiles = [banana];
+
     await render(<template>
       <FileInputField
         @deleteLabel='Delete File'
@@ -338,18 +351,19 @@ module('Integration | Component | FileInputField', function (hooks) {
       />
     </template>);
     
+    assert.dom('[data-file-input-field]').hasAttribute('multiple');
+    assert.dom('li').exists({ count: 1 }, 'A single list item exists');
+
     await triggerEvent('[data-file-input-field]', 'change', { files: [avocado, banana] });
     
     assert.dom('ul').exists('List of files exist');
-    assert.dom('li').exists('First list item exists');
-    assert.dom('ul > li:nth-child(2)').exists('there is more than 1 list element');
+    assert.dom('li').exists({ count: 3 }, 'Three list items exist, two were added to the original item');
 
     // banana.txt existed from before, then avocado.txt and banana.txt are added to the list
     assert.dom('ul > li:nth-child(1) [data-file-name]').hasText('banana.txt');
     assert.dom('ul > li:nth-child(2) [data-file-name]').hasText('avocado.txt', 'With multiple, files are additive');
     assert.dom('ul > li:nth-child(3) [data-file-name]').hasText('banana.txt');
   });
-
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {
     await render(<template>
       <FileInputField
