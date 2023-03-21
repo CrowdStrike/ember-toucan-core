@@ -92,7 +92,7 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
       return this.args.value;
     }
 
-    if (!this.args.selectedValues || this.args.selectedValues?.length === 0) {
+    if (!this.args.selectedValues || this.args.selectedValues.length === 0) {
       return false;
     }
 
