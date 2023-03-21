@@ -30,12 +30,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
@@ -56,12 +56,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
@@ -76,25 +76,25 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
-        @name="group"
+        @name="checkbox-group-name"
         data-group-field
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
     </template>);
 
-    assert.dom('[data-checkbox-1]').hasAttribute('name', 'group');
-    assert.dom('[data-checkbox-2]').hasAttribute('name', 'group');
+    assert.dom('[data-checkbox-1]').hasAttribute('name', 'checkbox-group-name');
+    assert.dom('[data-checkbox-2]').hasAttribute('name', 'checkbox-group-name');
   });
 
   test('it renders with a hint', async function (assert) {
@@ -124,12 +124,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
@@ -150,12 +150,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
@@ -194,12 +194,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
         as |group|
       >
         <group.CheckboxField
-          @label="option-1"
+          @label="label 1"
           @option="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
-          @label="option-2"
+          @label="label 2"
           @option="option-2"
           data-checkbox-2
         />
