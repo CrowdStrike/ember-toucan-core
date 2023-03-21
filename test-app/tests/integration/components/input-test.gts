@@ -21,6 +21,10 @@ module('Integration | Component | Input', function (hooks) {
     assert.dom('[data-input]').hasTagName('input');
     assert.dom('[data-input]').hasClass('text-titles-and-attributes');
     assert.dom('[data-input]').doesNotHaveClass('text-disabled');
+    assert.dom('[data-input]').doesNotHaveClass('shadow-error-outline');
+    assert
+      .dom('[data-input]')
+      .doesNotHaveClass('focus:shadow-error-focus-outline');
   });
 
   test('it disables the input using `@isDisabled`', async function (assert) {
@@ -32,9 +36,7 @@ module('Integration | Component | Input', function (hooks) {
 
     assert.dom('[data-input]').isDisabled();
     assert.dom('[data-input]').hasClass('text-disabled');
-    assert
-      .dom('[data-input]')
-      .doesNotHaveClass('text-titles-and-attributes');
+    assert.dom('[data-input]').doesNotHaveClass('text-titles-and-attributes');
   });
 
   test('it spreads attributes to the underlying input', async function (assert) {
@@ -44,9 +46,7 @@ module('Integration | Component | Input', function (hooks) {
       <InputControl placeholder="Placeholder text" data-input />
     </template>);
 
-    assert
-      .dom('[data-input]')
-      .hasAttribute('placeholder', 'Placeholder text');
+    assert.dom('[data-input]').hasAttribute('placeholder', 'Placeholder text');
   });
 
   test('it sets the value attribute via `@value`', async function (assert) {
@@ -80,5 +80,17 @@ module('Integration | Component | Input', function (hooks) {
     await fillIn('[data-input]', 'test');
 
     assert.verifySteps(['handleChange']);
+  });
+
+  test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <InputControl @hasError={{true}} data-input />
+    </template>);
+
+    assert.dom('[data-input]').hasClass('shadow-error-outline');
+    assert.dom('[data-input]').hasClass('focus:shadow-error-focus-outline');
+    assert.dom('[data-input]').doesNotHaveClass('shadow-focusable-outline');
   });
 });

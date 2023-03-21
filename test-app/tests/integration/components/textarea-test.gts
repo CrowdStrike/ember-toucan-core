@@ -21,6 +21,10 @@ module('Integration | Component | Textarea', function (hooks) {
     assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
     assert.dom('[data-textarea]').hasClass('shadow-focusable-outline');
     assert.dom('[data-textarea]').doesNotHaveClass('text-disabled');
+    assert.dom('[data-textarea]').doesNotHaveClass('shadow-error-outline');
+    assert
+      .dom('[data-textarea]')
+      .doesNotHaveClass('focus:shadow-error-focus-outline');
   });
 
   test('it disables the textarea using `@isDisabled`', async function (assert) {
@@ -90,6 +94,7 @@ module('Integration | Component | Textarea', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').hasClass('shadow-error-outline');
+    assert.dom('[data-textarea]').hasClass('focus:shadow-error-focus-outline');
     assert.dom('[data-textarea]').doesNotHaveClass('shadow-focusable-outline');
   });
 });
