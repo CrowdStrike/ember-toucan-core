@@ -105,7 +105,7 @@ importers:
       eslint-plugin-qunit: ^7.3.1
       fractal-page-object: ^0.4.0
       highlight.js: ^11.6.0
-      highlightjs-glimmer: ^1.4.1
+      highlightjs-glimmer: ^2.0.0
       loader.js: ^4.7.0
       postcss: ^8.4.17
       postcss-import: ^15.0.0
@@ -120,7 +120,7 @@ importers:
       typescript: ^5.0.0
       webpack: ^5.74.0
     dependencies:
-      '@crowdstrike/ember-oss-docs': 1.1.3_v6w3ttlr5tgzhirycmizipk2w4
+      '@crowdstrike/ember-oss-docs': 1.1.3_xzkfrwjvhbxwtdt2o7wtmur2jm
       '@crowdstrike/ember-toucan-core': file:ember-toucan-core_tsl23gieylnuee6e2ygn7tbtzq
       '@ember/test-waiters': 3.0.2
       '@embroider/router': 2.0.0_htqm3qg3nmvfkwq4ngma65xhmi
@@ -130,7 +130,7 @@ importers:
       ember-modifier: 4.1.0_ember-source@4.11.0
       ember-resources: 5.6.2_nzehrtsecs4y42teskiixi4uiq
       highlight.js: 11.7.0
-      highlightjs-glimmer: 1.4.1_highlight.js@11.7.0
+      highlightjs-glimmer: 2.0.1_highlight.js@11.7.0
       tracked-built-ins: 3.1.1
     devDependencies:
       '@babel/core': 7.20.12
@@ -1998,7 +1998,7 @@ packages:
     dev: true
     optional: true
 
-  /@crowdstrike/ember-oss-docs/1.1.3_v6w3ttlr5tgzhirycmizipk2w4:
+  /@crowdstrike/ember-oss-docs/1.1.3_xzkfrwjvhbxwtdt2o7wtmur2jm:
     resolution: {integrity: sha512-2GiPPy4G4BDP+4BZpFd8dJ3CQSCrp2FobrxUE9uszSaPyF2wTim5ZH46IwKzrozF+fHB6EaDZG/hls7S8nyhQg==}
     peerDependencies:
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
@@ -2024,7 +2024,7 @@ packages:
       ember-modifier: 4.1.0_ember-source@4.11.0
       ember-url-hash-polyfill: 1.0.8_@babel+core@7.20.12
       highlight.js: 11.7.0
-      highlightjs-glimmer: 1.4.1_highlight.js@11.7.0
+      highlightjs-glimmer: 2.0.1_highlight.js@11.7.0
       lodash.merge: 4.6.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -10123,9 +10123,9 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: false
 
-  /highlightjs-glimmer/1.4.1_highlight.js@11.7.0:
-    resolution: {integrity: sha512-S2LpbYHcjvYMhf0TSFSKcFNbhDJwIVZBeTaFH1wCL9vL5XVX5fyrGG/IwCmIIvT0Vli9tUai8TTzmGJZrOSAtA==}
-    engines: {node: '> 10'}
+  /highlightjs-glimmer/2.0.1_highlight.js@11.7.0:
+    resolution: {integrity: sha512-xExe0gkvvtuP/pvxNeRD0LVO/nrjFjDzVwPC7odHdHq/OAV1zTJSasa4jJkY9OUtBHghrXyfYqwn3pofZfBpiA==}
+    engines: {node: ^14 || ^16 || ^18}
     peerDependencies:
       highlight.js: '>= 11.0.0'
     dependencies:
