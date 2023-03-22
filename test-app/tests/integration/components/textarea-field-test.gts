@@ -78,6 +78,7 @@ module('Integration | Component | TextareaField', function (hooks) {
     assert.dom('[data-textarea]').hasAttribute('aria-invalid', 'true');
 
     assert.dom('[data-textarea]').hasClass('shadow-error-outline');
+    assert.dom('[data-textarea]').hasClass('focus:shadow-error-focus-outline');
     assert.dom('[data-textarea]').doesNotHaveClass('shadow-focusable-outline');
   });
 

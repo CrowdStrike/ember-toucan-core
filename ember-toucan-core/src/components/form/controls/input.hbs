@@ -1,7 +1,11 @@
 <input
-  class="bg-overlay-1 focus:outline-none focus:shadow-focus-outline block rounded-sm p-1
+  class="bg-overlay-1 focus:outline-none focus:shadow-focus-outline block rounded-sm p-1 transition-shadow
     {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}
-    {{if @hasError 'shadow-error-outline' 'shadow-focusable-outline'}}"
+    {{if
+      @hasError
+      'shadow-error-outline focus:shadow-error-focus-outline'
+      'shadow-focusable-outline'
+    }}"
   disabled={{@isDisabled}}
   value={{@value}}
   ...attributes
