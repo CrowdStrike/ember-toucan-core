@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
+import type { ErrorMessage } from '../../-private/types';
 type FileTarget = EventTarget & { files?: FileList };
 export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
 
@@ -10,7 +11,7 @@ interface ToucanFormFileInputFieldComponentSignature {
   Args: {
     accept?: string;
     deleteLabel: string;
-    error?: string;
+    error?: ErrorMessage;
     files?: File[];
     hint?: string;
     label: string;
