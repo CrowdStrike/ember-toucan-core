@@ -161,7 +161,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasAttribute(
         'id',
         labelFor,
-        'Expected the for attribute on the label to match the id attribute on the checkbox'
+        'Expected the for attribute on the label to match the id attribute on the input'
       );
   });
 
@@ -215,12 +215,12 @@ module('Integration | Component | FileInputField', function (hooks) {
 
       ctx.currentFiles = files; 
 
-      assert.ok(event, 'Expected `e` to be available as the only argument');
+      assert.ok(event, 'Expected `e` to be available as the second argument');
       assert.ok(event.target, 'Expected direct access to target from `e`');
       assert.ok(firstFile, 'Expected a single file to exist in the target');
       assert.ok(firstFile instanceof File, 'Expected first file to be an instanceOf File');
       assert.strictEqual(firstFile?.name, 'sample.txt', 'Expected the correct filename');
-      assert.strictEqual(firstFile?.size, 18, 'Expected the correct filename');
+      assert.strictEqual(firstFile?.size, 18, 'Expected the correct file size');
       assert.strictEqual(files.length, 1, 'Expected a single file to be uploaded');
       assert.step('realOnChange');
     }
@@ -283,11 +283,16 @@ module('Integration | Component | FileInputField', function (hooks) {
       type: 'text/plain',
     });
 
+    // Verify no files
+    assert.dom('[data-files]').doesNotExist();
+    
     await triggerEvent('[data-file-input-field]', 'change', { files: [file] });
-
+    
+    // Verify files are there
+    assert.dom('[data-files]').exists();
     await triggerEvent('button', 'click');
-
-    assert.dom('ul').doesNotExist();
+    // Verify the `ul` is gone as all files are deleted
+    assert.dom('[data-files]').doesNotExist();
   });
 
   test('it can handle the multiple attribute correctly when multiple=false', async function (assert) {
