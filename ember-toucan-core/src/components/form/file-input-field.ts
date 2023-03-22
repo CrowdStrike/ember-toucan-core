@@ -54,10 +54,6 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     return this.args.multiple ?? true;
   }
 
-  formatSize(size: number) {
-    return `${Math.round(size / 1000)} KB`;
-  }
-
   get hasError() {
     return Boolean(this.args?.error);
   }
