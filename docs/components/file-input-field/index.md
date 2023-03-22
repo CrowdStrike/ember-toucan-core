@@ -15,19 +15,19 @@ Provide a string to `@deleteLabel` to render the accessible text (screenread-onl
 ## Trigger
 
 Required.
-Provide trigger text for the FileInputField (aka `Select Files`) via `@trigger`
+Provide trigger text for the FileInputField (aka `Select Files`) via `@trigger`.
 
 ## Hint
 
 Optional.
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Error
 
 Optional.
-Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
+Provide a string to `@error` to render the text into the Error section of the Field.
 
-## files
+## Files
 
 Optional.
 Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input via `@files`.
@@ -130,11 +130,11 @@ Target a file **size** in the file list via `data-file-size`.
 
 ## List of files
 
-Target the list of files via `data-files`
+Target the list of files via `data-files`.
 
 ## Trigger
 
-Target the trigger text (i.e. "Select Files") via `data-trigger`
+Target the trigger text (i.e. "Select Files") via `data-trigger`.
 
 ## UI States
 
