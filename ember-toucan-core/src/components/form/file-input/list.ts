@@ -7,7 +7,7 @@ import type { onDeleteFileHandler } from './delete-button';
 import type { WithBoundArgs } from '@glint/template';
 
 interface ToucanFormFileInputListComponentSignature {
-  Element: HTMLInputElement;
+  Element: HTMLUListElement;
   Args: {
     files: File[];
     onDelete: onDeleteFileHandler;

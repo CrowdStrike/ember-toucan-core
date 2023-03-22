@@ -7,7 +7,7 @@ export type onDeleteFileHandler = (
 ) => void;
 
 interface ToucanFormFileInputDeleteButtonComponentSignature {
-  Element: HTMLInputElement;
+  Element: HTMLButtonElement;
   Args: {
     file: File;
     onDelete: onDeleteFileHandler;

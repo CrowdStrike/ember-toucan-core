@@ -4,7 +4,7 @@ import { assert } from '@ember/debug';
 import type { onDeleteFileHandler } from './delete-button';
 
 interface ToucanFormFileInputListItemComponentSignature {
-  Element: HTMLInputElement;
+  Element: HTMLLIElement;
   Args: {
     file: File;
     onDelete: onDeleteFileHandler;
