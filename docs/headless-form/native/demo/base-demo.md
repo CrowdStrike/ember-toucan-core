@@ -1,4 +1,6 @@
 ```hbs template
+{{! note - write your own map-error helper }}
+{{! field.rawErrors.map(error => error.message) }}
 <HeadlessForm
   class='space-y-4'
   @data={{this.data}}
@@ -9,16 +11,12 @@
     <Form::InputField
       @label='Name'
       @hint='This is where you put your name'
+      @error={{map-errors field.rawErrors}}
       name='name'
       required
       @value={{field.value}}
       @onChange={{field.setValue}}
     />
-    {{#if field.rawErrors.length}}
-      {{#each field.rawErrors as |error|}}
-        <p>{{error.message}}</p>
-      {{/each}}
-    {{/if}}
   </form.Field>
 
   <Button type='submit'>Submit</Button>

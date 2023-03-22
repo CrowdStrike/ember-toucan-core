@@ -1,4 +1,6 @@
 ```hbs template
+{{! note - write your own map-error helper }}
+{{! field.rawErrors.map(error => error.message) }}
 <HeadlessForm
   class='space-y-4'
   @data={{changeset this.data this.validations}}
@@ -10,32 +12,24 @@
   <form.Field @name='name' as |field|>
     <Form::InputField
       @label='Name'
+      @error={{map-errors field.rawErrors}}
       @hint='This is where you put your name'
       name='name'
       @value={{field.value}}
       @onChange={{field.setValue}}
     />
-    {{#if field.rawErrors.length}}
-      {{#each field.rawErrors as |error|}}
-        <p>{{error.message}}</p>
-      {{/each}}
-    {{/if}}
   </form.Field>
 
   <form.Field @name='email' as |field|>
     <Form::InputField
       @label='Email'
+      @error={{map-errors field.rawErrors}}
       @hint='This is where you put your email'
       name='email'
       type='email'
       @value={{field.value}}
       @onChange={{field.setValue}}
     />
-    {{#if field.rawErrors.length}}
-      {{#each field.rawErrors as |error|}}
-        <p>{{error.message}}</p>
-      {{/each}}
-    {{/if}}
   </form.Field>
   <Button type='submit'>Submit</Button>
 </HeadlessForm>

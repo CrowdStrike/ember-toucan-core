@@ -6,11 +6,11 @@ interface Signature {
   Args: {
     Positional: Positional;
   };
-  Return: string[];
+  Return: string[] | undefined;
 }
 
 export default class AddHelper extends Helper<Signature> {
-  public compute(positional: Positional): string[] {
+  public compute(positional: Positional): string[] | undefined {
     const [rawErrors] = positional;
 
     if (!rawErrors) return;
