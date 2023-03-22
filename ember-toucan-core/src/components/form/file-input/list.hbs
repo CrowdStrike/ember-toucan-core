@@ -1,0 +1,23 @@
+<ul class="list-none" data-files ...attributes>
+  {{#each @files as |file|}}
+    {{#if (has-block)}}
+      {{yield
+        (hash
+          ListItem=(component
+            (ensure-safe-component this.ListItem)
+            file=file
+            onDelete=@onDelete
+            deleteLabel=@deleteLabel
+          )
+          file=file
+        )
+      }}
+    {{else}}
+      <this.ListItem
+        @file={{file}}
+        @onDelete={{@onDelete}}
+        @deleteLabel={{@deleteLabel}}
+      />
+    {{/if}}
+  {{/each}}
+</ul>

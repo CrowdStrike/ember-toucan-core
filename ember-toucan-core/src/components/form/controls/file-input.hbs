@@ -1,0 +1,37 @@
+<div
+  class="bg-overlay-1 focus-within:shadow-focus-outline relative inline-flex h-8 items-center rounded-sm px-2
+    {{if @hasError 'shadow-error-outline' 'shadow-focusable-outline'}}"
+  data-control-file-input-container
+>
+  <input
+    class="text-titles-and-attributes focus:outline-none absolute m-1 h-6 w-0 cursor-pointer bg-transparent p-1
+      {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+    disabled={{@isDisabled}}
+    type="file"
+    {{! template-lint-disable no-bare-strings no-inline-styles  }}
+    style="clip: rect(1px, 1px, 1px, 1px);"
+    {{on "change" this.onChange}}
+    multiple={{this.multiple}}
+    ...attributes
+  />
+  <div
+    class="text-titles-and-attributes inline-flex cursor-pointer items-center gap-x-2"
+  >
+    {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
+    <svg
+      class="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    ><path
+        d="M16.2 7.6l-2.1-2.3L12 3v13.1M12 3L9.9 5.3 7.8 7.6M21 15.1V19a2 2 0 01-2 2H5a2.006 2.006 0 01-2-2v-3.9"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      ></path></svg>
+    <span data-trigger>{{@trigger}}</span>
+  </div>
+</div>
