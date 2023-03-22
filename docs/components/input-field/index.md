@@ -12,7 +12,22 @@ Provide a string to `@hint` to render the text into the Hint section of the Fiel
 
 ## Error
 
-Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+
+## Error
+
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+
+```hbs
+<Form::InputField @label='Single error' @error='Error' />
+```
+
+```hbs
+<Form::InputField
+  @label='Multiple errors'
+  @error={{(array 'Error 1' 'Error 2')}}
+/>
+```
 
 ## Value and onChange
 
@@ -79,6 +94,7 @@ Target the error block via `data-error`.
 ## UI States
 
 ### InputField with Label
+
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
@@ -87,6 +103,7 @@ Target the error block via `data-error`.
 </div>
 
 ### InputField with Label and hint
+
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
@@ -95,7 +112,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label and error 
+### InputField with Label and error
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -105,7 +122,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label and isDisabled 
+### InputField with Label and isDisabled
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -116,5 +133,12 @@ Target the error block via `data-error`.
   />
 </div>
 
+### InputField with Multiple Errors
 
-
+<div class="mb-4 w-64">
+  <Form::InputField
+    @label="Label"
+    type="text"
+    @error={{(array "With error 1" "With error 2" "With error 3")}}
+  />
+</div>

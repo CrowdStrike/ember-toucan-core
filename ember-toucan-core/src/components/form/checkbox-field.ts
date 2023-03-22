@@ -1,15 +1,16 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
+import type { ErrorMessage } from '../../-private/types';
 import type { ToucanFormCheckboxControlComponentSignature } from './controls/checkbox';
 
 export interface ToucanFormCheckboxFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
-     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     * Provide a string or array of strings to this argument to render an error message and apply error styling to the Field.
      */
-    error?: string;
+    error?: ErrorMessage;
 
     /**
      * Provide a string to this argument to render a hint message to help describe the control.

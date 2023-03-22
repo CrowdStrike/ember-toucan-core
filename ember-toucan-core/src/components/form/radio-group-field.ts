@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 
 import RadioFieldComponent from './radio-field';
 
+import type { ErrorMessage } from '../../-private/types';
 import type { ToucanFormRadioFieldComponentSignature } from './radio-field';
 import type { WithBoundArgs } from '@glint/template';
 
@@ -10,9 +11,9 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
   Element: HTMLFieldSetElement;
   Args: {
     /**
-     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     * Provide a string or array of strings to this argument to render an error message and apply error styling to the Field.
      */
-    error?: string;
+    error?: ErrorMessage;
 
     /**
      * Provide a string to this argument to render a hint message to help describe the control.

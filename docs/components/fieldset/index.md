@@ -20,10 +20,14 @@ Provide a string to `@hint` to render the text into the Hint section of the Fiel
 
 ## Error
 
-Provide a string to `@error` to render the text into the Error section of the Fieldset. This is optional.
+Provide a string or array of strings to `@error` to render the text into the Error section of the Fieldset. This is optional.
 
 ```hbs
 <Form::Fieldset @label='Label' @error='Error' />
+```
+
+```hbs
+<Form::Fieldset @label='Label' @error={{(array 'Error 1' 'Error 2')}} />
 ```
 
 ## Disabled State
@@ -90,6 +94,11 @@ Target the error block via `data-error`.
 </Form::Fieldset>
 
 <Form::Fieldset @label='Label' @hint="With hint text" @error="With error">
+
+  <p class='text-body-and-labels text-xs m-0 italic'>~Fieldset components render here!~</p>
+</Form::Fieldset>
+
+<Form::Fieldset @label='Label' @hint="With hint text" @error={{(array "With error 1" "With error 2" "With error 3")}}>
 
   <p class='text-body-and-labels text-xs m-0 italic'>~Fieldset components render here!~</p>
 </Form::Fieldset>

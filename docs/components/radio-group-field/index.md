@@ -16,7 +16,19 @@ Provide a string to `@hint` to render the text into the Hint section of the fiel
 
 ## Error
 
-Provide a string to `@error` to render the text into the Error section of the fieldset. This is optional.
+Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset. This is optional.
+
+```hbs
+<Form::RadioGroupField @label='Label' @name='single-error' @error='Error' />
+```
+
+```hbs
+<Form::RadioGroupField
+  @label='Label'
+  @name='multiple-errors'
+  @error={{(array 'Error 1' 'Error 2')}}
+/>
+```
 
 ## Value and onChange
 
@@ -128,6 +140,12 @@ Consumers have direct access to the underlying [radio element](https://developer
 </Form::RadioGroupField>
 
 <Form::RadioGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} as |group|>
+<group.RadioField @label="Option 1" @value="option-1" />
+<group.RadioField @label="Option 2" @value="option-2" />
+<group.RadioField @label="Option 3" @value="option-3" />
+</Form::RadioGroupField>
+
+<Form::RadioGroupField @label="Label" @name="multiple-errors" @error={{(array "With error 1" "With error 2" "With error 3")}} as |group|>
 <group.RadioField @label="Option 1" @value="option-1" />
 <group.RadioField @label="Option 2" @value="option-2" />
 <group.RadioField @label="Option 3" @value="option-3" />

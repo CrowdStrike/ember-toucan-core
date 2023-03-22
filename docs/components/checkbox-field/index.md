@@ -12,7 +12,18 @@ Provide a string to `@hint` to render the text into the Hint section of the Fiel
 
 ## Error
 
-Provide a string to `@error` to render the text into the Error section of the Field. This is optional.
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+
+```hbs
+<Form::CheckboxField @label='Single error' @error='Error' />
+```
+
+```hbs
+<Form::CheckboxField
+  @label='Multiple errors'
+  @error={{(array 'Error 1' 'Error 2')}}
+/>
+```
 
 ## Value and onChange
 
@@ -154,6 +165,11 @@ Target the error block via `data-error`.
 @label='Disabled + checked'
 @value={{true}}
 @isDisabled={{true}}
+/>
+
+<Form::CheckboxField
+@label='Multiple errors'
+@error={{(array "With error 1" "With error 2" "With error 3")}}
 />
 
 </div>

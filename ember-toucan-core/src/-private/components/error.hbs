@@ -1,4 +1,8 @@
-<div class="type-xs-tight text-critical mt-1.5 flex items-center" ...attributes>
+<div
+  class="type-xs-tight text-critical mt-1.5 flex
+    {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+  ...attributes
+>
   {{! Icon taken from Tony's open source icon set, this is temporary! }}
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -18,5 +22,13 @@
     />
   </svg>
 
-  {{yield}}
+  {{#if this.hasMoreThanOneError}}
+    <ul class="m-0 list-none space-y-1.5 p-0">
+      {{#each this.errors as |error index|}}
+        <li class="m-0 p-0 leading-3" data-error-item={{index}}>{{error}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <span>{{get this.errors 0}}</span>
+  {{/if}}
 </div>

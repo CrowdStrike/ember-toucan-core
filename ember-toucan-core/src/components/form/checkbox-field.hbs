@@ -37,7 +37,7 @@
     </field.Control>
 
     {{#if @error}}
-      <field.Error id={{field.errorId}} data-error>{{@error}}</field.Error>
+      <field.Error id={{field.errorId}} @error={{@error}} data-error />
     {{/if}}
   </Form::Field>
 </div>

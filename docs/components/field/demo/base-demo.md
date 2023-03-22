@@ -12,7 +12,7 @@
         ...attributes
       />
     </field.Control>
-    <field.Error id={{field.errorId}}>Error message</field.Error>
+    <field.Error id={{field.errorId}} @error='Error message' />
   </div>
 </Form::Field>
 ```
