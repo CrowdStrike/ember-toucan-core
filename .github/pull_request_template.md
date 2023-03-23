@@ -2,7 +2,14 @@
 
 ## 🚀 Description
 
-<!-- Please write a thoughtful description of what this PR is accomplishing. Are you adding a new feature? Fixing a bug? Writing documentation? Is there a GitHub issue that can be closed if this merges? -->
+<!-- Please write a thoughtful description of what this PR is accomplishing. Are you adding a new feature? Fixing a bug? Writing documentation? Is there a GitHub issue that can be closed if this merges?
+
+Another acceptable option is to put the summary of the changes in list form:
+
+- [x] added: new styles in {filename}
+- [x] fixed: addressed flicker in {filename}
+
+-->
 
 ---
 
