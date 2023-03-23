@@ -1,6 +1,4 @@
 ```hbs template
-{{! note - write your own map-error helper }}
-{{! field.rawErrors.map(error => error.message) }}
 <HeadlessForm
   class='space-y-4'
   @data={{changeset this.data this.validations}}
@@ -12,7 +10,7 @@
   <form.Field @name='name' as |field|>
     <Form::InputField
       @label='Name'
-      @error={{map-errors field.rawErrors}}
+      @error={{this.mapErrors field.rawErrors}}
       @hint='This is where you put your name'
       name='name'
       @value={{field.value}}
@@ -23,7 +21,7 @@
   <form.Field @name='email' as |field|>
     <Form::InputField
       @label='Email'
-      @error={{map-errors field.rawErrors}}
+      @error={{this.mapErrors field.rawErrors}}
       @hint='This is where you put your email'
       name='email'
       type='email'
@@ -53,6 +51,14 @@ export default class MyFormComponent extends Component {
 
   handleSubmit({ name, email }) {
     alert(`Form submitted with: ${name} ${email}`);
+  }
+
+  mapErrors = (errors) => {
+    if (!errors) {
+      return
+    } 
+
+    return errors.map((error) => error.message);
   }
 }
 ```
