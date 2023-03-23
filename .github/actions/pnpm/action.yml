@@ -5,10 +5,11 @@ runs:
   steps:
     - uses: pnpm/action-setup@v2.2.4
       with:
-        version: 7
+        # TODO: Pinning this for now due to https://github.com/CrowdStrike/ember-toucan-core/issues/99
+        version: 7.30.0
     - uses: actions/setup-node@v3
       with:
         cache: 'pnpm'
     - name: 'Install dependencies'
       shell: 'bash'
-      run: pnpm install --fix-lockfile
+      run: pnpm install
