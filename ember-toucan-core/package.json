@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@embroider/addon-shim": "^1.0.0"
+    "@embroider/addon-shim": "1.8.4-unstable.00ec2e7"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
@@ -54,7 +54,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/test-helpers": "^2.8.1",
-    "@embroider/addon-dev": "^3.0.0",
+    "@embroider/addon-dev": "3.0.0-unstable.00ec2e7",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^1.0.0-beta.3",
