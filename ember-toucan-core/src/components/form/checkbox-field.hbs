@@ -4,7 +4,9 @@
 >
   <Form::Field as |field|>
     <field.Control
-      class="rounded-sm p-1 {{if @error 'shadow-error-outline'}}"
+      class="rounded-sm
+        {{if @error 'shadow-error-outline'}}
+        {{if @option 'p-0' 'p-1'}}"
       data-control
     >
 

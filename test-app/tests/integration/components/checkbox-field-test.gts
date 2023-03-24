@@ -192,6 +192,28 @@ module('Integration | Component | CheckboxField', function (hooks) {
     assert.dom('[data-root-field="selector"]').exists();
   });
 
+  test('it sets default padding when not provided with "@option"', async function (assert) {
+    // When a checkbox-field is used by itself, we want default padding to account
+    // for the potential error shadow.
+    await render(<template><CheckboxField @label="Label" /></template>);
+
+    assert.dom('[data-control]').doesNotHaveClass('p-0');
+    assert.dom('[data-control]').hasClass('p-1');
+  });
+
+  test('it sets no padding when provided with "@option"', async function (assert) {
+    // When inside of a checkbox-group-field, we do not want the built-in
+    // padding to account for the error shadow as the error shadow is handled
+    // by the Fieldset instead. We can tell if we are in a checkbox-group-field
+    // if an "@option" argument is provided.
+    await render(<template>
+      <CheckboxField @label="Label" @option="option-1" />
+    </template>);
+
+    assert.dom('[data-control]').doesNotHaveClass('p-1');
+    assert.dom('[data-control]').hasClass('p-0');
+  });
+
   test('it throws an assertion error if no `@label` is provided', async function (assert) {
     assert.expect(1);
 
