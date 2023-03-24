@@ -5,8 +5,7 @@ runs:
   steps:
     - uses: pnpm/action-setup@v2.2.4
       with:
-        # TODO: Pinning this for now due to https://github.com/CrowdStrike/ember-toucan-core/issues/99
-        version: 7.30.0
+        version: 7
     - uses: actions/setup-node@v3
       with:
         cache: 'pnpm'
