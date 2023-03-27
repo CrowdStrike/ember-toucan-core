@@ -23,6 +23,11 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the checked state of the checkbox.
+     */
+    isChecked?: ToucanFormCheckboxControlComponentSignature['Args']['isChecked'];
+
+    /**
      * Sets the indeterminate state of the checkbox.
      *
      * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
@@ -67,11 +72,6 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      * @internal
      */
     selectedValues?: Array<string>;
-
-    /**
-     * Sets the checked state of the checkbox.
-     */
-    value?: ToucanFormCheckboxControlComponentSignature['Args']['value'];
   };
 }
 
@@ -83,8 +83,8 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     assert('A "@label" argument is required', args.label);
 
     assert(
-      'Both "@option" and "@value" arguments were supplied. "@option" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@option" or "@value", but not both.',
-      !(args.value && args.option)
+      'Both "@option" and "@isChecked" arguments were supplied. "@option" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@option" or "@isChecked", but not both.',
+      !(args.isChecked && args.option)
     );
 
     super(owner, args);
@@ -92,7 +92,7 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
 
   get isChecked() {
     if (!this.args?.option) {
-      return this.args.value;
+      return this.args.isChecked;
     }
 
     if (!this.args.selectedValues || this.args.selectedValues.length === 0) {

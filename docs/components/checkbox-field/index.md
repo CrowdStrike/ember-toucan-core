@@ -32,14 +32,14 @@ To tie into the input event, provide `@onChange`. `@onChange` will return two ar
 1. the checked attribute from the target
 2. the raw event object
 
-It's most common to use this in combination with `@value` which will set the `checked` attribute for the Checkbox.
+It's most common to use this in combination with `@isChecked` which will set the `checked` attribute for the Checkbox.
 
 To access the indeterminate property of the checkbox, use `e.target.indeterminate`.
 
 ```hbs
 <Form::CheckboxField
   @label='Label'
-  @value={{this.value}}
+  @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}
 />
 ```
@@ -50,12 +50,12 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked value;
+  @tracked isChecked;
 
   @action
-  handleChange(value, e) {
-    console.log({ e, indeterminate: e.target.indeterminate, value });
-    this.value = value;
+  handleChange(checkedState, e) {
+    console.log({ e, indeterminate: e.target.indeterminate, checkedState });
+    this.isChecked = checkedState;
   }
 }
 ```
@@ -127,7 +127,7 @@ Target the error block via `data-error`.
 <Form::CheckboxField
 @label='Label'
 @hint='Checked'
-@value={{true}}
+@isChecked={{true}}
 />
 
 <Form::CheckboxField
@@ -163,7 +163,7 @@ Target the error block via `data-error`.
 
 <Form::CheckboxField
 @label='Disabled + checked'
-@value={{true}}
+@isChecked={{true}}
 @isDisabled={{true}}
 />
 

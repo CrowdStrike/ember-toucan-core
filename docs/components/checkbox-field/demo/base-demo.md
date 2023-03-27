@@ -1,8 +1,8 @@
 ```hbs template
 <Form::CheckboxField
   @label='Label'
-  @value={{this.value}}
-  @onChange={{this.updateValue}}
+  @isChecked={{this.isChecked}}
+  @onChange={{this.handleChange}}
 />
 ```
 
@@ -12,11 +12,11 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked value = false;
+  @tracked isChecked = false;
 
   @action
-  updateValue(value) {
-    this.value = value;
+  handleChange(checkedState) {
+    this.isChecked = checkedState;
   }
 }
 ```

@@ -42,11 +42,11 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').doesNotHaveClass('border-none');
   });
 
-  test('it makes the checkbox checked using `@value`', async function (assert) {
+  test('it makes the checkbox checked using `@isChecked`', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <CheckboxControl @value={{true}} data-checkbox />
+      <CheckboxControl @isChecked={{true}} data-checkbox />
     </template>);
 
     assert.dom('[data-checkbox]').isChecked();
@@ -83,11 +83,11 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasNoClass('bg-primary-idle');
   });
 
-  test('it applies the expected classes when `@value={{true}}` and `@isDisabled={{true}}', async function (assert) {
+  test('it applies the expected classes when `@isChecked={{true}}` and `@isDisabled={{true}}', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
-      <CheckboxControl @value={{true}} @isDisabled={{true}} data-checkbox />
+      <CheckboxControl @isChecked={{true}} @isDisabled={{true}} data-checkbox />
     </template>);
 
     assert.dom('[data-checkbox]').hasClass('bg-disabled');

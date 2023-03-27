@@ -4,14 +4,14 @@ Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/
 
 ## Checked Value
 
-To set the `checked` attribute of the checkbox, provide `@value`.
+To set the `checked` attribute of the checkbox, provide `@isChecked`.
 
 ```hbs
-<Form::Controls::Checkbox @value={{true}} data-checkbox-1 />
-<Form::Controls::Checkbox @value={{false}} data-checkbox-2 />
+<Form::Controls::Checkbox @isChecked={{true}} data-checkbox-1 />
+<Form::Controls::Checkbox @isChecked={{false}} data-checkbox-2 />
 ```
 
-To check the checked attribute in tests, use:
+To verify the checked attribute in tests, use:
 
 ```js
 assert.dom('[data-checkbox-1]').isChecked();
@@ -43,7 +43,7 @@ To access the indeterminate property of the checkbox, use `e.target.indeterminat
 
 ```hbs
 <Form::Controls::Checkbox
-  @value={{this.value}}
+  @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}
 />
 ```
@@ -54,12 +54,12 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked value = false;
+  @tracked isChecked = false;
 
   @action
-  handleChange(value, e) {
-    console.log({ e, indeterminate: e.target.indeterminate, value });
-    this.value = value;
+  handleChange(checkedState, e) {
+    console.log({ e, indeterminate: e.target.indeterminate, checkedState });
+    this.isChecked = checkedState;
   }
 }
 ```

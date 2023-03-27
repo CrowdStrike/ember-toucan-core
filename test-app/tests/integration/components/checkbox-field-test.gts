@@ -114,9 +114,9 @@ module('Integration | Component | CheckboxField', function (hooks) {
     assert.dom('[data-checkbox]').hasAttribute('name', 'checkbox-name');
   });
 
-  test('it sets the checked-state via `@value`', async function (assert) {
+  test('it sets the checked-state via `@isChecked`', async function (assert) {
     await render(<template>
-      <CheckboxField @label="Label" @value={{true}} data-checkbox />
+      <CheckboxField @label="Label" @isChecked={{true}} data-checkbox />
     </template>);
 
     assert.dom('[data-checkbox]').isChecked();
@@ -139,7 +139,7 @@ module('Integration | Component | CheckboxField', function (hooks) {
       <CheckboxField
         @label="Label"
         @onChange={{handleChange}}
-        @value={{false}}
+        @isChecked={{false}}
         data-checkbox
       />
     </template>);
@@ -230,20 +230,20 @@ module('Integration | Component | CheckboxField', function (hooks) {
     </template>);
   });
 
-  test('it throws an assertion error if provided with both "@option" and "@value"', async function (assert) {
+  test('it throws an assertion error if provided with both "@option" and "@isChecked"', async function (assert) {
     assert.expect(1);
 
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Both "@option" and "@value" arguments were supplied.'
+          'Both "@option" and "@isChecked" arguments were supplied.'
         ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      <CheckboxField @label="Label" @value={{true}} @option="option" />
+      <CheckboxField @label="Label" @isChecked={{true}} @option="option" />
     </template>);
   });
 });
