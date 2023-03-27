@@ -28,7 +28,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @tracked groupValue = [];
+  @tracked groupValue = ['option-1'];
 
   @action
   updateValue(value) {
