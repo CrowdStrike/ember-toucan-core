@@ -9,11 +9,15 @@
   />
   <Form::Fields::Radio
     @label='Option 2'
+    @hint='Some hint'
     @name='options'
     @value='option-2'
     @onChange={{this.updateValue}}
     @selectedValue='option-2'
-  />
+  >
+    <:label>extra label info</:label>
+    <:hint>extra hint info</:hint>
+  </Form::RadioField>
 </div>
 ```
 

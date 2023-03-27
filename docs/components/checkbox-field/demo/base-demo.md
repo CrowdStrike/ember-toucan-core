@@ -4,6 +4,9 @@
   @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}
 />
+  <:label>extra label info</:label>
+  <:hint>extra hint info</:hint>
+</Form::CheckboxField>
 ```
 
 ```js component

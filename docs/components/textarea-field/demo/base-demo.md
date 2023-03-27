@@ -5,7 +5,10 @@
   @error={{this.errorMessage}}
   @value={{this.value}}
   @onChange={{this.updateValue}}
-/>
+>
+  <:label>extra label info</:label>
+  <:hint>extra hint info</:hint>
+</Form::TextareaField>
 ```
 
 ```js component
