@@ -52,26 +52,26 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     onChange?: ToucanFormCheckboxControlComponentSignature['Args']['onChange'];
 
     /**
-     * The option argument gets mapped to the underlying value attribute of the checkbox. This should only be used
-     * for checkbox groups via CheckboxGroupField.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#handling_multiple_checkboxes
-     */
-    option?: string;
-
-    /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
      */
     rootTestSelector?: string;
 
     /**
      * This component argument is used to determine if the underlying checkbox is checked.
-     * When the `selectedValues` array contains the `option`, the checkbox will be checked.
+     * When the `selectedValues` array contains the `value`, the checkbox will be checked.
      * This should only be used for checkbox groups via CheckboxGroupField.
      *
      * @internal
      */
     selectedValues?: Array<string>;
+
+    /**
+     * The value argument gets mapped to the underlying value attribute of the checkbox. This should only be used
+     * for checkbox groups via CheckboxGroupField.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#handling_multiple_checkboxes
+     */
+    value?: string;
   };
 }
 
@@ -83,15 +83,15 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     assert('A "@label" argument is required', args.label);
 
     assert(
-      'Both "@option" and "@isChecked" arguments were supplied. "@option" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@option" or "@isChecked", but not both.',
-      !(args.isChecked && args.option)
+      'Both "@value" and "@isChecked" arguments were supplied. "@value" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@value" or "@isChecked", but not both.',
+      !(args.isChecked && args.value)
     );
 
     super(owner, args);
   }
 
   get isChecked() {
-    if (!this.args?.option) {
+    if (!this.args?.value) {
       return this.args.isChecked;
     }
 
@@ -99,6 +99,6 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
       return false;
     }
 
-    return this.args.selectedValues?.includes(this.args.option);
+    return this.args.selectedValues?.includes(this.args.value);
   }
 }

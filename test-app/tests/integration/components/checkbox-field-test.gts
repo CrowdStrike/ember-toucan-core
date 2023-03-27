@@ -192,7 +192,7 @@ module('Integration | Component | CheckboxField', function (hooks) {
     assert.dom('[data-root-field="selector"]').exists();
   });
 
-  test('it sets default padding when not provided with "@option"', async function (assert) {
+  test('it sets default padding when not provided with "@value"', async function (assert) {
     // When a checkbox-field is used by itself, we want default padding to account
     // for the potential error shadow.
     await render(<template><CheckboxField @label="Label" /></template>);
@@ -201,13 +201,13 @@ module('Integration | Component | CheckboxField', function (hooks) {
     assert.dom('[data-control]').hasClass('p-1');
   });
 
-  test('it sets no padding when provided with "@option"', async function (assert) {
+  test('it sets no padding when provided with "@value"', async function (assert) {
     // When inside of a checkbox-group-field, we do not want the built-in
     // padding to account for the error shadow as the error shadow is handled
     // by the Fieldset instead. We can tell if we are in a checkbox-group-field
-    // if an "@option" argument is provided.
+    // if an "@value" argument is provided.
     await render(<template>
-      <CheckboxField @label="Label" @option="option-1" />
+      <CheckboxField @label="Label" @value="option-1" />
     </template>);
 
     assert.dom('[data-control]').doesNotHaveClass('p-1');
@@ -230,20 +230,20 @@ module('Integration | Component | CheckboxField', function (hooks) {
     </template>);
   });
 
-  test('it throws an assertion error if provided with both "@option" and "@isChecked"', async function (assert) {
+  test('it throws an assertion error if provided with both "@value" and "@isChecked"', async function (assert) {
     assert.expect(1);
 
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Both "@option" and "@isChecked" arguments were supplied.'
+          'Both "@value" and "@isChecked" arguments were supplied.'
         ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      <CheckboxField @label="Label" @isChecked={{true}} @option="option" />
+      <CheckboxField @label="Label" @isChecked={{true}} @value="option" />
     </template>);
   });
 });

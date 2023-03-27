@@ -6,7 +6,7 @@
     <field.Control
       class="rounded-sm
         {{if @error 'shadow-error-outline'}}
-        {{if @option 'p-0' 'p-1'}}"
+        {{if @value 'p-0' 'p-1'}}"
       data-control
     >
 
@@ -16,7 +16,7 @@
           aria-describedby="{{if @error field.errorId}}"
           id={{field.id}}
           name={{@name}}
-          value={{@option}}
+          value={{@value}}
           @isDisabled={{@isDisabled}}
           @isChecked={{this.isChecked}}
           @isIndeterminate={{@isIndeterminate}}
