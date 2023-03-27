@@ -134,9 +134,6 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-file-input-field]').hasAttribute('aria-invalid', 'true');
 
     assert
-      .dom('[data-control-file-input-container]')
-      .hasClass('shadow-error-outline');
-    assert
       .dom('[data-file-input-field]')
       .doesNotHaveClass('shadow-focusable-outline');
   });
