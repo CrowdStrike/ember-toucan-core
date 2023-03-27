@@ -1,5 +1,11 @@
 <li
-  class="border-lines-light bg-overlay-0.5 shadow-inner-lg m-0 flex items-center rounded-sm border-2 p-0 pr-2"
+  class="bg-overlay-1 focus:outline-none focus:shadow-focus-outline m-0 block flex rounded-sm p-1 transition-shadow
+    {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}
+    {{if
+      @hasError
+      'shadow-error-outline focus:shadow-error-focus-outline'
+      'shadow-focusable-outline'
+    }}"
   ...attributes
 >
   <div class="flex-1 px-4 py-1">
