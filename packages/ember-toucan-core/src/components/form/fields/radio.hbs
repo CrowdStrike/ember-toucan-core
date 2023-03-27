@@ -21,10 +21,10 @@
             class="type-md-tight block leading-4
               {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
             data-label
-          >{{@label}}</span>
+          >{{@label}} {{yield to="label"}}</span>
 
           {{#if @hint}}
-            <field.Hint data-hint>{{@hint}}</field.Hint>
+            <field.Hint data-hint>{{@hint}} {{yield to="hint"}}</field.Hint>
           {{/if}}
         </div>
       </label>

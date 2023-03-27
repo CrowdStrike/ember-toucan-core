@@ -22,6 +22,10 @@ interface ToucanFormFileInputFieldComponentSignature {
     onChange?: (files: File[], event: FileEvent) => void;
     rootTestSelector?: string;
   };
+  Blocks: {
+    label: unknown;
+    hint: unknown;
+  };
 }
 
 export default class ToucanFormFileInputFieldComponent extends Component<ToucanFormFileInputFieldComponentSignature> {

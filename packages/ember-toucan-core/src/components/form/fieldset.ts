@@ -28,6 +28,8 @@ interface ToucanFormFieldsetComponentSignature {
   };
   Blocks: {
     default: [];
+    label: unknown;
+    hint: unknown;
   };
 }
 

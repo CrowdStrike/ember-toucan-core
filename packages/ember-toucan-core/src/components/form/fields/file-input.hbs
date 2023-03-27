@@ -4,9 +4,9 @@
 >
   <Form::Field as |field|>
     <field.Label for={{field.id}}>
-      <span data-label>{{@label}}</span>
+      <span data-label>{{@label}} {{yield to="label"}}</span>
       {{#if @hint}}
-        <field.Hint data-hint>{{@hint}}</field.Hint>
+        <field.Hint data-hint>{{@hint}} {{yield to="hint"}}</field.Hint>
       {{/if}}
       <field.Control class="mt-1.5">
         <Form::Controls::FileInput

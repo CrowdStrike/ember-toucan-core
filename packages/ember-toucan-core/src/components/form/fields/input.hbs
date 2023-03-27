@@ -3,10 +3,12 @@
   data-root-field={{if @rootTestSelector @rootTestSelector null}}
 >
   <Form::Field as |field|>
-    <field.Label for={{field.id}} data-label>{{@label}}</field.Label>
+    <field.Label for={{field.id}} data-label>{{@label}}
+      {{yield to="label"}}</field.Label>
 
     {{#if @hint}}
-      <field.Hint id={{field.hintId}} data-hint>{{@hint}}</field.Hint>
+      <field.Hint id={{field.hintId}} data-hint>{{@hint}}
+        {{yield to="hint"}}</field.Hint>
     {{/if}}
 
     <field.Control class="mt-1.5 flex">

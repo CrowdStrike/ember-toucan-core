@@ -42,6 +42,10 @@ export interface ToucanFormTextareaFieldComponentSignature {
      */
     value?: ToucanFormTextareaControlComponentSignature['Args']['value'];
   };
+  Blocks: {
+    label: unknown;
+    hint: unknown;
+  };
 }
 
 export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {

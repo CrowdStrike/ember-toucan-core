@@ -73,6 +73,10 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      */
     value?: string;
   };
+  Blocks: {
+    label: unknown;
+    hint: unknown;
+  };
 }
 
 export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFormCheckboxFieldComponentSignature> {

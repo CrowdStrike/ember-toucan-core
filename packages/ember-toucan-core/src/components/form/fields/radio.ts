@@ -49,6 +49,10 @@ export interface ToucanFormRadioFieldComponentSignature {
      */
     value: ToucanFormRadioControlComponentSignature['Args']['value'];
   };
+  Blocks: {
+    label: unknown;
+    hint: unknown;
+  };
 }
 
 export default class ToucanFormRadioFieldComponent extends Component<ToucanFormRadioFieldComponentSignature> {
