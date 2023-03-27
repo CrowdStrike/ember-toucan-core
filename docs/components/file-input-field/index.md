@@ -146,6 +146,10 @@ Target the list of files via `data-files`.
 
 Target the trigger text (i.e. "Select Files") via `data-trigger`.
 
+## Delete button
+
+Target the trash icon button via `data-delete-file`.
+
 ## UI States
 
 <div class='flex flex-col gap-y-5'>

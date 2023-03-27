@@ -24,9 +24,7 @@
           ...attributes
         />
       </field.Control>
-      <div
-        class="focusable type-md-medium interactive-normal inline-flex w-full cursor-pointer items-center justify-center truncate rounded-sm px-2 py-1 transition"
-      >
+      <Button @variant="secondary" @onClick={{(fn this.handleChange field)}}>
         <span data-trigger>{{@trigger}}</span>
         {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
         <svg
@@ -43,7 +41,7 @@
             stroke-linejoin="round"
             stroke-width="2"
           ></path></svg>
-      </div>
+      </Button>
     </field.Label>
     {{#if @error}}
       <field.Error id={{field.errorId}} @error={{@error}} data-error />

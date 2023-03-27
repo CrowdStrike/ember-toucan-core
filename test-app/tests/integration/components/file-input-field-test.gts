@@ -297,7 +297,9 @@ module('Integration | Component | FileInputField', function (hooks) {
 
     // Verify files are there
     assert.dom('[data-files]').exists();
-    await triggerEvent('button', 'click');
+    await triggerEvent('[data-delete-file]', 'click');
+
+    
     // Verify the `ul` is gone as all files are deleted
     assert.dom('[data-files]').doesNotExist();
   });
