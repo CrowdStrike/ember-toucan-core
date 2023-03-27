@@ -2,7 +2,7 @@
 
 Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox). If you are building forms, you may be interested in the CheckboxField component instead.
 
-## Checked Value
+## Checked State
 
 To set the `checked` attribute of the checkbox, provide `@isChecked`.
 
