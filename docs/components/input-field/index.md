@@ -98,7 +98,6 @@ Target the error block via `data-error`.
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
-    type="text"
   />
 </div>
 
@@ -108,7 +107,6 @@ Target the error block via `data-error`.
   <Form::InputField
     @label="Label"
     @hint="With hint text"
-    type="text"
   />
 </div>
 
@@ -117,7 +115,16 @@ Target the error block via `data-error`.
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
-    type="text"
+    @error="With error text"
+  />
+</div>
+
+### InputField with Label, hint, and error
+
+<div class="mb-4 w-64">
+  <Form::InputField
+    @label="Label"
+    @hint="With hint text"
     @error="With error text"
   />
 </div>
@@ -127,9 +134,8 @@ Target the error block via `data-error`.
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
-    type="text"
     @isDisabled={{true}}
-    value="I am a disabled input field"
+    value="disabled"
   />
 </div>
 
@@ -138,7 +144,6 @@ Target the error block via `data-error`.
 <div class="mb-4 w-64">
   <Form::InputField
     @label="Label"
-    type="text"
     @error={{(array "With error 1" "With error 2" "With error 3")}}
   />
 </div>
