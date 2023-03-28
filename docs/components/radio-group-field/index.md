@@ -12,11 +12,11 @@ Provide a string to `@label` to render the text into the `<legend>` of the field
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the fieldset. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the fieldset.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset.
 
 ```hbs
 <Form::RadioGroupField @label='Label' @name='single-error' @error='Error' />

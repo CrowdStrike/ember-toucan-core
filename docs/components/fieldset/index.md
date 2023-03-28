@@ -12,7 +12,7 @@ Provide a string to `@label` to render the text into the `<legend>` of the Field
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Fieldset. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Fieldset.
 
 ```hbs
 <Form::Fieldset @label='Label' @hint='Hint' />
@@ -20,7 +20,7 @@ Provide a string to `@hint` to render the text into the Hint section of the Fiel
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Fieldset. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Fieldset.
 
 ```hbs
 <Form::Fieldset @label='Label' @error='Error' />

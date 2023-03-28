@@ -8,11 +8,11 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::CheckboxField @label='Single error' @error='Error' />

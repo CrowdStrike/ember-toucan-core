@@ -16,7 +16,7 @@ Provide a string to `@value` to set the `value` attribute of the radio. This is 
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Value, Checked State, and onChange
 
