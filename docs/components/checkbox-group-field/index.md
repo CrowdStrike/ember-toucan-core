@@ -4,7 +4,7 @@ Provides a checkbox group to be used within forms. It yields [CheckboxFields](./
 
 ## Yielded Items
 
-- `CheckboxField`: An underlying [CheckboxField](./checkbox-field) component. All arguments and attributes of CheckboxField can be supplied (e.g., `@isDisabled`, `@hint`, etc.). To give each option a unique value, use the `@option` argument.
+- `CheckboxField`: An underlying [CheckboxField](./checkbox-field) component. All arguments and attributes of CheckboxField can be supplied (e.g., `@isDisabled`, `@hint`, etc.). To give each option a unique value, use the `@value` argument.
 
 ## Label
 
@@ -25,7 +25,7 @@ To tie into the input event when a checkbox is clicked, provide `@onChange`. `@o
 1. an array containing the selected values
 2. the raw event object
 
-A `@value` argument to the CheckboxGroupField is used to determine which of the checkboxes is currently selected. It does so by comparing `@value` to each `@option` of the checkbox. When an `@onChange` event occurs, it's most common to update the `@value` argument to the newly selected values as shown in the example below.
+A `@value` argument to the CheckboxGroupField is used to determine which of the checkboxes is currently selected. It does so by comparing `@value` provided to the CheckboxGroupField to each `@value` of the checkbox. When an `@onChange` event occurs, it's most common to update the `@value` argument to the newly selected values as shown in the example below.
 
 ```hbs
 <Form::CheckboxGroupField
@@ -35,8 +35,8 @@ A `@value` argument to the CheckboxGroupField is used to determine which of the 
   @onChange={{this.updateValue}}
   as |group|
 >
-  <group.CheckboxField @label='Option 1' @option='option-1' />
-  <group.CheckboxField @label='Option 2' @option='option-2' />
+  <group.CheckboxField @label='Option 1' @value='option-1' />
+  <group.CheckboxField @label='Option 2' @value='option-2' />
 </Form::CheckboxGroupField>
 ```
 
@@ -89,7 +89,7 @@ To disable individual checkbox fields, set the `@isDisabled` argument directly o
 >
   <group.CheckboxField
     @label='Option 1'
-    @option='option-1'
+    @value='option-1'
     @isDisabled={{true}}
   />
 </Form::CheckboxGroupField>
@@ -107,34 +107,34 @@ Consumers have direct access to the underlying [checkbox element](https://develo
   @name='options-a'
   as |group|
 >
-  <group.CheckboxField @label='Option 1' @option='option-1' />
-  <group.CheckboxField @label='Option 2' @option='option-2'/>
-  <group.CheckboxField @label='Option 3' @option='option-3'/>
-  <group.CheckboxField @label='Option 4' @option='option-4'/>
+  <group.CheckboxField @label='Option 1' @value='option-1' />
+  <group.CheckboxField @label='Option 2' @value='option-2'/>
+  <group.CheckboxField @label='Option 3' @value='option-3'/>
+  <group.CheckboxField @label='Option 4' @value='option-4'/>
 </Form::CheckboxGroupField>
 
 <Form::CheckboxGroupField @label="Label" @name="options-b" @hint="Select an option" as |group|>
-<group.CheckboxField @label="Option 1" @option="option-1" />
-<group.CheckboxField @label="Option 2" @option="option-2" />
-<group.CheckboxField @label="Option 3" @option="option-3" />
+<group.CheckboxField @label="Option 1" @value="option-1" />
+<group.CheckboxField @label="Option 2" @value="option-2" />
+<group.CheckboxField @label="Option 3" @value="option-3" />
 </Form::CheckboxGroupField>
 
 <Form::CheckboxGroupField @label="Label" @name="options-c" @error="With error" as |group|>
-<group.CheckboxField @label="Option 1" @option="option-1" />
-<group.CheckboxField @label="Option 2" @option="option-2" />
-<group.CheckboxField @label="Option 3" @option="option-3" />
+<group.CheckboxField @label="Option 1" @value="option-1" />
+<group.CheckboxField @label="Option 2" @value="option-2" />
+<group.CheckboxField @label="Option 3" @value="option-3" />
 </Form::CheckboxGroupField>
 
 <Form::CheckboxGroupField @label="Label" @name="options-d" @hint="Select an option" @error="With error" as |group|>
-<group.CheckboxField @label="Option 1" @option="option-1" />
-<group.CheckboxField @label="Option 2" @option="option-2" />
-<group.CheckboxField @label="Option 3" @option="option-3" />
+<group.CheckboxField @label="Option 1" @value="option-1" />
+<group.CheckboxField @label="Option 2" @value="option-2" />
+<group.CheckboxField @label="Option 3" @value="option-3" />
 </Form::CheckboxGroupField>
 
 <Form::CheckboxGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} as |group|>
-<group.CheckboxField @label="Option 1" @option="option-1" />
-<group.CheckboxField @label="Option 2" @option="option-2" />
-<group.CheckboxField @label="Option 3" @option="option-3" />
+<group.CheckboxField @label="Option 1" @value="option-1" />
+<group.CheckboxField @label="Option 2" @value="option-2" />
+<group.CheckboxField @label="Option 3" @value="option-3" />
 </Form::CheckboxGroupField>
 
 </div>

@@ -18,22 +18,22 @@ export interface ToucanFormCheckboxControlComponentSignature {
     onChange?: OnChangeCallback<boolean>;
 
     /**
+     * Sets the checked state of the checkbox.
+     */
+    isChecked?: boolean;
+
+    /**
      * Sets the indeterminate state of the checkbox.
      *
      * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
      */
     isIndeterminate?: boolean;
-
-    /**
-     * Sets the checked state of the checkbox.
-     */
-    value?: boolean;
   };
 }
 
 export default class ToucanFormCheckboxControlComponent extends Component<ToucanFormCheckboxControlComponentSignature> {
   get isChecked() {
-    return this.args.value ?? false;
+    return this.args.isChecked ?? false;
   }
 
   get isIndeterminate() {

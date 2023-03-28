@@ -31,12 +31,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
@@ -47,7 +47,7 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
     assert.dom('[data-checkbox-2]').exists();
   });
 
-  test('it sets the `value` attribute of the yielded CheckboxFields based on the provided `@option` argument', async function (assert) {
+  test('it sets the `value` attribute of the yielded CheckboxFields based on the provided `@value` argument', async function (assert) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
@@ -57,12 +57,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
@@ -82,12 +82,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
@@ -125,12 +125,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
@@ -151,12 +151,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>
@@ -195,12 +195,12 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
       >
         <group.CheckboxField
           @label="label 1"
-          @option="option-1"
+          @value="option-1"
           data-checkbox-1
         />
         <group.CheckboxField
           @label="label 2"
-          @option="option-2"
+          @value="option-2"
           data-checkbox-2
         />
       </CheckboxGroupField>

@@ -41,7 +41,7 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
     onChange?: (selectedValues: Array<string>, e: Event | InputEvent) => void;
 
     /**
-     * The currently selected checkbox elements. The elements with the matching `@option` / underlying value attribute will be checked.
+     * The currently selected checkbox elements. The elements with the matching `@value` / underlying value attribute will be checked.
      */
     value?: Array<string>;
   };
