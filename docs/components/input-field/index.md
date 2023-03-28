@@ -135,8 +135,27 @@ Target the error block via `data-error`.
   <Form::InputField
     @label="Label"
     @isDisabled={{true}}
-    value="disabled"
   />
+</div>
+
+### InputField with Label, value, and isDisabled
+
+<div class="mb-4 w-64">
+  <Form::InputField
+    @label="Label"
+    @isDisabled={{true}}
+    @value="disabled"
+  />
+</div>
+
+### InputField with a value
+
+<div class="mb-4 w-64">
+<Form::InputField
+@label='Label'
+@hint='With value'
+@value='a value'
+/>
 </div>
 
 ### InputField with Multiple Errors

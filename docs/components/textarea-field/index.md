@@ -97,37 +97,77 @@ Target the error block via `data-error`.
 
 ## All UI States
 
-<div class="flex flex-col space-y-4">
+### TextareaField with Label
+
+<div class="mb-4 w-64">
 <Form::TextareaField
 @label='Label'
 />
+</div>
 
+### TextareaField with Label and hint
+
+<div class="mb-4 w-64">
+<Form::TextareaField
+@label='Label'
+@hint='With hint text'
+/>
+</div>
+
+### TextareaField with Label and error
+
+<div class="mb-4 w-64">
 <Form::TextareaField
 @label='Label'
 @error="With error"
 />
+</div>
 
-<Form::TextareaField
-@label='Label'
-@hint='With hint text'
-/>
+### TextareaField with Label, hint, and error
 
+<div class="mb-4 w-64">
 <Form::TextareaField
 @label='Label'
 @hint='With hint text'
 @error="With error"
 />
+</div>
 
+### TextareaField with Label and isDisabled
+
+<div class="mb-4 w-64">
+<Form::TextareaField
+@label='Label'
+@isDisabled={{true}}
+/>
+</div>
+
+### TextareaField with Label, value, and isDisabled
+
+<div class="mb-4 w-64">
+<Form::TextareaField
+@label='Label'
+@isDisabled={{true}}
+@value="disabled"
+/>
+</div>
+
+### TextareaField with a value
+
+<div class="mb-4 w-64">
 <Form::TextareaField
 @label='Label'
 @hint='With value'
 @value='a value'
 />
+</div>
 
+### TextareaField with Multiple Errors
+
+<div class="mb-4 w-64">
 <Form::TextareaField
 @label='Label'
 @hint='With hint text'
 @error={{(array "With error 1" "With error 2" "With error 3")}}
 />
-
 </div>
