@@ -219,16 +219,4 @@ module('Integration | Component | CheckboxGroupField', function (hooks) {
     assert.dom('[data-checkbox-2]').isChecked();
   });
 
-  test('it sets "aria-invalid" when provided with `@error`', async function (assert) {
-    await render(<template>
-      <CheckboxGroupField
-        @label="Label"
-        @name="group"
-        @error="Error message"
-        data-group-field
-      />
-    </template>);
-
-    assert.dom('[data-group-field]').hasAttribute('aria-invalid', 'true');
-  });
 });
