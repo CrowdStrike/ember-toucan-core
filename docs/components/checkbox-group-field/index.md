@@ -165,3 +165,13 @@ Consumers have direct access to the underlying [checkbox element](https://develo
   <group.CheckboxField @label="Option 3" @value="option-3" />
   </Form::CheckboxGroupField>
 </div>
+
+### CheckboxGroupField with label and multiple errors
+
+<div class="mb-4 w-64">
+  <Form::CheckboxGroupField @label="Label" @name="multiple-errors" @error={{(array "With error 1" "With error 2" "With error 3")}} as |group|>
+    <group.CheckboxField @label="Option 1" @value="option-1" />
+    <group.CheckboxField @label="Option 2" @value="option-2" />
+    <group.CheckboxField @label="Option 3" @value="option-3" />
+  </Form::CheckboxGroupField>
+</div>
