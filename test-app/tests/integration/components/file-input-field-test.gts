@@ -308,19 +308,24 @@ module('Integration | Component | FileInputField', function (hooks) {
   test('it can handle the multiple attribute correctly when multiple=false', async function (assert) {
     class Context {
       @tracked currentFiles: File[] | [] = [];
+      @tracked triggerText = '';
     }
 
     let ctx = new Context();
+    ctx.triggerText = 'Browse Files';
 
-    const realOnChange = (files: File[], event: FileEvent) => {
+    const realOnChange = (files: File[]) => {
       ctx.currentFiles = files;
+      if (ctx.currentFiles.length > 0) {
+        ctx.triggerText = 'Replace files';
+      }
     };
 
     await render(<template>
       <FileInputField
         @deleteLabel="Delete File"
         @label="Label"
-        @trigger="Select Files"
+        @trigger={{ctx.triggerText}}
         @onChange={{realOnChange}}
         @files={{ctx.currentFiles}}
         @multiple={{false}}
@@ -345,6 +350,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert
       .dom('li [data-file-name]')
       .hasText('banana.txt', 'Without multiple, files are replaced');
+    assert.dom('[data-trigger]').hasText('Replace files', 'For single file input field, trigger text indicates a replace')
   });
 
   test('it can handle the multiple attribute correctly when multiple=true', async function (assert) {

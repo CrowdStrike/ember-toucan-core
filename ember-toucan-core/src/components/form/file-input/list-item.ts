@@ -9,6 +9,8 @@ interface ToucanFormFileInputListItemComponentSignature {
     file: File;
     onDelete: onDeleteFileHandler;
     deleteLabel: string;
+    hasError?: boolean;
+    isDisabled?: boolean;
   };
 }
 

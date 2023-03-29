@@ -16,7 +16,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked files = [
-    createFile(['Here is a file'], { name: 'sample-file.txt' }),
+    createFile(['Here is a file'], { name: 'SomeonesUploadedFile.csv' }),
   ];
 
   @action
