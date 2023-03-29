@@ -95,62 +95,62 @@ Target the error block via `data-error`.
 
 ### InputField with label
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
+    @label='Label'
   />
 </div>
 
 ### InputField with label and hint
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    @hint="With hint text"
+    @label='Label'
+    @hint='With hint text'
   />
 </div>
 
 ### InputField with label and error
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    @error="With error text"
+    @label='Label'
+    @error='With error text'
   />
 </div>
 
 ### InputField with label, hint, and error
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    @hint="With hint text"
-    @error="With error text"
+    @label='Label'
+    @hint='With hint text'
+    @error='With error text'
   />
 </div>
 
 ### InputField with label and isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
+    @label='Label'
     @isDisabled={{true}}
   />
 </div>
 
 ### InputField with label, value, and isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
+    @label='Label'
     @isDisabled={{true}}
-    @value="disabled"
+    @value='disabled'
   />
 </div>
 
 ### InputField with a value
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
 <Form::InputField
 @label='Label'
 @hint='With value'
@@ -160,9 +160,9 @@ Target the error block via `data-error`.
 
 ### InputField with multiple errors
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    @error={{(array "With error 1" "With error 2" "With error 3")}}
+    @label='Label'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />
 </div>

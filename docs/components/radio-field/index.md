@@ -90,7 +90,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-a'
@@ -100,7 +100,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label and hint
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-b'
@@ -111,7 +111,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label and isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-c'
@@ -122,7 +122,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label, hint, and selectedValue
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-d'
@@ -134,7 +134,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with long label, and short error
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='This is an option that expands to multiple lines'
     @name='options-e'
@@ -144,7 +144,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with long label and hint
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='This is an option that expands to multiple lines'
     @name='options-f'
@@ -155,7 +155,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label, hint, and value isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-g'
@@ -167,7 +167,7 @@ Target the hint block via `data-hint`.
 
 ### RadioField with label, selectedValue, and isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::RadioField
     @label='Label'
     @name='options-h'
