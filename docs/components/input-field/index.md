@@ -93,7 +93,7 @@ Target the error block via `data-error`.
 
 ## UI States
 
-### InputField with Label
+### InputField with label
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -101,7 +101,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label and hint
+### InputField with label and hint
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -110,7 +110,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label and error
+### InputField with label and error
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -119,7 +119,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label, hint, and error
+### InputField with label, hint, and error
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -129,7 +129,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label and isDisabled
+### InputField with label and isDisabled
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -138,7 +138,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with Label, value, and isDisabled
+### InputField with label, value, and isDisabled
 
 <div class="mb-4 w-64">
   <Form::InputField
@@ -158,7 +158,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### InputField with Multiple Errors
+### InputField with multiple errors
 
 <div class="mb-4 w-64">
   <Form::InputField

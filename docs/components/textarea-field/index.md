@@ -97,7 +97,7 @@ Target the error block via `data-error`.
 
 ## All UI States
 
-### TextareaField with Label
+### TextareaField with label
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -105,7 +105,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Label and hint
+### TextareaField with label and hint
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -114,7 +114,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Label and error
+### TextareaField with label and error
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -123,7 +123,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Label, hint, and error
+### TextareaField with label, hint, and error
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -133,7 +133,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Label and isDisabled
+### TextareaField with label and isDisabled
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -142,7 +142,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Label, value, and isDisabled
+### TextareaField with label, value, and isDisabled
 
 <div class="mb-4 w-64">
 <Form::TextareaField
@@ -162,7 +162,7 @@ Target the error block via `data-error`.
 />
 </div>
 
-### TextareaField with Multiple Errors
+### TextareaField with multiple errors
 
 <div class="mb-4 w-64">
 <Form::TextareaField
