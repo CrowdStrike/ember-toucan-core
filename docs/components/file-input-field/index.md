@@ -152,32 +152,60 @@ Target the trash icon button via `data-delete-file`.
 
 ## UI States
 
-<div class='flex flex-col gap-y-5'>
+## FileInputField with label
+
+<div class='mb-4 w-64'>
   <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'
     @trigger='Browse Files'
   />
+</div>
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@hint='Hint text'
-@trigger='Browse Files'
-/>
+## FileInputField with label and hint
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@error='Here is an error'
-@trigger='Browse Files'
-/>
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @hint='Hint text'
+    @trigger='Browse Files'
+    />
+</div>
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@isDisabled={{true}}
-@trigger='Browse Files'
-/>
+## FileInputField with label and hint, and extra label and hint blocks
 
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @hint='Hint text'
+    @trigger='Browse Files'
+  >
+    <:label>Icon</:label>
+    <:hint><a href="#">Link</a></:hint>
+  </Form::Fields::FileInput>
+</div>
+
+## FileInputField with label, hint and error
+
+<div class='mb-4 w-64'>
+  <Form::FileInputField
+    @deleteLabel='Delete file'
+    @label='Label'
+    @hint='Hint'
+    @error='Here is an error'
+    @trigger='Select Files'
+  />
+</div>
+  
+## FileInputField with label and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::FileInputField
+    @deleteLabel='Delete file'
+    @label='Label'
+    @isDisabled={{true}}
+    @trigger='Browse Files'
+    />
 </div>
