@@ -82,7 +82,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "autoprefixer": "^10.0.2",
-    "concurrently": "^7.2.1",
+    "concurrently": "^8.0.0",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-source": "~4.11.0",
     "ember-template-lint": "^5.3.3",
