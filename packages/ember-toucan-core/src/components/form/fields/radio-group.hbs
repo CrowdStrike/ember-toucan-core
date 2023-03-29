@@ -1,22 +1,43 @@
-<Form::Fieldset
-  @label={{@label}}
-  @hint={{@hint}}
-  @error={{@error}}
-  @isDisabled={{@isDisabled}}
-  aria-invalid={{if @error "true"}}
-  aria-required="true"
-  role="radiogroup"
-  ...attributes
->
-  {{yield
-    (hash
-      RadioField=(component
-        (ensure-safe-component this.RadioFieldComponent)
-        name=@name
-        onChange=this.handleInput
-        selectedValue=@value
-        isDisabled=@isDisabled
-      )
-    )
-  }}
-</Form::Fieldset>
+<Form::Field as |field|>
+  <fieldset
+    aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
+    disabled={{@isDisabled}}
+    aria-invalid={{if @error "true"}}
+    aria-required="true"
+    role="radiogroup"
+    ...attributes
+  >
+    <legend
+      class="type-md-tight text-body-and-labels block"
+      data-label
+    >{{@label}} {{yield to="label"}}</legend>
+
+    {{#if @hint}}
+      <field.Hint id={{field.hintId}} data-hint>{{@hint}}
+        {{yield to="hint"}}
+      </field.Hint>
+    {{/if}}
+
+    <field.Control
+      class="mt-1.5 flex flex-col space-y-2 rounded-sm p-1
+        {{if @error 'shadow-error-outline'}}"
+      data-control
+    >
+      {{yield
+        (hash
+          RadioField=(component
+            (ensure-safe-component this.RadioFieldComponent)
+            name=@name
+            onChange=this.handleInput
+            selectedValue=@value
+            isDisabled=@isDisabled
+          )
+        )
+      }}
+    </field.Control>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}} @error={{@error}} data-error />
+    {{/if}}
+  </fieldset>
+</Form::Field>

@@ -1,20 +1,41 @@
-<Form::Fieldset
-  @label={{@label}}
-  @hint={{@hint}}
-  @error={{@error}}
-  @isDisabled={{@isDisabled}}
-  aria-invalid={{if @error "true"}}
-  ...attributes
->
-  {{yield
-    (hash
-      CheckboxField=(component
-        (ensure-safe-component this.CheckboxFieldComponent)
-        name=@name
-        onChange=this.handleInput
-        isDisabled=@isDisabled
-        selectedValues=@value
-      )
-    )
-  }}
-</Form::Fieldset>
+<Form::Field as |field|>
+  <fieldset
+    aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
+    disabled={{@isDisabled}}
+    {{! attribute aria-invalid is not supported by the element fieldset with the implicit role of group }}
+    ...attributes
+  >
+    <legend
+      class="type-md-tight text-body-and-labels block"
+      data-label
+    >{{@label}} {{yield to="label"}}</legend>
+
+    {{#if @hint}}
+      <field.Hint id={{field.hintId}} data-hint>{{@hint}}
+        {{yield to="hint"}}
+      </field.Hint>
+    {{/if}}
+
+    <field.Control
+      class="mt-1.5 flex flex-col space-y-2 rounded-sm p-1
+        {{if @error 'shadow-error-outline'}}"
+      data-control
+    >
+      {{yield
+        (hash
+          CheckboxField=(component
+            (ensure-safe-component this.CheckboxFieldComponent)
+            name=@name
+            onChange=this.handleInput
+            isDisabled=@isDisabled
+            selectedValues=@value
+          )
+        )
+      }}
+    </field.Control>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}} @error={{@error}} data-error />
+    {{/if}}
+  </fieldset>
+</Form::Field>

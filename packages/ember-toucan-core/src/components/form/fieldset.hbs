@@ -7,10 +7,11 @@
     <legend
       class="type-md-tight text-body-and-labels block"
       data-label
-    >{{@label}}</legend>
+    >{{@label}} {{yield to="label"}}</legend>
 
     {{#if @hint}}
       <field.Hint id={{field.hintId}} data-hint>{{@hint}}
+        {{yield to="hint"}}
       </field.Hint>
     {{/if}}
 
