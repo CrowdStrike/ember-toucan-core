@@ -2,6 +2,11 @@
 
 Provides an underlying `<input type="file">` element building on top of the Field component.
 
+## Accepts
+
+Optional.
+Used to specify the types of files allowed. [See related documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept).
+
 ## Label
 
 Required.
@@ -33,6 +38,11 @@ Optional.
 Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input via `@files`.
 
 **Note:** To make things easier, the `@files` argument is an array. This makes it convenient to use existing Array methods like `find` and `filter`.
+
+## Multiple
+
+Optional.
+If true, allows users to upload multiple files. If false, the `multiple` attribute is not added to the underlying input.
 
 ## Value and onChange
 

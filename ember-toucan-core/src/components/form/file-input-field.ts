@@ -46,14 +46,6 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     super(owner, args);
   }
 
-  get accept() {
-    return this.args.accept ?? '*';
-  }
-
-  get multiple() {
-    return this.args.multiple ?? true;
-  }
-
   get hasError() {
     return Boolean(this.args?.error);
   }
