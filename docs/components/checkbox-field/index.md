@@ -103,73 +103,142 @@ Target the error block via `data-error`.
 
 ## All UI States
 
-<div class="flex flex-col space-y-4" style="max-width: 14rem">
-<Form::CheckboxField
-@label='Label'
-/>
+### CheckboxField with label
 
-<Form::CheckboxField
-@label='Label'
-@error="With error"
-/>
-
-<Form::CheckboxField
-@label='Label'
-@hint='With hint text'
-/>
-
-<Form::CheckboxField
-@label='Label'
-@hint='With hint text'
-@error="With error"
-/>
-
-<Form::CheckboxField
-@label='Label'
-@hint='Checked'
-@isChecked={{true}}
-/>
-
-<Form::CheckboxField
-@label='Label'
-@hint='Indeterminate'
-@isIndeterminate={{true}}
-/>
-
+<div class="mb-4 w-64">
 <Form::CheckboxField
 @label='This is an option that expands to multiple lines'
 />
+</div>
 
+### CheckboxField with label and hint
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@hint='With hint text'
+/>
+</div>
+
+### CheckboxField with label and error
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@error='With error'
+/>
+</div>
+
+### CheckboxField with label, hint, and error
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@error='With error'
+@hint="With hint text"
+/>
+</div>
+
+### CheckboxField with label and isDisabled
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@isDisabled={{true}}
+/>
+</div>
+
+### CheckboxField with label, isChecked, and isDisabled
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@isChecked={{true}}
+@isDisabled={{true}}
+/>
+</div>
+
+### CheckboxField with label, isIndeterminate, and isDisabled
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@isIndeterminate={{true}}
+@isDisabled={{true}}
+/>
+</div>
+
+### CheckboxField with isChecked
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@isChecked={{true}}
+/>
+</div>
+
+### CheckboxField with isIndeterminate
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@isIndeterminate={{true}}
+/>
+</div>
+
+### CheckboxField with isIndeterminate and hint
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@hint='With hint text'
+@isIndeterminate={{true}}
+/>
+</div>
+
+### CheckboxField with multiple errors
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@error={{(array "With error 1" "With error 2" "With error 3")}}
+/>
+</div>
+
+### CheckboxField with hint and isChecked
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='Label'
+@hint='With hint text'
+@isChecked={{true}}
+/>
+</div>
+
+### CheckboxField with long label and short error
+
+<div class="mb-4 w-64">
+<Form::CheckboxField
+@label='This is an option that expands to multiple lines'
+@error="With error"
+/>
+</div>
+
+### CheckboxField with long label and hint
+
+<div class="mb-4 w-64">
 <Form::CheckboxField
 @label='This is an option that expands to multiple lines'
 @hint="Here is helper text that overflows onto multiple lines"
 />
+</div>
 
-<Form::CheckboxField
-@label='This is an option that expands to multiple lines'
-@error="With error"
-/>
+### CheckboxField with hint and isDisabled
 
+<div class="mb-4 w-64">
 <Form::CheckboxField
-@label='Disabled'
+@label='Label'
+@hint="With hint text"
 @isDisabled={{true}}
 />
-
-<Form::CheckboxField
-@label='Disabled'
-@hint="With hint"
-@isDisabled={{true}}
-/>
-
-<Form::CheckboxField
-@label='Disabled + checked'
-@isChecked={{true}}
-@isDisabled={{true}}
-/>
-
-<Form::CheckboxField
-@label='Multiple errors'
-@error={{(array "With error 1" "With error 2" "With error 3")}}
-/>
-
 </div>
