@@ -14,6 +14,7 @@ interface ToucanFormControlsFileInputComponentSignature {
     onChange?: (files: File[] | [], event: FileEvent) => void;
     multiple?: boolean;
     files?: File[];
+    accept?: string;
   };
 }
 
@@ -28,6 +29,10 @@ export default class ToucanFormControlsFileInputComponent extends Component<Touc
     );
 
     super(owner, args);
+  }
+
+  get accept() {
+    return this.args.accept ?? '*';
   }
 
   get multiple() {

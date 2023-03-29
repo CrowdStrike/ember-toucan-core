@@ -13,8 +13,8 @@
         <Form::Controls::FileInput
           aria-describedby={{if this.hasError field.errorId}}
           aria-invalid={{if this.hasError "true"}}
-          accept={{this.accept}}
           id={{field.id}}
+          @accept={{@accept}}
           @files={{@files}}
           @hasError={{this.hasError}}
           @multiple={{@multiple}}
