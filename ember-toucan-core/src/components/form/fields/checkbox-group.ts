@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import CheckboxFieldComponent from './checkbox-field';
+import CheckboxFieldComponent from './checkbox';
 
 import type { WithBoundArgs } from '@glint/template';
 

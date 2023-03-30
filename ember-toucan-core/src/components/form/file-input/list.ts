@@ -33,16 +33,16 @@ export default class ToucanFormFileInputListComponent extends Component<ToucanFo
     args: ToucanFormFileInputListComponentSignature['Args']
   ) {
     assert(
-      'An "@onDelete" argument is required for Form::FileInput::List. If using the Form::FileInputField, this should be provided automatically.',
+      'An "@onDelete" argument is required for Form::FileInput::List. If using the Form::Fields::FileInput, this should be provided automatically.',
       args.onDelete !== undefined
     );
     assert(
-      'An "@files" argument is required for Form::FileInput::List. If using the Form::FileInputField, this should be provided automatically.',
+      'An "@files" argument is required for Form::FileInput::List. If using the Form::Fields::FileInput, this should be provided automatically.',
       args.files !== undefined
     );
 
     assert(
-      'An "@deleteLabel" argument is required for Form::FileInput::List. If using the Form::FileInputField, this should be provided automatically.',
+      'An "@deleteLabel" argument is required for Form::FileInput::List. If using the Form::Fields::FileInput, this should be provided automatically.',
       args.deleteLabel !== undefined
     );
 

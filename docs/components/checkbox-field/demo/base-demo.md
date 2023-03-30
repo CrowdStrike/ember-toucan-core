@@ -1,5 +1,5 @@
 ```hbs template
-<Form::CheckboxField
+<Form::Fields::Checkbox
   @label='Label'
   @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}

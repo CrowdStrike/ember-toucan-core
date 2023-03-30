@@ -6,18 +6,18 @@
 <Input hasError={{true}} />
 <Input isDisabled={{true}} />
 
-<Form::InputField @label="Label" @hint="hint text" type="text" />
+<Form::Fields::Input @label="Label" @hint="hint text" type="text" />
 
-<Form::InputField @label="Label" type="text" @error="There is an error" />
-<Form::InputField @label="Label" type="text" @isDisabled={{true}} />
+<Form::Fields::Input @label="Label" type="text" @error="There is an error" />
+<Form::Fields::Input @label="Label" type="text" @isDisabled={{true}} />
 
 <Textarea />
 <Textarea hasError={{true}} />
 <Textarea isDisabled={{true}} />
 
-<Form::TextareaField @label="Label" @hint="Hint text" />
-<Form::TextareaField @label="Label" @hint="Hint text" @error="Error text" />
-<Form::TextareaField
+<Form::Fields::Textarea @label="Label" @hint="Hint text" />
+<Form::Fields::Textarea @label="Label" @hint="Hint text" @error="Error text" />
+<Form::Fields::Textarea
   @label="Label"
   @hint="Hint text"
   @error="Error text"

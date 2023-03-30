@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
-import type { ToucanFormRadioControlComponentSignature } from './controls/radio';
+import type { ToucanFormRadioControlComponentSignature } from '../controls/radio';
 
 export interface ToucanFormRadioFieldComponentSignature {
   Element: HTMLInputElement;

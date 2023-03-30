@@ -1,5 +1,5 @@
 ```hbs template
-<Form::CheckboxGroupField
+<Form::Fields::CheckboxGroup
   @label='Label'
   @hint='Extra information about the field'
   @name='options'
@@ -19,7 +19,7 @@
     @hint='Extra information about the radio'
     @value='option-4'
   />
-</Form::CheckboxGroupField>
+</Form::Fields::CheckboxGroup>
 ```
 
 ```js component

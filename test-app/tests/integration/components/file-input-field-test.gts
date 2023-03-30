@@ -4,10 +4,10 @@ import { find, render, setupOnerror, triggerEvent } from '@ember/test-helpers';
 import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 
-import FileInputField from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
+import FileInputField from '@crowdstrike/ember-toucan-core/components/form/fields/file-input';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/file-input-field';
+import type { FileEvent } from '@crowdstrike/ember-toucan-core/components/form/fields/file-input';
 
 type Options = {
   name: string;
@@ -298,7 +298,7 @@ module('Integration | Component | FileInputField', function (hooks) {
     // Verify files are there
     assert.dom('[data-files]').exists();
     await triggerEvent('[data-delete-file]', 'click');
-    
+
     // Verify the `ul` is gone as all files are deleted
     assert.dom('[data-files]').doesNotExist();
   });
@@ -348,7 +348,12 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert
       .dom('li [data-file-name]')
       .hasText('banana.txt', 'Without multiple, files are replaced');
-    assert.dom('[data-trigger]').hasText('Replace files', 'For single file input field, trigger text indicates a replace')
+    assert
+      .dom('[data-trigger]')
+      .hasText(
+        'Replace files',
+        'For single file input field, trigger text indicates a replace'
+      );
   });
 
   test('it can handle the multiple attribute correctly when multiple=true', async function (assert) {

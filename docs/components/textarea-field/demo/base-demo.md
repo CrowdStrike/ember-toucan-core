@@ -1,5 +1,5 @@
 ```hbs template
-<Form::TextareaField
+<Form::Fields::Textarea
   @label='Label'
   @hint='Type "textarea" into the field'
   @error={{this.errorMessage}}

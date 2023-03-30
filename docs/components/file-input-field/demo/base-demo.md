@@ -1,5 +1,5 @@
 ```hbs template
-<Form::FileInputField
+<Form::Fields::FileInput
   @deleteLabel='Delete file'
   @label='Label'
   @files={{this.files}}

@@ -4,7 +4,7 @@
 import { click, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import CheckboxField from '@crowdstrike/ember-toucan-core/components/form/checkbox-field';
+import CheckboxField from '@crowdstrike/ember-toucan-core/components/form/fields/checkbox';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | CheckboxField', function (hooks) {

@@ -53,7 +53,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will return two ar
 2. the raw FileEvent
 
 ```hbs
-<Form::FileInputField
+<Form::Fields::FileInput
   @deleteLabel='Delete'
   @label='Label'
   @trigger='Select files'
@@ -96,7 +96,7 @@ Provide a custom selector via `@rootTestSelector`. This test selector will be us
 ```hbs
 // in a test: assert.dom('[data-root-field="example"]');
 
-<Form::FileInputField
+<Form::Fields::FileInput
   @label='Label'
   @trigger='Browse Files'
   @rootTestSelector='example'
@@ -153,27 +153,27 @@ Target the trash icon button via `data-delete-file`.
 ## UI States
 
 <div class='flex flex-col gap-y-5'>
-  <Form::FileInputField
+  <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'
     @trigger='Browse Files'
   />
 
-<Form::FileInputField
+<Form::Fields::FileInput
 @deleteLabel='Delete file'
 @label='Label'
 @hint='Hint text'
 @trigger='Browse Files'
 />
 
-<Form::FileInputField
+<Form::Fields::FileInput
 @deleteLabel='Delete file'
 @label='Label'
 @error='Here is an error'
 @trigger='Browse Files'
 />
 
-<Form::FileInputField
+<Form::Fields::FileInput
 @deleteLabel='Delete file'
 @label='Label'
 @isDisabled={{true}}

@@ -1,10 +1,10 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import RadioFieldComponent from './radio-field';
+import RadioFieldComponent from './radio';
 
-import type { ErrorMessage } from '../../-private/types';
-import type { ToucanFormRadioFieldComponentSignature } from './radio-field';
+import type { ErrorMessage } from '../../../-private/types';
+import type { ToucanFormRadioFieldComponentSignature } from './radio';
 import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormRadioGroupFieldComponentSignature {
