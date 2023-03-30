@@ -3,6 +3,12 @@ import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/input';
+import { action } from '@ember/object';
+
+import { tracked } from '@glimmer/tracking';
+import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
+import CharacterCount from '@crowdstrike/ember-toucan-core/components/form/controls/character-count';
+
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | Fields | Input', function (hooks) {
@@ -195,5 +201,31 @@ module('Integration | Component | Fields | Input', function (hooks) {
       <InputField @label="Label" @rootTestSelector="selector" data-input />
     </template>);
     assert.dom('[data-root-field="selector"]').exists();
+  });
+
+  test('it renders a `<:character>` block that tracks the input value length', async function (assert) {
+    class Context {
+      @tracked count = 0;
+
+      @action
+      handleChange(value: string) {
+        this.count = value.length;
+      }
+    }
+
+    let ctx = new Context();
+
+    await render(<template>
+      <InputField @label="Label" @value="Hello" @onChange={{ctx.handleChange}} data-input>
+        <:character as |data|><CharacterCount @id={{data.id}} @current={{ctx.count}} @max={{255}} data-character /></:character>
+      </InputField>
+    </template>);
+
+    await this.pauseTest();
+    assert.dom('[data-character]').hasText('5 / 255');
+
+    await fillIn('[data-input]', 'Hello Hello');
+    
+    assert.dom('[data-character]').hasText('11 / 255');
   });
 });
