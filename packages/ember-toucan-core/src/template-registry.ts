@@ -1,4 +1,5 @@
 import type ButtonComponent from './components/button';
+import type FormControlsCharacterCount from './components/form/controls/character-count';
 import type CheckboxControlComponent from './components/form/controls/checkbox';
 import type FormControlsFileInputComponent from './components/form/controls/file-input';
 import type InputControlComponent from './components/form/controls/input';
@@ -32,4 +33,5 @@ export default interface Registry {
   'Form::Fields::Radio': typeof RadioFieldComponent;
   'Form::Fields::RadioGroup': typeof RadioGroupFieldComponent;
   'Form::Fields::Textarea': typeof TextareaFieldComponent;
+  'Form::Controls::CharacterCount': typeof FormControlsCharacterCount;
 }
