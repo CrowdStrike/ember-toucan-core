@@ -7,6 +7,13 @@
   @onChange={{this.updateValue}}
   type='text'
 />
+>
+  <:character as |data|><Form::Controls::CharacterCount
+      @id={{data.id}}
+      @current={{this.count}}
+      @max={{255}}
+    /></:character>
+</Form::Fields::Input>
 ```
 
 ```js component
@@ -17,6 +24,7 @@ import { tracked } from '@glimmer/tracking';
 export default class extends Component {
   @tracked value;
   @tracked errorMessage;
+  @tracked count = 0;
 
   @action
   updateValue(value, e) {
@@ -28,6 +36,12 @@ export default class extends Component {
     }
 
     this.errorMessage = null;
+  }
+
+  @action
+  handleChange(value, event) {
+    console.log({ value, event });
+    this.count = value.length;
   }
 }
 ```
