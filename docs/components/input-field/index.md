@@ -8,15 +8,15 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::InputField @label='Single error' @error='Error' />
@@ -93,52 +93,76 @@ Target the error block via `data-error`.
 
 ## UI States
 
-### InputField with Label
+### InputField with label
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    type="text"
+    @label='Label'
   />
 </div>
 
-### InputField with Label and hint
+### InputField with label and hint
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    @hint="With hint text"
-    type="text"
+    @label='Label'
+    @hint='With hint text'
   />
 </div>
 
-### InputField with Label and error
+### InputField with label and error
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    type="text"
-    @error="With error text"
+    @label='Label'
+    @error='With error text'
   />
 </div>
 
-### InputField with Label and isDisabled
+### InputField with label, hint, and error
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    type="text"
+    @label='Label'
+    @hint='With hint text'
+    @error='With error text'
+  />
+</div>
+
+### InputField with label and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::InputField
+    @label='Label'
     @isDisabled={{true}}
-    value="I am a disabled input field"
   />
 </div>
 
-### InputField with Multiple Errors
+### InputField with label, value, and isDisabled
 
-<div class="mb-4 w-64">
+<div class='mb-4 w-64'>
   <Form::InputField
-    @label="Label"
-    type="text"
-    @error={{(array "With error 1" "With error 2" "With error 3")}}
+    @label='Label'
+    @isDisabled={{true}}
+    @value='disabled'
+  />
+</div>
+
+### InputField with a value
+
+<div class='mb-4 w-64'>
+<Form::InputField
+@label='Label'
+@hint='With value'
+@value='a value'
+/>
+</div>
+
+### InputField with multiple errors
+
+<div class='mb-4 w-64'>
+  <Form::InputField
+    @label='Label'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />
 </div>

@@ -8,11 +8,11 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::TextareaField @label='Single error' @error='Error' />
@@ -97,37 +97,75 @@ Target the error block via `data-error`.
 
 ## All UI States
 
-<div class="flex flex-col space-y-4">
-<Form::TextareaField
-@label='Label'
-/>
+### TextareaField with label
 
-<Form::TextareaField
-@label='Label'
-@error="With error"
-/>
+<div class='mb-4 w-64'>
+  <Form::TextareaField @label='Label' />
+</div>
 
-<Form::TextareaField
-@label='Label'
-@hint='With hint text'
-/>
+### TextareaField with label and hint
 
-<Form::TextareaField
-@label='Label'
-@hint='With hint text'
-@error="With error"
-/>
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @hint='With hint text'
+  />
+</div>
 
-<Form::TextareaField
-@label='Label'
-@hint='With value'
-@value='a value'
-/>
+### TextareaField with label and error
 
-<Form::TextareaField
-@label='Label'
-@hint='With hint text'
-@error={{(array "With error 1" "With error 2" "With error 3")}}
-/>
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @error='With error'
+  />
+</div>
 
+### TextareaField with label, hint, and error
+
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @hint='With hint text'
+    @error='With error'
+  />
+</div>
+
+### TextareaField with label and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @isDisabled={{true}}
+  />
+</div>
+
+### TextareaField with label, value, and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @isDisabled={{true}}
+    @value='disabled'
+  />
+</div>
+
+### TextareaField with a value
+
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @hint='With value'
+    @value='a value'
+  />
+</div>
+
+### TextareaField with multiple errors
+
+<div class='mb-4 w-64'>
+  <Form::TextareaField
+    @label='Label'
+    @hint='With hint text'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+  />
 </div>

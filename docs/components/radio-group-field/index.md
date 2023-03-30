@@ -12,11 +12,11 @@ Provide a string to `@label` to render the text into the `<legend>` of the field
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the fieldset. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the fieldset.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset.
 
 ```hbs
 <Form::RadioGroupField @label='Label' @name='single-error' @error='Error' />
@@ -109,46 +109,77 @@ Consumers have direct access to the underlying [radio element](https://developer
 
 ## All UI States
 
-<div class="flex flex-col space-y-4" style="max-width: 14rem">
-<Form::RadioGroupField
-  @label='Label'
-  @name='options-a'
-  as |group|
->
+### RadioGroupField with label
+
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField
+    @label='Label'
+    @name='options-a'
+    as |group|
+  >
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2'/>
+    <group.RadioField @label='Option 3' @value='option-3'/>
+    <group.RadioField @label='Option 4' @value='option-4'/>
+  </Form::RadioGroupField>
+</div>
+
+### RadioGroupField with label and hint
+
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @name='options-b' @hint='Select an option' as |group|>
   <group.RadioField @label='Option 1' @value='option-1' />
-  <group.RadioField @label='Option 2' @value='option-2'/>
-  <group.RadioField @label='Option 3' @value='option-3'/>
-  <group.RadioField @label='Option 4' @value='option-4'/>
-</Form::RadioGroupField>
+  <group.RadioField @label='Option 2' @value='option-2' />
+  <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
+</div>
 
-<Form::RadioGroupField @label="Label" @name="options-b" @hint="Select an option" as |group|>
-<group.RadioField @label="Option 1" @value="option-1" />
-<group.RadioField @label="Option 2" @value="option-2" />
-<group.RadioField @label="Option 3" @value="option-3" />
-</Form::RadioGroupField>
+### RadioGroupField with label and error
 
-<Form::RadioGroupField @label="Label" @name="options-c" @error="With error" as |group|>
-<group.RadioField @label="Option 1" @value="option-1" />
-<group.RadioField @label="Option 2" @value="option-2" />
-<group.RadioField @label="Option 3" @value="option-3" />
-</Form::RadioGroupField>
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @name='options-c' @error='With error' as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2' />
+    <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
+</div>
 
-<Form::RadioGroupField @label="Label" @name="options-d" @hint="Select an option" @error="With error" as |group|>
-<group.RadioField @label="Option 1" @value="option-1" />
-<group.RadioField @label="Option 2" @value="option-2" />
-<group.RadioField @label="Option 3" @value="option-3" />
-</Form::RadioGroupField>
+### RadioGroupField with label, hint, and error
 
-<Form::RadioGroupField @label="Label" @name="disabled" @hint="With disabled" @isDisabled={{true}} as |group|>
-<group.RadioField @label="Option 1" @value="option-1" />
-<group.RadioField @label="Option 2" @value="option-2" />
-<group.RadioField @label="Option 3" @value="option-3" />
-</Form::RadioGroupField>
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @name='options-d' @hint='Select an option' @error='With error' as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2' />
+    <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
+</div>
 
-<Form::RadioGroupField @label="Label" @name="multiple-errors" @error={{(array "With error 1" "With error 2" "With error 3")}} as |group|>
-<group.RadioField @label="Option 1" @value="option-1" />
-<group.RadioField @label="Option 2" @value="option-2" />
-<group.RadioField @label="Option 3" @value="option-3" />
-</Form::RadioGroupField>
+### RadioGroupField with label and isDisabled
 
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @isDisabled={{true}} @name='options-e' as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2' />
+    <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
+</div>
+
+### RadioGroupField with label, hint, and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @name='options-f' @isDisabled={{true}} @hint='With hint text' as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2' />
+    <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
+</div>
+
+### RadioGroupField with label and multiple errors
+
+<div class='mb-4 w-64'>
+  <Form::RadioGroupField @label='Label' @name='multiple-errors' @error={{(array 'With error 1' 'With error 2' 'With error 3')}} as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField @label='Option 2' @value='option-2' />
+    <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::RadioGroupField>
 </div>

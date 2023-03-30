@@ -11,10 +11,10 @@
     <Form::InputField
       @label='Name'
       @error={{this.mapErrors field.rawErrors}}
-      @hint='This is where you put your name'
-      name='name'
+      @hint='What should we call you?'
       @value={{field.value}}
       @onChange={{field.setValue}}
+      name='name'
     />
   </form.Field>
 
@@ -22,11 +22,11 @@
     <Form::InputField
       @label='Email'
       @error={{this.mapErrors field.rawErrors}}
-      @hint='This is where you put your email'
-      name='email'
-      type='email'
+      @hint='How do we contact you?'
       @value={{field.value}}
       @onChange={{field.setValue}}
+      name='email'
+      type='email'
     />
   </form.Field>
   <Button type='submit'>Submit</Button>
@@ -42,23 +42,27 @@ import {
 } from 'ember-changeset-validations/validators';
 
 export default class MyFormComponent extends Component {
-  data = { name: 'Nicole' };
+  data = { name: 'CrowdStrike', email: null };
 
   validations = {
     name: validatePresence(true),
     email: validateFormat({ type: 'email' }),
   };
 
-  handleSubmit({ name, email }) {
+  handleSubmit(data) {
+    console.log({ data });
+
+    const { name, email } = data;
+
     alert(`Form submitted with: ${name} ${email}`);
   }
 
   mapErrors = (errors) => {
     if (!errors) {
-      return
-    } 
+      return;
+    }
 
     return errors.map((error) => error.message);
-  }
+  };
 }
 ```

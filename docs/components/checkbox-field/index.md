@@ -8,11 +8,11 @@ Provide a string to `@label` to render the text into the `<label>` of the Field.
 
 ## Hint
 
-Provide a string to `@hint` to render the text into the Hint section of the Field. This is optional.
+Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
 
 ## Error
 
-Provide a string or array of strings to `@error` to render the text into the Error section of the Field. This is optional.
+Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::CheckboxField @label='Single error' @error='Error' />
@@ -103,73 +103,142 @@ Target the error block via `data-error`.
 
 ## All UI States
 
-<div class="flex flex-col space-y-4" style="max-width: 14rem">
-<Form::CheckboxField
-@label='Label'
-/>
+### CheckboxField with label
 
-<Form::CheckboxField
-@label='Label'
-@error="With error"
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='This is an option that expands to multiple lines'
+  />
+</div>
 
-<Form::CheckboxField
-@label='Label'
-@hint='With hint text'
-/>
+### CheckboxField with label and hint
 
-<Form::CheckboxField
-@label='Label'
-@hint='With hint text'
-@error="With error"
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @hint='With hint text'
+  />
+</div>
 
-<Form::CheckboxField
-@label='Label'
-@hint='Checked'
-@isChecked={{true}}
-/>
+### CheckboxField with label and error
 
-<Form::CheckboxField
-@label='Label'
-@hint='Indeterminate'
-@isIndeterminate={{true}}
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @error='With error'
+  />
+</div>
 
-<Form::CheckboxField
-@label='This is an option that expands to multiple lines'
-/>
+### CheckboxField with label, hint, and error
 
-<Form::CheckboxField
-@label='This is an option that expands to multiple lines'
-@hint="Here is helper text that overflows onto multiple lines"
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @error='With error'
+    @hint='With hint text'
+  />
+</div>
 
-<Form::CheckboxField
-@label='This is an option that expands to multiple lines'
-@error="With error"
-/>
+### CheckboxField with label and isDisabled
 
-<Form::CheckboxField
-@label='Disabled'
-@isDisabled={{true}}
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @isDisabled={{true}}
+  />
+</div>
 
-<Form::CheckboxField
-@label='Disabled'
-@hint="With hint"
-@isDisabled={{true}}
-/>
+### CheckboxField with label, isChecked, and isDisabled
 
-<Form::CheckboxField
-@label='Disabled + checked'
-@isChecked={{true}}
-@isDisabled={{true}}
-/>
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @isChecked={{true}}
+    @isDisabled={{true}}
+  />
+</div>
 
-<Form::CheckboxField
-@label='Multiple errors'
-@error={{(array "With error 1" "With error 2" "With error 3")}}
-/>
+### CheckboxField with label, isIndeterminate, and isDisabled
 
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @isIndeterminate={{true}}
+    @isDisabled={{true}}
+  />
+</div>
+
+### CheckboxField with isChecked
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @isChecked={{true}}
+  />
+</div>
+
+### CheckboxField with isIndeterminate
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @isIndeterminate={{true}}
+  />
+</div>
+
+### CheckboxField with isIndeterminate and hint
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @hint='With hint text'
+    @isIndeterminate={{true}}
+  />
+</div>
+
+### CheckboxField with multiple errors
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+  />
+</div>
+
+### CheckboxField with hint and isChecked
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @hint='With hint text'
+    @isChecked={{true}}
+  />
+</div>
+
+### CheckboxField with long label and short error
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='This is an option that expands to multiple lines'
+    @error='With error'
+  />
+</div>
+
+### CheckboxField with long label and hint
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='This is an option that expands to multiple lines'
+    @hint='Here is helper text that overflows onto multiple lines'
+  />
+</div>
+
+### CheckboxField with hint and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::CheckboxField
+    @label='Label'
+    @hint='With hint text'
+    @isDisabled={{true}}
+  />
 </div>

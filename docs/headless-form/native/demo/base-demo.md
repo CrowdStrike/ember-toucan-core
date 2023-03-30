@@ -8,12 +8,25 @@
   <form.Field @name='name' as |field|>
     <Form::InputField
       @label='Name'
-      @hint='This is where you put your name'
+      @hint='What should we call you?'
       @error={{this.mapErrors field.rawErrors}}
-      name='name'
-      required
       @value={{field.value}}
       @onChange={{field.setValue}}
+      name='name'
+      required
+    />
+  </form.Field>
+
+  <form.Field @name='email' as |field|>
+    <Form::InputField
+      @label='Email'
+      @hint='How do we contact you?'
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{field.value}}
+      @onChange={{field.setValue}}
+      name='email'
+      required
+      type='email'
     />
   </form.Field>
 
@@ -26,19 +39,23 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class MyFormComponent extends Component {
-  data = { name: 'Nicole' };
+  data = { name: 'CrowdStrike', email: null };
 
   @action
   handleSubmit(data) {
     console.log({ data });
+
+    const { name, email } = data;
+
+    alert(`Form submitted with: ${name} ${email}`);
   }
 
   mapErrors = (errors) => {
     if (!errors) {
-      return
-    } 
+      return;
+    }
 
     return errors.map((error) => error.message);
-  }
+  };
 }
 ```
