@@ -25,7 +25,6 @@
       @value={{field.value}}
       @onChange={{field.setValue}}
       name='email'
-      pattern='/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'
       required
       type='email'
     />
