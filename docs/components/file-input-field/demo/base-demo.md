@@ -4,7 +4,7 @@
   @label='Label'
   @files={{this.files}}
   @hint='Hint text'
-  @trigger='Select Files'
+  @trigger='Browse Files'
   @onChange={{this.handleChange}}
 />
 ```

@@ -1,5 +1,5 @@
 <div
-  class="flex flex-col {{if @isDisabled 'text-disabled'}}"
+  class="inline-flex flex-col {{if @isDisabled 'text-disabled'}}"
   data-root-field={{if @rootTestSelector @rootTestSelector}}
 >
   <Form::Field as |field|>
@@ -8,11 +8,11 @@
       {{#if @hint}}
         <field.Hint data-hint>{{@hint}}</field.Hint>
       {{/if}}
-
       <field.Control class="mt-1.5">
         <Form::Controls::FileInput
           aria-describedby={{if this.hasError field.errorId}}
           aria-invalid={{if this.hasError "true"}}
+          class="sr-only"
           id={{field.id}}
           @accept={{@accept}}
           @files={{@files}}
@@ -23,8 +23,25 @@
           @isDisabled={{@isDisabled}}
           ...attributes
         />
+        <Button @variant="secondary" @onClick={{(fn this.handleChange field)}}>
+          <span data-trigger>{{@trigger}}</span>
+          {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
+          <svg
+            class="ml-2 h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          ><path
+              d="M16.2 7.6l-2.1-2.3L12 3v13.1M12 3L9.9 5.3 7.8 7.6M21 15.1V19a2 2 0 01-2 2H5a2.006 2.006 0 01-2-2v-3.9"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path></svg>
+        </Button>
       </field.Control>
-
     </field.Label>
     {{#if @error}}
       <field.Error id={{field.errorId}} @error={{@error}} data-error />

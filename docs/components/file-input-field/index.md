@@ -98,7 +98,7 @@ Provide a custom selector via `@rootTestSelector`. This test selector will be us
 
 <Form::FileInputField
   @label='Label'
-  @trigger='Select Files'
+  @trigger='Browse Files'
   @rootTestSelector='example'
 />
 // targeting this field's specific label in a test //
@@ -146,34 +146,38 @@ Target the list of files via `data-files`.
 
 Target the trigger text (i.e. "Select Files") via `data-trigger`.
 
+## Delete button
+
+Target the trash icon button via `data-delete-file`.
+
 ## UI States
 
 <div class='flex flex-col gap-y-5'>
   <Form::FileInputField
     @deleteLabel='Delete file'
     @label='Label'
-    @trigger='Select Files'
+    @trigger='Browse Files'
   />
 
 <Form::FileInputField
 @deleteLabel='Delete file'
 @label='Label'
 @hint='Hint text'
-@trigger='Select Files'
+@trigger='Browse Files'
 />
 
 <Form::FileInputField
 @deleteLabel='Delete file'
 @label='Label'
 @error='Here is an error'
-@trigger='Select Files'
+@trigger='Browse Files'
 />
 
 <Form::FileInputField
 @deleteLabel='Delete file'
 @label='Label'
 @isDisabled={{true}}
-@trigger='Select Files'
+@trigger='Browse Files'
 />
 
 </div>

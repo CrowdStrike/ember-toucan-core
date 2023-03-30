@@ -3,6 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { ErrorMessage } from '../../-private/types';
+
 type FileTarget = EventTarget & { files?: FileList };
 export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
 
@@ -48,6 +49,14 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   get hasError() {
     return Boolean(this.args?.error);
+  }
+
+  @action
+  handleChange(field: { id: string }) {
+    const input = document.getElementById(`${field.id}`);
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#using_hidden_file_input_elements_using_the_click_method
+    input?.click();
   }
 
   @action

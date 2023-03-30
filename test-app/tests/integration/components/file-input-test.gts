@@ -15,7 +15,6 @@ module(
       await render(<template><FileInput @trigger="Select Files" /></template>);
 
       assert.dom('input').exists();
-      assert.dom('[data-trigger]').hasText('Select Files');
     });
   }
 );
