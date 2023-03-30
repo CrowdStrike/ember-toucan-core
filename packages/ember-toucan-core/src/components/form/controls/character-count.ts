@@ -27,7 +27,6 @@ export default class ToucanFormControlCharacterCount extends Component<ToucanFor
   }
 
   get initialCount() {
-    // not sure why I need id.id here
     const id = this.args.id;
     const input = <HTMLInputElement>document.getElementById(id);
 
