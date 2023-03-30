@@ -62,4 +62,12 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
   get hasError() {
     return Boolean(this.args?.error);
   }
+
+  /**
+   * Used to help us determine if we should render a single error
+   * or render a ul list of errors.
+   */
+  get hasMoreThanOneError() {
+    return Array.isArray(this.args.error) && this.args.error?.length > 1;
+  }
 }

@@ -35,12 +35,12 @@
         {{/if}}
       </field.Hint>
     {{/if}}
-
     <field.Control class="mt-1.5 flex">
       <Form::Controls::Input
         id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
+        class="w-full"
         @isDisabled={{@isDisabled}}
         @value={{@value}}
         @onChange={{@onChange}}
@@ -48,8 +48,24 @@
         ...attributes
       />
     </field.Control>
-    {{#if @error}}
-      <field.Error id={{field.errorId}} @error={{@error}} data-error />
-    {{/if}}
+
+    <div
+      class="type-xs-tight text-critical mt-1.5 flex justify-between
+        {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+    >
+      {{#if @error}}
+        <field.Error
+          class="flex-3"
+          id={{field.errorId}}
+          @error={{@error}}
+          data-error
+        />
+      {{/if}}
+      {{#if (has-block "character")}}
+        <div class="flex-1 text-right">
+          {{yield (hash id=field.id) to="character"}}
+        </div>
+      {{/if}}
+    </div>
   </Form::Field>
 </div>
