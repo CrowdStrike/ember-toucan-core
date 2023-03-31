@@ -220,7 +220,6 @@ module('Integration | Component | Fields | Input', function (hooks) {
       </InputField>
     </template>);
 
-    await this.pauseTest();
     assert.dom('[data-character]').hasText('5 / 255');
 
     await fillIn('[data-input]', 'Hello Hello');
