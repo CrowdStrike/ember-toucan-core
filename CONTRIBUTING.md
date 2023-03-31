@@ -16,7 +16,7 @@
 
 The ember-toucan-core repo is an [Ember v2 addon](https://rfcs.emberjs.com/id/0507-embroider-v2-package-format/). It is setup as a monorepo with the following structure:
 
-- `ember-toucan-core` - the actual Ember addon containing the Toucan components
+- `packages/ember-toucan-core` - the actual Ember addon containing the Toucan components
 - `docs-app` - an Ember application used for the documentation site at http://ember-toucan-core.pages.dev
 - `docs` - contains markdown files that are consumed by the `docs-app`
 - `test-app` - the test app where tests are written
@@ -40,10 +40,10 @@ pnpm install
 
 ## Adding components
 
-When developing a new component, add it to the `ember-toucan-core` directory. A few things to remember:
+When developing a new component, add it to the `packages/ember-toucan-core` directory. A few things to remember:
 
-1. Components are added under `ember-toucan-core/src/components`
-2. When adding a new component, it needs to be added to the template registry so that Glint picks it up. To do that, add a line in `ember-toucan-core/src/template-registry.ts`.
+1. Components are added under `packages/ember-toucan-core/src/components`
+2. When adding a new component, it needs to be added to the template registry so that Glint picks it up. To do that, add a line in `packages/ember-toucan-core/src/template-registry.ts`.
 
 ## Running the docs/test-app
 
@@ -67,7 +67,7 @@ pnpm start
 
 ```bash
 # Create a symlink in the addon
-cd ember-toucan-core
+cd packages/ember-toucan-core
 pnpm link .
 
 # Link the docs-app
@@ -80,7 +80,7 @@ Now the docs-app and addon are linked! Now you'll want to run the addon in watch
 
 ```bash
 # In one terminal
-cd ember-toucan-core
+cd packages/ember-toucan-core
 pnpm start
 # ember-toucan-core is now in watch mode and will rebuild automatically
 

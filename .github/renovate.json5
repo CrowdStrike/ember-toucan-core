@@ -88,8 +88,7 @@
         "ember-try",
         "ember-source-channel-url",
         "ember-qunit",
-        "qunit",
-        "npm-run-all"
+        "qunit"
       ]
     },
     {
