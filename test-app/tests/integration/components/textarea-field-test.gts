@@ -55,6 +55,21 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     );
   });
 
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <TextareaField @label="Label" @hint="Hint text" data-textarea>
+        <:label>Extra label content</:label>
+        <:hint>Extra hint content</:hint>
+      </TextareaField>
+    </template>);
+
+    let hint = find('[data-hint]');
+    let label = find('[data-label]');
+
+    assert.dom(hint).hasText('Hint text Extra hint content');
+    assert.dom(label).hasText('Label Extra label content');
+  });
+
   test('it renders with an error', async function (assert) {
     await render(<template>
       <TextareaField @label="Label" @error="Error text" data-textarea />

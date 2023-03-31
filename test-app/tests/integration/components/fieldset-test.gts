@@ -42,6 +42,18 @@ module('Integration | Component | Fieldset', function (hooks) {
     assert.dom('[data-fieldset]').hasAttribute('aria-describedby');
   });
 
+  test('it renders with hint and label blocks', async function (assert) {
+    await render(<template>
+      <Fieldset @label="Label" @hint="Hint text" data-fieldset>
+        <:label>Extra label content</:label>
+        <:hint>Extra hint content</:hint>
+      </Fieldset>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
+    assert.dom('[data-label]').hasText('Label Extra label content');
+  });
+
   test('it renders with an error', async function (assert) {
     await render(<template>
       <Fieldset @label="Label" @error="Error text" data-fieldset />

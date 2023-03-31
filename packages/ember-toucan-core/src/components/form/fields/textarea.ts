@@ -43,8 +43,8 @@ export interface ToucanFormTextareaFieldComponentSignature {
     value?: ToucanFormTextareaControlComponentSignature['Args']['value'];
   };
   Blocks: {
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

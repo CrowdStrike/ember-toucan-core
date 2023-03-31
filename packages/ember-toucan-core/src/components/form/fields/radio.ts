@@ -50,8 +50,8 @@ export interface ToucanFormRadioFieldComponentSignature {
     value: ToucanFormRadioControlComponentSignature['Args']['value'];
   };
   Blocks: {
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

@@ -43,8 +43,8 @@ interface ToucanFormInputFieldComponentSignature {
   };
   Blocks: {
     default: [];
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

@@ -63,6 +63,18 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-hint]').hasText('Hint text');
   });
 
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <RadioGroupField @label="Label" @name="group" @hint="Hint text">
+        <:label>Extra label content</:label>
+        <:hint>Extra hint content</:hint>
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
+    assert.dom('[data-label]').hasText('Label Extra label content');
+  });
+
   test('it renders with an error', async function (assert) {
     await render(<template>
       <RadioGroupField @label="Label" @name="group" @error="Error text" />

@@ -48,6 +48,23 @@ module('Integration | Component | Fields | Radio', function (hooks) {
     assert.dom('[data-hint]').hasText('Hint text');
   });
 
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <RadioField
+        @value="option"
+        @label="Label"
+        @hint="Hint text"
+        @name="name"
+        data-radio
+      >
+      <:label>Extra label content</:label>
+      <:hint>Extra hint content</:hint>
+      </RadioField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
+    assert.dom('[data-label]').hasText('Label Extra label content');
+  });
   test('it sets the "for" attribute on the label to the "id" attribute of the radio', async function (assert) {
     await render(<template>
       <RadioField @value="option" @label="Label" @name="name" data-radio />

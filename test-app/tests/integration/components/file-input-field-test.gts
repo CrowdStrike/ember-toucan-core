@@ -100,6 +100,31 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom(hint).hasText('Hint text');
   });
 
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <FileInputField
+        @deleteLabel="Delete File"
+        @label="Label"
+        @trigger="Select Files"
+        @hint="Hint text"
+        @onChange={{onChange}}
+        data-file-input-field
+      >
+      <:label>Extra label content</:label>
+      <:hint>Extra hint content</:hint>
+      </FileInputField>
+    </template>);
+
+    // For the file input field component, the only aria-describedby
+    // value should be the errorId.  This is due to the way the component
+    // is structured, where the label+hint are rendered inside of the
+    // wrapping <label> element
+    const hint = find('[data-hint]');
+    const label = find('[data-label]');
+
+    assert.dom(hint).hasText('Hint text Extra hint content');
+    assert.dom(label).hasText('Label Extra label content');
+  });
   test('it renders with an error', async function (assert) {
     await render(<template>
       <FileInputField

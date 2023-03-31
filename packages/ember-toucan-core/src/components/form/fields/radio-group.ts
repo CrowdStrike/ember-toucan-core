@@ -61,8 +61,8 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
         >;
       }
     ];
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

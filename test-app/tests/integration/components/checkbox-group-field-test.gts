@@ -113,6 +113,18 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-error]').hasText('Error text');
   });
 
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <CheckboxGroupField @label="Label" @name="group" @hint="Hint text">
+        <:label>Extra label content</:label>
+        <:hint>Extra hint content</:hint>
+      </CheckboxGroupField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
+    assert.dom('[data-label]').hasText('Label Extra label content');
+  });
+
   test('it default-checks the checkbox with the matching `@value`', async function (assert) {
     let selectedOption = ['option-2'];
 

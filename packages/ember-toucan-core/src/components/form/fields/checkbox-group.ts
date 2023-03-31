@@ -54,8 +54,8 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
         >;
       }
     ];
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

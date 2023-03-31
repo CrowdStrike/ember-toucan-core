@@ -23,8 +23,8 @@ interface ToucanFormFileInputFieldComponentSignature {
     rootTestSelector?: string;
   };
   Blocks: {
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 

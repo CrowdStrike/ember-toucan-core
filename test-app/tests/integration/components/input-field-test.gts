@@ -110,6 +110,26 @@ module('Integration | Component | Fields | Input', function (hooks) {
     );
   });
 
+  test('it renders a hint and label block', async function (assert) {
+    await render(<template>
+      <InputField
+        @label="Label"
+        type="text"
+        @hint="Hint text visible here"
+        data-input
+      >
+      <:label>Extra label content</:label>
+      <:hint>Extra hint content</:hint>
+      </InputField>
+    </template>);
+
+    const label = '[data-label]';
+    const hint = '[data-hint]';
+
+    assert.dom(label).hasText('Label Extra label content'); 
+    assert.dom(hint).hasText('Hint text visible here Extra hint content'); 
+
+  });
   test('it sets aria-describedby when both a hint and error are provided using the hint and error ids', async function (assert) {
     await render(<template>
       <InputField
