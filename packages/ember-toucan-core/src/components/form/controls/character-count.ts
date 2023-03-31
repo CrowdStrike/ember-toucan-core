@@ -22,7 +22,10 @@ export default class ToucanFormControlCharacterCount extends Component<ToucanFor
     owner: unknown,
     args: ToucanFormControlCharacterCountComponentSignature['Args']
   ) {
-    assert('A "@id" argument is required', args.id);
+    assert(
+      'An "@id" argument is required, the id should be from the related input',
+      args.id
+    );
     super(owner, args);
   }
 
