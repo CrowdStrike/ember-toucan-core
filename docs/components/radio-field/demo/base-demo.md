@@ -1,13 +1,13 @@
 ```hbs template
 <div class='space-y-4'>
-  <Form::RadioField
+  <Form::Fields::Radio
     @label='Option 1'
     @name='options'
     @value='option-1'
     @onChange={{this.updateValue}}
     @isChecked={{this.eq 'option-1' this.selectedValue}}
   />
-  <Form::RadioField
+  <Form::Fields::Radio
     @label='Option 2'
     @name='options'
     @value='option-2'

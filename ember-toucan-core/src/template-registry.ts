@@ -1,28 +1,28 @@
 import type ButtonComponent from './components/button';
-import type CheckboxFieldComponent from './components/form/checkbox-field';
-import type CheckboxGroupFieldComponent from './components/form/checkbox-group-field';
 import type CheckboxControlComponent from './components/form/controls/checkbox';
 import type FormControlsFileInputComponent from './components/form/controls/file-input';
 import type InputControlComponent from './components/form/controls/input';
 import type RadioControlComponent from './components/form/controls/radio';
 import type TextareaControlComponent from './components/form/controls/textarea';
 import type FieldComponent from './components/form/field';
+import type CheckboxFieldComponent from './components/form/fields/checkbox';
+import type CheckboxGroupFieldComponent from './components/form/fields/checkbox-group';
+import type FormFileInputFieldComponent from './components/form/fields/file-input';
+import type InputFieldComponent from './components/form/fields/input';
+import type RadioFieldComponent from './components/form/fields/radio';
+import type RadioGroupFieldComponent from './components/form/fields/radio-group';
+import type TextareaFieldComponent from './components/form/fields/textarea';
 import type FieldsetComponent from './components/form/fieldset';
 import type FormFileInputDeleteButtonComponent from './components/form/file-input/delete-button';
 import type FormFileInputListComponent from './components/form/file-input/list';
-import type FormFileInputFieldComponent from './components/form/file-input-field';
-import type InputFieldComponent from './components/form/input-field';
-import type RadioFieldComponent from './components/form/radio-field';
-import type RadioGroupFieldComponent from './components/form/radio-group-field';
-import type TextareaFieldComponent from './components/form/textarea-field';
 
 export default interface Registry {
   Button: typeof ButtonComponent;
   'Form::Field': typeof FieldComponent;
   'Form::Fieldset': typeof FieldsetComponent;
-  'Form::CheckboxField': typeof CheckboxFieldComponent;
-  'Form::CheckboxGroupField': typeof CheckboxGroupFieldComponent;
-  'Form::InputField': typeof InputFieldComponent;
+  'Form::Fields::Checkbox': typeof CheckboxFieldComponent;
+  'Form::Fields::CheckboxGroup': typeof CheckboxGroupFieldComponent;
+  'Form::Fields::Input': typeof InputFieldComponent;
   'Form::Controls::Checkbox': typeof CheckboxControlComponent;
   'Form::Controls::FileInput': typeof FormControlsFileInputComponent;
   'Form::Controls::Input': typeof InputControlComponent;
@@ -30,8 +30,8 @@ export default interface Registry {
   'Form::Controls::Textarea': typeof TextareaControlComponent;
   'Form::FileInput::List': typeof FormFileInputListComponent;
   'Form::FileInput::DeleteButton': typeof FormFileInputDeleteButtonComponent;
-  'Form::FileInputField': typeof FormFileInputFieldComponent;
-  'Form::RadioField': typeof RadioFieldComponent;
-  'Form::RadioGroupField': typeof RadioGroupFieldComponent;
-  'Form::TextareaField': typeof TextareaFieldComponent;
+  'Form::Fields::FileInput': typeof FormFileInputFieldComponent;
+  'Form::Fields::Radio': typeof RadioFieldComponent;
+  'Form::Fields::RadioGroup': typeof RadioGroupFieldComponent;
+  'Form::Fields::Textarea': typeof TextareaFieldComponent;
 }

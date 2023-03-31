@@ -1,5 +1,5 @@
 ```hbs template
-<Form::RadioGroupField
+<Form::Fields::RadioGroup
   @label='Label'
   @hint='Extra information about the field'
   @name='options'
@@ -19,7 +19,7 @@
     @value='option-4'
     @hint='Extra information about the radio'
   />
-</Form::RadioGroupField>
+</Form::Fields::RadioGroup>
 ```
 
 ```js component

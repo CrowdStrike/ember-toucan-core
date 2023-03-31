@@ -6,7 +6,7 @@
   as |form|
 >
   <form.Field @name='name' as |field|>
-    <Form::InputField
+    <Form::Fields::Input
       @label='Name'
       @hint='What should we call you?'
       @error={{this.mapErrors field.rawErrors}}
@@ -18,7 +18,7 @@
   </form.Field>
 
   <form.Field @name='email' as |field|>
-    <Form::InputField
+    <Form::Fields::Input
       @label='Email'
       @hint='How do we contact you?'
       @error={{this.mapErrors field.rawErrors}}

@@ -15,11 +15,11 @@ Optional. Provide a string to `@hint` to render the text into the Hint section o
 Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
-<Form::TextareaField @label='Single error' @error='Error' />
+<Form::Fields::Textarea @label='Single error' @error='Error' />
 ```
 
 ```hbs
-<Form::TextareaField
+<Form::Fields::Textarea
   @label='Multiple errors'
   @error={{(array 'Error 1' 'Error 2')}}
 />
@@ -35,7 +35,7 @@ To tie into the input event, provide `@onChange`. `@onChange` will return two ar
 It's most common to use this in combination with `@value` which will set the value for the textarea based on the input received from the change event.
 
 ```hbs
-<Form::TextareaField
+<Form::Fields::Textarea
   @label='Label'
   @value={{this.value}}
   @onChange={{this.handleChange}}
@@ -73,7 +73,7 @@ Consumers have direct access to the underlying [textarea element](https://develo
 Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
 
 ```hbs
-<Form::TextareaField @label='Label' @rootTestSelector='example' />
+<Form::Fields::Textarea @label='Label' @rootTestSelector='example' />
 ```
 
 ```js
@@ -100,13 +100,13 @@ Target the error block via `data-error`.
 ### TextareaField with label
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField @label='Label' />
+  <Form::Fields::Textarea @label='Label' />
 </div>
 
 ### TextareaField with label and hint
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @hint='With hint text'
   />
@@ -115,7 +115,7 @@ Target the error block via `data-error`.
 ### TextareaField with label and error
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @error='With error'
   />
@@ -124,7 +124,7 @@ Target the error block via `data-error`.
 ### TextareaField with label, hint, and error
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @hint='With hint text'
     @error='With error'
@@ -134,7 +134,7 @@ Target the error block via `data-error`.
 ### TextareaField with label and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @isDisabled={{true}}
   />
@@ -143,7 +143,7 @@ Target the error block via `data-error`.
 ### TextareaField with label, value, and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @isDisabled={{true}}
     @value='disabled'
@@ -153,7 +153,7 @@ Target the error block via `data-error`.
 ### TextareaField with a value
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @hint='With value'
     @value='a value'
@@ -163,7 +163,7 @@ Target the error block via `data-error`.
 ### TextareaField with multiple errors
 
 <div class='mb-4 w-64'>
-  <Form::TextareaField
+  <Form::Fields::Textarea
     @label='Label'
     @hint='With hint text'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}

@@ -24,7 +24,7 @@ export default class ToucanFormControlsFileInputComponent extends Component<Touc
     args: ToucanFormControlsFileInputComponentSignature['Args']
   ) {
     assert(
-      'A "@trigger" argument is required for Form::Controls::FileInput. If using the Form::FileInputField, this should be provided automatically.',
+      'A "@trigger" argument is required for Form::Controls::FileInput. If using the Form::Fields::FileInput, this should be provided automatically.',
       args.trigger !== undefined
     );
 

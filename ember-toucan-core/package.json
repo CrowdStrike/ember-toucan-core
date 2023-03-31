@@ -115,23 +115,23 @@
     "main": "addon-main.cjs",
     "app-js": {
       "./components/button.js": "./dist/_app_/components/button.js",
-      "./components/form/checkbox-field.js": "./dist/_app_/components/form/checkbox-field.js",
-      "./components/form/checkbox-group-field.js": "./dist/_app_/components/form/checkbox-group-field.js",
       "./components/form/controls/checkbox.js": "./dist/_app_/components/form/controls/checkbox.js",
       "./components/form/controls/file-input.js": "./dist/_app_/components/form/controls/file-input.js",
       "./components/form/controls/input.js": "./dist/_app_/components/form/controls/input.js",
       "./components/form/controls/radio.js": "./dist/_app_/components/form/controls/radio.js",
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
+      "./components/form/fields/checkbox-group.js": "./dist/_app_/components/form/fields/checkbox-group.js",
+      "./components/form/fields/checkbox.js": "./dist/_app_/components/form/fields/checkbox.js",
+      "./components/form/fields/file-input.js": "./dist/_app_/components/form/fields/file-input.js",
+      "./components/form/fields/input.js": "./dist/_app_/components/form/fields/input.js",
+      "./components/form/fields/radio-group.js": "./dist/_app_/components/form/fields/radio-group.js",
+      "./components/form/fields/radio.js": "./dist/_app_/components/form/fields/radio.js",
+      "./components/form/fields/textarea.js": "./dist/_app_/components/form/fields/textarea.js",
       "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
-      "./components/form/file-input-field.js": "./dist/_app_/components/form/file-input-field.js",
       "./components/form/file-input/delete-button.js": "./dist/_app_/components/form/file-input/delete-button.js",
       "./components/form/file-input/list-item.js": "./dist/_app_/components/form/file-input/list-item.js",
-      "./components/form/file-input/list.js": "./dist/_app_/components/form/file-input/list.js",
-      "./components/form/input-field.js": "./dist/_app_/components/form/input-field.js",
-      "./components/form/radio-field.js": "./dist/_app_/components/form/radio-field.js",
-      "./components/form/radio-group-field.js": "./dist/_app_/components/form/radio-group-field.js",
-      "./components/form/textarea-field.js": "./dist/_app_/components/form/textarea-field.js"
+      "./components/form/file-input/list.js": "./dist/_app_/components/form/file-input/list.js"
     }
   },
   "exports": {

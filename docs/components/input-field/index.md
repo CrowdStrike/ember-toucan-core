@@ -19,11 +19,11 @@ Optional. Provide a string or array of strings to `@error` to render the text in
 Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
-<Form::InputField @label='Single error' @error='Error' />
+<Form::Fields::Input @label='Single error' @error='Error' />
 ```
 
 ```hbs
-<Form::InputField
+<Form::Fields::Input
   @label='Multiple errors'
   @error={{(array 'Error 1' 'Error 2')}}
 />
@@ -34,7 +34,7 @@ Optional. Provide a string or array of strings to `@error` to render the text in
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments, the first being the value, while the second being the raw event object. It's most common to use this in combination with `@value` which will set the value for the input based on the input received from the change event.
 
 ```hbs
-<Form::InputField
+<Form::Fields::Input
   @label='Label'
   @value={{this.value}}
   @onChange={{this.handleChange}}
@@ -70,7 +70,7 @@ Consumers have direct access to the underlying [input element](https://developer
 Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
 
 ```hbs
-<Form::InputField @label='Label' @rootTestSelector='example' />
+<Form::Fields::Input @label='Label' @rootTestSelector='example' />
 ```
 
 ```js
@@ -96,7 +96,7 @@ Target the error block via `data-error`.
 ### InputField with label
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
   />
 </div>
@@ -104,7 +104,7 @@ Target the error block via `data-error`.
 ### InputField with label and hint
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @hint='With hint text'
   />
@@ -113,7 +113,7 @@ Target the error block via `data-error`.
 ### InputField with label and error
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @error='With error text'
   />
@@ -122,7 +122,7 @@ Target the error block via `data-error`.
 ### InputField with label, hint, and error
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @hint='With hint text'
     @error='With error text'
@@ -132,7 +132,7 @@ Target the error block via `data-error`.
 ### InputField with label and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @isDisabled={{true}}
   />
@@ -141,7 +141,7 @@ Target the error block via `data-error`.
 ### InputField with label, value, and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @isDisabled={{true}}
     @value='disabled'
@@ -151,7 +151,7 @@ Target the error block via `data-error`.
 ### InputField with a value
 
 <div class='mb-4 w-64'>
-<Form::InputField
+<Form::Fields::Input
 @label='Label'
 @hint='With value'
 @value='a value'
@@ -161,7 +161,7 @@ Target the error block via `data-error`.
 ### InputField with multiple errors
 
 <div class='mb-4 w-64'>
-  <Form::InputField
+  <Form::Fields::Input
     @label='Label'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />

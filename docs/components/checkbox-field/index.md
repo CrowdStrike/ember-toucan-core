@@ -15,11 +15,11 @@ Optional. Provide a string to `@hint` to render the text into the Hint section o
 Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
-<Form::CheckboxField @label='Single error' @error='Error' />
+<Form::Fields::Checkbox @label='Single error' @error='Error' />
 ```
 
 ```hbs
-<Form::CheckboxField
+<Form::Fields::Checkbox
   @label='Multiple errors'
   @error={{(array 'Error 1' 'Error 2')}}
 />
@@ -37,7 +37,7 @@ It's most common to use this in combination with `@isChecked` which will set the
 To access the indeterminate property of the checkbox, use `e.target.indeterminate`.
 
 ```hbs
-<Form::CheckboxField
+<Form::Fields::Checkbox
   @label='Label'
   @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}
@@ -79,7 +79,7 @@ Consumers have direct access to the underlying [checkbox element](https://develo
 Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
 
 ```hbs
-<Form::CheckboxField @label='Label' @rootTestSelector='example' />
+<Form::Fields::Checkbox @label='Label' @rootTestSelector='example' />
 ```
 
 ```js
@@ -106,7 +106,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='This is an option that expands to multiple lines'
   />
 </div>
@@ -114,7 +114,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label and hint
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @hint='With hint text'
   />
@@ -123,7 +123,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label and error
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @error='With error'
   />
@@ -132,7 +132,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label, hint, and error
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @error='With error'
     @hint='With hint text'
@@ -142,7 +142,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @isDisabled={{true}}
   />
@@ -151,7 +151,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label, isChecked, and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @isChecked={{true}}
     @isDisabled={{true}}
@@ -161,7 +161,7 @@ Target the error block via `data-error`.
 ### CheckboxField with label, isIndeterminate, and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @isIndeterminate={{true}}
     @isDisabled={{true}}
@@ -171,7 +171,7 @@ Target the error block via `data-error`.
 ### CheckboxField with isChecked
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @isChecked={{true}}
   />
@@ -180,7 +180,7 @@ Target the error block via `data-error`.
 ### CheckboxField with isIndeterminate
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @isIndeterminate={{true}}
   />
@@ -189,7 +189,7 @@ Target the error block via `data-error`.
 ### CheckboxField with isIndeterminate and hint
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @hint='With hint text'
     @isIndeterminate={{true}}
@@ -199,7 +199,7 @@ Target the error block via `data-error`.
 ### CheckboxField with multiple errors
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />
@@ -208,7 +208,7 @@ Target the error block via `data-error`.
 ### CheckboxField with hint and isChecked
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @hint='With hint text'
     @isChecked={{true}}
@@ -218,7 +218,7 @@ Target the error block via `data-error`.
 ### CheckboxField with long label and short error
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='This is an option that expands to multiple lines'
     @error='With error'
   />
@@ -227,7 +227,7 @@ Target the error block via `data-error`.
 ### CheckboxField with long label and hint
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='This is an option that expands to multiple lines'
     @hint='Here is helper text that overflows onto multiple lines'
   />
@@ -236,7 +236,7 @@ Target the error block via `data-error`.
 ### CheckboxField with hint and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxField
+  <Form::Fields::Checkbox
     @label='Label'
     @hint='With hint text'
     @isDisabled={{true}}

@@ -1,5 +1,5 @@
 ```hbs template
-<Form::InputField
+<Form::Fields::Input
   @label='Label'
   @hint='Type "input" into the field'
   @error={{this.errorMessage}}

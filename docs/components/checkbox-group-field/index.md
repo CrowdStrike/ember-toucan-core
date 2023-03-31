@@ -28,7 +28,7 @@ To tie into the input event when a checkbox is clicked, provide `@onChange`. `@o
 A `@value` argument to the CheckboxGroupField is used to determine which of the checkboxes is currently selected. It does so by comparing `@value` provided to the CheckboxGroupField to each `@value` of the checkbox. When an `@onChange` event occurs, it's most common to update the `@value` argument to the newly selected values as shown in the example below.
 
 ```hbs
-<Form::CheckboxGroupField
+<Form::Fields::CheckboxGroup
   @label='Label'
   @name='options'
   @value={{this.groupValue}}
@@ -37,7 +37,7 @@ A `@value` argument to the CheckboxGroupField is used to determine which of the 
 >
   <group.CheckboxField @label='Option 1' @value='option-1' />
   <group.CheckboxField @label='Option 2' @value='option-2' />
-</Form::CheckboxGroupField>
+</Form::Fields::CheckboxGroup>
 ```
 
 ```js
@@ -62,7 +62,7 @@ export default class extends Component {
 To disable the fieldset and all child checkboxes, set the `@isDisabled` argument directly on the checkbox group field.
 
 ```hbs
-<Form::CheckboxGroupField
+<Form::Fields::CheckboxGroup
   @label='Label'
   @name='options'
   @value={{this.groupValue}}
@@ -72,7 +72,7 @@ To disable the fieldset and all child checkboxes, set the `@isDisabled` argument
 >
   <!-- This will now be disabled as well! -->
   <group.CheckboxField @label='Option 1' @value='option-1' />
-</Form::CheckboxGroupField>
+</Form::Fields::CheckboxGroup>
 ```
 
 ### Individual Checkboxes
@@ -80,7 +80,7 @@ To disable the fieldset and all child checkboxes, set the `@isDisabled` argument
 To disable individual checkbox fields, set the `@isDisabled` argument directly on the checkbox field.
 
 ```hbs
-<Form::CheckboxGroupField
+<Form::Fields::CheckboxGroup
   @label='Label'
   @name='options'
   @value={{this.groupValue}}
@@ -92,7 +92,7 @@ To disable individual checkbox fields, set the `@isDisabled` argument directly o
     @value='option-1'
     @isDisabled={{true}}
   />
-</Form::CheckboxGroupField>
+</Form::Fields::CheckboxGroup>
 ```
 
 ## Attributes and Modifiers
@@ -104,7 +104,7 @@ Consumers have direct access to the underlying [checkbox element](https://develo
 ### CheckboxGroupField with label
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField
+  <Form::Fields::CheckboxGroup
     @label='Label'
     @name='options-a'
     as |group|
@@ -113,65 +113,65 @@ Consumers have direct access to the underlying [checkbox element](https://develo
     <group.CheckboxField @label='Option 2' @value='option-2'/>
     <group.CheckboxField @label='Option 3' @value='option-3'/>
     <group.CheckboxField @label='Option 4' @value='option-4'/>
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label and hint
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='options-b' @hint='Select an option' as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='options-b' @hint='Select an option' as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label and error
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='options-c' @error='With error' as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='options-c' @error='With error' as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label, hint, and error
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='options-d' @hint='Select an option' @error='With error' as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='options-d' @hint='Select an option' @error='With error' as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='disabled'  @isDisabled={{true}} as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='disabled'  @isDisabled={{true}} as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label, hint, and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='disabled' @hint='With disabled' @isDisabled={{true}} as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='disabled' @hint='With disabled' @isDisabled={{true}} as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>
 
 ### CheckboxGroupField with label and multiple errors
 
 <div class='mb-4 w-64'>
-  <Form::CheckboxGroupField @label='Label' @name='multiple-errors' @error={{(array 'With error 1' 'With error 2' 'With error 3')}} as |group|>
+  <Form::Fields::CheckboxGroup @label='Label' @name='multiple-errors' @error={{(array 'With error 1' 'With error 2' 'With error 3')}} as |group|>
     <group.CheckboxField @label='Option 1' @value='option-1' />
     <group.CheckboxField @label='Option 2' @value='option-2' />
     <group.CheckboxField @label='Option 3' @value='option-3' />
-  </Form::CheckboxGroupField>
+  </Form::Fields::CheckboxGroup>
 </div>

@@ -3,7 +3,7 @@
 import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
+import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/input';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | InputField', function (hooks) {

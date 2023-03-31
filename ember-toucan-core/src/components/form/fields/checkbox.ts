@@ -1,8 +1,8 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
-import type { ErrorMessage } from '../../-private/types';
-import type { ToucanFormCheckboxControlComponentSignature } from './controls/checkbox';
+import type { ErrorMessage } from '../../../-private/types';
+import type { ToucanFormCheckboxControlComponentSignature } from '../controls/checkbox';
 
 export interface ToucanFormCheckboxFieldComponentSignature {
   Element: HTMLInputElement;

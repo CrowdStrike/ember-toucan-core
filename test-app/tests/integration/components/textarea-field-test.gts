@@ -4,7 +4,7 @@
 import { find, fillIn, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import TextareaField from '@crowdstrike/ember-toucan-core/components/form/textarea-field';
+import TextareaField from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | TextareaField', function (hooks) {

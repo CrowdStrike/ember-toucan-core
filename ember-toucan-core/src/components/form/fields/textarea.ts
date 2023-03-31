@@ -1,10 +1,11 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
-import type { ErrorMessage, OnChangeCallback } from '../../-private/types';
+import type { ErrorMessage } from '../../../-private/types';
+import type { ToucanFormTextareaControlComponentSignature } from '../controls/textarea';
 
-interface ToucanFormInputFieldComponentSignature {
-  Element: HTMLInputElement;
+export interface ToucanFormTextareaFieldComponentSignature {
+  Element: HTMLTextAreaElement;
   Args: {
     /**
      * Provide a string or array of strings to this argument to render an error message and apply error styling to the Field.
@@ -29,7 +30,7 @@ interface ToucanFormInputFieldComponentSignature {
     /**
      * The function called when the element is typed into.
      */
-    onChange?: OnChangeCallback<string>;
+    onChange?: ToucanFormTextareaControlComponentSignature['Args']['onChange'];
 
     /**
      * A test selector for targeting the root element of the field. In this case, the wrapping div element.
@@ -37,21 +38,18 @@ interface ToucanFormInputFieldComponentSignature {
     rootTestSelector?: string;
 
     /**
-     * Sets the value attribute of the input.
+     * Sets the value attribute of the textarea.
      */
-    value?: string;
-  };
-  Blocks: {
-    default: [];
+    value?: ToucanFormTextareaControlComponentSignature['Args']['value'];
   };
 }
 
-export default class ToucanFormInputFieldComponent extends Component<ToucanFormInputFieldComponentSignature> {
+export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {
   constructor(
     owner: unknown,
-    args: ToucanFormInputFieldComponentSignature['Args']
+    args: ToucanFormTextareaFieldComponentSignature['Args']
   ) {
-    assert('input field requires a label', args.label !== undefined);
+    assert('A "@label" argument is required', args.label);
     super(owner, args);
   }
 
