@@ -22,14 +22,14 @@
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint",
     "start": "ember serve",
-    "test": "npm-run-all lint \"test:!(watch)\"",
+    "test": "pnpm lint && pnpm test:ember",
     "test:ember": "ember test",
     "test:watch": "ember test --server"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/eslint-parser": "^7.19.1",
-    "@crowdstrike/ember-toucan-core": "workspace:../ember-toucan-core",
+    "@crowdstrike/ember-toucan-core": "workspace:../packages/ember-toucan-core",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",

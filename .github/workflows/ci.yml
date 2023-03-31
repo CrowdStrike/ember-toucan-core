@@ -13,7 +13,7 @@ concurrency:
 
 env:
   CI: true
-  dist: ember-toucan-core/dist
+  dist: packages/ember-toucan-core/dist
 
 jobs:
   install_dependencies:

@@ -10,7 +10,7 @@ runs:
           target: ${{ env.dist }}
           setup:
             run: pnpm build
-            cwd: ./ember-toucan-core
+            cwd: ./packages/ember-toucan-core
           expect: |
             index.js
             index.js.map
