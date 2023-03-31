@@ -6,5 +6,7 @@
     "@crowdstrike/ember-toucan-core": "0.0.0",
     "test-app": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "rude-taxis-eat"
+  ]
 }
