@@ -22,7 +22,7 @@
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint",
     "start": "ember serve",
-    "test": "pnpm lint && pnpm test:ember",
+    "test": "concurrently \"pnpm lint\" \"pnpm test:ember\"",
     "test:ember": "ember test",
     "test:watch": "ember test --server"
   },
