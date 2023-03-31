@@ -47,6 +47,11 @@ export interface ToucanFormInputFieldComponentSignature {
     default: [];
     label: [];
     hint: [];
+    character: [
+      {
+        id: string;
+      }
+    ];
   };
 }
 
