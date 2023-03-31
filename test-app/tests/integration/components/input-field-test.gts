@@ -6,7 +6,7 @@ import { module, test } from 'qunit';
 import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/input';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | InputField', function (hooks) {
+module('Integration | Component | Fields | Input', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {

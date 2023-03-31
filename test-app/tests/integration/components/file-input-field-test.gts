@@ -39,7 +39,7 @@ const banana = createFile(['Upload file sample'], {
   type: 'text/plain',
 });
 
-module('Integration | Component | FileInputField', function (hooks) {
+module('Integration | Component | Fields | FileInput', function (hooks) {
   setupRenderingTest(hooks);
 
   function onChange() {
@@ -403,6 +403,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasText('avocado.txt', 'With multiple, files are additive');
     assert.dom('ul > li:nth-child(3) [data-file-name]').hasText('banana.txt');
   });
+
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {
     await render(<template>
       <FileInputField

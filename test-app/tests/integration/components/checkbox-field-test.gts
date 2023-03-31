@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import CheckboxField from '@crowdstrike/ember-toucan-core/components/form/fields/checkbox';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | CheckboxField', function (hooks) {
+module('Integration | Component | Fields | Checkbox', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {

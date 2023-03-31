@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import RadioGroupField from '@crowdstrike/ember-toucan-core/components/form/fields/radio-group';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | RadioGroupField', function (hooks) {
+module('Integration | Component | Fields | RadioGroup', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {

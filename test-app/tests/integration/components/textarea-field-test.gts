@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import TextareaField from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | TextareaField', function (hooks) {
+module('Integration | Component | Fields | Textarea', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
