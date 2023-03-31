@@ -190,7 +190,7 @@ Target the trash icon button via `data-delete-file`.
 ## FileInputField with label, hint and error
 
 <div class='mb-4 w-64'>
-  <Form::FileInputField
+  <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'
     @hint='Hint'
@@ -202,7 +202,7 @@ Target the trash icon button via `data-delete-file`.
 ## FileInputField with label and isDisabled
 
 <div class='mb-4 w-64'>
-  <Form::FileInputField
+  <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'
     @isDisabled={{true}}

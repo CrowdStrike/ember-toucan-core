@@ -8,7 +8,7 @@
 >
   <:label>extra label info</:label>
   <:hint>extra hint info</:hint>
-</Form::TextareaField>
+</Form::Fields::Textarea>
 ```
 
 ```js component

@@ -9,7 +9,7 @@
 >
   <:label>extra label info</:label>
   <:hint>extra hint info</:hint>
-</Form::FileInputField>
+</Form::Fields::FileInput>
 ```
 
 ```js component

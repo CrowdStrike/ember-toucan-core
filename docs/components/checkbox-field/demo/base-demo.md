@@ -6,7 +6,7 @@
 >
   <:label>extra label info</:label>
   <:hint>extra hint info</:hint>
-</Form::CheckboxField>
+</Form::Fields::Checkbox>
 ```
 
 ```js component
