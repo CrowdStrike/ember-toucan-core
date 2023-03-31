@@ -6,7 +6,6 @@ import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/in
 import { action } from '@ember/object';
 
 import { tracked } from '@glimmer/tracking';
-import InputField from '@crowdstrike/ember-toucan-core/components/form/input-field';
 import CharacterCount from '@crowdstrike/ember-toucan-core/components/form/controls/character-count';
 
 import { setupRenderingTest } from 'test-app/tests/helpers';
