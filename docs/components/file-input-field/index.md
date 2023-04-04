@@ -10,7 +10,36 @@ Used to specify the types of files allowed. [See related documentation](https://
 ## Label
 
 Required.
-Provide a string to `@label` to render the text into the `<input type="file">` of the Field.
+
+Use either `@label` or `:label`.
+
+Provide a string to `@label` or components to `:label` to render the text into the `<input type="file">` of the Field.
+
+### @label
+
+```hbs
+<Form::Fields::FileInput
+  @deleteLabel='Delete file'
+  @label='Label'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::FileInput
+  @deleteLabel='Delete file'
+  @files={{this.files}}
+  @hint='Hint text'
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::FileInput>
+```
 
 ## Delete Label
 
@@ -25,7 +54,37 @@ Provide trigger text for the FileInputField (aka `Select Files`) via `@trigger`.
 ## Hint
 
 Optional.
+
+Use either `@hint` or `:hint`.
+
 Provide a string to `@hint` to render the text into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::FileInput
+  @hint='Here is a hint'
+  @deleteLabel='Delete file'
+  @label='Label'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::FileInput
+  @label='Label'
+  @deleteLabel='Delete file'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::FileInput>
+```
 
 ## Error
 

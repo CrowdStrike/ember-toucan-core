@@ -8,11 +8,73 @@ Provides a checkbox group to be used within forms. It yields [CheckboxFields](./
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<legend>` of the fieldset.
+Required.
+
+Use either `@label` or `:label`.
+
+Provide a string to `@label` or components to `:label` to render the text into the `<legend>` of the fieldset.
+
+### @label
+
+```hbs template
+<Form::Fields::CheckboxGroup
+  @label='Label here'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :label
+
+```hbs template
+<Form::Fields::CheckboxGroup
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+>
+  {{!-- default block is required here when using :label --}}
+  <:default as |group|>
+    {{!-- render checkboxes here --}}
+  </:default>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::CheckboxGroup>
+```
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the fieldset.
+Optional.
+
+Use either `@hint` or `:hint`.
+
+Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the fieldset.
+
+### @hint
+
+```hbs template
+<Form::Fields::CheckboxGroup
+  @hint='Here is a hint'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :hint
+
+```hbs template
+<Form::Fields::CheckboxGroup
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+>
+  {{! default block is required here when using :hint}}
+  <:default as |group|>
+    {{! render checkboxes here }}
+  </:default>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::CheckboxGroup>
+```
 
 ## Error
 

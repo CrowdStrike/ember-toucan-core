@@ -4,11 +4,67 @@ Provides an underlying `<textarea>` element building on top of the Field compone
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field.
+Required.
+
+Use either `@label` or `:label`.
+
+Provide a string to `@label` or components to `:hint` to render the text into the `<label>` of the Field.
+
+### @label
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::Textarea
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::Textarea>
+```
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
+Optional.
+
+Use either `@hint` or `:hint`.
+
+Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @hint='Here is a hint'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::Textarea>
+```
 
 ## Error
 

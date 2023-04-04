@@ -6,10 +6,7 @@
   @hint='Hint text'
   @trigger='Browse Files'
   @onChange={{this.handleChange}}
->
-  <:label>extra label info</:label>
-  <:hint>extra hint info</:hint>
-</Form::Fields::FileInput>
+/>
 ```
 
 ```js component

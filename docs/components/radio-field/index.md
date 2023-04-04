@@ -4,7 +4,38 @@ Provides an opinionated radio element building on top of the Field component. If
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field. This is required.
+Required.
+
+Use either `@label` or `:label`.
+
+Provide a string to `@label` or components to `:label` to render the text into the `<label>` of the Field. This is required.
+
+### @label
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::Radio
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+>
+    <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::Radio>
+```
 
 ## Name
 
@@ -16,7 +47,38 @@ Provide a string to `@value` to set the `value` attribute of the radio. This is 
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
+Optional.
+
+Use either `@hint` or `:hint`.
+
+Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::Radio>
+```
 
 ## Value, Checked State, and onChange
 

@@ -5,23 +5,20 @@
   @name='options'
   @value={{this.groupValue}}
   @onChange={{this.updateValue}}
+  as |group|
 >
-  <:default as |group|>
-    <group.CheckboxField @label='Option 1' @value='option-1' />
-    <group.CheckboxField
-      @label='Option 2'
-      @hint='Extra information about the radio'
-      @value='option-2'
-    />
-    <group.CheckboxField @label='Option 3' @value='option-3' />
-    <group.CheckboxField
-      @label='Option 4'
-      @hint='Extra information about the radio'
-      @value='option-4'
-    />
-  </:default>
-  <:label>extra label info</:label>
-  <:hint>extra hint info</:hint>
+  <group.CheckboxField @label='Option 1' @value='option-1' />
+  <group.CheckboxField
+    @label='Option 2'
+    @hint='Extra information about the radio'
+    @value='option-2'
+  />
+  <group.CheckboxField @label='Option 3' @value='option-3' />
+  <group.CheckboxField
+    @label='Option 4'
+    @hint='Extra information about the radio'
+    @value='option-4'
+  />
 </Form::Fields::CheckboxGroup>
 ```
 

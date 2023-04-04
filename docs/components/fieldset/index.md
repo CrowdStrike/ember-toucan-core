@@ -4,18 +4,54 @@ Fieldset is a component to aid in creating form components that require an under
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<legend>` of the Fieldset. This is required.
+Required.
+
+Use either `@label` or `:label`.
+
+Provide a string to `@label` or components to `:label` to render the text into the `<legend>` of the Fieldset.
+
+### @label
 
 ```hbs
 <Form::Fieldset @label='Label' />
 ```
 
+### :label block
+
+```hbs
+<Form::Fieldset
+  @error='Error message'
+>
+  {{!-- note that default block is required here --}}
+  <:default><p class='text-body-and-labels text-xs m-0 italic'>~Fieldset
+      components render here!~</p></:default>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fieldset>
+```
+
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Fieldset.
+Optional.
+
+Use either `@hint` or `:hint`.
+
+Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the Fieldset.
+
+### @hint
 
 ```hbs
 <Form::Fieldset @label='Label' @hint='Hint' />
+```
+
+### :hint
+
+```hbs
+<Form::Fieldset @label='Label' @error='Error message'>
+  {{! note that default block is required here }}
+  <:default><p class='text-body-and-labels text-xs m-0 italic'>~Fieldset
+      components render here!~</p></:default>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fieldset>
 ```
 
 ## Error

@@ -3,10 +3,7 @@
   @label='Label'
   @isChecked={{this.isChecked}}
   @onChange={{this.handleChange}}
->
-  <:label>extra label info</:label>
-  <:hint>extra hint info</:hint>
-</Form::Fields::Checkbox>
+/>
 ```
 
 ```js component

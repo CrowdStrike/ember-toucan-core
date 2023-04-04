@@ -6,10 +6,7 @@
   @value={{this.value}}
   @onChange={{this.updateValue}}
   type='text'
->
-  <:label>extra label info</:label>
-  <:hint>extra hint info</:hint>
-</Form::Fields::Input>
+/>
 ```
 
 ```js component
