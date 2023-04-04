@@ -14,5 +14,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["test-app", "docs-app", "internal/sync-pnpm"]
+  "ignore": ["test-app", "docs-app"]
 }
