@@ -5,14 +5,21 @@
     {{! attribute aria-invalid is not supported by the element fieldset with the implicit role of group }}
     ...attributes
   >
-    <legend
-      class="type-md-tight text-body-and-labels block"
-      data-label
-    >{{@label}} {{yield to="label"}}</legend>
+    <legend class="type-md-tight text-body-and-labels block" data-label>
+      {{#if (has-block "label")}}
+        {{yield to="label"}}
+      {{else}}
+        {{@label}}
+      {{/if}}
+    </legend>
 
     {{#if @hint}}
-      <field.Hint id={{field.hintId}} data-hint>{{@hint}}
-        {{yield to="hint"}}
+      <field.Hint id={{field.hintId}} data-hint>
+        {{#if (has-block "hint")}}
+          {{yield to="hint"}}
+        {{else}}
+          {{@hint}}
+        {{/if}}
       </field.Hint>
     {{/if}}
 

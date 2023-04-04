@@ -4,10 +4,24 @@
 >
   <Form::Field as |field|>
     <field.Label for={{field.id}}>
-      <span data-label>{{@label}} {{yield to="label"}}</span>
+      <span data-label>
+        {{#if (has-block "label")}}
+          {{yield to="label"}}
+        {{else}}
+          {{@label}}
+        {{/if}}
+      </span>
+
       {{#if @hint}}
-        <field.Hint data-hint>{{@hint}} {{yield to="hint"}}</field.Hint>
+        <field.Hint data-hint>
+          {{#if (has-block "hint")}}
+            {{yield to="hint"}}
+          {{else}}
+            {{@hint}}
+          {{/if}}
+        </field.Hint>
       {{/if}}
+
       <field.Control class="mt-1.5">
         <Form::Controls::FileInput
           aria-describedby={{if this.hasError field.errorId}}
