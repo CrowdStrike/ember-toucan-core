@@ -2,6 +2,10 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
+import assertBlockExists from '../../../-private/helpers/assert-block-exists';
+import hasEitherBlockOrArg from '../../../-private/helpers/has-either-block-or-arg';
+
+import type { AssertBlockOrArg } from '../../../-private/helpers/assert-block-exists';
 import type { ErrorMessage } from '../../../-private/types';
 
 type FileTarget = EventTarget & { files?: FileList };
@@ -15,7 +19,7 @@ interface ToucanFormFileInputFieldComponentSignature {
     error?: ErrorMessage;
     files?: File[];
     hint?: string;
-    label: string;
+    label?: string;
     trigger: string;
     isDisabled?: boolean;
     multiple?: boolean;
@@ -29,15 +33,15 @@ interface ToucanFormFileInputFieldComponentSignature {
 }
 
 export default class ToucanFormFileInputFieldComponent extends Component<ToucanFormFileInputFieldComponentSignature> {
+  assert = ({ blockExists, argName, arg, required }: AssertBlockOrArg) =>
+    assertBlockExists({ blockExists, argName, arg, required });
+
+  has = (hasBlock: boolean, arg?: string) => hasEitherBlockOrArg(hasBlock, arg);
+
   constructor(
     owner: unknown,
     args: ToucanFormFileInputFieldComponentSignature['Args']
   ) {
-    assert(
-      'A "@label" argument is required for Form::FileInput::Field',
-      args.label !== undefined
-    );
-
     assert(
       'A "@deleteLabel" argument is required for Form::FileInput::Field. This provides an accessible label for the delete button.',
       args.deleteLabel !== undefined
