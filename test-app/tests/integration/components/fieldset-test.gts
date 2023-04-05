@@ -44,14 +44,14 @@ module('Integration | Component | Fieldset', function (hooks) {
 
   test('it renders with hint and label blocks', async function (assert) {
     await render(<template>
-      <Fieldset @label="Label" @hint="Hint text" data-fieldset>
-        <:label>Extra label content</:label>
-        <:hint>Extra hint content</:hint>
+      <Fieldset data-fieldset>
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
       </Fieldset>
     </template>);
 
-    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
-    assert.dom('[data-label]').hasText('Label Extra label content');
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it renders with an error', async function (assert) {
@@ -131,14 +131,30 @@ module('Integration | Component | Fieldset', function (hooks) {
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('A "@label" argument is required'),
+        e.message.includes('Assertion Failed: You need either :label or @label'),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      {{! @glint-expect-error: we are not providing @label, so this is expected }}
       <Fieldset />
+    </template>);
+  });
+
+  test('it throws an assertion error if `@label` and `:label` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('Assertion Failed: You can have :label or @label, but not both'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <Fieldset @label="Label">
+        <:label>Hi</:label>
+      </Fieldset>
     </template>);
   });
 });

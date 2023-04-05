@@ -1,7 +1,7 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
-import { click, render } from '@ember/test-helpers';
+import { click, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import RadioGroupField from '@crowdstrike/ember-toucan-core/components/form/fields/radio-group';
@@ -65,14 +65,14 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <RadioGroupField @label="Label" @name="group" @hint="Hint text">
-        <:label>Extra label content</:label>
-        <:hint>Extra hint content</:hint>
+      <RadioGroupField @name="group">
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
       </RadioGroupField>
     </template>);
 
-    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
-    assert.dom('[data-label]').hasText('Label Extra label content');
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it renders with an error', async function (assert) {
@@ -168,5 +168,37 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     </template>);
 
     assert.dom('[data-group-field]').hasAttribute('aria-invalid', 'true');
+  });
+
+  test('it throws an assertion error if no `@label` or `:label` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.strictEqual(
+        e.message,
+        'Assertion Failed: You need either :label or @label',
+        'Expected an error message if @label is not provided'
+      );
+    });
+    await render(<template>
+      <RadioGroupField @name="group" type="text" />
+    </template>);
+  });
+
+  test('it throws an assertion error if both `@label` and `:label` are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.strictEqual(
+        e.message,
+        'Assertion Failed: You can have :label or @label, but not both',
+        'Expected an error message if @label is not provided'
+      );
+    });
+    await render(<template>
+      <RadioGroupField @name="group" @label="Label" type="text">
+        <:label>Hello</:label>
+      </RadioGroupField>
+    </template>);
   });
 });

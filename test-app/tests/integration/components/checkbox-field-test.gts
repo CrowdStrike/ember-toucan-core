@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import CheckboxField from '@crowdstrike/ember-toucan-core/components/form/fields/checkbox';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | Fields | Checkbox', function (hooks) {
+module('Integration | Component | Fields | CheckboxField', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
@@ -43,6 +43,18 @@ module('Integration | Component | Fields | Checkbox', function (hooks) {
     </template>);
 
     assert.dom('[data-hint]').hasText('Hint text');
+  });
+
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <CheckboxField data-checkbox>
+        <:label>label block content</:label>
+        <:hint>hint block content</:hint>
+      </CheckboxField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it renders with an error', async function (assert) {
@@ -219,14 +231,32 @@ module('Integration | Component | Fields | Checkbox', function (hooks) {
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('A "@label" argument is required'),
+        e.message.includes(
+          'Assertion Failed: You need either :label or @label'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template><CheckboxField /></template>);
+  });
+
+  test('it throws an assertion error if both `@label` and `:label` are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You can have :label or @label, but not both'
+        ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      {{! @glint-expect-error: we are not providing @label, so this is expected }}
-      <CheckboxField />
+      <CheckboxField @label="Label">
+        <:label>label block content</:label>
+      </CheckboxField>
     </template>);
   });
 

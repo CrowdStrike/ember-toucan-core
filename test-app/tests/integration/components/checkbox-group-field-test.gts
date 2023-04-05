@@ -1,7 +1,7 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
-import { click, render } from '@ember/test-helpers';
+import { click, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import CheckboxGroupField from '@crowdstrike/ember-toucan-core/components/form/fields/checkbox-group';
@@ -115,14 +115,14 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <CheckboxGroupField @label="Label" @name="group" @hint="Hint text">
-        <:label>Extra label content</:label>
-        <:hint>Extra hint content</:hint>
+      <CheckboxGroupField @name="group">
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
       </CheckboxGroupField>
     </template>);
 
-    assert.dom('[data-hint]').hasText('Hint text Extra hint content');
-    assert.dom('[data-label]').hasText('Label Extra label content');
+    assert.dom('[data-label]').hasText('label block content');
+    assert.dom('[data-hint]').hasText('hint block content');
   });
 
   test('it default-checks the checkbox with the matching `@value`', async function (assert) {
@@ -231,4 +231,37 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isChecked();
   });
 
+  test('it throws an assertion error if no `@label` or `:label` is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You need either :label or @label'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template><CheckboxGroupField @name="group" /></template>);
+  });
+
+  test('it throws an assertion error if both `@label` and `:label` are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You can have :label or @label, but not both'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <CheckboxGroupField @label="Label" @name="group">
+        <:label>Label</:label>
+      </CheckboxGroupField>
+    </template>);
+  });
 });
