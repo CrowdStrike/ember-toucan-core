@@ -4,12 +4,27 @@
     disabled={{@isDisabled}}
     ...attributes
   >
-    <legend
-      class="type-md-tight text-body-and-labels block"
-      data-label
-    >{{@label}} {{yield to="label"}}</legend>
 
-    {{#if @hint}}
+    {{this.assert
+      (hash
+        blockExists=(has-block "label") argName="label" arg=@label required=true
+      )
+    }}
+    {{#if (this.has (has-block "label") @label)}}
+      <legend class="type-md-tight text-body-and-labels block" data-label>
+        {{#if (has-block "label")}}
+          {{yield to="label"}}
+        {{else}}
+          {{@label}}
+        {{/if}}
+      </legend>
+
+    {{/if}}
+
+    {{#if (this.has (has-block "hint") @hint)}}
+      {{this.assert
+        (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
+      }}
       <field.Hint id={{field.hintId}} data-hint>{{@hint}}
         {{yield to="hint"}}
       </field.Hint>

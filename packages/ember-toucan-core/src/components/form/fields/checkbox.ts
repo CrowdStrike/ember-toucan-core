@@ -41,7 +41,7 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     /**
      * Provide a string to this argument to render inside of the label tag.
      */
-    label: string;
+    label?: string;
 
     /**
      * Sets the name attribute of the checkbox. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
@@ -78,8 +78,8 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     value?: string;
   };
   Blocks: {
-    label: unknown;
-    hint: unknown;
+    label: [];
+    hint: [];
   };
 }
 
@@ -93,8 +93,6 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     owner: unknown,
     args: ToucanFormCheckboxFieldComponentSignature['Args']
   ) {
-    assert('A "@label" argument is required', args.label);
-
     assert(
       'Both "@value" and "@isChecked" arguments were supplied. "@value" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@value" or "@isChecked", but not both.',
       !(args.isChecked && args.value)

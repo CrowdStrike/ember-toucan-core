@@ -3,15 +3,25 @@
   data-root-field={{if @rootTestSelector @rootTestSelector null}}
 >
   <Form::Field as |field|>
-    <field.Label for={{field.id}} data-label>
-      {{#if (has-block "label")}}
-        {{yield to="label"}}
-      {{else}}
-        {{@label}}
-      {{/if}}
-    </field.Label>
+    {{this.assert
+      (hash
+        blockExists=(has-block "label") argName="label" arg=@label required=true
+      )
+    }}
+    {{#if (this.has (has-block "label") @label)}}
+      <field.Label for={{field.id}} data-label>
+        {{#if (has-block "label")}}
+          {{yield to="label"}}
+        {{else}}
+          {{@label}}
+        {{/if}}
+      </field.Label>
+    {{/if}}
 
-    {{#if @hint}}
+    {{#if (this.has (has-block "hint") @hint)}}
+      {{this.assert
+        (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
+      }}
       <field.Hint id={{field.hintId}} data-hint>
         {{#if (has-block "hint")}}
           {{yield to="hint"}}
