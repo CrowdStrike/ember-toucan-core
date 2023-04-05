@@ -4,15 +4,16 @@
 >
   <Form::Field as |field|>
     <field.Label for={{field.id}}>
-      {{this.assert
-        (hash
-          blockExists=(has-block "label")
-          argName="label"
-          arg=@label
-          required=true
+      {{#if
+        (this.assertBlockOrArgumentExists
+          (hash
+            blockExists=(has-block "label")
+            argName="label"
+            arg=@label
+            isRequired=true
+          )
         )
       }}
-      {{#if (this.has (has-block "label") @label)}}
         <span data-label>
           {{#if (has-block "label")}}
             {{yield to="label"}}
@@ -22,10 +23,11 @@
         </span>
       {{/if}}
 
-      {{#if (this.has (has-block "hint") @hint)}}
-        {{this.assert
+      {{#if
+        (this.assertBlockOrArgumentExists
           (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
-        }}
+        )
+      }}
         <field.Hint data-hint>
           {{#if (has-block "hint")}}
             {{yield to="hint"}}

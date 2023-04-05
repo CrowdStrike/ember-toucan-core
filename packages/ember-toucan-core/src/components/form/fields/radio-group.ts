@@ -1,11 +1,10 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import assertBlockExists from '../../../-private/helpers/assert-block-exists';
-import hasEitherBlockOrArg from '../../../-private/helpers/has-either-block-or-arg';
+import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
 import RadioFieldComponent from './radio';
 
-import type { AssertBlockOrArg } from '../../../-private/helpers/assert-block-exists';
+import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
 import type { ToucanFormRadioFieldComponentSignature } from './radio';
 import type { WithBoundArgs } from '@glint/template';
@@ -72,10 +71,13 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
 export default class ToucanFormRadioGroupFieldComponent extends Component<ToucanFormRadioGroupFieldComponentSignature> {
   RadioFieldComponent = RadioFieldComponent;
 
-  assert = ({ blockExists, argName, arg, required }: AssertBlockOrArg) =>
-    assertBlockExists({ blockExists, argName, arg, required });
-
-  has = (hasBlock: boolean, arg?: string) => hasEitherBlockOrArg(hasBlock, arg);
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 
   @action
   handleInput(value: string, e: Event | InputEvent): void {

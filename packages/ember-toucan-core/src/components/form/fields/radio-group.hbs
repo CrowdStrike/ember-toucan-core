@@ -7,12 +7,16 @@
     role="radiogroup"
     ...attributes
   >
-    {{this.assert
-      (hash
-        blockExists=(has-block "label") argName="label" arg=@label required=true
+    {{#if
+      (this.assertBlockOrArgumentExists
+        (hash
+          blockExists=(has-block "label")
+          argName="label"
+          arg=@label
+          isRequired=true
+        )
       )
     }}
-    {{#if (this.has (has-block "label") @label)}}
       <legend class="type-md-tight text-body-and-labels block" data-label>
         {{#if (has-block "label")}}
           {{yield to="label"}}
@@ -22,10 +26,11 @@
       </legend>
     {{/if}}
 
-    {{#if (this.has (has-block "hint") @hint)}}
-      {{this.assert
+    {{#if
+      (this.assertBlockOrArgumentExists
         (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
-      }}
+      )
+    }}
       <field.Hint id={{field.hintId}} data-hint>
         {{#if (has-block "hint")}}
           {{yield to="hint"}}

@@ -1,9 +1,8 @@
 import Component from '@glimmer/component';
 
-import assertBlockExists from '../../-private/helpers/assert-block-exists';
-import hasEitherBlockOrArg from '../../-private/helpers/has-either-block-or-arg';
+import assertBlockOrArgumentExists from '../../-private/assert-block-or-argument-exists';
 
-import type { AssertBlockOrArg } from '../../-private/helpers/assert-block-exists';
+import type { AssertBlockOrArg } from '../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../-private/types';
 
 interface ToucanFormFieldsetComponentSignature {
@@ -35,10 +34,12 @@ interface ToucanFormFieldsetComponentSignature {
     hint: [];
   };
 }
-
 export default class ToucanFormFieldComponent extends Component<ToucanFormFieldsetComponentSignature> {
-  assert = ({ blockExists, argName, arg, required }: AssertBlockOrArg) =>
-    assertBlockExists({ blockExists, argName, arg, required });
-
-  has = (hasBlock: boolean, arg?: string) => hasEitherBlockOrArg(hasBlock, arg);
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 }

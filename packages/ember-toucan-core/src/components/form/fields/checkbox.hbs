@@ -25,15 +25,16 @@
         />
 
         <div class="flex flex-col">
-          {{this.assert
-            (hash
-              blockExists=(has-block "label")
-              argName="label"
-              arg=@label
-              required=true
+          {{#if
+            (this.assertBlockOrArgumentExists
+              (hash
+                blockExists=(has-block "label")
+                argName="label"
+                arg=@label
+                isRequired=true
+              )
             )
           }}
-          {{#if (this.has (has-block "label") @label)}}
             <span
               class="type-md-tight block leading-4
                 {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
@@ -47,10 +48,11 @@
             </span>
           {{/if}}
 
-          {{#if (this.has (has-block "hint") @hint)}}
-            {{this.assert
+          {{#if
+            (this.assertBlockOrArgumentExists
               (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
-            }}
+            )
+          }}
             <field.Hint data-hint>
               {{#if (has-block "hint")}}
                 {{yield to="hint"}}
