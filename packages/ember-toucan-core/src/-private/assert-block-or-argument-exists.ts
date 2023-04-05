@@ -4,20 +4,20 @@ export type AssertBlockOrArg = {
   blockExists: boolean;
   argName: string;
   arg?: string;
-  required?: boolean;
+  isRequired?: boolean;
 };
 
 /**
  * @param {object} AssertBlockOrArg
  *
  **/
-const assertBlockExists = ({
+const assertBlockOrArgumentExists = ({
   blockExists,
   argName,
   arg,
-  required,
+  isRequired,
 }: AssertBlockOrArg) => {
-  if (required) {
+  if (isRequired) {
     assert(
       `You need either :${argName} or @${argName}`,
       Boolean(blockExists || arg)
@@ -28,6 +28,12 @@ const assertBlockExists = ({
     `You can have :${argName} or @${argName}, but not both`,
     !(blockExists && arg)
   );
+
+  if (blockExists || arg) {
+    return true;
+  }
+
+  return false;
 };
 
-export default assertBlockExists;
+export default assertBlockOrArgumentExists;
