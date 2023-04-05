@@ -232,13 +232,11 @@ Target the trash icon button via `data-delete-file`.
     />
 </div>
 
-## FileInputField with label and hint, and extra label and hint blocks
+## FileInputField with label and hint blocks
 
 <div class='mb-4 w-64'>
   <Form::Fields::FileInput
     @deleteLabel='Delete file'
-    @label='Label'
-    @hint='Hint text'
     @trigger='Browse Files'
   >
     <:label>Icon</:label>
