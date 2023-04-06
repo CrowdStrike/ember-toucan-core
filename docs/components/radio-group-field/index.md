@@ -10,9 +10,9 @@ Provides a radio group to be used within forms. It yields [RadioFields](./radio-
 
 Required.
 
-Use either `@label` or `:label`.
+Use either the `@label` component argument or the `:label` named block.
 
-Provide a string to `@label` or components to `:label` to render the text into the `<legend>` of the fieldset.
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the legend of the fieldset.
 
 ### @label
 
@@ -45,9 +45,9 @@ Provide a string to `@label` or components to `:label` to render the text into t
 
 Optional.
 
-Use either `@hint` or `:hint`.
+Use either the `@hint` component argument or the `:hint` named block.
 
-Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the fieldset.
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the legend of the fieldset.
 
 ### @hint
 
@@ -80,7 +80,9 @@ Provide a string to `@hint` or components to `:hint` to render the text into the
 
 ## Error
 
-Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset.
+Optional.
+
+Provide a string or array of strings to `@error` to render the text into the Error section of the fieldset.
 
 ```hbs
 <Form::Fields::RadioGroup @label='Label' @name='single-error' @error='Error' />
@@ -195,6 +197,20 @@ Consumers have direct access to the underlying [radio element](https://developer
   <group.RadioField @label='Option 1' @value='option-1' />
   <group.RadioField @label='Option 2' @value='option-2' />
   <group.RadioField @label='Option 3' @value='option-3' />
+  </Form::Fields::RadioGroup>
+</div>
+
+### RadioGroupField with label and hint blocks
+
+<div class='mb-4 w-64'>
+  <Form::Fields::RadioGroup @name='options-b'>
+    <:default as |group|>
+      <group.RadioField @label='Option 1' @value='option-1' />
+      <group.RadioField @label='Option 2' @value='option-2' />
+      <group.RadioField @label='Option 3' @value='option-3' />
+    </:default>
+  <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:hint>Select an option <a href="https://www.crowdstrike.com/">link</a></:hint>
   </Form::Fields::RadioGroup>
 </div>
 

@@ -4,15 +4,71 @@ Provides an underlying checkbox element building on top of the Field component.
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field.
+Required.
+
+Use either the `@label` component argument or the `:label` named block.
+
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the Label section.
+
+### @label
+
+```hbs template
+<Form::Fields::Checkbox
+  @label='Label here'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :label
+
+```hbs template
+<Form::Fields::Checkbox
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::Checkbox>
+```
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
+Optional.
+
+Use either the `@hint` component argument or the `:hint` named block.
+
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section.
+
+### @hint
+
+```hbs template
+<Form::Fields::Checkbox
+  @hint='Here is a hint'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :hint
+
+```hbs template
+<Form::Fields::Checkbox
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::Checkbox>
+```
 
 ## Error
 
-Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
+Optional.
+
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::Fields::Checkbox @label='Single error' @error='Error' />
@@ -137,6 +193,16 @@ Target the error block via `data-error`.
     @error='With error'
     @hint='With hint text'
   />
+</div>
+
+### CheckboxField with label and hint blocks
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Checkbox
+  >
+    <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+    <:hint>Select <a href="https://www.crowdstrike.com/">link</a></:hint>
+  </Form::Fields::Checkbox>
 </div>
 
 ### CheckboxField with label and isDisabled

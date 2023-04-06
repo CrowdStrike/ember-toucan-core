@@ -6,9 +6,9 @@ Provides an underlying `<input>` element building on top of the Field component.
 
 Required.
 
-Use either `@label` or `:label`.
+Use either the `@label` component argument or the `:label` named block.
 
-Provide a string to `@label` or components to `:label` to render the text into the `<label>` of the Field.
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the Label section of the Field.
 
 ### @label
 
@@ -39,9 +39,9 @@ Provide a string to `@label` or components to `:label` to render the text into t
 
 Optional.
 
-Use either `@hint` or `:hint`.
+Use either the `@hint` component argument or the `:hint` named block.
 
-Provide a string to `@hint` or components to `:hint` to render the text into the Hint section of the Field.
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
 
 ### @hint
 
@@ -72,11 +72,9 @@ Provide a string to `@hint` or components to `:hint` to render the text into the
 
 ## Error
 
-Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
+Optional.
 
-## Error
-
-Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::Fields::Input @label='Single error' @error='Error' />
@@ -168,6 +166,16 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
   />
+</div>
+
+### InputField with label and hint blocks
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+  >
+  <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
+  </Form::Fields::Input>
 </div>
 
 ### InputField with label and error
