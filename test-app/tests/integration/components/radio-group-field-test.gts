@@ -177,7 +177,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
       assert.strictEqual(
         e.message,
         'Assertion Failed: You need either :label or @label',
-        'Expected an error message if @label is not provided'
+        'Expected assertion error message'
       );
     });
     await render(<template>
@@ -192,7 +192,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
       assert.strictEqual(
         e.message,
         'Assertion Failed: You can have :label or @label, but not both',
-        'Expected an error message if @label is not provided'
+        'Expected assertion error message'
       );
     });
     await render(<template>
