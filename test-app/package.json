@@ -24,7 +24,8 @@
     "start": "ember serve",
     "test": "concurrently \"pnpm lint\" \"pnpm test:ember\"",
     "test:ember": "ember test",
-    "test:watch": "ember test --server"
+    "typecheck": "pnpm tsc -v; pnpm glint --version; pnpm lint:types",
+    "_syncPnpm": "pnpm sync-pnpm"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -106,6 +107,7 @@
     "prettier-plugin-ember-template-tag": "^0.3.0",
     "qunit": "^2.19.3",
     "qunit-dom": "^2.0.0",
+    "sync-pnpm": "workspace:*",
     "tailwindcss": "^2.2.15",
     "typescript": "^5.0.0",
     "webpack": "^5.75.0"
