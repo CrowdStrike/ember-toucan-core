@@ -27,7 +27,9 @@
     "lint:types": "glint",
     "start": "rollup --config --watch",
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
-    "prepack": "rollup --config"
+    "prepack": "rollup --config",
+    "format:check": "prettier -c .",
+    "format": "prettier -w ."
   },
   "peerDependencies": {
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
