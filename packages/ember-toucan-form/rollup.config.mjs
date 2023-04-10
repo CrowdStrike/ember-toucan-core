@@ -16,9 +16,9 @@ export default {
     // These are the modules that users should be able to import from your
     // addon. Anything not listed here may get optimized away.
     addon.publicEntrypoints([
-      'components/**/*.js',
-      'index.js',
-      'template-registry.js',
+      // For our own build we treat all JS modules as entry points, to not cause rollup-plugin-ts to mess things up badly when trying to tree-shake TS declarations
+      // but the actual importable modules are further restricted by the package.json entry points!
+      '**/*.js',
     ]),
 
     // These are the modules that should get reexported into the traditional
@@ -26,17 +26,17 @@ export default {
     // not everything in publicEntrypoints necessarily needs to go here.
     addon.appReexports(['components/**/*.js']),
 
-    // Follow the V2 Addon rules about dependencies. Your code can import from
-    // `dependencies` and `peerDependencies` as well as standard Ember-provided
-    // package names.
-    addon.dependencies(),
-
     // compile TypeScript to latest JavaScript, including Babel transpilation
     typescript({
       transpiler: 'babel',
       browserslist: false,
       transpileOnly: false,
     }),
+
+    // Follow the V2 Addon rules about dependencies. Your code can import from
+    // `dependencies` and `peerDependencies` as well as standard Ember-provided
+    // package names.
+    addon.dependencies(),
 
     // Ensure that standalone .hbs files are properly integrated as Javascript.
     addon.hbs(),
@@ -48,11 +48,12 @@ export default {
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),
 
-    // Copy Readme and License into published package
+    // Copy Readme, License, and Notice into published package
     copy({
       targets: [
         { src: '../README.md', dest: '.' },
         { src: '../LICENSE.md', dest: '.' },
+        { src: '../NOTICE.md', dest: '.' },
       ],
     }),
   ],
