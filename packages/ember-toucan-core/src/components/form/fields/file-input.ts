@@ -13,16 +13,58 @@ export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
 interface ToucanFormFileInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
+    /**
+     * Provide a string to this argument, a comma separated list of file types
+     * @example: `@accept="video/*"`
+     * @example: `@accept="image/png, image/jpeg"`
+     */
     accept?: string;
+    /**
+     * Provide a string to this argument for the delete button a11y text
+     */
     deleteLabel: string;
+    /**
+     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     */
     error?: ErrorMessage;
+    /**
+     * Provide an array of File objects. This is handled automatically when a user uploads files.
+     */
     files?: File[];
+    /**
+     * Provide a string to this argument to render a hint message to help describe the control.
+     */
     hint?: string;
+
+    /**
+     * Provide a string to this argument to render inside of the label tag.
+     */
     label?: string;
+
+    /**
+     * Provide a string to this argument to replace the "Select Files" text. Used for internationalization purposes.
+     */
     trigger: string;
+
+    /**
+     * Sets the disabled attribute on the fieldset.
+     */
     isDisabled?: boolean;
+
+    /**
+     * Provide a boolean. Sets the multiple attribute on the file input.
+     * If not set, defaults no multiple attribute. In this case (single file upload) a file upload will REPLACE any existing file that is in the file list.
+     */
     multiple?: boolean;
+
+    /**
+      * Provide a callback to add additional functionality when files are added
+    */
     onChange?: (files: File[], event: FileEvent) => void;
+
+    /**
+      * Provide a string. Used for an alternate named test rootTestSelector
+    */
     rootTestSelector?: string;
   };
   Blocks: {
