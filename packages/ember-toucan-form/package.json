@@ -10,7 +10,7 @@
     "url": "git@github.com:CrowdStrike/ember-toucan-core.git",
     "directory": "packaegs/ember-toucan-form"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "CrowdStrike UX Team",
   "files": [
     "addon-main.cjs",
