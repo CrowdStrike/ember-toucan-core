@@ -2,9 +2,9 @@
   "name": "docs-app",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for docs-app goes here",
+  "description": "docs-app for the ember-toucan-core repo",
   "repository": "",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "",
   "directories": {
     "doc": "doc",
