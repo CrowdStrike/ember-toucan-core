@@ -1,7 +1,7 @@
 {
-  "name": "ember-toucan-form",
+  "name": "@crowdstrike/ember-toucan-form",
   "version": "0.0.0",
-  "description": "The default blueprint for Embroider v2 addons.",
+  "description": "Build forms with ember-headless-form and ember-toucan-core",
   "keywords": [
     "ember-addon"
   ],
