@@ -128,7 +128,6 @@
       "./components/form/fields/radio-group.js": "./dist/_app_/components/form/fields/radio-group.js",
       "./components/form/fields/radio.js": "./dist/_app_/components/form/fields/radio.js",
       "./components/form/fields/textarea.js": "./dist/_app_/components/form/fields/textarea.js",
-      "./components/form/fieldset.js": "./dist/_app_/components/form/fieldset.js",
       "./components/form/file-input/delete-button.js": "./dist/_app_/components/form/file-input/delete-button.js",
       "./components/form/file-input/list-item.js": "./dist/_app_/components/form/file-input/list-item.js",
       "./components/form/file-input/list.js": "./dist/_app_/components/form/file-input/list.js"

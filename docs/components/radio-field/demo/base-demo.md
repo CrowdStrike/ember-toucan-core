@@ -9,6 +9,7 @@
   />
   <Form::Fields::Radio
     @label='Option 2'
+    @hint='Some hint'
     @name='options'
     @value='option-2'
     @onChange={{this.updateValue}}

@@ -17,14 +17,42 @@
         />
 
         <div class="flex flex-col">
-          <span
-            class="type-md-tight block leading-4
-              {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
-            data-label
-          >{{@label}}</span>
 
-          {{#if @hint}}
-            <field.Hint data-hint>{{@hint}}</field.Hint>
+          {{#if
+            (this.assertBlockOrArgumentExists
+              (hash
+                blockExists=(has-block "label")
+                argName="label"
+                arg=@label
+                isRequired=true
+              )
+            )
+          }}
+            <span
+              class="type-md-tight block leading-4
+                {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
+              data-label
+            >
+              {{#if (has-block "label")}}
+                {{yield to="label"}}
+              {{else}}
+                {{@label}}
+              {{/if}}
+            </span>
+          {{/if}}
+
+          {{#if
+            (this.assertBlockOrArgumentExists
+              (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
+            )
+          }}
+            <field.Hint data-hint>
+              {{#if (has-block "hint")}}
+                {{yield to="hint"}}
+              {{else}}
+                {{@hint}}
+              {{/if}}
+            </field.Hint>
           {{/if}}
         </div>
       </label>

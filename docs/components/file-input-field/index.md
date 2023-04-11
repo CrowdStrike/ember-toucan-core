@@ -5,36 +5,100 @@ Provides an underlying `<input type="file">` element building on top of the Fiel
 ## Accepts
 
 Optional.
+
 Used to specify the types of files allowed. [See related documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept).
 
 ## Label
 
 Required.
-Provide a string to `@label` to render the text into the `<input type="file">` of the Field.
+
+Use either the `@label` component argument or the `:label` named block.
+
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the Label section of the Field.
+
+### @label
+
+```hbs
+<Form::Fields::FileInput
+  @deleteLabel='Delete file'
+  @label='Label'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::FileInput
+  @deleteLabel='Delete file'
+  @files={{this.files}}
+  @hint='Hint text'
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::FileInput>
+```
 
 ## Delete Label
 
 Required.
+
 Provide a string to `@deleteLabel` to render the accessible text (screenread-only) into the delete button.
 
 ## Trigger
 
 Required.
+
 Provide trigger text for the FileInputField (aka `Select Files`) via `@trigger`.
 
 ## Hint
 
 Optional.
-Provide a string to `@hint` to render the text into the Hint section of the Field.
+
+Use either the `@hint` component argument or the `:hint` named block.
+
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::FileInput
+  @hint='Here is a hint'
+  @deleteLabel='Delete file'
+  @label='Label'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::FileInput
+  @label='Label'
+  @deleteLabel='Delete file'
+  @files={{this.files}}
+  @trigger='Browse Files'
+  @onChange={{this.handleChange}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::FileInput>
+```
 
 ## Error
 
 Optional.
+
 Provide a string to `@error` to render the text into the Error section of the Field.
 
 ## Files
 
 Optional.
+
 Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input via `@files`.
 
 **Note:** To make things easier, the `@files` argument is an array. This makes it convenient to use existing Array methods like `find` and `filter`.
@@ -42,11 +106,13 @@ Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File
 ## Multiple
 
 Optional.
+
 If true, allows users to upload multiple files. If false, the `multiple` attribute is not added to the underlying input.
 
 ## Value and onChange
 
 Optional
+
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the list of files selected
@@ -152,32 +218,58 @@ Target the trash icon button via `data-delete-file`.
 
 ## UI States
 
-<div class='flex flex-col gap-y-5'>
+## FileInputField with label
+
+<div class='mb-4 w-64'>
   <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'
     @trigger='Browse Files'
   />
+</div>
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@hint='Hint text'
-@trigger='Browse Files'
-/>
+## FileInputField with label and hint
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@error='Here is an error'
-@trigger='Browse Files'
-/>
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @hint='Hint text'
+    @trigger='Browse Files'
+    />
+</div>
 
-<Form::Fields::FileInput
-@deleteLabel='Delete file'
-@label='Label'
-@isDisabled={{true}}
-@trigger='Browse Files'
-/>
+## FileInputField with label and hint blocks
 
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @trigger='Browse Files'
+  >
+  <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
+  </Form::Fields::FileInput>
+</div>
+
+## FileInputField with label, hint and error
+
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @hint='Hint'
+    @error='Here is an error'
+    @trigger='Select Files'
+  />
+</div>
+  
+## FileInputField with label and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @isDisabled={{true}}
+    @trigger='Browse Files'
+    />
 </div>

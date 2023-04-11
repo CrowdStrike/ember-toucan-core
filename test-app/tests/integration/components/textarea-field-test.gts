@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import TextareaField from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | TextareaField', function (hooks) {
+module('Integration | Component | Fields | Textarea', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
@@ -53,6 +53,18 @@ module('Integration | Component | TextareaField', function (hooks) {
       describedby.includes(hintId),
       'Expected hintId to be included in the aria-describedby'
     );
+  });
+
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <TextareaField data-textarea>
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
+      </TextareaField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it renders with an error', async function (assert) {
@@ -174,14 +186,32 @@ module('Integration | Component | TextareaField', function (hooks) {
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('A "@label" argument is required'),
+        e.message.includes(
+          'Assertion Failed: You need either :label or @label'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template><TextareaField /></template>);
+  });
+
+  test('it throws an assertion error if a `@label` and :label are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You can have :label or @label, but not both'
+        ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      {{! @glint-expect-error: we are not providing @label, so this is expected }}
-      <TextareaField />
+      <TextareaField @label="Label">
+        <:label>Label</:label>
+      </TextareaField>
     </template>);
   });
 });

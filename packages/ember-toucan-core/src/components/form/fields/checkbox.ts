@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
+import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+
+import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
 import type { ToucanFormCheckboxControlComponentSignature } from '../controls/checkbox';
 
@@ -37,7 +40,7 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     /**
      * Provide a string to this argument to render inside of the label tag.
      */
-    label: string;
+    label?: string;
 
     /**
      * Sets the name attribute of the checkbox. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
@@ -73,15 +76,25 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      */
     value?: string;
   };
+  Blocks: {
+    label: [];
+    hint: [];
+  };
 }
 
 export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFormCheckboxFieldComponentSignature> {
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
   constructor(
     owner: unknown,
     args: ToucanFormCheckboxFieldComponentSignature['Args']
   ) {
-    assert('A "@label" argument is required', args.label);
-
     assert(
       'Both "@value" and "@isChecked" arguments were supplied. "@value" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@value" or "@isChecked", but not both.',
       !(args.isChecked && args.value)

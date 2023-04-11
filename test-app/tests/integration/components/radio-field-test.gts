@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 import RadioField from '@crowdstrike/ember-toucan-core/components/form/fields/radio';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | RadioField', function (hooks) {
+module('Integration | Component | Fields | Radio', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
@@ -46,6 +46,18 @@ module('Integration | Component | RadioField', function (hooks) {
     </template>);
 
     assert.dom('[data-hint]').hasText('Hint text');
+  });
+
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <RadioField @value="option" @name="name" data-radio>
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
+      </RadioField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it sets the "for" attribute on the label to the "id" attribute of the radio', async function (assert) {
@@ -182,14 +194,34 @@ module('Integration | Component | RadioField', function (hooks) {
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('A "@label" argument is required'),
+        e.message.includes(
+          'Assertion Failed: You need either :label or @label'
+        ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      {{! @glint-expect-error: we are not providing @label, so this is expected }}
       <RadioField @value="option" @name="name" />
+    </template>);
+  });
+
+  test('it throws an assertion error if both `@label` and `:label` are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You can have :label or @label, but not both'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <RadioField @label="Label" @value="option" @name="name">
+        <:label>Hello there</:label>
+      </RadioField>
     </template>);
   });
 

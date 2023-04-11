@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
+import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+
+import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ToucanFormRadioControlComponentSignature } from '../controls/radio';
 
 export interface ToucanFormRadioFieldComponentSignature {
@@ -19,7 +22,7 @@ export interface ToucanFormRadioFieldComponentSignature {
     /**
      * Provide a string to this argument to render inside of the label tag.
      */
-    label: string;
+    label?: string;
 
     /**
      * Sets the name attribute of the radio. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
@@ -49,14 +52,25 @@ export interface ToucanFormRadioFieldComponentSignature {
      */
     value: ToucanFormRadioControlComponentSignature['Args']['value'];
   };
+  Blocks: {
+    label: [];
+    hint: [];
+  };
 }
 
 export default class ToucanFormRadioFieldComponent extends Component<ToucanFormRadioFieldComponentSignature> {
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
   constructor(
     owner: unknown,
     args: ToucanFormRadioFieldComponentSignature['Args']
   ) {
-    assert('A "@label" argument is required', args.label);
     assert('A "@name" argument is required', args.name);
     super(owner, args);
   }

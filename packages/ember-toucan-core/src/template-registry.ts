@@ -12,14 +12,12 @@ import type InputFieldComponent from './components/form/fields/input';
 import type RadioFieldComponent from './components/form/fields/radio';
 import type RadioGroupFieldComponent from './components/form/fields/radio-group';
 import type TextareaFieldComponent from './components/form/fields/textarea';
-import type FieldsetComponent from './components/form/fieldset';
 import type FormFileInputDeleteButtonComponent from './components/form/file-input/delete-button';
 import type FormFileInputListComponent from './components/form/file-input/list';
 
 export default interface Registry {
   Button: typeof ButtonComponent;
   'Form::Field': typeof FieldComponent;
-  'Form::Fieldset': typeof FieldsetComponent;
   'Form::Fields::Checkbox': typeof CheckboxFieldComponent;
   'Form::Fields::CheckboxGroup': typeof CheckboxGroupFieldComponent;
   'Form::Fields::Input': typeof InputFieldComponent;

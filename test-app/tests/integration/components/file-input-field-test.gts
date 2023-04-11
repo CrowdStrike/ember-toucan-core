@@ -39,7 +39,7 @@ const banana = createFile(['Upload file sample'], {
   type: 'text/plain',
 });
 
-module('Integration | Component | FileInputField', function (hooks) {
+module('Integration | Component | Fields | FileInput', function (hooks) {
   setupRenderingTest(hooks);
 
   function onChange() {
@@ -91,13 +91,24 @@ module('Integration | Component | FileInputField', function (hooks) {
       />
     </template>);
 
-    // For the file input field component, the only aria-describedby
-    // value should be the errorId.  This is due to the way the component
-    // is structured, where the label+hint are rendered inside of the
-    // wrapping <label> element
-    const hint = find('[data-hint]');
+    assert.dom('[data-hint]').hasText('Hint text');
+  });
 
-    assert.dom(hint).hasText('Hint text');
+  test('it renders with a hint and label block', async function (assert) {
+    await render(<template>
+      <FileInputField
+        @deleteLabel="Delete File"
+        @trigger="Select Files"
+        @onChange={{onChange}}
+        data-file-input-field
+      >
+        <:label><span data-label>label block content</span></:label>
+        <:hint><span data-hint>hint block content</span></:hint>
+      </FileInputField>
+    </template>);
+
+    assert.dom('[data-hint]').hasText('hint block content');
+    assert.dom('[data-label]').hasText('label block content');
   });
 
   test('it renders with an error', async function (assert) {
@@ -403,6 +414,7 @@ module('Integration | Component | FileInputField', function (hooks) {
       .hasText('avocado.txt', 'With multiple, files are additive');
     assert.dom('ul > li:nth-child(3) [data-file-name]').hasText('banana.txt');
   });
+
   test('it applies the provided @rootTestSelector to the data-root-field attribute', async function (assert) {
     await render(<template>
       <FileInputField
@@ -418,19 +430,48 @@ module('Integration | Component | FileInputField', function (hooks) {
     assert.dom('[data-root-field="selector"]').exists();
   });
 
-  test('it throws an assertion error if no @label is provided', async function (assert) {
+  test('it throws an assertion error if there is no @label or :label', async function (assert) {
     assert.expect(1);
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('A "@label" argument is required'),
+        e.message.includes(
+          'Assertion Failed: You need either :label or @label'
+        ),
         'Expected assertion error message'
       );
     });
 
     await render(<template>
-      {{! @glint-expect-error: we are not providing @label, so this is expected }}
-      <FileInputField @onChange={{onChange}} />
+      <FileInputField
+        @deleteLabel="Delete file"
+        @trigger="Select Files"
+        @onChange={{onChange}}
+      />
+    </template>);
+  });
+
+  test('it throws an assertion error if both `@label` and `:label` are provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'Assertion Failed: You can have :label or @label, but not both'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <FileInputField
+        @deleteLabel="Delete file"
+        @trigger="Select Files"
+        @label="Label"
+        @onChange={{onChange}}
+      >
+        <:label>Hello</:label>
+      </FileInputField>
     </template>);
   });
 

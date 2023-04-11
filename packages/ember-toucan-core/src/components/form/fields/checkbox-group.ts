@@ -1,8 +1,10 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
+import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
 import CheckboxFieldComponent from './checkbox';
 
+import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormCheckboxGroupFieldComponentSignature {
@@ -26,7 +28,7 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
     /**
      * Provide a string to this argument to render inside of the label tag.
      */
-    label: string;
+    label?: string;
 
     /**
      * Sets the name attribute of the checkboxes. A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted.
@@ -54,11 +56,21 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
         >;
       }
     ];
+    label: [];
+    hint: [];
   };
 }
 
 export default class ToucanFormCheckboxGroupFieldComponent extends Component<ToucanFormCheckboxGroupFieldComponentSignature> {
   CheckboxFieldComponent = CheckboxFieldComponent;
+
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 
   @action
   handleInput(_: boolean, e: Event | InputEvent): void {

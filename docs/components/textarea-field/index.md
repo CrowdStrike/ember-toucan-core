@@ -4,15 +4,73 @@ Provides an underlying `<textarea>` element building on top of the Field compone
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field.
+Required.
+
+Use either the `@label` component argument or the `:label` named block.
+
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the Label section of the Field.
+
+### @label
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::Textarea
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::Textarea>
+```
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
+Optional.
+
+Use either the `@hint` component argument or the `:hint` named block.
+
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @hint='Here is a hint'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::Textarea
+  @label='Label'
+  @error={{this.errorMessage}}
+  @value={{this.value}}
+  @onChange={{this.updateValue}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::Textarea>
+```
 
 ## Error
 
-Optional. Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
+Optional.
+
+Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
 <Form::Fields::Textarea @label='Single error' @error='Error' />
@@ -129,6 +187,16 @@ Target the error block via `data-error`.
     @hint='With hint text'
     @error='With error'
   />
+</div>
+
+### TextareaField with label and hint blocks
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+  >
+  <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:hint>Select an option <a href="https://www.crowdstrike.com/">link</a></:hint>
+  </Form::Fields::Textarea>
 </div>
 
 ### TextareaField with label and isDisabled

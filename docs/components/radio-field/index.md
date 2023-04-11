@@ -4,19 +4,85 @@ Provides an opinionated radio element building on top of the Field component. If
 
 ## Label
 
-Provide a string to `@label` to render the text into the `<label>` of the Field. This is required.
+Required.
+
+Use either the `@label` component argument or the `:label` named block.
+
+Provide a string to the `@label` component argument or content to the `:label` named block to render into the Label section of the Field.
+
+### @label
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+/>
+```
+
+### :label
+
+```hbs
+<Form::Fields::Radio
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+>
+    <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+</Form::Fields::Radio>
+```
 
 ## Name
 
-Provide a string to `@name` to set the `name` attribute of the Field. This is required.
+Required.
+
+Provide a string to `@name` to set the `name` attribute of the Field.
 
 ## Value
 
-Provide a string to `@value` to set the `value` attribute of the radio. This is required.
+Required.
+
+Provide a string to `@value` to set the `value` attribute of the radio.
 
 ## Hint
 
-Optional. Provide a string to `@hint` to render the text into the Hint section of the Field.
+Optional.
+
+Use either the `@hint` component argument or the `:hint` named block.
+
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @hint='Some hint'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+/>
+```
+
+### :hint
+
+```hbs
+<Form::Fields::Radio
+  @label='Label'
+  @name='options'
+  @value='option-2'
+  @onChange={{this.updateValue}}
+  @selectedValue='option-2'
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+</Form::Fields::Radio>
+```
 
 ## Value, Checked State, and onChange
 
@@ -107,6 +173,18 @@ Target the hint block via `data-hint`.
     @hint='with hint text'
     @value='option-1'
   />
+</div>
+
+### RadioField with label and hint blocks
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Radio
+    @name='options-b'
+    @value='option-1'
+  >
+  <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
+  </Form::Fields::Radio>
 </div>
 
 ### RadioField with label and isDisabled

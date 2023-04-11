@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
-import { assert } from '@ember/debug';
 
+import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+
+import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
 import type { ToucanFormTextareaControlComponentSignature } from '../controls/textarea';
 
@@ -25,7 +27,7 @@ export interface ToucanFormTextareaFieldComponentSignature {
     /**
      * Provide a string to this argument to render inside of the label tag.
      */
-    label: string;
+    label?: string;
 
     /**
      * The function called when the element is typed into.
@@ -42,14 +44,25 @@ export interface ToucanFormTextareaFieldComponentSignature {
      */
     value?: ToucanFormTextareaControlComponentSignature['Args']['value'];
   };
+  Blocks: {
+    label: [];
+    hint: [];
+  };
 }
 
 export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {
+  assertBlockOrArgumentExists = ({
+    blockExists,
+    argName,
+    arg,
+    isRequired,
+  }: AssertBlockOrArg) =>
+    assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
   constructor(
     owner: unknown,
     args: ToucanFormTextareaFieldComponentSignature['Args']
   ) {
-    assert('A "@label" argument is required', args.label);
     super(owner, args);
   }
 
