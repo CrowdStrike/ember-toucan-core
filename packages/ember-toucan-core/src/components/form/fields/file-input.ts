@@ -14,35 +14,36 @@ interface ToucanFormFileInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
-     * Provide a string to this argument, a comma separated list of file types
+     * A comma separated list of file types
      * @example: `@accept="video/*"`
      * @example: `@accept="image/png, image/jpeg"`
      */
     accept?: string;
     /**
-     * Provide a string to this argument for the delete button a11y text
+     * The delete button a11y text.
      */
     deleteLabel: string;
     /**
-     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     * The error message for the file input field. Linked to the input with aria-describedby.
      */
     error?: ErrorMessage;
     /**
-     * Provide an array of File objects. This is handled automatically when a user uploads files.
+     * This array is created automatically when a user uploads files.
+     * Note that this is not a FileList object, but an array of File objects. This is for convenience as FileList does not have common array methods like filter.
      */
     files?: File[];
     /**
-     * Provide a string to this argument to render a hint message to help describe the control.
+     * Render a hint message to help describe the control. Linked to the input with aria-describedby.
      */
     hint?: string;
 
     /**
-     * Provide a string to this argument to render inside of the label tag.
+     * Renders inside the link tag.
      */
     label?: string;
 
     /**
-     * Provide a string to this argument to replace the "Select Files" text. Used for internationalization purposes.
+     * Used to replace the "Select Files" text, and used for internationalization purposes.
      */
     trigger: string;
 
@@ -52,18 +53,19 @@ interface ToucanFormFileInputFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
-     * Provide a boolean. Sets the multiple attribute on the file input.
-     * If not set, defaults no multiple attribute. In this case (single file upload) a file upload will REPLACE any existing file that is in the file list.
+     * Sets the multiple attribute on the file input.
+     * If not set, defaults no multiple attribute. In this case (single file upload) a file upload will REPLACE any existing file that is in the files array.
+     * If set as multiple file upload, new files are adding to the existing files array.
      */
     multiple?: boolean;
 
     /**
-      * Provide a callback to add additional functionality when files are added
+      * A callback to be notified when files change.
     */
     onChange?: (files: File[], event: FileEvent) => void;
 
     /**
-      * Provide a string. Used for an alternate named test rootTestSelector
+      * Used for an alternate named test rootTestSelector.
     */
     rootTestSelector?: string;
   };
