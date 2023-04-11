@@ -1,0 +1,12 @@
+<HeadlessForm
+  @data={{@data}}
+  @dataMode={{@dataMode}}
+  @validateOn={{@validateOn}}
+  @revalidateOn={{@revalidateOn}}
+  @validate={{@validate}}
+  @onSubmit={{@onSubmit}}
+  @onInvalid={{@onInvalid}}
+  as |form|
+>
+  {{yield to='default'}}
+</HeadlessForm>
