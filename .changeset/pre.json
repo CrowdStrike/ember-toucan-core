@@ -4,9 +4,8 @@
   "initialVersions": {
     "docs-app": "0.0.0",
     "@crowdstrike/ember-toucan-core": "0.0.0",
+    "@crowdstrike/ember-toucan-form": "0.0.0",
     "test-app": "0.0.0"
   },
-  "changesets": [
-    "rude-taxis-eat"
-  ]
+  "changesets": ["rude-taxis-eat"]
 }

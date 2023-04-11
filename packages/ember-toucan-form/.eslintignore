@@ -1,0 +1,12 @@
+# unconventional js
+/blueprints/*/files/
+
+# compiled output
+/dist/
+
+# misc
+/coverage/
+
+# until we have linting for gts set up
+**/*.gts
+**/*.gjs
