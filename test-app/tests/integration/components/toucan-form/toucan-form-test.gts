@@ -1,6 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import { render } from '@ember/test-helpers';
+import { click, fillIn, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
@@ -29,24 +29,74 @@ module('Integration | Component | ToucanForm', function (hooks) {
   test('it yields a Field from ember-headless-form', async function (assert) {
     await render(<template>
       <ToucanForm as |form|>
-        <form.Field @name="field">
-          <label for="test">Test</label>
-          <input id="test" data-test-field />
+        <form.Field @name="field" as |field|>
+          <field.Label for="test">Test</field.Label>
+          <field.Input data-test-field />
         </form.Field>
       </ToucanForm>
     </template>);
 
-    assert.dom('[data-test-field ]').exists();
+    assert.dom('[data-test-field]').exists();
   });
 
-  test('it yields a Textarea component', async function (assert) {
+  test('it sets the yielded component values based on `@data`', async function (assert) {
+    const data: { comment?: string } = { comment: 'textarea' };
+
     await render(<template>
-      <ToucanForm as |form|>
-        <form.Textarea @label="Textarea" @name="textarea" data-textarea />
+      <ToucanForm @data={{data}} as |form|>
+        <form.Textarea @label="Comment" @name="comment" data-textarea />
       </ToucanForm>
     </template>);
 
-    assert.dom('[data-textarea]').exists();
-    assert.dom('[data-textarea]').hasTagName('textarea');
+    assert.dom('[data-textarea]').hasAttribute('name', 'comment');
+    assert.dom('[data-textarea]').hasValue('textarea');
+  });
+
+  test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
+    const data: { comment?: string } = {};
+
+    const formValidateCallback = ({ comment }: { comment?: string }) =>
+      !comment
+        ? {
+            comment: [
+              {
+                type: 'uppercase',
+                value: comment,
+                message: 'Comment is required',
+              },
+            ],
+          }
+        : undefined;
+
+    await render(<template>
+      <ToucanForm @data={{data}} @validate={{formValidateCallback}} as |form|>
+        <form.Textarea @label="Comment" @name="comment" data-textarea />
+
+        <button type="submit" data-test-submit>Submit</button>
+      </ToucanForm>
+    </template>);
+
+    assert
+      .dom('[data-error]')
+      .doesNotExist(
+        'Expected no errors present since we have not submitted yet'
+      );
+
+    await click('[data-test-submit]');
+
+    assert
+      .dom('[data-error]')
+      .exists('Expected errors to be triggered due to validation');
+    assert.dom('[data-error]').hasText('Comment is required');
+
+    await fillIn('[data-textarea]', 'A comment.');
+
+    await click('[data-test-submit]');
+
+    assert
+      .dom('[data-error]')
+      .doesNotExist(
+        'Expected errors to be removed due to satisfying validation'
+      );
   });
 });
