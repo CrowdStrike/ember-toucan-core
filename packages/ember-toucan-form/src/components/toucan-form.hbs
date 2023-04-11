@@ -6,7 +6,14 @@
   @validate={{@validate}}
   @onSubmit={{@onSubmit}}
   @onInvalid={{@onInvalid}}
+  ...attributes
   as |form|
 >
-  {{yield to='default'}}
+  {{yield
+    (hash
+      Textarea=(component
+        (ensure-safe-component this.TextareaFieldComponent) form=form
+      )
+    )
+  }}
 </HeadlessForm>
