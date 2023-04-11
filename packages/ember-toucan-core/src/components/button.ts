@@ -19,7 +19,6 @@ const STYLES = {
     'inline-flex',
     'items-center',
     'justify-center',
-    'rounded-sm',
     'transition',
     'truncate',
     'type-md-medium',
@@ -31,6 +30,10 @@ const STYLES = {
     primary: ['interactive-primary'],
     quiet: ['font-normal', 'interactive-quiet'],
     secondary: ['interactive-normal'],
+  },
+  buttonGroup: {
+    true: ['rounded-none', 'flex-1', 'first:rounded-l-sm', 'last:rounded-r-sm'],
+    false: ['rounded-sm'],
   },
 };
 
@@ -55,6 +58,13 @@ export interface ButtonSignature {
      * Setting the variant of the button changes the styling.
      */
     variant?: ButtonVariant;
+
+    /**
+     * Special styling is applied if a button is inside a button group.
+     *
+     * @internal This is meant to only be used by `<ButtonGroup>`
+     */
+    isButtonGroup?: boolean;
   };
   Blocks: { default: []; disabled: []; loading: [] };
   Element: HTMLButtonElement;
@@ -79,7 +89,11 @@ export default class Button extends Component<ButtonSignature> {
       return STYLES.variants.bare.join(' ');
     }
 
-    const buttonStyles = [...STYLES.base, ...STYLES.variants[this.variant]];
+    const buttonStyles = [
+      ...STYLES.base,
+      ...STYLES.buttonGroup[this.args.isButtonGroup ? 'true' : 'false'],
+      ...STYLES.variants[this.variant],
+    ];
     const disabledStyles = ['interactive-disabled', 'focus:outline-none'];
 
     if (this.variant !== 'link') {

@@ -160,4 +160,23 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
   });
+
+  test('regular button is rounded', async function (assert) {
+    await render(<template><Button data-button>1</Button></template>);
+
+    assert.dom('[data-button]').hasClass('rounded-sm');
+  });
+
+  test('@isButtonGroup applies proper styles when used inside a button group', async function (assert) {
+    await render(<template>
+      <Button @isButtonGroup={{true}} data-button>1</Button>
+    </template>);
+
+    assert
+      .dom('[data-button]')
+      .hasClass('rounded-none')
+      .hasClass('flex-1')
+      .hasClass('first:rounded-l-sm')
+      .hasClass('last:rounded-r-sm');
+  });
 });
