@@ -1,12 +1,10 @@
 ```hbs template
 <Form::Fields::Input
   @label='Label'
-  @hint='Type "input" into the field'
-  @error={{this.errorMessage}}
+  @hint='Hint text'
   @value={{this.value}}
-  @onChange={{this.updateValue}}
+  @onChange={{this.handleChange}}
   type='text'
-/>
 >
   <:character as |data|><Form::Controls::CharacterCount
       @id={{data.id}}
@@ -23,24 +21,12 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked value;
-  @tracked errorMessage;
   @tracked count = 0;
-
-  @action
-  updateValue(value, e) {
-    this.value = value;
-
-    if (value !== 'input') {
-      this.errorMessage = 'Input must match "input"';
-      return;
-    }
-
-    this.errorMessage = null;
-  }
 
   @action
   handleChange(value, event) {
     console.log({ value, event });
+
     this.count = value.length;
   }
 }
