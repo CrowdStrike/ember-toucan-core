@@ -26,6 +26,19 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.dom('[data-custom-content]').exists();
   });
 
+  test('it yields a Field from ember-headless-form', async function (assert) {
+    await render(<template>
+      <ToucanForm as |form|>
+        <form.Field @name="field">
+          <label for="test">Test</label>
+          <input id="test" data-test-field />
+        </form.Field>
+      </ToucanForm>
+    </template>);
+
+    assert.dom('[data-test-field ]').exists();
+  });
+
   test('it yields a Textarea component', async function (assert) {
     await render(<template>
       <ToucanForm as |form|>
