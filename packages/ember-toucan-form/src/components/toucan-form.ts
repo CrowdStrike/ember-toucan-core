@@ -23,10 +23,9 @@ export interface ToucanFormComponentSignature<
     default: [
       {
         Textarea?: WithBoundArgs<typeof TextareaFieldComponent, 'form'>;
-        Field: HeadlessFormComponentSignature<
-          DATA,
-          SUBMISSION_VALUE
-        >['Blocks']['default'][0]['Field'];
+        // TODO: Need to figure out a type for this
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        Field: any;
       }
     ];
   };
