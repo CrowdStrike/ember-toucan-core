@@ -3,10 +3,23 @@
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-
+import sinon from 'sinon';
+import chai, {expect } from 'chai';
+import sinonChai from 'sinon-chai';
 
 module('Acceptance | Button', function (hooks) {
   setupApplicationTest(hooks);
+  chai.use(sinonChai);
+
+  let consoleSpy: sinon.SinonStub;
+
+   hooks.beforeEach(function() {
+    consoleSpy = sinon.stub(console, 'error');
+  });
+
+  hooks.afterEach(function() {
+    sinon.restore();
+  });
 
   test('visiting the button page', async function (assert) {
 
@@ -18,6 +31,7 @@ module('Acceptance | Button', function (hooks) {
 
     assert.dom('.docfy-demo__example button').hasText('Button');
 
+    expect(consoleSpy).to.not.be.called;
     // the link after button is the checkbox page
     await click('ul li:nth-child(2) ul li:nth-child(2) a')
     assert.strictEqual(currentURL(), '/docs/components/checkbox');
