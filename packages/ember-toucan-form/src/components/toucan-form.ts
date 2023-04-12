@@ -5,7 +5,6 @@ import TextareaFieldComponent from '../-private/textarea-field';
 import type { WithBoundArgs } from '@glint/template';
 import type { HeadlessFormComponentSignature } from 'ember-headless-form/components/headless-form';
 
-// TODO: Should we export this from ember-headless-form and use it here instead? This is probably fine?
 type UserData = object;
 
 type HeadlessFormArguments<
