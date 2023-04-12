@@ -22,4 +22,6 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   addDocfyRoutes(this);
+
+  this.route('not-found', { path: '/*path' });
 });
