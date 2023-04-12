@@ -284,3 +284,22 @@ Target the error block via `data-error`.
 </Form::Fields::Input>
 
 </div>
+
+### InputField with read only
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### InputField with read only and a value
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isReadOnly={{true}}
+    @value="Input value"
+  />
+</div>
