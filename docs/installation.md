@@ -1,3 +1,8 @@
+---
+title: Getting Started
+order: 1
+---
+
 # Installation
 
 To use Toucan in your project, run one of the following commands in your terminal:
