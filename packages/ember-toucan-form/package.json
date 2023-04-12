@@ -29,7 +29,8 @@
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
     "prepack": "rollup --config",
     "format:check": "prettier -c .",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "_syncPnpm": "pnpm sync-pnpm"
   },
   "peerDependencies": {
     "@crowdstrike/ember-toucan-core": "workspace:*",
@@ -104,6 +105,7 @@
     "rollup": "^3.12.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-ts": "^3.0.2",
+    "sync-pnpm": "workspace:*",
     "tailwindcss": "^2.2.15",
     "typescript": "^5.0.0"
   },
