@@ -308,3 +308,22 @@ Target the error block via `data-error`.
     @isDisabled={{true}}
   />
 </div>
+
+### CheckboxField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Checkbox
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### CheckboxField with isChecked and isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Checkbox
+    @label='Label'
+    @isChecked={{true}}
+    @isReadOnly={{true}}
+  />
+</div>

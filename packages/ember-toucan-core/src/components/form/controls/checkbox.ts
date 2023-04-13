@@ -13,6 +13,11 @@ export interface ToucanFormCheckboxControlComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the checkbox.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * The function called when the element is clicked.
      */
     onChange?: OnChangeCallback<boolean>;
@@ -48,7 +53,7 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
   }
 
   get styles() {
-    let { isDisabled } = this.args;
+    let { isDisabled, isReadOnly } = this.args;
     let isCheckedOrIndeterminate = this.isCheckedOrIndeterminate;
 
     return isCheckedOrIndeterminate && !isDisabled
@@ -57,6 +62,8 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
       ? ['bg-disabled border-none']
       : !isCheckedOrIndeterminate && isDisabled
       ? ['bg-transparent border-disabled']
+      : isReadOnly
+      ? null
       : ['bg-normal-idle'];
   }
 
