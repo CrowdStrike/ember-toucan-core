@@ -263,3 +263,23 @@ Consumers have direct access to the underlying [radio element](https://developer
     <group.RadioField @label='Option 3' @value='option-3' />
   </Form::Fields::RadioGroup>
 </div>
+
+### RadioGroupField with label and all read only
+
+<div class='mb-4 w-64'>
+  <Form::Fields::RadioGroup @label='Label' @name='read-only' as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' @isReadOnly={{true}} />
+    <group.RadioField @label='Option 2' @value='option-2' @isReadOnly={{true}} />
+    <group.RadioField @label='Option 3' @value='option-3' @isReadOnly={{true}} />
+  </Form::Fields::RadioGroup>
+</div>
+
+### RadioGroupField with label and all read only with one checked
+
+<div class='mb-4 w-64'>
+  <Form::Fields::RadioGroup @label='Label' @name='read-only-checked' @value="option-2" as |group|>
+    <group.RadioField @label='Option 1' @value='option-1' @isReadOnly={{true}} />
+    <group.RadioField @label='Option 2' @value='option-2' @isReadOnly={{true}} />
+    <group.RadioField @label='Option 3' @value='option-3' @isReadOnly={{true}} />
+  </Form::Fields::RadioGroup>
+</div>
