@@ -26,3 +26,23 @@ By default, Toucan Form will set the `@validateOn` argument to `focusout`; howev
 ```hbs
 <ToucanForm @validateOn='input' />
 ```
+
+## Form data and TypeScript
+
+The provided form `@data` argument must be properly typed if you are using TypeScript. Follow the ember-headless-form [typing of form data docs](https://ember-headless-form.pages.dev/docs/typescript#typing-of-form-data) for more information. Essentially your `@data` argument type must properly match the form fields used in your templates.
+
+```ts
+interface MyFormData {
+  firstName?: string;
+  lastName?: string;
+}
+
+const data: MyFormData = {};
+```
+
+```hbs
+<ToucanForm @data={{data}} as |form|>
+  <form.Input @label='First name' @name='firstName' />
+  <form.Input @label='Last name' @name='lastName' />
+</ToucanForm>
+```

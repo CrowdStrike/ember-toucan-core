@@ -22,7 +22,7 @@ import {
 } from 'ember-changeset-validations/validators';
 
 export default class extends Component {
-  data = { comment: null };
+  data = {};
 
   validations = {
     comment: validatePresence(true),
