@@ -35,4 +35,10 @@ export default class ToucanFormComponent<
   SUBMISSION_VALUE
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
   TextareaFieldComponent = TextareaFieldComponent;
+
+  get validateOn() {
+    let { validateOn } = this.args;
+
+    return validateOn || 'focusout';
+  }
 }

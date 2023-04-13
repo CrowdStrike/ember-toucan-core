@@ -18,3 +18,11 @@ yarn add ember-headless-form-changeset
 # or
 npm install ember-headless-form-changeset
 ```
+
+## Default initial validation
+
+By default, Toucan Form will set the `@validateOn` argument to `focusout`; however, this can be overriden by providing your own `@validateOn` component argument [supported by ember-headless-form](https://ember-headless-form.pages.dev/docs/validation/timing#validateon).
+
+```hbs
+<ToucanForm @validateOn='input' />
+```
