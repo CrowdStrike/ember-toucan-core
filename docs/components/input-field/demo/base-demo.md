@@ -2,6 +2,7 @@
 <Form::Fields::Input
   @label='Label'
   @hint='Hint text'
+  @error={{this.errorMessage}}
   @value={{this.value}}
   @onChange={{this.handleChange}}
   type='text'
@@ -22,12 +23,20 @@ import { tracked } from '@glimmer/tracking';
 export default class extends Component {
   @tracked value;
   @tracked count = 0;
+  @tracked errorMessage;
 
   @action
   handleChange(value, event) {
     console.log({ value, event });
-
     this.count = value.length;
+
+    if (value !== 'input') {
+      this.errorMessage = 'Input must match "input"';
+      return;
+    }
+
+    this.errorMessage = null;
+
   }
 }
 ```
