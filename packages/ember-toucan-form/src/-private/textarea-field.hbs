@@ -3,7 +3,8 @@
     @label={{@label}}
     @hint={{@hint}}
     @error={{this.mapErrors field.rawErrors}}
-    @value={{field.value}}
+    @value={{this.assertString field.value}}
+    {{! @glint-expect-error }}
     @onChange={{field.setValue}}
     @isDisabled={{@isDisabled}}
     @rootTestSelector={{@rootTestSelector}}
