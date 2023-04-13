@@ -27,8 +27,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it yields a Field from ember-headless-form', async function (assert) {
+    const data: { field?: string } = {};
+
     await render(<template>
-      <ToucanForm as |form|>
+      <ToucanForm @data={{data}} as |form|>
         <form.Field @name="field" as |field|>
           <field.Label for="test">Test</field.Label>
           <field.Input data-test-field />

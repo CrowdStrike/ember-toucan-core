@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
+import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
 import type { ToucanFormTextareaFieldComponentSignature as BaseTextareaFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
@@ -44,6 +45,7 @@ export default class ToucanFormTextareaFieldComponent<
     return errors.map((error) => error.message ?? error.type);
   };
 
+  @action
   assertString(value: unknown): string | undefined {
     assert(
       `Only string values are expected for ${String(
