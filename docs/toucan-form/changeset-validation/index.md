@@ -19,9 +19,14 @@ yarn add ember-headless-form-changeset
 npm install ember-headless-form-changeset
 ```
 
+The demo example above makes use of a few things from this adapter and ember-changeset that's worth calling out:
+
+- `validate-changeset`: a helper from ember-headless-form that provides the glue code to map the ember-changeset validation errors to the format ember-headless-form expects.
+- `changeset`: a [helper from ember-changeset](https://github.com/poteto/ember-changeset/blob/master/addon/helpers/changeset.js) to pass into the `@data` argument.
+
 ## Default initial validation
 
-By default, Toucan Form will set the `@validateOn` argument to `focusout`; however, this can be overriden by providing your own `@validateOn` component argument [supported by ember-headless-form](https://ember-headless-form.pages.dev/docs/validation/timing#validateon).
+By default, Toucan Form will set the `@validateOn` argument to `focusout` (meaning: validation will occur when the user tabs away); however, this can be overriden by providing your own `@validateOn` component argument [supported by ember-headless-form](https://ember-headless-form.pages.dev/docs/validation/timing#validateon).
 
 ```hbs
 <ToucanForm @validateOn='input' />
