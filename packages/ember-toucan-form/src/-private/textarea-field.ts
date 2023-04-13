@@ -1,33 +1,57 @@
 import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
 
+import type { HeadlessFormBlock, UserData } from './types';
 import type { ToucanFormTextareaFieldComponentSignature as BaseTextareaFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
+import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
-type ComponentArguments = BaseTextareaFieldSignature['Args'] & {
-  name: string;
+type ComponentArguments<
+  DATA extends UserData,
+  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
+> = Omit<BaseTextareaFieldSignature['Args'], 'error' | 'value' | 'onChange'> & {
+  /**
+   * The name of your field, which must match a property of the `@data` passed to the form
+   */
+  name: KEY;
 
-  // TODO: We need to type this properly
-  // What is the type when we are a component?
-  // Is this possible with TS+Glint today?
-  form: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    Field: any;
-  };
+  /*
+   * @internal
+   */
+  form: HeadlessFormBlock<DATA>;
 };
 
-export interface ToucanFormTextareaFieldComponentSignature {
+export interface ToucanFormTextareaFieldComponentSignature<
+  DATA extends UserData,
+  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
+> {
   Element: HTMLTextAreaElement;
-  Args: ComponentArguments;
+  Args: ComponentArguments<DATA, KEY>;
   Blocks: {
     default: [];
   };
 }
 
-export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {
-  mapErrors = (errors: Array<{ message: string }>) => {
+export default class ToucanFormTextareaFieldComponent<
+  DATA extends UserData,
+  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
+> extends Component<ToucanFormTextareaFieldComponentSignature<DATA, KEY>> {
+  mapErrors = (errors?: ValidationError[]) => {
     if (!errors) {
       return;
     }
 
-    return errors.map((error) => error.message);
+    // @todo we need to figure out what to do when message is undefined
+    return errors.map((error) => error.message ?? error.type);
   };
+
+  assertString(value: unknown): string | undefined {
+    assert(
+      `Only string values are expected for ${String(
+        this.args.name
+      )}, but you passed ${typeof value}`,
+      typeof value === 'undefined' || typeof value === 'string'
+    );
+
+    return value;
+  }
 }
