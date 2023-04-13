@@ -1,7 +1,8 @@
 <div ...attributes>
   {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 - Placeholder icon }}
   <svg
-    class="mr-1 -mt-1 inline-block h-3 w-3"
+    class="mr-1 inline-block h-3 w-3
+    {{if this.hasMoreThanOneError 'mt-0' 'mt-0.5'}}"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
