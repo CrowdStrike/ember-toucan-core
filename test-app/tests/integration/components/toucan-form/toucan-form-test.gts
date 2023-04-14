@@ -42,37 +42,75 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it sets the yielded component values based on `@data`', async function (assert) {
-    const data: { comment?: string } = { comment: 'textarea' };
+    const data: { comment?: string; firstName?: string } = {
+      comment: 'textarea',
+      firstName: 'input',
+    };
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.Textarea @label="Comment" @name="comment" data-textarea />
+        <form.Input @label="Input" @name="firstName" data-input />
       </ToucanForm>
     </template>);
 
     assert.dom('[data-textarea]').hasAttribute('name', 'comment');
     assert.dom('[data-textarea]').hasValue('textarea');
+
+    assert.dom('[data-input]').hasAttribute('name', 'firstName');
+    assert.dom('[data-input]').hasValue('input');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    const data: { comment?: string } = {};
+    const data: { comment?: string; firstName?: string } = {};
 
-    const formValidateCallback = ({ comment }: { comment?: string }) =>
-      !comment
-        ? {
-            comment: [
-              {
-                type: 'uppercase',
-                value: comment,
-                message: 'Comment is required',
-              },
-            ],
-          }
-        : undefined;
+    const formValidateCallback = ({
+      comment,
+      firstName,
+    }: {
+      comment?: string;
+      firstName?: string;
+    }) => {
+      let errors: Record<string, unknown> = {};
+
+      if (!comment) {
+        errors['comment'] = [
+          {
+            type: 'required',
+            value: comment,
+            message: 'Comment is required',
+          },
+        ];
+      }
+
+      if (!firstName) {
+        errors['firstName'] = [
+          {
+            type: 'required',
+            value: firstName,
+            message: 'First name is required',
+          },
+        ];
+      }
+
+      return Object.keys(errors).length === 0 ? undefined : errors;
+    };
 
     await render(<template>
       <ToucanForm @data={{data}} @validate={{formValidateCallback}} as |form|>
-        <form.Textarea @label="Comment" @name="comment" data-textarea />
+        <form.Textarea
+          @label="Comment"
+          @name="comment"
+          @rootTestSelector="data-textarea-wrapper"
+          data-textarea
+        />
+
+        <form.Input
+          @label="First name"
+          @name="firstName"
+          @rootTestSelector="data-input-wrapper"
+          data-input
+        />
 
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
@@ -89,10 +127,18 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-error]')
       .exists('Expected errors to be triggered due to validation');
-    assert.dom('[data-error]').hasText('Comment is required');
 
+    // Verify individual error messages
+    assert
+      .dom('[data-root-field="data-textarea-wrapper"] [data-error]')
+      .hasText('Comment is required');
+    assert
+      .dom('[data-root-field="data-input-wrapper"] [data-error]')
+      .hasText('First name is required');
+
+    // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
-
+    await fillIn('[data-input]', 'CrowdStrike');
     await click('[data-test-submit]');
 
     assert

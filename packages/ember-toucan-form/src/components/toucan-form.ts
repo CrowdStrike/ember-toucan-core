@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 
+import InputFieldComponent from '../-private/input-field';
 import TextareaFieldComponent from '../-private/textarea-field';
 
 import type { HeadlessFormBlock, UserData } from '../-private/types';
@@ -21,6 +22,7 @@ export interface ToucanFormComponentSignature<
     default: [
       {
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
+        Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
         Field: HeadlessFormBlock<DATA>['Field'];
       }
     ];
@@ -32,6 +34,7 @@ export default class ToucanFormComponent<
   SUBMISSION_VALUE
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
+  InputFieldComponent = InputFieldComponent<DATA>;
 
   get validateOn() {
     let { validateOn } = this.args;

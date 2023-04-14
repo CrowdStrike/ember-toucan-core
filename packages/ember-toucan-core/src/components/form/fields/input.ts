@@ -5,7 +5,7 @@ import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argum
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage, OnChangeCallback } from '../../../-private/types';
 
-interface ToucanFormInputFieldComponentSignature {
+export interface ToucanFormInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
