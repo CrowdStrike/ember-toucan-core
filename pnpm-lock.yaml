@@ -682,7 +682,7 @@ importers:
         specifier: ^6.1.1
         version: 6.2.0
       ember-headless-form:
-        specifier: 1.0.0-beta.1
+        specifier: ^1.0.0-beta.1
         version: 1.0.0-beta.1(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.0-beta.3)(ember-source@4.12.0)
       ember-source:
         specifier: ~4.12.0
@@ -18097,11 +18097,11 @@ packages:
     name: '@crowdstrike/ember-toucan-form'
     version: 0.0.0
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': workspace:*
+      '@crowdstrike/ember-toucan-core': ^0.1.0
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
-      ember-headless-form: 1.0.0-beta.1
+      ember-headless-form: ^1.0.0-beta.1
       ember-source: '>=4.8.0'
       postcss: ^8.2.14
       tailwindcss: ^2.2.15 || ^3.0.0
@@ -18127,11 +18127,11 @@ packages:
     name: '@crowdstrike/ember-toucan-form'
     version: 0.0.0
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': workspace:*
+      '@crowdstrike/ember-toucan-core': ^0.1.0
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
-      ember-headless-form: 1.0.0-beta.1
+      ember-headless-form: ^1.0.0-beta.1
       ember-source: '>=4.8.0'
       postcss: ^8.2.14
       tailwindcss: ^2.2.15 || ^3.0.0
