@@ -52,7 +52,11 @@
           @isDisabled={{@isDisabled}}
           ...attributes
         />
-        <Button @variant="secondary" @onClick={{(fn this.handleChange field)}}>
+        <Button
+          class="{{if @isReadOnly 'shadow-form-read-only bg-surface-xl'}}"
+          @variant="secondary"
+          @onClick={{(fn this.handleChange field)}}
+        >
           <span data-trigger>{{@trigger}}</span>
           <svg
             aria-hidden="true"

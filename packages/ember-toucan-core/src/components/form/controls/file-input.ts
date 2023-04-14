@@ -11,6 +11,10 @@ interface ToucanFormControlsFileInputComponentSignature {
     hasError?: boolean;
     trigger: string;
     isDisabled?: boolean;
+    /**
+     * Sets the readonly attribute of the checkbox.
+     */
+    isReadOnly?: boolean;
     onChange?: (files: File[] | [], event: FileEvent) => void;
     multiple?: boolean;
     files?: File[];
