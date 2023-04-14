@@ -1,0 +1,20 @@
+<HeadlessForm
+  @data={{@data}}
+  @dataMode={{@dataMode}}
+  @validateOn={{this.validateOn}}
+  @revalidateOn={{@revalidateOn}}
+  @validate={{@validate}}
+  @onSubmit={{@onSubmit}}
+  @onInvalid={{@onInvalid}}
+  ...attributes
+  as |form|
+>
+  {{yield
+    (hash
+      Textarea=(component
+        (ensure-safe-component this.TextareaFieldComponent) form=form
+      )
+      Field=form.Field
+    )
+  }}
+</HeadlessForm>

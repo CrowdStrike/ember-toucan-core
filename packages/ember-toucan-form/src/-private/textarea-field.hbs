@@ -1,0 +1,14 @@
+<@form.Field @name={{@name}} as |field|>
+  <Form::Fields::Textarea
+    @label={{@label}}
+    @hint={{@hint}}
+    @error={{this.mapErrors field.rawErrors}}
+    @value={{this.assertString field.value}}
+    {{! @glint-expect-error }}
+    @onChange={{field.setValue}}
+    @isDisabled={{@isDisabled}}
+    @rootTestSelector={{@rootTestSelector}}
+    name={{@name}}
+    ...attributes
+  />
+</@form.Field>
