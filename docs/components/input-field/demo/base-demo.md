@@ -1,7 +1,7 @@
 ```hbs template
 <Form::Fields::Input
   @label='Label'
-  @hint='Hint text'
+  @hint='Type "input" into the field'
   @error={{this.errorMessage}}
   @value={{this.value}}
   @onChange={{this.handleChange}}
