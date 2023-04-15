@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 
 export interface ToucanFormControlCharacterCountComponentSignature {
-  Element: HTMLElement;
+  Element: HTMLSpanElement;
   Args: {
     /**
      * The current number of characters inside the input
