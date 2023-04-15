@@ -40,7 +40,6 @@
         id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
-        class="w-full"
         @isDisabled={{@isDisabled}}
         @value={{@value}}
         @onChange={{@onChange}}
