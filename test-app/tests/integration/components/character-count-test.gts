@@ -10,7 +10,7 @@ module('Integration | Component | Controls | CharacterCount', function (hooks) {
   test('it renders', async function (assert) {
 
     await render(<template>
-      <CharacterCount @id="123" @current={{5}} @max={{100}} data-character-count />
+      <CharacterCount @current={{5}} @max={{100}} data-character-count />
     </template>);
 
     assert
@@ -18,21 +18,4 @@ module('Integration | Component | Controls | CharacterCount', function (hooks) {
       .hasText('5 / 100');
   });
 
-  test('it errors if no input id is provided', async function(assert) {
-
-    assert.expect(1);
-
-    setupOnerror((e: Error) => {
-      assert.ok(
-        e.message.includes('An "@id" argument is required'),
-        'Expected assertion error message'
-      );
-    });
-
-    
-    await render(<template>
-      {{! @glint-expect-error: we are not providing @id, so this is expected }}
-      <CharacterCount @current={{5}} @max={{100}} data-character-count />
-    </template>);
-  })
 });
