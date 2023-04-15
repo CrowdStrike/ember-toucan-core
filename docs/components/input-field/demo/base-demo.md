@@ -25,13 +25,14 @@ export default class extends Component {
 
   @action
   handleChange(value, event) {
+    this.value = value;
     console.log({ value, event });
 
     if (value !== 'input') {
       this.errorMessage = 'Input must match "input"';
       return;
     }
-    this.value = value;
+
     this.errorMessage = null;
   }
 }
