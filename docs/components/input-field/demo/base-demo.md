@@ -7,11 +7,10 @@
   @onChange={{this.handleChange}}
   type='text'
 >
-  <:character as |data|><Form::Controls::CharacterCount
-      @id={{data.id}}
-      @current={{this.count}}
+  <:secondaryInformation as |secondary|><secondary.CharacterCount
       @max={{255}}
-    /></:character>
+    /></:secondaryInformation>
+
 </Form::Fields::Input>
 ```
 
@@ -22,21 +21,18 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked value;
-  @tracked count = 0;
   @tracked errorMessage;
 
   @action
   handleChange(value, event) {
     console.log({ value, event });
-    this.count = value.length;
 
     if (value !== 'input') {
       this.errorMessage = 'Input must match "input"';
       return;
     }
-
+    this.value = value;
     this.errorMessage = null;
-
   }
 }
 ```
