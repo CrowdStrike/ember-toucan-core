@@ -59,6 +59,11 @@ interface ToucanFormFieldComponentSignature {
          * Renders a Toucan-styled error block.
          */
         Error: typeof Error;
+
+        /**
+         * Renders a Toucan-styled error block, but an inline version that allows content on the right side
+         */
+        InlineError: typeof InlineError;
       }
     ];
   };
