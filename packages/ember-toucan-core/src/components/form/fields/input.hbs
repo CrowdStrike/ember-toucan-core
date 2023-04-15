@@ -45,27 +45,46 @@
         @value={{@value}}
         @onChange={{@onChange}}
         @hasError={{this.hasError}}
+        {{on "input" this.handleCount}}
         ...attributes
       />
     </field.Control>
+    {{! // todos }}
+    {{! // yield character Component }}
+    {{! // rename block to secondary or something }}
+    {{#if (has-block "secondaryInformation")}}
+      <div
+        class="type-xs-tight text-critical mt-1.5 flex justify-between
+          {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+      >
+        {{#if @error}}
+          {{! just copy error block over here}}
+          <field.InlineError
+            class="flex-3"
+            id={{field.errorId}}
+            @error={{@error}}
+            data-error
+          />
+        {{/if}}
 
-    <div
-      class="type-xs-tight text-critical mt-1.5 flex justify-between
-        {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
-    >
-      {{#if @error}}
-        <field.Error
-          class="flex flex-3"
-          id={{field.errorId}}
-          @error={{@error}}
-          data-error
-        />
-      {{/if}}
-      {{#if (has-block "character")}}
-        <div class="text-body-and-labels flex-1 text-right">
-          {{yield (hash id=field.id) to="character"}}
+        <div class="text-body-and-labels mt-1.5 flex-1 text-right">
+          {{yield
+            (hash
+              CharacterCount=(component
+                (ensure-safe-component this.CharacterCount) current=this.count
+              )
+            )
+            to="secondaryInformation"
+          }}
         </div>
-      {{/if}}
-    </div>
+      </div>
+    {{else if @error}}
+      <field.Error
+        {{! NOTE: Not applying flex-3 here since we don't need it }}
+        id={{field.errorId}}
+        @error={{@error}}
+        data-error
+      />
+    {{/if}}
   </Form::Field>
 </div>
