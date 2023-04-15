@@ -3,6 +3,7 @@ import Component from '@glimmer/component';
 import Control from '../../-private/components/control';
 import Error from '../../-private/components/error';
 import Hint from '../../-private/components/hint';
+import InlineError from '../../-private/components/inline-error';
 import Label from '../../-private/components/label';
 
 interface ToucanFormFieldComponentSignature {
@@ -68,4 +69,5 @@ export default class ToucanFormFieldComponent extends Component<ToucanFormFieldC
   Hint = Hint;
   Control = Control;
   Error = Error;
+  InlineError = InlineError;
 }
