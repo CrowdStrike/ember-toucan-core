@@ -5,6 +5,7 @@
   @error={{this.errorMessage}}
   @value={{this.value}}
   @onChange={{this.handleChange}}
+  class="w-full"
   type='text'
 >
   <:secondaryInformation as |secondary|><secondary.CharacterCount
@@ -19,8 +20,6 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class extends Component {
-  @tracked value;
   @tracked errorMessage;
 
   @action
