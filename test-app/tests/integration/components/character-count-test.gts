@@ -1,4 +1,4 @@
-import { render, setupOnerror } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import CharacterCount from '@crowdstrike/ember-toucan-core/components/form/controls/character-count';
