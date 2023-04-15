@@ -1,0 +1,31 @@
+<div ...attributes>
+  {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 - Placeholder icon }}
+  <svg
+    class="mr-1 inline-block h-3 w-3
+      {{if this.hasMoreThanOneError 'mt-0' '-mt-0.5'}}
+      "
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M10.206 4.625l-3.5 6.4-3.5 6.4a2.04 2.04 0 00.038 1.987 2 2 0 001.762 1.013h14a2.007 2.007 0 001.725-.975 2.075 2.075 0 00.075-2.025l-3.5-6.4-3.5-6.4a2.068 2.068 0 00-3.6 0zM12.006 8.825v5.2M12.006 16.99v-.065h0"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+    />
+  </svg>
+
+  {{#if this.hasMoreThanOneError}}
+    <ul class="m-0 list-none space-y-1.5 p-0">
+      {{#each this.errors as |error index|}}
+        <li class="m-0 p-0 leading-3" data-error-item={{index}}>{{error}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <span>{{get this.errors 0}}</span>
+  {{/if}}
+</div>
