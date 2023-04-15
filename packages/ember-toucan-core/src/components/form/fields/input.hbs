@@ -48,16 +48,12 @@
         ...attributes
       />
     </field.Control>
-    {{! // todos }}
-    {{! // yield character Component }}
-    {{! // rename block to secondary or something }}
     {{#if (has-block "secondaryInformation")}}
       <div
         class="type-xs-tight text-critical mt-1.5 flex justify-between
           {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
       >
         {{#if @error}}
-          {{! just copy error block over here}}
           <field.InlineError
             class="flex-3"
             id={{field.errorId}}
@@ -79,7 +75,6 @@
       </div>
     {{else if @error}}
       <field.Error
-        {{! NOTE: Not applying flex-3 here since we don't need it }}
         id={{field.errorId}}
         @error={{@error}}
         data-error
