@@ -6,27 +6,25 @@ import type { HeadlessFormBlock, UserData } from './types';
 import type { ToucanFormTextareaFieldComponentSignature as BaseTextareaFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
-type ComponentArguments<
-  DATA extends UserData,
-  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
-> = Omit<BaseTextareaFieldSignature['Args'], 'error' | 'value' | 'onChange'> & {
-  /**
-   * The name of your field, which must match a property of the `@data` passed to the form
-   */
-  name: KEY;
-
-  /*
-   * @internal
-   */
-  form: HeadlessFormBlock<DATA>;
-};
-
 export interface ToucanFormTextareaFieldComponentSignature<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
   Element: HTMLTextAreaElement;
-  Args: ComponentArguments<DATA, KEY>;
+  Args: Omit<
+    BaseTextareaFieldSignature['Args'],
+    'error' | 'value' | 'onChange'
+  > & {
+    /**
+     * The name of your field, which must match a property of the `@data` passed to the form
+     */
+    name: KEY;
+
+    /*
+     * @internal
+     */
+    form: HeadlessFormBlock<DATA>;
+  };
   Blocks: {
     default: [];
   };
