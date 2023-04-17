@@ -2,9 +2,11 @@
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 import { click, fillIn, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
+import { setupRenderingTest } from 'test-app/tests/helpers';
 
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
-import { setupRenderingTest } from 'test-app/tests/helpers';
+
+import type { ErrorRecord } from 'ember-headless-form';
 
 module('Integration | Component | ToucanForm', function (hooks) {
   setupRenderingTest(hooks);
@@ -62,7 +64,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    const data: { comment?: string; firstName?: string } = {};
+    interface TestData {
+      comment?: string;
+      firstName?: string;
+    }
+
+    const data: TestData = {};
 
     const formValidateCallback = ({
       comment,
@@ -71,10 +78,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
       comment?: string;
       firstName?: string;
     }) => {
-      let errors: Record<string, unknown> = {};
+      let errors: ErrorRecord<TestData> = {};
 
       if (!comment) {
-        errors['comment'] = [
+        errors.comment = [
           {
             type: 'required',
             value: comment,
@@ -84,7 +91,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
       }
 
       if (!firstName) {
-        errors['firstName'] = [
+        errors.firstName = [
           {
             type: 'required',
             value: firstName,
