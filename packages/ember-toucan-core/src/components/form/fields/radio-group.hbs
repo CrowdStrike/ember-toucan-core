@@ -4,6 +4,7 @@
     disabled={{@isDisabled}}
     aria-invalid={{if @error "true"}}
     aria-required="true"
+    data-root-field={{if @rootTestSelector @rootTestSelector}}
     role="radiogroup"
     ...attributes
   >
