@@ -11,6 +11,9 @@
 >
   {{yield
     (hash
+      Checkbox=(component
+        (ensure-safe-component this.CheckboxComponent) form=form
+      )
       Textarea=(component
         (ensure-safe-component this.TextareaFieldComponent) form=form
       )

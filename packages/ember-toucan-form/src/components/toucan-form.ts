@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 
+import CheckboxFieldComponent from '../-private/checkbox-field';
 import InputFieldComponent from '../-private/input-field';
 import TextareaFieldComponent from '../-private/textarea-field';
 
@@ -21,6 +22,7 @@ export interface ToucanFormComponentSignature<
   Blocks: {
     default: [
       {
+        Checkbox: WithBoundArgs<typeof CheckboxFieldComponent<DATA>, 'form'>;
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
         Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
         Field: HeadlessFormBlock<DATA>['Field'];
@@ -33,6 +35,7 @@ export default class ToucanFormComponent<
   DATA extends UserData,
   SUBMISSION_VALUE
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
+  CheckboxComponent = CheckboxFieldComponent<DATA>;
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
   InputFieldComponent = InputFieldComponent<DATA>;
 

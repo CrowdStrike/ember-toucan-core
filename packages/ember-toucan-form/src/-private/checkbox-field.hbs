@@ -1,0 +1,15 @@
+<@form.Field @name={{@name}} as |field|>
+  <Form::Fields::Checkbox
+    @label={{@label}}
+    @hint={{@hint}}
+    @error={{this.mapErrors field.rawErrors}}
+    @isChecked={{this.assertBoolean field.value}}
+    {{! The issue here is that onChange only expects a string typed value, but field.setValue is generic, accepting anything that DATA[KEY] could be. }}
+    {{! @glint-expect-error }}
+    @onChange={{field.setValue}}
+    @isDisabled={{@isDisabled}}
+    @rootTestSelector={{@rootTestSelector}}
+    name={{@name}}
+    ...attributes
+  />
+</@form.Field>
