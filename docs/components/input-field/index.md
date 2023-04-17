@@ -285,7 +285,7 @@ Target the error block via `data-error`.
 
 </div>
 
-### InputField with read only
+### InputField with isReadOnly
 
 <div class='mb-4 w-64'>
   <Form::Fields::Input
@@ -294,7 +294,7 @@ Target the error block via `data-error`.
   />
 </div>
 
-### InputField with read only and a value
+### InputField with isReadOnly and a value
 
 <div class='mb-4 w-64'>
   <Form::Fields::Input
