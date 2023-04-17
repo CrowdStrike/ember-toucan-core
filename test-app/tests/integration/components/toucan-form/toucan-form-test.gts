@@ -11,6 +11,7 @@ import type { ErrorRecord } from 'ember-headless-form';
 interface TestData {
   comment?: string;
   firstName?: string;
+  radio?: string;
   termsAndConditions?: boolean;
 }
 
@@ -53,6 +54,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
     const data: TestData = {
       comment: 'textarea',
       firstName: 'input',
+      radio: 'option-2',
       termsAndConditions: true,
     };
 
@@ -65,6 +67,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @name="termsAndConditions"
           data-checkbox
         />
+        <form.RadioGroup @label="Radios" @name="radio" as |group|>
+          <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
+          <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
+        </form.RadioGroup>
       </ToucanForm>
     </template>);
 
@@ -76,6 +82,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
     assert.dom('[data-checkbox]').hasAttribute('name', 'termsAndConditions');
     assert.dom('[data-checkbox]').isChecked();
+
+    assert.dom('[data-radio-1]').hasAttribute('name', 'radio');
+    assert.dom('[data-radio-2]').hasAttribute('name', 'radio');
+
+    assert.dom('[data-radio-1]').isNotChecked();
+    assert.dom('[data-radio-2]').isChecked();
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
@@ -84,6 +96,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
     const formValidateCallback = ({
       comment,
       firstName,
+      radio,
       termsAndConditions,
     }: TestData) => {
       let errors: ErrorRecord<TestData> = {};
@@ -104,6 +117,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
             type: 'required',
             value: firstName,
             message: 'First name is required',
+          },
+        ];
+      }
+
+      if (!radio) {
+        errors.radio = [
+          {
+            type: 'required',
+            value: radio,
+            message: 'One radio must be selected',
           },
         ];
       }
@@ -144,6 +167,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
           data-checkbox
         />
 
+        <form.RadioGroup
+          @label="Radios"
+          @name="radio"
+          @rootTestSelector="data-radio-wrapper"
+          as |group|
+        >
+          <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
+          <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
+        </form.RadioGroup>
+
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
     </template>);
@@ -170,12 +203,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-checkbox-wrapper"] [data-error]')
       .hasText('Terms must be checked');
+    assert
+      .dom('[data-root-field="data-radio-wrapper"] [data-error]')
+      .hasText('One radio must be selected');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
     await fillIn('[data-input]', 'CrowdStrike');
     await click('[data-test-submit]');
     await click('[data-checkbox]');
+    await click('[data-radio-2]');
 
     assert
       .dom('[data-error]')

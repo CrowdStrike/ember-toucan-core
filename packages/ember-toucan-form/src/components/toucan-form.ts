@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 
 import CheckboxFieldComponent from '../-private/checkbox-field';
 import InputFieldComponent from '../-private/input-field';
+import RadioGroupFieldComponent from '../-private/radio-group-field';
 import TextareaFieldComponent from '../-private/textarea-field';
 
 import type { HeadlessFormBlock, UserData } from '../-private/types';
@@ -23,9 +24,13 @@ export interface ToucanFormComponentSignature<
     default: [
       {
         Checkbox: WithBoundArgs<typeof CheckboxFieldComponent<DATA>, 'form'>;
-        Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
-        Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
         Field: HeadlessFormBlock<DATA>['Field'];
+        Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
+        RadioGroup: WithBoundArgs<
+          typeof RadioGroupFieldComponent<DATA>,
+          'form'
+        >;
+        Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
       }
     ];
   };
@@ -36,8 +41,9 @@ export default class ToucanFormComponent<
   SUBMISSION_VALUE
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
   CheckboxComponent = CheckboxFieldComponent<DATA>;
-  TextareaFieldComponent = TextareaFieldComponent<DATA>;
   InputFieldComponent = InputFieldComponent<DATA>;
+  RadioGroupFieldComponent = RadioGroupFieldComponent<DATA>;
+  TextareaFieldComponent = TextareaFieldComponent<DATA>;
 
   get validateOn() {
     let { validateOn } = this.args;

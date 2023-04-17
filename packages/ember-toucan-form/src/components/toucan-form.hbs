@@ -14,13 +14,16 @@
       Checkbox=(component
         (ensure-safe-component this.CheckboxComponent) form=form
       )
-      Textarea=(component
-        (ensure-safe-component this.TextareaFieldComponent) form=form
-      )
+      Field=form.Field
       Input=(component
         (ensure-safe-component this.InputFieldComponent) form=form
       )
-      Field=form.Field
+      RadioGroup=(component
+        (ensure-safe-component this.RadioGroupFieldComponent) form=form
+      )
+      Textarea=(component
+        (ensure-safe-component this.TextareaFieldComponent) form=form
+      )
     )
   }}
 </HeadlessForm>

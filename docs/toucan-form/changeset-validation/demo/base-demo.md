@@ -1,6 +1,6 @@
 ```hbs template
 <ToucanForm
-  class='space-y-4'
+  class='space-y-4 max-w-xs'
   @data={{changeset this.data this.validations}}
   @dataMode='mutable'
   @onSubmit={{this.handleSubmit}}
@@ -10,6 +10,12 @@
   <form.Input @label='First name' @name='firstName' />
   <form.Input @label='Last name' @name='lastName' />
   <form.Textarea @label='Comment' @name='comment' />
+
+  <form.RadioGroup @label='Radios' @name='radio' as |group|>
+    <group.RadioField @label='option-1' @value='option-1' data-radio-1 />
+    <group.RadioField @label='option-2' @value='option-2' data-radio-2 />
+  </form.RadioGroup>
+
   <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
   <Button type='submit'>Submit</Button>
@@ -31,6 +37,7 @@ export default class extends Component {
     comment: validatePresence(true),
     firstName: validatePresence(true),
     lastName: validatePresence(true),
+    radio: validatePresence(true),
     terms: validatePresence(true),
   };
 
