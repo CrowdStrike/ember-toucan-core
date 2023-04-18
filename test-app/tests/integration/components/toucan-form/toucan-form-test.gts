@@ -54,8 +54,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
       checkboxes: ['option-1', 'option-3'],
-      comment: 'textarea',
-      firstName: 'input',
+      comment: 'multi-line text',
+      firstName: 'single line text',
       radio: 'option-2',
       termsAndConditions: true,
     };
@@ -96,10 +96,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').hasAttribute('name', 'comment');
-    assert.dom('[data-textarea]').hasValue('textarea');
+    assert.dom('[data-textarea]').hasValue('multi-line text');
 
     assert.dom('[data-input]').hasAttribute('name', 'firstName');
-    assert.dom('[data-input]').hasValue('input');
+    assert.dom('[data-input]').hasValue('single line text');
 
     assert.dom('[data-checkbox]').hasAttribute('name', 'termsAndConditions');
     assert.dom('[data-checkbox]').isChecked();
