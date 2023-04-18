@@ -5,15 +5,16 @@ import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argum
 import CheckboxFieldComponent from './checkbox';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
+import type { ErrorMessage } from '../../../-private/types';
 import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormCheckboxGroupFieldComponentSignature {
   Element: HTMLFieldSetElement;
   Args: {
     /**
-     * Provide a string to this argument to render an error message and apply error styling to the Field.
+     * Provide a string or array of strings to this argument to render an error message and apply error styling to the Field.
      */
-    error?: string;
+    error?: ErrorMessage;
 
     /**
      * Provide a string to this argument to render a hint message to help describe the control.

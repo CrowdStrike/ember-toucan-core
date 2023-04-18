@@ -9,6 +9,7 @@ import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
 import type { ErrorRecord } from 'ember-headless-form';
 
 interface TestData {
+  checkboxes?: Array<string>;
   comment?: string;
   firstName?: string;
   radio?: string;
@@ -52,6 +53,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
+      checkboxes: ['option-1', 'option-3'],
       comment: 'textarea',
       firstName: 'input',
       radio: 'option-2',
@@ -67,10 +69,29 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @name="termsAndConditions"
           data-checkbox
         />
+
         <form.RadioGroup @label="Radios" @name="radio" as |group|>
           <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
           <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
         </form.RadioGroup>
+
+        <form.CheckboxGroup @label="Checkboxes" @name="checkboxes" as |group|>
+          <group.CheckboxField
+            @label="Option 1"
+            @value="option-1"
+            data-checkbox-group-1
+          />
+          <group.CheckboxField
+            @label="Option 2"
+            @value="option-2"
+            data-checkbox-group-2
+          />
+          <group.CheckboxField
+            @label="Option 3"
+            @value="option-3"
+            data-checkbox-group-3
+          />
+        </form.CheckboxGroup>
       </ToucanForm>
     </template>);
 
@@ -83,23 +104,44 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.dom('[data-checkbox]').hasAttribute('name', 'termsAndConditions');
     assert.dom('[data-checkbox]').isChecked();
 
+    // Radio group
     assert.dom('[data-radio-1]').hasAttribute('name', 'radio');
     assert.dom('[data-radio-2]').hasAttribute('name', 'radio');
 
     assert.dom('[data-radio-1]').isNotChecked();
     assert.dom('[data-radio-2]').isChecked();
+
+    // Checkbox group
+    assert.dom('[data-checkbox-group-1]').hasAttribute('name', 'checkboxes');
+    assert.dom('[data-checkbox-group-2]').hasAttribute('name', 'checkboxes');
+    assert.dom('[data-checkbox-group-3]').hasAttribute('name', 'checkboxes');
+
+    assert.dom('[data-checkbox-group-1]').isChecked();
+    assert.dom('[data-checkbox-group-2]').isNotChecked();
+    assert.dom('[data-checkbox-group-3]').isChecked();
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
     const data: TestData = {};
 
     const formValidateCallback = ({
+      checkboxes,
       comment,
       firstName,
       radio,
       termsAndConditions,
     }: TestData) => {
       let errors: ErrorRecord<TestData> = {};
+
+      if (!checkboxes) {
+        errors.checkboxes = [
+          {
+            type: 'required',
+            value: checkboxes,
+            message: 'One checkbox must be selected',
+          },
+        ];
+      }
 
       if (!comment) {
         errors.comment = [
@@ -177,6 +219,29 @@ module('Integration | Component | ToucanForm', function (hooks) {
           <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
         </form.RadioGroup>
 
+        <form.CheckboxGroup
+          @label="Checkboxes"
+          @name="checkboxes"
+          @rootTestSelector="data-checkbox-group-wrapper"
+          as |group|
+        >
+          <group.CheckboxField
+            @label="Option 1"
+            @value="option-1"
+            data-checkbox-group-1
+          />
+          <group.CheckboxField
+            @label="Option 2"
+            @value="option-2"
+            data-checkbox-group-2
+          />
+          <group.CheckboxField
+            @label="Option 3"
+            @value="option-3"
+            data-checkbox-group-3
+          />
+        </form.CheckboxGroup>
+
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
     </template>);
@@ -206,6 +271,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-radio-wrapper"] [data-error]')
       .hasText('One radio must be selected');
+    assert
+      .dom('[data-root-field="data-checkbox-group-wrapper"] [data-error]')
+      .hasText('One checkbox must be selected');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
@@ -213,6 +281,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await click('[data-test-submit]');
     await click('[data-checkbox]');
     await click('[data-radio-2]');
+    await click('[data-checkbox-group-2]');
 
     assert
       .dom('[data-error]')
