@@ -10,6 +10,7 @@
   <form.Input @label='First name' @name='firstName' />
   <form.Input @label='Last name' @name='lastName' />
   <form.Textarea @label='Comment' @name='comment' />
+  <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
   <Button type='submit'>Submit</Button>
 </ToucanForm>
@@ -30,6 +31,7 @@ export default class extends Component {
     comment: validatePresence(true),
     firstName: validatePresence(true),
     lastName: validatePresence(true),
+    terms: validatePresence(true),
   };
 
   handleSubmit(data) {

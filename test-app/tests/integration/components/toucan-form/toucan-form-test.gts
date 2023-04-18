@@ -8,6 +8,12 @@ import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
 
 import type { ErrorRecord } from 'ember-headless-form';
 
+interface TestData {
+  comment?: string;
+  firstName?: string;
+  termsAndConditions?: boolean;
+}
+
 module('Integration | Component | ToucanForm', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -44,15 +50,21 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it sets the yielded component values based on `@data`', async function (assert) {
-    const data: { comment?: string; firstName?: string } = {
+    const data: TestData = {
       comment: 'textarea',
       firstName: 'input',
+      termsAndConditions: true,
     };
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.Textarea @label="Comment" @name="comment" data-textarea />
         <form.Input @label="Input" @name="firstName" data-input />
+        <form.Checkbox
+          @label="Terms"
+          @name="termsAndConditions"
+          data-checkbox
+        />
       </ToucanForm>
     </template>);
 
@@ -61,23 +73,19 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
     assert.dom('[data-input]').hasAttribute('name', 'firstName');
     assert.dom('[data-input]').hasValue('input');
+
+    assert.dom('[data-checkbox]').hasAttribute('name', 'termsAndConditions');
+    assert.dom('[data-checkbox]').isChecked();
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    interface TestData {
-      comment?: string;
-      firstName?: string;
-    }
-
     const data: TestData = {};
 
     const formValidateCallback = ({
       comment,
       firstName,
-    }: {
-      comment?: string;
-      firstName?: string;
-    }) => {
+      termsAndConditions,
+    }: TestData) => {
       let errors: ErrorRecord<TestData> = {};
 
       if (!comment) {
@@ -100,6 +108,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
         ];
       }
 
+      if (!termsAndConditions) {
+        errors.termsAndConditions = [
+          {
+            type: 'required',
+            value: termsAndConditions,
+            message: 'Terms must be checked',
+          },
+        ];
+      }
+
       return Object.keys(errors).length === 0 ? undefined : errors;
     };
 
@@ -117,6 +135,13 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @name="firstName"
           @rootTestSelector="data-input-wrapper"
           data-input
+        />
+
+        <form.Checkbox
+          @label="Terms and Conditions"
+          @name="termsAndConditions"
+          @rootTestSelector="data-checkbox-wrapper"
+          data-checkbox
         />
 
         <button type="submit" data-test-submit>Submit</button>
@@ -142,11 +167,15 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-input-wrapper"] [data-error]')
       .hasText('First name is required');
+    assert
+      .dom('[data-root-field="data-checkbox-wrapper"] [data-error]')
+      .hasText('Terms must be checked');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
     await fillIn('[data-input]', 'CrowdStrike');
     await click('[data-test-submit]');
+    await click('[data-checkbox]');
 
     assert
       .dom('[data-error]')

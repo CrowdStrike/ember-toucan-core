@@ -8,6 +8,7 @@
   <form.Input @label='First name' @name='firstName' required />
   <form.Input @label='Last name' @name='lastName' required />
   <form.Textarea @label='Comment' @name='comment' required />
+  <form.Checkbox @label='Agree to the Terms' @name='terms' required />
 
   <Button type='submit'>Submit</Button>
 </ToucanForm>
