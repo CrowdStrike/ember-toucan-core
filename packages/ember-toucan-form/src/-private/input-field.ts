@@ -3,16 +3,16 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
-import type { ToucanFormTextareaFieldComponentSignature as BaseTextareaFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
+import type { ToucanFormInputFieldComponentSignature as BaseInputFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/input';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
-export interface ToucanFormTextareaFieldComponentSignature<
+export interface ToucanFormInputFieldComponentSignature<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
-  Element: HTMLTextAreaElement;
+  Element: HTMLInputElement;
   Args: Omit<
-    BaseTextareaFieldSignature['Args'],
+    BaseInputFieldSignature['Args'],
     'error' | 'value' | 'onChange'
   > & {
     /**
@@ -30,10 +30,10 @@ export interface ToucanFormTextareaFieldComponentSignature<
   };
 }
 
-export default class ToucanFormTextareaFieldComponent<
+export default class ToucanFormInputFieldComponent<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
-> extends Component<ToucanFormTextareaFieldComponentSignature<DATA, KEY>> {
+> extends Component<ToucanFormInputFieldComponentSignature<DATA, KEY>> {
   mapErrors = (errors?: ValidationError[]) => {
     if (!errors) {
       return;

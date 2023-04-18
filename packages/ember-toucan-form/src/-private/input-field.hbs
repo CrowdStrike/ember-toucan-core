@@ -1,10 +1,10 @@
 <@form.Field @name={{@name}} as |field|>
-  <Form::Fields::Textarea
+  <Form::Fields::Input
     @label={{@label}}
     @hint={{@hint}}
     @error={{this.mapErrors field.rawErrors}}
     @value={{this.assertString field.value}}
-    {{! The issue here is that onChange of textarea only expects a string typed value, but field.setValue is generic, accepting anything that DATA[KEY] could be. Similar case with @value, but there casting to a string is easy. }}
+    {{! The issue here is that onChange of input only expects a string typed value, but field.setValue is generic, accepting anything that DATA[KEY] could be. Similar case with @value, but there casting to a string is easy. }}
     {{! @glint-expect-error }}
     @onChange={{field.setValue}}
     @isDisabled={{@isDisabled}}

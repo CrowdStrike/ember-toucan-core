@@ -7,6 +7,8 @@
   @validate={{validate-changeset}}
   as |form|
 >
+  <form.Input @label='First name' @name='firstName' />
+  <form.Input @label='Last name' @name='lastName' />
   <form.Textarea @label='Comment' @name='comment' />
 
   <Button type='submit'>Submit</Button>
@@ -26,14 +28,18 @@ export default class extends Component {
 
   validations = {
     comment: validatePresence(true),
+    firstName: validatePresence(true),
+    lastName: validatePresence(true),
   };
 
   handleSubmit(data) {
     console.log({ data });
 
-    const { comment } = data;
-
-    alert(`Form submitted with: ${comment}`);
+    alert(
+      `Form submitted with:\n${Object.entries(data.get('pendingData'))
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n')}`
+    );
   }
 }
 ```
