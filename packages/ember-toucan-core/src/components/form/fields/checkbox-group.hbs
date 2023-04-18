@@ -2,7 +2,7 @@
   <fieldset
     aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
     disabled={{@isDisabled}}
-    {{! attribute aria-invalid is not supported by the element fieldset with the implicit role of group }}
+    data-root-field={{if @rootTestSelector @rootTestSelector}}
     ...attributes
   >
     {{#if
