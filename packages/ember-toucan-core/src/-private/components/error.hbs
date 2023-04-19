@@ -1,11 +1,14 @@
 <div
-  class="type-xs-tight text-critical mt-1.5 flex
-    {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+  class="{{if @isInline '' 'type-xs-tight text-critical mt-1.5 flex'}}
+    {{if this.hasMoreThanOneErrorAndNotInline 'items-start'}}
+    {{if this.hasSingleErrorAndNotInline 'items-center'}}"
   ...attributes
 >
   {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 - Placeholder icon }}
   <svg
-    class="mr-1 h-3 w-3"
+    class="mr-1 h-3 w-3
+    {{if this.hasMoreThanOneErrorAndIsInline 'mt-0'}}
+    {{if this.hasSingleErrorAndIsInline '-mt-0.5'}}"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
