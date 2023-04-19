@@ -54,7 +54,8 @@
           {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
       >
         {{#if @error}}
-          <field.InlineError
+          <field.Error
+            @isInline={{true}}
             class="flex-3"
             id={{field.errorId}}
             @error={{@error}}

@@ -1,6 +1,7 @@
 <div
-  class="type-xs-tight text-critical mt-1.5 flex
-    {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
+  class="{{if @isInline '' 'type-xs-tight text-critical mt-1.5 flex'}}
+    {{if this.hasMoreThanOneErrorAndNotInline 'items-start'}}
+    {{if this.hasSingleErrorAndNotInline 'items-center'}}"
   ...attributes
 >
   <svg

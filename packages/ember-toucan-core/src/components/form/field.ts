@@ -3,7 +3,6 @@ import Component from '@glimmer/component';
 import Control from '../../-private/components/control';
 import Error from '../../-private/components/error';
 import Hint from '../../-private/components/hint';
-import InlineError from '../../-private/components/inline-error';
 import Label from '../../-private/components/label';
 
 interface ToucanFormFieldComponentSignature {
@@ -59,11 +58,6 @@ interface ToucanFormFieldComponentSignature {
          * Renders a Toucan-styled error block.
          */
         Error: typeof Error;
-
-        /**
-         * Renders a Toucan-styled error block, but an inline version that allows content on the right side
-         */
-        InlineError: typeof InlineError;
       }
     ];
   };
@@ -74,5 +68,4 @@ export default class ToucanFormFieldComponent extends Component<ToucanFormFieldC
   Hint = Hint;
   Control = Control;
   Error = Error;
-  InlineError = InlineError;
 }

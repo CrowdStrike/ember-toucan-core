@@ -10,9 +10,15 @@ export interface ToucanFormErrorComponentSignature {
      * Provide a string or array of strings to this argument to render styled errors.
      */
     error?: ErrorMessage;
+
+    /**
+      * To render the component inline, removes flex
+    */
+    isInline?: boolean;
   };
   Blocks: {};
 }
+
 
 export default class ToucanFormErrorComponent extends Component<ToucanFormErrorComponentSignature> {
   /**
@@ -21,6 +27,30 @@ export default class ToucanFormErrorComponent extends Component<ToucanFormErrorC
    */
   get hasMoreThanOneError() {
     return Array.isArray(this.args.error) && this.args.error?.length > 1;
+  }
+
+  /**
+    * workaround for not having (and ...) or (or ...)
+  */
+  get hasMoreThanOneErrorAndIsInline() {
+    return this.hasMoreThanOneError && this.args.isInline;
+  }
+
+  get hasSingleErrorAndIsInline() {
+    return !this.hasMoreThanOneError && this.args.isInline;
+  }
+  /**
+    * workaround for not having (and ...) or (or ...)
+  */
+  get hasMoreThanOneErrorAndNotInline() {
+    return this.hasMoreThanOneError && !this.args.isInline;
+  }
+
+  /**
+    * workaround for not having (and ...) or (or ...)
+  */
+  get hasSingleErrorAndNotInline() {
+    return !this.hasMoreThanOneError && !this.args.isInline;
   }
 
   get errors(): Array<string> {
