@@ -12,13 +12,12 @@ export interface ToucanFormErrorComponentSignature {
     error?: ErrorMessage;
 
     /**
-      * To render the component inline, removes flex
-    */
+     * To render the component inline, removes flex
+     */
     isInline?: boolean;
   };
   Blocks: {};
 }
-
 
 export default class ToucanFormErrorComponent extends Component<ToucanFormErrorComponentSignature> {
   /**
@@ -30,8 +29,8 @@ export default class ToucanFormErrorComponent extends Component<ToucanFormErrorC
   }
 
   /**
-    * workaround for not having (and ...) or (or ...)
-  */
+   * workaround for not having (and ...) or (or ...)
+   */
   get hasMoreThanOneErrorAndIsInline() {
     return this.hasMoreThanOneError && this.args.isInline;
   }
@@ -40,15 +39,15 @@ export default class ToucanFormErrorComponent extends Component<ToucanFormErrorC
     return !this.hasMoreThanOneError && this.args.isInline;
   }
   /**
-    * workaround for not having (and ...) or (or ...)
-  */
+   * workaround for not having (and ...) or (or ...)
+   */
   get hasMoreThanOneErrorAndNotInline() {
     return this.hasMoreThanOneError && !this.args.isInline;
   }
 
   /**
-    * workaround for not having (and ...) or (or ...)
-  */
+   * workaround for not having (and ...) or (or ...)
+   */
   get hasSingleErrorAndNotInline() {
     return !this.hasMoreThanOneError && !this.args.isInline;
   }
