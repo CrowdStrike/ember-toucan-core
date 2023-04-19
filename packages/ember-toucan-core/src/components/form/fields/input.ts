@@ -61,7 +61,7 @@ export interface ToucanFormInputFieldComponentSignature {
 }
 
 export default class ToucanFormInputFieldComponent extends Component<ToucanFormInputFieldComponentSignature> {
-  @tracked count = 0;
+  @tracked count = this.args.value?.length ?? 0;
 
   CharacterCount = CharacterCount;
 
@@ -90,11 +90,7 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
       event.target instanceof HTMLInputElement
     );
 
-    if (event.target?.value) {
-      this.count = event.target.value.length;
-    } else {
-      this.count = 0;
-    }
+    this.count = event.target?.value.length ?? 0;
   }
 
   get hasError() {
