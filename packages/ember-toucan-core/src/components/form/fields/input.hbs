@@ -48,7 +48,7 @@
         ...attributes
       />
     </field.Control>
-    {{#if (has-block "secondaryInformation")}}
+    {{#if (has-block "secondary")}}
       <div
         class="type-xs-tight text-critical mt-1.5 flex justify-between
           {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
@@ -70,16 +70,12 @@
                 (ensure-safe-component this.CharacterCount) current=this.count
               )
             )
-            to="secondaryInformation"
+            to="secondary"
           }}
         </div>
       </div>
     {{else if @error}}
-      <field.Error
-        id={{field.errorId}}
-        @error={{@error}}
-        data-error
-      />
+      <field.Error id={{field.errorId}} @error={{@error}} data-error />
     {{/if}}
   </Form::Field>
 </div>

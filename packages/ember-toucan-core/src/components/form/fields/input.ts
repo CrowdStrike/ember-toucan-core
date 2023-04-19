@@ -52,7 +52,7 @@ export interface ToucanFormInputFieldComponentSignature {
     default: [];
     label: [];
     hint: [];
-    secondaryInformation: [
+    secondary: [
       {
         CharacterCount: WithBoundArgs<typeof CharacterCount, 'current'>;
       }

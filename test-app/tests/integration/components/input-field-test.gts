@@ -202,7 +202,7 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom('[data-root-field="selector"]').exists();
   });
 
-  test('it renders a `<:secondaryInformation>` block that tracks the input value length', async function (assert) {
+  test('it renders a `<:secondary>` block that tracks the input value length', async function (assert) {
     class Context {
       @tracked count = 0;
 
@@ -216,9 +216,9 @@ module('Integration | Component | Fields | Input', function (hooks) {
 
     await render(<template>
       <InputField @label="Label" @value="Hello" @onChange={{ctx.handleChange}} data-input>
-        <:secondaryInformation as |secondary|>
+        <:secondary as |secondary|>
           <secondary.CharacterCount @max={{255}} data-character />
-        </:secondaryInformation>
+        </:secondary>
       </InputField>
     </template>);
 
