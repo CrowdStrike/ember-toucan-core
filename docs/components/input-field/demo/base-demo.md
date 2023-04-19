@@ -8,10 +8,10 @@
   class='w-full'
   type='text'
 >
-  <:secondaryInformation as |secondary|><secondary.CharacterCount
+  <:secondaryas |secondary|><secondary.CharacterCount
       @max={{255}}
       class="type-xs-tight"
-    /></:secondaryInformation>
+    /></:secondary>
 
 </Form::Fields::Input>
 ```
