@@ -65,16 +65,6 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
 
   CharacterCount = CharacterCount;
 
-  constructor(
-    owner: unknown,
-    args: ToucanFormInputFieldComponentSignature['Args']
-  ) {
-    super(owner, args);
-
-    if (this.args.value) {
-      this.count = this.args.value.length;
-    }
-  }
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
