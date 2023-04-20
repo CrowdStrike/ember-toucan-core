@@ -54,8 +54,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
       checkboxes: ['option-1', 'option-3'],
-      comment: 'textarea',
-      firstName: 'input',
+      comment: 'multi-line text',
+      firstName: 'single line text',
       radio: 'option-2',
       termsAndConditions: true,
     };
@@ -96,10 +96,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').hasAttribute('name', 'comment');
-    assert.dom('[data-textarea]').hasValue('textarea');
+    assert.dom('[data-textarea]').hasValue('multi-line text');
 
     assert.dom('[data-input]').hasAttribute('name', 'firstName');
-    assert.dom('[data-input]').hasValue('input');
+    assert.dom('[data-input]').hasValue('single line text');
 
     assert.dom('[data-checkbox]').hasAttribute('name', 'termsAndConditions');
     assert.dom('[data-checkbox]').isChecked();
@@ -122,6 +122,23 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
+    assert.expect(13);
+
+    const handleSubmit = (data: TestData) => {
+      assert.deepEqual(
+        data,
+        {
+          checkboxes: ['option-2'],
+          comment: 'A comment.',
+          firstName: 'CrowdStrike',
+          radio: 'option-2',
+          termsAndConditions: true,
+        },
+        'Expected test data to match selections'
+      );
+      assert.step('onSubmit');
+    };
+
     const data: TestData = {};
 
     const formValidateCallback = ({
@@ -187,7 +204,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
     };
 
     await render(<template>
-      <ToucanForm @data={{data}} @validate={{formValidateCallback}} as |form|>
+      <ToucanForm
+        @data={{data}}
+        @validate={{formValidateCallback}}
+        @onSubmit={{handleSubmit}}
+        as |form|
+      >
         <form.Textarea
           @label="Comment"
           @name="comment"
@@ -246,6 +268,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
       </ToucanForm>
     </template>);
 
+    assert.verifySteps([]);
+
     assert
       .dom('[data-error]')
       .doesNotExist(
@@ -253,6 +277,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
       );
 
     await click('[data-test-submit]');
+
+    // Since we have errors, we still do not expect our submit to be called
+    assert.verifySteps([]);
 
     assert
       .dom('[data-error]')
@@ -278,15 +305,18 @@ module('Integration | Component | ToucanForm', function (hooks) {
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
     await fillIn('[data-input]', 'CrowdStrike');
-    await click('[data-test-submit]');
     await click('[data-checkbox]');
     await click('[data-radio-2]');
     await click('[data-checkbox-group-2]');
+
+    await click('[data-test-submit]');
 
     assert
       .dom('[data-error]')
       .doesNotExist(
         'Expected errors to be removed due to satisfying validation'
       );
+
+    assert.verifySteps(['onSubmit']);
   });
 });

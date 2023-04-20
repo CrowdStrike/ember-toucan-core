@@ -9,36 +9,31 @@
   <form.Input @label='Last name' @name='lastName' required />
   <form.Textarea @label='Comment' @name='comment' required />
 
-  <form.RadioGroup @label='Radios' @name='radio' as |group|>
-    <group.RadioField
-      @label='option-1'
-      @value='option-1'
-      data-radio-1
-      required
-    />
-    <group.RadioField @label='option-2' @value='option-2' data-radio-2 />
-  </form.RadioGroup>
-
-  <form.CheckboxGroup @label='Checkboxes' @name='checkboxes' as |group|>
+  <form.CheckboxGroup @label='Fruit selection' @name='fruit' as |group|>
     <group.CheckboxField
-      @label='Option 1'
-      @value='option-1'
+      @label='Banana'
+      @value='banana'
       required
       data-checkbox-group-1
     />
     <group.CheckboxField
-      @label='Option 2'
-      @value='option-2'
+      @label='Apple'
+      @value='apple'
       required
       data-checkbox-group-2
     />
     <group.CheckboxField
-      @label='Option 3'
-      @value='option-3'
+      @label='Pear'
+      @value='pear'
       required
       data-checkbox-group-3
     />
   </form.CheckboxGroup>
+
+  <form.RadioGroup @label='Vegetable selection' @name='vegetable' as |group|>
+    <group.RadioField @label='Avocado' @value='avocado' data-radio-1 />
+    <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
+  </form.RadioGroup>
 
   <form.Checkbox @label='Agree to the Terms' @name='terms' required />
 

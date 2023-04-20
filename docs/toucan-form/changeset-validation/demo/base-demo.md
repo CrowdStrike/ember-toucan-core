@@ -11,28 +11,20 @@
   <form.Input @label='Last name' @name='lastName' />
   <form.Textarea @label='Comment' @name='comment' />
 
-  <form.RadioGroup @label='Radios' @name='radio' as |group|>
-    <group.RadioField @label='Option 1' @value='option-1' data-radio-1 />
-    <group.RadioField @label='Option 2' @value='option-2' data-radio-2 />
-  </form.RadioGroup>
-
-  <form.CheckboxGroup @label='Checkboxes' @name='checkboxes' as |group|>
+  <form.CheckboxGroup @label='Fruit selection' @name='fruit' as |group|>
     <group.CheckboxField
-      @label='Option 1'
-      @value='option-1'
+      @label='Banana'
+      @value='banana'
       data-checkbox-group-1
     />
-    <group.CheckboxField
-      @label='Option 2'
-      @value='option-2'
-      data-checkbox-group-2
-    />
-    <group.CheckboxField
-      @label='Option 3'
-      @value='option-3'
-      data-checkbox-group-3
-    />
+    <group.CheckboxField @label='Apple' @value='apple' data-checkbox-group-2 />
+    <group.CheckboxField @label='Pear' @value='pear' data-checkbox-group-3 />
   </form.CheckboxGroup>
+
+  <form.RadioGroup @label='Vegetable selection' @name='vegetable' as |group|>
+    <group.RadioField @label='Avocado' @value='avocado' data-radio-1 />
+    <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
+  </form.RadioGroup>
 
   <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
@@ -53,11 +45,11 @@ export default class extends Component {
 
   validations = {
     comment: validatePresence(true),
-    checkboxes: validatePresence(true),
     firstName: validatePresence(true),
+    fruit: validatePresence(true),
     lastName: validatePresence(true),
-    radio: validatePresence(true),
     terms: validatePresence(true),
+    vegetable: validatePresence(true),
   };
 
   handleSubmit(data) {
