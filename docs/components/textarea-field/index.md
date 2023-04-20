@@ -118,7 +118,11 @@ export default class extends Component {
 
 ## Disabled State
 
-Set the `@isDisabled` argument to disable the `<textarea>`.
+Set the `@isDisabled` argument to disable the textarea.
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the textarea in the read only state.
 
 ## Attributes and Modifiers
 

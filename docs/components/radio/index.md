@@ -52,3 +52,15 @@ export default class extends Component {
 ## Disabled State
 
 Set the `@isDisabled` argument to disable the radio.
+
+```hbs
+<Form::Controls::Radio @isDisabled={{true}} />
+```
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the radio in the read only state.
+
+```hbs
+<Form::Controls::Radio @isReadOnly={{true}} />
+```

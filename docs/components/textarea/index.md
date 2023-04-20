@@ -42,8 +42,24 @@ export default class extends Component {
 
 ## Disabled State
 
-Set the `@isDisabled` argument to disable the `<textarea>`.
+Set the `@isDisabled` argument to disable the textarea.
+
+```hbs
+<Form::Controls::Textarea @isDisabled={{true}} />
+```
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the textarea in the read only state.
+
+```hbs
+<Form::Controls::Textarea @isReadOnly={{true}} />
+```
 
 ## Error State
 
-Set the `@hasError` argument to apply an error box shadow to the `<textarea>`.
+Set the `@hasError` argument to apply an error box shadow to the textarea.
+
+```hbs
+<Form::Controls::Textarea @hasError={{true}} />
+```

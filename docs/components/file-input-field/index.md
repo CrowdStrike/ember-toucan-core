@@ -149,6 +149,10 @@ export default class extends Component {
 
 Set the `@isDisabled` argument to disable the `<input type="file">`.
 
+## Read Only State
+
+Set the `@isReadOnly` argument to put the input in the read only state.
+
 ## Attributes and Modifiers
 
 Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.

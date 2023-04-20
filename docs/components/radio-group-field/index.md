@@ -169,6 +169,22 @@ To disable individual radio fields, set the `@isDisabled` argument directly on t
 </Form::Fields::RadioGroup>
 ```
 
+## Read Only State
+
+Individual radio fields can be set to read only by setting the `@isReadOnly` argument directly on the radio field.
+
+```hbs
+<Form::Fields::RadioGroup
+  @label='Label'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+  as |group|
+>
+  <group.RadioField @label='Option 1' @value='option-1' @isReadOnly={{true}} />
+</Form::Fields::RadioGroup>
+```
+
 ## Attributes and Modifiers
 
 Consumers have direct access to the underlying [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio), so all attributes are supported. Modifiers can also be added directly to individual radio fields.

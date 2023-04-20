@@ -120,6 +120,10 @@ export default class extends Component {
 
 Set the `@isDisabled` argument to disable the checkbox.
 
+## Read Only State
+
+Set the `@isReadOnly` argument to put the checkbox in the read only state.
+
 ## Indeterminate State
 
 Set the `@isIndeterminate` argument. To learn more, view the [Checkbox documentation](./checkbox).
