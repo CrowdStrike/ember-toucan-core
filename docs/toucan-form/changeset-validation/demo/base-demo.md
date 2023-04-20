@@ -12,9 +12,27 @@
   <form.Textarea @label='Comment' @name='comment' />
 
   <form.RadioGroup @label='Radios' @name='radio' as |group|>
-    <group.RadioField @label='option-1' @value='option-1' data-radio-1 />
-    <group.RadioField @label='option-2' @value='option-2' data-radio-2 />
+    <group.RadioField @label='Option 1' @value='option-1' data-radio-1 />
+    <group.RadioField @label='Option 2' @value='option-2' data-radio-2 />
   </form.RadioGroup>
+
+  <form.CheckboxGroup @label='Checkboxes' @name='checkboxes' as |group|>
+    <group.CheckboxField
+      @label='Option 1'
+      @value='option-1'
+      data-checkbox-group-1
+    />
+    <group.CheckboxField
+      @label='Option 2'
+      @value='option-2'
+      data-checkbox-group-2
+    />
+    <group.CheckboxField
+      @label='Option 3'
+      @value='option-3'
+      data-checkbox-group-3
+    />
+  </form.CheckboxGroup>
 
   <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
@@ -35,6 +53,7 @@ export default class extends Component {
 
   validations = {
     comment: validatePresence(true),
+    checkboxes: validatePresence(true),
     firstName: validatePresence(true),
     lastName: validatePresence(true),
     radio: validatePresence(true),

@@ -1,0 +1,18 @@
+<@form.Field @name={{@name}} as |field|>
+  <Form::Fields::CheckboxGroup
+    @label={{@label}}
+    @hint={{@hint}}
+    @error={{this.mapErrors field.rawErrors}}
+    @value={{this.assertArrayOfStrings field.value}}
+    {{! The issue here is that onChange only expects a string typed value, but field.setValue is generic, accepting anything that DATA[KEY] could be. Similar case with @value, but there casting is easy. }}
+    {{! @glint-expect-error }}
+    @onChange={{field.setValue}}
+    @isDisabled={{@isDisabled}}
+    @rootTestSelector={{@rootTestSelector}}
+    @name={{@name}}
+    ...attributes
+    as |group|
+  >
+    {{yield (hash CheckboxField=group.CheckboxField)}}
+  </Form::Fields::CheckboxGroup>
+</@form.Field>

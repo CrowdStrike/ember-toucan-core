@@ -19,6 +19,27 @@
     <group.RadioField @label='option-2' @value='option-2' data-radio-2 />
   </form.RadioGroup>
 
+  <form.CheckboxGroup @label='Checkboxes' @name='checkboxes' as |group|>
+    <group.CheckboxField
+      @label='Option 1'
+      @value='option-1'
+      required
+      data-checkbox-group-1
+    />
+    <group.CheckboxField
+      @label='Option 2'
+      @value='option-2'
+      required
+      data-checkbox-group-2
+    />
+    <group.CheckboxField
+      @label='Option 3'
+      @value='option-3'
+      required
+      data-checkbox-group-3
+    />
+  </form.CheckboxGroup>
+
   <form.Checkbox @label='Agree to the Terms' @name='terms' required />
 
   <Button type='submit'>Submit</Button>
