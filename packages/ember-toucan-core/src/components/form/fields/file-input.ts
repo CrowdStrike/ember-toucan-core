@@ -112,6 +112,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   @action
   handleChange(field: { id: string }) {
+    if (this.args.isReadOnly) {
+      return;
+    }
+
     const input = document.getElementById(`${field.id}`);
 
     // https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#using_hidden_file_input_elements_using_the_click_method

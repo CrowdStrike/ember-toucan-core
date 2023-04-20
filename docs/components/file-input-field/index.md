@@ -262,7 +262,7 @@ Target the trash icon button via `data-delete-file`.
     @trigger='Select Files'
   />
 </div>
-  
+
 ## FileInputField with label and isDisabled
 
 <div class='mb-4 w-64'>
@@ -272,4 +272,15 @@ Target the trash icon button via `data-delete-file`.
     @isDisabled={{true}}
     @trigger='Browse Files'
     />
+</div>
+
+### FileInputField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @isReadOnly={{true}}
+    @trigger='Browse Files'
+  />
 </div>
