@@ -39,6 +39,23 @@ module('Integration | Component | Input', function (hooks) {
     assert.dom('[data-input]').doesNotHaveClass('text-titles-and-attributes');
   });
 
+  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <InputControl @isReadOnly={{true}} data-input />
+    </template>);
+
+    assert.dom('[data-input]').hasAttribute('readonly');
+
+    assert.dom('[data-input]').hasClass('shadow-read-only-outline');
+    assert.dom('[data-input]').hasClass('bg-surface-xl');
+    assert.dom('[data-input]').hasNoClass('bg-overlay-1');
+    assert.dom('[data-input]').hasNoClass('text-disabled');
+    assert.dom('[data-input]').hasNoClass('shadow-error-outline');
+    assert.dom('[data-input]').hasNoClass('shadow-focusable-outline');
+  });
+
   test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / InputField }}

@@ -25,6 +25,8 @@ module('Integration | Component | Checkbox', function (hooks) {
 
     assert.dom('[data-checkbox]').hasClass('bg-normal-idle');
     assert.dom('[data-checkbox]').doesNotHaveClass('border-disabled');
+
+    assert.dom('[data-checkbox]').hasNoAttribute('readonly');
   });
 
   test('it disables the checkbox using `@isDisabled`', async function (assert) {
@@ -40,6 +42,16 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasClass('bg-transparent');
     assert.dom('[data-checkbox]').doesNotHaveClass('bg-primary-idle');
     assert.dom('[data-checkbox]').doesNotHaveClass('border-none');
+  });
+
+  test('it sets readonly on the checkbox using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <CheckboxControl @isReadOnly={{true}} data-checkbox />
+    </template>);
+
+    assert.dom('[data-checkbox]').hasAttribute('readonly');
   });
 
   test('it makes the checkbox checked using `@isChecked`', async function (assert) {
@@ -93,6 +105,43 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasClass('bg-disabled');
     assert.dom('[data-checkbox]').hasClass('border-none');
     assert.dom('[data-checkbox]').hasNoClass('bg-primary-idle');
+  });
+
+  test('it applies the expected classes when `@isChecked={{true}}` and `@isReadOnly={{true}}', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <CheckboxControl @isChecked={{true}} @isReadOnly={{true}} data-checkbox />
+    </template>);
+
+    assert.dom('[data-checkbox]').hasClass('bg-titles-and-attributes');
+    assert.dom('[data-checkbox]').hasClass('border-none');
+    assert.dom('[data-checkbox]').hasNoClass('bg-primary-idle');
+    assert.dom('[data-checkbox]').hasNoClass('bg-transparent');
+    assert.dom('[data-checkbox]').hasNoClass('bg-surface-xl');
+    assert.dom('[data-checkbox]').hasNoClass('bg-normal-idle');
+    assert.dom('[data-checkbox]').hasNoClass('bg-disabled');
+    assert.dom('[data-checkbox]').hasNoClass('border-disabled');
+  });
+
+  test('it applies the expected classes when `@isChecked={{false}}` and `@isReadOnly={{true}}', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <CheckboxControl
+        @isChecked={{false}}
+        @isReadOnly={{true}}
+        data-checkbox
+      />
+    </template>);
+
+    assert.dom('[data-checkbox]').hasClass('bg-surface-xl');
+    assert.dom('[data-checkbox]').hasNoClass('bg-primary-idle');
+    assert.dom('[data-checkbox]').hasNoClass('bg-transparent');
+    assert.dom('[data-checkbox]').hasNoClass('bg-titles-and-attributes');
+    assert.dom('[data-checkbox]').hasNoClass('bg-normal-idle');
+    assert.dom('[data-checkbox]').hasNoClass('bg-disabled');
+    assert.dom('[data-checkbox]').hasNoClass('border-disabled');
   });
 
   test('it spreads attributes to the underlying checkbox', async function (assert) {

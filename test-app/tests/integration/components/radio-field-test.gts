@@ -91,6 +91,20 @@ module('Integration | Component | Fields | Radio', function (hooks) {
     assert.dom('[data-radio]').isDisabled();
   });
 
+  test('it sets readonly on the radio using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <RadioField
+        @value="option"
+        @name="name"
+        @label="Label"
+        @isReadOnly={{true}}
+        data-radio
+      />
+    </template>);
+
+    assert.dom('[data-radio]').hasAttribute('readonly');
+  });
+
   test('it spreads attributes to the underlying radio', async function (assert) {
     await render(<template>
       <RadioField

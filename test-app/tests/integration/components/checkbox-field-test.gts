@@ -118,6 +118,14 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     assert.dom('[data-checkbox]').isDisabled();
   });
 
+  test('it sets readonly on the checkbox using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <CheckboxField @label="Label" @isReadOnly={{true}} data-checkbox />
+    </template>);
+
+    assert.dom('[data-checkbox]').hasAttribute('readonly');
+  });
+
   test('it spreads attributes to the underlying checkbox', async function (assert) {
     await render(<template>
       <CheckboxField @label="Label" name="checkbox-name" data-checkbox />

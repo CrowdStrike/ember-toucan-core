@@ -179,6 +179,26 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isDisabled();
   });
 
+  test('it sets an individual checkbox to readonly with `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <CheckboxGroupField
+        @label="Label"
+        @name="group"
+        data-group-field
+        as |group|
+      >
+        <group.CheckboxField
+          @label="label 1"
+          @value="option-1"
+          @isReadOnly={{true}}
+          data-checkbox-1
+        />
+      </CheckboxGroupField>
+    </template>);
+
+    assert.dom('[data-checkbox-1]').hasAttribute('readonly');
+  });
+
   test('it calls `@onChange` when a checkbox is clicked and can update `@value`', async function (assert) {
     assert.expect(10);
 

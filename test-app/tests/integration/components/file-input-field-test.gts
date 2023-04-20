@@ -188,6 +188,21 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
   });
 
+  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <FileInputField
+        @deleteLabel="Delete File"
+        @label="Label"
+        @trigger="Select Files"
+        @isReadOnly={{true}}
+        @onChange={{onChange}}
+        data-file-input-field
+      />
+    </template>);
+
+    assert.dom('[data-file-input-field]').hasAttribute('readonly');
+  });
+
   test('it spreads attributes to the underlying file-input-field', async function (assert) {
     await render(<template>
       <FileInputField

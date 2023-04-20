@@ -124,6 +124,14 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert.dom('[data-textarea]').hasClass('text-disabled');
   });
 
+  test('it sets readonly on the textarea using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <TextareaField @label="Label" @isReadOnly={{true}} data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasAttribute('readonly');
+  });
+
   test('it spreads attributes to the underlying textarea', async function (assert) {
     await render(<template>
       <TextareaField

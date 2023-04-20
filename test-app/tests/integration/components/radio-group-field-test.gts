@@ -119,6 +119,21 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-2]').isDisabled();
   });
 
+  test('it sets an individual radio to readonly with `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <RadioGroupField @label="Label" @name="group" data-group-field as |group|>
+        <group.RadioField
+          @label="option-1"
+          @value="option-1"
+          @isReadOnly={{true}}
+          data-radio-1
+        />
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-radio-1]').hasAttribute('readonly');
+  });
+
   test('it calls `@onChange` when a radio is clicked and can update `@value`', async function (assert) {
     assert.expect(8);
 
