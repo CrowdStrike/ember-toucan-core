@@ -237,3 +237,22 @@ Target the error block via `data-error`.
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />
 </div>
+
+### TextareaField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### TextareaField with isReadOnly and a value
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @isReadOnly={{true}}
+    @value="Input value"
+  />
+</div>

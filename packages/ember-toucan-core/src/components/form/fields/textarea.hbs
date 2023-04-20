@@ -42,6 +42,7 @@
         aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
         id={{field.id}}
         @isDisabled={{@isDisabled}}
+        @isReadOnly={{@isReadOnly}}
         @value={{@value}}
         @onChange={{@onChange}}
         @hasError={{this.hasError}}
