@@ -35,7 +35,7 @@ ember-toucan-core uses [pnpm](https://pnpm.io) as a package manager. If you're u
 
 ```bash
 cd ember-toucan-core
-pnpm install
+pnpm install # can also: pnpm i
 ```
 
 ## Adding components
@@ -45,34 +45,34 @@ When developing a new component, add it to the `packages/ember-toucan-core` dire
 1. Components are added under `packages/ember-toucan-core/src/components`
 2. When adding a new component, it needs to be added to the template registry so that Glint picks it up. To do that, add a line in `packages/ember-toucan-core/src/template-registry.ts`.
 
-## Running the docs/test-app
-
-Prior to running the `docs-app` or `test-app`, you'll need to install dependencies:
-
-```bash
-cd docs-app
-pnpm i
-pnpm start
-```
-
-```bash
-cd test-app
-pnpm i
-pnpm start
-```
-
 ## Viewing changes in the docs/test-app
 
-[We're working on making this better](https://github.com/CrowdStrike/ember-toucan-core/issues/40), but for the time being you can use `pnpm link` to create a symlink between the addon and the apps. This will allow you to make a change in the addon and immediately see the change in the app rather than having to stop the app, rebuild, resync dependencies, etc.
+For the time being you can use `pnpm link` to create a symlink between the addon and the apps. This will allow you to make a change in the addon and immediately see the change in the app rather than having to stop the app, rebuild, resync dependencies, etc.
 
 ```bash
-# Create a symlink in the addon
+# Create a symlink in the ember-toucan-core addon
 cd packages/ember-toucan-core
+pnpm build
 pnpm link .
 
-# Link the docs-app
-cd ../docs-app
-pnpm link @crowdstrike/ember-toucan-core
+# Create a symlink in the forms addon (required even if you aren't using it)
+cd ../ember-toucan-form
+pnpm link @crowdstrike/ember-toucan-core # need to link this because ember-toucan-forms depends on it
+pnpm build 
+pnpm link .
+
+# Link ember-toucan-core docs-app
+cd ../../docs-app
+pnpm link @crowdstrike/ember-toucan-core # note @crowdstrike here
+pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here 
+pnpm i
+
+The test-app also needs to link `ember-toucan-form`.
+
+# Link ember-toucan-core to the test-app
+cd ../test-app
+pnpm link @crowdstrike/ember-toucan-core # note @crowdstrike here
+pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here
 pnpm i
 ```
 
@@ -84,8 +84,17 @@ cd packages/ember-toucan-core
 pnpm start
 # ember-toucan-core is now in watch mode and will rebuild automatically
 
-# In a second terminal
-cd docs-app
+
+# In a second terminal, cd to the root of the repo
+cd root-of-repo-where-that-is-for-you
+pnpm start:docs # using turbo here
+
+# In a third terminal, switch to the test-app
+cd root-of-repo-where-that-is-for-you/test-app
+pnpm start # and then navigate to /tests
+
+# IF you are making changes in ember-toucan-form, start a fourth terminal
+cd packages/ember-toucan-form
 pnpm start
 ```
 
