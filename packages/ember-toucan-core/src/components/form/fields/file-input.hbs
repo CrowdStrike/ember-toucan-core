@@ -54,21 +54,20 @@
         />
         <Button @variant="secondary" @onClick={{(fn this.handleChange field)}}>
           <span data-trigger>{{@trigger}}</span>
-          {{! TODO: https://github.com/CrowdStrike/ember-toucan-core/issues/49 replace with official icon later }}
           <svg
-            class="ml-2 h-4 w-4"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          ><path
-              d="M16.2 7.6l-2.1-2.3L12 3v13.1M12 3L9.9 5.3 7.8 7.6M21 15.1V19a2 2 0 01-2 2H5a2.006 2.006 0 01-2-2v-3.9"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            ></path></svg>
+            aria-hidden="true"
+            class="ml-2"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+          ><g><path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M2 10v2.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V10h1v2.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V10h1Z"
+              /><path
+                d="M8 10.707a.5.5 0 0 1-.5-.5V2.414L4.854 5.061a.5.5 0 1 1-.708-.707L8 .5l3.854 3.854a.5.5 0 0 1-.708.707L8.5 2.414v7.793a.5.5 0 0 1-.5.5Z"
+              /></g></svg>
         </Button>
       </field.Control>
     </field.Label>
