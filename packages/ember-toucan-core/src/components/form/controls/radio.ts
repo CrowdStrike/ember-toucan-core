@@ -46,19 +46,27 @@ export default class ToucanFormRadioControlComponent extends Component<ToucanFor
   get styles() {
     let { isDisabled, isChecked, isReadOnly } = this.args;
 
-    // TODO: Make this logic better (this is only for testing purposes atm!)
-    // Don't ship it like this 😂
-    return isChecked && !isDisabled && !isReadOnly
-      ? ['bg-primary-idle border-none']
-      : isChecked && isDisabled && !isReadOnly
-      ? ['bg-disabled border-none']
-      : !isChecked && isDisabled && !isReadOnly
-      ? ['bg-transparent border-disabled']
-      : isReadOnly && !isChecked
-      ? ['bg-surface-xl']
-      : isReadOnly && isChecked
-      ? ['bg-titles-and-attributes border-none']
-      : ['bg-normal-idle'];
+    if (isChecked && !isDisabled && !isReadOnly) {
+      return ['bg-primary-idle border-none'];
+    }
+
+    if (isChecked && isDisabled && !isReadOnly) {
+      return ['bg-disabled border-none'];
+    }
+
+    if (isChecked && isReadOnly) {
+      return ['bg-titles-and-attributes border-none'];
+    }
+
+    if (!isChecked && isDisabled && !isReadOnly) {
+      return ['bg-transparent border-disabled'];
+    }
+
+    if (!isChecked && isReadOnly) {
+      return ['bg-surface-xl'];
+    }
+
+    return ['bg-normal-idle'];
   }
 
   @action

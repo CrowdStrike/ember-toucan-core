@@ -56,19 +56,27 @@ export default class ToucanFormCheckboxControlComponent extends Component<Toucan
     let { isDisabled, isReadOnly } = this.args;
     let isCheckedOrIndeterminate = this.isCheckedOrIndeterminate;
 
-    // TODO: Make this logic better (this is only for testing purposes atm!)
-    // Don't ship it like this 😂
-    return isCheckedOrIndeterminate && !isDisabled && !isReadOnly
-      ? ['bg-primary-idle border-none']
-      : isCheckedOrIndeterminate && isDisabled && !isReadOnly
-      ? ['bg-disabled border-none']
-      : !isCheckedOrIndeterminate && isDisabled && !isReadOnly
-      ? ['bg-transparent border-disabled']
-      : isReadOnly && !isCheckedOrIndeterminate
-      ? ['bg-surface-xl']
-      : isReadOnly && isCheckedOrIndeterminate
-      ? ['bg-titles-and-attributes border-none']
-      : ['bg-normal-idle'];
+    if (isCheckedOrIndeterminate && !isDisabled && !isReadOnly) {
+      return ['bg-primary-idle border-none'];
+    }
+
+    if (isCheckedOrIndeterminate && isDisabled && !isReadOnly) {
+      return ['bg-disabled border-none'];
+    }
+
+    if (isCheckedOrIndeterminate && isReadOnly) {
+      return ['bg-titles-and-attributes border-none'];
+    }
+
+    if (!isCheckedOrIndeterminate && isDisabled && !isReadOnly) {
+      return ['bg-transparent border-disabled'];
+    }
+
+    if (!isCheckedOrIndeterminate && isReadOnly) {
+      return ['bg-surface-xl'];
+    }
+
+    return ['bg-normal-idle'];
   }
 
   @action
