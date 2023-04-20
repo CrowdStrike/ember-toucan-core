@@ -8,7 +8,7 @@
   class='w-full'
   type='text'
 >
-  <:secondaryas |secondary|><secondary.CharacterCount
+  <:secondary as |secondary|><secondary.CharacterCount
       @max={{255}}
       class="type-xs-tight"
     /></:secondary>
