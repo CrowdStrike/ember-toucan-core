@@ -53,7 +53,7 @@
           ...attributes
         />
         <Button
-          class="{{if @isReadOnly 'shadow-form-read-only bg-surface-xl'}}"
+          class="{{if @isReadOnly 'shadow-read-only-outline bg-surface-xl'}}"
           @variant="secondary"
           @onClick={{(fn this.handleChange field)}}
         >

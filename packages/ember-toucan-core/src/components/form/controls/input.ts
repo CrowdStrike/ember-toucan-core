@@ -43,7 +43,7 @@ export default class ToucanFormControlsInputComponent extends Component<ToucanFo
     }
 
     if (isReadOnly) {
-      return 'focus:shadow-focus-outline bg-surface-xl shadow-form-read-only text-titles-and-attributes';
+      return 'focus:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes';
     }
 
     if (hasError) {
