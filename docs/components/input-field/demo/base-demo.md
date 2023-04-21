@@ -4,7 +4,7 @@
   @hint='Type "input" into the field'
   @error={{this.errorMessage}}
   @value={{this.value}}
-  @onChange={{this.updateValue}}
+  @onChange={{this.handleChange}}
   type='text'
 />
 ```
@@ -19,8 +19,9 @@ export default class extends Component {
   @tracked errorMessage;
 
   @action
-  updateValue(value, e) {
+  handleChange(value, event) {
     this.value = value;
+    console.log({ value, event });
 
     if (value !== 'input') {
       this.errorMessage = 'Input must match "input"';

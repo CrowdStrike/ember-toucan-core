@@ -35,7 +35,6 @@
         {{/if}}
       </field.Hint>
     {{/if}}
-
     <field.Control class="mt-1.5 flex">
       <Form::Controls::Input
         id={{field.id}}
@@ -45,10 +44,36 @@
         @value={{@value}}
         @onChange={{@onChange}}
         @hasError={{this.hasError}}
+        {{on "input" this.handleCount}}
         ...attributes
       />
     </field.Control>
-    {{#if @error}}
+
+    {{#if (has-block "secondary")}}
+      <div class="type-xs-tight text-critical flex justify-between">
+        {{#if @error}}
+          <field.Error
+            class="flex-3"
+            id={{field.errorId}}
+            @error={{@error}}
+            data-error
+          />
+        {{/if}}
+
+        <div
+          class="type-xs-tight text-body-and-labels mt-1.5 flex-1 text-right"
+        >
+          {{yield
+            (hash
+              CharacterCount=(component
+                (ensure-safe-component this.CharacterCount) current=this.count
+              )
+            )
+            to="secondary"
+          }}
+        </div>
+      </div>
+    {{else if @error}}
       <field.Error id={{field.errorId}} @error={{@error}} data-error />
     {{/if}}
   </Form::Field>

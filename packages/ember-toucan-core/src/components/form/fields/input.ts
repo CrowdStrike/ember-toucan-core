@@ -1,9 +1,14 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
+import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import CharacterCount from '../../../components/form/controls/character-count';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage, OnChangeCallback } from '../../../-private/types';
+import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormInputFieldComponentSignature {
   Element: HTMLInputElement;
@@ -47,10 +52,19 @@ export interface ToucanFormInputFieldComponentSignature {
     default: [];
     label: [];
     hint: [];
+    secondary: [
+      {
+        CharacterCount: WithBoundArgs<typeof CharacterCount, 'current'>;
+      }
+    ];
   };
 }
 
 export default class ToucanFormInputFieldComponent extends Component<ToucanFormInputFieldComponentSignature> {
+  @tracked count = this.args.value?.length ?? 0;
+
+  CharacterCount = CharacterCount;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -58,6 +72,16 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
     isRequired,
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
+  @action
+  handleCount(event: Event | InputEvent): void {
+    assert(
+      'Expected HTMLInputElement',
+      event.target instanceof HTMLInputElement
+    );
+
+    this.count = event.target?.value.length ?? 0;
+  }
 
   get hasError() {
     return Boolean(this.args?.error);

@@ -1,8 +1,10 @@
+/* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 /* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/input';
+
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | Fields | Input', function (hooks) {
@@ -195,5 +197,21 @@ module('Integration | Component | Fields | Input', function (hooks) {
       <InputField @label="Label" @rootTestSelector="selector" data-input />
     </template>);
     assert.dom('[data-root-field="selector"]').exists();
+  });
+
+  test('it renders a `<:secondary>` block that tracks the input value length', async function (assert) {
+    await render(<template>
+      <InputField @value="Hello" @label="Label" data-input>
+        <:secondary as |secondary|>
+          <secondary.CharacterCount @max={{255}} data-character />
+        </:secondary>
+      </InputField>
+    </template>);
+
+    assert.dom('[data-character]').hasText('5 / 255');
+
+    await fillIn('[data-input]', 'Hello Hello');
+
+    assert.dom('[data-character]').hasText('11 / 255');
   });
 });

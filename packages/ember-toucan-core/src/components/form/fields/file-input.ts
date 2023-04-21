@@ -60,13 +60,13 @@ interface ToucanFormFileInputFieldComponentSignature {
     multiple?: boolean;
 
     /**
-      * A callback to be notified when files change.
-    */
+     * A callback to be notified when files change.
+     */
     onChange?: (files: File[], event: FileEvent) => void;
 
     /**
-      * Used for an alternate named test rootTestSelector.
-    */
+     * Used for an alternate named test rootTestSelector.
+     */
     rootTestSelector?: string;
   };
   Blocks: {

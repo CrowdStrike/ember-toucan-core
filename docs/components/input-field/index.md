@@ -234,3 +234,53 @@ Target the error block via `data-error`.
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   />
 </div>
+
+### InputField with character count
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    class="w-full"
+    type='text'
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+
+</Form::Fields::Input>
+
+</div>
+
+### InputField with character count with single error
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @error="With error"
+    class="w-full"
+    type='text'
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+
+</Form::Fields::Input>
+
+</div>
+
+### InputField with character count with multiple errors
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+    class="w-full"
+    type='text'
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+
+</Form::Fields::Input>
+
+</div>
