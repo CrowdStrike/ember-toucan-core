@@ -1,6 +1,6 @@
 {
   "name": "@crowdstrike/ember-toucan-form",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Build forms with ember-headless-form and ember-toucan-core",
   "keywords": [
     "ember-addon"
@@ -33,7 +33,7 @@
     "_syncPnpm": "pnpm sync-pnpm"
   },
   "peerDependencies": {
-    "@crowdstrike/ember-toucan-core": "^0.1.0",
+    "@crowdstrike/ember-toucan-core": "^0.1.1",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/test-helpers": "^2.8.1",
     "@glimmer/tracking": "^1.1.2",
