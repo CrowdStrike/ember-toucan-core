@@ -5,15 +5,8 @@
   @error={{this.errorMessage}}
   @value={{this.value}}
   @onChange={{this.handleChange}}
-  class='w-full'
   type='text'
->
-  <:secondary as |secondary|><secondary.CharacterCount
-      @max={{255}}
-      class="type-xs-tight"
-    /></:secondary>
-
-</Form::Fields::Input>
+/>
 ```
 
 ```js component
