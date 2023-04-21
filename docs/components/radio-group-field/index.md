@@ -171,6 +171,26 @@ To disable individual radio fields, set the `@isDisabled` argument directly on t
 
 ## Read Only State
 
+### Fieldset
+
+To set the entire radio group to readonly, use the `@isReadOnly` argument directly on the Radio Group.
+
+```hbs
+<Form::Fields::RadioGroup
+  @label='Label'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+  @isReadOnly={{true}}
+  as |group|
+>
+  <!-- This will now be readonly as well! -->
+  <group.RadioField @label='Option 1' @value='option-1' />
+</Form::Fields::RadioGroup>
+```
+
+### Individual Radios
+
 Individual radio fields can be set to read only by setting the `@isReadOnly` argument directly on the radio field.
 
 ```hbs
