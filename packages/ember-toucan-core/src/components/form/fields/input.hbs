@@ -48,14 +48,11 @@
         ...attributes
       />
     </field.Control>
+
     {{#if (has-block "secondary")}}
-      <div
-        class="type-xs-tight text-critical mt-1.5 flex justify-between
-          {{if this.hasMoreThanOneError 'items-start' 'items-center'}}"
-      >
+      <div class="type-xs-tight text-critical flex justify-between">
         {{#if @error}}
           <field.Error
-            @isInline={{true}}
             class="flex-3"
             id={{field.errorId}}
             @error={{@error}}
@@ -63,7 +60,9 @@
           />
         {{/if}}
 
-        <div class="text-body-and-labels mt-1.5 flex-1 text-right">
+        <div
+          class="type-xs-tight text-body-and-labels mt-1.5 flex-1 text-right"
+        >
           {{yield
             (hash
               CharacterCount=(component
