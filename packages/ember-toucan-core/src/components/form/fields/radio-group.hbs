@@ -1,10 +1,11 @@
 <Form::Field as |field|>
   <fieldset
     aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
-    disabled={{@isDisabled}}
     aria-invalid={{if @error "true"}}
     aria-required="true"
     data-root-field={{if @rootTestSelector @rootTestSelector}}
+    disabled={{@isDisabled}}
+    readonly={{@isReadOnly}}
     role="radiogroup"
     ...attributes
   >
@@ -54,6 +55,7 @@
             onChange=this.handleInput
             selectedValue=@value
             isDisabled=@isDisabled
+            isReadOnly=@isReadOnly
           )
         )
       }}

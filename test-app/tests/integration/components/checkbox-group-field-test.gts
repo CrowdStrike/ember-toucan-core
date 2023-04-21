@@ -152,7 +152,7 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isChecked();
   });
 
-  test('it disables the fieldset and all child checkboxes using `@isDisabled`', async function (assert) {
+  test('it disables the fieldset and all child checkboxes using `@isDisabled` at the root', async function (assert) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
@@ -179,6 +179,26 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isDisabled();
   });
 
+  test('it sets an individual checkbox to disabled with `@isDisabled`', async function (assert) {
+    await render(<template>
+      <CheckboxGroupField
+        @label="Label"
+        @name="group"
+        data-group-field
+        as |group|
+      >
+        <group.CheckboxField
+          @label="label 1"
+          @value="option-1"
+          @isDisabled={{true}}
+          data-checkbox-1
+        />
+      </CheckboxGroupField>
+    </template>);
+
+    assert.dom('[data-checkbox-1]').isDisabled();
+  });
+
   test('it sets an individual checkbox to readonly with `@isReadOnly`', async function (assert) {
     await render(<template>
       <CheckboxGroupField
@@ -197,6 +217,33 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     </template>);
 
     assert.dom('[data-checkbox-1]').hasAttribute('readonly');
+  });
+
+  test('it sets readonly on the fieldset and all child checkboxes using `@isReadOnly` at the root', async function (assert) {
+    await render(<template>
+      <CheckboxGroupField
+        @label="Label"
+        @name="group"
+        @isReadOnly={{true}}
+        data-group-field
+        as |group|
+      >
+        <group.CheckboxField
+          @label="label 1"
+          @value="option-1"
+          data-checkbox-1
+        />
+        <group.CheckboxField
+          @label="label 2"
+          @value="option-2"
+          data-checkbox-2
+        />
+      </CheckboxGroupField>
+    </template>);
+
+    assert.dom('[data-group-field]').hasAttribute('readonly');
+    assert.dom('[data-checkbox-1]').hasAttribute('readonly');
+    assert.dom('[data-checkbox-2]').hasAttribute('readonly');
   });
 
   test('it calls `@onChange` when a checkbox is clicked and can update `@value`', async function (assert) {

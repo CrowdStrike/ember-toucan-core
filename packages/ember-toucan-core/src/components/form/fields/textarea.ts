@@ -28,6 +28,7 @@ export interface ToucanFormTextareaFieldComponentSignature {
      * Sets the readonly attribute of the textarea.
      */
     isReadOnly?: boolean;
+
     /**
      * Provide a string to this argument to render inside of the label tag.
      */

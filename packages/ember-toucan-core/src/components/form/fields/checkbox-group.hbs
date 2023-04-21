@@ -3,6 +3,7 @@
     aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
     disabled={{@isDisabled}}
     data-root-field={{if @rootTestSelector @rootTestSelector}}
+    readonly={{@isReadOnly}}
     ...attributes
   >
     {{#if
@@ -50,6 +51,7 @@
             name=@name
             onChange=this.handleInput
             isDisabled=@isDisabled
+            isReadOnly=@isReadOnly
             selectedValues=@value
           )
         )
