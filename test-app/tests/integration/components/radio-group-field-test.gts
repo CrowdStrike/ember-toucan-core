@@ -149,7 +149,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-1]').hasAttribute('readonly');
   });
 
-  test('it sets readonly on the fieldset and all child radios using `@isReadOnly` at the root', async function (assert) {
+  test('it sets readonly on all child radios using `@isReadOnly` at the root', async function (assert) {
     await render(<template>
       <RadioGroupField
         @label="Label"
@@ -163,7 +163,6 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
       </RadioGroupField>
     </template>);
 
-    assert.dom('[data-group-field]').hasAttribute('readonly');
     assert.dom('[data-radio-1]').hasAttribute('readonly');
     assert.dom('[data-radio-2]').hasAttribute('readonly');
   });

@@ -161,7 +161,7 @@ To disable individual checkbox fields, set the `@isDisabled` argument directly o
 
 ### Fieldset
 
-To set the entire checkbox group to readonly, use the `@isReadOnly` argument directly on the Checkbox Group.
+To set all checkbox group options to readonly, use the `@isReadOnly` argument directly on the Checkbox Group.
 
 ```hbs
 <Form::Fields::CheckboxGroup

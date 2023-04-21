@@ -173,7 +173,7 @@ To disable individual radio fields, set the `@isDisabled` argument directly on t
 
 ### Fieldset
 
-To set the entire radio group to readonly, use the `@isReadOnly` argument directly on the Radio Group.
+To set all radio group options to readonly, use the `@isReadOnly` argument directly on the Radio Group.
 
 ```hbs
 <Form::Fields::RadioGroup
