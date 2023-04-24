@@ -32,6 +32,22 @@ To check the indeterminate property in tests, use:
 assert.dom('[data-checkbox]').hasProperty('indeterminate', true);
 ```
 
+## Disabled State
+
+Set the `@isDisabled` argument to disable the checkbox.
+
+```hbs
+<Form::Controls::Checkbox @isDisabled={{true}} />
+```
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the checkbox in the read only state.
+
+```hbs
+<Form::Controls::Checkbox @isReadOnly={{true}} />
+```
+
 ## onChange
 
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
@@ -63,7 +79,3 @@ export default class extends Component {
   }
 }
 ```
-
-## Disabled State
-
-Set the `@isDisabled` argument to disable the checkbox.

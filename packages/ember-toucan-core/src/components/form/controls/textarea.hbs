@@ -1,12 +1,8 @@
 <textarea
-  class="min-h-6 bg-overlay-1 focus:outline-none focus:shadow-focus-outline block h-20 rounded-sm p-1 transition-shadow
-    {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}
-    {{if
-      @hasError
-      'shadow-error-outline focus:shadow-error-focus-outline'
-      'shadow-focusable-outline'
-    }}"
+  class="min-h-6 focus:outline-none block h-20 rounded-sm p-1 transition-shadow
+    {{this.styles}}"
   disabled={{@isDisabled}}
+  readonly={{@isReadOnly}}
   ...attributes
   {{on "input" this.handleInput}}
 >{{@value}}</textarea>

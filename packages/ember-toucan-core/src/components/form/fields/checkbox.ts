@@ -26,6 +26,11 @@ export interface ToucanFormCheckboxFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the checkbox.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * Sets the checked state of the checkbox.
      */
     isChecked?: ToucanFormCheckboxControlComponentSignature['Args']['isChecked'];

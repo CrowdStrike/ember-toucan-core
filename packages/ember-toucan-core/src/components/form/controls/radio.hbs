@@ -5,6 +5,7 @@
     type="radio"
     checked={{@isChecked}}
     disabled={{@isDisabled}}
+    readonly={{@isReadOnly}}
     value={{@value}}
     ...attributes
     {{on "change" this.handleInput}}

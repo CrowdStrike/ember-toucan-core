@@ -22,6 +22,8 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').hasAttribute('value', 'option');
 
     assert.dom('[data-radio]').isNotChecked();
+
+    assert.dom('[data-radio]').hasNoAttribute('readonly');
   });
 
   test('it disables the radio using `@isDisabled`', async function (assert) {
@@ -38,6 +40,16 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').doesNotHaveClass('bg-primary-idle');
     assert.dom('[data-radio]').doesNotHaveClass('bg-disabled');
     assert.dom('[data-radio]').doesNotHaveClass('border-none');
+  });
+
+  test('it sets readonly on the radio using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <RadioControl @value="option" @isReadOnly={{true}} data-radio />
+    </template>);
+
+    assert.dom('[data-radio]').hasAttribute('readonly');
   });
 
   test('it makes the radio checked using `@isChecked={{true}}`', async function (assert) {
@@ -116,6 +128,49 @@ module('Integration | Component | Radio', function (hooks) {
     assert.dom('[data-radio]').doesNotHaveClass('bg-transparent');
     assert.dom('[data-radio]').doesNotHaveClass('bg-normal-idle');
     assert.dom('[data-radio]').doesNotHaveClass('border-disabled');
+  });
+
+  test('it applies the expected classes when `@isChecked={{true}}` and `@isReadOnly={{true}}', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <RadioControl
+        @value="option"
+        @isChecked={{true}}
+        @isReadOnly={{true}}
+        data-radio
+      />
+    </template>);
+
+    assert.dom('[data-radio]').hasClass('bg-titles-and-attributes');
+    assert.dom('[data-radio]').hasClass('border-none');
+    assert.dom('[data-radio]').hasNoClass('bg-primary-idle');
+    assert.dom('[data-radio]').hasNoClass('bg-transparent');
+    assert.dom('[data-radio]').hasNoClass('bg-surface-xl');
+    assert.dom('[data-radio]').hasNoClass('bg-normal-idle');
+    assert.dom('[data-radio]').hasNoClass('bg-disabled');
+    assert.dom('[data-radio]').hasNoClass('border-disabled');
+  });
+
+  test('it applies the expected classes when `@isChecked={{false}}` and `@isReadOnly={{true}}', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <RadioControl
+        @value="option"
+        @isChecked={{false}}
+        @isReadOnly={{true}}
+        data-radio
+      />
+    </template>);
+
+    assert.dom('[data-radio]').hasClass('bg-surface-xl');
+    assert.dom('[data-radio]').hasNoClass('bg-primary-idle');
+    assert.dom('[data-radio]').hasNoClass('bg-transparent');
+    assert.dom('[data-radio]').hasNoClass('bg-titles-and-attributes');
+    assert.dom('[data-radio]').hasNoClass('bg-normal-idle');
+    assert.dom('[data-radio]').hasNoClass('bg-disabled');
+    assert.dom('[data-radio]').hasNoClass('border-disabled');
   });
 
   test('it spreads attributes to the underlying radio', async function (assert) {

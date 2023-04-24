@@ -118,7 +118,11 @@ export default class extends Component {
 
 ## Disabled State
 
-Set the `@isDisabled` argument to disable the `<textarea>`.
+Set the `@isDisabled` argument to disable the textarea.
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the textarea in the read only state.
 
 ## Attributes and Modifiers
 
@@ -235,5 +239,24 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+  />
+</div>
+
+### TextareaField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### TextareaField with isReadOnly and a value
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @isReadOnly={{true}}
+    @value="Input value"
   />
 </div>

@@ -157,6 +157,46 @@ To disable individual checkbox fields, set the `@isDisabled` argument directly o
 </Form::Fields::CheckboxGroup>
 ```
 
+## Read Only State
+
+### Fieldset
+
+To set all checkbox group options to readonly, use the `@isReadOnly` argument directly on the Checkbox Group.
+
+```hbs
+<Form::Fields::CheckboxGroup
+  @label='Label'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+  @isReadOnly={{true}}
+  as |group|
+>
+  <!-- This will now be readonly as well! -->
+  <group.CheckboxField @label='Option 1' @value='option-1' />
+</Form::Fields::CheckboxGroup>
+```
+
+### Individual Checkboxes
+
+Individual checkboxes can be set to read only by setting the `@isReadOnly` argument directly on the checkbox field.
+
+```hbs
+<Form::Fields::CheckboxGroup
+  @label='Label'
+  @name='options'
+  @value={{this.groupValue}}
+  @onChange={{this.updateValue}}
+  as |group|
+>
+  <group.CheckboxField
+    @label='Option 1'
+    @value='option-1'
+    @isReadOnly={{true}}
+  />
+</Form::Fields::CheckboxGroup>
+```
+
 ## Attributes and Modifiers
 
 Consumers have direct access to the underlying [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox), so all attributes are supported. Modifiers can also be added directly to individual radio fields.

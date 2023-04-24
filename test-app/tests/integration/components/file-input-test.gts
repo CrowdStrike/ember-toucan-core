@@ -12,9 +12,21 @@ module(
     setupRenderingTest(hooks);
 
     test('it renders', async function (assert) {
-      await render(<template><FileInput @trigger="Select Files" /></template>);
+      await render(<template>
+        <FileInput @trigger="Select Files" data-input />
+      </template>);
 
-      assert.dom('input').exists();
+      assert.dom('[data-input]').exists();
+
+      assert.dom('[data-input]').hasNoAttribute('readonly');
+    });
+
+    test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+      await render(<template>
+        <FileInput @trigger="Select Files" @isReadOnly={{true}} data-input />
+      </template>);
+
+      assert.dom('[data-input]').hasAttribute('readonly');
     });
   }
 );

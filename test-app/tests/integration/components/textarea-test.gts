@@ -41,6 +41,23 @@ module('Integration | Component | Textarea', function (hooks) {
       .doesNotHaveClass('text-titles-and-attributes');
   });
 
+  test('it sets readonly on the textarea using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @isReadOnly={{true}} data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasAttribute('readonly');
+
+    assert.dom('[data-textarea]').hasClass('shadow-read-only-outline');
+    assert.dom('[data-textarea]').hasClass('bg-surface-xl');
+    assert.dom('[data-textarea]').hasNoClass('bg-overlay-1');
+    assert.dom('[data-textarea]').hasNoClass('text-disabled');
+    assert.dom('[data-textarea]').hasNoClass('shadow-error-outline');
+    assert.dom('[data-textarea]').hasNoClass('shadow-focusable-outline');
+  });
+
   test('it spreads attributes to the underlying textarea', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}

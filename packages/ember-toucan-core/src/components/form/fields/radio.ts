@@ -20,6 +20,11 @@ export interface ToucanFormRadioFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the radio.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * Provide a string to this argument to render inside of the label tag.
      */
     label?: string;

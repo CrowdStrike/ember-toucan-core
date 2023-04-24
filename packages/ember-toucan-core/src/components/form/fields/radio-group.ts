@@ -23,9 +23,14 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
     hint?: string;
 
     /**
-     * Sets the disabled attribute on the control.
+     * Sets the disabled attribute on the fieldset.
      */
     isDisabled?: boolean;
+
+    /**
+     * Sets the readonly attribute of the fieldset.
+     */
+    isReadOnly?: boolean;
 
     /**
      * Provide a string to this argument to render inside of the label tag.
@@ -59,7 +64,7 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
       {
         RadioField: WithBoundArgs<
           typeof RadioFieldComponent,
-          'isDisabled' | 'name' | 'onChange' | 'selectedValue'
+          'isDisabled' | 'isReadOnly' | 'name' | 'onChange' | 'selectedValue'
         >;
       }
     ];

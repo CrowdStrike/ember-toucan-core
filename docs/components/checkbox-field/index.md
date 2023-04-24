@@ -120,6 +120,10 @@ export default class extends Component {
 
 Set the `@isDisabled` argument to disable the checkbox.
 
+## Read Only State
+
+Set the `@isReadOnly` argument to put the checkbox in the read only state.
+
 ## Indeterminate State
 
 Set the `@isIndeterminate` argument. To learn more, view the [Checkbox documentation](./checkbox).
@@ -306,5 +310,24 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @isDisabled={{true}}
+  />
+</div>
+
+### CheckboxField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Checkbox
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### CheckboxField with isChecked and isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Checkbox
+    @label='Label'
+    @isChecked={{true}}
+    @isReadOnly={{true}}
   />
 </div>

@@ -18,6 +18,11 @@ export interface ToucanFormRadioControlComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the radio.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * The function called when the element is clicked.
      */
     onChange?: OnChangeCallback<string>;
@@ -39,15 +44,29 @@ export default class ToucanFormRadioControlComponent extends Component<ToucanFor
   }
 
   get styles() {
-    let { isDisabled, isChecked } = this.args;
+    let { isDisabled, isChecked, isReadOnly } = this.args;
 
-    return isChecked && !isDisabled
-      ? ['bg-primary-idle border-none']
-      : isChecked && isDisabled
-      ? ['bg-disabled border-none']
-      : !isChecked && isDisabled
-      ? ['bg-transparent border-disabled']
-      : ['bg-normal-idle'];
+    if (isChecked && !isDisabled && !isReadOnly) {
+      return ['bg-primary-idle border-none'];
+    }
+
+    if (isChecked && isDisabled && !isReadOnly) {
+      return ['bg-disabled border-none'];
+    }
+
+    if (isChecked && isReadOnly) {
+      return ['bg-titles-and-attributes border-none'];
+    }
+
+    if (!isChecked && isDisabled && !isReadOnly) {
+      return ['bg-transparent border-disabled'];
+    }
+
+    if (!isChecked && isReadOnly) {
+      return ['bg-surface-xl'];
+    }
+
+    return ['bg-normal-idle'];
   }
 
   @action

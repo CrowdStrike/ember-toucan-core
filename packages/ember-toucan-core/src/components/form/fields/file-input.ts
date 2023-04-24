@@ -53,6 +53,11 @@ interface ToucanFormFileInputFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the checkbox.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * Sets the multiple attribute on the file input.
      * If not set, defaults no multiple attribute. In this case (single file upload) a file upload will REPLACE any existing file that is in the files array.
      * If set as multiple file upload, new files are adding to the existing files array.
@@ -107,6 +112,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   @action
   handleChange(field: { id: string }) {
+    if (this.args.isReadOnly) {
+      return;
+    }
+
     const input = document.getElementById(`${field.id}`);
 
     // https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#using_hidden_file_input_elements_using_the_click_method

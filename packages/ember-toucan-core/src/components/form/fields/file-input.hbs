@@ -50,9 +50,14 @@
           @onChange={{@onChange}}
           @trigger={{@trigger}}
           @isDisabled={{@isDisabled}}
+          @isReadOnly={{@isReadOnly}}
           ...attributes
         />
-        <Button @variant="secondary" @onClick={{(fn this.handleChange field)}}>
+        <Button
+          class="{{if @isReadOnly 'shadow-read-only-outline bg-surface-xl'}}"
+          @variant="secondary"
+          @onClick={{(fn this.handleChange field)}}
+        >
           <span data-trigger>{{@trigger}}</span>
           <svg
             aria-hidden="true"

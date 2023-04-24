@@ -34,7 +34,19 @@ export default class extends Component {
 
 ## Disabled State
 
-Set the `@isDisabled` argument to disable the `<input>`.
+Set the `@isDisabled` argument to disable the input.
+
+```hbs
+<Form::Controls::Input @isDisabled={{true}} />
+```
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the input in the read only state.
+
+```hbs
+<Form::Controls::Input @isReadOnly={{true}} />
+```
 
 ## Error State
 

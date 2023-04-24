@@ -100,7 +100,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-2]').isChecked();
   });
 
-  test('it disables the fieldset and all child radios using `@isDisabled`', async function (assert) {
+  test('it disables the fieldset and all child radios using `@isDisabled` at the root', async function (assert) {
     await render(<template>
       <RadioGroupField
         @label="Label"
@@ -117,6 +117,54 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-group-field]').isDisabled();
     assert.dom('[data-radio-1]').isDisabled();
     assert.dom('[data-radio-2]').isDisabled();
+  });
+
+  test('it sets an individual radio to disabled with `@isDisabled`', async function (assert) {
+    await render(<template>
+      <RadioGroupField @label="Label" @name="group" data-group-field as |group|>
+        <group.RadioField
+          @label="option-1"
+          @value="option-1"
+          @isDisabled={{true}}
+          data-radio-1
+        />
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-radio-1]').isDisabled();
+  });
+
+  test('it sets an individual radio to readonly with `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <RadioGroupField @label="Label" @name="group" data-group-field as |group|>
+        <group.RadioField
+          @label="option-1"
+          @value="option-1"
+          @isReadOnly={{true}}
+          data-radio-1
+        />
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-radio-1]').hasAttribute('readonly');
+  });
+
+  test('it sets readonly on all child radios using `@isReadOnly` at the root', async function (assert) {
+    await render(<template>
+      <RadioGroupField
+        @label="Label"
+        @name="group"
+        @isReadOnly={{true}}
+        data-group-field
+        as |group|
+      >
+        <group.RadioField @label="option-1" @value="option-1" data-radio-1 />
+        <group.RadioField @label="option-2" @value="option-2" data-radio-2 />
+      </RadioGroupField>
+    </template>);
+
+    assert.dom('[data-radio-1]').hasAttribute('readonly');
+    assert.dom('[data-radio-2]').hasAttribute('readonly');
   });
 
   test('it calls `@onChange` when a radio is clicked and can update `@value`', async function (assert) {

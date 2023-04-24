@@ -214,4 +214,20 @@ module('Integration | Component | Fields | Input', function (hooks) {
 
     assert.dom('[data-character]').hasText('11 / 255');
   });
+
+  test('it disables the input using `@isDisabled`', async function (assert) {
+    await render(<template>
+      <InputField @label="Label" @isDisabled={{true}} data-input />
+    </template>);
+
+    assert.dom('[data-input]').isDisabled();
+  });
+
+  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+    await render(<template>
+      <InputField @label="Label" @isReadOnly={{true}} data-input />
+    </template>);
+
+    assert.dom('[data-input]').hasAttribute('readonly');
+  });
 });

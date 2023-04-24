@@ -115,7 +115,11 @@ export default class extends Component {
 
 ## Disabled State
 
-Set the `@isDisabled` argument to disable the `<input>`.
+Set the `@isDisabled` argument to disable the input.
+
+## Read Only State
+
+Set the `@isReadOnly` argument to put the input in the read only state.
 
 ## Attributes and Modifiers
 
@@ -283,4 +287,23 @@ Target the error block via `data-error`.
 
 </Form::Fields::Input>
 
+</div>
+
+### InputField with isReadOnly
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isReadOnly={{true}}
+  />
+</div>
+
+### InputField with isReadOnly and a value
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isReadOnly={{true}}
+    @value="Input value"
+  />
 </div>

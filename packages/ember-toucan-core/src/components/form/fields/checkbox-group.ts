@@ -27,6 +27,11 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the fieldset.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * Provide a string to this argument to render inside of the label tag.
      */
     label?: string;
@@ -58,7 +63,7 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
       {
         CheckboxField: WithBoundArgs<
           typeof CheckboxFieldComponent,
-          'isDisabled' | 'name' | 'onChange' | 'selectedValues'
+          'isDisabled' | 'isReadOnly' | 'name' | 'onChange' | 'selectedValues'
         >;
       }
     ];

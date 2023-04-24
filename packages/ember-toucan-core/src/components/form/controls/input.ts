@@ -18,6 +18,11 @@ interface ToucanFormControlsInputComponentSignature {
     isDisabled?: boolean;
 
     /**
+     * Sets the readonly attribute of the input.
+     */
+    isReadOnly?: boolean;
+
+    /**
      * The function called when the element is typed into.
      */
     onChange?: OnChangeCallback<string>;
@@ -30,6 +35,24 @@ interface ToucanFormControlsInputComponentSignature {
 }
 
 export default class ToucanFormControlsInputComponent extends Component<ToucanFormControlsInputComponentSignature> {
+  get styles() {
+    let { isDisabled, isReadOnly, hasError } = this.args;
+
+    if (isDisabled) {
+      return 'shadow-focusable-outline bg-overlay-1 text-disabled';
+    }
+
+    if (isReadOnly) {
+      return 'focus:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes';
+    }
+
+    if (hasError) {
+      return 'shadow-error-outline focus:shadow-error-focus-outline bg-overlay-1 text-titles-and-attributes';
+    }
+
+    return 'shadow-focusable-outline focus:shadow-focus-outline bg-overlay-1 text-titles-and-attributes';
+  }
+
   @action
   handleInput(e: Event | InputEvent): void {
     assert('Expected HTMLInputElement', e.target instanceof HTMLInputElement);

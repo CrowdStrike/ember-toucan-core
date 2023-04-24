@@ -123,6 +123,10 @@ export default class extends Component {
 
 Set the `@isDisabled` argument to disable the radio.
 
+## Read Only State
+
+Set the `@isReadOnly` argument to put the radio in the read only state.
+
 ## Attributes and Modifiers
 
 Consumers have direct access to the underlying [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio), so all attributes are supported. Modifiers can also be added directly to the Radio as shown in the demo.
