@@ -53,8 +53,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(ember-source@4.12.0)
       ember-resources:
-        specifier: ^5.4.0
-        version: 5.6.2(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.0-beta.3)(ember-source@4.12.0)
+        specifier: ^6.0.0
+        version: 6.0.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.0-beta.3)(ember-source@4.12.0)
       highlight.js:
         specifier: ^11.6.0
         version: 11.7.0
@@ -9311,19 +9311,22 @@ packages:
       - supports-color
     dev: true
 
-  /ember-resources@5.6.2(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.0-beta.3)(ember-source@4.12.0):
-    resolution: {integrity: sha512-aJnEucw9q3S5kF/bVNQamf4yaER0j6H+RIRum+x635nD4+Spwr/J766GxJURBRPZn1tQw6cJrR3IdYCYEf4dUw==}
+  /ember-resources@6.0.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.0-beta.3)(ember-source@4.12.0):
+    resolution: {integrity: sha512-2jq1ZIZdzJfypstu+7qpXCd02hSkfpj2N2kfnRSNSomq7bihyLIPnzTkP07puLln+j3fssiAA5vkuZxuboLEpQ==}
     peerDependencies:
       '@ember/test-waiters': ^3.0.0
       '@glimmer/component': ^1.1.2
       '@glimmer/tracking': ^1.1.2
-      '@glint/template': '>= 0.8.3'
-      ember-concurrency: ^2.0.0
-      ember-source: '>= 3.28.0'
+      '@glint/template': ^1.0.0-beta.3 || ^1.0.0
+      ember-async-data: ^1.0.1
+      ember-concurrency: ^2.0.0 || ^3.0.0
+      ember-source: ^3.28.0 || ^4.0.0 || ^5.0.0
     peerDependenciesMeta:
       '@ember/test-waiters':
         optional: true
       '@glimmer/component':
+        optional: true
+      ember-async-data:
         optional: true
       ember-concurrency:
         optional: true
