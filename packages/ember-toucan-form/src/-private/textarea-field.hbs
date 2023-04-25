@@ -1,16 +1,83 @@
+{{!
+  Regarding Conditionals
+
+  This looks really messy, but Form::Fields::Textarea exposes named blocks; HOWEVER,
+  we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
+
+  We *can* conditionally render components though, based on the blocks and argument combinations
+  users provide us.  This is very brittle, but until https://github.com/emberjs/rfcs/issues/735
+  is resolved and a solution is found, this appears to be the only way to truly expose
+  conditional named blocks.
+
+  ---
+
+  Regarding glint-expect-error
+
+  "@onChange" of the textarea only expects a string typed value, but field.setValue is generic,
+  accepting anything that DATA[KEY] could be. Similar case with "@value", but there casting to
+  a string is easy.
+}}
 <@form.Field @name={{@name}} as |field|>
-  <Form::Fields::Textarea
-    @label={{@label}}
-    @hint={{@hint}}
-    @error={{this.mapErrors field.rawErrors}}
-    @value={{this.assertString field.value}}
-    {{! The issue here is that onChange of textarea only expects a string typed value, but field.setValue is generic, accepting anything that DATA[KEY] could be. Similar case with @value, but there casting to a string is easy. }}
-    {{! @glint-expect-error }}
-    @onChange={{field.setValue}}
-    @isDisabled={{@isDisabled}}
-    @isReadOnly={{@isReadOnly}}
-    @rootTestSelector={{@rootTestSelector}}
-    name={{@name}}
-    ...attributes
-  />
+  {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
+    <Form::Fields::Textarea
+      @hint={{@hint}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+    </Form::Fields::Textarea>
+  {{else if (this.hasHintAndLabelBlocks (has-block 'label') (has-block 'hint'))
+  }}
+    <Form::Fields::Textarea
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::Textarea>
+  {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
+    <Form::Fields::Textarea
+      @label={{@label}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      name={{@name}}
+      ...attributes
+    >
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::Textarea>
+  {{else}}
+    {{! Argument-only case }}
+    <Form::Fields::Textarea
+      @label={{@label}}
+      @hint={{@hint}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      name={{@name}}
+      ...attributes
+    />
+  {{/if}}
 </@form.Field>
