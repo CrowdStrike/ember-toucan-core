@@ -63,7 +63,7 @@ module('Integration | Component | ToucanForm | Textarea', function (hooks) {
     assert.dom('[data-label-block]').exists();
   });
 
-  test('it renders a `:hint` named block', async function (assert) {
+  test('it renders a `:hint` named block with a @label arg', async function (assert) {
     const data: TestData = {
       text: 'multi-line text',
     };
