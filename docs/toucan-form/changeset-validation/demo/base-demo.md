@@ -4,7 +4,7 @@
   @data={{changeset this.data this.validations}}
   @dataMode='mutable'
   @onSubmit={{this.handleSubmit}}
-  @validate={{validate-changeset}}
+  @validate={{(validate-changeset)}}
   as |form|
 >
   <form.Input @label='First name' @name='firstName' />
