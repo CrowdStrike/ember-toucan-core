@@ -47,23 +47,27 @@ module('Integration | Component | ToucanForm | Textarea', function (hooks) {
     assert.dom('[data-hint]').exists();
   });
 
-  test('it renders a `:label` named block', async function (assert) {
+  test('it renders a `:label` named block with a `@hint` argument', async function (assert) {
     const data: TestData = {
       text: 'multi-line text',
     };
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Textarea @name="text">
+        <form.Textarea @name="text" @hint="Hint">
           <:label><span data-label-block>Label</span></:label>
         </form.Textarea>
       </ToucanForm>
     </template>);
 
     assert.dom('[data-label-block]').exists();
+
+    // NOTE: `data-hint` comes from `@hint`.
+    assert.dom('[data-hint]').exists();
+    assert.dom('[data-hint]').hasText('Hint');
   });
 
-  test('it renders a `:hint` named block with a @label arg', async function (assert) {
+  test('it renders a `:hint` named block with a `@label` argument', async function (assert) {
     const data: TestData = {
       text: 'multi-line text',
     };
@@ -78,6 +82,8 @@ module('Integration | Component | ToucanForm | Textarea', function (hooks) {
 
     // NOTE: `data-label` comes from `@label`.
     assert.dom('[data-label]').exists();
+    assert.dom('[data-label]').hasText('Label');
+
     assert.dom('[data-hint-block]').exists();
   });
 
