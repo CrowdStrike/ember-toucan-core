@@ -25,15 +25,20 @@ export interface ToucanFormTextareaFieldComponentSignature<
      */
     form: HeadlessFormBlock<DATA>;
   };
-  Blocks: {
-    default: [];
-  };
+  Blocks: BaseTextareaFieldSignature['Blocks'];
 }
 
 export default class ToucanFormTextareaFieldComponent<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > extends Component<ToucanFormTextareaFieldComponentSignature<DATA, KEY>> {
+  hasOnlyLabelBlock = (hasLabel: boolean, hasHint: boolean) =>
+    hasLabel && !hasHint;
+  hasHintAndLabelBlocks = (hasLabel: boolean, hasHint: boolean) =>
+    hasLabel && hasHint;
+  hasLabelArgAndHintBlock = (hasLabel: string | undefined, hasHint: boolean) =>
+    hasLabel && hasHint;
+
   mapErrors = (errors?: ValidationError[]) => {
     if (!errors) {
       return;
