@@ -84,5 +84,154 @@ module(
       assert.dom('[data-checkbox-group-2]').hasAttribute('readonly');
       assert.dom('[data-checkbox-group-3]').hasNoAttribute('readonly');
     });
+
+    test('it renders `@label` and `@hint` component arguments', async function (assert) {
+      const data: TestData = {
+        checkboxes: [],
+      };
+
+      await render(<template>
+        <ToucanForm @data={{data}} as |form|>
+          <form.CheckboxGroup
+            @label="Label"
+            @hint="Hint"
+            @name="checkboxes"
+            as |group|
+          >
+            <group.CheckboxField
+              @label="Option 1"
+              @value="option-1"
+              data-checkbox-group-1
+            />
+            <group.CheckboxField
+              @label="Option 2"
+              @value="option-2"
+              @isReadOnly={{true}}
+              data-checkbox-group-2
+            />
+            <group.CheckboxField
+              @label="Option 3"
+              @value="option-3"
+              data-checkbox-group-3
+            />
+          </form.CheckboxGroup>
+        </ToucanForm>
+      </template>);
+
+      assert.dom('[data-label]').exists();
+      assert.dom('[data-hint]').exists();
+    });
+
+    test('it renders a `:label` named block with a `@hint` argument', async function (assert) {
+      const data: TestData = {
+        checkboxes: [],
+      };
+
+      await render(<template>
+        <ToucanForm @data={{data}} as |form|>
+          <form.CheckboxGroup @hint="Hint" @name="checkboxes">
+            <:label><span data-label-block>Label</span></:label>
+            <:default as |group|>
+              <group.CheckboxField
+                @label="Option 1"
+                @value="option-1"
+                data-checkbox-group-1
+              />
+              <group.CheckboxField
+                @label="Option 2"
+                @value="option-2"
+                @isReadOnly={{true}}
+                data-checkbox-group-2
+              />
+              <group.CheckboxField
+                @label="Option 3"
+                @value="option-3"
+                data-checkbox-group-3
+              />
+            </:default>
+          </form.CheckboxGroup>
+        </ToucanForm>
+      </template>);
+
+      assert.dom('[data-label-block]').exists();
+
+      // NOTE: `data-hint` comes from `@hint`.
+      assert.dom('[data-hint]').exists();
+      assert.dom('[data-hint]').hasText('Hint');
+    });
+
+    test('it renders a `:hint` named block with a `@label` argument', async function (assert) {
+      const data: TestData = {
+        checkboxes: [],
+      };
+
+      await render(<template>
+        <ToucanForm @data={{data}} as |form|>
+          <form.CheckboxGroup @label="Label" @name="checkboxes">
+            <:hint><span data-hint-block>Hint</span></:hint>
+            <:default as |group|>
+              <group.CheckboxField
+                @label="Option 1"
+                @value="option-1"
+                data-checkbox-group-1
+              />
+              <group.CheckboxField
+                @label="Option 2"
+                @value="option-2"
+                @isReadOnly={{true}}
+                data-checkbox-group-2
+              />
+              <group.CheckboxField
+                @label="Option 3"
+                @value="option-3"
+                data-checkbox-group-3
+              />
+            </:default>
+          </form.CheckboxGroup>
+        </ToucanForm>
+      </template>);
+
+      // NOTE: `data-label` comes from `@label`.
+      assert.dom('[data-label]').exists();
+      assert.dom('[data-label]').hasText('Label');
+
+      assert.dom('[data-hint-block]').exists();
+    });
+
+    test('it renders both a `:label` and `:hint` named block', async function (assert) {
+      const data: TestData = {
+        checkboxes: [],
+      };
+
+      await render(<template>
+        <ToucanForm @data={{data}} as |form|>
+          <form.CheckboxGroup @name="checkboxes">
+            <:label><span data-label-block>Label</span></:label>
+            <:hint><span data-hint-block>Hint</span></:hint>
+            <:default as |group|>
+              <group.CheckboxField
+                @label="Option 1"
+                @value="option-1"
+                data-checkbox-group-1
+              />
+              <group.CheckboxField
+                @label="Option 2"
+                @value="option-2"
+                @isReadOnly={{true}}
+                data-checkbox-group-2
+              />
+              <group.CheckboxField
+                @label="Option 3"
+                @value="option-3"
+                data-checkbox-group-3
+              />
+            </:default>
+          </form.CheckboxGroup>
+        </ToucanForm>
+      </template>);
+
+      assert.dom('[data-label-block]').exists();
+      assert.dom('[data-hint-block]').exists();
+    });
   }
 );
