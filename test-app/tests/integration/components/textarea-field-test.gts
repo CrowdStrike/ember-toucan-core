@@ -222,4 +222,21 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
       </TextareaField>
     </template>);
   });
+
+  test('it renders a `<:secondary>` block that tracks the textarea value length', async function(assert) {
+    await render(<template>
+      <TextareaField @label="Label" @value="Hello" data-textarea>
+        <:secondary as |secondary|>
+          <secondary.CharacterCount @max={{255}} data-character />
+        </:secondary>
+      </TextareaField>
+    </template>);
+
+    assert.dom('[data-character]').hasText('5 / 255');
+
+    await fillIn('[data-textarea]', 'Hello Hello');
+
+    assert.dom('[data-character]').hasText('11 / 255');
+
+  });
 });

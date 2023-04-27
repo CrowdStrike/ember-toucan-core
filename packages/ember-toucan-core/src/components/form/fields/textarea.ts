@@ -1,10 +1,15 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
+import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import CharacterCount from '../../../components/form/controls/character-count';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
 import type { ToucanFormTextareaControlComponentSignature } from '../controls/textarea';
+import type { WithBoundArgs } from '@glint/template';
 
 export interface ToucanFormTextareaFieldComponentSignature {
   Element: HTMLTextAreaElement;
@@ -52,10 +57,18 @@ export interface ToucanFormTextareaFieldComponentSignature {
   Blocks: {
     label: [];
     hint: [];
+    secondary: [
+      {
+        CharacterCount: WithBoundArgs<typeof CharacterCount, 'current'>;
+      }
+    ];
   };
 }
 
 export default class ToucanFormTextareaFieldComponent extends Component<ToucanFormTextareaFieldComponentSignature> {
+  @tracked count = this.args.value?.length ?? 0;
+
+  CharacterCount = CharacterCount;
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -69,6 +82,15 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
     args: ToucanFormTextareaFieldComponentSignature['Args']
   ) {
     super(owner, args);
+  }
+
+  @action
+  handleCount(event: Event | InputEvent): void {
+    assert(
+      'Expected HTMLTextAreaElement',
+      event.target instanceof HTMLTextAreaElement
+    );
+    this.count = event.target?.value.length ?? 0;
   }
 
   get hasError() {

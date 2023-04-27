@@ -242,6 +242,47 @@ Target the error block via `data-error`.
   />
 </div>
 
+### TextareaField with character count 
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @hint='With hint text'
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+  </Form::Fields::Textarea>
+</div>
+
+### TextareaField with character count with a single error 
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @hint='With hint text'
+    @error="With error"
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+  </Form::Fields::Textarea>
+</div>
+
+### TextareaField with character count with multiple errors 
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @hint='With hint text'
+    @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+  >
+    <:secondary as |secondary|>
+      <secondary.CharacterCount @max={{255}} />
+    </:secondary>
+  </Form::Fields::Textarea>
+</div>
+
 ### TextareaField with isReadOnly
 
 <div class='mb-4 w-64'>
