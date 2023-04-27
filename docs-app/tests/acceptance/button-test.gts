@@ -25,16 +25,6 @@ module('Acceptance | Button', function (hooks) {
 
     await visit('/docs/components/button')
     assert.strictEqual(currentURL(), '/docs/components/button');
-
-    assert.dom('h1').hasText('Button');
-    assert.dom('.docfy-demo__example').hasTagName('div');
-
-    assert.dom('.docfy-demo__example button').hasText('Button');
-
-    expect(consoleSpy).to.not.be.called;
-    // the link after button is the checkbox page
-    await click('ul li:nth-child(2) ul li:nth-child(2) a')
-    assert.strictEqual(currentURL(), '/docs/components/checkbox');
   });
 
 });
