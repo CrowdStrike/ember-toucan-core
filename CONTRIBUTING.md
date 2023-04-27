@@ -47,7 +47,25 @@ When developing a new component, add it to the `packages/ember-toucan-core` dire
 
 ## Viewing changes in the docs/test-app
 
+### Option 1: run the bash script
+
 For the time being you can use `pnpm link` to create a symlink between the addon and the apps. This will allow you to make a change in the addon and immediately see the change in the app rather than having to stop the app, rebuild, resync dependencies, etc.
+
+There are two ways to do this:
+
+### Option 1: run the bash script
+
+In the root of the repo, run:
+
+```bash
+./local-setup.bash
+```
+
+This will run a bash script, where you can choose to install and symlink.
+
+You will also have the option of deleting the turbo repo, and/or deleting the node_modules, dist, and tsc cache. But running these takes longer.
+
+### Option 2: symlink manually
 
 ```bash
 # Create a symlink in the ember-toucan-core addon
@@ -58,13 +76,13 @@ pnpm link .
 # Create a symlink in the forms addon (required even if you aren't using it)
 cd ../ember-toucan-form
 pnpm link @crowdstrike/ember-toucan-core # need to link this because ember-toucan-forms depends on it
-pnpm build 
+pnpm build
 pnpm link .
 
 # Link ember-toucan-core docs-app
 cd ../../docs-app
 pnpm link @crowdstrike/ember-toucan-core # note @crowdstrike here
-pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here 
+pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here
 pnpm i
 
 The test-app also needs to link `ember-toucan-form`.
