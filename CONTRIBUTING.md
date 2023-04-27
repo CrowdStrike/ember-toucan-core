@@ -47,8 +47,6 @@ When developing a new component, add it to the `packages/ember-toucan-core` dire
 
 ## Viewing changes in the docs/test-app
 
-### Option 1: run the bash script
-
 For the time being you can use `pnpm link` to create a symlink between the addon and the apps. This will allow you to make a change in the addon and immediately see the change in the app rather than having to stop the app, rebuild, resync dependencies, etc.
 
 There are two ways to do this:
