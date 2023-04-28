@@ -246,6 +246,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Textarea
+    class="w-full"
     @label='Label'
     @hint='With hint text'
   >
@@ -259,6 +260,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Textarea
+    class="w-full"
     @label='Label'
     @hint='With hint text'
     @error="With error"
@@ -273,6 +275,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Textarea
+    class="w-full"
     @label='Label'
     @hint='With hint text'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
