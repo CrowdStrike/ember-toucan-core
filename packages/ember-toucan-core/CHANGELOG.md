@@ -1,5 +1,17 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.1.2
+
+### Patch Changes
+
+- [#115](https://github.com/CrowdStrike/ember-toucan-core/pull/115) [`6a08b45`](https://github.com/CrowdStrike/ember-toucan-core/commit/6a08b4501dce48408278f68d4883a20b9012c3a7) Thanks [@nicolechung](https://github.com/nicolechung)! - Added Character Count in InputField
+
+  Added optional character count in the Input Field component, along with related base demo and tests.
+
+- [#132](https://github.com/CrowdStrike/ember-toucan-core/pull/132) [`b4f6861`](https://github.com/CrowdStrike/ember-toucan-core/commit/b4f6861bc2384dc3144c5b5a6aef18bca48f2b15) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added the `@isReadOnly` component argument to all form components. It will apply read only styling and the `readonly` attribute. This requires the latest release of [@crowdstrike/tailwind-toucan-base](https://github.com/CrowdStrike/tailwind-toucan-base/releases/tag/%40crowdstrike%2Ftailwind-toucan-base%403.5.0).
+
+- [#157](https://github.com/CrowdStrike/ember-toucan-core/pull/157) [`6a502f7`](https://github.com/CrowdStrike/ember-toucan-core/commit/6a502f70912a1d62aa5f1deae2c50cc3e4aec0b3) Thanks [@nicolechung](https://github.com/nicolechung)! - Added: Character Count for Textarea Field
+
 ## 0.1.1
 
 ### Patch Changes

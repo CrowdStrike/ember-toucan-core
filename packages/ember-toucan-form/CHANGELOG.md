@@ -1,5 +1,107 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.1.1
+
+### Patch Changes
+
+- [#156](https://github.com/CrowdStrike/ember-toucan-core/pull/156) [`20d433f`](https://github.com/CrowdStrike/ember-toucan-core/commit/20d433f330a4a6ee3a5d31acfc20f48ccc1bb950) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Exposed named blocks from the underlying `toucan-core` components. This allows users to add custom content in `:hint` or `:label` named blocks. You can combine the arguments and named blocks as well! Below are some examples.
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Textarea @name='comment'>
+      <:label>Label</:label>
+      <:hint>Hint</:hint>
+    </form.Textarea>
+  </ToucanForm>
+  ```
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Textarea @label='Label' @name='comment'>
+      <:hint>Hint</:hint>
+    </form.Textarea>
+  </ToucanForm>
+  ```
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Textarea @hint='Hint' @name='comment'>
+      <:label>Label</:label>
+    </form.Textarea>
+  </ToucanForm>
+  ```
+
+  Or you can continue to use the arguments if you're only working with strings!
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Textarea @label='Label' @hint='Hint' @name='comment' />
+  </ToucanForm>
+  ```
+
+- [#145](https://github.com/CrowdStrike/ember-toucan-core/pull/145) [`752e6b1`](https://github.com/CrowdStrike/ember-toucan-core/commit/752e6b16d40d04f69ac3381cae4d6ee7ffd962fa) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added `@isReadOnly` component argument support.
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Textarea
+      @label='Comment'
+      @name='comment'
+      @isReadOnly={{true}}
+      data-textarea
+    />
+    <form.Input
+      @label='Input'
+      @name='firstName'
+      @isReadOnly={{true}}
+      data-input
+    />
+    <form.Checkbox
+      @label='Terms'
+      @name='termsAndConditions'
+      @isReadOnly={{true}}
+      data-checkbox
+    />
+
+    <form.RadioGroup
+      @label='Radios'
+      @name='radio'
+      @isReadOnly={{true}}
+      as |group|
+    >
+      <group.RadioField @label='option-1' @value='option-1' data-radio-1 />
+      <group.RadioField @label='option-2' @value='option-2' data-radio-2 />
+    </form.RadioGroup>
+
+    <form.CheckboxGroup
+      @label='Checkboxes'
+      @name='checkboxes'
+      @isReadOnly={{true}}
+      as |group|
+    >
+      <group.CheckboxField
+        @label='Option 1'
+        @value='option-1'
+        data-checkbox-group-1
+      />
+      <group.CheckboxField
+        @label='Option 2'
+        @value='option-2'
+        data-checkbox-group-2
+      />
+      <group.CheckboxField
+        @label='Option 3'
+        @value='option-3'
+        data-checkbox-group-3
+      />
+    </form.CheckboxGroup>
+  </ToucanForm>
+  ```
+
+  For CheckboxGroup and RadioGroup, the argument can be set on the root component, or on individual CheckboxFields / RadioFields directly.
+
+- Updated dependencies [[`6a08b45`](https://github.com/CrowdStrike/ember-toucan-core/commit/6a08b4501dce48408278f68d4883a20b9012c3a7), [`b4f6861`](https://github.com/CrowdStrike/ember-toucan-core/commit/b4f6861bc2384dc3144c5b5a6aef18bca48f2b15), [`6a502f7`](https://github.com/CrowdStrike/ember-toucan-core/commit/6a502f70912a1d62aa5f1deae2c50cc3e4aec0b3)]:
+  - @crowdstrike/ember-toucan-core@0.1.2
+
 ## 0.1.0
 
 ### Minor Changes
