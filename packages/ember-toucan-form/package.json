@@ -37,7 +37,7 @@
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/test-helpers": "^2.8.1",
     "@glimmer/tracking": "^1.1.2",
-    "ember-headless-form": "^1.0.0-beta.1",
+    "ember-headless-form": "^1.0.0-beta.2",
     "ember-source": ">=4.8.0",
     "postcss": "^8.2.14",
     "tailwindcss": "^2.2.15 || ^3.0.0"
@@ -88,7 +88,7 @@
     "autoprefixer": "^10.0.2",
     "concurrently": "^8.0.0",
     "ember-cli-htmlbars": "^6.1.1",
-    "ember-headless-form": "^1.0.0-beta.1",
+    "ember-headless-form": "^1.0.0-beta.2",
     "ember-source": "~5.0.0",
     "ember-template-lint": "^5.3.3",
     "eslint": "^8.32.0",
