@@ -99,7 +99,7 @@
     "ember-resolver": "^10.0.0",
     "ember-source": "~5.0.0",
     "ember-template-imports": "^3.1.2",
-    "ember-template-lint": "^5.7.1",
+    "ember-template-lint": "^5.8.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ember": "^11.4.3",
