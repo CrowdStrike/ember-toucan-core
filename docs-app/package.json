@@ -136,7 +136,6 @@
     "@embroider/router": "^2.0.0",
     "dompurify": "^3.0.0",
     "ember-browser-services": "^4.0.4",
-    "ember-cached-decorator-polyfill": "^1.0.1",
     "ember-modifier": "^4.1.0",
     "ember-resources": "^6.0.0",
     "highlight.js": "^11.6.0",
