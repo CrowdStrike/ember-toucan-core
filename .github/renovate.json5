@@ -114,7 +114,7 @@
     },
     {
       // ensure maximum compatibility, when possible
-      "matchPaths": ["ember-toucan-core/package.json"],
+      "matchPaths": ["./packages/**/package.json"]
       "matchDepTypes": ["dependencies"],
       "enabled": false
     },
