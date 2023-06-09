@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.1.2
+
+### Patch Changes
+
+- [#162](https://github.com/CrowdStrike/ember-toucan-core/pull/162) [`f241920`](https://github.com/CrowdStrike/ember-toucan-core/commit/f241920824325ceaf022295fef7c70158ab8e27c) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updated to [version beta-3 of ember-headless-form](https://github.com/CrowdStrike/ember-headless-form/releases/tag/ember-headless-form%401.0.0-beta.3).
+
 ## 0.1.1
 
 ### Patch Changes
