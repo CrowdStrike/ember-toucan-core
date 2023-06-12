@@ -79,7 +79,7 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasNoClass('bg-transparent');
   });
 
-  test('it applies the expected classes when `@isIndeterminate={{true}}` and `@isDisabled={{true}}', async function (assert) {
+  test('it applies the expected classes when `@isIndeterminate={{true}}` and `@isDisabled={{true}}`', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
@@ -95,7 +95,7 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasNoClass('bg-primary-idle');
   });
 
-  test('it applies the expected classes when `@isChecked={{true}}` and `@isDisabled={{true}}', async function (assert) {
+  test('it applies the expected classes when `@isChecked={{true}}` and `@isDisabled={{true}}`', async function (assert) {
     await render(<template>
       {{! we do not require a label, but instead suggest using Field / TextareaField }}
       {{! template-lint-disable require-input-label }}
@@ -142,6 +142,16 @@ module('Integration | Component | Checkbox', function (hooks) {
     assert.dom('[data-checkbox]').hasNoClass('bg-normal-idle');
     assert.dom('[data-checkbox]').hasNoClass('bg-disabled');
     assert.dom('[data-checkbox]').hasNoClass('border-disabled');
+  });
+
+  test('it sets the value of the checkbox using `@value`', async function (assert) {
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <CheckboxControl @value="test" data-checkbox />
+    </template>);
+
+    assert.dom('[data-checkbox]').hasProperty('value', 'test');
   });
 
   test('it spreads attributes to the underlying checkbox', async function (assert) {
