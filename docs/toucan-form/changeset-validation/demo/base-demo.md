@@ -26,6 +26,13 @@
     <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
   </form.RadioGroup>
 
+  <form.FileInput
+    @label='Files to attach'
+    @trigger='Select files'
+    @deleteLabel='Delete'
+    @name='files'
+  />
+
   <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
   <Button type='submit'>Submit</Button>
@@ -45,6 +52,7 @@ export default class extends Component {
 
   validations = {
     comment: validatePresence(true),
+    files: validatePresence(true),
     firstName: validatePresence(true),
     fruit: validatePresence(true),
     lastName: validatePresence(true),

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-import { click, fillIn, render } from '@ember/test-helpers';
+import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
@@ -7,12 +7,17 @@ import { setupRenderingTest } from 'test-app/tests/helpers';
 
 import type { ErrorRecord } from 'ember-headless-form';
 
+const testFile = new File(['Some sample content'], 'file.txt', {
+  type: 'text/plain',
+});
+
 interface TestData {
   checkboxes?: Array<string>;
   comment?: string;
   firstName?: string;
   radio?: string;
   termsAndConditions?: boolean;
+  files?: File[];
 }
 
 module('Integration | Component | ToucanForm', function (hooks) {
@@ -57,6 +62,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
       firstName: 'single line text',
       radio: 'option-2',
       termsAndConditions: true,
+      files: [testFile],
     };
 
     await render(<template>
@@ -91,6 +97,13 @@ module('Integration | Component | ToucanForm', function (hooks) {
             data-checkbox-group-3
           />
         </form.CheckboxGroup>
+
+        <form.FileInput
+          @label="Files"
+          @name="files"
+          @trigger="Select files"
+          @deleteLabel="Delete"
+        />
       </ToucanForm>
     </template>);
 
@@ -118,12 +131,30 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.dom('[data-checkbox-group-1]').isChecked();
     assert.dom('[data-checkbox-group-2]').isNotChecked();
     assert.dom('[data-checkbox-group-3]').isChecked();
+
+    // File input
+    assert.dom('[data-files] [data-file-name]').hasText('file.txt');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    assert.expect(13);
+    assert.expect(19);
 
-    const handleSubmit = (data: TestData) => {
+    const handleSubmit = ({ files, ...data }: TestData) => {
+      // Checking deep equality on files can get really tricky due
+      // to properties on the File object prototype like `arrayBuffer, `lastModifiedDate`,
+      // and `lastModified`.  Due to that, we will assert `files` separately from the other
+      // submitted values.
+      assert.ok(files, 'Expected files to be included');
+      assert.strictEqual(
+        files?.length,
+        1,
+        'Expected only a single file to be added'
+      );
+      assert.strictEqual(files?.[0]?.name, 'file.txt');
+      assert.strictEqual(files?.[0]?.type, 'text/plain');
+      assert.strictEqual(files?.[0]?.size, 19);
+
+      // Now we assert the string/boolean based values
       assert.deepEqual(
         data,
         {
@@ -146,6 +177,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
       firstName,
       radio,
       termsAndConditions,
+      files,
     }: TestData) => {
       let errors: ErrorRecord<TestData> = {};
 
@@ -195,6 +227,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
             type: 'required',
             value: termsAndConditions,
             message: 'Terms must be checked',
+          },
+        ];
+      }
+
+      if (!files) {
+        errors.files = [
+          {
+            type: 'required',
+            value: files,
+            message: 'A file must be added',
           },
         ];
       }
@@ -263,6 +305,15 @@ module('Integration | Component | ToucanForm', function (hooks) {
           />
         </form.CheckboxGroup>
 
+        <form.FileInput
+          @label="Files"
+          @name="files"
+          @trigger="Select files"
+          @deleteLabel="Delete"
+          @rootTestSelector="data-file-input-wrapper"
+          data-file-input-field
+        />
+
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
     </template>);
@@ -300,6 +351,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-checkbox-group-wrapper"] [data-error]')
       .hasText('One checkbox must be selected');
+    assert
+      .dom('[data-root-field="data-file-input-wrapper"] [data-error]')
+      .hasText('A file must be added');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
@@ -307,6 +361,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await click('[data-checkbox]');
     await click('[data-radio-2]');
     await click('[data-checkbox-group-2]');
+    await triggerEvent('[data-file-input-field]', 'change', {
+      files: [testFile],
+    });
 
     await click('[data-test-submit]');
 
