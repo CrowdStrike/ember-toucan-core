@@ -18,6 +18,11 @@ module(
       assert.dom('[data-input]').exists();
 
       assert.dom('[data-input]').hasNoAttribute('readonly');
+      assert.dom('[data-input]').hasNoAttribute('multiple');
+
+      // Verify defaults
+      assert.dom('[data-input]').hasAttribute('type', 'file');
+      assert.dom('[data-input]').hasAttribute('accept', '*');
     });
 
     test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
@@ -26,6 +31,30 @@ module(
       </template>);
 
       assert.dom('[data-input]').hasAttribute('readonly');
+    });
+
+    test('it sets disabled on the input using `@isDisabled`', async function (assert) {
+      await render(<template>
+        <FileInput @trigger="Select Files" @isDisabled={{true}} data-input />
+      </template>);
+
+      assert.dom('[data-input]').isDisabled();
+    });
+
+    test('it sets accept on the input using `@accept`', async function (assert) {
+      await render(<template>
+        <FileInput @trigger="Select Files" @accept="image/png" data-input />
+      </template>);
+
+      assert.dom('[data-input]').hasAttribute('accept', 'image/png');
+    });
+
+    test('it sets the multiple attribute on the input using `@multiple`', async function (assert) {
+      await render(<template>
+        <FileInput @trigger="Select Files" @multiple={{true}} data-input />
+      </template>);
+
+      assert.dom('[data-input]').hasAttribute('multiple');
     });
   }
 );

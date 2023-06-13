@@ -10,6 +10,10 @@ const testFile = new File(['Some sample content'], 'file.txt', {
   type: 'text/plain',
 });
 
+const data: TestData = {
+  files: [testFile],
+};
+
 interface TestData {
   files?: File[];
 }
@@ -17,11 +21,43 @@ interface TestData {
 module('Integration | Component | ToucanForm | FileInput', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it sets the readonly attribute with `@isReadOnly`', async function (assert) {
-    const data: TestData = {
-      files: [testFile],
-    };
+  test('it sets the accept attribute with `@accept`', async function (assert) {
+    await render(<template>
+      <ToucanForm @data={{data}} as |form|>
+        <form.FileInput
+          @accept="image/png, image/jpeg"
+          @label="Files"
+          @name="files"
+          @deleteLabel="Delete"
+          @trigger="Select files"
+          data-file-input
+        />
+      </ToucanForm>
+    </template>);
 
+    assert
+      .dom('[data-file-input]')
+      .hasAttribute('accept', 'image/png, image/jpeg');
+  });
+
+  test('it sets the accept multiple with `@multiple`', async function (assert) {
+    await render(<template>
+      <ToucanForm @data={{data}} as |form|>
+        <form.FileInput
+          @multiple={{true}}
+          @label="Files"
+          @name="files"
+          @deleteLabel="Delete"
+          @trigger="Select files"
+          data-file-input
+        />
+      </ToucanForm>
+    </template>);
+
+    assert.dom('[data-file-input]').hasAttribute('multiple');
+  });
+
+  test('it sets the readonly attribute with `@isReadOnly`', async function (assert) {
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.FileInput
@@ -39,10 +75,6 @@ module('Integration | Component | ToucanForm | FileInput', function (hooks) {
   });
 
   test('it renders `@label` and `@hint` component arguments', async function (assert) {
-    const data: TestData = {
-      files: [testFile],
-    };
-
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.FileInput
@@ -62,10 +94,6 @@ module('Integration | Component | ToucanForm | FileInput', function (hooks) {
   });
 
   test('it renders a `:label` named block with a `@hint` argument', async function (assert) {
-    const data: TestData = {
-      files: [testFile],
-    };
-
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.FileInput
@@ -89,10 +117,6 @@ module('Integration | Component | ToucanForm | FileInput', function (hooks) {
   });
 
   test('it renders a `:hint` named block with a `@label` argument', async function (assert) {
-    const data: TestData = {
-      files: [testFile],
-    };
-
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.FileInput
@@ -116,10 +140,6 @@ module('Integration | Component | ToucanForm | FileInput', function (hooks) {
   });
 
   test('it renders both a `:label` and `:hint` named block', async function (assert) {
-    const data: TestData = {
-      files: [testFile],
-    };
-
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
         <form.FileInput
