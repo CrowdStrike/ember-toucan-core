@@ -18,6 +18,9 @@
         (ensure-safe-component this.CheckboxGroupComponent) form=form
       )
       Field=form.Field
+      FileInput=(component
+        (ensure-safe-component this.FileInputFieldComponent) form=form
+      )
       Input=(component
         (ensure-safe-component this.InputFieldComponent) form=form
       )
@@ -26,9 +29,6 @@
       )
       Textarea=(component
         (ensure-safe-component this.TextareaFieldComponent) form=form
-      )
-      FileInput=(component
-        (ensure-safe-component this.FileInputFieldComponent) form=form
       )
     )
   }}

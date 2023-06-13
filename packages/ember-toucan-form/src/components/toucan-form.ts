@@ -31,13 +31,13 @@ export interface ToucanFormComponentSignature<
           'form'
         >;
         Field: HeadlessFormBlock<DATA>['Field'];
+        FileInput: WithBoundArgs<typeof FileInputFieldComponent<DATA>, 'form'>;
         Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
         RadioGroup: WithBoundArgs<
           typeof RadioGroupFieldComponent<DATA>,
           'form'
         >;
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
-        FileInput: WithBoundArgs<typeof FileInputFieldComponent<DATA>, 'form'>;
       }
     ];
   };
@@ -49,10 +49,10 @@ export default class ToucanFormComponent<
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
   CheckboxComponent = CheckboxFieldComponent<DATA>;
   CheckboxGroupComponent = CheckboxGroupFieldComponent<DATA>;
+  FileInputFieldComponent = FileInputFieldComponent<DATA>;
   InputFieldComponent = InputFieldComponent<DATA>;
   RadioGroupFieldComponent = RadioGroupFieldComponent<DATA>;
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
-  FileInputFieldComponent = FileInputFieldComponent<DATA>;
 
   get validateOn() {
     let { validateOn } = this.args;

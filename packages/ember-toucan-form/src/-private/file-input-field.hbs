@@ -20,17 +20,17 @@
   {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
     <Form::Fields::FileInput
       @accept={{@accept}}
-      @hint={{@hint}}
+      @deleteLabel={{@deleteLabel}}
       @error={{this.mapErrors field.rawErrors}}
       @files={{this.assertArrayOfFiles field.value}}
-      {{! @glint-expect-error }}
-      @onChange={{field.setValue}}
+      @hint={{@hint}}
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
-      @rootTestSelector={{@rootTestSelector}}
       @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
       @trigger={{@trigger}}
-      @deleteLabel={{@deleteLabel}}
       name={{@name}}
       ...attributes
     >
@@ -40,16 +40,16 @@
   }}
     <Form::Fields::FileInput
       @accept={{@accept}}
+      @deleteLabel={{@deleteLabel}}
       @error={{this.mapErrors field.rawErrors}}
       @files={{this.assertArrayOfFiles field.value}}
-      {{! @glint-expect-error }}
-      @onChange={{field.setValue}}
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
-      @rootTestSelector={{@rootTestSelector}}
       @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
       @trigger={{@trigger}}
-      @deleteLabel={{@deleteLabel}}
       name={{@name}}
       ...attributes
     >
@@ -59,17 +59,17 @@
   {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
     <Form::Fields::FileInput
       @accept={{@accept}}
-      @label={{@label}}
+      @deleteLabel={{@deleteLabel}}
       @error={{this.mapErrors field.rawErrors}}
       @files={{this.assertArrayOfFiles field.value}}
-      {{! @glint-expect-error }}
-      @onChange={{field.setValue}}
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
-      @rootTestSelector={{@rootTestSelector}}
+      @label={{@label}}
       @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
       @trigger={{@trigger}}
-      @deleteLabel={{@deleteLabel}}
       name={{@name}}
       ...attributes
     >
@@ -79,18 +79,18 @@
     {{! Argument-only case }}
     <Form::Fields::FileInput
       @accept={{@accept}}
-      @label={{@label}}
-      @hint={{@hint}}
+      @deleteLabel={{@deleteLabel}}
       @error={{this.mapErrors field.rawErrors}}
       @files={{this.assertArrayOfFiles field.value}}
-      {{! @glint-expect-error }}
-      @onChange={{field.setValue}}
+      @hint={{@hint}}
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
-      @rootTestSelector={{@rootTestSelector}}
+      @label={{@label}}
       @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
       @trigger={{@trigger}}
-      @deleteLabel={{@deleteLabel}}
       name={{@name}}
       ...attributes
     />
