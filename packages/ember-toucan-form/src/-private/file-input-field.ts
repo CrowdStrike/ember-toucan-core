@@ -54,9 +54,8 @@ export default class ToucanFormFileInputFieldComponent<
       `Only File[] values are expected for ${String(
         this.args.name
       )}, but you passed ${typeof value}`,
-      typeof value === 'undefined' ||
-        Array.isArray(value) ||
-        (value as File[]).forEach((file) => file instanceof File)
+      value === undefined ||
+        (Array.isArray(value) && value.every((file) => file instanceof File))
     );
 
     return value as File[] | undefined;
