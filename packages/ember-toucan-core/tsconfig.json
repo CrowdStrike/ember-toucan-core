@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
   "include": ["src/**/*", "unpublished-development-types/**/*"],
+  "exclude": ["src/index.js"], // TODO: Works around a local issue. Note to self: Don't include it in your PR.
   "glint": {
     "environment": "ember-loose"
   }

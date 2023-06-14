@@ -1,0 +1,87 @@
+{{!
+  Regarding Conditionals
+
+  This looks really messy, but Form::Fields::Select exposes named blocks; HOWEVER,
+  we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
+
+  We *can* conditionally render components though, based on the blocks and argument combinations
+  users provide us.  This is very brittle, but until https://github.com/emberjs/rfcs/issues/735
+  is resolved and a solution is found, this appears to be the only way to truly expose
+  conditional named blocks.
+
+  ---
+
+  Regarding glint-expect-error
+
+  "@onChange" of the input only expects a string typed value, but field.setValue is generic,
+  accepting anything that DATA[KEY] could be. Similar case with "@value", but there casting to
+  a string is easy.
+}}
+<@form.Field @name={{@name}} as |field|>
+  {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
+    <Form::Fields::Select
+      @hint={{@hint}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      @popoverClass={{@popoverClass}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+    </Form::Fields::Select>
+  {{else if (this.hasHintAndLabelBlocks (has-block 'label') (has-block 'hint'))
+  }}
+    <Form::Fields::Select
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      @popoverClass={{@popoverClass}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::Select>
+  {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
+    <Form::Fields::Select
+      @label={{@label}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      @popoverClass={{@popoverClass}}
+      name={{@name}}
+      ...attributes
+    >
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::Select>
+  {{else}}
+    {{! Argument-only case }}
+    <Form::Fields::Select
+      @label={{@label}}
+      @hint={{@hint}}
+      @error={{this.mapErrors field.rawErrors}}
+      @value={{this.assertString field.value}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @rootTestSelector={{@rootTestSelector}}
+      @popoverClass={{@popoverClass}}
+      name={{@name}}
+      ...attributes
+    />
+  {{/if}}
+</@form.Field>

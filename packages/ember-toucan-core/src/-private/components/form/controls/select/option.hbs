@@ -1,0 +1,34 @@
+{{! template-lint-disable require-presentational-children }}
+<li
+  aria-selected={{if this.isSelected "true" "false"}}
+  class="text-titles-and-attributes my-0 flex cursor-default items-center gap-2 px-1 py-2 leading-4
+    {{this.className}}
+    {{if this.isActive 'bg-overlay-1'}}"
+  data-label={{@label}}
+  data-value={{@value}}
+  id={{unique-id}}
+  role="option"
+  {{on "click" (fn this.onClick @value)}}
+  {{! template-lint-disable no-pointer-down-event-binding }}
+  {{on "mousedown" this.onMousedown}}
+  {{on "mouseover" (fn @onMouseover @value)}}
+>
+  <this.Check aria-hidden="true" class={{unless this.isSelected "invisible"}} />
+  {{@label}}
+
+  {{!
+      TODO: Should this INPUT remain hidden from screenreaders?
+
+      We'll need Form::Controls::Select to work with real forms and the native `FormData` API.
+      That means it'll need to be backed by a real INPUT. Screenreaders already have all the information
+      they need, which means the INPUT is superfluous and is thus noise?
+  }}
+  {{! template-lint-disable no-nested-interactive }}
+  <input
+    class="hidden"
+    checked={{this.isSelected}}
+    type="checkbox"
+    value={{@value}}
+    ...attributes
+  />
+</li>
