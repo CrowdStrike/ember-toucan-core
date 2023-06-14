@@ -4,8 +4,9 @@
     {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
   disabled={{@isDisabled}}
   type="file"
-  {{on "change" this.onChange}}
   multiple={{this.multiple}}
   readonly={{@isReadOnly}}
+  {{on "change" this.onChange}}
+  {{on "click" this.resetValue}}
   ...attributes
 />

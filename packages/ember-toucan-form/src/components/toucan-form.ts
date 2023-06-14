@@ -38,7 +38,6 @@ export interface ToucanFormComponentSignature<
           'form'
         >;
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
-        FileInput: WithBoundArgs<typeof FileInputFieldComponent<DATA>, 'form'>;
       }
     ];
   };
@@ -54,7 +53,6 @@ export default class ToucanFormComponent<
   InputFieldComponent = InputFieldComponent<DATA>;
   RadioGroupFieldComponent = RadioGroupFieldComponent<DATA>;
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
-  FileInputFieldComponent = FileInputFieldComponent<DATA>;
 
   get validateOn() {
     let { validateOn } = this.args;
