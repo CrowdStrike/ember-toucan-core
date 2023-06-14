@@ -43,13 +43,16 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@embroider/addon-shim": "^1.0.0"
+    "@embroider/addon-shim": "^1.0.0",
+    "@floating-ui/dom": "^1.4.2",
+    "ember-velcro": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.0",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-syntax-decorators": "^7.17.0",
     "@babel/preset-typescript": "^7.18.6",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
@@ -120,6 +123,7 @@
       "./components/form/controls/file-input.js": "./dist/_app_/components/form/controls/file-input.js",
       "./components/form/controls/input.js": "./dist/_app_/components/form/controls/input.js",
       "./components/form/controls/radio.js": "./dist/_app_/components/form/controls/radio.js",
+      "./components/form/controls/select.js": "./dist/_app_/components/form/controls/select.js",
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/fields/checkbox-group.js": "./dist/_app_/components/form/fields/checkbox-group.js",
@@ -128,6 +132,7 @@
       "./components/form/fields/input.js": "./dist/_app_/components/form/fields/input.js",
       "./components/form/fields/radio-group.js": "./dist/_app_/components/form/fields/radio-group.js",
       "./components/form/fields/radio.js": "./dist/_app_/components/form/fields/radio.js",
+      "./components/form/fields/select.js": "./dist/_app_/components/form/fields/select.js",
       "./components/form/fields/textarea.js": "./dist/_app_/components/form/fields/textarea.js",
       "./components/form/file-input/delete-button.js": "./dist/_app_/components/form/file-input/delete-button.js",
       "./components/form/file-input/list-item.js": "./dist/_app_/components/form/file-input/list-item.js",

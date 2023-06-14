@@ -7,7 +7,7 @@
     "url": "git@github.com:CrowdStrike/ember-toucan-core.git",
     "directory": "ember-toucan-core"
   },
-  "engines" : {
+  "engines": {
     "node": ">=16",
     "pnpm": ">=7.24.2 <7.33.0"
   },

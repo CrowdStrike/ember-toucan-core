@@ -1,0 +1,68 @@
+<Velcro
+  @middleware={{this.velcroMiddleware}}
+  @placement="bottom-start"
+  as |velcro|
+>
+  <div class="relative flex items-center">
+    <input
+      aria-activedescendant={{this.activeDescendantId}}
+      aria-autocomplete="list"
+      aria-controls={{this.popoverId}} aria-haspopup="listbox"
+      autocapitalize="none"
+      autocomplete="off"
+      class="focus:outline-none bg-overlay-1 w-full rounded-sm border-none py-1 pl-2 pr-6 transition-shadow
+        {{this.styles}}"
+      disabled={{@isDisabled}}
+      readonly={{@isReadOnly}} spellcheck="false"
+      {{! TODO: I assume there's a simpler way than `get` to do this? I tried .firstObject but couldn't get it to typecheck. }}
+      value={{unless @isMultiple (get (get this.selectedOptions 0) "label")}}
+      {{on "blur" (if this.isDisabledOrReadOnly this.noop this.closePopover)}}
+      {{on "click" (if this.isDisabledOrReadOnly this.noop this.openPopover)}}
+      {{on "input" (if this.isDisabledOrReadOnly this.noop this.onInput)}}
+      {{on "focus" (if this.isDisabledOrReadOnly this.noop this.openPopover)}}
+      {{on "keydown" (if this.isDisabledOrReadOnly this.noop this.onKeydown)}}
+      {{velcro.hook}}
+      ...attributes
+    />
+
+    <this.Chevron
+      class="pointer-events-none absolute right-0 top-0 ml-auto h-full transform transition-transform duration-200
+        {{if this.isPopoverOpen 'rotate-180'}}"
+    />
+  </div>
+
+  {{! TODO
+
+      Another small trade-off to consider when deciding whether not supporting `@options` is worth it.
+
+      In the case when `@isDisabled` is falsy, we can query the DOM after the popover has been opened (and thus inserted into the DOM)
+      to set `this.activeOption` and `this.selectedOptions`.
+
+      In the case when `@isDisabled` is `true`, however, the popover would conventionally never be inserted in the DOM.
+      `this.activeOption` doesn't come into play when `@isDisabled` is `true`. But `this.selectedOptions` does because its used
+      to set the INPUT's value when `@isMultiple` is falsy and the pills when `@isMultiple` is `true`.
+
+      The latter case is why the UL isn't wrapped in a conditonal based on `this.isPopoverOpen`. It has to remain in the DOM so that
+      it's queryable.
+  }}
+  <ul
+    class="border-surface-inner bg-surface-2xl max-h-listbox relative my-0 list-none overflow-y-auto overscroll-contain rounded-sm border pl-0 shadow-xl
+      {{if this.isPopoverOpen 'block' 'hidden'}}
+      {{if @popoverClass @popoverClass}}"
+    id={{this.popoverId}}
+    role="listbox"
+    {{velcro.loop}}
+  >
+    {{yield
+      (hash
+        Option=(component
+          (ensure-safe-component this.Option)
+          activeOption=this.activeOption
+          onMouseover=this.onOptionMouseover
+          onClick=this.onChange
+          selectedOptions=this.selectedOptions
+        )
+      )
+    }}
+  </ul>
+</Velcro>
