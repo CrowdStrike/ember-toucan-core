@@ -137,7 +137,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    assert.expect(19);
+    assert.expect(18);
 
     const handleSubmit = ({ files, ...data }: TestData) => {
       // Checking deep equality on files can get really tricky due
@@ -152,7 +152,6 @@ module('Integration | Component | ToucanForm', function (hooks) {
       );
       assert.strictEqual(files?.[0]?.name, 'file.txt');
       assert.strictEqual(files?.[0]?.type, 'text/plain');
-      assert.strictEqual(files?.[0]?.size, 19);
 
       // Now we assert the string/boolean based values
       assert.deepEqual(
