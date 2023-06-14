@@ -10,7 +10,7 @@ import type { ErrorMessage } from '../../../-private/types';
 type FileTarget = EventTarget & { files?: FileList };
 export type FileEvent = (Event | MouseEvent) & { target: FileTarget | null };
 
-interface ToucanFormFileInputFieldComponentSignature {
+export interface ToucanFormFileInputFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**

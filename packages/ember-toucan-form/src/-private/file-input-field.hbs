@@ -1,0 +1,98 @@
+{{!
+  Regarding Conditionals
+
+  This looks really messy, but Form::Fields::FileInput exposes named blocks; HOWEVER,
+  we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
+
+  We *can* conditionally render components though, based on the blocks and argument combinations
+  users provide us.  This is very brittle, but until https://github.com/emberjs/rfcs/issues/735
+  is resolved and a solution is found, this appears to be the only way to truly expose
+  conditional named blocks.
+
+  ---
+
+  Regarding glint-expect-error
+
+  "@onChange" of the FileInput only expects an array of files typed value, but field.setValue is generic,
+  accepting anything that DATA[KEY] could be. Similar case with "@files", but there casting to is easy.
+}}
+<@form.Field @name={{@name}} as |field|>
+  {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
+    <Form::Fields::FileInput
+      @accept={{@accept}}
+      @deleteLabel={{@deleteLabel}}
+      @error={{this.mapErrors field.rawErrors}}
+      @files={{this.assertArrayOfFiles field.value}}
+      @hint={{@hint}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
+      @trigger={{@trigger}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+    </Form::Fields::FileInput>
+  {{else if (this.hasHintAndLabelBlocks (has-block 'label') (has-block 'hint'))
+  }}
+    <Form::Fields::FileInput
+      @accept={{@accept}}
+      @deleteLabel={{@deleteLabel}}
+      @error={{this.mapErrors field.rawErrors}}
+      @files={{this.assertArrayOfFiles field.value}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
+      @trigger={{@trigger}}
+      name={{@name}}
+      ...attributes
+    >
+      <:label>{{yield to='label'}}</:label>
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::FileInput>
+  {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
+    <Form::Fields::FileInput
+      @accept={{@accept}}
+      @deleteLabel={{@deleteLabel}}
+      @error={{this.mapErrors field.rawErrors}}
+      @files={{this.assertArrayOfFiles field.value}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @label={{@label}}
+      @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
+      @trigger={{@trigger}}
+      name={{@name}}
+      ...attributes
+    >
+      <:hint>{{yield to='hint'}}</:hint>
+    </Form::Fields::FileInput>
+  {{else}}
+    {{! Argument-only case }}
+    <Form::Fields::FileInput
+      @accept={{@accept}}
+      @deleteLabel={{@deleteLabel}}
+      @error={{this.mapErrors field.rawErrors}}
+      @files={{this.assertArrayOfFiles field.value}}
+      @hint={{@hint}}
+      @isDisabled={{@isDisabled}}
+      @isReadOnly={{@isReadOnly}}
+      @label={{@label}}
+      @multiple={{@multiple}}
+      {{! @glint-expect-error }}
+      @onChange={{field.setValue}}
+      @rootTestSelector={{@rootTestSelector}}
+      @trigger={{@trigger}}
+      name={{@name}}
+      ...attributes
+    />
+  {{/if}}
+</@form.Field>
