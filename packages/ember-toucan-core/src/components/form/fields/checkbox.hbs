@@ -16,12 +16,12 @@
           aria-describedby="{{if @error field.errorId}}"
           id={{field.id}}
           name={{@name}}
-          value={{@value}}
           @isDisabled={{@isDisabled}}
           @isChecked={{this.isChecked}}
           @isIndeterminate={{@isIndeterminate}}
           @isReadOnly={{@isReadOnly}}
           @onChange={{@onChange}}
+          @value={{@value}}
           ...attributes
         />
 

@@ -18,7 +18,7 @@ export interface ToucanFormCheckboxControlComponentSignature {
     isReadOnly?: boolean;
 
     /**
-     * The function called when the element is clicked.
+     * The function called when the checkbox is clicked.
      */
     onChange?: OnChangeCallback<boolean>;
 
@@ -33,6 +33,11 @@ export interface ToucanFormCheckboxControlComponentSignature {
      * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
      */
     isIndeterminate?: boolean;
+
+    /**
+     * Sets the value attribute of the checkbox.
+     */
+    value?: string;
   };
 }
 
