@@ -1,5 +1,4 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-/* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 
 import { click, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
@@ -73,6 +72,7 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     assert.dom(error).hasAttribute('id');
 
     let errorId = error?.getAttribute('id') || '';
+
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     // For the checkbox-field component, the only aria-describedby
@@ -81,6 +81,7 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     // wrapping <label> element
     let describedby =
       find('[data-checkbox]')?.getAttribute('aria-describedby') || '';
+
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
@@ -99,6 +100,7 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     </template>);
 
     let labelFor = find('[data-control] > label')?.getAttribute('for') || '';
+
     assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
 
     assert

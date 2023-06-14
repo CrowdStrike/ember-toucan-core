@@ -1,10 +1,8 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-/* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
 import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import InputField from '@crowdstrike/ember-toucan-core/components/form/fields/input';
-
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 module('Integration | Component | Fields | Input', function (hooks) {
@@ -116,6 +114,7 @@ module('Integration | Component | Fields | Input', function (hooks) {
       .dom(hint)
       .hasText('Hint text visible here', 'Expected to have hint text "error"');
     assert.dom(hint).hasAttribute('id');
+
     const hintId = find(hint)?.getAttribute('id') || '';
     const describedby = find(input)?.getAttribute('aria-describedby') || '';
 
@@ -149,9 +148,11 @@ module('Integration | Component | Fields | Input', function (hooks) {
     </template>);
 
     const errorId = find('[data-error]')?.getAttribute('id') || '';
+
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     const hintId = find('[data-hint]')?.getAttribute('id') || '';
+
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert

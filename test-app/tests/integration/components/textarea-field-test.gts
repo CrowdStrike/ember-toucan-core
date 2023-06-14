@@ -1,7 +1,5 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-/* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-
-import { find, fillIn, render, setupOnerror } from '@ember/test-helpers';
+import { fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import TextareaField from '@crowdstrike/ember-toucan-core/components/form/fields/textarea';
@@ -45,10 +43,12 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert.dom(hint).hasAttribute('id');
 
     let hintId = hint?.getAttribute('id') || '';
+
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     let describedby =
       find('[data-textarea]')?.getAttribute('aria-describedby') || '';
+
     assert.ok(
       describedby.includes(hintId),
       'Expected hintId to be included in the aria-describedby'
@@ -78,10 +78,12 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert.dom(error).hasAttribute('id');
 
     let errorId = error?.getAttribute('id') || '';
+
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     let describedby =
       find('[data-textarea]')?.getAttribute('aria-describedby') || '';
+
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
@@ -105,9 +107,11 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     </template>);
 
     let errorId = find('[data-error]')?.getAttribute('id') || '';
+
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     let hintId = find('[data-hint]')?.getAttribute('id') || '';
+
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
@@ -223,7 +227,7 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     </template>);
   });
 
-  test('it renders a `<:secondary>` block that tracks the textarea value length', async function(assert) {
+  test('it renders a `<:secondary>` block that tracks the textarea value length', async function (assert) {
     await render(<template>
       <TextareaField @label="Label" @value="Hello" data-textarea>
         <:secondary as |secondary|>
@@ -237,6 +241,5 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     await fillIn('[data-textarea]', 'Hello Hello');
 
     assert.dom('[data-character]').hasText('11 / 255');
-
   });
 });

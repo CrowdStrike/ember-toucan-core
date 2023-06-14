@@ -1,7 +1,6 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-/* eslint-disable simple-import-sort/imports,padding-line-between-statements,decorator-position/decorator-position -- Can't fix these manually, without --fix working in .gts */
-import { find, render, setupOnerror, triggerEvent } from '@ember/test-helpers';
 import { tracked } from '@glimmer/tracking';
+import { find, render, setupOnerror, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import FileInputField from '@crowdstrike/ember-toucan-core/components/form/fields/file-input';
@@ -129,6 +128,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom(error).hasAttribute('id');
 
     let errorId = error?.getAttribute('id') ?? '';
+
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     // For the file input field component, the only aria-describedby
@@ -137,6 +137,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     // wrapping <label> element
     let describedby =
       find('[data-file-input-field]')?.getAttribute('aria-describedby') ?? '';
+
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
@@ -161,6 +162,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     </template>);
 
     let labelFor = find('label')?.getAttribute('for') ?? '';
+
     assert.ok(labelFor, 'Expected the id attribute of the label to be truthy');
 
     assert
@@ -336,10 +338,12 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     }
 
     let ctx = new Context();
+
     ctx.triggerText = 'Browse Files';
 
     const realOnChange = (files: File[]) => {
       ctx.currentFiles = files;
+
       if (ctx.currentFiles.length > 0) {
         ctx.triggerText = 'Replace files';
       }
