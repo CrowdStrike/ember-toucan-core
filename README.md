@@ -1,7 +1,7 @@
 # Toucan Core
 
 <p align="center">
-  <a href="https://github.com/crowdstrike/ember-toucan-core">
+  <a href="https://www.crowdstrike.com">
     <img src="https://github.com/CrowdStrike/ember-toucan-core/blob/main/.github/cs-logo.png?raw=true" alt="CrowdStrike logo" width="300" />
   </a>
 </p>
