@@ -68,4 +68,26 @@ export default class ToucanFormControlsFileInputComponent extends Component<Touc
 
     return this.args.onChange?.(files, event);
   }
+
+  /**
+   * As of 2023-06-15 on Chrome, when a file is selected in an input[type="file"]
+   * field multiple times change events are not triggered on the input.
+   *
+   * To get around that, we need to clear the input's value before the user
+   * selects the file again.
+   *
+   * This isn't a testable change because our test setup does not have high
+   * level user interactions such as "select file". To test this manually
+   * would require us to manually trigger the change event on the input field
+   * with the selected file(s), but that would not have caught the issue
+   * because we'd then need to *also* simulate the click event on the input
+   * as well.
+   *
+   * - https://stackoverflow.com/questions/39484895/how-to-allow-input-type-file-to-select-the-same-file-in-react-component
+   * - https://github.com/ngokevin/react-file-reader-input/issues/11#issuecomment-363484861
+   */
+  @action
+  resetValue(event: Event) {
+    (event.target as HTMLInputElement).value = '';
+  }
 }
