@@ -1,5 +1,3 @@
-# Toucan Core
-
 <p align="center">
   <a href="https://www.crowdstrike.com">
     <img src="https://github.com/CrowdStrike/ember-toucan-core/blob/main/.github/cs-logo.png?raw=true" alt="CrowdStrike logo" width="300" />
@@ -24,7 +22,7 @@ The `core` package contains the Toucan-styled Ember components. The `form` packa
 ### Compatibility
 
 - Ember.js 4.8 or above
-- Embroider or ember-auto-import v2
+- Embroider or ember-auto-import v2.0 or above
 - [Glint](https://typed-ember.gitbook.io/glint)
 
 ## Installation
