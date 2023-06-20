@@ -4,6 +4,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 import CharacterCount from '../../../components/form/controls/character-count';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
@@ -69,6 +70,8 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
   @tracked count = this.args.value?.length ?? 0;
 
   CharacterCount = CharacterCount;
+  LockIcon = LockIcon;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
