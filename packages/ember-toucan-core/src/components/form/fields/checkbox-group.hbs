@@ -21,6 +21,10 @@
         {{else}}
           {{@label}}
         {{/if}}
+
+        {{#if @isDisabled}}
+          <this.LockIcon class="-ml-1 -mt-1 inline-block" />
+        {{/if}}
       </legend>
     {{/if}}
 
