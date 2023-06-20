@@ -37,9 +37,10 @@
     {{/if}}
     <field.Control class="mt-1.5 flex">
       <Form::Controls::Input
-        id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
+        class="w-full truncate {{if this.isDisabledOrReadOnly 'pr-6'}}"
+        id={{field.id}}
         @isDisabled={{@isDisabled}}
         @isReadOnly={{@isReadOnly}}
         @value={{@value}}
@@ -48,6 +49,26 @@
         {{on "input" this.handleCount}}
         ...attributes
       />
+
+      {{#if this.isDisabledOrReadOnly}}
+        <div
+          class="text-disabled pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1"
+          data-adornments
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            data-lock-icon
+          ><g><path d="M11.5 12v3h1v-3h-1Z" /><path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9 9.5V9a3 3 0 1 1 6 0v.5h.5A1.5 1.5 0 0 1 17 11v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 16v-5a1.5 1.5 0 0 1 1.5-1.5H9Zm1-.5a2 2 0 1 1 4 0v.5h-4V9Zm-2 2a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-7A.5.5 0 0 1 8 16v-5Z"
+              /></g></svg>
+        </div>
+      {{/if}}
     </field.Control>
 
     {{#if (has-block "secondary")}}

@@ -91,4 +91,8 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
   get hasError() {
     return Boolean(this.args?.error);
   }
+
+  get isDisabledOrReadOnly() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
 }

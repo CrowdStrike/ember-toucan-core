@@ -220,6 +220,16 @@ Target the error block via `data-error`.
   />
 </div>
 
+### InputField with label, long value, and isDisabled
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isDisabled={{true}}
+    @value='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ornare rhoncus enim ac efficitur. Curabitur convallis sed libero sit amet aliquet. In venenatis metus quam, eu sodales tellus aliquet non'
+  />
+</div>
+
 ### InputField with a value
 
 <div class='mb-4 w-64'>
@@ -305,5 +315,15 @@ Target the error block via `data-error`.
     @label='Label'
     @isReadOnly={{true}}
     @value="Input value"
+  />
+</div>
+
+### InputField with isReadOnly and a long value
+
+<div class='mb-4 w-64'>
+  <Form::Fields::Input
+    @label='Label'
+    @isReadOnly={{true}}
+    @value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ornare rhoncus enim ac efficitur. Curabitur convallis sed libero sit amet aliquet. In venenatis metus quam, eu sodales tellus aliquet non"
   />
 </div>
