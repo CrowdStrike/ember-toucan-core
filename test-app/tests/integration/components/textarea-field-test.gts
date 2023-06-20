@@ -30,6 +30,8 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
       .doesNotExist(
         'Expected hint block not to be displayed as an error was not provided'
       );
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it renders with a hint', async function (assert) {
@@ -119,13 +121,15 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
-  test('it disables the textarea using `@isDisabled`', async function (assert) {
+  test('it disables the textarea using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
       <TextareaField @label="Label" @isDisabled={{true}} data-textarea />
     </template>);
 
     assert.dom('[data-textarea]').isDisabled();
     assert.dom('[data-textarea]').hasClass('text-disabled');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it sets readonly on the textarea using `@isReadOnly`', async function (assert) {

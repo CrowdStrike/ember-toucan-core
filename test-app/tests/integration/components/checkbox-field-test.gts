@@ -34,6 +34,8 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     assert
       .dom('[data-root-field="test"] > [data-control]')
       .hasNoClass('shadow-error-outline');
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it renders with a hint', async function (assert) {
@@ -112,12 +114,14 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
       );
   });
 
-  test('it disables the checkbox using `@isDisabled`', async function (assert) {
+  test('it disables the checkbox using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
       <CheckboxField @label="Label" @isDisabled={{true}} data-checkbox />
     </template>);
 
     assert.dom('[data-checkbox]').isDisabled();
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it sets readonly on the checkbox using `@isReadOnly`', async function (assert) {
