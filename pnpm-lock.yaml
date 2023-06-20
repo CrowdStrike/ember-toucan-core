@@ -33,7 +33,7 @@ importers:
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.0.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.1.2)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@3.2.4)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@ember/test-waiters':
         specifier: ^3.0.2
         version: 3.0.2
@@ -270,8 +270,8 @@ importers:
         specifier: ^8.0.0-beta.0
         version: 8.0.0-beta.0
       ember-qunit:
-        specifier: ^6.2.0
-        version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
+        specifier: ^7.0.0
+        version: 7.0.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
         specifier: ^10.0.0
         version: 10.0.0(@ember/string@3.0.1)(ember-source@5.0.0)
@@ -758,7 +758,7 @@ importers:
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.0.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.1.2)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
         specifier: ^2.0.1
         version: 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@2.2.19)
@@ -928,8 +928,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.20.12)
       ember-qunit:
-        specifier: ^6.2.0
-        version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
+        specifier: ^7.0.0
+        version: 7.0.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
         specifier: ^10.0.0
         version: 10.0.0(@ember/string@3.0.1)(ember-source@5.0.0)
@@ -4875,7 +4875,7 @@ packages:
     resolution: {integrity: sha512-1g5A3vPKhvB/CuN/EP9rBLXYaJOjzKyLYWeBtNDEQNkTuG1dAo/Hg0CCixgbBgLlzaDP8mR/n1xpg8HqQ8SUKg==}
     deprecated: This is a stub types definition. ember-qunit provides its own type definitions, so you do not need this installed.
     dependencies:
-      ember-qunit: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
+      ember-qunit: 7.0.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0)
     transitivePeerDependencies:
       - '@ember/test-helpers'
       - ember-source
@@ -6342,6 +6342,13 @@ packages:
     engines: {node: '>= 12.*'}
     dependencies:
       babel-import-util: 1.3.0
+
+  /babel-plugin-ember-template-compilation@2.0.3:
+    resolution: {integrity: sha512-SIetZD/uCLnzIBTJtzYGc2Q55TPqM5WyjuOgW+Is1W3SZVljlY3JD5Add29hDMs//OvXBWoXfOopQxkfG4/pIA==}
+    engines: {node: '>= 12.*'}
+    dependencies:
+      babel-import-util: 1.3.0
+    dev: true
 
   /babel-plugin-filter-imports@4.0.0:
     resolution: {integrity: sha512-jDLlxI8QnfKd7PtieH6pl4tZJzymzfCDCPGdTq/grgbiYAikwDPp/oL0IlFJn0HQjLpcLkyYhPKkUVneRESw5w==}
@@ -8932,6 +8939,46 @@ packages:
       - supports-color
       - webpack
 
+  /ember-auto-import@2.6.3(webpack@5.75.0):
+    resolution: {integrity: sha512-uLhrRDJYWCRvQ4JQ1e64XlSrqAKSd6PXaJ9ZsZI6Tlms9T4DtQFxNXasqji2ZRJBVrxEoLCRYX3RTldsQ0vNGQ==}
+    engines: {node: 12.* || 14.* || >= 16}
+    dependencies:
+      '@babel/core': 7.21.4
+      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.21.4)
+      '@babel/plugin-proposal-decorators': 7.20.13(@babel/core@7.21.4)
+      '@babel/preset-env': 7.20.2(@babel/core@7.21.4)
+      '@embroider/macros': 1.10.0
+      '@embroider/shared-internals': 2.0.0
+      babel-loader: 8.3.0(@babel/core@7.21.4)(webpack@5.75.0)
+      babel-plugin-ember-modules-api-polyfill: 3.5.0
+      babel-plugin-ember-template-compilation: 2.0.3
+      babel-plugin-htmlbars-inline-precompile: 5.3.1
+      babel-plugin-syntax-dynamic-import: 6.18.0
+      broccoli-debug: 0.6.5
+      broccoli-funnel: 3.0.8
+      broccoli-merge-trees: 4.2.0
+      broccoli-plugin: 4.0.7
+      broccoli-source: 3.0.1
+      css-loader: 5.2.7(webpack@5.75.0)
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      fs-tree-diff: 2.0.1
+      handlebars: 4.7.7
+      js-string-escape: 1.0.1
+      lodash: 4.17.21
+      mini-css-extract-plugin: 2.7.2(webpack@5.75.0)
+      parse5: 6.0.1
+      resolve: 1.22.2
+      resolve-package-path: 4.0.3
+      semver: 7.5.1
+      style-loader: 2.0.0(webpack@5.75.0)
+      typescript-memoize: 1.1.1
+      walk-sync: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+      - webpack
+    dev: true
+
   /ember-browser-services@4.0.4:
     resolution: {integrity: sha512-ZjQPD7wlqMhHIq+uuesW+SWYCN+TsQtyY2Fy7QpluxEQff/j2JHiQAk3K0GUtEwef1gJ8/dRsBqSnaG2/Fxhmg==}
     dependencies:
@@ -9627,19 +9674,19 @@ packages:
       - supports-color
     dev: true
 
-  /ember-qunit@6.2.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0):
-    resolution: {integrity: sha512-mC+0bp8DwWzJLn8SW3GS8KDZIkl4yLsNYwMi5Dw6+aFllq7FM2crd/dfY4MuOIHK7GKdjtmWJTMGnjSpeSayaw==}
-    engines: {node: 14.* || 16.* || >= 18}
+  /ember-qunit@7.0.0(@ember/test-helpers@2.9.3)(ember-source@5.0.0)(qunit@2.19.4)(webpack@5.75.0):
+    resolution: {integrity: sha512-KhrndHYEXsHnXvmsGyJLJQ6VCudXaRs5dzPZBsdttZJIhsB6PmYAvq2Q+mh3GRDT/59T/sRDrB3FD3/lATS8aA==}
+    engines: {node: 16.* || >= 18}
     peerDependencies:
-      '@ember/test-helpers': ^2.9.3
-      ember-source: '>=3.28'
+      '@ember/test-helpers': '>=3.0.3'
+      ember-source: '>=4.0.0'
       qunit: ^2.13.0
     dependencies:
       '@ember/test-helpers': 2.9.3(@babel/core@7.20.12)(@glint/template@1.0.2)(ember-source@5.0.0)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 3.0.2
       common-tags: 1.8.2
-      ember-auto-import: 2.6.0(webpack@5.75.0)
+      ember-auto-import: 2.6.3(webpack@5.75.0)
       ember-cli-babel: 7.26.11
       ember-cli-test-loader: 3.0.0
       ember-source: 5.0.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0)
@@ -17908,7 +17955,7 @@ packages:
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
-    version: 0.1.2
+    version: 0.2.0
     peerDependencies:
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
@@ -17937,7 +17984,7 @@ packages:
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
-    version: 0.1.2
+    version: 0.2.0
     peerDependencies:
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
@@ -17962,13 +18009,13 @@ packages:
       - supports-color
     dev: false
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.1.2)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
-    version: 0.1.2
+    version: 0.2.0
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.1.2
+      '@crowdstrike/ember-toucan-core': ^0.2.0
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
@@ -17992,13 +18039,13 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.1.2)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@3.2.4):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@2.9.3)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.0.0)(postcss@8.4.21)(tailwindcss@3.2.4):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
-    version: 0.1.2
+    version: 0.2.0
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.1.2
+      '@crowdstrike/ember-toucan-core': ^0.2.0
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1
       '@glimmer/tracking': ^1.1.2
