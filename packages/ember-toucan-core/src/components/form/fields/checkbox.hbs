@@ -46,6 +46,10 @@
               {{else}}
                 {{@label}}
               {{/if}}
+
+              {{#if this.isDisabledAndNotInAGroup}}
+                <this.LockIcon class="-ml-1 -mt-1 inline-block" />
+              {{/if}}
             </span>
           {{/if}}
 
