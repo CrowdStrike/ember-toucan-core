@@ -124,12 +124,14 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the checkbox using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the checkbox using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <CheckboxField @label="Label" @isReadOnly={{true}} data-checkbox />
     </template>);
 
     assert.dom('[data-checkbox]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it spreads attributes to the underlying checkbox', async function (assert) {

@@ -86,6 +86,10 @@ export default class ToucanFormRadioGroupFieldComponent extends Component<Toucan
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleInput(value: string, e: Event | InputEvent): void {
     this.args.onChange?.(value, e);

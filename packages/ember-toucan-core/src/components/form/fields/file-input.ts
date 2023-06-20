@@ -113,6 +113,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
     return Boolean(this.args?.error);
   }
 
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleChange(field: { id: string }) {
     if (this.args.isReadOnly) {

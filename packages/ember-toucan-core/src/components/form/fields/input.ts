@@ -80,6 +80,14 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 
+  get hasError() {
+    return Boolean(this.args?.error);
+  }
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleCount(event: Event | InputEvent): void {
     assert(
@@ -88,9 +96,5 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
     );
 
     this.count = event.target?.value.length ?? 0;
-  }
-
-  get hasError() {
-    return Boolean(this.args?.error);
   }
 }

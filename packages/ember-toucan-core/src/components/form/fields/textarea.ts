@@ -87,6 +87,14 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
     super(owner, args);
   }
 
+  get hasError() {
+    return Boolean(this.args?.error);
+  }
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleCount(event: Event | InputEvent): void {
     assert(
@@ -94,9 +102,5 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
       event.target instanceof HTMLTextAreaElement
     );
     this.count = event.target?.value.length ?? 0;
-  }
-
-  get hasError() {
-    return Boolean(this.args?.error);
   }
 }

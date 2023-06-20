@@ -132,10 +132,17 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
   }
 
   /**
-   * We want to add a lock icon when a checkbox-field is used by itself and is disabled,
-   * but we do *not* want that icon rendered when we are inside of a group and disabled.
+   * We want to add a lock icon when a checkbox-field is used by itself and is disabled
+   * or readonly, but we do *not* want that icon rendered when we are inside of a
+   * checkbox group.
    */
-  get isDisabledAndNotInAGroup() {
-    return !this.args?.isInAGroup && this.args?.isDisabled;
+  get isDisabledOrDisabledAndNotInAGroup() {
+    let { isDisabled, isInAGroup, isReadOnly } = this.args;
+
+    if (isInAGroup) {
+      return false;
+    }
+
+    return isDisabled || isReadOnly;
   }
 }

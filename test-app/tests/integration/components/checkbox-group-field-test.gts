@@ -222,7 +222,7 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-1]').hasAttribute('readonly');
   });
 
-  test('it sets readonly on all child checkboxes using `@isReadOnly` at the root', async function (assert) {
+  test('it sets readonly on all child checkboxes using `@isReadOnly` at the root and renders a lock icon', async function (assert) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
@@ -246,6 +246,8 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
 
     assert.dom('[data-checkbox-1]').hasAttribute('readonly');
     assert.dom('[data-checkbox-2]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it calls `@onChange` when a checkbox is clicked and can update `@value`', async function (assert) {

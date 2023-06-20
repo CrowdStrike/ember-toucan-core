@@ -194,7 +194,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <FileInputField
         @deleteLabel="Delete File"
@@ -207,6 +207,8 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     </template>);
 
     assert.dom('[data-file-input-field]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it spreads attributes to the underlying file-input-field', async function (assert) {

@@ -132,12 +132,14 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the textarea using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the textarea using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <TextareaField @label="Label" @isReadOnly={{true}} data-textarea />
     </template>);
 
     assert.dom('[data-textarea]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it spreads attributes to the underlying textarea', async function (assert) {

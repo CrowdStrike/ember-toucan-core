@@ -85,6 +85,10 @@ export default class ToucanFormCheckboxGroupFieldComponent extends Component<Tou
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
 
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleInput(_: boolean, e: Event | InputEvent): void {
     let value = this.args.value ? [...this.args.value] : [];

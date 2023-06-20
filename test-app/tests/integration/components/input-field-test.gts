@@ -228,11 +228,13 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <InputField @label="Label" @isReadOnly={{true}} data-input />
     </template>);
 
     assert.dom('[data-input]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 });
