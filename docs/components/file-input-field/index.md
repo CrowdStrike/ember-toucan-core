@@ -250,7 +250,7 @@ Target the trash icon button via `data-delete-file`.
     @deleteLabel='Delete file'
     @trigger='Browse Files'
   >
-  <:label>Label <svg class="inline w-4 h-4 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+  <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
   <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
   </Form::Fields::FileInput>
 </div>

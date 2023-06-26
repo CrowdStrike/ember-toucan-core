@@ -37,7 +37,7 @@
             )
           }}
             <span
-              class="type-md-tight block leading-4
+              class="type-md-tight flex items-center gap-1.5 leading-4
                 {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}"
               data-label
             >
@@ -48,9 +48,7 @@
               {{/if}}
 
               {{#if this.isDisabledOrDisabledAndNotInAGroup}}
-                <this.LockIcon
-                  class="text-disabled -ml-0.5 -mt-1 inline-block"
-                />
+                <this.LockIcon />
               {{/if}}
             </span>
           {{/if}}
