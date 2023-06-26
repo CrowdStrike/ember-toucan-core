@@ -4,7 +4,7 @@ export interface ToucanLockIconComponentSignature {
   Element: SVGElement;
   Args: {};
   Blocks: {
-    default: never;
+    default: [];
   };
 }
 
