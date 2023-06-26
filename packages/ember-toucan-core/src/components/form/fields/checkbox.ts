@@ -49,7 +49,7 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      *
      * @internal
      */
-    isInAGroup?: boolean;
+    isGrouped?: boolean;
 
     /**
      * Provide a string to this argument to render inside of the label tag.
@@ -137,9 +137,9 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
    * checkbox group.
    */
   get isDisabledOrDisabledAndNotInAGroup() {
-    let { isDisabled, isInAGroup, isReadOnly } = this.args;
+    let { isDisabled, isGrouped, isReadOnly } = this.args;
 
-    if (isInAGroup) {
+    if (isGrouped) {
       return false;
     }
 
