@@ -4,8 +4,7 @@
 - [Clone the repo](#clone-the-repo)
 - [Install dependencies](#install-dependencies)
 - [Adding components](#adding-components)
-- [Running the docs/test-app](#running-the-docstest-app)
-- [Viewing changes in the docs/test-app](#viewing-changes-in-the-docstest-app)
+- [Developing](#developing)
 - [Tests](#tests)
 - [Documentation](#documentation)
 - [VS Code setup](#vscode-setup)
@@ -48,83 +47,35 @@ A few things to remember:
 2. When adding a new component, it needs to be added to the template registry so Glint picks it up.
    To do that, add a line in `packages/ember-toucan-core/src/template-registry.ts`.
 
-## Viewing changes in the docs/test-app
+## Developing
 
-For the time being you can use `pnpm link` to create a symlink between the addon and the apps.
-This will allow you to make a change in the addon and immediately see the change in the app rather than having to stop the app, rebuild, resync dependencies, etc.
+To develop in this monorepo you can simply run:
 
-There are two ways to do this:
+- `pnpm start`
 
-### Option 1: run the Bash script
+from the root directory.
 
-In the root of the repo, run:
+This will:
 
-```bash
-./local-setup.bash
-```
+- Build all of the `packages/*` and watch them for changes
+- Build the docs app and the tests app and serve them
+- Automatically sync changes from the `packages/*` to the served apps so
+  that they are always up to date.
 
-This will run a Bash script, where you can choose to install and symlink.
+You can now visit:
 
-You will also have the option of deleting the turbo repo, and/or deleting the `node_modules`, `dist`, and `tsc` cache.
-But running these takes longer.
+- The docs app at http://localhost:4201/
+- The tests app at http://localhost:4200/tests
 
-### Option 2: symlink manually
+If you don't need to run both apps you can save a little of your local
+compute by running:
 
-```bash
-# 1. Create a symlink in the ember-toucan-core addon
-cd packages/ember-toucan-core
-pnpm build
-pnpm link .
+- `start:docs-app` and visiting http://localhost:4201/
+- `start:test-app` and visiting http://localhost:4200/tests
 
-# 2. Create a symlink in the forms addon (required even if you aren't using it)
-cd ../ember-toucan-form
-pnpm link @crowdstrike/ember-toucan-core # need to link this because ember-toucan-forms depends on it
-pnpm build
-pnpm link .
-
-# 3. Link ember-toucan-core docs-app
-cd ../../docs-app
-pnpm link @crowdstrike/ember-toucan-core # note @crowdstrike here
-pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here
-pnpm i
-
-The test-app also needs to link `ember-toucan-form`.
-
-# 4. Link ember-toucan-core to the test-app
-cd ../test-app
-pnpm link @crowdstrike/ember-toucan-core # note @crowdstrike here
-pnpm link @crowdstrike/ember-toucan-form # note @crowdstrike here
-pnpm i
-```
-
-Now the docs-app and addon are linked!
-Now you'll want to run the addon in watch mode so that it auto-rebuilds and run the docs-app separately.
-
-```bash
-# In one terminal
-cd packages/ember-toucan-core
-pnpm start
-# ember-toucan-core is now in watch mode and will rebuild automatically
-
-
-# In a second terminal, `cd` to the root of the repo
-cd <root-of-repo>
-pnpm start:docs # using turbo here
-
-# In a third terminal, `cd` to the test-app
-cd <root-of-repo>/test-app
-pnpm start # and then `cd` to /tests
-
-# IF you are making changes in ember-toucan-form, start a fourth terminal
-cd packages/ember-toucan-form
-pnpm start
-```
-
-When making a change in `ember-toucan-core`, the docs-app should now refresh and you should see your changes.
-
-⚠️ **NOTE**: Upon linking, you will notice changes in each `package.json` and the `pnpm-lock.yaml` file.
-You **do not** want to check these changes in.
-Please discard them or ignore them when committing!
+These commands will still build and watch the `packages/*` and sync changes
+to the running app. Don't run both `only` tasks together as this will cause
+issues - if you want to run both apps simply use `pnpm start`.
 
 ## Tests
 
