@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
@@ -41,6 +42,14 @@ export interface ToucanFormCheckboxFieldComponentSignature {
      * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
      */
     isIndeterminate?: ToucanFormCheckboxControlComponentSignature['Args']['isIndeterminate'];
+
+    /**
+     * Helps us determine if we are in a checkbox-group or not. This should only be applied internally
+     * when using CheckboxGroup.
+     *
+     * @internal
+     */
+    isGrouped?: boolean;
 
     /**
      * Provide a string to this argument to render inside of the label tag.
@@ -88,6 +97,8 @@ export interface ToucanFormCheckboxFieldComponentSignature {
 }
 
 export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFormCheckboxFieldComponentSignature> {
+  LockIcon = LockIcon;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -118,5 +129,20 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     }
 
     return this.args.selectedValues?.includes(this.args.value);
+  }
+
+  /**
+   * We want to add a lock icon when a checkbox-field is used by itself and is disabled
+   * or readonly, but we do *not* want that icon rendered when we are inside of a
+   * checkbox group.
+   */
+  get isDisabledOrDisabledAndNotInAGroup() {
+    let { isDisabled, isGrouped, isReadOnly } = this.args;
+
+    if (isGrouped) {
+      return false;
+    }
+
+    return isDisabled || isReadOnly;
   }
 }

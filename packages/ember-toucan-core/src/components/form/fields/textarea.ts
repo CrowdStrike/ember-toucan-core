@@ -4,6 +4,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 import CharacterCount from '../../../components/form/controls/character-count';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
@@ -69,6 +70,8 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
   @tracked count = this.args.value?.length ?? 0;
 
   CharacterCount = CharacterCount;
+  LockIcon = LockIcon;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -84,6 +87,14 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
     super(owner, args);
   }
 
+  get hasError() {
+    return Boolean(this.args?.error);
+  }
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
+
   @action
   handleCount(event: Event | InputEvent): void {
     assert(
@@ -91,9 +102,5 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
       event.target instanceof HTMLTextAreaElement
     );
     this.count = event.target?.value.length ?? 0;
-  }
-
-  get hasError() {
-    return Boolean(this.args?.error);
   }
 }

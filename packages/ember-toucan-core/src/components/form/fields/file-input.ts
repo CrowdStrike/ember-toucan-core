@@ -3,6 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
@@ -81,6 +82,8 @@ export interface ToucanFormFileInputFieldComponentSignature {
 }
 
 export default class ToucanFormFileInputFieldComponent extends Component<ToucanFormFileInputFieldComponentSignature> {
+  LockIcon = LockIcon;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -108,6 +111,10 @@ export default class ToucanFormFileInputFieldComponent extends Component<ToucanF
 
   get hasError() {
     return Boolean(this.args?.error);
+  }
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
   }
 
   @action

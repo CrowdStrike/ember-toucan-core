@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 import CheckboxFieldComponent from './checkbox';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
@@ -74,6 +75,7 @@ export interface ToucanFormCheckboxGroupFieldComponentSignature {
 
 export default class ToucanFormCheckboxGroupFieldComponent extends Component<ToucanFormCheckboxGroupFieldComponentSignature> {
   CheckboxFieldComponent = CheckboxFieldComponent;
+  LockIcon = LockIcon;
 
   assertBlockOrArgumentExists = ({
     blockExists,
@@ -82,6 +84,10 @@ export default class ToucanFormCheckboxGroupFieldComponent extends Component<Tou
     isRequired,
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
 
   @action
   handleInput(_: boolean, e: Event | InputEvent): void {

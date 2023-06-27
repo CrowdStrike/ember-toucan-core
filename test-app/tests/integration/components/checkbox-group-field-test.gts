@@ -18,6 +18,8 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-group-field]').hasNoAttribute('aria-invalid');
 
     assert.dom('[data-label]').hasText('Label');
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it renders yielded CheckboxFields', async function (assert) {
@@ -151,7 +153,7 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isChecked();
   });
 
-  test('it disables the fieldset and all child checkboxes using `@isDisabled` at the root', async function (assert) {
+  test('it disables the fieldset and all child checkboxes using `@isDisabled` at the root and renders a lock icon', async function (assert) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
@@ -176,6 +178,8 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-group-field]').isDisabled();
     assert.dom('[data-checkbox-1]').isDisabled();
     assert.dom('[data-checkbox-2]').isDisabled();
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it sets an individual checkbox to disabled with `@isDisabled`', async function (assert) {
@@ -218,7 +222,7 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-1]').hasAttribute('readonly');
   });
 
-  test('it sets readonly on all child checkboxes using `@isReadOnly` at the root', async function (assert) {
+  test('it sets readonly on all child checkboxes using `@isReadOnly` at the root and renders a lock icon', async function (assert) {
     await render(<template>
       <CheckboxGroupField
         @label="Label"
@@ -242,6 +246,8 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
 
     assert.dom('[data-checkbox-1]').hasAttribute('readonly');
     assert.dom('[data-checkbox-2]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it calls `@onChange` when a checkbox is clicked and can update `@value`', async function (assert) {

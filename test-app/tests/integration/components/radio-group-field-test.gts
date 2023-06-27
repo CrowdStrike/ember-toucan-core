@@ -18,6 +18,8 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-group-field]').hasAttribute('aria-required');
 
     assert.dom('[data-label]').hasText('Label');
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it sets "role" by default', async function (assert) {
@@ -98,7 +100,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-2]').isChecked();
   });
 
-  test('it disables the fieldset and all child radios using `@isDisabled` at the root', async function (assert) {
+  test('it disables the fieldset and all child radios using `@isDisabled` at the root and renders a lock icon', async function (assert) {
     await render(<template>
       <RadioGroupField
         @label="Label"
@@ -115,6 +117,8 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-group-field]').isDisabled();
     assert.dom('[data-radio-1]').isDisabled();
     assert.dom('[data-radio-2]').isDisabled();
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it sets an individual radio to disabled with `@isDisabled`', async function (assert) {
@@ -147,7 +151,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-1]').hasAttribute('readonly');
   });
 
-  test('it sets readonly on all child radios using `@isReadOnly` at the root', async function (assert) {
+  test('it sets readonly on all child radios using `@isReadOnly` at the root and renders a lock icon', async function (assert) {
     await render(<template>
       <RadioGroupField
         @label="Label"
@@ -163,6 +167,8 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
 
     assert.dom('[data-radio-1]').hasAttribute('readonly');
     assert.dom('[data-radio-2]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it calls `@onChange` when a radio is clicked and can update `@value`', async function (assert) {

@@ -25,6 +25,8 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom(input).hasAttribute('type', 'text');
     assert.dom(input).hasAttribute('id');
     assert.dom(input).hasNoClass('shadow-error-outline');
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it throws an assertion error if no `@label` or `:label` is provided', async function (assert) {
@@ -216,19 +218,23 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom('[data-character]').hasText('11 / 255');
   });
 
-  test('it disables the input using `@isDisabled`', async function (assert) {
+  test('it disables the input using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
       <InputField @label="Label" @isDisabled={{true}} data-input />
     </template>);
 
     assert.dom('[data-input]').isDisabled();
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <InputField @label="Label" @isReadOnly={{true}} data-input />
     </template>);
 
     assert.dom('[data-input]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 });

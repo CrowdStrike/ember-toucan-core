@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/components/lock-icon';
 import RadioFieldComponent from './radio';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
@@ -75,6 +76,7 @@ export interface ToucanFormRadioGroupFieldComponentSignature {
 
 export default class ToucanFormRadioGroupFieldComponent extends Component<ToucanFormRadioGroupFieldComponentSignature> {
   RadioFieldComponent = RadioFieldComponent;
+  LockIcon = LockIcon;
 
   assertBlockOrArgumentExists = ({
     blockExists,
@@ -83,6 +85,10 @@ export default class ToucanFormRadioGroupFieldComponent extends Component<Toucan
     isRequired,
   }: AssertBlockOrArg) =>
     assertBlockOrArgumentExists({ blockExists, argName, arg, isRequired });
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
+  }
 
   @action
   handleInput(value: string, e: Event | InputEvent): void {

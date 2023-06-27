@@ -13,11 +13,19 @@
         )
       )
     }}
-      <field.Label for={{field.id}} data-label>
+      <field.Label
+        class="flex items-center gap-1.5"
+        for={{field.id}}
+        data-label
+      >
         {{#if (has-block "label")}}
           {{yield to="label"}}
         {{else}}
           {{@label}}
+        {{/if}}
+
+        {{#if this.isReadOnlyOrDisabled}}
+          <this.LockIcon />
         {{/if}}
       </field.Label>
     {{/if}}

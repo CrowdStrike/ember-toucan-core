@@ -76,6 +76,8 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
       .doesNotExist(
         'Expected hint block not to be displayed as an error was not provided'
       );
+
+    assert.dom('[data-lock-icon]').doesNotExist();
   });
 
   test('it renders with a hint', async function (assert) {
@@ -174,7 +176,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
       );
   });
 
-  test('it disables the file input using @isDisabled', async function (assert) {
+  test('it disables the file input using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
       <FileInputField
         @deleteLabel="Delete File"
@@ -188,9 +190,11 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
 
     assert.dom('[data-file-input-field]').isDisabled();
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <FileInputField
         @deleteLabel="Delete File"
@@ -203,6 +207,8 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     </template>);
 
     assert.dom('[data-file-input-field]').hasAttribute('readonly');
+
+    assert.dom('[data-lock-icon]').exists();
   });
 
   test('it spreads attributes to the underlying file-input-field', async function (assert) {

@@ -14,11 +14,15 @@
           )
         )
       }}
-        <span data-label>
+        <span class="flex items-center gap-1.5" data-label>
           {{#if (has-block "label")}}
             {{yield to="label"}}
           {{else}}
             {{@label}}
+          {{/if}}
+
+          {{#if this.isReadOnlyOrDisabled}}
+            <this.LockIcon />
           {{/if}}
         </span>
       {{/if}}

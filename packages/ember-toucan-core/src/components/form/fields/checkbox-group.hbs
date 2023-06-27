@@ -15,11 +15,18 @@
         )
       )
     }}
-      <legend class="type-md-tight text-body-and-labels block" data-label>
+      <legend
+        class="type-md-tight text-body-and-labels flex items-center gap-1.5"
+        data-label
+      >
         {{#if (has-block "label")}}
           {{yield to="label"}}
         {{else}}
           {{@label}}
+        {{/if}}
+
+        {{#if this.isReadOnlyOrDisabled}}
+          <this.LockIcon />
         {{/if}}
       </legend>
     {{/if}}
@@ -52,6 +59,7 @@
             isDisabled=@isDisabled
             isReadOnly=@isReadOnly
             selectedValues=@value
+            isGrouped=true
           )
         )
       }}
