@@ -18,6 +18,7 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-group-field]').hasAttribute('aria-required');
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').hasClass('text-body-and-labels');
 
     assert.dom('[data-lock-icon]').doesNotExist();
   });
@@ -119,6 +120,8 @@ module('Integration | Component | Fields | RadioGroup', function (hooks) {
     assert.dom('[data-radio-2]').isDisabled();
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('[data-group-field] [data-label]').hasClass('text-disabled');
   });
 
   test('it sets an individual radio to disabled with `@isDisabled`', async function (assert) {

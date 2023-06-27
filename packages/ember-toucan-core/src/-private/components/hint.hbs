@@ -1,4 +1,5 @@
 <div
-  class="type-xs-tight text-body-and-labels mt-0.5"
+  class="type-xs-tight mt-0.5
+    {{if @isDisabled 'text-disabled' 'text-body-and-labels'}}"
   ...attributes
 >{{yield}}</div>

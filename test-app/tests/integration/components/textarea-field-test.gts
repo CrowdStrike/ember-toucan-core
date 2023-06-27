@@ -14,6 +14,7 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').hasClass('text-body-and-labels');
 
     assert
       .dom('[data-hint]')
@@ -130,6 +131,8 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert.dom('[data-textarea]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('[data-label]').hasClass('text-disabled');
   });
 
   test('it sets readonly on the textarea using `@isReadOnly` and renders a lock icon', async function (assert) {

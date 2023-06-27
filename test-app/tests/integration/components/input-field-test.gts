@@ -21,6 +21,8 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom(label).exists('Expected to have label block rendered');
     assert.dom(label).hasText('Label', 'Expected to have label text "label"');
     assert.dom(label).hasAttribute('for', inputId);
+    assert.dom(label).hasClass('text-body-and-labels');
+
     assert.dom(input).exists('Expected to have input tag rendered');
     assert.dom(input).hasAttribute('type', 'text');
     assert.dom(input).hasAttribute('id');
@@ -226,6 +228,8 @@ module('Integration | Component | Fields | Input', function (hooks) {
     assert.dom('[data-input]').isDisabled();
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('[data-label]').hasClass('text-disabled');
   });
 
   test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {

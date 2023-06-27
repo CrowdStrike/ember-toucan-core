@@ -57,6 +57,8 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('label').hasClass('text-body-and-labels');
+
     assert.dom('[data-trigger]').hasText('Select Files');
 
     assert
@@ -192,6 +194,8 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('label').hasClass('text-disabled');
   });
 
   test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
