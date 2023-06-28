@@ -7,13 +7,15 @@
     <input
       aria-activedescendant={{this.activeDescendantId}}
       aria-autocomplete="list"
-      aria-controls={{this.popoverId}} aria-haspopup="listbox"
+      aria-controls={{this.popoverId}}
+      aria-haspopup="listbox"
       autocapitalize="none"
       autocomplete="off"
       class="focus:outline-none bg-overlay-1 w-full rounded-sm border-none py-1 pl-2 pr-6 transition-shadow
         {{this.styles}}"
       disabled={{@isDisabled}}
-      readonly={{@isReadOnly}} spellcheck="false"
+      readonly={{@isReadOnly}}
+      spellcheck="false"
       {{! TODO: I assume there's a simpler way than `get` to do this? I tried .firstObject but couldn't get it to typecheck. }}
       value={{unless @isMultiple (get (get this.selectedOptions 0) "label")}}
       {{on "blur" (if this.isDisabledOrReadOnly this.noop this.closePopover)}}
