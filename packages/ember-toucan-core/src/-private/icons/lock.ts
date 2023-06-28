@@ -1,6 +1,6 @@
 import templateOnlyComponent from '@ember/component/template-only';
 
-export interface ToucanLockIconComponentSignature {
+export interface ToucanLockIconSignature {
   Element: SVGElement;
   Args: {};
   Blocks: {
@@ -8,4 +8,4 @@ export interface ToucanLockIconComponentSignature {
   };
 }
 
-export default templateOnlyComponent<ToucanLockIconComponentSignature>();
+export default templateOnlyComponent<ToucanLockIconSignature>();

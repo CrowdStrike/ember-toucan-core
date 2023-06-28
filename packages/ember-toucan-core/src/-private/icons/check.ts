@@ -3,7 +3,7 @@ import templateOnlyComponent from '@ember/component/template-only';
 export interface ToucanCheckIconComponentSignature {
   Args: {};
   Blocks: {
-    default: never;
+    default: [];
   };
   Element: SVGElement;
 }
