@@ -178,11 +178,11 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     let { isDisabled, isReadOnly, hasError } = this.args;
 
     if (isDisabled) {
-      return 'shadow-focusable-outline bg-overlay-1 text-disabled pointer-events-none';
+      return 'shadow-focusable-outline bg-overlay-1 text-disabled pointer-events-none placeholder:text-disabled';
     }
 
     if (isReadOnly) {
-      return 'focus:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes';
+      return 'focus:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes placeholder:text-titles-and-attributes';
     }
 
     if (hasError) {
