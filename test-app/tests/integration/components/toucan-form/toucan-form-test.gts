@@ -112,7 +112,11 @@ module('Integration | Component | ToucanForm', function (hooks) {
         <form.Input @label="Input" @name="name" data-name />
         <form.Input @label="Email" @name="email" data-email />
 
-        <button data-test-reset {{on "click" form.reset}}>Submit</button>
+        <button
+          type="button"
+          data-test-reset
+          {{on "click" form.reset}}
+        >Submit</button>
       </ToucanForm>
     </template>);
 
