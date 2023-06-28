@@ -1,10 +1,10 @@
 {{! template-lint-disable require-presentational-children }}
 <li
   aria-selected={{if this.isSelected "true" "false"}}
-  class="text-titles-and-attributes my-0 flex cursor-default items-center gap-2 px-1 py-2 leading-4
+  class="text-titles-and-attributes my-0 flex cursor-default items-center gap-2 px-2 py-2 leading-4
     {{this.styles}}
     {{this.className}}
-  "
+    "
   data-label={{@label}}
   data-value={{@value}}
   id={{unique-id}}
