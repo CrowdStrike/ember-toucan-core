@@ -3,7 +3,7 @@
   Multiple select
 </h3>
 
-<form class="flex flex-col gap-4 w-80">
+<form class="flex flex-col gap-4 w-96">
   <Form::Controls::Select 
     @isMultiple={{true}}
     @onChange={{this.onChange}} 

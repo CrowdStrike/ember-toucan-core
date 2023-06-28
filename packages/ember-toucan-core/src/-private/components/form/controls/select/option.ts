@@ -42,6 +42,18 @@ export default class ToucanFormSelectOptionControlComponent extends Component<To
     );
   }
 
+  get styles() {
+    if (this.isActive) {
+      return 'bg-overlay-1 text-body-and-labels';
+    }
+
+    if (this.isSelected) {
+      return 'bg-selected';
+    }
+
+    return '';
+  }
+
   @action
   onClick(value: string, event: Event) {
     // Both "click" and "mousedown" steal focus, which we want to remain on the input.
