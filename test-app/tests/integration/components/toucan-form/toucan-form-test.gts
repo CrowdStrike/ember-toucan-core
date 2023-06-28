@@ -96,6 +96,35 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.verifySteps(['onSubmit']);
   });
 
+  test('it yields `reset` from ember-headless-form', async function (assert) {
+    interface FormData {
+      name?: string;
+      email?: string;
+    }
+
+    const data: FormData = {
+      name: 'Simon',
+      email: 'a@b.com',
+    };
+
+    await render(<template>
+      <ToucanForm @data={{data}} as |form|>
+        <form.Input @label="Input" @name="name" data-name />
+        <form.Input @label="Email" @name="email" data-email />
+
+        <button data-test-reset {{on "click" form.reset}}>Submit</button>
+      </ToucanForm>
+    </template>);
+
+    await fillIn('[data-name]', 'Nicole');
+    await fillIn('[data-email]', 'x@yz.com');
+
+    await click('[data-test-reset]');
+
+    assert.dom('[data-name]').hasValue('Simon');
+    assert.dom('[data-email]').hasValue('a@b.com');
+  });
+
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
       checkboxes: ['option-1', 'option-3'],
