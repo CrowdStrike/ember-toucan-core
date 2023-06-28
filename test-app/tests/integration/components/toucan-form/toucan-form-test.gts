@@ -1,4 +1,5 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
+import { on } from '@ember/modifier';
 import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
@@ -53,6 +54,46 @@ module('Integration | Component | ToucanForm', function (hooks) {
     </template>);
 
     assert.dom('[data-test-field]').exists();
+  });
+
+  test('it yields `submit` from ember-headless-form', async function (assert) {
+    interface FormData {
+      name?: string;
+      email?: string;
+    }
+
+    assert.expect(3);
+
+    const data: FormData = {};
+
+    const handleSubmit = (data: FormData) => {
+      assert.deepEqual(
+        data,
+        { name: 'text', email: 'a@b.com' },
+        'Expected form data to match'
+      );
+      assert.step('onSubmit');
+    };
+
+    await render(<template>
+      <ToucanForm @data={{data}} @onSubmit={{handleSubmit}} as |form|>
+        <form.Input @label="Input" @name="name" data-name />
+        <form.Input @label="Email" @name="email" data-email />
+
+        <button
+          type="button"
+          data-test-submit
+          {{on "click" form.submit}}
+        >Submit</button>
+      </ToucanForm>
+    </template>);
+
+    await fillIn('[data-name]', 'text');
+    await fillIn('[data-email]', 'a@b.com');
+
+    await click('[data-test-submit]');
+
+    assert.verifySteps(['onSubmit']);
   });
 
   test('it sets the yielded component values based on `@data`', async function (assert) {
