@@ -80,6 +80,7 @@ type SelectedOption = {
 // - need final decisions from Mary on how filtering behaves with the single-select
 // - need final visual design
 // - tests
+// - the popover's scrollbar track and thumb are at their defaults. Tailwind doesn't support scrollbar styling. do we need to add a stylesheet?
 // - test with a screenreader
 // - add loading feedback?
 // - support for loading feedback?
