@@ -424,14 +424,14 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
   @action
   onKeydown(event: KeyboardEvent) {
-    if (!this.isPopoverOpen) {
-      this.openPopover();
+    if (event.key === 'Escape') {
+      this.closePopover();
 
       return;
     }
 
-    if (event.key === 'Escape') {
-      this.closePopover();
+    if (!this.isPopoverOpen) {
+      this.openPopover();
 
       return;
     }
