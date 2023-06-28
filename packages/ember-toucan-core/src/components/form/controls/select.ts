@@ -153,7 +153,6 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
    **/
   @tracked selectedOptions: SelectedOption[] = [];
 
-  activeDescendantId = '';
   Chevron = Chevron;
   Option = Option;
   popoverId = `popover--${guidFor(this)}`;
