@@ -51,3 +51,26 @@ const data: MyFormData = {};
   <form.Input @label='Last name' @name='lastName' />
 </ToucanForm>
 ```
+
+## Submit and Reset Actions
+
+The component yields back `submit` and `reset` actions for more complex cases of submitting or resetting your form data.
+
+**NOTE:** Calling `submit` directly is **not** required for most cases. The implementation only requires a button tag with the `type="submit"` attribute set.
+
+```hbs
+<ToucanForm as |form|>
+  {{! This should be used for most cases }}
+  <button type='submit'>Submit</button>
+  <button {{on 'click' form.reset}} type='button'>Reset</button>
+</ToucanForm>
+```
+
+However, if you have a more complex case with submission, you can use `form.submit`.
+
+```hbs
+<ToucanForm as |form|>
+  <button {{on 'click' form.submit}} type='button'>Submit</button>
+  <button {{on 'click' form.reset}} type='button'>Reset</button>
+</ToucanForm>
+```
