@@ -1,5 +1,5 @@
 <li
-  class="bg-overlay-1 focus:outline-none focus:shadow-focus-outline m-0 flex items-center rounded-sm p-1 transition-shadow
+  class="bg-overlay-1 focus:outline-none focus:shadow-focus-outline m-0 flex items-center rounded-sm px-2 py-1 transition-shadow
     {{if @isDisabled 'text-disabled' 'text-titles-and-attributes'}}
     {{if
       @hasError
@@ -8,11 +8,8 @@
     }}"
   ...attributes
 >
-  <div class="flex-1 px-4 py-1">
-    <p
-      class="text-titles-and-attributes type-md-tight m-0 truncate p-0"
-      data-file-name
-    >{{@file.name}}</p>
+  <div class="mr-4 flex-1 py-1">
+    <p class="type-md-tight m-0 truncate p-0" data-file-name>{{@file.name}}</p>
     <span
       class="text-body-and-labels type-xs-tight mt-1 block"
       data-file-size
