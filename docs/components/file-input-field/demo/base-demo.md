@@ -1,13 +1,15 @@
 ```hbs template
-<Form::Fields::FileInput
-  @deleteLabel='Delete file'
-  @label='Label'
-  @files={{this.files}}
-  @hint='Hint text'
-  @trigger='Browse Files'
-  @onChange={{this.handleChange}}
-  @multiple={{true}}
-/>
+<div class='max-w-md'>
+  <Form::Fields::FileInput
+    @deleteLabel='Delete file'
+    @label='Label'
+    @files={{this.files}}
+    @hint='Hint text'
+    @trigger='Browse Files'
+    @onChange={{this.handleChange}}
+    @multiple={{true}}
+  />
+</div>
 ```
 
 ```js component
