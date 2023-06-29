@@ -6,6 +6,7 @@
   @hint='Hint text'
   @trigger='Browse Files'
   @onChange={{this.handleChange}}
+  @multiple={{true}}
 />
 ```
 
