@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
-import LockIcon from '../../../-private/components/lock-icon';
+import LockIcon from '../../../-private/icons/lock';
 import CheckboxFieldComponent from './checkbox';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';

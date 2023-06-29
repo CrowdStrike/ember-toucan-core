@@ -1,0 +1,79 @@
+<Velcro
+  @middleware={{this.velcroMiddleware}}
+  @placement="bottom-start"
+  as |velcro|
+>
+  <div class="relative flex items-center">
+    <button
+      aria-controls={{this.popoverId}}
+      aria-haspopup="listbox"
+      {{! TODO: Remove `reset-styles`. https://github.com/CrowdStrike/ember-oss-docs/issues/17 }}
+      class="reset-styles focus:outline-none bg-overlay-1 flex h-8 w-full items-center rounded-sm border-none py-1 pl-2 pr-6 text-left transition-shadow
+        {{this.styles}}"
+      disabled={{@isDisabled}}
+      type="button"
+      {{on
+        "blur"
+        (if
+          this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.closePopover
+        )
+      }}
+      {{on
+        "click"
+        (if
+          this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.openPopover
+        )
+      }}
+      {{on
+        "focus"
+        (if
+          this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.openPopover
+        )
+      }}
+      {{on
+        "keydown"
+        (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onKeydown)
+      }}
+      {{velcro.hook}}
+      ...attributes
+    >
+
+      {{#if @selectedLabel}}
+        {{@selectedLabel}}
+      {{else}}
+        {{@placeholder}}
+      {{/if}}
+    </button>
+
+    <this.Chevron
+      class="pointer-events-none absolute right-1 top-0 ml-auto h-full transform transition-transform duration-200
+        {{if this.isPopoverOpen 'rotate-180'}}"
+    />
+  </div>
+
+  {{#if this.isPopoverOpen}}
+    <ul
+      class="border-surface-inner bg-surface-2xl max-h-listbox my-0 list-none overflow-y-auto overscroll-contain rounded-sm border py-1 pl-0 shadow-xl
+        {{if @contentClass @contentClass}}"
+      id={{this.popoverId}}
+      role="listbox"
+      {{velcro.loop}}
+    >
+      {{#each @options as |option index|}}
+        {{yield
+          (hash
+            Option=(component
+              (ensure-safe-component this.Option)
+              isActive=(this.isEqual index this.activeIndex)
+              isDisabled=@isDisabled
+              isReadOnly=@isReadOnly
+              onClick=(fn this.onChange index)
+              onMouseover=(fn this.onOptionMouseover index)
+            )
+            option=option
+          )
+        }}
+      {{/each}}
+    </ul>
+  {{/if}}
+</Velcro>
