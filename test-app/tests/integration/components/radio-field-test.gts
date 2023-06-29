@@ -20,6 +20,7 @@ module('Integration | Component | Fields | Radio', function (hooks) {
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-hint]')
@@ -88,6 +89,8 @@ module('Integration | Component | Fields | Radio', function (hooks) {
     </template>);
 
     assert.dom('[data-radio]').isDisabled();
+
+    assert.dom('[data-label]').hasClass('text-disabled');
   });
 
   test('it sets readonly on the radio using `@isReadOnly`', async function (assert) {

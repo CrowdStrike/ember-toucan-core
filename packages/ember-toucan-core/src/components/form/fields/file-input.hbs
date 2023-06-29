@@ -3,7 +3,7 @@
   data-root-field={{if @rootTestSelector @rootTestSelector}}
 >
   <Form::Field as |field|>
-    <field.Label for={{field.id}}>
+    <field.Label for={{field.id}} @isDisabled={{@isDisabled}}>
       {{#if
         (this.assertBlockOrArgumentExists
           (hash
@@ -32,7 +32,7 @@
           (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
         )
       }}
-        <field.Hint data-hint>
+        <field.Hint data-hint @isDisabled={{@isDisabled}}>
           {{#if (has-block "hint")}}
             {{yield to="hint"}}
           {{else}}

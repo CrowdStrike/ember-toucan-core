@@ -1,3 +1,7 @@
-<label class="type-md-tight text-body-and-labels block" ...attributes>
+<label
+  class="type-md-tight block
+    {{if @isDisabled 'text-disabled' 'text-body-and-labels'}}"
+  ...attributes
+>
   {{yield}}
 </label>

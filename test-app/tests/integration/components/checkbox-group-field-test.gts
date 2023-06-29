@@ -18,6 +18,7 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-group-field]').hasNoAttribute('aria-invalid');
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').hasClass('text-body-and-labels');
 
     assert.dom('[data-lock-icon]').doesNotExist();
   });
@@ -180,6 +181,8 @@ module('Integration | Component | Fields | CheckboxGroup', function (hooks) {
     assert.dom('[data-checkbox-2]').isDisabled();
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('[data-label]').hasClass('text-disabled');
   });
 
   test('it sets an individual checkbox to disabled with `@isDisabled`', async function (assert) {

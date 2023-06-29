@@ -58,7 +58,7 @@
               (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
             )
           }}
-            <field.Hint data-hint>
+            <field.Hint data-hint @isDisabled={{@isDisabled}}>
               {{#if (has-block "hint")}}
                 {{yield to="hint"}}
               {{else}}

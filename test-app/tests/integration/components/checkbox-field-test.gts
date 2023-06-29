@@ -15,6 +15,7 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
+    assert.dom('[data-label]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-hint]')
@@ -122,6 +123,8 @@ module('Integration | Component | Fields | CheckboxField', function (hooks) {
     assert.dom('[data-checkbox]').isDisabled();
 
     assert.dom('[data-lock-icon]').exists();
+
+    assert.dom('[data-label]').hasClass('text-disabled');
   });
 
   test('it sets readonly on the checkbox using `@isReadOnly` and renders a lock icon', async function (assert) {

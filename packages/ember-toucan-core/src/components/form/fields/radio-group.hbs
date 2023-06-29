@@ -19,7 +19,8 @@
       )
     }}
       <legend
-        class="type-md-tight text-body-and-labels flex items-center gap-1.5"
+        class="type-md-tight flex items-center gap-1.5
+          {{if @isDisabled 'text-disabled' 'text-body-and-labels'}}"
         data-label
       >
         {{#if (has-block "label")}}
@@ -39,7 +40,7 @@
         (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
       )
     }}
-      <field.Hint id={{field.hintId}} data-hint>
+      <field.Hint id={{field.hintId}} data-hint @isDisabled={{@isDisabled}}>
         {{#if (has-block "hint")}}
           {{yield to="hint"}}
         {{else}}
