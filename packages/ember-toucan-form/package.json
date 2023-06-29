@@ -30,7 +30,7 @@
     "prepack": "rollup --config",
     "format:check": "prettier -c .",
     "format": "prettier -w .",
-    "_syncPnpm": "pnpm sync-pnpm"
+    "_syncPnpm": "pnpm sync-dependencies-meta-injected"
   },
   "peerDependencies": {
     "@crowdstrike/ember-toucan-core": "^0.2.0",
@@ -105,7 +105,6 @@
     "rollup": "^3.12.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-ts": "^3.0.2",
-    "sync-pnpm": "workspace:*",
     "tailwindcss": "^2.2.15",
     "typescript": "^5.0.0"
   },
