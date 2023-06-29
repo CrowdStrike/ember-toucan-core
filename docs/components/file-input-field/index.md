@@ -278,7 +278,7 @@ Target the trash icon button via `data-delete-file`.
     />
 </div>
 
-### FileInputField with isReadOnly
+## FileInputField with isReadOnly
 
 <div class='mb-4 w-64'>
   <Form::Fields::FileInput
