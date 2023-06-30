@@ -79,6 +79,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
         'Expected hint block not to be displayed as an error was not provided'
       );
 
+    assert.dom('[data-upload-icon]').exists();
     assert.dom('[data-lock-icon]').doesNotExist();
   });
 
@@ -194,6 +195,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom('[data-file-input-field]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
+    assert.dom('[data-upload-icon]').doesNotExist();
 
     assert.dom('label').hasClass('text-disabled');
   });
@@ -213,6 +215,7 @@ module('Integration | Component | Fields | FileInput', function (hooks) {
     assert.dom('[data-file-input-field]').hasAttribute('readonly');
 
     assert.dom('[data-lock-icon]').exists();
+    assert.dom('[data-upload-icon]').doesNotExist();
   });
 
   test('it spreads attributes to the underlying file-input-field', async function (assert) {

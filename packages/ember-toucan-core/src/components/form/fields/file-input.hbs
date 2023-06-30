@@ -1,5 +1,5 @@
 <div
-  class="inline-flex flex-col {{if @isDisabled 'text-disabled'}}"
+  class="inline-flex w-full flex-col {{if @isDisabled 'text-disabled'}}"
   data-root-field={{if @rootTestSelector @rootTestSelector}}
 >
   <Form::Field as |field|>
@@ -19,10 +19,6 @@
             {{yield to="label"}}
           {{else}}
             {{@label}}
-          {{/if}}
-
-          {{#if this.isReadOnlyOrDisabled}}
-            <this.LockIcon />
           {{/if}}
         </span>
       {{/if}}
@@ -61,22 +57,34 @@
           class="{{if @isReadOnly 'shadow-read-only-outline bg-surface-xl'}}"
           @variant="secondary"
           @onClick={{(fn this.handleChange field)}}
+          @isDisabled={{@isDisabled}}
         >
           <span data-trigger>{{@trigger}}</span>
-          <svg
-            aria-hidden="true"
-            class="ml-2"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-          ><g><path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M2 10v2.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V10h1v2.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V10h1Z"
-              /><path
-                d="M8 10.707a.5.5 0 0 1-.5-.5V2.414L4.854 5.061a.5.5 0 1 1-.708-.707L8 .5l3.854 3.854a.5.5 0 0 1-.708.707L8.5 2.414v7.793a.5.5 0 0 1-.5.5Z"
-              /></g></svg>
+
+          {{#if this.isReadOnlyOrDisabled}}
+            <this.LockIcon class="{{if @isReadOnly 'ml-2'}}" />
+          {{else}}
+            <svg
+              aria-hidden="true"
+              class="ml-2"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              data-upload-icon
+            >
+              <g>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M2 10v2.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V10h1v2.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V10h1Z"
+                />
+                <path
+                  d="M8 10.707a.5.5 0 0 1-.5-.5V2.414L4.854 5.061a.5.5 0 1 1-.708-.707L8 .5l3.854 3.854a.5.5 0 0 1-.708.707L8.5 2.414v7.793a.5.5 0 0 1-.5.5Z"
+                />
+              </g>
+            </svg>
+          {{/if}}
         </Button>
       </field.Control>
     </field.Label>
