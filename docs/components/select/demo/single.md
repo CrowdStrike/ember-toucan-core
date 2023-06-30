@@ -1,32 +1,22 @@
 ```hbs template
-<h3 class="mt-0">
-  Single select
-</h3>
-
-<form class="flex flex-col gap-4 w-96">
-  <Form::Controls::Select 
-    @onChange={{this.onChange}} 
-    @popoverClass="z-10"
-    placeholder="Colors"
-   as |select|
+<form class='flex flex-col gap-4 w-96'>
+  <Form::Controls::Select
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @contentClass='z-10'
+    @selectedLabel={{this.selected.label}}
+    placeholder='Colors'
+    as |select|
   >
-
-    {{#each this.colors as |color|}}
-      <select.Option @label={{color.label}} @value={{color.name}} name="color" />
-    {{/each}}
-  </Form::Controls::Select>
-
-  <Form::Controls::Select 
-    @initialSelectedValues={{array "green"}}
-    @isDisabled={{true}}
-    @popoverClass="z-10"
-    placeholder="Colors"
-   as |select|
-  >
-
-    {{#each this.colors as |color|}}
-      <select.Option @label={{color.label}} @value={{color.name}} name="color" />
-    {{/each}}
+    <select.Option
+      @isSelected={{if
+        (this.isEqual select.option.value this.selected.value)
+        true
+        false
+      }}
+    >
+      {{select.option.label}}
+    </select.Option>
   </Form::Controls::Select>
 </form>
 ```
@@ -34,42 +24,56 @@
 ```js component
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  colors = [
+  @tracked selected;
+
+  options = [
     {
-      label: "Blue",
-      name: "blue",
+      label: 'Blue',
+      name: 'blue',
+      value: 'blue',
     },
     {
-      label: "Green",
-      name: "green",
+      label: 'Green',
+      name: 'green',
+      value: 'green',
     },
     {
-      label: "Yellow",
-      name: "yellow",
+      label: 'Yellow',
+      name: 'yellow',
+      value: 'yellow',
     },
     {
-      label: "Orange",
-      name: "orange",
+      label: 'Orange',
+      name: 'orange',
+      value: 'orange',
     },
     {
-      label: "Red",
-      name: "red",
+      label: 'Red',
+      name: 'red',
+      value: 'red',
     },
     {
-      label: "Purple",
-      name: "purple",
+      label: 'Purple',
+      name: 'purple',
+      value: 'purple',
     },
     {
-      label: "Teal",
-      name: "teal",
+      label: 'Teal',
+      name: 'teal',
+      value: 'teal',
     },
   ];
 
+  isEqual(one: unknown, two: unknown) {
+    return Object.is(one, two);
+  }
+
   @action
-  onChange(values: string[]) {
-    console.log(values)
+  onChange(option) {
+    this.selected = option;
   }
 }
 ```
