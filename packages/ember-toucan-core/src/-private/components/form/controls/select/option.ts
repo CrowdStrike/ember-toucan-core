@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import Check from '../../../../../-private/icons/check';
@@ -9,12 +8,15 @@ import Check from '../../../../../-private/icons/check';
 
 interface ToucanFormSelectOptionControlComponentSignature {
   Args: {
-    activeOption: { label: string; value: string } | null;
-    label: string;
-    onClick: (value: string) => void;
-    onMouseover: (value: string) => void;
-    selectedOptions: { label: string; value: string }[];
-    value: string;
+    isActive?: boolean;
+    isDisabled?: boolean;
+    isReadOnly?: boolean;
+    isSelected?: boolean;
+    index: number;
+    onClick: () => void;
+    onMouseover: () => void;
+    popoverId: string;
+    value?: string;
   };
   Blocks: {
     default: [];
@@ -27,27 +29,15 @@ const className = 'toucan-form-select-option-control';
 export const selector = `.${className}`;
 
 export default class ToucanFormSelectOptionControlComponent extends Component<ToucanFormSelectOptionControlComponentSignature> {
-  @tracked isPopoverOpen = false;
-
   className = className;
   Check = Check;
 
-  get isActive() {
-    return this.args.value === this.args.activeOption?.value;
-  }
-
-  get isSelected() {
-    return this.args.selectedOptions.some(
-      (option) => option.value === this.args.value
-    );
-  }
-
   get styles() {
-    if (this.isActive) {
+    if (this.args.isActive) {
       return 'bg-overlay-1 text-body-and-labels';
     }
 
-    if (this.isSelected) {
+    if (this.args.isSelected) {
       return 'bg-selected';
     }
 
@@ -55,11 +45,11 @@ export default class ToucanFormSelectOptionControlComponent extends Component<To
   }
 
   @action
-  onClick(value: string, event: Event) {
+  onClick(event: Event) {
     // Both "click" and "mousedown" steal focus, which we want to remain on the input.
     event.preventDefault();
 
-    this.args.onClick(value);
+    this.args.onClick();
   }
 
   @action
