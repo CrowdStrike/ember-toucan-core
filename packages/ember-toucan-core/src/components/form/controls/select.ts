@@ -4,6 +4,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { next } from '@ember/runloop';
+import { isEqual as emberIsEqual } from '@ember/utils';
 
 import { offset, size } from '@floating-ui/dom';
 
@@ -57,6 +58,11 @@ export interface ToucanFormSelectControlComponentSignature {
      * Sets the placeholder value.
      */
     placeholder?: string;
+
+    /**
+     * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
+     */
+    selected?: string | Record<string, unknown> | undefined;
 
     /**
      * Sets what is shown in the input field.
@@ -181,7 +187,11 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       optionElement instanceof HTMLElement
     );
 
-    optionElement.scrollIntoView(alignToTop);
+    optionElement?.scrollIntoView(alignToTop);
+  }
+
+  checkSelection(selectedArgument: unknown, option: unknown) {
+    return emberIsEqual(selectedArgument, option);
   }
 
   @action
