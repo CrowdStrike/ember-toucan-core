@@ -7,6 +7,7 @@
     @options={{this.options}}
     @contentClass='z-10'
     @selectedLabel={{this.selected.label}}
+    @filterBy='label'
     placeholder='Colors'
     as |select|
   >
@@ -35,6 +36,26 @@
       {{select.option}}
     </select.Option>
   </Form::Controls::Select>
+
+  <Form::Controls::Select
+    @onChange={{this.onChange3}}
+    @options={{this.options}}
+    @contentClass='z-10'
+    @selectedLabel={{this.selected3.label}}
+    @filterBy={{this.onFilterBy}}
+    placeholder='Colors w/ Search'
+    as |select|
+  >
+    <select.Option
+      @isSelected={{if
+        (this.isEqual select.option.value this.selected3.value)
+        true
+        false
+      }}
+    >
+      {{select.option.label}}
+    </select.Option>
+  </Form::Controls::Select>
 </form>
 ```
 
@@ -46,6 +67,7 @@ import { tracked } from '@glimmer/tracking';
 export default class extends Component {
   @tracked selected;
   @tracked selected2;
+  @tracked selected3;
 
   options = [
     {
@@ -112,6 +134,23 @@ export default class extends Component {
   onChange2(option) {
     this.selected2 = option;
     console.log(option);
+  }
+
+  @action
+  onChange3(option) {
+    this.selected3 = option;
+    console.log(option);
+  }
+
+  @action
+  onFilterBy(input) {
+    if (input.length > 0) {
+      return this.options.filter((option) =>
+        option.label.toLowerCase().startsWith(input.toLowerCase())
+      );
+    } else {
+      return this.options;
+    }
   }
 }
 ```
