@@ -1,5 +1,19 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.2.1
+
+### Patch Changes
+
+- [#198](https://github.com/CrowdStrike/ember-toucan-core/pull/198) [`42da468`](https://github.com/CrowdStrike/ember-toucan-core/commit/42da468ce75a40bd5b1cde07fbf5ffe774637ed5) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updated `<Form::Fields::FileInput` styling to match designs. This included updates to the disabled state as well as the list items.
+
+- [#189](https://github.com/CrowdStrike/ember-toucan-core/pull/189) [`50547ad`](https://github.com/CrowdStrike/ember-toucan-core/commit/50547ad28f6c3ea05abe7e1e86cd31891e617e36) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Add a lock icon to readonly and disabled states for all form components.
+
+- [#193](https://github.com/CrowdStrike/ember-toucan-core/pull/193) [`8d05e67`](https://github.com/CrowdStrike/ember-toucan-core/commit/8d05e677b8dd58aa4f372215bde406a15e9fa596) Thanks [@ynotdraw](https://github.com/ynotdraw)! - (internal) Updated repo to use [pnpm-sync-dependencies-meta-injected](https://github.com/NullVoxPopuli/pnpm-sync-dependencies-meta-injected) to make local development easier. To develop in the repo, run `pnpm start`.
+
+- [#194](https://github.com/CrowdStrike/ember-toucan-core/pull/194) [`cf944f6`](https://github.com/CrowdStrike/ember-toucan-core/commit/cf944f6f31a9b95b0fd2fb89942a06866373448a) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updates disabled styling for all form components to set the `text-disabled` class on the label and hint elements.
+
+- [#190](https://github.com/CrowdStrike/ember-toucan-core/pull/190) [`f1b73cd`](https://github.com/CrowdStrike/ember-toucan-core/commit/f1b73cd89c3f34319026ac7ed98d2304942c7a5d) Thanks [@ynotdraw](https://github.com/ynotdraw)! - (internal) Updated `@ember/test-helpers` peer dependency range to `^2.8.1 || ^3.0.0`.
+
 ## 0.2.0
 
 ### Minor Changes

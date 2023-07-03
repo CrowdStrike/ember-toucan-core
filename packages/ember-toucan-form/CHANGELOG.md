@@ -1,5 +1,41 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.2.1
+
+### Patch Changes
+
+- [#197](https://github.com/CrowdStrike/ember-toucan-core/pull/197) [`c1130c6`](https://github.com/CrowdStrike/ember-toucan-core/commit/c1130c638b97690836171b03338af40dd11974da) Thanks [@ynotdraw](https://github.com/ynotdraw)! - The `ToucanForm` component now yields back `submit` and `reset` actions as the functionality was added to `ember-headless-form` [in this PR](https://github.com/CrowdStrike/ember-headless-form/pull/136).
+
+  **NOTE:** Calling `submit` directly is **not** required for most cases. The implementation only requires a button tag with the `type="submit"` attribute set.
+
+  ```hbs
+  <ToucanForm as |form|>
+    {{! This should be used for most cases }}
+    <button type='submit'>Submit</button>
+    <button {{on 'click' form.reset}} type='button'>Reset</button>
+  </ToucanForm>
+  ```
+
+  However, if you have a more complex case with submission, you can use `form.submit`.
+
+  ```hbs
+  <ToucanForm as |form|>
+    <button {{on 'click' form.submit}} type='button'>Submit</button>
+    <button {{on 'click' form.reset}} type='button'>Reset</button>
+  </ToucanForm>
+  ```
+
+- [#189](https://github.com/CrowdStrike/ember-toucan-core/pull/189) [`50547ad`](https://github.com/CrowdStrike/ember-toucan-core/commit/50547ad28f6c3ea05abe7e1e86cd31891e617e36) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Add a lock icon to readonly and disabled states for all form components.
+
+- [#193](https://github.com/CrowdStrike/ember-toucan-core/pull/193) [`8d05e67`](https://github.com/CrowdStrike/ember-toucan-core/commit/8d05e677b8dd58aa4f372215bde406a15e9fa596) Thanks [@ynotdraw](https://github.com/ynotdraw)! - (internal) Updated repo to use [pnpm-sync-dependencies-meta-injected](https://github.com/NullVoxPopuli/pnpm-sync-dependencies-meta-injected) to make local development easier. To develop in the repo, run `pnpm start`.
+
+- [#194](https://github.com/CrowdStrike/ember-toucan-core/pull/194) [`cf944f6`](https://github.com/CrowdStrike/ember-toucan-core/commit/cf944f6f31a9b95b0fd2fb89942a06866373448a) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updates disabled styling for all form components to set the `text-disabled` class on the label and hint elements.
+
+- [#190](https://github.com/CrowdStrike/ember-toucan-core/pull/190) [`f1b73cd`](https://github.com/CrowdStrike/ember-toucan-core/commit/f1b73cd89c3f34319026ac7ed98d2304942c7a5d) Thanks [@ynotdraw](https://github.com/ynotdraw)! - (internal) Updated `@ember/test-helpers` peer dependency range to `^2.8.1 || ^3.0.0`.
+
+- Updated dependencies [[`42da468`](https://github.com/CrowdStrike/ember-toucan-core/commit/42da468ce75a40bd5b1cde07fbf5ffe774637ed5), [`50547ad`](https://github.com/CrowdStrike/ember-toucan-core/commit/50547ad28f6c3ea05abe7e1e86cd31891e617e36), [`8d05e67`](https://github.com/CrowdStrike/ember-toucan-core/commit/8d05e677b8dd58aa4f372215bde406a15e9fa596), [`cf944f6`](https://github.com/CrowdStrike/ember-toucan-core/commit/cf944f6f31a9b95b0fd2fb89942a06866373448a), [`f1b73cd`](https://github.com/CrowdStrike/ember-toucan-core/commit/f1b73cd89c3f34319026ac7ed98d2304942c7a5d)]:
+  - @crowdstrike/ember-toucan-core@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
