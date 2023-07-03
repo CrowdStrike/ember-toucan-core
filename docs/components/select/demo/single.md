@@ -6,18 +6,13 @@
     @onChange={{this.onChange}}
     @options={{this.options}}
     @contentClass='z-10'
+    @selected={{this.selected}}
     @selectedLabel={{this.selected.label}}
     @filterBy='label'
     placeholder='Colors'
     as |select|
   >
-    <select.Option
-      @isSelected={{if
-        (this.isEqual select.option.value this.selected.value)
-        true
-        false
-      }}
-    >
+    <select.Option>
       {{select.option.label}}
     </select.Option>
   </Form::Controls::Select>
@@ -26,13 +21,12 @@
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @contentClass='z-10'
+    @selected={{this.selected2}}
     @selectedLabel={{this.selected2}}
     placeholder='Names'
     as |select|
   >
-    <select.Option
-      @isSelected={{if (this.isEqual select.option this.selected2) true false}}
-    >
+    <select.Option>
       {{select.option}}
     </select.Option>
   </Form::Controls::Select>
@@ -41,18 +35,13 @@
     @onChange={{this.onChange3}}
     @options={{this.options}}
     @contentClass='z-10'
+    @selected={{this.selected3}}
     @selectedLabel={{this.selected3.label}}
     @filterBy={{this.onFilterBy}}
     placeholder='Colors w/ Search'
     as |select|
   >
-    <select.Option
-      @isSelected={{if
-        (this.isEqual select.option.value this.selected3.value)
-        true
-        false
-      }}
-    >
+    <select.Option>
       {{select.option.label}}
     </select.Option>
   </Form::Controls::Select>
