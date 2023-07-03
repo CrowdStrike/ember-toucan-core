@@ -98,6 +98,7 @@ export interface ToucanFormSelectControlComponentSignature {
 export default class ToucanFormSelectControlComponent extends Component<ToucanFormSelectControlComponentSignature> {
   @tracked activeIndex: number | null = null;
   @tracked isPopoverOpen = false;
+  @tracked filteredOptions: unknown[] | undefined;
 
   Chevron = Chevron;
   Option = OptionComponent;
@@ -149,6 +150,10 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     return 'shadow-focusable-outline focus:shadow-focus-outline bg-overlay-1 text-titles-and-attributes';
   }
 
+  get options() {
+    return this.filteredOptions || this.args?.options;
+  }
+
   #scrollActiveOptionIntoView(alignToTop?: boolean) {
     assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
 
@@ -186,7 +191,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     );
 
     this.closePopover();
-    this.args.onChange?.(this.args.options[this.activeIndex]);
+    this.args.onChange?.(this.options ? this.options[this.activeIndex] : null);
   }
 
   @action
@@ -304,6 +309,30 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       this.#scrollActiveOptionIntoView();
 
       return;
+    }
+  }
+
+  @action
+  onInput(event: Event | InputEvent) {
+    assert(
+      'Expected HTMLInputElement',
+      event.target instanceof HTMLInputElement
+    );
+
+    const optionsArgument = this.args?.options ? [...this.args.options] : [];
+
+    // TODO: How should we handle default filtering?
+    // Do we want a set options interface? (e.g., { label: string })
+    // Would we rather use a `filterKey` or something similar? (e.g., `@filterKey="label"`)
+    // Something else?
+    this.filteredOptions = optionsArgument?.filter((option: any) =>
+      option.label
+        .toLowerCase()
+        .startsWith((event.target as HTMLInputElement).value?.toLowerCase())
+    );
+
+    if (this.filteredOptions) {
+      this.activeIndex = 0;
     }
   }
 

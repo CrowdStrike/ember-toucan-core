@@ -42,6 +42,10 @@
         "keydown"
         (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onKeydown)
       }}
+      {{on
+        "input"
+        (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onInput)
+      }}
       {{velcro.hook}}
       ...attributes
     />
@@ -60,7 +64,7 @@
       role="listbox"
       {{velcro.loop}}
     >
-      {{#each @options as |option index|}}
+      {{#each this.options as |option index|}}
         {{yield
           (hash
             Option=(component

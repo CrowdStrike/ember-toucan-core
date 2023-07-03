@@ -1,3 +1,5 @@
+<!-- This is the API we chose, other demos are now out of date and need cleaned up -->
+
 ```hbs template
 <form class='flex flex-col gap-4 w-96'>
   <Form::Controls::Select
@@ -18,6 +20,21 @@
       {{select.option.label}}
     </select.Option>
   </Form::Controls::Select>
+
+  <Form::Controls::Select
+    @onChange={{this.onChange2}}
+    @options={{this.options2}}
+    @contentClass='z-10'
+    @selectedLabel={{this.selected2}}
+    placeholder='Names'
+    as |select|
+  >
+    <select.Option
+      @isSelected={{if (this.isEqual select.option this.selected2) true false}}
+    >
+      {{select.option}}
+    </select.Option>
+  </Form::Controls::Select>
 </form>
 ```
 
@@ -28,6 +45,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
   @tracked selected;
+  @tracked selected2;
 
   options = [
     {
@@ -67,6 +85,19 @@ export default class extends Component {
     },
   ];
 
+  options2 = [
+    'Billy',
+    'Bob',
+    'Cameron',
+    'Clinton',
+    'Daniel',
+    'David',
+    'Mary',
+    'Nicole',
+    'Simon',
+    'Tony',
+  ];
+
   isEqual(one: unknown, two: unknown) {
     return Object.is(one, two);
   }
@@ -74,6 +105,13 @@ export default class extends Component {
   @action
   onChange(option) {
     this.selected = option;
+    console.log(option);
+  }
+
+  @action
+  onChange2(option) {
+    this.selected2 = option;
+    console.log(option);
   }
 }
 ```
