@@ -62,6 +62,20 @@ export interface ToucanFormSelectControlComponentSignature {
      * Sets what is shown in the input field.
      */
     selectedLabel?: string;
+
+    /**
+     * By default, the filter functionality works by comparing strings; however,
+     * consumers may want to adjust the lookup functionality on their own. This
+     * is especially true when dealing with an array of objects rather than an
+     * array of strings.
+     *
+     * Provide a string that will be used to do a lookup on `@options` using
+     * the string provide as an object-key lookup. This is commonly used when
+     * `@options` takes the shape of an array of objects.
+     *
+     * Provide a function that returns an array to write your own custom filtering logic.
+     */
+    filterBy?: string | ((input: string) => Promise<unknown[]>);
   };
   Blocks: {
     default: [
@@ -191,6 +205,8 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     );
 
     this.closePopover();
+
+    // The null case here _shouldn't_ be possible, only satisfying TypeScript.
     this.args.onChange?.(this.options ? this.options[this.activeIndex] : null);
   }
 
@@ -313,23 +329,38 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
   }
 
   @action
-  onInput(event: Event | InputEvent) {
+  async onInput(event: Event | InputEvent) {
     assert(
       'Expected HTMLInputElement',
       event.target instanceof HTMLInputElement
     );
 
-    const optionsArgument = this.args?.options ? [...this.args.options] : [];
+    const { options, filterBy } = this.args;
 
-    // TODO: How should we handle default filtering?
-    // Do we want a set options interface? (e.g., { label: string })
-    // Would we rather use a `filterKey` or something similar? (e.g., `@filterKey="label"`)
-    // Something else?
-    this.filteredOptions = optionsArgument?.filter((option: any) =>
-      option.label
-        .toLowerCase()
-        .startsWith((event.target as HTMLInputElement).value?.toLowerCase())
-    );
+    const optionsArgument = options ? [...options] : [];
+    const value = event.target.value;
+
+    let filteredOptions: unknown[] | undefined;
+
+    if (!filterBy) {
+      filteredOptions = (optionsArgument as string[])?.filter(
+        (option: string) => option.toLowerCase().startsWith(value.toLowerCase())
+      );
+    }
+
+    if (typeof filterBy === 'string') {
+      filteredOptions = optionsArgument?.filter((option) =>
+        ((option as Record<string, unknown>)[filterBy] as string)
+          ?.toLowerCase()
+          ?.startsWith(value.toLowerCase())
+      );
+    }
+
+    if (typeof filterBy === 'function') {
+      filteredOptions = await filterBy(value);
+    }
+
+    this.filteredOptions = filteredOptions;
 
     if (this.filteredOptions) {
       this.activeIndex = 0;
