@@ -76,24 +76,32 @@
       role="listbox"
       {{velcro.loop}}
     >
-      {{#each this.options as |option index|}}
-        {{yield
-          (hash
-            Option=(component
-              (ensure-safe-component this.Option)
-              isActive=(this.isEqual index this.activeIndex)
-              isDisabled=@isDisabled
-              isSelected=(this.isEqual @selected option)
-              isReadOnly=@isReadOnly
-              onClick=(fn this.onChange index)
-              onMouseover=(fn this.onOptionMouseover index)
-              popoverId=this.popoverId
-              index=index
+      {{#if this.options}}
+        {{#each this.options as |option index|}}
+          {{yield
+            (hash
+              Option=(component
+                (ensure-safe-component this.Option)
+                isActive=(this.isEqual index this.activeIndex)
+                isDisabled=@isDisabled
+                isSelected=(this.isEqual @selected option)
+                isReadOnly=@isReadOnly
+                onClick=(fn this.onChange index)
+                onMouseover=(fn this.onOptionMouseover index)
+                popoverId=this.popoverId
+                index=index
+              )
+              option=option
             )
-            option=option
-          )
-        }}
-      {{/each}}
+          }}
+        {{/each}}
+      {{else}}
+        <li
+          aria-live="assertive"
+          class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
+          role="status"
+        >{{@noResultsText}}</li>
+      {{/if}}
     </ul>
   {{/if}}
 </Velcro>
