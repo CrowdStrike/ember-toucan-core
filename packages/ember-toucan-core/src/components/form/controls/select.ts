@@ -113,6 +113,22 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
   Option = OptionComponent;
   popoverId = `popover--${guidFor(this)}`;
 
+  constructor(
+    owner: unknown,
+    args: ToucanFormSelectControlComponentSignature['Args']
+  ) {
+    super(owner, args);
+
+    // We need to set our input tag's value attribute
+    // if we have a selected option provided on render
+    let { selected, optionKey } = this.args;
+
+    this.inputValue =
+      typeof selected === 'object' && optionKey
+        ? (selected[optionKey] as string | undefined)
+        : (selected as string | undefined);
+  }
+
   velcroMiddleware: VelcroMiddleware[] = [
     offset({
       mainAxis: 8,
