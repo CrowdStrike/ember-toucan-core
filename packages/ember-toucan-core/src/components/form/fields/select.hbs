@@ -40,13 +40,15 @@
         id={{field.id}}
         aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
         aria-invalid={{if @error "true"}}
+        @contentClass={{@contentClass}}
+        @hasError={{this.hasError}}
         @isDisabled={{@isDisabled}}
-        @isMultiple={{@isMultiple}}
         @isReadOnly={{@isReadOnly}}
         @onChange={{@onChange}}
-        @hasError={{this.hasError}}
-        @initialSelectedValues={{@initialSelectedValues}}
-        @popoverClass={{@popoverClass}}
+        @onFilter={{@onFilter}}
+        @optionKey={{@optionKey}}
+        @options={{@options}}
+        @selected={{@selected}}
         ...attributes
         as |select|
       >
