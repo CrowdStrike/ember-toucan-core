@@ -39,6 +39,12 @@
         )
       }}
       {{on
+        "click"
+        (if
+          this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.selectInput
+        )
+      }}
+      {{on
         "focus"
         (if
           this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.openPopover
