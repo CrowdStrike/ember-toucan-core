@@ -57,19 +57,9 @@ export interface ToucanFormSelectControlComponentSignature {
     optionKey?: string;
 
     /**
-     * Sets the placeholder value.
-     */
-    placeholder?: string;
-
-    /**
      * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
      */
     selected?: string | Record<string, unknown> | undefined;
-
-    /**
-     * Sets what is shown in the input field.
-     */
-    selectedLabel?: string;
 
     onFilter?: (input: string) => Promise<unknown[]>;
   };
