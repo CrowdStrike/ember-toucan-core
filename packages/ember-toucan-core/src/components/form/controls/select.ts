@@ -273,14 +273,6 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       return;
     }
 
-    if (event.key === 'Backspace') {
-      if (!this.isPopoverOpen) {
-        this.openPopover();
-      }
-
-      return;
-    }
-
     if (!this.isPopoverOpen) {
       // Prevents keys like ArrowDown and ArrowUp from scrolling the page.
       event.preventDefault();
@@ -489,5 +481,22 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     ) {
       this.inputValue = selected[optionKey] as string;
     }
+  }
+
+  /**
+   * Highlights the entered value of the input when the combobox input is clicked.
+   */
+  @action
+  selectInput(event: Event) {
+    assert(
+      'Expected HTMLInputElement',
+      event.target instanceof HTMLInputElement
+    );
+
+    if (!this.args?.selected) {
+      return;
+    }
+
+    event.target.select();
   }
 }
