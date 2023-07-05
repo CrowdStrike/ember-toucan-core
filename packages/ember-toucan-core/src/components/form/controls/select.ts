@@ -258,6 +258,8 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     }
 
     this.args.onChange?.(this.options[this.activeIndex]);
+
+    this.filteredOptions = undefined;
   }
 
   @action
