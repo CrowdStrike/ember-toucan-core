@@ -208,7 +208,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       return;
     }
 
-    optionElement?.scrollIntoView(alignToTop);
+    optionElement.scrollIntoView(alignToTop);
   }
 
   @action
