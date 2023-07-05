@@ -13,11 +13,20 @@
         )
       )
     }}
-      <field.Label for={{field.id}} data-label>
+      {{!-- TODO: Need to pass @isDisabled={{@isDisabled}} after a rebase --}}
+      <field.Label
+        class="flex items-center gap-1.5"
+        for={{field.id}}
+        data-label
+      >
         {{#if (has-block "label")}}
           {{yield to="label"}}
         {{else}}
           {{@label}}
+        {{/if}}
+
+        {{#if this.isReadOnlyOrDisabled}}
+          <this.LockIcon />
         {{/if}}
       </field.Label>
     {{/if}}
@@ -27,6 +36,7 @@
         (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
       )
     }}
+      {{!-- TODO: Need to pass @isDisabled={{@isDisabled}} after a rebase --}}
       <field.Hint id={{field.hintId}} data-hint>
         {{#if (has-block "hint")}}
           {{yield to="hint"}}

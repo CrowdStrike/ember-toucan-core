@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
+import LockIcon from '../../../-private/icons/lock';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
@@ -88,6 +89,8 @@ export interface ToucanFormSelectFieldComponentSignature {
 }
 
 export default class ToucanFormInputFieldComponent extends Component<ToucanFormSelectFieldComponentSignature> {
+  LockIcon = LockIcon;
+
   assertBlockOrArgumentExists = ({
     blockExists,
     argName,
@@ -98,5 +101,9 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormS
 
   get hasError() {
     return Boolean(this.args?.error);
+  }
+
+  get isReadOnlyOrDisabled() {
+    return this.args?.isDisabled || this.args?.isReadOnly;
   }
 }
