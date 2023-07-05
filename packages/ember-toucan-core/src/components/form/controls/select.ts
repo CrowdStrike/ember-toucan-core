@@ -46,10 +46,7 @@ export interface ToucanFormSelectControlComponentSignature {
     onChange?: (option: unknown) => void;
 
     /**
-     * The function called when a user types into the combobox textbox.
-     *
-     * Typically used for making a request to the server and populating
-     * `@options` with the results.
+     * The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
      */
     onFilter?: (input: string) => Promise<unknown[]>;
 

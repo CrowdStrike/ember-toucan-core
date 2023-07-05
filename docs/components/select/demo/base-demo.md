@@ -1,13 +1,10 @@
-<!-- This is the API we chose, other demos are now out of date and need cleaned up -->
-
 ```hbs template
-<form class='flex flex-col gap-4 w-96'>
+<div class='flex flex-col gap-4 w-96'>
   <Form::Controls::Select
     @onChange={{this.onChange}}
     @options={{this.options}}
     @contentClass='z-10'
     @selected={{this.selected}}
-    @selectedLabel={{this.selected.label}}
     @optionKey='label'
     placeholder='Colors'
     as |select|
@@ -22,7 +19,6 @@
     @options={{this.options2}}
     @contentClass='z-10'
     @selected={{this.selected2}}
-    @selectedLabel={{this.selected2}}
     placeholder='Names'
     as |select|
   >
@@ -37,7 +33,6 @@
     @contentClass='z-10'
     @selected={{this.selected3}}
     @optionKey='label'
-    @selectedLabel={{this.selected3.label}}
     @onFilter={{this.onFilterBy}}
     placeholder='Colors w/ Filtering'
     as |select|
@@ -46,7 +41,7 @@
       {{select.option.label}}
     </select.Option>
   </Form::Controls::Select>
-</form>
+</div>
 ```
 
 ```js component
