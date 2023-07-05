@@ -1,4 +1,4 @@
-# Select field
+# Select Field
 
 Provides a Toucan-styled select with filtering that builds on top of the Field component.
 
