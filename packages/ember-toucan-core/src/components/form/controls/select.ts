@@ -54,6 +54,8 @@ export interface ToucanFormSelectControlComponentSignature {
      */
     options?: unknown[];
 
+    optionKey?: string;
+
     /**
      * Sets the placeholder value.
      */
@@ -69,19 +71,7 @@ export interface ToucanFormSelectControlComponentSignature {
      */
     selectedLabel?: string;
 
-    /**
-     * By default, the filter functionality works by comparing strings; however,
-     * consumers may want to adjust the lookup functionality on their own. This
-     * is especially true when dealing with an array of objects rather than an
-     * array of strings.
-     *
-     * Provide a string that will be used to do a lookup on `@options` using
-     * the string provide as an object-key lookup. This is commonly used when
-     * `@options` takes the shape of an array of objects.
-     *
-     * Provide a function that returns an array to write your own custom filtering logic.
-     */
-    filterBy?: string | ((input: string) => Promise<unknown[]>);
+    onFilter?: (input: string) => Promise<unknown[]>;
   };
   Blocks: {
     default: [
@@ -172,6 +162,18 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
   get options() {
     return this.filteredOptions || this.args?.options;
+  }
+
+  get selected(): string | undefined {
+    let { optionKey, selected } = this.args;
+
+    if (!selected) {
+      return undefined;
+    }
+
+    return (
+      typeof selected === 'object' && optionKey ? selected[optionKey] : selected
+    ) as string;
   }
 
   #scrollActiveOptionIntoView(alignToTop?: boolean) {
@@ -345,29 +347,29 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       event.target instanceof HTMLInputElement
     );
 
-    const { options, filterBy } = this.args;
+    const { options, optionKey, onFilter } = this.args;
 
     const optionsArgument = options ? [...options] : [];
     const value = event.target.value;
 
     let filteredOptions: unknown[] | undefined;
 
-    if (!filterBy) {
+    if (!onFilter && !optionKey) {
       filteredOptions = (optionsArgument as string[])?.filter(
         (option: string) => option.toLowerCase().startsWith(value.toLowerCase())
       );
     }
 
-    if (typeof filterBy === 'string') {
+    if (!onFilter && optionKey) {
       filteredOptions = optionsArgument?.filter((option) =>
-        ((option as Record<string, unknown>)[filterBy] as string)
+        ((option as Record<string, unknown>)[optionKey] as string)
           ?.toLowerCase()
           ?.startsWith(value.toLowerCase())
       );
     }
 
-    if (typeof filterBy === 'function') {
-      filteredOptions = await filterBy(value);
+    if (onFilter) {
+      filteredOptions = await onFilter(value);
     }
 
     this.filteredOptions = filteredOptions;
