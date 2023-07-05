@@ -192,10 +192,6 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     optionElement?.scrollIntoView(alignToTop);
   }
 
-  checkSelection(selectedArgument: unknown, option: unknown) {
-    return emberIsEqual(selectedArgument, option);
-  }
-
   @action
   closePopover() {
     this.isPopoverOpen = false;
@@ -224,7 +220,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
   @action
   isEqual(one: unknown, two: unknown) {
-    return Object.is(one, two);
+    return emberIsEqual(one, two);
   }
 
   @action

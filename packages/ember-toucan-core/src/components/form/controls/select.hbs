@@ -71,7 +71,7 @@
               (ensure-safe-component this.Option)
               isActive=(this.isEqual index this.activeIndex)
               isDisabled=@isDisabled
-              isSelected=(this.checkSelection @selected option)
+              isSelected=(this.isEqual @selected option)
               isReadOnly=@isReadOnly
               onClick=(fn this.onChange index)
               onMouseover=(fn this.onOptionMouseover index)
