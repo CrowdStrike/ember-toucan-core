@@ -352,7 +352,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     const optionsArgument = options ? [...options] : [];
     const value = event.target.value;
 
-    let filteredOptions: unknown[] | undefined;
+    let filteredOptions: unknown[] = [];
 
     if (!onFilter && !optionKey) {
       filteredOptions = (optionsArgument as string[])?.filter(
@@ -374,7 +374,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
     this.filteredOptions = filteredOptions;
 
-    if (this.filteredOptions) {
+    if (this.filteredOptions?.length > 0) {
       this.activeIndex = 0;
     }
   }
