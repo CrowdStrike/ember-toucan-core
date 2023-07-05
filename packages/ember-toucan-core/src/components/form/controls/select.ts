@@ -253,6 +253,18 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
   @action
   onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      return;
+    }
+
+    if (event.key === 'Backspace') {
+      if (!this.isPopoverOpen) {
+        this.openPopover();
+      }
+
+      return;
+    }
+
     if (!this.isPopoverOpen) {
       // Prevents keys like ArrowDown and ArrowUp from scrolling the page.
       event.preventDefault();

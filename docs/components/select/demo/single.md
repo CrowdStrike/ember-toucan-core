@@ -134,6 +134,8 @@ export default class extends Component {
 
   @action
   onFilterBy(input) {
+    console.log(`filtering with the value "${input}"`);
+
     if (input.length > 0) {
       return this.options.filter((option) =>
         option.label.toLowerCase().startsWith(input.toLowerCase())
