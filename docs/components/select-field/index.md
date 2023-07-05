@@ -286,7 +286,6 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @isReadOnly={{true}}
-    placeholder='Colors'
   />
 </div>
 
