@@ -6,6 +6,7 @@
     @contentClass='z-10'
     @selected={{this.selected}}
     @optionKey='label'
+    @noResultsText='No results'
     placeholder='Colors'
     as |select|
   >
@@ -19,6 +20,7 @@
     @options={{this.options2}}
     @contentClass='z-10'
     @selected={{this.selected2}}
+    @noResultsText='No results'
     placeholder='Names'
     as |select|
   >
@@ -34,6 +36,7 @@
     @selected={{this.selected3}}
     @optionKey='label'
     @onFilter={{this.onFilterBy}}
+    @noResultsText='No results'
     placeholder='Colors w/ Filtering'
     as |select|
   >

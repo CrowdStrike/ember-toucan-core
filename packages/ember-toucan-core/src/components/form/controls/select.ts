@@ -40,6 +40,11 @@ export interface ToucanFormSelectControlComponentSignature {
     isReadOnly?: boolean;
 
     /**
+     * A string to display when there are no results after the user's filter.
+     */
+    noResultsText?: string;
+
+    /**
      * Called when the user makes a selection.
      * It is called with the selected option (derived from `@options`) as its only argument.
      */

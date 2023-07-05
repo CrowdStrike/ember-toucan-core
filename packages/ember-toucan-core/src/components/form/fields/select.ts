@@ -42,6 +42,11 @@ export interface ToucanFormSelectFieldComponentSignature {
     label?: string;
 
     /**
+     * A string to display when there are no results after the user's filter.
+     */
+    noResultsText?: string;
+
+    /**
      * The function called when a new selection is made.
      */
     onChange?: ToucanFormSelectControlComponentSignature['Args']['onChange'];
