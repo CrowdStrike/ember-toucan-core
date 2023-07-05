@@ -3,14 +3,18 @@
   @label='Label'
   @hint='Type "blue" into the field'
   @error={{this.errorMessage}}
-  @onChange={{this.handleChange}}
-  @popoverClass="z-10"
-  placeholder="Colors"
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @contentClass='z-10'
+  @selected={{this.selected}}
+  @selectedLabel={{this.selected.label}}
+  @optionKey='label'
+  placeholder='Colors'
   as |select|
 >
-  {{#each this.colors as |color|}}
-    <select.Option @label={{color.label}} @value={{color.name}} name="color" />
-  {{/each}}
+  <select.Option>
+    {{select.option.label}}
+  </select.Option>
 </Form::Fields::Select>
 ```
 
@@ -20,40 +24,51 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  colors = [
+  @tracked selected;
+  @tracked errorMessage;
+
+  options = [
     {
-      label: "Blue",
-      name: "blue",
+      label: 'Blue',
+      name: 'blue',
     },
     {
-      label: "Green",
-      name: "green",
+      label: 'Green',
+      name: 'green',
     },
     {
-      label: "Yellow",
-      name: "yellow",
+      label: 'Yellow',
+      name: 'yellow',
     },
     {
-      label: "Orange",
-      name: "orange",
+      label: 'Orange',
+      name: 'orange',
     },
     {
-      label: "Red",
-      name: "red",
+      label: 'Red',
+      name: 'red',
     },
     {
-      label: "Purple",
-      name: "purple",
+      label: 'Purple',
+      name: 'purple',
     },
     {
-      label: "Teal",
-      name: "teal",
+      label: 'Teal',
+      name: 'teal',
     },
   ];
 
   @action
-  onChange(values: string[]) {
-    console.log(values)
+  onChange(option) {
+    this.selected = option;
+    console.log(option);
+
+    if (option.label !== 'Blue') {
+      this.errorMessage = 'Please select "Blue"';
+      return;
+    }
+
+    this.errorMessage = null;
   }
 }
 ```
