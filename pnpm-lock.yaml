@@ -36,7 +36,7 @@ importers:
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@ember/test-waiters':
         specifier: ^3.0.2
         version: 3.0.2
@@ -225,8 +225,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(webpack@5.75.0)
       ember-cli:
-        specifier: ~5.0.0
-        version: 5.0.0
+        specifier: ~5.1.0
+        version: 5.1.0
       ember-cli-app-version:
         specifier: ^6.0.0
         version: 6.0.0(ember-source@5.1.0)
@@ -235,7 +235,7 @@ importers:
         version: 7.26.11
       ember-cli-dependency-checker:
         specifier: ^3.3.1
-        version: 3.3.1(ember-cli@5.0.0)
+        version: 3.3.1(ember-cli@5.1.0)
       ember-cli-deprecation-workflow:
         specifier: ^2.1.0
         version: 2.1.0
@@ -731,7 +731,7 @@ importers:
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
         specifier: ^2.0.1
         version: 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
@@ -862,8 +862,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4
       ember-cli:
-        specifier: ~5.0.0
-        version: 5.0.0
+        specifier: ~5.1.0
+        version: 5.1.0
       ember-cli-app-version:
         specifier: ^6.0.0
         version: 6.0.0(ember-source@5.1.0)
@@ -872,7 +872,7 @@ importers:
         version: 7.26.11
       ember-cli-dependency-checker:
         specifier: ^3.3.1
-        version: 3.3.1(ember-cli@5.0.0)
+        version: 3.3.1(ember-cli@5.1.0)
       ember-cli-htmlbars:
         specifier: ^6.1.1
         version: 6.2.0
@@ -2985,7 +2985,6 @@ packages:
       '@babel/plugin-syntax-typescript': 7.20.0(@babel/core@7.21.4)
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/plugin-transform-typescript@7.8.7(@babel/core@7.20.12):
     resolution: {integrity: sha512-7O0UsPQVNKqpHeHLpfvOG4uXmlw+MOxYvUv6Otc9uH5SYMIxvF6eBdjkWvC3f9G+VXe0RsNExyAQBeTRug/wqQ==}
@@ -3666,7 +3665,7 @@ packages:
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
       ember-browser-services: 4.0.4
-      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0)
+      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)
       tailwindcss: 2.2.19(autoprefixer@10.4.13)(postcss@8.4.21)
     transitivePeerDependencies:
       - autoprefixer
@@ -4185,7 +4184,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@glimmer/destroyable@0.84.2:
     resolution: {integrity: sha512-74L4+jlGUhzhUe87lTxjFdYEEfcDWcza+jqLXoyIb/p4cS0hWsTGlyF+OcuUbHO4yqJd4bXchGOVocoajmSp6w==}
@@ -5500,7 +5498,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__application@4.0.5(@babel/core@7.20.12):
     resolution: {integrity: sha512-qnU1RFZ3oIfw7ncLSjYqe1p236SU5OMQQVPaXISpNcVr4IEAl6yZ6Txm8pxI7DKo7isHV8sHssPBara9oqccVA==}
@@ -5527,7 +5524,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__array@4.0.3(@babel/core@7.20.12):
     resolution: {integrity: sha512-G6kbLaS3ke4QspHkgLlGY0t1v0G22hGavyphezZucj7LLk1N+r11w913CYkBg3cJsJD+TG2Wo4eVbgRcotvuvQ==}
@@ -5546,7 +5542,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__component@4.0.12(@babel/core@7.20.12):
     resolution: {integrity: sha512-qHjCGo1p9I4VJR3qfil7h0jJWTy52uNJw87MNwNEi1SYk+EaVJaqyyyoZHJmZGdn8hw3JjXvyFt/zeFZpbK/6A==}
@@ -5565,12 +5560,11 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__controller@4.0.4:
     resolution: {integrity: sha512-+f0knTIJJkRX5xijeSI/n4FvLfhMFFxIxODyFFFFB483EryYuts3QzpTwU5D66WQ5rAbZvpPRXRMPTTCNJoUhg==}
     dependencies:
-      '@types/ember__object': 4.0.5(@babel/core@7.20.12)
+      '@types/ember__object': 4.0.5
 
   /@types/ember__controller@4.0.4(@babel/core@7.20.12):
     resolution: {integrity: sha512-+f0knTIJJkRX5xijeSI/n4FvLfhMFFxIxODyFFFFB483EryYuts3QzpTwU5D66WQ5rAbZvpPRXRMPTTCNJoUhg==}
@@ -5587,7 +5581,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__debug@4.0.3(@babel/core@7.20.12):
     resolution: {integrity: sha512-LvSLFgNlzpbsdb479ohS2szCFwkAsaqPnTjyPML7xFF3r3VGFMQjVNTXQpFYQCKTMAC1FYRX1N6hw/8lpXWHKA==}
@@ -5606,7 +5599,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__destroyable@4.0.1:
     resolution: {integrity: sha512-U497H5zW2bfdwmX1rktaSe+IsOrcqLn7jtrHI2dNnf9le38e1Wcnes8amA9PCv4lOhH+Mc3nkNIdQx38DwflXA==}
@@ -5629,7 +5621,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__error@4.0.2:
     resolution: {integrity: sha512-0KVIvGrpyYzO4dmBm04ovJ/Fd7DjiXABxkKX42O8U01OL6O+Q+m3euQuJbB5wkYVANnvBHpcHlxRUI2y9KmzYg==}
@@ -5657,7 +5648,7 @@ packages:
   /@types/ember__object@4.0.5:
     resolution: {integrity: sha512-gXrywWBwoW7J9y9yJqoZ0m1qtiyMdrEi29cJdF1xI2qOnMqaZeuSCMYaPQMsyq52/YnVIG2EnGzo6eUD57J4Nw==}
     dependencies:
-      '@types/ember': 4.0.3(@babel/core@7.20.12)
+      '@types/ember': 4.0.3(@babel/core@7.21.4)
       '@types/rsvp': 4.0.4
 
   /@types/ember__object@4.0.5(@babel/core@7.20.12):
@@ -5677,7 +5668,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__owner@4.0.3:
     resolution: {integrity: sha512-vwVKdLNYKXMOxJXwMnFQh7TkWfkp6berH6Kc/VK8is1bPgaBB7X/c50rjNmM2o7zI5LJSPm1khxcDidfyXnimg==}
@@ -5706,7 +5696,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__runloop@4.0.2(@babel/core@7.20.12):
     resolution: {integrity: sha512-E0/n/O/JnPQpMrabsDKtVOXX4tbCrOA116HjmD+eorgsPFLm8tAUwl3wQGroeJt8BSE7uHjsQdDA7JUkbsT3IQ==}
@@ -5723,7 +5712,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__service@4.0.2:
     resolution: {integrity: sha512-7SCTMEexxOdkpkgdyf1QLFQJhoAq6aqP6dPH9fcG8N5mTMvZGLMNIKGG9bldiq3NzHS9Pxogu3qgo5yMfc2+jA==}
@@ -5745,7 +5733,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__string@3.0.10:
     resolution: {integrity: sha512-dxbW06IqPdieA4SEyUfyCUnL8iqUnzdcLUtrfkf8g+DSP2K/RGiexfG6w2NOyOetq8gw8F/WUpNYfMmBcB6Smw==}
@@ -5774,7 +5761,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/ember__utils@4.0.2(@babel/core@7.20.12):
     resolution: {integrity: sha512-LWkLgf09/GqyrUuoKtAB6qP7n36yAzc2yOh1L5fVpZGCBv5KQiGWUQv5uBoo4c1mllD+IBOMxei3bR4cx6SwZA==}
@@ -5791,7 +5777,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /@types/eslint-scope@3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
@@ -6834,7 +6819,7 @@ packages:
       webpack:
         optional: true
     dependencies:
-      '@babel/core': 7.20.12
+      '@babel/core': 7.20.12(supports-color@8.1.1)
       find-cache-dir: 3.3.2
       loader-utils: 2.0.4
       make-dir: 3.1.0
@@ -6905,7 +6890,6 @@ packages:
     dependencies:
       '@babel/core': 7.21.4
       semver: 5.7.1
-    dev: true
 
   /babel-plugin-debug-macros@0.3.4(@babel/core@7.20.12):
     resolution: {integrity: sha512-wfel/vb3pXfwIDZUrkoDrn5FHmlWI96PCJ3UCDv2a86poJ3EQrnArNW5KfHSVJ9IOgxHbo748cQt7sDU+0KCEw==}
@@ -8605,7 +8589,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       dot-prop: 5.3.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       make-dir: 3.1.0
       unique-string: 2.0.0
       write-file-atomic: 3.0.3
@@ -9752,14 +9736,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli-dependency-checker@3.3.1(ember-cli@5.0.0):
+  /ember-cli-dependency-checker@3.3.1(ember-cli@5.1.0):
     resolution: {integrity: sha512-Tg6OeijjXNKWkDm6057Tr0N9j9Vlz/ITewXWpn1A/+Wbt3EowBx5ZKfvoupqz05EznKgL1B/ecG0t+JN7Qm6MA==}
     engines: {node: '>= 6'}
     peerDependencies:
       ember-cli: ^3.2.0 || ^4.0.0
     dependencies:
       chalk: 2.4.2
-      ember-cli: 5.0.0
+      ember-cli: 5.1.0
       find-yarn-workspace-root: 1.2.1
       is-git-url: 1.0.0
       resolve: 1.22.1
@@ -9959,7 +9943,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /ember-cli-typescript@3.1.4(@babel/core@7.20.12):
     resolution: {integrity: sha512-HJ73kL45OGRmIkPhBNFt31I1SGUvdZND+LCH21+qpq3pPlFpJG8GORyXpP+2ze8PbnITNLzwe5AwUrpyuRswdQ==}
@@ -10045,12 +10028,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli@5.0.0:
-    resolution: {integrity: sha512-poklpwf+GrDhkFRTYvYmpkSA5R0pNy4Vahxjvji5jUl82tot+J95ZY1QH1yx//QzQ7zb1XlcOnceieyd2j1Rbw==}
+  /ember-cli@5.1.0:
+    resolution: {integrity: sha512-TlnfO+V5lZqRQ7eGXt+P8q24Cu90GSXXAS/2NasaCtC1WY7eVzhfMsoNZiOw3Pe1CaB7i5fPDR8jAMsTwx8Tpg==}
     engines: {node: '>= 16'}
     hasBin: true
     dependencies:
       '@babel/core': 7.21.4
+      '@pnpm/find-workspace-dir': 6.0.2
       broccoli: 3.5.2
       broccoli-builder: 0.18.14
       broccoli-concat: 4.2.5
@@ -10220,7 +10204,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-    dev: true
 
   /ember-disable-prototype-extensions@1.1.3:
     resolution: {integrity: sha512-SB9NcZ27OtoUk+gfalsc3QU17+54OoqR668qHcuvHByk4KAhGxCKlkm9EBlKJcGr7yceOOAJqohTcCEBqfRw9g==}
@@ -10817,7 +10800,7 @@ packages:
     resolution: {integrity: sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==}
     engines: {node: '>=10.13.0'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       tapable: 2.2.1
 
   /enquirer@2.3.6:
@@ -10999,7 +10982,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.33.0
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.50.0)(eslint-import-resolver-typescript@3.5.3)(eslint@8.33.0)
+      eslint-plugin-import: 2.27.5(eslint-import-resolver-typescript@3.5.3)(eslint@8.33.0)
       get-tsconfig: 4.3.0
       globby: 13.1.4
       is-core-module: 2.12.1
@@ -12045,7 +12028,7 @@ packages:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.0
 
@@ -12053,7 +12036,7 @@ packages:
     resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
     engines: {node: '>=14.14'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.0
     dev: true
@@ -12077,7 +12060,7 @@ packages:
     resolution: {integrity: sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==}
     engines: {node: '>=6 <7 || >=8'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 4.0.0
       universalify: 0.1.2
 
@@ -12094,7 +12077,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       at-least-node: 1.0.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.0
 
@@ -15893,7 +15876,7 @@ packages:
   /proper-lockfile@4.1.2:
     resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       retry: 0.12.0
       signal-exit: 3.0.7
     dev: true
@@ -16062,7 +16045,7 @@ packages:
     resolution: {integrity: sha512-VIMnQi/Z4HT2Fxuwg5KrY174U1VdUIASQVWXXyqtNRtxSr9IYkn1rsI6Tb6HsrHCmB7gVpNwX6JxPTHcH6IoTA==}
     engines: {node: '>=6'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       js-yaml: 3.14.1
       pify: 4.0.1
       strip-bom: 3.0.0
@@ -18543,7 +18526,7 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
 
   /wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
@@ -18930,7 +18913,7 @@ packages:
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
-    version: 0.2.0
+    version: 0.2.1
     peerDependencies:
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
@@ -18943,11 +18926,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.5
       '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
-      '@ember/test-helpers': 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
+      '@ember/test-helpers': 3.1.0(ember-source@5.1.0)
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.13(postcss@8.4.21)
-      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0)
+      ember-source: 5.1.0(@babel/core@7.21.4)(@glimmer/component@1.1.2)
       fractal-page-object: 0.4.0
       postcss: 8.4.21
       tailwindcss: 2.2.19(autoprefixer@10.4.13)(postcss@8.4.21)
@@ -18959,7 +18942,7 @@ packages:
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
-    version: 0.2.0
+    version: 0.2.1
     peerDependencies:
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
@@ -18984,13 +18967,13 @@ packages:
       - supports-color
     dev: false
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
-    version: 0.2.0
+    version: 0.2.1
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.2.0
+      '@crowdstrike/ember-toucan-core': ^0.2.1
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
       '@glimmer/tracking': ^1.1.2
@@ -19014,13 +18997,13 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
-    version: 0.2.0
+    version: 0.2.1
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.2.0
+      '@crowdstrike/ember-toucan-core': ^0.2.1
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
       '@glimmer/tracking': ^1.1.2
