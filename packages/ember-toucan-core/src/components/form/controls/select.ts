@@ -204,10 +204,9 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     );
     const optionElement = optionsElements[this.activeIndex];
 
-    assert(
-      '`optionElement` an instance of `HTMLElement`',
-      optionElement instanceof HTMLElement
-    );
+    if (!optionElement) {
+      return;
+    }
 
     optionElement?.scrollIntoView(alignToTop);
   }
