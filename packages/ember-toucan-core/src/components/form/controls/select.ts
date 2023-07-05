@@ -442,7 +442,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
   openPopover() {
     this.isPopoverOpen = true;
 
-    if (this.activeIndex == null) {
+    if (this.activeIndex === null) {
       this.activeIndex = 0;
     } else {
       // Wait until the options have been rendered.
