@@ -8,7 +8,7 @@
     @contentClass='z-10'
     @selected={{this.selected}}
     @selectedLabel={{this.selected.label}}
-    @filterBy='label'
+    @optionKey='label'
     placeholder='Colors'
     as |select|
   >
@@ -36,9 +36,10 @@
     @options={{this.options}}
     @contentClass='z-10'
     @selected={{this.selected3}}
+    @optionKey='label'
     @selectedLabel={{this.selected3.label}}
-    @filterBy={{this.onFilterBy}}
-    placeholder='Colors w/ Search'
+    @onFilter={{this.onFilterBy}}
+    placeholder='Colors w/ Filtering'
     as |select|
   >
     <select.Option>
