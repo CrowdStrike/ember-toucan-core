@@ -39,12 +39,19 @@ export interface ToucanFormSelectControlComponentSignature {
      */
     isReadOnly?: boolean;
 
-    // PR: callback type doesn't fit here as well as elsewhere. different events here. they don't make as much sense to pass along to the consumer. ditch callback type altogether?
     /**
      * Called when the user makes a selection.
      * It is called with the selected option (derived from `@options`) as its only argument.
      */
     onChange?: (option: unknown) => void;
+
+    /**
+     * The function called when a user types into the combobox textbox.
+     *
+     * Typically used for making a request to the server and populating
+     * `@options` with the results.
+     */
+    onFilter?: (input: string) => Promise<unknown[]>;
 
     /**
      * `@options` forms the content of this component.
@@ -54,14 +61,18 @@ export interface ToucanFormSelectControlComponentSignature {
      */
     options?: unknown[];
 
+    /**
+     * When `@options` is an array of objects, `@selected` is also an object.
+     * The `@optionKey` is used to determine which key of the object should
+     * be used for both filtering and displayed the selected value in the
+     * textbox.
+     */
     optionKey?: string;
 
     /**
      * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
      */
     selected?: string | Record<string, unknown> | undefined;
-
-    onFilter?: (input: string) => Promise<unknown[]>;
   };
   Blocks: {
     default: [
