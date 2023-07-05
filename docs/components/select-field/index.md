@@ -17,9 +17,11 @@ Provide a string to the `@label` component argument or content to the `:label` n
   @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  placeholder='Colors'
+  as |select|
 >
-  <select.Option @label='Blue' @value='blue' />
+  <select.Option @value={{select.value}}>
+    {{select.option}}
+  </select.Option>
 </Form::Fields::Select>
 ```
 
@@ -34,6 +36,19 @@ Provide a string to the `@label` component argument or content to the `:label` n
   <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
 
   <select.Option @label="Blue" @value="blue" />
+</Form::Fields::Select>
+
+<Form::Fields::Select
+  @error={{this.errorMessage}}
+  @onChange={{this.onChange}}
+  as |select|
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+  <:default>
+    <select.Option @value={{select.value}}>
+      {{select.option}}
+    </select.Option>
+  </:default>
 </Form::Fields::Select>
 ```
 
@@ -50,12 +65,14 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 ```hbs
 <Form::Fields::Select
   @label='Label'
-  placeholder='Colors'
-  @hint='Type "input" into the field'
+  @hint='Here is a hint'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
+  as |select|
 >
-  <select.Option @label='Blue' @value='blue' />
+  <select.Option @value={{select.value}}>
+    {{select.option}}
+  </select.Option>
 </Form::Fields::Select>
 ```
 
@@ -66,11 +83,14 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
   @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  placeholder='Colors'
+  as |select|
 >
   <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
-
-  <select.Option @label='Blue' @value='blue' />
+  <:default>
+    <select.Option @value={{select.value}}>
+      {{select.option}}
+    </select.Option>
+  </:default>
 </Form::Fields::Select>
 ```
 
@@ -86,26 +106,27 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ```hbs
 <Form::Fields::Select
-  @label='Multiple errors'
+  @label='Label'
   @error={{(array 'Error 1' 'Error 2')}}
-  placeholder='Colors'
+  @onChange={{this.onChange}}
+  as |select|
 >
-  <select.Option @label='Blue' @value='blue' />
+  <select.Option @value={{select.value}}>
+    {{select.option}}
+  </select.Option>
 </Form::Fields::Select>
 ```
 
 ## `@onChange`
 
 Provide an `@onChange` callback to be notified when the user's selections have changed.
-`@onChange` will receive an array of values as its only argument.
+`@onChange` will receive the value as its only argument.
 
 ```hbs
-<Form::Fields::Select
-  @label='Label'
-  @onChange={{this.onChange}}
-  placeholder='Colors'
-/>
-  <select.Option @label="Blue" @value="blue" />
+<Form::Fields::Select @label='Label' @onChange={{this.onChange}} as |select|>
+  <select.Option @value={{select.value}}>
+    {{select.option}}
+  </select.Option>
 </Form::Fields::Select>
 ```
 
@@ -143,11 +164,7 @@ This test selector will be used as the value for the `data-root-field` attribute
 The Field can be targeted via:
 
 ```hbs
-<Form::Fields::Select
-  @label='Label'
-  placeholder='Colors'
-  @rootTestSelector='example'
-/>
+<Form::Fields::Select @label='Label' @rootTestSelector='example' />
 ```
 
 ```js
@@ -173,11 +190,7 @@ Target the error block via `data-error`.
 ### SelectField with `@label`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Select @label='Label' placeholder='Colors' as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+  <Form::Fields::Select @label='Label' placeholder='Colors' />
 </div>
 
 ### SelectField with `@label` and `@hint`
@@ -187,24 +200,19 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     placeholder='Colors'
-    as |select|
-  >
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+  />
 </div>
 
 ### SelectField with `:label` and `:hint` blocks
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Select @popoverClass="z-10" placeholder='Colors'>
+  <Form::Fields::Select placeholder='Colors'>
     <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
     <:default as |select|>
-      <select.Option @label="Blue" @value="blue" />
-      <select.Option @label="Green" @value="green" />
-      <select.Option @label="Yellow" @value="yellow" />
+      <select.Option>
+        {{select.option}}
+      </select.Option>
     </:default>
   </Form::Fields::Select>
 </div>
@@ -216,12 +224,7 @@ Target the error block via `data-error`.
     @label='Label'
     @error='With error text'
     placeholder='Colors'
-    as |select|
-  >
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+  />
 </div>
 
 ### SelectField with `@label`, `@hint`, and `@error`
@@ -232,27 +235,17 @@ Target the error block via `data-error`.
     @hint='With hint text'
     @error='With error text'
     placeholder='Colors'
-    as |select|
-  >
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+  />
 </div>
 
 ### SelectField with `@label` and `@isDisabled`
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' placeholder='Colors'
-    @initialSelectedValues={{array "blue"}}
+    @label='Label'
     @isDisabled={{true}}
     placeholder='Colors'
-  as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+  />
 </div>
 
 ### SelectField with `@label`, `@value`, and `@isDisabled`
@@ -261,26 +254,13 @@ Target the error block via `data-error`.
   <Form::Fields::Select
     @label='Label'
     @isDisabled={{true}}
+    @selected="blue"
+    @options={{(array 'blue' 'red')}}
     placeholder='Colors'
   as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
-</div>
-
-### SelectField with `@label`, `@value`, `@isDisabled`, and `@initialSelectedValues`
-
-<div class='mb-4 w-64'>
-  <Form::Fields::Select
-    @label='Label'
-    @initialSelectedValues={{array "blue"}}
-    @isDisabled={{true}}
-    placeholder='Colors'
-  as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
+    <select.Option>
+      {{select.option}}
+    </select.Option>
   </Form::Fields::Select>
 </div>
 
@@ -289,12 +269,13 @@ Target the error block via `data-error`.
 <div class='mb-4 w-64'>
   <Form::Fields::Select
     @label='Label'
-    placeholder='Colors'
+    @options={{(array 'blue' 'red')}}
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+    placeholder='Colors'
   as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
+    <select.Option>
+      {{select.option}}
+    </select.Option>
   </Form::Fields::Select>
 </div>
 
@@ -303,26 +284,24 @@ Target the error block via `data-error`.
 <div class='mb-4 w-64'>
   <Form::Fields::Select
     @label='Label'
-    placeholder='Colors'
+    @hint='With hint text'
     @isReadOnly={{true}}
-  as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
-  </Form::Fields::Select>
+    placeholder='Colors'
+  />
 </div>
 
-### SelectField with `@isReadOnly` and `@initialSelectedValues`
+### SelectField with `@isReadOnly` and `@selected`
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
     @label='Label'
-    placeholder='Colors'
     @isReadOnly={{true}}
-    @initialSelectedValues={{array "blue"}}
+    @selected="blue"
+    @options={{(array 'blue' 'red')}}
+    placeholder='Colors'
   as |select|>
-    <select.Option @label="Blue" @value="blue" />
-    <select.Option @label="Green" @value="green" />
-    <select.Option @label="Yellow" @value="yellow" />
+    <select.Option>
+      {{select.option}}
+    </select.Option>
   </Form::Fields::Select>
 </div>
