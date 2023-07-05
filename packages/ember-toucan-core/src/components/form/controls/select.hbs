@@ -19,12 +19,16 @@
       readonly={{@isReadOnly}}
       role="combobox"
       spellcheck="false"
-      value={{this.selected}}
+      value={{this.inputValue}}
       {{on
         "blur"
         (if
           this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.closePopover
         )
+      }}
+      {{on
+        "blur"
+        (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.resetValue)
       }}
       {{on
         "click"

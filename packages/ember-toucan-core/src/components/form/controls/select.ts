@@ -107,6 +107,7 @@ export interface ToucanFormSelectControlComponentSignature {
 
 export default class ToucanFormSelectControlComponent extends Component<ToucanFormSelectControlComponentSignature> {
   @tracked activeIndex: number | null = null;
+  @tracked inputValue: string | undefined;
   @tracked isPopoverOpen = false;
   @tracked filteredOptions: unknown[] | undefined;
 
@@ -212,10 +213,37 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       this.args.options !== undefined
     );
 
+    let { optionKey, onChange } = this.args;
+
     this.closePopover();
 
-    // The null case here _shouldn't_ be possible, only satisfying TypeScript.
-    this.args.onChange?.(this.options ? this.options[this.activeIndex] : null);
+    // This shouldn't be possible, but to satisfy TS
+    if (!this.options) {
+      onChange?.(null);
+
+      return;
+    }
+
+    // This shouldn't be possible, but to satisfy TS
+    if (this.activeIndex === null) {
+      onChange?.(null);
+
+      return;
+    }
+
+    let selectedOption = this.options[this.activeIndex];
+
+    if (typeof selectedOption === 'string') {
+      this.inputValue = selectedOption;
+    }
+
+    if (selectedOption && typeof selectedOption === 'object' && optionKey) {
+      let option = (selectedOption as Record<string, string>)[optionKey];
+
+      this.inputValue = option;
+    }
+
+    this.args.onChange?.(this.options[this.activeIndex]);
   }
 
   @action
@@ -343,10 +371,12 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       event.target instanceof HTMLInputElement
     );
 
-    const { options, optionKey, onFilter } = this.args;
-
-    const optionsArgument = options ? [...options] : [];
     const value = event.target.value;
+
+    this.inputValue = value;
+
+    const { options, optionKey, onFilter } = this.args;
+    const optionsArgument = options ? [...options] : [];
 
     let filteredOptions: unknown[] = [];
 
@@ -391,6 +421,45 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
       next(() => {
         this.#scrollActiveOptionIntoView(false);
       });
+    }
+  }
+
+  /**
+   * Action that resets the input on blur to the selected option, if one was
+   * chosen.
+   */
+  @action
+  resetValue(event: Event) {
+    assert(
+      'Expected HTMLInputElement',
+      event.target instanceof HTMLInputElement
+    );
+
+    let { selected, optionKey, onChange } = this.args;
+
+    if (!selected) {
+      return;
+    }
+
+    if (event.target.value === '') {
+      this.inputValue = undefined;
+      onChange?.(null);
+
+      return;
+    }
+
+    if (typeof selected === 'string' && event.target.value !== selected) {
+      this.inputValue = selected;
+
+      return;
+    }
+
+    if (
+      typeof selected === 'object' &&
+      optionKey &&
+      event.target.value !== selected[optionKey]
+    ) {
+      this.inputValue = selected[optionKey] as string;
     }
   }
 }
