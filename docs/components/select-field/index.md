@@ -14,12 +14,12 @@ Provide a string to the `@label` component argument or content to the `:label` n
 
 ```hbs
 <Form::Fields::Select
-  @label='Label' 
+  @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
   placeholder='Colors'
 >
-  <select.Option @label="Blue" @value="blue" />
+  <select.Option @label='Blue' @value='blue' />
 </Form::Fields::Select>
 ```
 
@@ -49,13 +49,13 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 ```hbs
 <Form::Fields::Select
-  @label='Label' 
+  @label='Label'
   placeholder='Colors'
   @hint='Type "input" into the field'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
 >
-  <select.Option @label="Blue" @value="blue" />
+  <select.Option @label='Blue' @value='blue' />
 </Form::Fields::Select>
 ```
 
@@ -63,14 +63,14 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 ```hbs
 <Form::Fields::Select
-  @label='Label' 
+  @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
   placeholder='Colors'
 >
   <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
 
-  <select.Option @label="Blue" @value="blue" />
+  <select.Option @label='Blue' @value='blue' />
 </Form::Fields::Select>
 ```
 
@@ -90,18 +90,18 @@ Provide a string or array of strings to `@error` to render the text into the Err
   @error={{(array 'Error 1' 'Error 2')}}
   placeholder='Colors'
 >
-  <select.Option @label="Blue" @value="blue" />
+  <select.Option @label='Blue' @value='blue' />
 </Form::Fields::Select>
 ```
 
 ## `@onChange`
 
-Provide an `@onChange` callback to be notified when the user's selections have changed. 
-`@onChange` will receive an array of values as its only argument. 
+Provide an `@onChange` callback to be notified when the user's selections have changed.
+`@onChange` will receive an array of values as its only argument.
 
 ```hbs
 <Form::Fields::Select
-  @label='Label' 
+  @label='Label'
   @onChange={{this.onChange}}
   placeholder='Colors'
 />
@@ -131,19 +131,23 @@ Set the `@isReadOnly` argument to put the input in the read only state.
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. 
+Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported.
 Modifiers can also be added directly to the input as shown in the demo.
 
 ## Test Selectors
 
 ### Root Element
 
-Provide a custom selector via `@rootTestSelector`. 
-This test selector will be used as the value for the `data-root-field` attribute. 
+Provide a custom selector via `@rootTestSelector`.
+This test selector will be used as the value for the `data-root-field` attribute.
 The Field can be targeted via:
 
 ```hbs
-<Form::Fields::Select @label='Label' placeholder='Colors' @rootTestSelector='example' />
+<Form::Fields::Select
+  @label='Label'
+  placeholder='Colors'
+  @rootTestSelector='example'
+/>
 ```
 
 ```js
@@ -195,7 +199,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select @popoverClass="z-10" placeholder='Colors'>
-    <:label>Label <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
+    <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
     <:default as |select|>
       <select.Option @label="Blue" @value="blue" />
@@ -209,7 +213,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     @error='With error text'
     placeholder='Colors'
     as |select|
@@ -224,7 +228,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     @hint='With hint text'
     @error='With error text'
     placeholder='Colors'
@@ -251,12 +255,11 @@ Target the error block via `data-error`.
   </Form::Fields::Select>
 </div>
 
-
 ### SelectField with `@label`, `@value`, and `@isDisabled`
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     @isDisabled={{true}}
     placeholder='Colors'
   as |select|>
@@ -270,7 +273,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     @initialSelectedValues={{array "blue"}}
     @isDisabled={{true}}
     placeholder='Colors'
@@ -285,7 +288,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     placeholder='Colors'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   as |select|>
@@ -299,7 +302,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     placeholder='Colors'
     @isReadOnly={{true}}
   as |select|>
@@ -313,7 +316,7 @@ Target the error block via `data-error`.
 
 <div class='mb-4 w-64'>
   <Form::Fields::Select
-    @label='Label' 
+    @label='Label'
     placeholder='Colors'
     @isReadOnly={{true}}
     @initialSelectedValues={{array "blue"}}
