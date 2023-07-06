@@ -30,8 +30,8 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/eslint-parser": "^7.19.1",
-    "@crowdstrike/ember-toucan-core": "workspace:*",
-    "@crowdstrike/ember-toucan-form": "workspace:*",
+    "@crowdstrike/ember-toucan-core": "^0.2.0",
+    "@crowdstrike/ember-toucan-form": "^0.2.0",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",
