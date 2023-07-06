@@ -53,7 +53,7 @@ export interface ToucanFormComboboxControlComponentSignature {
     /**
      * The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
      */
-    onFilter?: (input: string) => Promise<unknown[]>;
+    onFilter?: (input: string) => unknown[];
 
     /**
      * `@options` forms the content of this component.
@@ -135,6 +135,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     }),
   ];
 
+  /**
+   * This is required for accessibility so that we can announce to the screenreader the highlighted option as the user uses the arrow keys.
+   */
   get activeDescendant() {
     // For the case where nothing is selected on render
     if (this.activeIndex === null) {
@@ -144,6 +147,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     return `${this.popoverId}-${this.activeIndex}`;
   }
 
+  /**
+   * This state is used to determine if we should add event handlers to the input element or not.
+   */
   get isDisabledOrReadOnlyOrWithoutOptions() {
     return (
       this.args.isDisabled ||
@@ -152,6 +158,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     );
   }
 
+  /**
+   * We apply different styles to the input tag based on our current state.
+   */
   get styles() {
     if (this.args.isDisabled) {
       return 'shadow-focusable-outline bg-overlay-1 text-disabled pointer-events-none placeholder:text-disabled';
@@ -168,10 +177,16 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     return 'shadow-focusable-outline focus:shadow-focus-outline bg-overlay-1 text-titles-and-attributes';
   }
 
+  /**
+   * The options to render inside of the popover list.
+   */
   get options() {
     return this.filteredOptions || this.args?.options;
   }
 
+  /**
+   * The internal currently selected item.
+   */
   get selected(): string | undefined {
     let { optionKey, selected } = this.args;
 
@@ -184,6 +199,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     ) as string;
   }
 
+  /**
+   * Attempts to scroll the active or newly highlighted item into view for the user.
+   */
   #scrollActiveOptionIntoView(alignToTop?: boolean) {
     assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
 
@@ -207,9 +225,11 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
   @action
   noop() {
     // eslint-disable @typescript-eslint/no-empty-function
-    // PR: This rather than mess around with Glint and `ember-composable-functions`. Is there a better way?
   }
 
+  /**
+   * Action called when a new item is selected. Ultimately calls the provided `@onChange` with the newly selected item.
+   */
   @action
   onChange() {
     assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
@@ -259,6 +279,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     return emberIsEqual(one, two);
   }
 
+  /**
+   * Handle keyboard events to operate like a combobox as defined at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/.
+   */
   @action
   onKeydown(event: KeyboardEvent) {
     if (event.key === 'Tab') {
@@ -371,6 +394,9 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     }
   }
 
+  /**
+   * Handles filtering when a user types into the input element.
+   */
   @action
   async onInput(event: Event | InputEvent) {
     assert(
@@ -432,8 +458,20 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
   }
 
   /**
-   * Action that resets the input on blur to the selected option, if one was
-   * chosen.
+   * Action that resets the input on blur to the selected option, if one was chosen (otherwise null).
+   *
+   * The use cases for this is two-fold:
+   *
+   * 1) The combobox value is optional. The user selected an option
+   *    but then realized they no longer want that selected option.
+   *    Since it is not required, we allow them to clear the input
+   *    and call the provided `@onChange` with `null` to signal
+   *    that the selection was cleared
+   * 2) The combobox's `@selected` item is valid, but then a user
+   *    enters garbage into the input and then tabs out of the
+   *    element.  In that case, we don't want to store their
+   *    garbage entry.  Instead, we reset it back to the selected
+   *    option.
    */
   @action
   resetValue(event: Event) {

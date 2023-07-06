@@ -5,6 +5,7 @@
     {{this.styles}}
     {{this.className}}
     "
+  data-active={{if @isActive "true" "false"}}
   id="{{@popoverId}}-{{@index}}"
   role="option"
   {{on "click" this.onClick}}
@@ -23,6 +24,7 @@
       they need, which means the INPUT is superfluous and is thus noise?
   }}
   {{! template-lint-disable no-nested-interactive }}
+  {{! template-lint-disable require-input-label }}
   <input
     class="hidden"
     checked={{@isSelected}}
