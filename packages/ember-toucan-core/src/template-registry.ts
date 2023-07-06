@@ -13,6 +13,7 @@ import type FormFileInputFieldComponent from './components/form/fields/file-inpu
 import type InputFieldComponent from './components/form/fields/input';
 import type RadioFieldComponent from './components/form/fields/radio';
 import type RadioGroupFieldComponent from './components/form/fields/radio-group';
+import type SelectFieldComponent from './components/form/fields/select';
 import type TextareaFieldComponent from './components/form/fields/textarea';
 import type FormFileInputDeleteButtonComponent from './components/form/file-input/delete-button';
 import type FormFileInputListComponent from './components/form/file-input/list';
@@ -34,6 +35,7 @@ export default interface Registry {
   'Form::Fields::FileInput': typeof FormFileInputFieldComponent;
   'Form::Fields::Radio': typeof RadioFieldComponent;
   'Form::Fields::RadioGroup': typeof RadioGroupFieldComponent;
+  'Form::Fields::Select': typeof SelectFieldComponent;
   'Form::Fields::Textarea': typeof TextareaFieldComponent;
   'Form::Controls::CharacterCount': typeof FormControlsCharacterCount;
 }
