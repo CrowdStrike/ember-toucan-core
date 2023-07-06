@@ -96,18 +96,6 @@ export interface ToucanFormSelectControlComponentSignature {
   Element: HTMLInputElement;
 }
 
-// TODO
-//
-// Off the top of my head:
-//
-// - tests
-// - the popover's scrollbar track and thumb are at their defaults. Tailwind doesn't support scrollbar styling. do we need to add a stylesheet?
-// - test with a screenreader
-// - add loading feedback? or wait until v2?
-// - inline TODOs throughout this component, its subcomponents, and its documentation
-// - bugs and minor visual tweaks?
-// - SelectField
-
 export default class ToucanFormSelectControlComponent extends Component<ToucanFormSelectControlComponentSignature> {
   @tracked activeIndex: number | null = null;
   @tracked inputValue: string | undefined;
