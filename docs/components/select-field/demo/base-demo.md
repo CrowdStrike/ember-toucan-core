@@ -1,14 +1,15 @@
 ```hbs template
 <Form::Fields::Select
-  @label='Label'
-  @hint='Type "blue" into the field'
-  @error={{this.errorMessage}}
-  @onChange={{this.onChange}}
-  @options={{this.options}}
   @contentClass='z-10'
+  @error={{this.errorMessage}}
+  @hint='Type "blue" into the field'
+  @label='Label'
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
+  @optionKey='label'
+  @options={{this.options}}
   @selected={{this.selected}}
   @selectedLabel={{this.selected.label}}
-  @optionKey='label'
   placeholder='Colors'
   as |select|
 >
