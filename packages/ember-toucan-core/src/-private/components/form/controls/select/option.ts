@@ -3,9 +3,6 @@ import { action } from '@ember/object';
 
 import Check from '../../../../../-private/icons/check';
 
-// TODO: Should the directory structure of `-private` mirror the directory structure of the related component?
-// Or should we simply put this subcomponent on the top level of `-private`?
-
 interface ToucanFormSelectOptionControlComponentSignature {
   Args: {
     isActive?: boolean;
