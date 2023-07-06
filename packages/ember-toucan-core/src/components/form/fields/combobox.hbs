@@ -48,7 +48,7 @@
     <field.Control class="mt-1.5 flex">
       <Form::Controls::Combobox
         id={{field.id}}
-        aria-describedby="{{if @hint field.hintId}} {{if @error field.errorId}}"
+        aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
         aria-invalid={{if @error "true"}}
         @contentClass={{@contentClass}}
         @hasError={{this.hasError}}
