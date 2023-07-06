@@ -5,9 +5,9 @@ import LockIcon from '../../../-private/icons/lock';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
-import type { ToucanFormSelectControlComponentSignature } from '../controls/select';
+import type { ToucanFormComboboxControlComponentSignature } from '../controls/combobox';
 
-export interface ToucanFormSelectFieldComponentSignature {
+export interface ToucanFormComboboxFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
@@ -49,7 +49,7 @@ export interface ToucanFormSelectFieldComponentSignature {
     /**
      * The function called when a new selection is made.
      */
-    onChange?: ToucanFormSelectControlComponentSignature['Args']['onChange'];
+    onChange?: ToucanFormComboboxControlComponentSignature['Args']['onChange'];
 
     /**
      * The function called when a user types into the combobox textbox.
@@ -57,7 +57,7 @@ export interface ToucanFormSelectFieldComponentSignature {
      * Typically used for making a request to the server and populating
      * `@options` with the results.
      */
-    onFilter?: ToucanFormSelectControlComponentSignature['Args']['onFilter'];
+    onFilter?: ToucanFormComboboxControlComponentSignature['Args']['onFilter'];
 
     /**
      * When `@options` is an array of objects, `@selected` is also an object.
@@ -65,7 +65,7 @@ export interface ToucanFormSelectFieldComponentSignature {
      * be used for both filtering and displayed the selected value in the
      * textbox.
      */
-    optionKey?: ToucanFormSelectControlComponentSignature['Args']['optionKey'];
+    optionKey?: ToucanFormComboboxControlComponentSignature['Args']['optionKey'];
 
     /**
      * `@options` forms the content of this component.
@@ -73,7 +73,7 @@ export interface ToucanFormSelectFieldComponentSignature {
      * To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque.
      * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
      */
-    options?: ToucanFormSelectControlComponentSignature['Args']['options'];
+    options?: ToucanFormComboboxControlComponentSignature['Args']['options'];
 
     /**
      * A test selector for targeting the root element of the field.
@@ -84,16 +84,16 @@ export interface ToucanFormSelectFieldComponentSignature {
     /**
      * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object and use `@optionKey`.
      */
-    selected?: ToucanFormSelectControlComponentSignature['Args']['selected'];
+    selected?: ToucanFormComboboxControlComponentSignature['Args']['selected'];
   };
   Blocks: {
-    default: ToucanFormSelectControlComponentSignature['Blocks']['default'];
+    default: ToucanFormComboboxControlComponentSignature['Blocks']['default'];
     label: [];
     hint: [];
   };
 }
 
-export default class ToucanFormInputFieldComponent extends Component<ToucanFormSelectFieldComponentSignature> {
+export default class ToucanFormComboboxFieldComponent extends Component<ToucanFormComboboxFieldComponentSignature> {
   LockIcon = LockIcon;
 
   assertBlockOrArgumentExists = ({

@@ -1,7 +1,7 @@
 {{!
   Regarding Conditionals
 
-  This looks really messy, but Form::Fields::Select exposes named blocks; HOWEVER,
+  This looks really messy, but Form::Fields::Combobox exposes named blocks; HOWEVER,
   we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
 
   We *can* conditionally render components though, based on the blocks and argument combinations
@@ -18,7 +18,7 @@
 }}
 <@form.Field @name={{@name}} as |field|>
   {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
-    <Form::Fields::Select
+    <Form::Fields::Combobox
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -40,10 +40,10 @@
       <:default as |select|>
         {{yield (hash Option=select.Option option=select.option)}}
       </:default>
-    </Form::Fields::Select>
+    </Form::Fields::Combobox>
   {{else if (this.hasHintAndLabelBlocks (has-block 'label') (has-block 'hint'))
   }}
-    <Form::Fields::Select
+    <Form::Fields::Combobox
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -66,9 +66,9 @@
       <:default as |select|>
         {{yield (hash Option=select.Option option=select.option)}}
       </:default>
-    </Form::Fields::Select>
+    </Form::Fields::Combobox>
   {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
-    <Form::Fields::Select
+    <Form::Fields::Combobox
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -90,10 +90,10 @@
       <:default as |select|>
         {{yield (hash Option=select.Option option=select.option)}}
       </:default>
-    </Form::Fields::Select>
+    </Form::Fields::Combobox>
   {{else}}
     {{! Argument-only case }}
-    <Form::Fields::Select
+    <Form::Fields::Combobox
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -113,6 +113,6 @@
       as |select|
     >
       {{yield (hash Option=select.Option option=select.option)}}
-    </Form::Fields::Select>
+    </Form::Fields::Combobox>
   {{/if}}
 </@form.Field>

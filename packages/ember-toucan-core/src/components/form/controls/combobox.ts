@@ -10,13 +10,13 @@ import { offset, size } from '@floating-ui/dom';
 
 import OptionComponent, {
   selector as optionComponentSelector,
-} from '../../../-private/components/form/controls/select/option';
+} from '../../../-private/components/form/controls/combobox/option';
 import Chevron from '../../../-private/icons/chevron';
 
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
 import type { WithBoundArgs } from '@glint/template';
 
-export interface ToucanFormSelectControlComponentSignature {
+export interface ToucanFormComboboxControlComponentSignature {
   Args: {
     /**
      * A CSS class to add to this component's content container.
@@ -96,7 +96,7 @@ export interface ToucanFormSelectControlComponentSignature {
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormSelectControlComponent extends Component<ToucanFormSelectControlComponentSignature> {
+export default class ToucanFormComboboxControlComponent extends Component<ToucanFormComboboxControlComponentSignature> {
   @tracked activeIndex: number | null = null;
   @tracked inputValue: string | undefined;
   @tracked isPopoverOpen = false;
@@ -108,7 +108,7 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
 
   constructor(
     owner: unknown,
-    args: ToucanFormSelectControlComponentSignature['Args']
+    args: ToucanFormComboboxControlComponentSignature['Args']
   ) {
     super(owner, args);
 

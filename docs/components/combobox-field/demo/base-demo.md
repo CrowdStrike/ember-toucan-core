@@ -1,5 +1,5 @@
 ```hbs template
-<Form::Fields::Select
+<Form::Fields::Combobox
   @contentClass='z-10'
   @error={{this.errorMessage}}
   @hint='Type "blue" into the field'
@@ -10,12 +10,12 @@
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
-  as |select|
+  as |combobox|
 >
-  <select.Option>
-    {{select.option.label}}
-  </select.Option>
-</Form::Fields::Select>
+  <combobox.Option>
+    {{combobox.option.label}}
+  </combobox.Option>
+</Form::Fields::Combobox>
 ```
 
 ```js component

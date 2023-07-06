@@ -3,16 +3,16 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
-import type { ToucanFormSelectFieldComponentSignature as BaseSelectFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/select';
+import type { ToucanFormComboboxFieldComponentSignature as BaseComboboxFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/combobox';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
-export interface ToucanFormSelectFieldComponentSignature<
+export interface ToucanFormComboboxFieldComponentSignature<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
   Element: HTMLInputElement;
   Args: Omit<
-    BaseSelectFieldSignature['Args'],
+    BaseComboboxFieldSignature['Args'],
     'error' | 'onChange' | 'selected'
   > & {
     /**
@@ -25,13 +25,13 @@ export interface ToucanFormSelectFieldComponentSignature<
      */
     form: HeadlessFormBlock<DATA>;
   };
-  Blocks: BaseSelectFieldSignature['Blocks'];
+  Blocks: BaseComboboxFieldSignature['Blocks'];
 }
 
-export default class ToucanFormSelectFieldComponent<
+export default class ToucanFormComboboxFieldComponent<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
-> extends Component<ToucanFormSelectFieldComponentSignature<DATA, KEY>> {
+> extends Component<ToucanFormComboboxFieldComponentSignature<DATA, KEY>> {
   hasOnlyLabelBlock = (hasLabel: boolean, hasHint: boolean) =>
     hasLabel && !hasHint;
   hasHintAndLabelBlocks = (hasLabel: boolean, hasHint: boolean) =>
