@@ -9,7 +9,6 @@
   @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
-  @selectedLabel={{this.selected.label}}
   placeholder='Colors'
   as |select|
 >
