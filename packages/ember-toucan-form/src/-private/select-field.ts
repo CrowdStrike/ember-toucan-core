@@ -13,8 +13,7 @@ export interface ToucanFormSelectFieldComponentSignature<
   Element: HTMLInputElement;
   Args: Omit<
     BaseSelectFieldSignature['Args'],
-    // TODO: `value` doesn't apply. But how to handle Select with changeset?
-    'error' | 'onChange'
+    'error' | 'onChange' | 'selected'
   > & {
     /**
      * The name of your field, which must match a property of the `@data` passed to the form
@@ -50,14 +49,16 @@ export default class ToucanFormSelectFieldComponent<
   };
 
   @action
-  assertString(value: unknown): string | undefined {
+  assertSelected(value: unknown): string | Record<string, unknown> | undefined {
     assert(
-      `Only string values are expected for ${String(
+      `Only string or object values are expected for ${String(
         this.args.name
       )}, but you passed ${typeof value}`,
-      typeof value === 'undefined' || typeof value === 'string'
+      typeof value === 'undefined' ||
+        typeof value === 'string' ||
+        typeof value === 'object'
     );
 
-    return value;
+    return value as string | Record<string, unknown>;
   }
 }

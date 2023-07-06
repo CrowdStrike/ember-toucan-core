@@ -26,6 +26,20 @@
     <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
   </form.RadioGroup>
 
+  <form.Select
+    @contentClass='z-10'
+    @label='Color'
+    @name='color'
+    @noResultsText='No results'
+    @options={{this.options}}
+    @optionKey='label'
+    as |select|
+  >
+    <select.Option>
+      {{select.option.label}}
+    </select.Option>
+  </form.Select>
+
   <form.FileInput
     @label='Files to attach'
     @trigger='Select files'
@@ -52,6 +66,7 @@ export default class extends Component {
 
   validations = {
     comment: validatePresence(true),
+    color: validatePresence(true),
     files: validatePresence(true),
     firstName: validatePresence(true),
     fruit: validatePresence(true),
@@ -59,6 +74,37 @@ export default class extends Component {
     terms: validatePresence(true),
     vegetable: validatePresence(true),
   };
+
+  options = [
+    {
+      label: 'Blue',
+      value: 'blue',
+    },
+    {
+      label: 'Green',
+      value: 'green',
+    },
+    {
+      label: 'Yellow',
+      value: 'yellow',
+    },
+    {
+      label: 'Orange',
+      value: 'orange',
+    },
+    {
+      label: 'Red',
+      value: 'red',
+    },
+    {
+      label: 'Purple',
+      value: 'purple',
+    },
+    {
+      label: 'Teal',
+      value: 'teal',
+    },
+  ];
 
   handleSubmit(data) {
     console.log({ data });
