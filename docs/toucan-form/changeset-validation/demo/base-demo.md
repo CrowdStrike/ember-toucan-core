@@ -26,19 +26,19 @@
     <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
   </form.RadioGroup>
 
-  <form.Select
+  <form.Combobox
     @contentClass='z-10'
     @label='Color'
     @name='color'
     @noResultsText='No results'
     @options={{this.options}}
     @optionKey='label'
-    as |select|
+    as |combobox|
   >
-    <select.Option>
-      {{select.option.label}}
-    </select.Option>
-  </form.Select>
+    <combobox.Option>
+      {{combobox.option.label}}
+    </combobox.Option>
+  </form.Combobox>
 
   <form.FileInput
     @label='Files to attach'

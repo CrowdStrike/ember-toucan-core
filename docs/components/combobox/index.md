@@ -1,31 +1,31 @@
-# Select
+# Combobox
 
-Provides a Toucan-styled select with filtering.
-If you are building forms, you may be interested in the SelectField component instead.
+Provides a Toucan-styled combobox with filtering.
+If you are building forms, you may be interested in the ComboboxField component instead.
 
 ## Content Class
 
 A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
 
 ```hbs
-<Form::Controls::Select @contentClass='z-50' />
+<Form::Controls::Combobox @contentClass='z-50' />
 ```
 
 ## Options
 
-`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
+`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`combobox.option`).
 
 ```hbs
-<Form::Controls::Select
+<Form::Controls::Combobox
   @options={{this.options}}
   @selected={{this.selected}}
-  as |select|
+  as |combobox|
 >
-  <select.Option>
+  <combobox.Option>
     <!-- The content of each popover list item will be rendered here -->
-    {{select.option}}
-  </select.Option>
-</Form::Controls::Select>
+    {{combobox.option}}
+  </combobox.Option>
+</Form::Controls::Combobox>
 ```
 
 ## Selected
@@ -33,16 +33,16 @@ A CSS class to add to this component's content container. Commonly used to speci
 The currently selected option. Can be either an object or a string. If `@options` is an array of strings, provide a string. If `@options` is an array of objects, pass the entire object. Works in combination with `@onChange`.
 
 ```hbs
-<Form::Controls::Select
+<Form::Controls::Combobox
   @options={{this.options}}
   @selected={{this.selected}}
-  as |select|
+  as |combobox|
 >
-  <select.Option>
+  <combobox.Option>
     <!-- The content of each popover list item will be rendered here -->
-    {{select.option}}
-  </select.Option>
-</Form::Controls::Select>
+    {{combobox.option}}
+  </combobox.Option>
+</Form::Controls::Combobox>
 ```
 
 ```js
@@ -59,16 +59,16 @@ export default class extends Component {
 Called when the user makes a selection. It is called with the selected option (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
 
 ```hbs
-<Form::Controls::Select
+<Form::Controls::Combobox
   @onChange={{this.handleChange}}
   @options={{this.options}}
   @selected={{this.selected}}
-  as |select|
+  as |combobox|
 >
-  <select.Option>
-    {{select.option}}
-  </select.Option>
-</Form::Controls::Select>
+  <combobox.Option>
+    {{combobox.option}}
+  </combobox.Option>
+</Form::Controls::Combobox>
 ```
 
 ```js
@@ -100,17 +100,17 @@ The `@optionKey` argument is used when your `@options` take the shape of an arra
 In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key and we want the label of the selected option to be used for the selected value, as well as for filtering as the user types.
 
 ```hbs
-<Form::Controls::Select
+<Form::Controls::Combobox
   @onChange={{this.handleChange}}
   @options={{this.options}}
   @optionKey='label'
   @selected={{this.selected}}
-  as |select|
+  as |combobox|
 >
-  <select.Option>
-    {{select.option}}
-  </select.Option>
-</Form::Controls::Select>
+  <combobox.Option>
+    {{combobox.option}}
+  </combobox.Option>
+</Form::Controls::Combobox>
 ```
 
 ```js
@@ -164,18 +164,18 @@ export default class extends Component {
 The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
 
 ```hbs
-<Form::Controls::Select
+<Form::Controls::Combobox
   @onFilter={{this.handleFilter}}
   @onChange={{this.handleChange}}
   @options={{this.options}}
   @optionKey='label'
   @selected={{this.selected}}
-  as |select|
+  as |combobox|
 >
-  <select.Option>
-    {{select.option}}
-  </select.Option>
-</Form::Controls::Select>
+  <combobox.Option>
+    {{combobox.option}}
+  </combobox.Option>
+</Form::Controls::Combobox>
 ```
 
 ```js
@@ -234,7 +234,7 @@ export default class extends Component {
 Set the `@isDisabled` argument to disable the input.
 
 ```hbs
-<Form::Controls::Select @isDisabled={{true}} />
+<Form::Controls::Combobox @isDisabled={{true}} />
 ```
 
 ## Read Only State
@@ -242,7 +242,7 @@ Set the `@isDisabled` argument to disable the input.
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ```hbs
-<Form::Controls::Select @isReadOnly={{true}} />
+<Form::Controls::Combobox @isReadOnly={{true}} />
 ```
 
 ## Error State
@@ -250,5 +250,5 @@ Set the `@isReadOnly` argument to put the input in the read only state.
 Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 
 ```hbs
-<Form::Controls::Select @hasError={{true}} />
+<Form::Controls::Combobox @hasError={{true}} />
 ```

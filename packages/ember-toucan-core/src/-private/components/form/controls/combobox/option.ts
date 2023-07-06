@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 
 import Check from '../../../../../-private/icons/check';
 
-interface ToucanFormSelectOptionControlComponentSignature {
+interface ToucanFormComboboxOptionControlComponentSignature {
   Args: {
     isActive?: boolean;
     isDisabled?: boolean;
@@ -25,7 +25,7 @@ const className = 'toucan-form-select-option-control';
 
 export const selector = `.${className}`;
 
-export default class ToucanFormSelectOptionControlComponent extends Component<ToucanFormSelectOptionControlComponentSignature> {
+export default class ToucanFormComboboxOptionControlComponent extends Component<ToucanFormComboboxOptionControlComponentSignature> {
   className = className;
   Check = Check;
 

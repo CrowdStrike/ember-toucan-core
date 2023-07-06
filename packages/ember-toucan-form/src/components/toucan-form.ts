@@ -2,10 +2,10 @@ import Component from '@glimmer/component';
 
 import CheckboxFieldComponent from '../-private/checkbox-field';
 import CheckboxGroupFieldComponent from '../-private/checkbox-group-field';
+import ComboboxFieldComponent from '../-private/combobox-field';
 import FileInputFieldComponent from '../-private/file-input-field';
 import InputFieldComponent from '../-private/input-field';
 import RadioGroupFieldComponent from '../-private/radio-group-field';
-import SelectFieldComponent from '../-private/select-field';
 import TextareaFieldComponent from '../-private/textarea-field';
 
 import type { HeadlessFormBlock, UserData } from '../-private/types';
@@ -31,6 +31,7 @@ export interface ToucanFormComponentSignature<
           typeof CheckboxGroupFieldComponent<DATA>,
           'form'
         >;
+        Combobox: WithBoundArgs<typeof ComboboxFieldComponent<DATA>, 'form'>;
         Field: HeadlessFormBlock<DATA>['Field'];
         FileInput: WithBoundArgs<typeof FileInputFieldComponent<DATA>, 'form'>;
         Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
@@ -38,7 +39,6 @@ export interface ToucanFormComponentSignature<
           typeof RadioGroupFieldComponent<DATA>,
           'form'
         >;
-        Select: WithBoundArgs<typeof SelectFieldComponent<DATA>, 'form'>;
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
 
         /**
@@ -70,7 +70,7 @@ export default class ToucanFormComponent<
   FileInputFieldComponent = FileInputFieldComponent<DATA>;
   InputFieldComponent = InputFieldComponent<DATA>;
   RadioGroupFieldComponent = RadioGroupFieldComponent<DATA>;
-  SelectFieldComponent = SelectFieldComponent<DATA>;
+  ComboboxFieldComponent = ComboboxFieldComponent<DATA>;
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
 
   get validateOn() {

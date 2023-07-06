@@ -1,6 +1,6 @@
 ```hbs template
 <div class='flex flex-col gap-4 w-96'>
-  <Form::Controls::Select
+  <Form::Controls::Combobox
     @onChange={{this.onChange}}
     @options={{this.options}}
     @contentClass='z-10'
@@ -8,28 +8,28 @@
     @optionKey='label'
     @noResultsText='No results'
     placeholder='Colors'
-    as |select|
+    as |combobox|
   >
-    <select.Option>
-      {{select.option.label}}
-    </select.Option>
-  </Form::Controls::Select>
+    <combobox.Option>
+      {{combobox.option.label}}
+    </combobox.Option>
+  </Form::Controls::Combobox>
 
-  <Form::Controls::Select
+  <Form::Controls::Combobox
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @contentClass='z-10'
     @selected={{this.selected2}}
     @noResultsText='No results'
     placeholder='Names'
-    as |select|
+    as |combobox|
   >
-    <select.Option>
-      {{select.option}}
-    </select.Option>
-  </Form::Controls::Select>
+    <combobox.Option>
+      {{combobox.option}}
+    </combobox.Option>
+  </Form::Controls::Combobox>
 
-  <Form::Controls::Select
+  <Form::Controls::Combobox
     @onChange={{this.onChange3}}
     @options={{this.options}}
     @contentClass='z-10'
@@ -38,12 +38,12 @@
     @onFilter={{this.onFilterBy}}
     @noResultsText='No results'
     placeholder='Colors w/ Filtering'
-    as |select|
+    as |combobox|
   >
-    <select.Option>
-      {{select.option.label}}
-    </select.Option>
-  </Form::Controls::Select>
+    <combobox.Option>
+      {{combobox.option.label}}
+    </combobox.Option>
+  </Form::Controls::Combobox>
 </div>
 ```
 
@@ -107,10 +107,6 @@ export default class extends Component {
     'Simon',
     'Tony',
   ];
-
-  isEqual(one: unknown, two: unknown) {
-    return Object.is(one, two);
-  }
 
   @action
   onChange(option) {
