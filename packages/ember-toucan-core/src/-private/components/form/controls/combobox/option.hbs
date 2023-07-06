@@ -11,6 +11,7 @@
   {{! template-lint-disable no-pointer-down-event-binding }}
   {{on "mousedown" this.onMousedown}}
   {{on "mouseover" @onMouseover}}
+  ...attributes
 >
   <this.Check aria-hidden="true" class={{unless @isSelected "invisible"}} />
   {{yield}}
@@ -29,6 +30,5 @@
     readonly={{@isReadOnly}}
     type="checkbox"
     value={{@value}}
-    ...attributes
   />
 </li>

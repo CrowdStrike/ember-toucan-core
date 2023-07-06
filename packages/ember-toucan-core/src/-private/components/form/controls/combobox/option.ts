@@ -18,7 +18,7 @@ interface ToucanFormComboboxOptionControlComponentSignature {
   Blocks: {
     default: [];
   };
-  Element: HTMLInputElement;
+  Element: HTMLLIElement;
 }
 
 const className = 'toucan-form-select-option-control';
