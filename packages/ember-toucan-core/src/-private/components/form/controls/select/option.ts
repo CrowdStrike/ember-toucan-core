@@ -34,14 +34,14 @@ export default class ToucanFormSelectOptionControlComponent extends Component<To
 
   get styles() {
     if (this.args.isActive) {
-      return 'bg-overlay-1 text-body-and-labels';
+      return 'bg-overlay-1 text-titles-and-attributes';
     }
 
     if (this.args.isSelected) {
-      return 'bg-selected';
+      return 'bg-selected text-titles-and-attributes';
     }
 
-    return '';
+    return 'text-body-and-labels';
   }
 
   @action
