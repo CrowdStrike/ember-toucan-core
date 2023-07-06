@@ -308,11 +308,6 @@ export default class ToucanFormSelectControlComponent extends Component<ToucanFo
     }
 
     if (event.key === ' ' && this.activeIndex !== null) {
-      // Prevents space from paging down.
-      event.preventDefault();
-
-      this.onChange();
-
       return;
     }
 
