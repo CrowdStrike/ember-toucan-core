@@ -3,7 +3,10 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
-import type { ToucanFormComboboxFieldComponentSignature as BaseComboboxFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/combobox';
+import type {
+  Option,
+  ToucanFormComboboxFieldComponentSignature as BaseComboboxFieldSignature,
+} from '@crowdstrike/ember-toucan-core/components/form/fields/combobox';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
 export interface ToucanFormComboboxFieldComponentSignature<
@@ -12,8 +15,8 @@ export interface ToucanFormComboboxFieldComponentSignature<
 > {
   Element: HTMLInputElement;
   Args: Omit<
-    BaseComboboxFieldSignature['Args'],
-    'error' | 'onChange' | 'selected'
+    BaseComboboxFieldSignature<Option>['Args'],
+    'error' | 'onChange'
   > & {
     /**
      * The name of your field, which must match a property of the `@data` passed to the form
@@ -25,7 +28,12 @@ export interface ToucanFormComboboxFieldComponentSignature<
      */
     form: HeadlessFormBlock<DATA>;
   };
-  Blocks: BaseComboboxFieldSignature['Blocks'];
+  // TODO: How do we get this to play nicely with our
+  // generic in toucan-core?
+  // `BaseComboboxFieldSignature<Option>['Blocks'];`
+  // gives a glint error!
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Blocks: BaseComboboxFieldSignature<any>['Blocks'];
 }
 
 export default class ToucanFormComboboxFieldComponent<
@@ -49,7 +57,7 @@ export default class ToucanFormComboboxFieldComponent<
   };
 
   @action
-  assertSelected(value: unknown): string | Record<string, unknown> | undefined {
+  assertSelected(value: unknown): Option {
     assert(
       `Only string or object values are expected for ${String(
         this.args.name
