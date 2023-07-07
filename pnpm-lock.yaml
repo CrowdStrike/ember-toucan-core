@@ -766,9 +766,15 @@ importers:
       '@ember/test-helpers':
         specifier: ^3.1.0
         version: 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
-      '@embroider/test-setup':
-        specifier: ^3.0.1
-        version: 3.0.1(@embroider/core@3.1.2)
+      '@embroider/compat':
+        specifier: 3.1.4
+        version: 3.1.4(@embroider/core@3.1.2)(@glint/template@1.0.2)
+      '@embroider/core':
+        specifier: 3.1.2
+        version: 3.1.2(@glint/template@1.0.2)
+      '@embroider/webpack':
+        specifier: 3.1.2
+        version: 3.1.2(@embroider/core@3.1.2)(webpack@5.75.0)
       '@glimmer/component':
         specifier: ^1.1.2
         version: 1.1.2(@babel/core@7.20.12)
@@ -3734,7 +3740,7 @@ packages:
     resolution: {integrity: sha512-sFhfWC0vI18KxVenmswQ/ShIvBg4juL8ubI+Q3NTSdkCTeaPQ/DIOUF6oR5DCQ8eO/TkIaw+kdG3FkTY6yNJqA==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
-      '@embroider/shared-internals': 2.0.0
+      '@embroider/shared-internals': 2.2.2
       broccoli-funnel: 3.0.8
       semver: 7.5.1
     transitivePeerDependencies:
@@ -3946,26 +3952,6 @@ packages:
       semver: 7.5.1
       typescript-memoize: 1.1.1
 
-  /@embroider/test-setup@3.0.1(@embroider/core@3.1.2):
-    resolution: {integrity: sha512-t7R2f10iZDSNw3ovWAPM63GRQTu63uihpVh6CvHev5XkLt8B7tdxcxGyO6RbdF5Hu+pbsUu8sD0kAlR1gopmxg==}
-    engines: {node: 12.* || 14.* || >= 16}
-    peerDependencies:
-      '@embroider/compat': ^3.0.0
-      '@embroider/core': ^3.0.0
-      '@embroider/webpack': ^3.0.0
-    peerDependenciesMeta:
-      '@embroider/compat':
-        optional: true
-      '@embroider/core':
-        optional: true
-      '@embroider/webpack':
-        optional: true
-    dependencies:
-      '@embroider/core': 3.1.2(@glint/template@1.0.2)
-      lodash: 4.17.21
-      resolve: 1.22.2
-    dev: true
-
   /@embroider/util@1.10.0(@glint/template@1.0.2)(ember-source@5.1.0):
     resolution: {integrity: sha512-utAFKoq6ajI27jyqjvX3PiGL4m+ZyGVlVNbSbE/nOqi2llRyAkh5ltH1WkIK7jhdwQFJouo1NpOSj9J3/HDa3A==}
     engines: {node: 14.* || >= 16}
@@ -3976,7 +3962,7 @@ packages:
       '@glint/template':
         optional: true
     dependencies:
-      '@embroider/macros': 1.10.0
+      '@embroider/macros': 1.12.2(@glint/template@1.0.2)
       '@glint/template': 1.0.2
       broccoli-funnel: 3.0.8
       ember-cli-babel: 7.26.11

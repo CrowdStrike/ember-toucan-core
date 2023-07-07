@@ -103,8 +103,6 @@ jobs:
           - ember-release
           - ember-beta
           - ember-canary
-          - "'ember-release + embroider-optimized'"
-          - "'ember-lts-4.8 + embroider-optimized'"
 
     steps:
       - uses: wyvox/action@v1
