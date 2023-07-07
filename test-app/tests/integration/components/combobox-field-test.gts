@@ -184,8 +184,6 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxField>
     </template>);

@@ -16,7 +16,11 @@ import Chevron from '../../../-private/icons/chevron';
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
 import type { WithBoundArgs } from '@glint/template';
 
-export interface ToucanFormComboboxControlComponentSignature {
+export type Option = string | Record<string, unknown> | undefined;
+
+export interface ToucanFormComboboxControlComponentSignature<
+  OPTION extends Option
+> {
   Args: {
     /**
      * A CSS class to add to this component's content container.
@@ -53,7 +57,7 @@ export interface ToucanFormComboboxControlComponentSignature {
     /**
      * The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
      */
-    onFilter?: (input: string) => unknown[];
+    onFilter?: (input: string) => OPTION[];
 
     /**
      * `@options` forms the content of this component.
@@ -61,7 +65,7 @@ export interface ToucanFormComboboxControlComponentSignature {
      * To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque.
      * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
      */
-    options?: unknown[];
+    options?: OPTION[];
 
     /**
      * When `@options` is an array of objects, `@selected` is also an object.
@@ -74,12 +78,12 @@ export interface ToucanFormComboboxControlComponentSignature {
     /**
      * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
      */
-    selected?: string | Record<string, unknown> | undefined;
+    selected?: OPTION;
   };
   Blocks: {
     default: [
       {
-        option: unknown;
+        option: OPTION;
         Option: WithBoundArgs<
           typeof OptionComponent,
           | 'index'
@@ -96,11 +100,13 @@ export interface ToucanFormComboboxControlComponentSignature {
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormComboboxControlComponent extends Component<ToucanFormComboboxControlComponentSignature> {
+export default class ToucanFormComboboxControlComponent<
+  OPTION extends Option
+> extends Component<ToucanFormComboboxControlComponentSignature<OPTION>> {
   @tracked activeIndex: number | null = null;
   @tracked inputValue: string | undefined;
   @tracked isPopoverOpen = false;
-  @tracked filteredOptions: unknown[] | undefined;
+  @tracked filteredOptions: OPTION[] | undefined;
 
   Chevron = Chevron;
   Option = OptionComponent;
@@ -108,7 +114,7 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
 
   constructor(
     owner: unknown,
-    args: ToucanFormComboboxControlComponentSignature['Args']
+    args: ToucanFormComboboxControlComponentSignature<OPTION>['Args']
   ) {
     super(owner, args);
 
@@ -275,7 +281,7 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
   }
 
   @action
-  isEqual(one: unknown, two: unknown) {
+  isEqual(one: number | Option | null, two: number | Option | null) {
     return emberIsEqual(one, two);
   }
 
@@ -411,12 +417,13 @@ export default class ToucanFormComboboxControlComponent extends Component<Toucan
     const { options, optionKey, onFilter } = this.args;
     const optionsArgument = options ? [...options] : [];
 
-    let filteredOptions: unknown[] = [];
+    let filteredOptions: OPTION[] = [];
 
     if (!onFilter && !optionKey) {
       filteredOptions = (optionsArgument as string[])?.filter(
-        (option: string) => option.toLowerCase().startsWith(value.toLowerCase())
-      );
+        (option: string) =>
+          option.toLowerCase().startsWith(value.toLowerCase()) as unknown
+      ) as OPTION[];
     }
 
     if (!onFilter && optionKey) {

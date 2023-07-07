@@ -105,8 +105,6 @@ module('Integration | Component | Combobox', function (hooks) {
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -123,8 +121,6 @@ module('Integration | Component | Combobox', function (hooks) {
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -155,8 +151,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -175,8 +169,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -202,9 +194,7 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+        <combobox.Option data-option>{{combobox.option.label}}</combobox.Option>
       </ComboboxControl>
     </template>);
 
@@ -219,8 +209,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -241,8 +229,6 @@ module('Integration | Component | Combobox', function (hooks) {
   test('it provides default filtering when `@options` is an array of strings', async function (assert) {
     await render(<template>
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -283,8 +269,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option.label}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -316,8 +300,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -355,8 +337,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -387,8 +367,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -426,8 +404,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -448,8 +424,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -474,8 +448,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -505,8 +477,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -528,8 +498,6 @@ module('Integration | Component | Combobox', function (hooks) {
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -549,8 +517,6 @@ module('Integration | Component | Combobox', function (hooks) {
       <input placeholder="test" data-input />
 
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -569,8 +535,6 @@ module('Integration | Component | Combobox', function (hooks) {
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
       <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -597,8 +561,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -630,8 +592,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -664,8 +624,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -696,8 +654,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -727,8 +683,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
     </template>);
@@ -771,8 +725,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
 
@@ -809,8 +761,6 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
         <combobox.Option>{{combobox.option}}</combobox.Option>
       </ComboboxControl>
 
@@ -866,9 +816,7 @@ module('Integration | Component | Combobox', function (hooks) {
         data-combobox
         as |combobox|
       >
-        {{! Need to figure out these types }}
-        {{! @glint-expect-error }}
-        <combobox.Option>{{combobox.option}}</combobox.Option>
+        <combobox.Option>{{combobox.option.label}}</combobox.Option>
       </ComboboxControl>
 
       {{! template-lint-disable require-input-label }}

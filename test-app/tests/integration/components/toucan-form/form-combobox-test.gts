@@ -4,6 +4,8 @@ import { module, test } from 'qunit';
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+const options = ['blue', 'red', 'yellow'];
+
 interface TestData {
   selection?: string;
 }
@@ -22,11 +24,10 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
           @label="Label"
           @hint="Hint"
           @name="selection"
+          @options={{options}}
           data-combobox
           as |combobox|
         >
-          {{! Need to figure out these types }}
-          {{! @glint-expect-error }}
           <combobox.Option data-option>{{combobox.option}}</combobox.Option>
         </form.Combobox>
       </ToucanForm>
@@ -43,11 +44,14 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox @hint="Hint" @name="selection" data-combobox>
+        <form.Combobox
+          @hint="Hint"
+          @name="selection"
+          @options={{options}}
+          data-combobox
+        >
           <:label><span data-label-block>Label</span></:label>
           <:default as |combobox|>
-            {{! Need to figure out these types }}
-            {{! @glint-expect-error }}
             <combobox.Option data-option>{{combobox.option}}</combobox.Option>
           </:default>
         </form.Combobox>
@@ -68,11 +72,14 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox @label="Label" @name="selection" data-combobox>
+        <form.Combobox
+          @label="Label"
+          @name="selection"
+          @options={{options}}
+          data-combobox
+        >
           <:hint><span data-hint-block>Hint</span></:hint>
           <:default as |combobox|>
-            {{! Need to figure out these types }}
-            {{! @glint-expect-error }}
             <combobox.Option data-option>{{combobox.option}}</combobox.Option>
           </:default>
         </form.Combobox>
@@ -93,12 +100,10 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox @name="selection" data-combobox>
+        <form.Combobox @name="selection" @options={{options}} data-combobox>
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
           <:default as |combobox|>
-            {{! Need to figure out these types }}
-            {{! @glint-expect-error }}
             <combobox.Option data-option>{{combobox.option}}</combobox.Option>
           </:default>
         </form.Combobox>

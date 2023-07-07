@@ -196,8 +196,6 @@ module('Integration | Component | ToucanForm', function (hooks) {
           data-combobox
           as |combobox|
         >
-          {{! Need to figure out these types }}
-          {{! @glint-expect-error }}
           <combobox.Option data-option>{{combobox.option}}</combobox.Option>
         </form.Combobox>
       </ToucanForm>
@@ -433,8 +431,6 @@ module('Integration | Component | ToucanForm', function (hooks) {
           data-combobox
           as |combobox|
         >
-          {{! Need to figure out these types }}
-          {{! @glint-expect-error }}
           <combobox.Option data-option>{{combobox.option}}</combobox.Option>
         </form.Combobox>
 
