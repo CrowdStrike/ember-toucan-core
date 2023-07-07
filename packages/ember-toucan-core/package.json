@@ -44,6 +44,7 @@
   "dependencies": {
     "@babel/runtime": "^7.20.7",
     "@embroider/addon-shim": "^1.0.0",
+    "@embroider/compat": "^2.0.0",
     "@floating-ui/dom": "^1.4.2",
     "ember-velcro": "^2.1.0"
   },
