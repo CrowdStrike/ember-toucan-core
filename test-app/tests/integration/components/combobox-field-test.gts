@@ -1,4 +1,3 @@
-/* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 import { click, fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
