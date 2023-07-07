@@ -35,7 +35,7 @@ export default class ToucanFormComboboxOptionControlComponent extends Component<
     }
 
     if (this.args.isSelected) {
-      return 'bg-selected text-titles-and-attributes';
+      return 'text-titles-and-attributes';
     }
 
     return 'text-body-and-labels';
