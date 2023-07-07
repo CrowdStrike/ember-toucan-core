@@ -4,10 +4,7 @@
       {{yield
         (hash
           ListItem=(component
-            (ensure-safe-component this.ListItem)
-            file=file
-            onDelete=@onDelete
-            deleteLabel=@deleteLabel
+            this.ListItem file=file onDelete=@onDelete deleteLabel=@deleteLabel
           )
           file=file
         )

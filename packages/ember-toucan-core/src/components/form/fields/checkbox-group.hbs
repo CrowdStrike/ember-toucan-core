@@ -54,7 +54,7 @@
       {{yield
         (hash
           CheckboxField=(component
-            (ensure-safe-component this.CheckboxFieldComponent)
+            this.CheckboxFieldComponent
             name=@name
             onChange=this.handleInput
             isDisabled=@isDisabled

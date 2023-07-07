@@ -76,9 +76,7 @@
         >
           {{yield
             (hash
-              CharacterCount=(component
-                (ensure-safe-component this.CharacterCount) current=this.count
-              )
+              CharacterCount=(component this.CharacterCount current=this.count)
             )
             to="secondary"
           }}

@@ -81,7 +81,7 @@
           {{yield
             (hash
               Option=(component
-                (ensure-safe-component this.Option)
+                this.Option
                 isActive=(this.isEqual index this.activeIndex)
                 isDisabled=@isDisabled
                 isSelected=(this.isEqual @selected option)
