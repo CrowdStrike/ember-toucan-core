@@ -1,4 +1,5 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
+import { on } from '@ember/modifier';
 import {
   click,
   fillIn,
