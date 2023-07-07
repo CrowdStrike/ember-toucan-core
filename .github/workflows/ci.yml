@@ -22,12 +22,9 @@ jobs:
     name: Install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
 
   lint:
     name: Lint
@@ -35,12 +32,9 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - name: Lint + Format + Glint
         run: pnpm lint
 
@@ -60,12 +54,9 @@ jobs:
           - typescript@5.0
           - typescript@5.1
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - name: 'Change TS to ${{ matrix.typescript-scenario }}'
         run: 'pnpm add --save-dev ${{ matrix.typescript-scenario}}'
         working-directory: ./test-app
@@ -79,12 +70,9 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - run: pnpm test
 
   floating_tests:
@@ -94,12 +82,9 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - name: Install Dependencies (without lockfile)
         run: rm pnpm-lock.yaml && pnpm install
       - run: pnpm test
@@ -122,12 +107,9 @@ jobs:
           - "'ember-lts-4.8 + embroider-optimized'"
 
     steps:
-      - uses: actions/checkout@v3
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - name: Run Tests
         working-directory: ./test-app
         run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm turbo test
@@ -145,14 +127,9 @@ jobs:
       - try_scenarios
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - name: TurboRepo local server
-        uses: felixmosh/turborepo-gh-artifacts@v2
+      - uses: wyvox/action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/pnpm
       - run: pnpm build
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -175,10 +152,9 @@ jobs:
       deployments: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: wyvox/action@v1
         with:
-          persist-credentials: false
-      - uses: ./.github/actions/pnpm
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm build:docs
       - name: Publish to Cloudflare Pages
         id: publishStep
