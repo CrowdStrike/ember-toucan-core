@@ -745,7 +745,7 @@ module('Integration | Component | Combobox', function (hooks) {
   });
 
   test('it reverts to the selected option when a user enters garbage after previously having a valid selection (with `@selected` as a string)', async function (assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     let handleChange = () => {
       assert.step('do-not-expect-this-to-be-called!');
@@ -783,10 +783,16 @@ module('Integration | Component | Combobox', function (hooks) {
     // case as we are only visually resetting to the previously
     // selected value
     assert.verifySteps([]);
+
+    // We want to verify the original options are re-displayed
+    // rather than the input being filtered to garbage
+    await click('[data-combobox]');
+
+    assert.dom('[role="option"]').exists({ count: 2 });
   });
 
   test('it reverts to the selected option when a user enters garbage after previously having a valid selection (with `@selected` as an object)', async function (assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     let options = [
       {
@@ -838,5 +844,11 @@ module('Integration | Component | Combobox', function (hooks) {
     // case as we are only visually resetting to the previously
     // selected value
     assert.verifySteps([]);
+
+    // We want to verify the original options are re-displayed
+    // rather than the input being filtered to garbage
+    await click('[data-combobox]');
+
+    assert.dom('[role="option"]').exists({ count: 2 });
   });
 });

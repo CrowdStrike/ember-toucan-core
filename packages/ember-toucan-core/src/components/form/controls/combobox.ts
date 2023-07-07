@@ -493,6 +493,9 @@ export default class ToucanFormComboboxControlComponent<
       return;
     }
 
+    // Reset our filtered options as we are going to "clear" the input
+    this.filteredOptions = undefined;
+
     if (event.target.value === '') {
       this.inputValue = undefined;
       onChange?.(null);
