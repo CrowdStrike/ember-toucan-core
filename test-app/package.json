@@ -32,11 +32,11 @@
     "@babel/eslint-parser": "^7.19.1",
     "@crowdstrike/ember-toucan-core": "workspace:*",
     "@crowdstrike/ember-toucan-form": "workspace:*",
-    "@crowdstrike/ember-toucan-styles": "^2.0.1",
+    "@crowdstrike/ember-toucan-styles": "^2.0.2",
     "@ember/optional-features": "^2.0.0",
-    "@ember/string": "^3.0.1",
+    "@ember/string": "^3.1.1",
     "@ember/test-helpers": "^3.1.0",
-    "@embroider/test-setup": "^2.0.0",
+    "@embroider/test-setup": "^3.0.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^1.0.2",
@@ -90,8 +90,8 @@
     "ember-load-initializers": "^2.1.2",
     "ember-qunit": "^7.0.0",
     "ember-resolver": "^10.0.0",
-    "ember-source-channel-url": "^3.0.0",
     "ember-source": "~5.1.0",
+    "ember-source-channel-url": "^3.0.0",
     "ember-template-imports": "^3.1.2",
     "ember-template-lint": "^5.8.0",
     "ember-try": "^2.0.0",
@@ -105,6 +105,7 @@
     "eslint-plugin-qunit": "^7.3.4",
     "fractal-page-object": "^0.4.0",
     "loader.js": "^4.7.0",
+    "pnpm-sync-dependencies-meta-injected": "^0.0.8",
     "postcss": "^8.2.14",
     "prettier": "^2.8.3",
     "prettier-plugin-ember-template-tag": "^0.3.0",
@@ -121,6 +122,9 @@
     "@crowdstrike/ember-toucan-form": {
       "injected": true
     }
+  },
+  "volta": {
+    "extends": "../package.json"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

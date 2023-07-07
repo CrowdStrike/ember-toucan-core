@@ -9,14 +9,11 @@
   },
   "engines": {
     "node": ">=16",
-    "pnpm": ">=7.24.2 <7.33.0"
-  },
-  "engines:comment": {
-    "pnpm": "Our lock file version is 6. PNPM 7.24.2 is the first PNPM version to support version 6 lock files. PNPM 7.33.0 adds support for version 6.1 lock files, so using it results in a `pnpm-lock.yaml` diff."
+    "pnpm": ">= 8"
   },
   "volta": {
     "node": "18.16.1",
-    "pnpm": "7.32.5"
+    "pnpm": "8.6.6"
   },
   "license": "MIT",
   "author": "CrowdStrike UX Team",
