@@ -126,7 +126,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "@crowdstrike/ember-oss-docs": "^1.1.3",
+    "@crowdstrike/ember-oss-docs": "^1.1.6",
     "@crowdstrike/ember-toucan-core": "workspace:*",
     "@crowdstrike/ember-toucan-form": "workspace:*",
     "@ember/test-waiters": "^3.0.2",
