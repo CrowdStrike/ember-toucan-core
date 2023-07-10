@@ -759,6 +759,9 @@ importers:
       '@ember/test-helpers':
         specifier: ^3.1.0
         version: 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
+      '@embroider/compat':
+        specifier: ^2.0.0
+        version: 2.1.1
       '@embroider/test-setup':
         specifier: ^2.0.0
         version: 2.1.1
