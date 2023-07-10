@@ -47,7 +47,10 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/eslint": "^8.0.0"
+      "@types/eslint": "^8.0.0",
+      "@embroider/compat": "^3.1.4",
+      "@embroider/core": "^3.1.2",
+      "@embroider/webpack": "^3.1.2"
     },
     "peerDependencyRules": {
       "ignoreMissing": [

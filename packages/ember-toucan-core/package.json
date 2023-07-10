@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@embroider/addon-shim": "^1.0.0",
-    "@embroider/compat": "^2.0.0",
+    "@embroider/addon-shim": "^1.8.5",
+    "@embroider/compat": "^3.1.4",
     "@floating-ui/dom": "^1.4.2",
     "ember-velcro": "^2.1.0"
   },
@@ -56,9 +56,9 @@
     "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-syntax-decorators": "^7.17.0",
     "@babel/preset-typescript": "^7.18.6",
-    "@crowdstrike/ember-toucan-styles": "^2.0.1",
+    "@crowdstrike/ember-toucan-styles": "^2.0.2",
     "@ember/test-helpers": "^3.1.0",
-    "@embroider/addon-dev": "^3.0.0",
+    "@embroider/addon-dev": "^3.1.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^1.0.2",
