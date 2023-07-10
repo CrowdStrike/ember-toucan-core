@@ -32,4 +32,12 @@ export default class ToucanFormControlCharacterCount extends Component<ToucanFor
     );
     super(owner, args);
   }
+
+  /**
+   * Determines if the current input length is greater than the provided
+   * maximum length.  If so, a CSS class is applied.
+   */
+  get isCurrentGreaterThanMax() {
+    return this.args.current > this.args.max;
+  }
 }

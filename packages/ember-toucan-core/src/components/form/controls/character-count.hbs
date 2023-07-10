@@ -1,3 +1,6 @@
-<span ...attributes>{{@current}}
+<span
+  class="{{if this.isCurrentGreaterThanMax 'text-critical'}}"
+  ...attributes
+>{{@current}}
   /
   {{@max}}</span>
