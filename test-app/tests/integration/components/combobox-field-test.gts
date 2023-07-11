@@ -27,7 +27,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert
       .dom('[data-error]')
       .doesNotExist(
-        'Expected hint block not to be displayed as an error was not provided'
+        'Expected hint block not to be displayed as an error or @hint was not provided'
       );
 
     assert.dom('[data-lock-icon]').doesNotExist();

@@ -3,12 +3,20 @@
 Provides a Toucan-styled combobox with filtering.
 If you are building forms, you may be interested in the ComboboxField component instead.
 
-## Content Class
+## Popover z-index
 
 A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
 
 ```hbs
 <Form::Controls::Combobox @contentClass='z-50' />
+```
+
+Another option to set the z-index of the popover is to set the `--z-index-popover` CSS variable.
+
+```css
+:root {
+  --z-index-popover: 9999;
+}
 ```
 
 ## Options
