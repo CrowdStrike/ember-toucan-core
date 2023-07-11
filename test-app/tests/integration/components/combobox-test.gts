@@ -851,4 +851,31 @@ module('Integration | Component | Combobox', function (hooks) {
 
     assert.dom('[role="option"]').exists({ count: 2 });
   });
+
+  test('it reselects the entered input value when there is a selected item and the input regains focus', async function (assert) {
+    await render(<template>
+      <ComboboxControl
+        @selected="blue"
+        @options={{testColors}}
+        data-combobox
+        as |combobox|
+      >
+        <combobox.Option>{{combobox.option}}</combobox.Option>
+      </ComboboxControl>
+    </template>);
+
+    assert.strictEqual(
+      document.getSelection()?.toString(),
+      '',
+      'Expected nothing to be selected by default as we have not interacted with the component'
+    );
+
+    await click('[data-combobox]');
+
+    assert.strictEqual(
+      document.getSelection()?.toString(),
+      'blue',
+      'Expected "blue" to be selected since that is our `@selected` value'
+    );
+  });
 });
