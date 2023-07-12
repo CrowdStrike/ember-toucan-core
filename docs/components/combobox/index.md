@@ -11,14 +11,6 @@ A CSS class to add to this component's content container. Commonly used to speci
 <Form::Controls::Combobox @contentClass='z-50' />
 ```
 
-Another option to set the z-index of the popover is to set the `--z-index-popover` CSS variable.
-
-```css
-:root {
-  --z-index-popover: 9999;
-}
-```
-
 ## Options
 
 `@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`combobox.option`).
