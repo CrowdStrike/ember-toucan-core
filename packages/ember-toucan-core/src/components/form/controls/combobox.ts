@@ -249,12 +249,10 @@ export default class ToucanFormComboboxControlComponent<
 
     this.closePopover();
 
-    // This shouldn't be possible, but to satisfy TS
-    if (!this.options) {
-      onChange?.(null);
-
-      return;
-    }
+    assert(
+      '`this.options` was unexpectedly empty in an on change handler. If you see this, please report it as a bug to ember-toucan-core!',
+      this.options
+    );
 
     // This shouldn't be possible, but to satisfy TS
     if (this.activeIndex === null) {
