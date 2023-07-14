@@ -72,7 +72,9 @@ export interface ToucanFormComboboxControlComponentSignature<
      * be used for both filtering and displayed the selected value in the
      * textbox.
      */
-    optionKey?: string;
+    optionKey?: OPTION extends Record<string, unknown>
+      ? keyof OPTION
+      : undefined;
 
     /**
      * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
