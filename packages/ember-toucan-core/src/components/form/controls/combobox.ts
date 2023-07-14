@@ -62,7 +62,6 @@ export interface ToucanFormComboboxControlComponentSignature<
     /**
      * `@options` forms the content of this component.
      *
-     * To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque.
      * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
      */
     options?: OPTION[];
