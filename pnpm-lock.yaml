@@ -55,9 +55,6 @@ importers:
       ember-resources:
         specifier: ^6.0.0
         version: 6.0.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-source@5.1.0)
-      ember-velcro:
-        specifier: ^2.1.0
-        version: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       highlight.js:
         specifier: ^11.6.0
         version: 11.7.0
@@ -930,9 +927,6 @@ importers:
       ember-try:
         specifier: ^2.0.0
         version: 2.0.0
-      ember-velcro:
-        specifier: ^2.1.0
-        version: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       eslint:
         specifier: ^8.32.0
         version: 8.33.0
