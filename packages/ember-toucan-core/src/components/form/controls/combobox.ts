@@ -434,7 +434,7 @@ export default class ToucanFormComboboxControlComponent<
     }
 
     if (onFilter) {
-      filteredOptions = await onFilter(value);
+      filteredOptions = onFilter(value);
     }
 
     this.filteredOptions = filteredOptions;
