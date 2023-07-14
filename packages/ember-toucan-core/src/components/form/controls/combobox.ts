@@ -209,7 +209,7 @@ export default class ToucanFormComboboxControlComponent<
   /**
    * Attempts to scroll the active or newly highlighted item into view for the user.
    */
-  #scrollActiveOptionIntoView(alignToTop?: boolean) {
+  scrollActiveOptionIntoView(alignToTop?: boolean) {
     assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
 
     const optionsElements = document.querySelectorAll(
@@ -345,7 +345,7 @@ export default class ToucanFormComboboxControlComponent<
       const activeIndex = this.args.options.length - 1;
 
       this.activeIndex = activeIndex;
-      this.#scrollActiveOptionIntoView(false);
+      this.scrollActiveOptionIntoView(false);
 
       return;
     }
@@ -365,7 +365,7 @@ export default class ToucanFormComboboxControlComponent<
 
       this.activeIndex = activeIndex;
 
-      this.#scrollActiveOptionIntoView(false);
+      this.scrollActiveOptionIntoView(false);
 
       return;
     }
@@ -380,7 +380,7 @@ export default class ToucanFormComboboxControlComponent<
       const activeIndex = 0;
 
       this.activeIndex = activeIndex;
-      this.#scrollActiveOptionIntoView();
+      this.scrollActiveOptionIntoView();
 
       return;
     }
@@ -393,7 +393,7 @@ export default class ToucanFormComboboxControlComponent<
         this.activeIndex === 0 ? this.activeIndex : this.activeIndex - 1;
 
       this.activeIndex = activeIndex;
-      this.#scrollActiveOptionIntoView();
+      this.scrollActiveOptionIntoView();
 
       return;
     }
@@ -458,7 +458,7 @@ export default class ToucanFormComboboxControlComponent<
     } else {
       // Wait until the options have been rendered.
       next(() => {
-        this.#scrollActiveOptionIntoView(false);
+        this.scrollActiveOptionIntoView(false);
       });
     }
   }
