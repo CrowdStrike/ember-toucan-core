@@ -161,7 +161,9 @@ export default class extends Component {
 
 ## onFilter
 
-The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
+Optional.
+
+By default, when `@options` are an array of strings, the built-in filtering does simple `startsWith` filtering. When `@options` are an array of objects, the same filtering logic applies, but the key of each object is determined by the provided `@optionKey`. There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `startsWith` filtering described. To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
 
 ```hbs
 <Form::Controls::Combobox
