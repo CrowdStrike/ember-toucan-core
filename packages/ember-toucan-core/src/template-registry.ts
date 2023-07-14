@@ -1,6 +1,7 @@
 import type ButtonComponent from './components/button';
 import type FormControlsCharacterCount from './components/form/controls/character-count';
 import type CheckboxControlComponent from './components/form/controls/checkbox';
+import type ComboboxControlComponent from './components/form/controls/combobox';
 import type FormControlsFileInputComponent from './components/form/controls/file-input';
 import type InputControlComponent from './components/form/controls/input';
 import type RadioControlComponent from './components/form/controls/radio';
@@ -8,6 +9,7 @@ import type TextareaControlComponent from './components/form/controls/textarea';
 import type FieldComponent from './components/form/field';
 import type CheckboxFieldComponent from './components/form/fields/checkbox';
 import type CheckboxGroupFieldComponent from './components/form/fields/checkbox-group';
+import type ComboboxFieldComponent from './components/form/fields/combobox';
 import type FormFileInputFieldComponent from './components/form/fields/file-input';
 import type InputFieldComponent from './components/form/fields/input';
 import type RadioFieldComponent from './components/form/fields/radio';
@@ -21,8 +23,10 @@ export default interface Registry {
   'Form::Field': typeof FieldComponent;
   'Form::Fields::Checkbox': typeof CheckboxFieldComponent;
   'Form::Fields::CheckboxGroup': typeof CheckboxGroupFieldComponent;
+  'Form::Fields::Combobox': typeof ComboboxFieldComponent;
   'Form::Fields::Input': typeof InputFieldComponent;
   'Form::Controls::Checkbox': typeof CheckboxControlComponent;
+  'Form::Controls::Combobox': typeof ComboboxControlComponent;
   'Form::Controls::FileInput': typeof FormControlsFileInputComponent;
   'Form::Controls::Input': typeof InputControlComponent;
   'Form::Controls::Radio': typeof RadioControlComponent;

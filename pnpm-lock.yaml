@@ -33,7 +33,7 @@ importers:
         version: 1.1.3(@babel/core@7.20.12)(@crowdstrike/tailwind-toucan-base@3.5.0)(@docfy/core@0.6.0)(@docfy/ember@0.6.0)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.0.2)(@glint/template@1.0.2)(@tailwindcss/typography@0.5.9)(ember-source@5.1.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
+        version: file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
         version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4)
@@ -55,6 +55,9 @@ importers:
       ember-resources:
         specifier: ^6.0.0
         version: 6.0.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-source@5.1.0)
+      ember-velcro:
+        specifier: ^2.1.0
+        version: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       highlight.js:
         specifier: ^11.6.0
         version: 11.7.0
@@ -355,6 +358,12 @@ importers:
       '@embroider/addon-shim':
         specifier: ^1.0.0
         version: 1.8.4
+      '@floating-ui/dom':
+        specifier: ^1.4.2
+        version: 1.4.4
+      ember-velcro:
+        specifier: ^2.1.0
+        version: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.17.0
@@ -557,7 +566,7 @@ importers:
         version: 7.18.6(@babel/core@7.21.4)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-core(@babel/core@7.21.4)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
         specifier: ^2.0.1
         version: 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
@@ -728,7 +737,7 @@ importers:
         version: 7.19.1(@babel/core@7.20.12)(eslint@8.33.0)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
         version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
@@ -921,6 +930,9 @@ importers:
       ember-try:
         specifier: ^2.0.0
         version: 2.0.0
+      ember-velcro:
+        specifier: ^2.1.0
+        version: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       eslint:
         specifier: ^8.32.0
         version: 8.33.0
@@ -3884,6 +3896,56 @@ packages:
       - webpack
     dev: true
 
+  /@embroider/compat@2.1.1:
+    resolution: {integrity: sha512-HNq5vv7NpQ1Jr+4slzmLBqsy5NDsIHilYeQiWboMrPAyHr5NHlKYWciIcmxdgPgz2kf/8D5nDiANgJznZedlyw==}
+    engines: {node: 12.* || 14.* || >= 16}
+    hasBin: true
+    peerDependencies:
+      '@embroider/core': ^2.0.0
+    dependencies:
+      '@babel/code-frame': 7.18.6
+      '@babel/core': 7.20.12
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.20.12)
+      '@babel/preset-env': 7.20.2(@babel/core@7.20.12)
+      '@babel/traverse': 7.20.13
+      '@embroider/macros': 1.10.0
+      '@types/babel__code-frame': 7.0.3
+      '@types/yargs': 17.0.22
+      assert-never: 1.2.1
+      babel-plugin-ember-template-compilation: 2.0.0
+      babel-plugin-syntax-dynamic-import: 6.18.0
+      babylon: 6.18.0
+      bind-decorator: 1.0.11
+      broccoli: 3.5.2
+      broccoli-concat: 4.2.5
+      broccoli-file-creator: 2.1.1
+      broccoli-funnel: 3.0.8
+      broccoli-merge-trees: 4.2.0
+      broccoli-persistent-filter: 3.1.3
+      broccoli-plugin: 4.0.7
+      broccoli-source: 3.0.1
+      chalk: 4.1.2
+      debug: 4.3.4
+      fs-extra: 9.1.0
+      fs-tree-diff: 2.0.1
+      jsdom: 16.7.0
+      lodash: 4.17.21
+      pkg-up: 3.1.0
+      resolve: 1.22.1
+      resolve-package-path: 4.0.3
+      semver: 7.3.8
+      symlink-or-copy: 1.3.1
+      tree-sync: 2.1.0
+      typescript-memoize: 1.1.1
+      walk-sync: 3.0.0
+      yargs: 17.6.2
+    transitivePeerDependencies:
+      - bufferutil
+      - canvas
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@embroider/compat@2.1.1(@embroider/core@2.1.1):
     resolution: {integrity: sha512-HNq5vv7NpQ1Jr+4slzmLBqsy5NDsIHilYeQiWboMrPAyHr5NHlKYWciIcmxdgPgz2kf/8D5nDiANgJznZedlyw==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -4131,6 +4193,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@floating-ui/core@1.3.1:
+    resolution: {integrity: sha512-Bu+AMaXNjrpjh41znzHqaz3r2Nr8hHuHZT6V2LBKMhyMl0FgKA62PNYbqnfgmzOhoWZj70Zecisbo4H1rotP5g==}
+
+  /@floating-ui/dom@1.4.4:
+    resolution: {integrity: sha512-21hhDEPOiWkGp0Ys4Wi6Neriah7HweToKra626CIK712B5m9qkdz54OP9gVldUg+URnBTpv/j/bi/skmGdstXQ==}
+    dependencies:
+      '@floating-ui/core': 1.3.1
 
   /@glimmer/compiler@0.84.2:
     resolution: {integrity: sha512-rU8qpqbqxIPwrEQH82yDDFi1hgv6ud1agYexmnmCXlaLS5uCVATJAqKsVozc7aHOgmmF4Ukd/LoF4NYfGr8X3w==}
@@ -6842,7 +6912,6 @@ packages:
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-    dev: true
 
   /babel-loader@8.3.0(@babel/core@7.21.4)(webpack@5.75.0):
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
@@ -8957,7 +9026,6 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
       semver: 7.5.1
-    dev: true
 
   /css-loader@5.2.7(webpack@5.75.0):
     resolution: {integrity: sha512-Q7mOvpBNBG7YrVGMxRxcBJZFL75o+cH2abNASdibkj/fffYD8qWbInZrD0S9ccI6vZclF3DsHE7njGlLtaHbhg==}
@@ -9600,7 +9668,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - webpack
-    dev: true
 
   /ember-auto-import@2.6.3(webpack@5.75.0):
     resolution: {integrity: sha512-uLhrRDJYWCRvQ4JQ1e64XlSrqAKSd6PXaJ9ZsZI6Tlms9T4DtQFxNXasqji2ZRJBVrxEoLCRYX3RTldsQ0vNGQ==}
@@ -10233,6 +10300,19 @@ packages:
       - supports-color
     dev: true
 
+  /ember-functions-as-helper-polyfill@2.1.1(ember-source@5.1.0):
+    resolution: {integrity: sha512-vZ2w9G/foohwtPm99Jos1m6bhlXyyyiJ4vhLbxyjWB4wh7bcpRzXPgCewDRrwefZQ2BwtHg3c9zvVMlI0g+o2Q==}
+    engines: {node: '>= 14.0.0'}
+    peerDependencies:
+      ember-source: ^3.25.0 || ^4.0.0
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-typescript: 5.2.1
+      ember-cli-version-checker: 5.1.2
+      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)
+    transitivePeerDependencies:
+      - supports-color
+
   /ember-get-config@1.1.0:
     resolution: {integrity: sha512-diD+HwwY8QqpEk5DnDYfH7onYwl6NOgr1qv1ENbXih+/iiWYUVS/e0S/PlM7A4gdorD9spn1bnisnTLTf49Wpw==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -10285,6 +10365,33 @@ packages:
     dependencies:
       ember-cli-babel: 7.26.11
       ember-cli-typescript: 2.0.2(@babel/core@7.20.12)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+    dev: true
+
+  /ember-modifier@3.2.7(@babel/core@7.20.12):
+    resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
+    engines: {node: 12.* || >= 14}
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-normalize-entity-name: 1.0.0
+      ember-cli-string-utils: 1.1.0
+      ember-cli-typescript: 5.2.1
+      ember-compatibility-helpers: 1.2.6(@babel/core@7.20.12)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
+  /ember-modifier@3.2.7(@babel/core@7.21.4):
+    resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
+    engines: {node: 12.* || >= 14}
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-normalize-entity-name: 1.0.0
+      ember-cli-string-utils: 1.1.0
+      ember-cli-typescript: 5.2.1
+      ember-compatibility-helpers: 1.2.6(@babel/core@7.21.4)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -10474,7 +10581,6 @@ packages:
       - rsvp
       - supports-color
       - webpack
-    dev: true
 
   /ember-source@5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0):
     resolution: {integrity: sha512-atUeliA3TGyL8LB8EYIouvJukLtlbqFdtNT83Lst9TEtKtqnoyGJhr/5C/C+AxOX7r5s5Lo5cBBNBQadJgNFNg==}
@@ -10742,6 +10848,33 @@ packages:
       '@embroider/macros': 1.10.0
       ember-cli-babel: 7.26.11
     transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /ember-velcro@2.1.0(@babel/core@7.20.12)(ember-source@5.1.0):
+    resolution: {integrity: sha512-5m1JDAGmTT9J8SrVL1NrBj6qe1L0dgb3T1muWL2b36HO4sCHn8/njT/GMHXorcbYz7C/PawYuxKpbILNaGa50A==}
+    engines: {node: 14.* || >= 16}
+    dependencies:
+      '@embroider/addon-shim': 1.8.4
+      '@floating-ui/dom': 1.4.4
+      ember-functions-as-helper-polyfill: 2.1.1(ember-source@5.1.0)
+      ember-modifier: 3.2.7(@babel/core@7.20.12)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - ember-source
+      - supports-color
+
+  /ember-velcro@2.1.0(@babel/core@7.21.4)(ember-source@5.1.0):
+    resolution: {integrity: sha512-5m1JDAGmTT9J8SrVL1NrBj6qe1L0dgb3T1muWL2b36HO4sCHn8/njT/GMHXorcbYz7C/PawYuxKpbILNaGa50A==}
+    engines: {node: 14.* || >= 16}
+    dependencies:
+      '@embroider/addon-shim': 1.8.4
+      '@floating-ui/dom': 1.4.4
+      ember-functions-as-helper-polyfill: 2.1.1(ember-source@5.1.0)
+      ember-modifier: 3.2.7(@babel/core@7.21.4)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - ember-source
       - supports-color
     dev: true
 
@@ -14375,7 +14508,6 @@ packages:
         optional: true
     dependencies:
       schema-utils: 4.0.0
-    dev: true
 
   /mini-css-extract-plugin@2.7.2(webpack@5.75.0):
     resolution: {integrity: sha512-EdlUizq13o0Pd+uCp+WO/JpkLvHRVGt97RqfeGhXqAcorYo1ypJSpkV+WDT0vY/kmh/p7wRdJNJtuyK540PXDw==}
@@ -17373,7 +17505,6 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.1
-    dev: true
 
   /style-loader@2.0.0(webpack@5.75.0):
     resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
@@ -18909,7 +19040,7 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
-  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -18926,19 +19057,23 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.5
       '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
-      '@ember/test-helpers': 3.1.0(ember-source@5.1.0)
+      '@ember/test-helpers': 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
       '@embroider/addon-shim': 1.8.4
+      '@embroider/compat': 2.1.1
+      '@floating-ui/dom': 1.4.4
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.13(postcss@8.4.21)
-      ember-source: 5.1.0(@babel/core@7.21.4)(@glimmer/component@1.1.2)
+      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0)
+      ember-velcro: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       fractal-page-object: 0.4.0
       postcss: 8.4.21
       tailwindcss: 2.2.19(autoprefixer@10.4.13)(postcss@8.4.21)
     transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4):
+  file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4):
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -18957,15 +19092,51 @@ packages:
       '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@ember/test-helpers': 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
       '@embroider/addon-shim': 1.8.4
+      '@floating-ui/dom': 1.4.4
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.13(postcss@8.4.21)
       ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(webpack@5.75.0)
+      ember-velcro: 2.1.0(@babel/core@7.20.12)(ember-source@5.1.0)
       fractal-page-object: 0.4.0
       postcss: 8.4.21
       tailwindcss: 3.2.4(postcss@8.4.21)
     transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
     dev: false
+
+  file:packages/ember-toucan-core(@babel/core@7.21.4)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19):
+    resolution: {directory: packages/ember-toucan-core, type: directory}
+    id: file:packages/ember-toucan-core
+    name: '@crowdstrike/ember-toucan-core'
+    version: 0.2.1
+    peerDependencies:
+      '@crowdstrike/ember-toucan-styles': ^2.0.1
+      '@ember/test-helpers': ^2.8.1 || ^3.0.0
+      '@glimmer/tracking': ^1.1.2
+      autoprefixer: ^10.0.2
+      ember-source: '>=4.8.0'
+      fractal-page-object: ^0.3.0
+      postcss: ^8.2.14
+      tailwindcss: ^2.2.15 || ^3.0.0
+    dependencies:
+      '@babel/runtime': 7.21.5
+      '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+      '@ember/test-helpers': 3.1.0(ember-source@5.1.0)
+      '@embroider/addon-shim': 1.8.4
+      '@embroider/compat': 2.1.1
+      '@floating-ui/dom': 1.4.4
+      '@glimmer/tracking': 1.1.2
+      autoprefixer: 10.4.13(postcss@8.4.21)
+      ember-source: 5.1.0(@babel/core@7.21.4)(@glimmer/component@1.1.2)
+      ember-velcro: 2.1.0(@babel/core@7.21.4)(ember-source@5.1.0)
+      fractal-page-object: 0.4.0
+      postcss: 8.4.21
+      tailwindcss: 2.2.19(autoprefixer@10.4.13)(postcss@8.4.21)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+    dev: true
 
   file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.2.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0-beta.3)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-form, type: directory}
@@ -18983,7 +19154,7 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@ember/test-helpers': 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
       '@embroider/addon-shim': 1.8.4
@@ -19013,7 +19184,7 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
+      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(fractal-page-object@0.4.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@crowdstrike/ember-toucan-styles': 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.1.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@ember/test-helpers': 3.1.0(ember-source@5.1.0)(webpack@5.75.0)
       '@embroider/addon-shim': 1.8.4

@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@embroider/addon-shim": "^1.0.0"
+    "@embroider/addon-shim": "^1.0.0",
+    "@floating-ui/dom": "^1.4.2",
+    "ember-velcro": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
@@ -117,6 +119,7 @@
       "./components/button.js": "./dist/_app_/components/button.js",
       "./components/form/controls/character-count.js": "./dist/_app_/components/form/controls/character-count.js",
       "./components/form/controls/checkbox.js": "./dist/_app_/components/form/controls/checkbox.js",
+      "./components/form/controls/combobox.js": "./dist/_app_/components/form/controls/combobox.js",
       "./components/form/controls/file-input.js": "./dist/_app_/components/form/controls/file-input.js",
       "./components/form/controls/input.js": "./dist/_app_/components/form/controls/input.js",
       "./components/form/controls/radio.js": "./dist/_app_/components/form/controls/radio.js",
@@ -124,6 +127,7 @@
       "./components/form/field.js": "./dist/_app_/components/form/field.js",
       "./components/form/fields/checkbox-group.js": "./dist/_app_/components/form/fields/checkbox-group.js",
       "./components/form/fields/checkbox.js": "./dist/_app_/components/form/fields/checkbox.js",
+      "./components/form/fields/combobox.js": "./dist/_app_/components/form/fields/combobox.js",
       "./components/form/fields/file-input.js": "./dist/_app_/components/form/fields/file-input.js",
       "./components/form/fields/input.js": "./dist/_app_/components/form/fields/input.js",
       "./components/form/fields/radio-group.js": "./dist/_app_/components/form/fields/radio-group.js",

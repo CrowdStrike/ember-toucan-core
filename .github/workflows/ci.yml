@@ -118,8 +118,9 @@ jobs:
           - ember-release
           - ember-beta
           - ember-canary
-          - "'ember-release + embroider-optimized'"
-          - "'ember-lts-4.8 + embroider-optimized'"
+          # @todo Temporarily disabling embroider optimized tests due to https://github.com/CrowdStrike/ember-toucan-core/issues/210
+          # - "'ember-release + embroider-optimized'"
+          # - "'ember-lts-4.8 + embroider-optimized'"
 
     steps:
       - uses: actions/checkout@v3

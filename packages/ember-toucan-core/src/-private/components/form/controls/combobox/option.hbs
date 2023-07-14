@@ -1,0 +1,36 @@
+{{! template-lint-disable require-presentational-children }}
+<li
+  aria-selected={{if @isSelected "true" "false"}}
+  class="my-0 flex cursor-default items-center gap-2 px-2 py-2 leading-4
+    {{this.styles}}
+    {{this.className}}
+    "
+  data-active={{if @isActive "true" "false"}}
+  id="{{@popoverId}}-{{@index}}"
+  role="option"
+  {{on "click" this.onClick}}
+  {{! template-lint-disable no-pointer-down-event-binding }}
+  {{on "mousedown" this.onMousedown}}
+  {{on "mouseover" @onMouseover}}
+  ...attributes
+>
+  <this.Check aria-hidden="true" class={{unless @isSelected "invisible"}} />
+  {{yield}}
+
+  {{! TODO: Do we make `@value` required? }}
+  {{!
+      We'll need Form::Controls::Select to work with real forms and the native `FormData` API.
+      That means it'll need to be backed by a real INPUT. Screenreaders already have all the information
+      they need, which means the INPUT is superfluous and is thus noise?
+  }}
+  {{! template-lint-disable no-nested-interactive }}
+  {{! template-lint-disable require-input-label }}
+  <input
+    class="hidden"
+    checked={{@isSelected}}
+    disabled={{@isDisabled}}
+    readonly={{@isReadOnly}}
+    type="checkbox"
+    value={{@value}}
+  />
+</li>

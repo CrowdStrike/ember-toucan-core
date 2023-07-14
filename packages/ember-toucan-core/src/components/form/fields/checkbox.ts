@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
 import assertBlockOrArgumentExists from '../../../-private/assert-block-or-argument-exists';
-import LockIcon from '../../../-private/components/lock-icon';
+import LockIcon from '../../../-private/icons/lock';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';

@@ -1,0 +1,73 @@
+<div
+  class="flex flex-col {{if @isDisabled 'text-disabled'}}"
+  data-root-field={{if @rootTestSelector @rootTestSelector null}}
+>
+  <Form::Field as |field|>
+    {{#if
+      (this.assertBlockOrArgumentExists
+        (hash
+          blockExists=(has-block "label")
+          argName="label"
+          arg=@label
+          isRequired=true
+        )
+      )
+    }}
+      <field.Label
+        class="flex items-center gap-1.5"
+        for={{field.id}}
+        data-label
+        @isDisabled={{@isDisabled}}
+      >
+        {{#if (has-block "label")}}
+          {{yield to="label"}}
+        {{else}}
+          {{@label}}
+        {{/if}}
+
+        {{#if this.isReadOnlyOrDisabled}}
+          <this.LockIcon />
+        {{/if}}
+      </field.Label>
+    {{/if}}
+
+    {{#if
+      (this.assertBlockOrArgumentExists
+        (hash blockExists=(has-block "hint") argName="hint" arg=@hint)
+      )
+    }}
+      <field.Hint id={{field.hintId}} data-hint @isDisabled={{@isDisabled}}>
+        {{#if (has-block "hint")}}
+          {{yield to="hint"}}
+        {{else}}
+          {{@hint}}
+        {{/if}}
+      </field.Hint>
+    {{/if}}
+    <field.Control class="mt-1.5 flex">
+      <Form::Controls::Combobox
+        id={{field.id}}
+        aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
+        aria-invalid={{if @error "true"}}
+        @contentClass={{@contentClass}}
+        @hasError={{this.hasError}}
+        @isDisabled={{@isDisabled}}
+        @isReadOnly={{@isReadOnly}}
+        @noResultsText={{@noResultsText}}
+        @onChange={{@onChange}}
+        @onFilter={{@onFilter}}
+        @optionKey={{@optionKey}}
+        @options={{@options}}
+        @selected={{@selected}}
+        ...attributes
+        as |select|
+      >
+        {{yield select}}
+      </Form::Controls::Combobox>
+    </field.Control>
+
+    {{#if @error}}
+      <field.Error id={{field.errorId}} @error={{@error}} data-error />
+    {{/if}}
+  </Form::Field>
+</div>

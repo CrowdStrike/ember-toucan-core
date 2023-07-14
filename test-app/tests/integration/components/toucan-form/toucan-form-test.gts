@@ -1,6 +1,12 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
 import { on } from '@ember/modifier';
-import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
+import {
+  click,
+  fillIn,
+  render,
+  triggerEvent,
+  triggerKeyEvent,
+} from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
@@ -12,8 +18,11 @@ const testFile = new File(['Some sample content'], 'file.txt', {
   type: 'text/plain',
 });
 
+const options = ['blue', 'red', 'yellow'];
+
 interface TestData {
   checkboxes?: Array<string>;
+  combobox?: string;
   comment?: string;
   firstName?: string;
   radio?: string;
@@ -132,6 +141,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
       checkboxes: ['option-1', 'option-3'],
+      combobox: 'blue',
       comment: 'multi-line text',
       firstName: 'single line text',
       radio: 'option-2',
@@ -178,6 +188,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @trigger="Select files"
           @deleteLabel="Delete"
         />
+
+        <form.Combobox
+          @label="Combobox"
+          @name="combobox"
+          @options={{options}}
+          data-combobox
+          as |combobox|
+        >
+          <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+        </form.Combobox>
       </ToucanForm>
     </template>);
 
@@ -208,10 +228,14 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
     // File input
     assert.dom('[data-files] [data-file-name]').hasText('file.txt');
+
+    // Combobox
+    assert.dom('[data-combobox]').hasAttribute('name', 'combobox');
+    assert.dom('[data-combobox]').hasValue('blue');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    assert.expect(18);
+    assert.expect(19);
 
     const handleSubmit = ({ files, ...data }: TestData) => {
       // Checking deep equality on files can get really tricky due
@@ -232,6 +256,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
         data,
         {
           checkboxes: ['option-2'],
+          combobox: 'red',
           comment: 'A comment.',
           firstName: 'CrowdStrike',
           radio: 'option-2',
@@ -246,6 +271,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
     const formValidateCallback = ({
       checkboxes,
+      combobox,
       comment,
       firstName,
       radio,
@@ -260,6 +286,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
             type: 'required',
             value: checkboxes,
             message: 'One checkbox must be selected',
+          },
+        ];
+      }
+
+      if (!combobox) {
+        errors.combobox = [
+          {
+            type: 'required',
+            value: combobox,
+            message: 'One combobox item must be selected',
           },
         ];
       }
@@ -387,6 +423,17 @@ module('Integration | Component | ToucanForm', function (hooks) {
           data-file-input-field
         />
 
+        <form.Combobox
+          @label="Combobox"
+          @name="combobox"
+          @options={{options}}
+          @rootTestSelector="data-combobox-wrapper"
+          data-combobox
+          as |combobox|
+        >
+          <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+        </form.Combobox>
+
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
     </template>);
@@ -427,6 +474,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-file-input-wrapper"] [data-error]')
       .hasText('A file must be added');
+    assert
+      .dom('[data-root-field="data-combobox-wrapper"] [data-error]')
+      .hasText('One combobox item must be selected');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
@@ -437,6 +487,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await triggerEvent('[data-file-input-field]', 'change', {
       files: [testFile],
     });
+    await fillIn('[data-combobox]', 'red');
+    await triggerKeyEvent('[data-combobox]', 'keydown', 'Enter');
 
     await click('[data-test-submit]');
 
