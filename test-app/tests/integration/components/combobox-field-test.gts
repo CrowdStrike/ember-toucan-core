@@ -120,7 +120,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
-  test('it disables the textarea using `@isDisabled` and renders a lock icon', async function (assert) {
+  test('it disables the input using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
       <ComboboxField @label="Label" @isDisabled={{true}} data-combobox />
     </template>);
@@ -131,7 +131,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it sets readonly on the textarea using `@isReadOnly` and renders a lock icon', async function (assert) {
+  test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
       <ComboboxField @label="Label" @isReadOnly={{true}} data-combobox />
     </template>);
@@ -141,7 +141,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert.dom('[data-lock-icon]').exists();
   });
 
-  test('it spreads attributes to the underlying textarea', async function (assert) {
+  test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       <ComboboxField
         @label="Label"
