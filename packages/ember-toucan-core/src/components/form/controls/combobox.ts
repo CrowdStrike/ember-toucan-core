@@ -192,21 +192,6 @@ export default class ToucanFormComboboxControlComponent<
   }
 
   /**
-   * The internal currently selected item.
-   */
-  get selected(): string | undefined {
-    let { optionKey, selected } = this.args;
-
-    if (!selected) {
-      return undefined;
-    }
-
-    return (
-      typeof selected === 'object' && optionKey ? selected[optionKey] : selected
-    ) as string;
-  }
-
-  /**
    * Attempts to scroll the active or newly highlighted item into view for the user.
    */
   scrollActiveOptionIntoView(alignToTop?: boolean) {
