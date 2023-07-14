@@ -1,6 +1,6 @@
 # Checkbox
 
-Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox). If you are building forms, you may be interested in the CheckboxField component instead.
+Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox). If you are building forms, you may be interested in the [CheckboxField](./checkbox-field) component instead.
 
 ## Checked State
 

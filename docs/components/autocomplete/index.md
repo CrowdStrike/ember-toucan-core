@@ -1,7 +1,7 @@
 # Autocomplete
 
 Provides a Toucan-styled autocomplete with filtering.
-If you are building forms, you may be interested in the AutocompleteField component instead.
+If you are building forms, you may be interested in the [AutocompleteField](./autocomplete-field) component instead.
 
 ## Popover z-index
 
