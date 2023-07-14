@@ -11,14 +11,14 @@
 >
   {{yield
     (hash
+      Autocomplete=(component
+        (ensure-safe-component this.AutocompleteFieldComponent) form=form
+      )
       Checkbox=(component
         (ensure-safe-component this.CheckboxComponent) form=form
       )
       CheckboxGroup=(component
         (ensure-safe-component this.CheckboxGroupComponent) form=form
-      )
-      Combobox=(component
-        (ensure-safe-component this.ComboboxFieldComponent) form=form
       )
       Field=form.Field
       FileInput=(component

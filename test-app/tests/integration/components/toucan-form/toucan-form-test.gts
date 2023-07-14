@@ -21,8 +21,8 @@ const testFile = new File(['Some sample content'], 'file.txt', {
 const options = ['blue', 'red', 'yellow'];
 
 interface TestData {
+  autocomplete?: string;
   checkboxes?: Array<string>;
-  combobox?: string;
   comment?: string;
   firstName?: string;
   radio?: string;
@@ -140,8 +140,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
 
   test('it sets the yielded component values based on `@data`', async function (assert) {
     const data: TestData = {
+      autocomplete: 'blue',
       checkboxes: ['option-1', 'option-3'],
-      combobox: 'blue',
       comment: 'multi-line text',
       firstName: 'single line text',
       radio: 'option-2',
@@ -189,15 +189,17 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @deleteLabel="Delete"
         />
 
-        <form.Combobox
-          @label="Combobox"
-          @name="combobox"
+        <form.Autocomplete
+          @label="Autocomplete"
+          @name="autocomplete"
           @options={{options}}
-          data-combobox
-          as |combobox|
+          data-autocomplete
+          as |autocomplete|
         >
-          <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-        </form.Combobox>
+          <autocomplete.Option
+            data-option
+          >{{autocomplete.option}}</autocomplete.Option>
+        </form.Autocomplete>
       </ToucanForm>
     </template>);
 
@@ -229,9 +231,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     // File input
     assert.dom('[data-files] [data-file-name]').hasText('file.txt');
 
-    // Combobox
-    assert.dom('[data-combobox]').hasAttribute('name', 'combobox');
-    assert.dom('[data-combobox]').hasValue('blue');
+    // Autocomplete
+    assert.dom('[data-autocomplete]').hasAttribute('name', 'autocomplete');
+    assert.dom('[data-autocomplete]').hasValue('blue');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
@@ -255,8 +257,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
       assert.deepEqual(
         data,
         {
+          autocomplete: 'red',
           checkboxes: ['option-2'],
-          combobox: 'red',
           comment: 'A comment.',
           firstName: 'CrowdStrike',
           radio: 'option-2',
@@ -270,8 +272,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
     const data: TestData = {};
 
     const formValidateCallback = ({
+      autocomplete,
       checkboxes,
-      combobox,
       comment,
       firstName,
       radio,
@@ -290,12 +292,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
         ];
       }
 
-      if (!combobox) {
-        errors.combobox = [
+      if (!autocomplete) {
+        errors.autocomplete = [
           {
             type: 'required',
-            value: combobox,
-            message: 'One combobox item must be selected',
+            value: autocomplete,
+            message: 'One autocomplete item must be selected',
           },
         ];
       }
@@ -423,16 +425,18 @@ module('Integration | Component | ToucanForm', function (hooks) {
           data-file-input-field
         />
 
-        <form.Combobox
-          @label="Combobox"
-          @name="combobox"
+        <form.Autocomplete
+          @label="Autocomplete"
+          @name="autocomplete"
           @options={{options}}
-          @rootTestSelector="data-combobox-wrapper"
-          data-combobox
-          as |combobox|
+          @rootTestSelector="data-autocomplete-wrapper"
+          data-autocomplete
+          as |autocomplete|
         >
-          <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-        </form.Combobox>
+          <autocomplete.Option data-option>
+            {{autocomplete.option}}
+          </autocomplete.Option>
+        </form.Autocomplete>
 
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
@@ -475,8 +479,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
       .dom('[data-root-field="data-file-input-wrapper"] [data-error]')
       .hasText('A file must be added');
     assert
-      .dom('[data-root-field="data-combobox-wrapper"] [data-error]')
-      .hasText('One combobox item must be selected');
+      .dom('[data-root-field="data-autocomplete-wrapper"] [data-error]')
+      .hasText('One autocomplete item must be selected');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
@@ -487,8 +491,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await triggerEvent('[data-file-input-field]', 'change', {
       files: [testFile],
     });
-    await fillIn('[data-combobox]', 'red');
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'Enter');
+    await fillIn('[data-autocomplete]', 'red');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Enter');
 
     await click('[data-test-submit]');
 

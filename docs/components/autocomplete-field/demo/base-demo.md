@@ -1,5 +1,5 @@
 ```hbs template
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @contentClass='z-10'
   @error={{this.errorMessage}}
   @hint='Type "blue" into the field'
@@ -10,12 +10,12 @@
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
-  as |combobox|
+  as |autocomplete|
 >
-  <combobox.Option>
-    {{combobox.option.label}}
-  </combobox.Option>
-</Form::Fields::Combobox>
+  <autocomplete.Option>
+    {{autocomplete.option.label}}
+  </autocomplete.Option>
+</Form::Fields::Autocomplete>
 ```
 
 ```js component
