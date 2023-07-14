@@ -1,5 +1,13 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.2.2
+
+### Patch Changes
+
+- [#212](https://github.com/CrowdStrike/ember-toucan-core/pull/212) [`eb5b130`](https://github.com/CrowdStrike/ember-toucan-core/commit/eb5b130eeb3fd6f020b840a144953733d6309603) Thanks [@joelamb](https://github.com/joelamb)! - fixes flex-grow for disabled button
+
+- [#208](https://github.com/CrowdStrike/ember-toucan-core/pull/208) [`e907310`](https://github.com/CrowdStrike/ember-toucan-core/commit/e907310cbc43e0b24e3563e5d5d6a96e8c9c7c93) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Adds error styling when the current character length is greater than maximum character length for the input and textarea components using the character counter.
+
 ## 0.2.1
 
 ### Patch Changes
