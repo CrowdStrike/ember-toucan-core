@@ -108,7 +108,7 @@ In the example below, we set `@optionKey='label'`. Our `@options` objects have a
   as |combobox|
 >
   <combobox.Option>
-    {{combobox.option}}
+    {{combobox.option.label}}
   </combobox.Option>
 </Form::Controls::Combobox>
 ```
