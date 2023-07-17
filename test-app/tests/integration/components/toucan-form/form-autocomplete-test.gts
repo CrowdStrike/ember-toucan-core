@@ -10,7 +10,7 @@ interface TestData {
   selection?: string;
 }
 
-module('Integration | Component | ToucanForm | Combobox', function (hooks) {
+module('Integration | Component | ToucanForm | Autocomplete', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders `@label` and `@hint` component arguments', async function (assert) {
@@ -20,16 +20,18 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox
+        <form.Autocomplete
           @label="Label"
           @hint="Hint"
           @name="selection"
           @options={{options}}
-          data-combobox
-          as |combobox|
+          data-autocomplete
+          as |autocomplete|
         >
-          <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-        </form.Combobox>
+          <autocomplete.Option data-option>
+            {{autocomplete.option}}
+          </autocomplete.Option>
+        </form.Autocomplete>
       </ToucanForm>
     </template>);
 
@@ -44,17 +46,19 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox
+        <form.Autocomplete
           @hint="Hint"
           @name="selection"
           @options={{options}}
-          data-combobox
+          data-autocomplete
         >
           <:label><span data-label-block>Label</span></:label>
-          <:default as |combobox|>
-            <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+          <:default as |autocomplete|>
+            <autocomplete.Option data-option>
+              {{autocomplete.option}}
+            </autocomplete.Option>
           </:default>
-        </form.Combobox>
+        </form.Autocomplete>
       </ToucanForm>
     </template>);
 
@@ -72,17 +76,19 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox
+        <form.Autocomplete
           @label="Label"
           @name="selection"
           @options={{options}}
-          data-combobox
+          data-autocomplete
         >
           <:hint><span data-hint-block>Hint</span></:hint>
-          <:default as |combobox|>
-            <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+          <:default as |autocomplete|>
+            <autocomplete.Option data-option>
+              {{autocomplete.option}}
+            </autocomplete.Option>
           </:default>
-        </form.Combobox>
+        </form.Autocomplete>
       </ToucanForm>
     </template>);
 
@@ -100,13 +106,19 @@ module('Integration | Component | ToucanForm | Combobox', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Combobox @name="selection" @options={{options}} data-combobox>
+        <form.Autocomplete
+          @name="selection"
+          @options={{options}}
+          data-autocomplete
+        >
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
-          <:default as |combobox|>
-            <combobox.Option data-option>{{combobox.option}}</combobox.Option>
+          <:default as |autocomplete|>
+            <autocomplete.Option data-option>
+              {{autocomplete.option}}
+            </autocomplete.Option>
           </:default>
-        </form.Combobox>
+        </form.Autocomplete>
       </ToucanForm>
     </template>);
 

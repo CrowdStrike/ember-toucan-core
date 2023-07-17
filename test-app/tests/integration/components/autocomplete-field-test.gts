@@ -1,15 +1,15 @@
 import { click, fillIn, find, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import ComboboxField from '@crowdstrike/ember-toucan-core/components/form/fields/combobox';
+import Autocomplete from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-module('Integration | Component | Fields | Combobox', function (hooks) {
+module('Integration | Component | Fields | Autocomplete', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" data-combobox />
+      <Autocomplete @label="Label" data-autocomplete />
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
@@ -20,9 +20,9 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
         'Expected hint block not to be displayed as a hint was not provided'
       );
 
-    assert.dom('[data-combobox]').hasTagName('input');
-    assert.dom('[data-combobox]').hasAttribute('id');
-    assert.dom('[data-combobox]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-autocomplete]').hasTagName('input');
+    assert.dom('[data-autocomplete]').hasAttribute('id');
+    assert.dom('[data-autocomplete]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-error]')
@@ -35,7 +35,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" @hint="Hint text" data-combobox />
+      <Autocomplete @label="Label" @hint="Hint text" data-autocomplete />
     </template>);
 
     let hint = find('[data-hint]');
@@ -48,7 +48,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     let describedby =
-      find('[data-combobox]')?.getAttribute('aria-describedby') || '';
+      find('[data-autocomplete]')?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(hintId),
@@ -58,10 +58,10 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <ComboboxField data-combobox>
+      <Autocomplete data-autocomplete>
         <:label><span data-label>label block content</span></:label>
         <:hint><span data-hint>hint block content</span></:hint>
-      </ComboboxField>
+      </Autocomplete>
     </template>);
 
     assert.dom('[data-hint]').hasText('hint block content');
@@ -70,7 +70,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
 
   test('it renders with an error', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" @error="Error text" data-combobox />
+      <Autocomplete @label="Label" @error="Error text" data-autocomplete />
     </template>);
 
     let error = find('[data-error]');
@@ -83,27 +83,31 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     let describedby =
-      find('[data-combobox]')?.getAttribute('aria-describedby') || '';
+      find('[data-autocomplete]')?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
     );
 
-    assert.dom('[data-combobox]').hasAttribute('aria-invalid', 'true');
+    assert.dom('[data-autocomplete]').hasAttribute('aria-invalid', 'true');
 
-    assert.dom('[data-combobox]').hasClass('shadow-error-outline');
-    assert.dom('[data-combobox]').hasClass('focus:shadow-error-focus-outline');
-    assert.dom('[data-combobox]').doesNotHaveClass('shadow-focusable-outline');
+    assert.dom('[data-autocomplete]').hasClass('shadow-error-outline');
+    assert
+      .dom('[data-autocomplete]')
+      .hasClass('focus:shadow-error-focus-outline');
+    assert
+      .dom('[data-autocomplete]')
+      .doesNotHaveClass('shadow-focusable-outline');
   });
 
   test('it sets aria-describedby when both a hint and error are provided using the hint and errorIds', async function (assert) {
     await render(<template>
-      <ComboboxField
+      <Autocomplete
         @label="Label"
         @error="Error text"
         @hint="Hint text"
-        data-combobox
+        data-autocomplete
       />
     </template>);
 
@@ -116,51 +120,51 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
-      .dom('[data-combobox]')
+      .dom('[data-autocomplete]')
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
   test('it disables the input using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" @isDisabled={{true}} data-combobox />
+      <Autocomplete @label="Label" @isDisabled={{true}} data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').isDisabled();
-    assert.dom('[data-combobox]').hasClass('text-disabled');
+    assert.dom('[data-autocomplete]').isDisabled();
+    assert.dom('[data-autocomplete]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
   });
 
   test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" @isReadOnly={{true}} data-combobox />
+      <Autocomplete @label="Label" @isReadOnly={{true}} data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').hasAttribute('readonly');
+    assert.dom('[data-autocomplete]').hasAttribute('readonly');
 
     assert.dom('[data-lock-icon]').exists();
   });
 
   test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
-      <ComboboxField
+      <Autocomplete
         @label="Label"
         placeholder="Placeholder text"
-        data-combobox
+        data-autocomplete
       />
     </template>);
 
     assert
-      .dom('[data-combobox]')
+      .dom('[data-autocomplete]')
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
   test('it sets the value attribute via `@selected`', async function (assert) {
     await render(<template>
-      <ComboboxField @label="Label" @selected="blue" data-combobox />
+      <Autocomplete @label="Label" @selected="blue" data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').hasValue('blue');
+    assert.dom('[data-autocomplete]').hasValue('blue');
   });
 
   // NOTE: This functionality is deeply tested in the Control, as it can
@@ -177,20 +181,20 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     };
 
     await render(<template>
-      <ComboboxField
+      <Autocomplete
         @label="Label"
         @options={{options}}
         @onChange={{handleChange}}
-        data-combobox
+        data-autocomplete
         as |combobox|
       >
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxField>
+      </Autocomplete>
     </template>);
 
     assert.verifySteps([]);
 
-    await fillIn('[data-combobox]', 'blue');
+    await fillIn('[data-autocomplete]', 'blue');
 
     assert.dom('[role="option"]').exists({ count: 1 });
 
@@ -201,10 +205,10 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
 
   test('it applies the provided `@rootTestSelector` to the data-root-field attribute', async function (assert) {
     await render(<template>
-      <ComboboxField
+      <Autocomplete
         @label="Label"
         @rootTestSelector="selector"
-        data-combobox
+        data-autocomplete
       />
     </template>);
 
@@ -223,7 +227,7 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
       );
     });
 
-    await render(<template><ComboboxField /></template>);
+    await render(<template><Autocomplete /></template>);
   });
 
   test('it throws an assertion error if a `@label` and :label are provided', async function (assert) {
@@ -239,9 +243,9 @@ module('Integration | Component | Fields | Combobox', function (hooks) {
     });
 
     await render(<template>
-      <ComboboxField @label="Label">
+      <Autocomplete @label="Label">
         <:label>Label</:label>
-      </ComboboxField>
+      </Autocomplete>
     </template>);
   });
 });

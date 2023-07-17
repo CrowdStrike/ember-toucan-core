@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 
 import Check from '../../../../../-private/icons/check';
 
-interface ToucanFormComboboxOptionControlComponentSignature {
+interface ToucanFormAutocompleteOptionControlComponentSignature {
   Args: {
     /**
      * When true, means that the option is currently hovered over with a mouse
@@ -62,7 +62,7 @@ const className = 'toucan-form-select-option-control';
 
 export const selector = `.${className}`;
 
-export default class ToucanFormComboboxOptionControlComponent extends Component<ToucanFormComboboxOptionControlComponentSignature> {
+export default class ToucanFormAutocompleteOptionControlComponent extends Component<ToucanFormAutocompleteOptionControlComponentSignature> {
   className = className;
   Check = Check;
 

@@ -5,17 +5,17 @@ import { action } from '@ember/object';
 import type { HeadlessFormBlock, UserData } from './types';
 import type {
   Option,
-  ToucanFormComboboxFieldComponentSignature as BaseComboboxFieldSignature,
-} from '@crowdstrike/ember-toucan-core/components/form/fields/combobox';
+  ToucanFormAutocompleteFieldComponentSignature as BaseAutocompleteFieldSignature,
+} from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
-export interface ToucanFormComboboxFieldComponentSignature<
+export interface ToucanFormAutocompleteFieldComponentSignature<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
   Element: HTMLInputElement;
   Args: Omit<
-    BaseComboboxFieldSignature<Option>['Args'],
+    BaseAutocompleteFieldSignature<Option>['Args'],
     'error' | 'onChange'
   > & {
     /**
@@ -30,16 +30,16 @@ export interface ToucanFormComboboxFieldComponentSignature<
   };
   // TODO: How do we get this to play nicely with our
   // generic in toucan-core?
-  // `BaseComboboxFieldSignature<Option>['Blocks'];`
+  // `BaseAutocompleteFieldSignature<Option>['Blocks'];`
   // gives a glint error!
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Blocks: BaseComboboxFieldSignature<any>['Blocks'];
+  Blocks: BaseAutocompleteFieldSignature<any>['Blocks'];
 }
 
-export default class ToucanFormComboboxFieldComponent<
+export default class ToucanFormAutocompleteFieldComponent<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
-> extends Component<ToucanFormComboboxFieldComponentSignature<DATA, KEY>> {
+> extends Component<ToucanFormAutocompleteFieldComponentSignature<DATA, KEY>> {
   hasOnlyLabelBlock = (hasLabel: boolean, hasHint: boolean) =>
     hasLabel && !hasHint;
   hasHintAndLabelBlocks = (hasLabel: boolean, hasHint: boolean) =>

@@ -1,143 +1,151 @@
 import { click, fillIn, render, triggerKeyEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
-import ComboboxControl from '@crowdstrike/ember-toucan-core/components/form/controls/combobox';
+import Autocomplete from '@crowdstrike/ember-toucan-core/components/form/controls/autocomplete';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
 let testColors = ['blue', 'red'];
 
-module('Integration | Component | Combobox', function (hooks) {
+module('Integration | Component | Autocomplete', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template><ComboboxControl data-combobox /></template>);
+    await render(<template><Autocomplete data-autocomplete /></template>);
 
-    assert.dom('[data-combobox]').hasTagName('input');
-    assert.dom('[data-combobox]').hasClass('text-titles-and-attributes');
-    assert.dom('[data-combobox]').hasClass('shadow-focusable-outline');
-    assert.dom('[data-combobox]').doesNotHaveClass('text-disabled');
-    assert.dom('[data-combobox]').doesNotHaveClass('shadow-error-outline');
+    assert.dom('[data-autocomplete]').hasTagName('input');
+    assert.dom('[data-autocomplete]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-autocomplete]').hasClass('shadow-focusable-outline');
+    assert.dom('[data-autocomplete]').doesNotHaveClass('text-disabled');
+    assert.dom('[data-autocomplete]').doesNotHaveClass('shadow-error-outline');
     assert
-      .dom('[data-combobox]')
+      .dom('[data-autocomplete]')
       .doesNotHaveClass('focus:shadow-error-focus-outline');
 
-    assert.dom('[data-combobox]').hasAttribute('aria-autocomplete', 'list');
-    assert.dom('[data-combobox]').hasAttribute('aria-haspopup', 'listbox');
-    assert.dom('[data-combobox]').hasAttribute('autocapitalize', 'none');
-    assert.dom('[data-combobox]').hasAttribute('autocomplete', 'off');
-    assert.dom('[data-combobox]').hasAttribute('autocorrect', 'off');
-    assert.dom('[data-combobox]').hasAttribute('role', 'combobox');
-    assert.dom('[data-combobox]').hasAttribute('spellcheck', 'false');
-    assert.dom('[data-combobox]').hasAttribute('type', 'text');
+    assert.dom('[data-autocomplete]').hasAttribute('aria-autocomplete', 'list');
+    assert.dom('[data-autocomplete]').hasAttribute('aria-haspopup', 'listbox');
+    assert.dom('[data-autocomplete]').hasAttribute('autocapitalize', 'none');
+    assert.dom('[data-autocomplete]').hasAttribute('autocomplete', 'off');
+    assert.dom('[data-autocomplete]').hasAttribute('autocorrect', 'off');
+    assert.dom('[data-autocomplete]').hasAttribute('role', 'combobox');
+    assert.dom('[data-autocomplete]').hasAttribute('spellcheck', 'false');
+    assert.dom('[data-autocomplete]').hasAttribute('type', 'text');
   });
 
-  test('it disables the combobox using `@isDisabled`', async function (assert) {
+  test('it disables the autocomplete using `@isDisabled`', async function (assert) {
     await render(<template>
-      <ComboboxControl @isDisabled={{true}} data-combobox />
+      <Autocomplete @isDisabled={{true}} data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').isDisabled();
-    assert.dom('[data-combobox]').hasClass('text-disabled');
+    assert.dom('[data-autocomplete]').isDisabled();
+    assert.dom('[data-autocomplete]').hasClass('text-disabled');
     assert
-      .dom('[data-combobox]')
+      .dom('[data-autocomplete]')
       .doesNotHaveClass('text-titles-and-attributes');
   });
 
-  test('it sets readonly on the combobox using `@isReadOnly`', async function (assert) {
+  test('it sets readonly on the autocomplete using `@isReadOnly`', async function (assert) {
     await render(<template>
-      <ComboboxControl @isReadOnly={{true}} data-combobox />
+      <Autocomplete @isReadOnly={{true}} data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').hasAttribute('readonly');
+    assert.dom('[data-autocomplete]').hasAttribute('readonly');
 
-    assert.dom('[data-combobox]').hasClass('shadow-read-only-outline');
-    assert.dom('[data-combobox]').hasClass('bg-surface-xl');
-    assert.dom('[data-combobox]').hasNoClass('bg-overlay-1');
-    assert.dom('[data-combobox]').hasNoClass('text-disabled');
-    assert.dom('[data-combobox]').hasNoClass('shadow-error-outline');
-    assert.dom('[data-combobox]').hasNoClass('shadow-focusable-outline');
+    assert.dom('[data-autocomplete]').hasClass('shadow-read-only-outline');
+    assert.dom('[data-autocomplete]').hasClass('bg-surface-xl');
+    assert.dom('[data-autocomplete]').hasNoClass('bg-overlay-1');
+    assert.dom('[data-autocomplete]').hasNoClass('text-disabled');
+    assert.dom('[data-autocomplete]').hasNoClass('shadow-error-outline');
+    assert.dom('[data-autocomplete]').hasNoClass('shadow-focusable-outline');
   });
 
-  test('it spreads attributes to the underlying combobox', async function (assert) {
+  test('it spreads attributes to the underlying autocomplete', async function (assert) {
     await render(<template>
-      <ComboboxControl placeholder="Placeholder text" data-combobox />
+      <Autocomplete placeholder="Placeholder text" data-autocomplete />
     </template>);
 
     assert
-      .dom('[data-combobox]')
+      .dom('[data-autocomplete]')
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
   test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
     await render(<template>
-      <ComboboxControl @hasError={{true}} data-combobox />
+      <Autocomplete @hasError={{true}} data-autocomplete />
     </template>);
 
-    assert.dom('[data-combobox]').hasClass('shadow-error-outline');
-    assert.dom('[data-combobox]').hasClass('focus:shadow-error-focus-outline');
-    assert.dom('[data-combobox]').doesNotHaveClass('shadow-focusable-outline');
+    assert.dom('[data-autocomplete]').hasClass('shadow-error-outline');
+    assert
+      .dom('[data-autocomplete]')
+      .hasClass('focus:shadow-error-focus-outline');
+    assert
+      .dom('[data-autocomplete]')
+      .doesNotHaveClass('shadow-focusable-outline');
   });
 
   test('it opens the popover on click', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox />
+      <Autocomplete @options={{testColors}} data-autocomplete />
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="listbox"]').exists();
   });
 
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox />
+      <Autocomplete @options={{testColors}} data-autocomplete />
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
 
-    await fillIn('[data-combobox]', 'b');
+    await fillIn('[data-autocomplete]', 'b');
 
     assert.dom('[role="listbox"]').exists();
   });
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option data-option>
+          {{autocomplete.option}}
+        </autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
 
-    assert.dom('[data-combobox]').hasNoAttribute('aria-expanded');
+    assert.dom('[data-autocomplete]').hasNoAttribute('aria-expanded');
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    assert.dom('[data-combobox]').hasAttribute('aria-expanded');
+    assert.dom('[data-autocomplete]').hasAttribute('aria-expanded');
   });
 
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option data-option>
+          {{autocomplete.option}}
+        </autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    assert.dom('[data-combobox]').hasAttribute('aria-controls');
+    assert.dom('[data-autocomplete]').hasAttribute('aria-controls');
   });
 
   test('it applies the provided `@contentClass` to the popover content list', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{testColors}}
         @contentClass="test-class"
-        data-combobox
+        data-autocomplete
       />
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="listbox"]').exists();
     assert.dom('[role="listbox"]').hasClass('test-class');
@@ -145,17 +153,19 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it renders the provided options in the popover list', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{testColors}}
         @contentClass="test-class"
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option data-option>
+          {{autocomplete.option}}
+        </autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
     assert.dom('[data-option]').exists({ count: 2 });
@@ -163,17 +173,19 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it sets the value attribute via `@selected`', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option data-option>
+          {{autocomplete.option}}
+        </autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    assert.dom('[data-combobox]').hasValue('blue');
+    assert.dom('[data-autocomplete]').hasValue('blue');
   });
 
   test('it sets the value attribute via `@selected` and `@optionKey` when `@selected` is an object', async function (assert) {
@@ -187,33 +199,35 @@ module('Integration | Component | Combobox', function (hooks) {
     let selected = options[0];
 
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected={{selected}}
         @options={{options}}
         @optionKey="label"
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option data-option>{{combobox.option.label}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option data-option>
+          {{autocomplete.option.label}}
+        </autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    assert.dom('[data-combobox]').hasValue('Blue');
+    assert.dom('[data-autocomplete]').hasValue('Blue');
   });
 
   test('it sets `aria-selected` properly on the list item that is currently selected', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     // Since `@selected="blue"`, we expect it to be selected
     assert
@@ -228,12 +242,12 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it provides default filtering when `@options` is an array of strings', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await fillIn('[data-combobox]', 'blue');
+    await fillIn('[data-autocomplete]', 'blue');
 
     // Filtering works as we expect
     assert.dom('[role="option"]').exists({ count: 1 });
@@ -241,11 +255,11 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // Resetting the filter by clearing the input should
     // display all available options
-    await fillIn('[data-combobox]', '');
+    await fillIn('[data-autocomplete]', '');
     assert.dom('[role="option"]').exists({ count: 2 });
 
     // Verify we can filter again after clearing
-    await fillIn('[data-combobox]', 'red');
+    await fillIn('[data-autocomplete]', 'red');
     assert.dom('[role="option"]').exists({ count: 1 });
     assert.dom('[role="option"]').hasText('red');
   });
@@ -263,17 +277,17 @@ module('Integration | Component | Combobox', function (hooks) {
     ];
 
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{options}}
         @optionKey="label"
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option.label}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option.label}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await fillIn('[data-combobox]', 'blue');
+    await fillIn('[data-autocomplete]', 'blue');
 
     // Filtering works as we expect
     assert.dom('[role="option"]').exists({ count: 1 });
@@ -282,11 +296,11 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // Resetting the filter by clearing the input should
     // display all available options
-    await fillIn('[data-combobox]', '');
+    await fillIn('[data-autocomplete]', '');
     assert.dom('[role="option"]').exists({ count: 2 });
 
     // Verify we can filter again after clearing
-    await fillIn('[data-combobox]', 'red');
+    await fillIn('[data-autocomplete]', 'red');
     assert.dom('[role="option"]').exists({ count: 1 });
     // NOTE: We should be using option.label (capitalized "Red" instead of "red")
     assert.dom('[role="option"]').hasText('Red');
@@ -294,17 +308,17 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it uses the provided `@noResultsText` when no results are found with filtering', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{testColors}}
         @noResultsText="No results"
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await fillIn('[data-combobox]', 'something-not-in-the-list');
+    await fillIn('[data-autocomplete]', 'something-not-in-the-list');
 
     // We should not have any list items
     assert.dom('[role="option"]').exists({ count: 0 });
@@ -331,19 +345,21 @@ module('Integration | Component | Combobox', function (hooks) {
     };
 
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option
+          data-option
+        >{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     assert.verifySteps([]);
 
-    await fillIn('[data-combobox]', 'blue');
+    await fillIn('[data-autocomplete]', 'blue');
 
     assert.dom('[role="option"]').exists({ count: 1 });
 
@@ -361,23 +377,25 @@ module('Integration | Component | Combobox', function (hooks) {
     };
 
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option data-option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option
+          data-option
+        >{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     assert.verifySteps([]);
 
-    await fillIn('[data-combobox]', 'blue');
+    await fillIn('[data-autocomplete]', 'blue');
 
     assert.dom('[role="option"]').exists({ count: 1 });
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'Enter');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Enter');
 
     assert.verifySteps(['handleChange']);
   });
@@ -397,18 +415,18 @@ module('Integration | Component | Combobox', function (hooks) {
     };
 
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
         @onFilter={{handleFilter}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await fillIn('[data-combobox]', 'y');
+    await fillIn('[data-autocomplete]', 'y');
 
     assert.verifySteps(['onFilter']);
 
@@ -416,19 +434,19 @@ module('Integration | Component | Combobox', function (hooks) {
     assert.dom('[role="option"]').hasText('yellow');
   });
 
-  test('it sets the "active" item to the first one in the list when the combobox gains focus', async function (assert) {
+  test('it sets the "active" item to the first one in the list when the autocomplete gains focus', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
 
@@ -442,21 +460,21 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it sets the "active" item to the next item in the list when using the DOWN arrow', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'ArrowDown');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'ArrowDown');
 
     assert
       .dom('[role="option"]:first-child')
@@ -471,21 +489,21 @@ module('Integration | Component | Combobox', function (hooks) {
     // the last item in the list will be active so that we can
     // move up!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="red"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'ArrowUp');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'ArrowUp');
 
     assert
       .dom('[role="option"]:first-child')
@@ -497,16 +515,16 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="listbox"]').exists();
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'Escape');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Escape');
 
     assert.dom('[role="listbox"]').doesNotExist();
   });
@@ -516,13 +534,13 @@ module('Integration | Component | Combobox', function (hooks) {
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
 
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="listbox"]').exists();
 
@@ -534,18 +552,18 @@ module('Integration | Component | Combobox', function (hooks) {
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
-      <ComboboxControl @options={{testColors}} data-combobox as |combobox|>
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     // Now close it
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'Escape');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Escape');
     // Now reopen it
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'ArrowDown');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'ArrowDown');
 
     assert.dom('[role="listbox"]').exists();
   });
@@ -555,20 +573,20 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="f"
         @options={{options}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'ArrowUp', {
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'ArrowUp', {
       metaKey: true,
     });
 
@@ -586,20 +604,20 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="a"
         @options={{options}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'ArrowDown', {
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'ArrowDown', {
       metaKey: true,
     });
 
@@ -618,20 +636,20 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="a"
         @options={{options}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'PageDown');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'PageDown');
 
     assert
       .dom('[role="option"]:last-child')
@@ -648,20 +666,20 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="f"
         @options={{options}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'PageUp');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'PageUp');
 
     assert
       .dom('[role="option"]:first-child')
@@ -677,20 +695,20 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="f"
         @options={{options}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     // Open the popover by clicking it
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
-    await triggerKeyEvent('[data-combobox]', 'keydown', 'Home');
+    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Home');
 
     assert
       .dom('[role="option"]:first-child')
@@ -718,29 +736,29 @@ module('Integration | Component | Combobox', function (hooks) {
     // NOTE: We have a selected option
     // NOTE: We add an input tag so we have something to blur to (by focusing another element)
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
 
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     // Clear the input
-    await fillIn('[data-combobox]', '');
+    await fillIn('[data-autocomplete]', '');
 
     // Now blur the elment
     await click('[data-input]');
 
-    assert.dom('[data-combobox]').hasValue('');
+    assert.dom('[data-autocomplete]').hasValue('');
     assert.verifySteps(['handleChange']);
   });
 
@@ -754,30 +772,30 @@ module('Integration | Component | Combobox', function (hooks) {
     // NOTE: We have a selected option
     // NOTE: We add an input tag so we have something to blur to (by focusing another element)
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
 
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     // Enter garbage into the input
-    await fillIn('[data-combobox]', 'some-garbage');
+    await fillIn('[data-autocomplete]', 'some-garbage');
 
     // Now blur the elment
     await click('[data-input]');
 
     // Verify the input is reset to our `@selected` option
-    assert.dom('[data-combobox]').hasValue('blue');
+    assert.dom('[data-autocomplete]').hasValue('blue');
 
     // NOTE: We do not expect the `@onChange`  to be called in this
     // case as we are only visually resetting to the previously
@@ -786,7 +804,7 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // We want to verify the original options are re-displayed
     // rather than the input being filtered to garbage
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
   });
@@ -814,31 +832,31 @@ module('Integration | Component | Combobox', function (hooks) {
     // NOTE: We have a selected option
     // NOTE: We add an input tag so we have something to blur to (by focusing another element)
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected={{selected}}
         @options={{options}}
         @optionKey="label"
         @onChange={{handleChange}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option.label}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option.label}}</autocomplete.Option>
+      </Autocomplete>
 
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
     </template>);
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     // Enter garbage into the input
-    await fillIn('[data-combobox]', 'some-garbage');
+    await fillIn('[data-autocomplete]', 'some-garbage');
 
     // Now blur the elment
     await click('[data-input]');
 
     // Verify the input is reset to our `@selected` option
-    assert.dom('[data-combobox]').hasValue('Blue');
+    assert.dom('[data-autocomplete]').hasValue('Blue');
 
     // NOTE: We do not expect the `@onChange`  to be called in this
     // case as we are only visually resetting to the previously
@@ -847,21 +865,21 @@ module('Integration | Component | Combobox', function (hooks) {
 
     // We want to verify the original options are re-displayed
     // rather than the input being filtered to garbage
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
   });
 
   test('it reselects the entered input value when there is a selected item and the input regains focus', async function (assert) {
     await render(<template>
-      <ComboboxControl
+      <Autocomplete
         @selected="blue"
         @options={{testColors}}
-        data-combobox
-        as |combobox|
+        data-autocomplete
+        as |autocomplete|
       >
-        <combobox.Option>{{combobox.option}}</combobox.Option>
-      </ComboboxControl>
+        <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
+      </Autocomplete>
     </template>);
 
     assert.strictEqual(
@@ -870,7 +888,7 @@ module('Integration | Component | Combobox', function (hooks) {
       'Expected nothing to be selected by default as we have not interacted with the component'
     );
 
-    await click('[data-combobox]');
+    await click('[data-autocomplete]');
 
     assert.strictEqual(
       document.getSelection()?.toString(),

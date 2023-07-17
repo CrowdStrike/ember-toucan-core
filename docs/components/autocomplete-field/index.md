@@ -1,6 +1,6 @@
-# Combobox Field
+# Autocomplete Field
 
-Provides a Toucan-styled combobox with filtering that builds on top of the Field component.
+Provides a Toucan-styled autocomplete with filtering that builds on top of the Field component.
 
 ## Label
 
@@ -13,44 +13,44 @@ Provide a string to the `@label` component argument or content to the `:label` n
 ### `@label`
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
-  <combobox.Option @value={{combobox.value}}>
-    {{combobox.option}}
-  </combobox.Option>
-</Form::Fields::Combobox>
+  <autocomplete.Option @value={{autocomplete.value}}>
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Fields::Autocomplete>
 ```
 
 ### `:label`
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
   placeholder='Colors'
-  as |combobox|
+  as |autocomplete|
 >
   <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
 
-  <combobox.Option @label="Blue" @value="blue" />
-</Form::Fields::Combobox>
+  <autocomplete.Option @label="Blue" @value="blue" />
+</Form::Fields::Autocomplete>
 
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
   <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
   <:default>
-    <combobox.Option @value={{combobox.value}}>
-      {{combobox.option}}
-    </combobox.Option>
+    <autocomplete.Option @value={{autocomplete.value}}>
+      {{autocomplete.option}}
+    </autocomplete.Option>
   </:default>
-</Form::Fields::Combobox>
+</Form::Fields::Autocomplete>
 ```
 
 ## Hint
@@ -64,35 +64,35 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 ### @hint
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @label='Label'
   @hint='Here is a hint'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
-  <combobox.Option @value={{combobox.value}}>
-    {{combobox.option}}
-  </combobox.Option>
-</Form::Fields::Combobox>
+  <autocomplete.Option @value={{autocomplete.value}}>
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Fields::Autocomplete>
 ```
 
 ### `:hint`
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @label='Label'
   @error={{this.errorMessage}}
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
   <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
   <:default>
-    <combobox.Option @value={{combobox.value}}>
-      {{combobox.option}}
-    </combobox.Option>
+    <autocomplete.Option @value={{autocomplete.value}}>
+      {{autocomplete.option}}
+    </autocomplete.Option>
   </:default>
-</Form::Fields::Combobox>
+</Form::Fields::Autocomplete>
 ```
 
 ## Error
@@ -102,20 +102,20 @@ Optional.
 Provide a string or array of strings to `@error` to render the text into the Error section of the Field.
 
 ```hbs
-<Form::Fields::Combobox @label='Single error' @error='Error' />
+<Form::Fields::Autocomplete @label='Single error' @error='Error' />
 ```
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @label='Label'
   @error={{(array 'Error 1' 'Error 2')}}
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
-  <combobox.Option @value={{combobox.value}}>
-    {{combobox.option}}
-  </combobox.Option>
-</Form::Fields::Combobox>
+  <autocomplete.Option @value={{autocomplete.value}}>
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Fields::Autocomplete>
 ```
 
 ## `@onChange`
@@ -124,15 +124,15 @@ Provide an `@onChange` callback to be notified when the user's selections have c
 `@onChange` will receive the value as its only argument.
 
 ```hbs
-<Form::Fields::Combobox
+<Form::Fields::Autocomplete
   @label='Label'
   @onChange={{this.onChange}}
-  as |combobox|
+  as |autocomplete|
 >
-  <combobox.Option @value={{combobox.value}}>
-    {{combobox.option}}
-  </combobox.Option>
-</Form::Fields::Combobox>
+  <autocomplete.Option @value={{autocomplete.value}}>
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Fields::Autocomplete>
 ```
 
 ```js
@@ -169,7 +169,7 @@ This test selector will be used as the value for the `data-root-field` attribute
 The Field can be targeted via:
 
 ```hbs
-<Form::Fields::Combobox @label='Label' @rootTestSelector='example' />
+<Form::Fields::Autocomplete @label='Label' @rootTestSelector='example' />
 ```
 
 ```js
@@ -192,50 +192,50 @@ Target the error block via `data-error`.
 
 ## UI States
 
-### ComboboxField with `@label`
+### autocompleteField with `@label`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox @label='Label' placeholder='Colors' />
+  <Form::Fields::Autocomplete @label='Label' placeholder='Colors' />
 </div>
 
-### ComboboxField with `@label` and `@hint`
+### autocompleteField with `@label` and `@hint`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @hint='With hint text'
     placeholder='Colors'
   />
 </div>
 
-### ComboboxField with `:label` and `:hint` blocks
+### autocompleteField with `:label` and `:hint` blocks
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox placeholder='Colors'>
+  <Form::Fields::Autocomplete placeholder='Colors'>
     <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
-    <:default as |combobox|>
-      <combobox.Option>
-        {{combobox.option}}
-      </combobox.Option>
+    <:default as |autocomplete|>
+      <autocomplete.Option>
+        {{autocomplete.option}}
+      </autocomplete.Option>
     </:default>
-  </Form::Fields::Combobox>
+  </Form::Fields::Autocomplete>
 </div>
 
-### ComboboxField with `@label` and `@error`
+### autocompleteField with `@label` and `@error`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @error='With error text'
     placeholder='Colors'
   />
 </div>
 
-### ComboboxField with `@label`, `@hint`, and `@error`
+### autocompleteField with `@label`, `@hint`, and `@error`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @hint='With hint text'
     @error='With error text'
@@ -243,69 +243,69 @@ Target the error block via `data-error`.
   />
 </div>
 
-### ComboboxField with `@label` and `@isDisabled`
+### autocompleteField with `@label` and `@isDisabled`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @isDisabled={{true}}
     placeholder='Colors'
   />
 </div>
 
-### ComboboxField with `@label`, `@value`, and `@isDisabled`
+### autocompleteField with `@label`, `@value`, and `@isDisabled`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @isDisabled={{true}}
     @selected="blue"
     @options={{(array 'blue' 'red')}}
     placeholder='Colors'
-  as |combobox|>
-    <combobox.Option>
-      {{combobox.option}}
-    </combobox.Option>
-  </Form::Fields::Combobox>
+  as |autocomplete|>
+    <autocomplete.Option>
+      {{autocomplete.option}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
 </div>
 
-### ComboboxField with multiple errors
+### autocompleteField with multiple errors
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @options={{(array 'blue' 'red')}}
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
     placeholder='Colors'
-  as |combobox|>
-    <combobox.Option>
-      {{combobox.option}}
-    </combobox.Option>
-  </Form::Fields::Combobox>
+  as |autocomplete|>
+    <autocomplete.Option>
+      {{autocomplete.option}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
 </div>
 
-### ComboboxField with `@isReadOnly`
+### autocompleteField with `@isReadOnly`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @hint='With hint text'
     @isReadOnly={{true}}
   />
 </div>
 
-### ComboboxField with `@isReadOnly` and `@selected`
+### autocompleteField with `@isReadOnly` and `@selected`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Combobox
+  <Form::Fields::Autocomplete
     @label='Label'
     @isReadOnly={{true}}
     @selected="blue"
     @options={{(array 'blue' 'red')}}
     placeholder='Colors'
-  as |combobox|>
-    <combobox.Option>
-      {{combobox.option}}
-    </combobox.Option>
-  </Form::Fields::Combobox>
+  as |autocomplete|>
+    <autocomplete.Option>
+      {{autocomplete.option}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
 </div>

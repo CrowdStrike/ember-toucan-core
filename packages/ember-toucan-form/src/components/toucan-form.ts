@@ -1,8 +1,8 @@
 import Component from '@glimmer/component';
 
+import AutocompleteFieldComponent from '../-private/autocomplete-field';
 import CheckboxFieldComponent from '../-private/checkbox-field';
 import CheckboxGroupFieldComponent from '../-private/checkbox-group-field';
-import ComboboxFieldComponent from '../-private/combobox-field';
 import FileInputFieldComponent from '../-private/file-input-field';
 import InputFieldComponent from '../-private/input-field';
 import RadioGroupFieldComponent from '../-private/radio-group-field';
@@ -26,12 +26,15 @@ export interface ToucanFormComponentSignature<
   Blocks: {
     default: [
       {
+        Autocomplete: WithBoundArgs<
+          typeof AutocompleteFieldComponent<DATA>,
+          'form'
+        >;
         Checkbox: WithBoundArgs<typeof CheckboxFieldComponent<DATA>, 'form'>;
         CheckboxGroup: WithBoundArgs<
           typeof CheckboxGroupFieldComponent<DATA>,
           'form'
         >;
-        Combobox: WithBoundArgs<typeof ComboboxFieldComponent<DATA>, 'form'>;
         Field: HeadlessFormBlock<DATA>['Field'];
         FileInput: WithBoundArgs<typeof FileInputFieldComponent<DATA>, 'form'>;
         Input: WithBoundArgs<typeof InputFieldComponent<DATA>, 'form'>;
@@ -70,7 +73,7 @@ export default class ToucanFormComponent<
   FileInputFieldComponent = FileInputFieldComponent<DATA>;
   InputFieldComponent = InputFieldComponent<DATA>;
   RadioGroupFieldComponent = RadioGroupFieldComponent<DATA>;
-  ComboboxFieldComponent = ComboboxFieldComponent<DATA>;
+  AutocompleteFieldComponent = AutocompleteFieldComponent<DATA>;
   TextareaFieldComponent = TextareaFieldComponent<DATA>;
 
   get validateOn() {

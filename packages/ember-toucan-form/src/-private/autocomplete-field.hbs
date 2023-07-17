@@ -1,7 +1,7 @@
 {{!
   Regarding Conditionals
 
-  This looks really messy, but Form::Fields::Combobox exposes named blocks; HOWEVER,
+  This looks really messy, but Form::Fields::Autocomplete exposes named blocks; HOWEVER,
   we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
 
   We *can* conditionally render components though, based on the blocks and argument combinations
@@ -18,7 +18,7 @@
 }}
 <@form.Field @name={{@name}} as |field|>
   {{#if (this.hasOnlyLabelBlock (has-block 'label') (has-block 'hint'))}}
-    <Form::Fields::Combobox
+    <Form::Fields::Autocomplete
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -37,13 +37,13 @@
       ...attributes
     >
       <:label>{{yield to='label'}}</:label>
-      <:default as |select|>
-        {{yield (hash Option=select.Option option=select.option)}}
+      <:default as |autocomplete|>
+        {{yield (hash Option=autocomplete.Option option=autocomplete.option)}}
       </:default>
-    </Form::Fields::Combobox>
+    </Form::Fields::Autocomplete>
   {{else if (this.hasHintAndLabelBlocks (has-block 'label') (has-block 'hint'))
   }}
-    <Form::Fields::Combobox
+    <Form::Fields::Autocomplete
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -63,12 +63,12 @@
     >
       <:label>{{yield to='label'}}</:label>
       <:hint>{{yield to='hint'}}</:hint>
-      <:default as |select|>
-        {{yield (hash Option=select.Option option=select.option)}}
+      <:default as |autocomplete|>
+        {{yield (hash Option=autocomplete.Option option=autocomplete.option)}}
       </:default>
-    </Form::Fields::Combobox>
+    </Form::Fields::Autocomplete>
   {{else if (this.hasLabelArgAndHintBlock @label (has-block 'hint'))}}
-    <Form::Fields::Combobox
+    <Form::Fields::Autocomplete
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -87,13 +87,13 @@
       ...attributes
     >
       <:hint>{{yield to='hint'}}</:hint>
-      <:default as |select|>
-        {{yield (hash Option=select.Option option=select.option)}}
+      <:default as |autocomplete|>
+        {{yield (hash Option=autocomplete.Option option=autocomplete.option)}}
       </:default>
-    </Form::Fields::Combobox>
+    </Form::Fields::Autocomplete>
   {{else}}
     {{! Argument-only case }}
-    <Form::Fields::Combobox
+    <Form::Fields::Autocomplete
       @contentClass={{@contentClass}}
       @error={{this.mapErrors field.rawErrors}}
       @hint={{@hint}}
@@ -110,9 +110,9 @@
       @selected={{this.assertSelected field.value}}
       name={{@name}}
       ...attributes
-      as |select|
+      as |autocomplete|
     >
-      {{yield (hash Option=select.Option option=select.option)}}
-    </Form::Fields::Combobox>
+      {{yield (hash Option=autocomplete.Option option=autocomplete.option)}}
+    </Form::Fields::Autocomplete>
   {{/if}}
 </@form.Field>

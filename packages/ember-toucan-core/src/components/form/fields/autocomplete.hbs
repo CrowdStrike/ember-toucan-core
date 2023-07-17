@@ -45,7 +45,7 @@
       </field.Hint>
     {{/if}}
     <field.Control class="mt-1.5 flex">
-      <Form::Controls::Combobox
+      <Form::Controls::Autocomplete
         id={{field.id}}
         aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
         aria-invalid={{if @error "true"}}
@@ -63,7 +63,7 @@
         as |select|
       >
         {{yield select}}
-      </Form::Controls::Combobox>
+      </Form::Controls::Autocomplete>
     </field.Control>
 
     {{#if @error}}

@@ -10,7 +10,7 @@ import { offset, size } from '@floating-ui/dom';
 
 import OptionComponent, {
   selector as optionComponentSelector,
-} from '../../../-private/components/form/controls/combobox/option';
+} from '../../../-private/components/form/controls/autocomplete/option';
 import Chevron from '../../../-private/icons/chevron';
 
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
@@ -18,7 +18,7 @@ import type { WithBoundArgs } from '@glint/template';
 
 export type Option = string | Record<string, unknown> | undefined;
 
-export interface ToucanFormComboboxControlComponentSignature<
+export interface ToucanFormAutocompleteControlComponentSignature<
   OPTION extends Option
 > {
   Args: {
@@ -55,7 +55,7 @@ export interface ToucanFormComboboxControlComponentSignature<
     onChange?: (option: unknown) => void;
 
     /**
-     * The function called when a user types into the combobox textbox, typically used to write custom filtering logic.
+     * The function called when a user types into the textbox, typically used to write custom filtering logic.
      */
     onFilter?: (input: string) => OPTION[];
 
@@ -101,9 +101,9 @@ export interface ToucanFormComboboxControlComponentSignature<
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormComboboxControlComponent<
+export default class ToucanFormAutocompleteControlComponent<
   OPTION extends Option
-> extends Component<ToucanFormComboboxControlComponentSignature<OPTION>> {
+> extends Component<ToucanFormAutocompleteControlComponentSignature<OPTION>> {
   @tracked activeIndex: number | null = null;
   @tracked inputValue: string | undefined;
   @tracked isPopoverOpen = false;
@@ -115,7 +115,7 @@ export default class ToucanFormComboboxControlComponent<
 
   constructor(
     owner: unknown,
-    args: ToucanFormComboboxControlComponentSignature<OPTION>['Args']
+    args: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']
   ) {
     super(owner, args);
 
@@ -453,12 +453,12 @@ export default class ToucanFormComboboxControlComponent<
    *
    * The use cases for this is two-fold:
    *
-   * 1) The combobox value is optional. The user selected an option
+   * 1) The autocomplete value is optional. The user selected an option
    *    but then realized they no longer want that selected option.
    *    Since it is not required, we allow them to clear the input
    *    and call the provided `@onChange` with `null` to signal
    *    that the selection was cleared
-   * 2) The combobox's `@selected` item is valid, but then a user
+   * 2) The autocomplete's `@selected` item is valid, but then a user
    *    enters garbage into the input and then tabs out of the
    *    element.  In that case, we don't want to store their
    *    garbage entry.  Instead, we reset it back to the selected
@@ -503,7 +503,7 @@ export default class ToucanFormComboboxControlComponent<
   }
 
   /**
-   * Highlights the entered value of the input when the combobox input is clicked.
+   * Highlights the entered value of the input when the input is clicked.
    */
   @action
   selectInput(event: Event) {
