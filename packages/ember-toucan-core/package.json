@@ -122,6 +122,7 @@
       "./components/form/controls/checkbox.js": "./dist/_app_/components/form/controls/checkbox.js",
       "./components/form/controls/file-input.js": "./dist/_app_/components/form/controls/file-input.js",
       "./components/form/controls/input.js": "./dist/_app_/components/form/controls/input.js",
+      "./components/form/controls/multi-autocomplete.js": "./dist/_app_/components/form/controls/multi-autocomplete.js",
       "./components/form/controls/radio.js": "./dist/_app_/components/form/controls/radio.js",
       "./components/form/controls/textarea.js": "./dist/_app_/components/form/controls/textarea.js",
       "./components/form/field.js": "./dist/_app_/components/form/field.js",

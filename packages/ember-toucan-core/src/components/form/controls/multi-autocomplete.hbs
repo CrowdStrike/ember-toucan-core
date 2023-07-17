@@ -1,0 +1,151 @@
+<Velcro
+  @middleware={{this.velcroMiddleware}}
+  @placement="bottom-start"
+  as |velcro|
+>
+  <div
+    class="bg-overlay-1 text-titles-and-attributes flex min-h-[2.5rem] items-center justify-between rounded-sm p-1 transition-shadow
+      {{this.styles}}"
+    {{on
+      "click"
+      (if
+        this.isDisabledOrReadOnlyOrWithoutOptions
+        this.noop
+        this.handleContainerClick
+      )
+    }}
+    {{velcro.hook}}
+  >
+    <div class="flex w-full flex-wrap gap-1">
+      {{#each this.selected as |option index|}}
+        <div
+          class="min-h-6 bg-normal-idle flex items-center gap-x-2.5 rounded-sm px-2 py-1"
+          data-selected-option
+        >
+          <span class="block">
+            {{(this.getOptionLabel option)}}
+          </span>
+
+          {{#if this.isEnabled}}
+            <button
+              aria-label={{(this.getRemoveButtonLabel option)}}
+              class="focusable reset-styles p-1"
+              data-remove-option
+              type="button"
+              {{on "click" (fn this.removeSelection index)}}
+              {{on "mousedown" this.handleRemoveMouseDown}}
+            >
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="16"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M8 8.707 13.293 14l.707-.707L8.707 8 14 2.707 13.293 2 8 7.293 2.707 2 2 2.707 7.293 8 2 13.293l.707.707L8 8.707Z"
+                />
+              </svg>
+            </button>
+          {{/if}}
+        </div>
+      {{/each}}
+
+      {{! template-lint-disable no-redundant-role  }}
+      <input
+        aria-activedescendant={{this.activeDescendant}}
+        aria-autocomplete="list"
+        aria-controls={{this.popoverId}}
+        aria-expanded={{this.isPopoverOpen}}
+        aria-haspopup="listbox"
+        autocapitalize="none"
+        autocomplete="off"
+        autocorrect="off"
+        class="focus:outline-none flex-grow bg-transparent pl-1"
+        data-toucan-multiselect-input
+        disabled={{@isDisabled}}
+        readonly={{@isReadOnly}}
+        role="combobox"
+        spellcheck="false"
+        type="text"
+        value={{this.inputValue}}
+        {{on
+          "blur"
+          (if
+            this.isDisabledOrReadOnlyOrWithoutOptions
+            this.noop
+            this.closePopover
+          )
+        }}
+        {{on
+          "blur"
+          (if
+            this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.resetValue
+          )
+        }}
+        {{on
+          "focus"
+          (if
+            this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.openPopover
+          )
+        }}
+        {{on
+          "keydown"
+          (if
+            this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onKeydown
+          )
+        }}
+        {{on
+          "input"
+          (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onInput)
+        }}
+        ...attributes
+      />
+    </div>
+
+    {{! TODO: Make it so clicking this icon also opens/closes the popover - probs needs a button tag }}
+    <this.Chevron
+      class="min-w-6 min-h-6 right-1 top-0 h-6 w-6 transform-gpu transition-transform duration-300
+        {{if this.isPopoverOpen 'rotate-180'}}"
+    />
+  </div>
+
+  {{#if this.isPopoverOpen}}
+    <ul
+      class="border-surface-inner bg-surface-2xl max-h-listbox my-0 list-none overflow-y-auto overscroll-contain rounded-sm border py-1 pl-0 shadow-xl
+        {{if @contentClass @contentClass}}"
+      id={{this.popoverId}}
+      role="listbox"
+      {{velcro.loop}}
+    >
+      {{#if this.options}}
+        {{#each this.options as |option index|}}
+          {{yield
+            (hash
+              Option=(component
+                (ensure-safe-component this.Option)
+                isActive=(this.isEqual index this.activeIndex)
+                isDisabled=@isDisabled
+                isSelected=(this.isSelected option)
+                isReadOnly=@isReadOnly
+                onClick=(fn this.onChange index)
+                onMouseover=(fn this.onOptionMouseover index)
+                popoverId=this.popoverId
+                index=index
+              )
+              option=option
+            )
+          }}
+        {{/each}}
+      {{else}}
+        <li
+          aria-live="assertive"
+          class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
+          role="status"
+        >{{@noResultsText}}</li>
+      {{/if}}
+    </ul>
+  {{/if}}
+</Velcro>

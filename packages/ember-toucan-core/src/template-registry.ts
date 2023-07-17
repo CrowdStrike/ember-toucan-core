@@ -4,6 +4,7 @@ import type FormControlsCharacterCount from './components/form/controls/characte
 import type CheckboxControlComponent from './components/form/controls/checkbox';
 import type FormControlsFileInputComponent from './components/form/controls/file-input';
 import type InputControlComponent from './components/form/controls/input';
+import type MultiAutocompleteControlComponent from './components/form/controls/multi-autocomplete';
 import type RadioControlComponent from './components/form/controls/radio';
 import type TextareaControlComponent from './components/form/controls/textarea';
 import type FieldComponent from './components/form/field';
@@ -29,6 +30,7 @@ export default interface Registry {
   'Form::Controls::Checkbox': typeof CheckboxControlComponent;
   'Form::Controls::FileInput': typeof FormControlsFileInputComponent;
   'Form::Controls::Input': typeof InputControlComponent;
+  'Form::Controls::MultiAutocomplete': typeof MultiAutocompleteControlComponent;
   'Form::Controls::Radio': typeof RadioControlComponent;
   'Form::Controls::Textarea': typeof TextareaControlComponent;
   'Form::FileInput::List': typeof FormFileInputListComponent;
