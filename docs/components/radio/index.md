@@ -1,6 +1,6 @@
 # Radio
 
-Provides a Toucan-styled [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio). If you are building forms, you may be interested in the RadioField component instead.
+Provides a Toucan-styled [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio). If you are building forms, you may be interested in the [RadioField](./radio-field) component instead.
 
 ## Value
 

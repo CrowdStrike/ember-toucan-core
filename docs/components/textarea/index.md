@@ -1,6 +1,6 @@
 # Textarea
 
-Provides a Toucan-styled [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea). If you are building forms, you may be interested in the TextareaField component instead.
+Provides a Toucan-styled [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea). If you are building forms, you may be interested in the [TextareaField](./textarea-field) component instead.
 
 ## Value
 

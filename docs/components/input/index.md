@@ -1,6 +1,6 @@
 # Input
 
-Provides a Toucan-styled [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input). If you are building forms, you may be interested in the InputField component instead.
+Provides a Toucan-styled [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input). If you are building forms, you may be interested in the [InputField](./input-field) component instead.
 
 ## Value
 
