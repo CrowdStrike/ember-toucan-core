@@ -56,7 +56,7 @@ export default class extends Component {
 
 ## onChange
 
-Called when the user makes a selection. It is called with entire array of selected options (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
+Called when the user makes a selection. It is called with the entire array of selected options (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
 
 ```hbs
 <Form::Controls::Multiselect
