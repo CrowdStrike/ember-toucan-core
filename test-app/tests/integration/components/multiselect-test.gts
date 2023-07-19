@@ -295,7 +295,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom(chips[1]).hasText('red');
   });
 
-  test('it sets the label of each selected chip via `@selected` and `@optionKey` when `@selected` is an object', async function (assert) {
+  test('it sets the label of each selected chip via `@selected` and `@optionKey` when `@options` are an array of objects', async function (assert) {
     let options = [
       {
         label: 'Blue',
@@ -323,6 +323,29 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[data-multiselect-selected-option]').exists({ count: 1 });
     // NOTE: Since using `label` as `@optionKey`, we expect the uppercase version
     assert.dom('[data-multiselect-selected-option]').hasText('Blue');
+  });
+
+  test('it sets the label of each selected chip via the raw string when `@options` is an array of strings', async function (assert) {
+    let options = ['a'];
+
+    let selected = [...options];
+
+    await render(<template>
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @removeButtonLabelFunction={{removeButtonLabelFunction}}
+        data-multiselect
+        as |multiselect|
+      >
+        <multiselect.Option data-option>
+          {{multiselect.option}}
+        </multiselect.Option>
+      </Multiselect>
+    </template>);
+
+    assert.dom('[data-multiselect-selected-option]').exists({ count: 1 });
+    assert.dom('[data-multiselect-selected-option]').hasText('a');
   });
 
   test('it sets `aria-selected` properly on the list item that is currently selected', async function (assert) {
