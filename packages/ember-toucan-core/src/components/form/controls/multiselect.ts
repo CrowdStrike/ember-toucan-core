@@ -51,7 +51,7 @@ export interface ToucanFormMultiselectControlComponentSignature<
 
     /**
      * Called when the user makes a selection.
-     * It is called with the selected option (derived from `@options`) as its only argument.
+     * It is called with the selected options (derived from `@options`) as its only argument.
      */
     onChange?: (option: OPTION[]) => void;
 
@@ -63,15 +63,15 @@ export interface ToucanFormMultiselectControlComponentSignature<
     /**
      * `@options` forms the content of this component.
      *
-     * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
+     * `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
      */
     options?: OPTION[];
 
     /**
      * When `@options` is an array of objects, `@selected` is also an object.
      * The `@optionKey` is used to determine which key of the object should
-     * be used for both filtering and displayed the selected value in the
-     * textbox.
+     * be used for both filtering and displaying the selected values in the
+     * selected chips.
      */
     optionKey?: OPTION extends Record<string, unknown>
       ? keyof OPTION
@@ -79,12 +79,12 @@ export interface ToucanFormMultiselectControlComponentSignature<
 
     /**
      * Provide a function to format the `aria-label` attribute that
-     * will be applied to the remove button for screenreader users.
+     * will be applied to the remove buttons for screenreader users.
      */
     removeButtonLabel?: (option: Option) => string;
 
     /**
-     * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
+     * The currently selected options.  If `@options` is an array of strings, provide an array of strings.  If `@options` is an array of objects, pass an array of objects matching the format of `@options`.
      */
     selected?: OPTION[];
   };
@@ -350,13 +350,14 @@ export default class ToucanFormMultiselectControlComponent<
     let existingItemIndex = this.getOptionIndexFromSelected(selectedOption);
 
     if (existingItemIndex > -1) {
+      // Remove the item since it already exists
       const updatedArray = [...this.selected];
 
       updatedArray?.splice(existingItemIndex, 1);
 
       this.args.onChange?.(updatedArray);
     } else {
-      // doesn't exist so add it
+      // Add the item since it does NOT exist
       this.args.onChange?.([...selected, selectedOption]);
     }
 
@@ -445,7 +446,8 @@ export default class ToucanFormMultiselectControlComponent<
     }
 
     // Handle the case where the user uses the backspace key
-    // to remove options
+    // to remove options.  This is only a valid case when the input
+    // tag they are typing into is empty.
     if (
       event.key === 'Backspace' &&
       event.target.value === '' &&
