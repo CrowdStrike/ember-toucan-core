@@ -14,13 +14,14 @@
         this.handleContainerClick
       )
     }}
+    data-multiselect-container
     {{velcro.hook}}
   >
     <div class="flex w-full flex-wrap gap-1">
       {{#each this.selected as |option index|}}
         <div
           class="min-h-6 bg-normal-idle flex items-center gap-x-2.5 rounded-sm px-2 py-1"
-          data-selected-option
+          data-multiselect-selected-option
         >
           <span class="block">
             {{(this.getOptionLabel option)}}
@@ -30,7 +31,7 @@
             <button
               aria-label={{(this.getRemoveButtonLabel option)}}
               class="focusable reset-styles p-1"
-              data-remove-option
+              data-multiselect-remove-option
               type="button"
               {{on "click" (fn this.removeSelection index)}}
               {{on "mousedown" this.handleRemoveMouseDown}}
@@ -63,7 +64,8 @@
         autocapitalize="none"
         autocomplete="off"
         autocorrect="off"
-        class="focus:outline-none flex-grow bg-transparent pl-1"
+        class="focus:outline-none flex-grow bg-transparent pl-1
+          {{if @isDisabled 'placeholder:text-disabled text-disabled'}}"
         data-toucan-multiselect-input
         disabled={{@isDisabled}}
         readonly={{@isReadOnly}}

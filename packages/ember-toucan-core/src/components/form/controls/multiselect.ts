@@ -125,7 +125,7 @@ export default class ToucanFormMultiselectControlComponent<
   ) {
     super(owner, args);
 
-    // We should make `removeButtonLabel` required
+    // We should make `removeButtonLabel` required (?)
   }
 
   velcroMiddleware: VelcroMiddleware[] = [
@@ -165,10 +165,10 @@ export default class ToucanFormMultiselectControlComponent<
   }
 
   /**
-   * The state of the component when it is not disabled and not set to read only.
+   * The state of the component when it is not disabled or read only.
    */
   get isEnabled() {
-    return !(this.args.isDisabled && this.args.isReadOnly);
+    return !(this.args.isDisabled || this.args.isReadOnly);
   }
 
   /**
@@ -180,7 +180,7 @@ export default class ToucanFormMultiselectControlComponent<
   }
 
   /**
-   * We apply different styles to the input tag based on our current state.
+   * We apply different styles to the container based on our current state.
    */
   get styles() {
     if (this.args.isDisabled) {
@@ -380,7 +380,7 @@ export default class ToucanFormMultiselectControlComponent<
   }
 
   /**
-   * Compares two arguments to establish if they are equal or not.
+   * Compares two arguments to determine if they are equal or not.
    */
   @action
   isEqual(one: number | Option | null, two: number | Option | null) {
@@ -614,6 +614,11 @@ export default class ToucanFormMultiselectControlComponent<
     this.activeIndex = index;
   }
 
+  /**
+   * If a user clicks the border of the container or on the chevron SVG
+   * we want to focus the input so that the user does not have to click
+   * directly on the input tag itself.
+   */
   @action
   handleContainerClick() {
     if (!this.isPopoverOpen) {
