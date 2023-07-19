@@ -21,7 +21,11 @@
         make options active.  If we remove this line, you'll notice that the
         focus returns to the body when tabbing out of the multiautocomplete
         component, which is a strange user experience.
+
+        Template lint doesn't like us setting tabindex, but we need it here
+        as we don't want these elements focusable!
     }}
+    {{! template-lint-disable no-nested-interactive }}
     <Form::Controls::Checkbox
       id={{uniqueId}}
       tabindex="-1"
@@ -32,8 +36,8 @@
       data-multiselect-option-checkbox
     />
 
-    <label class="truncate" for={{uniqueId}}>
+    <span class="truncate">
       {{yield}}
-    </label>
+    </span>
   </li>
 {{/let}}
