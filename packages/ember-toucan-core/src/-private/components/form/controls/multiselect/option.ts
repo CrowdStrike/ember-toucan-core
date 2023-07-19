@@ -10,7 +10,7 @@ interface ToucanFormMultiMultiselectOptionControlComponentSignature {
     isActive?: boolean;
 
     /**
-     * Sets the underlying, hidden input element to disabled.
+     * Sets the underlying checkbox element to disabled.
      */
     isDisabled?: boolean;
 
