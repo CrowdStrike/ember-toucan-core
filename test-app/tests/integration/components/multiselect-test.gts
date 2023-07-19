@@ -577,8 +577,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it removes the last selected item and calls `@onChange` when the backspace key is pressed with an empty input', async function (assert) {
     assert.expect(3);
 
-    let selected = ['a', 'b', 'c'];
     let options = ['a', 'b', 'c'];
+    let selected = [...options];
 
     let handleChange = (value: string[]) => {
       assert.deepEqual(
@@ -604,6 +604,40 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await click('[data-multiselect]');
     await triggerKeyEvent('[data-multiselect]', 'keydown', 'Backspace');
+
+    assert.verifySteps(['handleChange']);
+  });
+
+  test('it removes an item when it is re-selected after already being selected and calls `@onChange`', async function (assert) {
+    assert.expect(3);
+
+    let options = ['a', 'b', 'c'];
+    let selected = [...options];
+
+    let handleChange = (value: string[]) => {
+      assert.deepEqual(
+        value,
+        ['b', 'c'],
+        'Expected "a" to be removed on change as it was re-selected'
+      );
+      assert.step('handleChange');
+    };
+
+    // NOTE: starting with selected options already!
+    await render(<template>
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @onChange={{handleChange}}
+        data-multiselect
+        as |multiselect|
+      >
+        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      </Multiselect>
+    </template>);
+
+    await fillIn('[data-multiselect]', 'a');
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
 
     assert.verifySteps(['handleChange']);
   });
