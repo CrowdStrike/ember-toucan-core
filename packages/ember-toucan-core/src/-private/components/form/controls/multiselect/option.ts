@@ -46,7 +46,7 @@ interface ToucanFormMultiMultiselectOptionControlComponentSignature {
     popoverId: string;
 
     /**
-     * Sets the underlying input element `value` attribute.
+     * Sets the underlying checkbox element `value` attribute.
      */
     value?: string;
   };
