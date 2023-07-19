@@ -15,7 +15,7 @@ interface ToucanFormMultiMultiselectOptionControlComponentSignature {
     isDisabled?: boolean;
 
     /**
-     * Sets the underlying, hidden input element to readonly.
+     * Sets the underlying checkbox element to readonly.
      */
     isReadOnly?: boolean;
 
