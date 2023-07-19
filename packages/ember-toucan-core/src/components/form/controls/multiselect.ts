@@ -12,6 +12,7 @@ import OptionComponent, {
   selector as optionComponentSelector,
 } from '../../../-private/components/form/controls/multiselect/option';
 import Chevron from '../../../-private/icons/chevron';
+import Cross from '../../../-private/icons/cross';
 
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
 import type { WithBoundArgs } from '@glint/template';
@@ -116,6 +117,7 @@ export default class ToucanFormMultiselectControlComponent<
   @tracked filteredOptions: OPTION[] | undefined;
 
   Chevron = Chevron;
+  Cross = Cross;
   Option = OptionComponent;
   popoverId = `popover--${guidFor(this)}`;
 
