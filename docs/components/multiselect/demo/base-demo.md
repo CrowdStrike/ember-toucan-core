@@ -1,6 +1,6 @@
 ```hbs template
 <div class='flex flex-col gap-4 w-96'>
-  <Form::Controls::MultiAutocomplete
+  <Form::Controls::Multiselect
     @onChange={{this.onChange}}
     @options={{this.options}}
     @contentClass='z-10'
@@ -8,28 +8,28 @@
     @optionKey='label'
     @noResultsText='No results'
     placeholder='Colors'
-    as |autocomplete|
+    as |multiselect|
   >
-    <autocomplete.Option>
-      {{autocomplete.option.label}}
-    </autocomplete.Option>
-  </Form::Controls::MultiAutocomplete>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </Form::Controls::Multiselect>
 
-  <Form::Controls::MultiAutocomplete
+  <Form::Controls::Multiselect
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @contentClass='z-10'
     @selected={{this.selected2}}
     @noResultsText='No results'
     placeholder='Names'
-    as |autocomplete|
+    as |multiselect|
   >
-    <autocomplete.Option>
-      {{autocomplete.option}}
-    </autocomplete.Option>
-  </Form::Controls::MultiAutocomplete>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </Form::Controls::Multiselect>
 
-  <Form::Controls::MultiAutocomplete
+  <Form::Controls::Multiselect
     @onChange={{this.onChange3}}
     @options={{this.options}}
     @contentClass='z-10'
@@ -38,12 +38,12 @@
     @onFilter={{this.onFilterBy}}
     @noResultsText='No results'
     placeholder='Colors w/ Filtering'
-    as |autocomplete|
+    as |multiselect|
   >
-    <autocomplete.Option>
-      {{autocomplete.option.label}}
-    </autocomplete.Option>
-  </Form::Controls::MultiAutocomplete>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </Form::Controls::Multiselect>
 </div>
 ```
 

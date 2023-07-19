@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-interface ToucanFormMultiAutocompleteOptionControlComponentSignature {
+interface ToucanFormMultiMultiselectOptionControlComponentSignature {
   Args: {
     /**
      * When true, means that the option is currently hovered over with a mouse
@@ -60,7 +60,7 @@ const className = 'toucan-form-select-option-control';
 
 export const selector = `.${className}`;
 
-export default class ToucanFormMultiAutocompleteOptionControlComponent extends Component<ToucanFormMultiAutocompleteOptionControlComponentSignature> {
+export default class ToucanFormMultiMultiselectOptionControlComponent extends Component<ToucanFormMultiMultiselectOptionControlComponentSignature> {
   className = className;
 
   get styles() {

@@ -10,7 +10,7 @@ import { offset, size } from '@floating-ui/dom';
 
 import OptionComponent, {
   selector as optionComponentSelector,
-} from '../../../-private/components/form/controls/multi-autocomplete/option';
+} from '../../../-private/components/form/controls/multiselect/option';
 import Chevron from '../../../-private/icons/chevron';
 
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
@@ -18,7 +18,7 @@ import type { WithBoundArgs } from '@glint/template';
 
 export type Option = string | Record<string, unknown> | undefined;
 
-export interface ToucanFormAutocompleteControlComponentSignature<
+export interface ToucanFormMultiselectControlComponentSignature<
   OPTION extends Option
 > {
   Args: {
@@ -107,9 +107,9 @@ export interface ToucanFormAutocompleteControlComponentSignature<
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormAutocompleteControlComponent<
+export default class ToucanFormMultiselectControlComponent<
   OPTION extends Option
-> extends Component<ToucanFormAutocompleteControlComponentSignature<OPTION>> {
+> extends Component<ToucanFormMultiselectControlComponentSignature<OPTION>> {
   @tracked activeIndex: number | null = null;
   @tracked inputValue: string | undefined;
   @tracked isPopoverOpen = false;
@@ -121,7 +121,7 @@ export default class ToucanFormAutocompleteControlComponent<
 
   constructor(
     owner: unknown,
-    args: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']
+    args: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']
   ) {
     super(owner, args);
 
