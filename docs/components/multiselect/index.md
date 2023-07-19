@@ -97,7 +97,7 @@ The `@optionKey` argument is used when your `@options` take the shape of an arra
 1. The displayed value inside of each selected chip of the multiselect
 2. Used as the key in the default filtering scenario where we filter `@options`. To properly filter the `@options` based on the user input from the textbox, we need to know how to compare the entered value to each object. The `@optionKey` tells us which key of the object to use for this filtering.
 
-In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key and we want the label of the selected option to be used for the selected value, as well as for filtering as the user types.
+In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key that we want displayed in each selected item chip.  We also want our default filtering logic to use the `label` key. 
 
 ```hbs
 <Form::Controls::Multiselect
