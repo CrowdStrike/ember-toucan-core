@@ -30,6 +30,8 @@
           </span>
 
           {{#if this.isEnabled}}
+            {{! We have to use mousedown here to prevent default. Up does not work the same. }}
+            {{!  template-lint-disable no-pointer-down-event-binding }}
             <button
               aria-label={{(this.getRemoveButtonLabelFunction option)}}
               class="focusable reset-styles p-1"
