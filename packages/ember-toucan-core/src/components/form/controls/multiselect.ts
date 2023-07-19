@@ -289,6 +289,7 @@ export default class ToucanFormMultiselectControlComponent<
     }
 
     assert('Expected `@optionKey`', optionKey);
+
     assert(
       'Expected `option` to be an object since `@optionKey` was provided',
       typeof option === 'object'
@@ -346,26 +347,7 @@ export default class ToucanFormMultiselectControlComponent<
     // 2) We DO have the item already in `selected`.
     //    Then we need to _remove_ it from the array and pass the
     //    new array to `onChange`.
-    let existingItemIndex = -1;
-
-    if (!this.args.optionKey) {
-      existingItemIndex = (this.args.selected as string[])?.findIndex(
-        (opt) => opt === selectedOption
-      );
-    }
-
-    if (this.args.optionKey) {
-      const selectedOptionAsObject = selectedOption as Record<string, unknown>;
-      const optionKey = this.args.optionKey as string;
-
-      existingItemIndex = (
-        this.args.selected as Record<string, unknown>[]
-      )?.findIndex(
-        (opt) =>
-          opt[this.args.optionKey as string] ===
-          selectedOptionAsObject[optionKey]
-      );
-    }
+    let existingItemIndex = this.getOptionIndexFromSelected(selectedOption);
 
     if (existingItemIndex > -1) {
       const updatedArray = [...this.selected];
@@ -379,6 +361,32 @@ export default class ToucanFormMultiselectControlComponent<
     }
 
     this.filteredOptions = undefined;
+  }
+
+  /**
+   * Returns the index of a particular option from the selected array.
+   * If the item is not found in the selected array, it returns -1.
+   */
+  getOptionIndexFromSelected(option: Option) {
+    // Handle comparing an array of strings
+    if (!this.args.optionKey) {
+      return (this.args.selected as string[])?.findIndex(
+        (opt) => opt === option
+      );
+    }
+
+    // Handle comparing when we have an array of objects
+    if (this.args.optionKey) {
+      const optionAsObject = option as Record<string, unknown>;
+      const optionKey = this.args.optionKey as string;
+
+      return (this.args.selected as Record<string, unknown>[])?.findIndex(
+        (opt) =>
+          opt[this.args.optionKey as string] === optionAsObject[optionKey]
+      );
+    }
+
+    return -1;
   }
 
   /**
@@ -404,27 +412,7 @@ export default class ToucanFormMultiselectControlComponent<
       return false;
     }
 
-    // Handle comparing an array of strings
-    if (!this.args.optionKey) {
-      return Boolean(
-        (this.args.selected as string[]).find((opt) => opt === option)
-      );
-    }
-
-    // Handle comparing when we have an array of objects
-    if (this.args.optionKey) {
-      const optionAsObject = option as Record<string, unknown>;
-      const optionKey = this.args.optionKey as string;
-
-      return Boolean(
-        (this.args.selected as Record<string, unknown>[])?.find(
-          (opt) =>
-            opt[this.args.optionKey as string] === optionAsObject[optionKey]
-        )
-      );
-    }
-
-    return false;
+    return this.getOptionIndexFromSelected(option) >= 0;
   }
 
   /**
