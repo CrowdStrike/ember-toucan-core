@@ -4,6 +4,7 @@
     @onChange={{this.onChange}}
     @options={{this.options}}
     @contentClass='z-10'
+    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelStringObject}}
     @selected={{this.selected}}
     @optionKey='label'
     @noResultsText='No results'
@@ -19,6 +20,7 @@
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @contentClass='z-10'
+    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelString}}
     @selected={{this.selected2}}
     @noResultsText='No results'
     placeholder='Names'
@@ -33,6 +35,7 @@
     @onChange={{this.onChange3}}
     @options={{this.options}}
     @contentClass='z-10'
+    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelStringObject}}
     @selected={{this.selected3}}
     @optionKey='label'
     @onFilter={{this.onFilterBy}}
@@ -107,6 +110,14 @@ export default class extends Component {
     'Simon',
     'Tony',
   ];
+
+  formatRemoveButtonAriaLabelString(option) {
+    return `Remove ${option}`;
+  }
+
+  formatRemoveButtonAriaLabelStringObject(option) {
+    return `Remove ${option.label}`;
+  }
 
   @action
   onChange(option) {

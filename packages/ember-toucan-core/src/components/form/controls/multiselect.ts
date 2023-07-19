@@ -81,7 +81,7 @@ export interface ToucanFormMultiselectControlComponentSignature<
      * Provide a function to format the `aria-label` attribute that
      * will be applied to the remove buttons for screenreader users.
      */
-    removeButtonLabel?: (option: Option) => string;
+    removeButtonLabelFunction: (option: Option) => string;
 
     /**
      * The currently selected options.  If `@options` is an array of strings, provide an array of strings.  If `@options` is an array of objects, pass an array of objects matching the format of `@options`.
@@ -125,9 +125,11 @@ export default class ToucanFormMultiselectControlComponent<
     owner: unknown,
     args: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']
   ) {
+    assert(
+      'A "@removeButtonLabelFunction" argument is required',
+      args.removeButtonLabelFunction
+    );
     super(owner, args);
-
-    // We should make `removeButtonLabel` required (?)
   }
 
   velcroMiddleware: VelcroMiddleware[] = [
@@ -299,13 +301,13 @@ export default class ToucanFormMultiselectControlComponent<
   }
 
   /**
-   * Calls the provided `@removeButtonLabel` function so that consumers
+   * Calls the provided `@removeButtonLabelFunction` function so that consumers
    * can provide their own accessible `aria-label` attribute to each remove
    * button.
    */
   @action
-  getRemoveButtonLabel(option: Option) {
-    return this.args.removeButtonLabel?.(option);
+  getRemoveButtonLabelFunction(option: Option) {
+    return this.args.removeButtonLabelFunction(option);
   }
 
   /**

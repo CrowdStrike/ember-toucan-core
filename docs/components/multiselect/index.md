@@ -159,6 +159,24 @@ export default class extends Component {
 }
 ```
 
+## Remove Button Labels
+
+Toucan Core wants to provide accessible components, so a component argument of `@removeButtonLabelFunction` is exposed. This component argument is used to set the `aria-label` of each selected chip's remove button. This ensures screenreader users have all of the context they need when remove items from the selected list. The current option is returned to you so that you can format the string as you please. This comes in handy as well when dealing with translated strings.
+
+```hbs
+<Form::Controls::Multiselect
+  @removeButtonLabelFunction={{this.removeButtonLabelFunction}}
+/>
+```
+
+```js
+removeButtonLabelFunction(option) {
+  // Or if dealing with objects, this may be something like:
+  // return `Remove ${option.label}`;
+  return `Remove ${option}`;
+}
+```
+
 ## onFilter
 
 Optional.
