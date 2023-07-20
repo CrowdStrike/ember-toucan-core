@@ -156,7 +156,10 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-      />
+        as |multiselect|
+      >
+        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      </Multiselect>
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -164,6 +167,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     await click('[data-multiselect-container]');
 
     assert.dom('[data-multiselect]').isFocused();
+
+    assert.dom('[role="listbox"]').exists();
   });
 
   test('it formats the remove button `aria-label` attribute with `@removeButtonLabelFunction`', async function (assert) {
