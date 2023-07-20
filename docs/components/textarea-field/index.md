@@ -66,6 +66,20 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 </Form::Fields::Textarea>
 ```
 
+## Character Counter
+
+Optional.
+
+A character counter is exposed via a `secondary` block. It can be combined with any of the other named blocks or label/hint arguments.
+
+```hbs
+<Form::Fields::Textarea class='w-full' @label='Label' @hint='With hint text'>
+  <:secondary as |secondary|>
+    <secondary.CharacterCount @max={{255}} />
+  </:secondary>
+</Form::Fields::Textarea>
+```
+
 ## Error
 
 Optional.
