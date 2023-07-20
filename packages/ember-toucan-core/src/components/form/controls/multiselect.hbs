@@ -1,5 +1,10 @@
 {{#if
-  (this.assertRequiredBlocksExist (hash removeBlockExists=(has-block "remove")))
+  (this.assertRequiredBlocksExist
+    (hash
+      removeBlockExists=(has-block "remove")
+      noResultsBlockExists=(has-block "noResults")
+    )
+  )
 }}
   <Velcro
     @middleware={{this.velcroMiddleware}}
@@ -145,7 +150,7 @@
             aria-live="assertive"
             class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
             role="status"
-          >{{@noResultsText}}</li>
+          >{{yield to="noResults"}}</li>
         {{/if}}
       </ul>
     {{/if}}

@@ -13,9 +13,10 @@ It has a similar API to `Autocomplete`, but allows for selecting multiple option
   @contentClass='z-10'
   @selected={{this.selected}}
   @optionKey='label'
-  @noResultsText='No results'
   placeholder='Colors'
 >
+  <:noResults>No results</:noResults>
+
   <!-- NOTE: The remove block is required and a Remove component's label is also required! -->
   <:remove as |remove|>
     <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />

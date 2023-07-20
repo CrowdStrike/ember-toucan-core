@@ -11,7 +11,7 @@ A CSS class to add to this component's content container. Commonly used to speci
 <Form::Controls::Multiselect @contentClass='z-50' />
 ```
 
-## Remove Button Block
+## Remove Block
 
 A `:remove` block is required and is used for the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
 
@@ -26,9 +26,10 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
   @contentClass='z-10'
   @selected={{this.selected}}
   @optionKey='label'
-  @noResultsText='No results'
   placeholder='Colors'
 >
+  <:noResults>No results</:noResults>
+
   <:remove as |remove|>
     <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
   </:remove>
@@ -50,11 +51,40 @@ An example with translations may be something like:
   @contentClass='z-10'
   @selected={{this.selected}}
   @optionKey='label'
-  @noResultsText='No results'
   placeholder='Colors'
 >
+  <:noResults>No results</:noResults>
+
   <:remove as |remove|>
     <remove.Remove @label={{(t 'some-key' name=remove.option.label)}} />
+  </:remove>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
+```
+
+## No Results Block
+
+A `:noResults` block is required and exposed to allow consumers to specify text when there are no results after filtering the options. Since it is a named block, any content can be rendered inside; however, we recommend only putting text as the content.
+
+```hbs
+<Form::Controls::Multiselect
+  @contentClass='z-10'
+  @onChange={{this.onChange}}
+  @optionKey='label'
+  @options={{this.options}}
+  @selected={{this.selected}}
+  placeholder='Colors'
+>
+  <!-- NOTE: Only text should go here. Please do not render content! -->
+  <:noResults>No results</:noResults>
+
+  <:remove as |remove|>
+    <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
   </:remove>
 
   <:default as |multiselect|>

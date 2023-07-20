@@ -46,11 +46,6 @@ export interface ToucanFormMultiselectControlComponentSignature<
     isReadOnly?: boolean;
 
     /**
-     * A string to display when there are no results after the user's filter.
-     */
-    noResultsText?: string;
-
-    /**
      * Called when the user makes a selection.
      * It is called with the selected options (derived from `@options`) as its only argument.
      */
@@ -99,6 +94,7 @@ export interface ToucanFormMultiselectControlComponentSignature<
         >;
       }
     ];
+    noResults: [];
     remove: [
       {
         option: Option;
@@ -131,16 +127,15 @@ export default class ToucanFormMultiselectControlComponent<
    */
   assertRequiredBlocksExist = ({
     removeBlockExists,
+    noResultsBlockExists,
   }: {
     removeBlockExists: boolean;
+    noResultsBlockExists: boolean;
   }) => {
     assert('The `:remove` block is required.', removeBlockExists);
+    assert('The `:noResults` block is required.', noResultsBlockExists);
 
-    if (!removeBlockExists) {
-      return false;
-    }
-
-    return true;
+    return removeBlockExists && noResultsBlockExists;
   };
 
   velcroMiddleware: VelcroMiddleware[] = [

@@ -2,13 +2,14 @@
 <div class='flex flex-col gap-4 w-96'>
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText='No results'
     @onChange={{this.onChange}}
     @optionKey='label'
     @options={{this.options}}
     @selected={{this.selected}}
     placeholder='Colors'
   >
+    <:noResults>No results</:noResults>
+
     <:remove as |remove|>
       <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
     </:remove>
@@ -22,12 +23,13 @@
 
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText='No results'
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @selected={{this.selected2}}
     placeholder='Names'
   >
+    <:noResults>No results</:noResults>
+
     <:remove as |remove|>
       <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
     </:remove>
@@ -41,7 +43,6 @@
 
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText='No results'
     @onChange={{this.onChange3}}
     @onFilter={{this.onFilterBy}}
     @optionKey='label'
@@ -49,6 +50,8 @@
     @selected={{this.selected3}}
     placeholder='Colors w/ Filtering'
   >
+    <:noResults>No results</:noResults>
+
     <:remove as |remove|>
       <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
     </:remove>

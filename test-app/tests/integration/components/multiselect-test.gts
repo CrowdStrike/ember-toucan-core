@@ -18,6 +18,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it renders', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -62,6 +64,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @isDisabled={{true}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -86,6 +90,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @isReadOnly={{true}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -115,6 +121,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         placeholder="Placeholder text"
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -133,6 +141,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} @hasError={{true}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -155,6 +165,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it opens the popover on click', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -175,6 +187,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -197,6 +211,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it focuses the input when the container element is clicked', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -225,6 +241,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" data-remove="{{remove.option}}" />
         </:remove>
@@ -251,6 +269,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -273,6 +293,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -293,6 +315,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @contentClass="test-class"
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -316,6 +340,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @contentClass="test-class"
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -345,6 +371,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -382,6 +410,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @optionKey="label"
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -406,6 +436,8 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -429,6 +461,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -461,6 +495,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -483,6 +519,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it provides default filtering when `@options` is an array of strings', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -524,6 +562,8 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect @options={{options}} @optionKey="label" data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -553,13 +593,11 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[role="option"]').hasText('Red');
   });
 
-  test('it uses the provided `@noResultsText` when no results are found with filtering', async function (assert) {
+  test('it renders the no results content into the `:noResults` block', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @noResultsText="No results"
-        data-multiselect
-      >
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No items</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -578,7 +616,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     // ...but we should have our no results item!
     assert.dom('[role="status"]').exists();
     assert.dom('[role="status"]').hasTagName('li');
-    assert.dom('[role="status"]').hasText('No results');
+    assert.dom('[role="status"]').hasText('No items');
     assert
       .dom('[role="status"]')
       .hasAttribute(
@@ -602,6 +640,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -640,6 +680,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -687,6 +729,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -727,6 +771,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -778,6 +824,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -817,6 +865,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -857,6 +907,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -885,6 +937,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @isDisabled={{true}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -910,6 +964,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @isReadOnly={{true}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -946,6 +1002,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onFilter={{handleFilter}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -973,6 +1031,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1004,6 +1064,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1040,6 +1102,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1067,6 +1131,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1093,6 +1159,8 @@ module('Integration | Component | Multiselect', function (hooks) {
       <input placeholder="test" data-input />
 
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1117,6 +1185,8 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1145,6 +1215,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1178,6 +1250,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1212,6 +1286,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1244,6 +1320,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1275,6 +1353,8 @@ module('Integration | Component | Multiselect', function (hooks) {
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1318,6 +1398,8 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove @label="Remove" />
         </:remove>
@@ -1366,6 +1448,8 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
+        <:noResults>No results</:noResults>
+
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
         </:default>
@@ -1391,8 +1475,33 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{testColors}}
         data-multiselect
       >
+        <:noResults>No results</:noResults>
+
         <:remove as |remove|>
           <remove.Remove />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
+  });
+
+  test('it throws an assertion error if no `:noResults` block is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('The `:noResults` block is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
         </:remove>
 
         <:default as |multiselect|>
