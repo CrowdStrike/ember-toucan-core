@@ -271,7 +271,9 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await click('[data-multiselect]');
 
+    // We want to verify our options have `role="option"` for accessibility reasons
     assert.dom('[role="option"]').exists({ count: 2 });
+    // We can also verify our data attributes are spread to each option
     assert.dom('[data-option]').exists({ count: 2 });
   });
 
@@ -294,10 +296,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
 
-    let chips = document.querySelectorAll('[data-multiselect-selected-option]');
+    let [firstChip, secondChip] = document.querySelectorAll(
+      '[data-multiselect-selected-option]'
+    );
 
-    assert.dom(chips[0]).hasText('blue');
-    assert.dom(chips[1]).hasText('red');
+    assert.dom(firstChip).hasText('blue');
+    assert.dom(secondChip).hasText('red');
   });
 
   test('it sets the label of each selected chip via `@selected` and `@optionKey` when `@options` are an array of objects', async function (assert) {
@@ -958,6 +962,7 @@ module('Integration | Component | Multiselect', function (hooks) {
   });
 
   test('it closes an open popover when the component is blurred', async function (assert) {
+    // NOTE: We add an input tag so we have something to blur to (by focusing another element)
     await render(<template>
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
@@ -977,7 +982,7 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     assert.dom('[role="listbox"]').exists();
 
-    // Now blur the elment
+    // Now blur the element by focusing the other input element in our test
     await click('[data-input]');
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -1200,7 +1205,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     // Enter garbage into the input
     await fillIn('[data-multiselect]', 'some-garbage');
 
-    // Now blur the elment
+    // Now blur the element
     await click('[data-input]');
 
     // Verify the input is reset to our `@selected` option
