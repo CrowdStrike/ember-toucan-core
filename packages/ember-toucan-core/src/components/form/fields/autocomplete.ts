@@ -5,16 +5,9 @@ import LockIcon from '../../../-private/icons/lock';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
-import type {
-  Option as ControlOption,
-  ToucanFormAutocompleteControlComponentSignature,
-} from '../controls/autocomplete';
+import type { ToucanFormAutocompleteControlComponentSignature } from '../controls/autocomplete';
 
-export type Option = ControlOption;
-
-export interface ToucanFormAutocompleteFieldComponentSignature<
-  OPTION extends ControlOption
-> {
+export interface ToucanFormAutocompleteFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
@@ -56,7 +49,7 @@ export interface ToucanFormAutocompleteFieldComponentSignature<
     /**
      * The function called when a new selection is made.
      */
-    onChange?: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']['onChange'];
+    onChange?: ToucanFormAutocompleteControlComponentSignature['Args']['onChange'];
 
     /**
      * The function called when a user types into the textbox.
@@ -64,23 +57,13 @@ export interface ToucanFormAutocompleteFieldComponentSignature<
      * Typically used for making a request to the server and populating
      * `@options` with the results.
      */
-    onFilter?: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']['onFilter'];
-
-    /**
-     * When `@options` is an array of objects, `@selected` is also an object.
-     * The `@optionKey` is used to determine which key of the object should
-     * be used for both filtering and displayed the selected value in the
-     * textbox.
-     */
-    optionKey?: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']['optionKey'];
+    onFilter?: ToucanFormAutocompleteControlComponentSignature['Args']['onFilter'];
 
     /**
      * `@options` forms the content of this component.
-     *
-     * To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque.
-     * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
+     * `@options` is iterated over then passed back to you as a block parameter (`select.option`).
      */
-    options?: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']['options'];
+    options?: ToucanFormAutocompleteControlComponentSignature['Args']['options'];
 
     /**
      * A test selector for targeting the root element of the field.
@@ -89,20 +72,18 @@ export interface ToucanFormAutocompleteFieldComponentSignature<
     rootTestSelector?: string;
 
     /**
-     * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object and use `@optionKey`.
+     * The currently selected option.
      */
-    selected?: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']['selected'];
+    selected?: ToucanFormAutocompleteControlComponentSignature['Args']['selected'];
   };
   Blocks: {
-    default: ToucanFormAutocompleteControlComponentSignature<OPTION>['Blocks']['default'];
+    default: ToucanFormAutocompleteControlComponentSignature['Blocks']['default'];
     label: [];
     hint: [];
   };
 }
 
-export default class ToucanFormAutocompleteFieldComponent<
-  OPTION extends ControlOption
-> extends Component<ToucanFormAutocompleteFieldComponentSignature<OPTION>> {
+export default class ToucanFormAutocompleteFieldComponent extends Component<ToucanFormAutocompleteFieldComponentSignature> {
   LockIcon = LockIcon;
 
   assertBlockOrArgumentExists = ({

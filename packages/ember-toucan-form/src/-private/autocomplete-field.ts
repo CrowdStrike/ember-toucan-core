@@ -3,10 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
-import type {
-  Option,
-  ToucanFormAutocompleteFieldComponentSignature as BaseAutocompleteFieldSignature,
-} from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
+import type { ToucanFormAutocompleteFieldComponentSignature as BaseAutocompleteFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
 export interface ToucanFormAutocompleteFieldComponentSignature<
@@ -14,10 +11,7 @@ export interface ToucanFormAutocompleteFieldComponentSignature<
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
   Element: HTMLInputElement;
-  Args: Omit<
-    BaseAutocompleteFieldSignature<Option>['Args'],
-    'error' | 'onChange'
-  > & {
+  Args: Omit<BaseAutocompleteFieldSignature['Args'], 'error' | 'onChange'> & {
     /**
      * The name of your field, which must match a property of the `@data` passed to the form
      */
@@ -28,12 +22,7 @@ export interface ToucanFormAutocompleteFieldComponentSignature<
      */
     form: HeadlessFormBlock<DATA>;
   };
-  // TODO: How do we get this to play nicely with our
-  // generic in toucan-core?
-  // `BaseAutocompleteFieldSignature<Option>['Blocks'];`
-  // gives a glint error!
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Blocks: BaseAutocompleteFieldSignature<any>['Blocks'];
+  Blocks: BaseAutocompleteFieldSignature['Blocks'];
 }
 
 export default class ToucanFormAutocompleteFieldComponent<
@@ -57,16 +46,14 @@ export default class ToucanFormAutocompleteFieldComponent<
   };
 
   @action
-  assertSelected(value: unknown): Option {
+  assertSelected(value: unknown) {
     assert(
-      `Only string or object values are expected for ${String(
+      `A string or \`undefined\` is expected for ${String(
         this.args.name
       )}, but you passed ${typeof value}`,
-      typeof value === 'undefined' ||
-        typeof value === 'string' ||
-        typeof value === 'object'
+     typeof value === 'string' || value === undefined
     );
 
-    return value as string | Record<string, unknown>;
+    return value;
   }
 }

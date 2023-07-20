@@ -30,7 +30,11 @@
       }}
       {{on
         "blur"
-        (if this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.resetValue)
+        (if
+          this.isDisabledOrReadOnlyOrWithoutOptions
+          this.noop
+          this.resetEverything
+        )
       }}
       {{on
         "click"
@@ -41,7 +45,9 @@
       {{on
         "click"
         (if
-          this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.selectInput
+          this.isDisabledOrReadOnlyOrWithoutOptions
+          this.noop
+          this.highlightInputValue
         )
       }}
       {{on

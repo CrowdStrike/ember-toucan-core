@@ -5,13 +5,12 @@
     @options={{this.options}}
     @contentClass='z-10'
     @selected={{this.selected}}
-    @optionKey='label'
     @noResultsText='No results'
     placeholder='Colors'
     as |autocomplete|
   >
     <autocomplete.Option>
-      {{autocomplete.option.label}}
+      {{autocomplete.option}}
     </autocomplete.Option>
   </Form::Controls::Autocomplete>
 
@@ -34,14 +33,13 @@
     @options={{this.options}}
     @contentClass='z-10'
     @selected={{this.selected3}}
-    @optionKey='label'
-    @onFilter={{this.onFilterBy}}
+    @onFilter={{this.onFilter}}
     @noResultsText='No results'
     placeholder='Colors w/ Filtering'
     as |autocomplete|
   >
     <autocomplete.Option>
-      {{autocomplete.option.label}}
+      {{autocomplete.option}}
     </autocomplete.Option>
   </Form::Controls::Autocomplete>
 </div>
@@ -93,7 +91,7 @@ export default class extends Component {
       name: 'teal',
       value: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   options2 = [
     'Billy',
@@ -127,16 +125,14 @@ export default class extends Component {
   }
 
   @action
-  onFilterBy(input) {
-    console.log(`filtering with the value "${input}"`);
+  onFilter(value) {
+    console.log(`filtering with the value "${value}"`);
 
-    if (input.length > 0) {
-      return this.options.filter((option) =>
-        option.label.toLowerCase().startsWith(input.toLowerCase())
-      );
-    } else {
-      return this.options;
-    }
+    return value === ''
+      ? this.options
+      : this.options.filter((option) => {
+        return option.toLowerCase().includes(value.toLowerCase())
+      });
   }
 }
 ```

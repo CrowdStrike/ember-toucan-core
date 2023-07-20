@@ -6,14 +6,13 @@
   @label='Label'
   @noResultsText='No results'
   @onChange={{this.onChange}}
-  @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
   as |autocomplete|
 >
   <autocomplete.Option>
-    {{autocomplete.option.label}}
+    {{autocomplete.option}}
   </autocomplete.Option>
 </Form::Fields::Autocomplete>
 ```
@@ -56,14 +55,14 @@ export default class extends Component {
       label: 'Teal',
       name: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   @action
   onChange(option) {
     this.selected = option;
     console.log(option);
 
-    if (option.label !== 'Blue') {
+    if (option !== 'Blue') {
       this.errorMessage = 'Please select "Blue"';
       return;
     }

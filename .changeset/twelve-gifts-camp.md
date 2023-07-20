@@ -13,7 +13,6 @@ If you're using `toucan-core`, the control and field components are exposed:
   @options={{this.options}}
   @contentClass='z-10'
   @selected={{this.selected}}
-  @optionKey='label'
   @noResultsText='No results'
   placeholder='Colors'
   as |autocomplete|
@@ -30,7 +29,6 @@ If you're using `toucan-core`, the control and field components are exposed:
   @label='Label'
   @noResultsText='No results'
   @onChange={{this.onChange}}
-  @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
