@@ -163,7 +163,7 @@ module('Integration | Component | ToucanForm | Input', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Input @label="Label" @name="text">
+        <form.Input @name="text">
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
         </form.Input>
@@ -181,7 +181,7 @@ module('Integration | Component | ToucanForm | Input', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Input @label="Label" @name="text">
+        <form.Input @name="text">
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
           <:secondary as |secondary|>

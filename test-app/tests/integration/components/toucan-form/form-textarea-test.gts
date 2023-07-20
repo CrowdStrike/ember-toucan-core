@@ -163,7 +163,7 @@ module('Integration | Component | ToucanForm | Textarea', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Textarea @label="Label" @name="text">
+        <form.Textarea @name="text">
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
         </form.Textarea>
@@ -181,7 +181,7 @@ module('Integration | Component | ToucanForm | Textarea', function (hooks) {
 
     await render(<template>
       <ToucanForm @data={{data}} as |form|>
-        <form.Textarea @label="Label" @name="text">
+        <form.Textarea @name="text">
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
           <:secondary as |secondary|>
