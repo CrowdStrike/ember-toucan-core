@@ -11,6 +11,7 @@ import { offset, size } from '@floating-ui/dom';
 import OptionComponent, {
   selector as optionComponentSelector,
 } from '../../../-private/components/form/controls/multiselect/option';
+import RemoveComponent from '../../../-private/components/form/controls/multiselect/remove';
 import Chevron from '../../../-private/icons/chevron';
 import Cross from '../../../-private/icons/cross';
 
@@ -78,12 +79,6 @@ export interface ToucanFormMultiselectControlComponentSignature<
       : undefined;
 
     /**
-     * Provide a function to format the `aria-label` attribute that
-     * will be applied to the remove buttons for screenreader users.
-     */
-    removeButtonLabelFunction: (option: Option) => string;
-
-    /**
      * The currently selected options.  If `@options` is an array of strings, provide an array of strings.  If `@options` is an array of objects, pass an array of objects matching the format of `@options`.
      */
     selected?: OPTION[];
@@ -104,6 +99,15 @@ export interface ToucanFormMultiselectControlComponentSignature<
         >;
       }
     ];
+    remove: [
+      {
+        option: Option;
+        Remove: WithBoundArgs<
+          typeof RemoveComponent,
+          'onClick' | 'onMouseDown'
+        >;
+      }
+    ];
   };
   Element: HTMLInputElement;
 }
@@ -119,18 +123,25 @@ export default class ToucanFormMultiselectControlComponent<
   Chevron = Chevron;
   Cross = Cross;
   Option = OptionComponent;
+  RemoveComponent = RemoveComponent;
   popoverId = `popover--${guidFor(this)}`;
 
-  constructor(
-    owner: unknown,
-    args: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']
-  ) {
-    assert(
-      'A "@removeButtonLabelFunction" argument is required',
-      args.removeButtonLabelFunction
-    );
-    super(owner, args);
-  }
+  /**
+   * The component requires the `:remove` block for accessibility reasons.
+   */
+  assertRequiredBlocksExist = ({
+    removeBlockExists,
+  }: {
+    removeBlockExists: boolean;
+  }) => {
+    assert('The `:remove` block is required.', removeBlockExists);
+
+    if (!removeBlockExists) {
+      return false;
+    }
+
+    return true;
+  };
 
   velcroMiddleware: VelcroMiddleware[] = [
     offset({
@@ -298,16 +309,6 @@ export default class ToucanFormMultiselectControlComponent<
     );
 
     return option[optionKey] as string;
-  }
-
-  /**
-   * Calls the provided `@removeButtonLabelFunction` function so that consumers
-   * can provide their own accessible `aria-label` attribute to each remove
-   * button.
-   */
-  @action
-  getRemoveButtonLabelFunction(option: Option) {
-    return this.args.removeButtonLabelFunction(option);
   }
 
   /**

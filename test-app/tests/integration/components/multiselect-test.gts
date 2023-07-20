@@ -1,23 +1,31 @@
-import { click, fillIn, render, triggerKeyEvent } from '@ember/test-helpers';
+import {
+  click,
+  fillIn,
+  render,
+  setupOnerror,
+  triggerKeyEvent,
+} from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import Multiselect from '@crowdstrike/ember-toucan-core/components/form/controls/multiselect';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import type { Option } from '@crowdstrike/ember-toucan-core/components/form/controls/multiselect';
-
 let testColors = ['blue', 'red'];
-let removeButtonLabelFunction = (option: Option) => `Remove ${option}`;
 
 module('Integration | Component | Multiselect', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     await render(<template>
-      <Multiselect
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-      />
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[data-multiselect]').hasTagName('input');
@@ -50,10 +58,18 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it disables the component using `@isDisabled`', async function (assert) {
     await render(<template>
       <Multiselect
+        @options={{testColors}}
         @isDisabled={{true}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-      />
+      >
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[data-multiselect]').isDisabled();
@@ -66,10 +82,18 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
     await render(<template>
       <Multiselect
+        @options={{testColors}}
         @isReadOnly={{true}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-      />
+      >
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[data-multiselect]').hasAttribute('readonly');
@@ -87,10 +111,18 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       <Multiselect
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
+        @options={{testColors}}
         placeholder="Placeholder text"
         data-multiselect
-      />
+      >
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert
@@ -100,11 +132,15 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
     await render(<template>
-      <Multiselect
-        @hasError={{true}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-      />
+      <Multiselect @options={{testColors}} @hasError={{true}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[data-multiselect-container]').hasClass('shadow-error-outline');
@@ -118,11 +154,15 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it opens the popover on click', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-      />
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -134,11 +174,15 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-      />
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -152,13 +196,14 @@ module('Integration | Component | Multiselect', function (hooks) {
   //       that the input gets focused
   test('it focuses the input when the container element is clicked', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -171,44 +216,48 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[role="listbox"]').exists();
   });
 
-  test('it formats the remove button `aria-label` attribute with `@removeButtonLabelFunction`', async function (assert) {
-    let selected = [...testColors];
-
-    let formatRemoveLabel = (option: Option) => `Remove "${option}"`;
+  test('it yields the `:remove` block option and Remove component and sets the `@label` on the remove component', async function (assert) {
+    let selected = ['blue'];
 
     await render(<template>
       <Multiselect
-        @options={{testColors}}
+        @options={{selected}}
         @selected={{selected}}
-        @removeButtonLabelFunction={{formatRemoveLabel}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" data-remove="{{remove.option}}" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option data-option>
+            {{multiselect.option}}
+          </multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-remove-option]').exists({ count: 2 });
+    // Verify the `remove.Remove` `@label` argument gets set to the aria-label properly
+    // for screenreaders.  Without an aria-label attribute, screenreader users
+    // will have 0 context on what the button does.
+    assert
+      .dom('[data-multiselect-remove-option]')
+      .hasAttribute('aria-label', 'Remove');
 
-    let chips = document.querySelectorAll('[data-multiselect-remove-option]');
-
-    assert.dom(chips[0]).hasAttribute('aria-label', 'Remove "blue"');
-    assert.dom(chips[1]).hasAttribute('aria-label', 'Remove "red"');
+    // Verify the `remove.option` gets yielded back properly via the `remove` block.
+    assert.dom('[data-remove="blue"]').exists();
   });
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -223,15 +272,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -243,9 +291,16 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @contentClass="test-class"
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-      />
+      >
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
     </template>);
 
     await click('[data-multiselect]');
@@ -259,13 +314,17 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @contentClass="test-class"
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option
+            data-option
+          >{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -284,13 +343,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -319,13 +380,17 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @optionKey="label"
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option.label}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option
+            data-option
+          >{{multiselect.option.label}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -340,16 +405,14 @@ module('Integration | Component | Multiselect', function (hooks) {
     let selected = [...options];
 
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -364,11 +427,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -392,11 +459,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -411,13 +482,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it provides default filtering when `@options` is an array of strings', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -451,14 +523,14 @@ module('Integration | Component | Multiselect', function (hooks) {
     ];
 
     await render(<template>
-      <Multiselect
-        @options={{options}}
-        @optionKey="label"
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
+      <Multiselect @options={{options}} @optionKey="label" data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -486,11 +558,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @noResultsText="No results"
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -524,13 +600,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -560,13 +638,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option data-option>
-          {{multiselect.option}}
-        </multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -605,11 +685,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -641,11 +725,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -688,11 +776,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -723,11 +815,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -759,11 +855,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -783,11 +883,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @isDisabled={{true}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -804,11 +908,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @isReadOnly={{true}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -836,11 +944,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @onFilter={{handleFilter}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -859,11 +971,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -886,11 +1002,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -918,11 +1038,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -942,13 +1066,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -967,13 +1092,14 @@ module('Integration | Component | Multiselect', function (hooks) {
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
 
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -990,13 +1116,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
-      <Multiselect
-        @options={{testColors}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1017,14 +1144,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1050,14 +1177,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1084,14 +1211,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1116,14 +1243,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1147,14 +1274,14 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
-        data-multiselect
-        as |multiselect|
-      >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
     </template>);
 
@@ -1189,11 +1316,15 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @onChange={{handleChange}}
-        @removeButtonLabelFunction={{removeButtonLabelFunction}}
         data-multiselect
-        as |multiselect|
       >
-        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        <:remove as |remove|>
+          <remove.Remove @label="Remove" />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
       </Multiselect>
 
       {{! template-lint-disable require-input-label }}
@@ -1221,5 +1352,53 @@ module('Integration | Component | Multiselect', function (hooks) {
     await click('[data-multiselect]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
+  });
+
+  test('it throws an assertion error if no `:remove` block is provided', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes('The `:remove` block is required'),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <Multiselect @options={{testColors}} data-multiselect>
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
+  });
+
+  test('it throws an assertion error if no `@label` argument is provided to the Remove component', async function (assert) {
+    assert.expect(1);
+
+    setupOnerror((e: Error) => {
+      assert.ok(
+        e.message.includes(
+          'The Remove component "@label" argument is required'
+        ),
+        'Expected assertion error message'
+      );
+    });
+
+    await render(<template>
+      <Multiselect
+        @options={{testColors}}
+        @selected={{testColors}}
+        data-multiselect
+      >
+        <:remove as |remove|>
+          <remove.Remove />
+        </:remove>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
   });
 });

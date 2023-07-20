@@ -1,51 +1,63 @@
 ```hbs template
 <div class='flex flex-col gap-4 w-96'>
   <Form::Controls::Multiselect
-    @onChange={{this.onChange}}
-    @options={{this.options}}
     @contentClass='z-10'
-    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelStringObject}}
-    @selected={{this.selected}}
-    @optionKey='label'
     @noResultsText='No results'
+    @onChange={{this.onChange}}
+    @optionKey='label'
+    @options={{this.options}}
+    @selected={{this.selected}}
     placeholder='Colors'
-    as |multiselect|
   >
-    <multiselect.Option>
-      {{multiselect.option.label}}
-    </multiselect.Option>
+    <:remove as |remove|>
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+    </:remove>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option.label}}
+      </multiselect.Option>
+    </:default>
   </Form::Controls::Multiselect>
 
   <Form::Controls::Multiselect
+    @contentClass='z-10'
+    @noResultsText='No results'
     @onChange={{this.onChange2}}
     @options={{this.options2}}
-    @contentClass='z-10'
-    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelString}}
     @selected={{this.selected2}}
-    @noResultsText='No results'
     placeholder='Names'
-    as |multiselect|
   >
-    <multiselect.Option>
-      {{multiselect.option}}
-    </multiselect.Option>
+    <:remove as |remove|>
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
+    </:remove>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option}}
+      </multiselect.Option>
+    </:default>
   </Form::Controls::Multiselect>
 
   <Form::Controls::Multiselect
-    @onChange={{this.onChange3}}
-    @options={{this.options}}
     @contentClass='z-10'
-    @removeButtonLabelFunction={{this.formatRemoveButtonAriaLabelStringObject}}
-    @selected={{this.selected3}}
-    @optionKey='label'
-    @onFilter={{this.onFilterBy}}
     @noResultsText='No results'
+    @onChange={{this.onChange3}}
+    @onFilter={{this.onFilterBy}}
+    @optionKey='label'
+    @options={{this.options}}
+    @selected={{this.selected3}}
     placeholder='Colors w/ Filtering'
-    as |multiselect|
   >
-    <multiselect.Option>
-      {{multiselect.option.label}}
-    </multiselect.Option>
+    <:remove as |remove|>
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+    </:remove>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option.label}}
+      </multiselect.Option>
+    </:default>
   </Form::Controls::Multiselect>
 </div>
 ```

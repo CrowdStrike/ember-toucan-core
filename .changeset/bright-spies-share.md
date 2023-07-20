@@ -11,15 +11,20 @@ It has a similar API to `Autocomplete`, but allows for selecting multiple option
   @onChange={{this.onChange}}
   @options={{this.options}}
   @contentClass='z-10'
-  @removeButtonLabelFunction={{this.removeButtonLabelFunction}}
   @selected={{this.selected}}
   @optionKey='label'
   @noResultsText='No results'
   placeholder='Colors'
-  as |multiselect|
 >
-  <multiselect.Option>
-    {{multiselect.option.label}}
-  </multiselect.Option>
+  <!-- NOTE: The remove block is required and a Remove component's label is also required! -->
+  <:remove as |remove|>
+    <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+  </:remove>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
 </Form::Controls::Multiselect>
 ```

@@ -11,6 +11,60 @@ A CSS class to add to this component's content container. Commonly used to speci
 <Form::Controls::Multiselect @contentClass='z-50' />
 ```
 
+## Remove Button Block
+
+A `:remove` block is required and is used for the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
+
+A `@label` argument is **required** for accessibility reasons for the Remove component.
+
+The `option` for that chip is yielded back to the consumer so that an appropriate message can be constructed for screenreaders.
+
+```hbs
+<Form::Controls::Multiselect
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @contentClass='z-10'
+  @selected={{this.selected}}
+  @optionKey='label'
+  @noResultsText='No results'
+  placeholder='Colors'
+>
+  <:remove as |remove|>
+    <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+  </:remove>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
+```
+
+An example with translations may be something like:
+
+```hbs
+<Form::Controls::Multiselect
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @contentClass='z-10'
+  @selected={{this.selected}}
+  @optionKey='label'
+  @noResultsText='No results'
+  placeholder='Colors'
+>
+  <:remove as |remove|>
+    <remove.Remove @label={{(t 'some-key' name=remove.option.label)}} />
+  </:remove>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
+```
+
 ## Options
 
 `@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
@@ -97,7 +151,7 @@ The `@optionKey` argument is used when your `@options` take the shape of an arra
 1. The displayed value inside of each selected chip of the multiselect
 2. Used as the key in the default filtering scenario where we filter `@options`. To properly filter the `@options` based on the user input from the textbox, we need to know how to compare the entered value to each object. The `@optionKey` tells us which key of the object to use for this filtering.
 
-In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key that we want displayed in each selected item chip.  We also want our default filtering logic to use the `label` key. 
+In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key that we want displayed in each selected item chip. We also want our default filtering logic to use the `label` key.
 
 ```hbs
 <Form::Controls::Multiselect
@@ -156,24 +210,6 @@ export default class extends Component {
   handleChange(option) {
     this.selected = option;
   }
-}
-```
-
-## Remove Button Labels
-
-Toucan Core wants to provide accessible components, so a component argument of `@removeButtonLabelFunction` is exposed. This component argument is used to set the `aria-label` of each selected chip's remove button. This ensures screenreader users have all of the context they need when remove items from the selected list. The current option is returned to you so that you can format the string as you please. This comes in handy as well when dealing with translated strings.
-
-```hbs
-<Form::Controls::Multiselect
-  @removeButtonLabelFunction={{this.removeButtonLabelFunction}}
-/>
-```
-
-```js
-removeButtonLabelFunction(option) {
-  // Or if dealing with objects, this may be something like:
-  // return `Remove ${option.label}`;
-  return `Remove ${option}`;
 }
 ```
 
