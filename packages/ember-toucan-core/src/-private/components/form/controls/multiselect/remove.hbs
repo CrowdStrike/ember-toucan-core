@@ -1,0 +1,14 @@
+{{! We have to use mousedown here to prevent default. Up does not work the same. }}
+{{!  template-lint-disable no-pointer-down-event-binding }}
+<button
+  aria-label={{@label}}
+  {{! TODO: remove reset-styles https://github.com/CrowdStrike/ember-oss-docs/issues/17 }}
+  class="focusable reset-styles p-1"
+  data-multiselect-remove-option
+  type="button"
+  {{on "click" @onClick}}
+  {{on "mousedown" @onMouseDown}}
+  ...attributes
+>
+  <this.Cross />
+</button>
