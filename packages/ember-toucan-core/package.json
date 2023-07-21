@@ -131,6 +131,7 @@
       "./components/form/fields/checkbox.js": "./dist/_app_/components/form/fields/checkbox.js",
       "./components/form/fields/file-input.js": "./dist/_app_/components/form/fields/file-input.js",
       "./components/form/fields/input.js": "./dist/_app_/components/form/fields/input.js",
+      "./components/form/fields/multiselect.js": "./dist/_app_/components/form/fields/multiselect.js",
       "./components/form/fields/radio-group.js": "./dist/_app_/components/form/fields/radio-group.js",
       "./components/form/fields/radio.js": "./dist/_app_/components/form/fields/radio.js",
       "./components/form/fields/textarea.js": "./dist/_app_/components/form/fields/textarea.js",
