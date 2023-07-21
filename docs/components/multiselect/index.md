@@ -97,18 +97,16 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 
 ## Options
 
-`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
+`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `string[] | Record<string, unknown>[]`. `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
 
 ```hbs
-<Form::Controls::Multiselect
-  @options={{this.options}}
-  @selected={{this.selected}}
-  as |multiselect|
->
-  <multiselect.Option>
+<Form::Controls::Multiselect @options={{this.options}}>
+  <:default as |multiselect|>
     <!-- The content of each popover list item will be rendered here -->
-    {{multiselect.option}}
-  </multiselect.Option>
+    <multiselect.Option>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
 </Form::Controls::Multiselect>
 ```
 
@@ -120,12 +118,12 @@ The currently selected options. Can be either an array of objects or strings. If
 <Form::Controls::Multiselect
   @options={{this.options}}
   @selected={{this.selected}}
-  as |multiselect|
 >
-  <multiselect.Option>
-    <!-- The content of each popover list item will be rendered here -->
-    {{multiselect.option}}
-  </multiselect.Option>
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
 </Form::Controls::Multiselect>
 ```
 
@@ -189,11 +187,12 @@ In the example below, we set `@optionKey='label'`. Our `@options` objects have a
   @options={{this.options}}
   @optionKey='label'
   @selected={{this.selected}}
-  as |multiselect|
 >
-  <multiselect.Option>
-    {{multiselect.option.label}}
-  </multiselect.Option>
+  <:default as |multiselect|>
+    <multiselect.Option @value={{multiselect.value}}>
+      {{multiselect.option.label}}
+    </multiselect.Option>
+  </:default>
 </Form::Controls::Multiselect>
 ```
 
@@ -256,11 +255,12 @@ By default, when `@options` are an array of strings, the built-in filtering does
   @options={{this.options}}
   @optionKey='label'
   @selected={{this.selected}}
-  as |multiselect|
 >
-  <multiselect.Option>
-    {{multiselect.option}}
-  </multiselect.Option>
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
 </Form::Controls::Multiselect>
 ```
 

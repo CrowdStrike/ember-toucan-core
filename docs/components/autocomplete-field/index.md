@@ -38,19 +38,6 @@ Provide a string to the `@label` component argument or content to the `:label` n
 
   <autocomplete.Option @label="Blue" @value="blue" />
 </Form::Fields::Autocomplete>
-
-<Form::Fields::Autocomplete
-  @error={{this.errorMessage}}
-  @onChange={{this.onChange}}
-  as |autocomplete|
->
-  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
-  <:default>
-    <autocomplete.Option @value={{autocomplete.value}}>
-      {{autocomplete.option}}
-    </autocomplete.Option>
-  </:default>
-</Form::Fields::Autocomplete>
 ```
 
 ## Hint
