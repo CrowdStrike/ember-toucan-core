@@ -36,6 +36,7 @@ export default interface Registry {
   'Form::Controls::Textarea': typeof TextareaControlComponent;
   'Form::FileInput::List': typeof FormFileInputListComponent;
   'Form::FileInput::DeleteButton': typeof FormFileInputDeleteButtonComponent;
+  'Form::Fields::Multiselect': typeof MultiselectFieldComponent;
   'Form::Fields::FileInput': typeof FormFileInputFieldComponent;
   'Form::Fields::Multiselect': typeof MultiselectFieldComponent;
   'Form::Fields::Radio': typeof RadioFieldComponent;
