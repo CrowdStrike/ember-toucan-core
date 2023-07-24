@@ -273,8 +273,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.1.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
-        specifier: ^10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@5.1.0)
+        specifier: ^10.1.1
+        version: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
       ember-source:
         specifier: ~5.1.0
         version: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
@@ -922,8 +922,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.1.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
-        specifier: ^10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@5.1.0)
+        specifier: ^10.1.1
+        version: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
       ember-source:
         specifier: ~5.1.0
         version: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
@@ -1115,6 +1115,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/eslint-parser@7.19.1(@babel/core@7.20.12)(eslint@8.33.0):
     resolution: {integrity: sha512-AqNf2QWt1rtu2/1rLswy6CDP7H9Oh3mMhk177Y67Rg8d7RD9WfOLLv8CGn6tisFvS2htm86yIe1yLF6I1UDaGQ==}
@@ -1208,7 +1209,7 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/compat-data': 7.21.4
-      '@babel/core': 7.21.4(supports-color@8.1.1)
+      '@babel/core': 7.21.4
       '@babel/helper-validator-option': 7.21.0
       browserslist: 4.21.5
       lru-cache: 5.1.1
@@ -1397,6 +1398,7 @@ packages:
       '@babel/types': 7.21.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/helper-optimise-call-expression@7.18.6:
     resolution: {integrity: sha512-HP59oD9/fEHQkdcbgFCnbmgH5vIQTJbxh2yf+CdM89/glUNnuzr87Q8GIjGEnOktTROemO0Pe0iPAYbqZuOUiA==}
@@ -1536,6 +1538,7 @@ packages:
       '@babel/types': 7.21.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/highlight@7.18.6:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
@@ -3385,6 +3388,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/types@7.20.7:
     resolution: {integrity: sha512-69OnhBxSSgK0OzTJai4kyPDiKTIe3j+ctaHdIGVbRahTLAT7L3R9oeXHC2aVSuGYt3cVnoAMDmOCgJ2yaiLMvg==}
@@ -5524,7 +5528,7 @@ packages:
     resolution: {integrity: sha512-lEuC2QD8K6rRAbELMejrALFBgelRPt6OQtapny4Oke07ZtK/Lbf9zn5KIDl7PNkirxMD0AStsQTdUqFu6eVbVw==}
     deprecated: This is a stub types definition. ember-resolver provides its own type definitions, so you do not need this installed.
     dependencies:
-      ember-resolver: 10.0.0(@ember/string@3.0.1)(ember-source@5.1.0)
+      ember-resolver: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
     transitivePeerDependencies:
       - '@ember/string'
       - ember-source
@@ -6937,7 +6941,6 @@ packages:
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-    dev: true
 
   /babel-loader@8.3.0(@babel/core@7.21.4)(webpack@5.75.0):
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
@@ -9053,7 +9056,6 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
       semver: 7.5.1
-    dev: true
 
   /css-loader@5.2.7(webpack@5.75.0):
     resolution: {integrity: sha512-Q7mOvpBNBG7YrVGMxRxcBJZFL75o+cH2abNASdibkj/fffYD8qWbInZrD0S9ccI6vZclF3DsHE7njGlLtaHbhg==}
@@ -9318,6 +9320,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 8.1.1
+    dev: true
 
   /decamelize-keys@1.1.1:
     resolution: {integrity: sha512-WiPxgEirIV0/eIOMcnFBA3/IJZAZqKnwAwWyvvdi4lsr1WCN22nhdf/3db3DoZcUjTV2SqfzIwNyp6y2xs3nmg==}
@@ -9695,7 +9698,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - webpack
-    dev: true
 
   /ember-auto-import@2.6.3(webpack@5.75.0):
     resolution: {integrity: sha512-uLhrRDJYWCRvQ4JQ1e64XlSrqAKSd6PXaJ9ZsZI6Tlms9T4DtQFxNXasqji2ZRJBVrxEoLCRYX3RTldsQ0vNGQ==}
@@ -10339,7 +10341,7 @@ packages:
       ember-cli-babel: 7.26.11
       ember-cli-typescript: 5.2.1
       ember-cli-version-checker: 5.1.2
-      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
+      ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -10485,12 +10487,12 @@ packages:
       - supports-color
     dev: true
 
-  /ember-resolver@10.0.0(@ember/string@3.0.1)(ember-source@5.1.0):
-    resolution: {integrity: sha512-e99wFJ4ZpleJ6JMEcIk4WEYP4s3nc+9/iNSXtwBHXC8ADJHJTeN3HjnT/eEbFbswdui4FYxIYuK+UCdP09811Q==}
+  /ember-resolver@10.1.1(@ember/string@3.0.1)(ember-source@5.1.0):
+    resolution: {integrity: sha512-y1zzn6C4YGJui+tJzcCKlsf1oSOSVAkRrvmg8OwqVIKnALKKb9ihx2qLCslHg8x0wJvJgMtDMXgrczvQrZW0Lw==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       '@ember/string': ^3.0.1
-      ember-source: ^4.8.3
+      ember-source: ^4.8.3 || >= 5.0.0
     peerDependenciesMeta:
       ember-source:
         optional: true
@@ -10611,7 +10613,6 @@ packages:
       - rsvp
       - supports-color
       - webpack
-    dev: true
 
   /ember-source@5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0):
     resolution: {integrity: sha512-atUeliA3TGyL8LB8EYIouvJukLtlbqFdtNT83Lst9TEtKtqnoyGJhr/5C/C+AxOX7r5s5Lo5cBBNBQadJgNFNg==}
@@ -14539,7 +14540,6 @@ packages:
         optional: true
     dependencies:
       schema-utils: 4.0.0
-    dev: true
 
   /mini-css-extract-plugin@2.7.2(webpack@5.75.0):
     resolution: {integrity: sha512-EdlUizq13o0Pd+uCp+WO/JpkLvHRVGt97RqfeGhXqAcorYo1ypJSpkV+WDT0vY/kmh/p7wRdJNJtuyK540PXDw==}
@@ -17538,7 +17538,6 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.1
-    dev: true
 
   /style-loader@2.0.0(webpack@5.75.0):
     resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
