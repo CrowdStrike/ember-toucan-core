@@ -13,6 +13,7 @@ import type CheckboxFieldComponent from './components/form/fields/checkbox';
 import type CheckboxGroupFieldComponent from './components/form/fields/checkbox-group';
 import type FormFileInputFieldComponent from './components/form/fields/file-input';
 import type InputFieldComponent from './components/form/fields/input';
+import type MultiselectFieldComponent from './components/form/fields/multiselect';
 import type RadioFieldComponent from './components/form/fields/radio';
 import type RadioGroupFieldComponent from './components/form/fields/radio-group';
 import type TextareaFieldComponent from './components/form/fields/textarea';
@@ -36,6 +37,7 @@ export default interface Registry {
   'Form::FileInput::List': typeof FormFileInputListComponent;
   'Form::FileInput::DeleteButton': typeof FormFileInputDeleteButtonComponent;
   'Form::Fields::FileInput': typeof FormFileInputFieldComponent;
+  'Form::Fields::Multiselect': typeof MultiselectFieldComponent;
   'Form::Fields::Radio': typeof RadioFieldComponent;
   'Form::Fields::RadioGroup': typeof RadioGroupFieldComponent;
   'Form::Fields::Textarea': typeof TextareaFieldComponent;

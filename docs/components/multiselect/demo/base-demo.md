@@ -126,14 +126,6 @@ export default class extends Component {
     'Tony',
   ];
 
-  formatRemoveButtonAriaLabelString(option) {
-    return `Remove ${option}`;
-  }
-
-  formatRemoveButtonAriaLabelStringObject(option) {
-    return `Remove ${option.label}`;
-  }
-
   @action
   onChange(option) {
     this.selected = option;
