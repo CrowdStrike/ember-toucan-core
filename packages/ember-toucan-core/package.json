@@ -37,7 +37,7 @@
     "@glimmer/tracking": "^1.1.2",
     "autoprefixer": "^10.0.2",
     "ember-source": ">=4.8.0",
-    "fractal-page-object": "^0.3.0",
+    "fractal-page-object": "^0.4.1",
     "postcss": "^8.2.14",
     "tailwindcss": "^2.2.15 || ^3.0.0"
   },
@@ -94,7 +94,7 @@
     "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "fractal-page-object": "^0.4.0",
+    "fractal-page-object": "^0.4.1",
     "postcss": "^8.2.14",
     "prettier": "^2.8.3",
     "prettier-plugin-ember-template-tag": "^0.3.0",
