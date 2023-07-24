@@ -40,6 +40,24 @@
     </autocomplete.Option>
   </form.Autocomplete>
 
+  <form.Multiselect
+    @contentClass='z-10'
+    @label='Multiselect'
+    @name='multiselect'
+    @optionKey='label'
+    @options={{this.options}}
+  >
+    <:noResults>No results</:noResults>
+
+    <:remove as |remove|>
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+    </:remove>
+
+    <:default as |multiselect|>
+      <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
+    </:default>
+  </form.Multiselect>
+
   <form.FileInput
     @label='Files to attach'
     @trigger='Select files'
@@ -65,12 +83,13 @@ export default class extends Component {
   data = {};
 
   validations = {
-    comment: validatePresence(true),
     color: validatePresence(true),
+    comment: validatePresence(true),
     files: validatePresence(true),
     firstName: validatePresence(true),
     fruit: validatePresence(true),
     lastName: validatePresence(true),
+    multiselect: validatePresence(true),
     terms: validatePresence(true),
     vegetable: validatePresence(true),
   };
@@ -107,7 +126,7 @@ export default class extends Component {
   ];
 
   handleSubmit(data) {
-    console.log({ data });
+    console.log({ data: data.get('pendingData') });
 
     alert(
       `Form submitted with:\n${Object.entries(data.get('pendingData'))

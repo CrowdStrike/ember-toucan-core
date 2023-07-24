@@ -22,12 +22,13 @@ const options = ['blue', 'red', 'yellow'];
 
 interface TestData {
   autocomplete?: string;
-  checkboxes?: Array<string>;
+  checkboxes?: string[];
   comment?: string;
+  files?: File[];
   firstName?: string;
+  multiselect?: string[];
   radio?: string;
   termsAndConditions?: boolean;
-  files?: File[];
 }
 
 module('Integration | Component | ToucanForm', function (hooks) {
@@ -143,10 +144,11 @@ module('Integration | Component | ToucanForm', function (hooks) {
       autocomplete: 'blue',
       checkboxes: ['option-1', 'option-3'],
       comment: 'multi-line text',
+      files: [testFile],
       firstName: 'single line text',
+      multiselect: ['red', 'yellow'],
       radio: 'option-2',
       termsAndConditions: true,
-      files: [testFile],
     };
 
     await render(<template>
@@ -200,6 +202,23 @@ module('Integration | Component | ToucanForm', function (hooks) {
             data-option
           >{{autocomplete.option}}</autocomplete.Option>
         </form.Autocomplete>
+
+        <form.Multiselect
+          @label="Multiselect"
+          @name="multiselect"
+          @options={{options}}
+          data-multiselect
+        >
+          <:noResults>No results</:noResults>
+
+          <:remove as |remove|>
+            <remove.Remove @label="Remove" />
+          </:remove>
+
+          <:default as |multiselect|>
+            <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+          </:default>
+        </form.Multiselect>
       </ToucanForm>
     </template>);
 
@@ -234,10 +253,21 @@ module('Integration | Component | ToucanForm', function (hooks) {
     // Autocomplete
     assert.dom('[data-autocomplete]').hasAttribute('name', 'autocomplete');
     assert.dom('[data-autocomplete]').hasValue('blue');
+
+    // Multiselect
+    assert.dom('[data-multiselect]').hasAttribute('name', 'multiselect');
+    assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
+
+    let [firstChip, secondChip] = document.querySelectorAll(
+      '[data-multiselect-selected-option]'
+    );
+
+    assert.dom(firstChip).hasText('red');
+    assert.dom(secondChip).hasText('yellow');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    assert.expect(19);
+    assert.expect(20);
 
     const handleSubmit = ({ files, ...data }: TestData) => {
       // Checking deep equality on files can get really tricky due
@@ -261,6 +291,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           checkboxes: ['option-2'],
           comment: 'A comment.',
           firstName: 'CrowdStrike',
+          multiselect: ['blue'],
           radio: 'option-2',
           termsAndConditions: true,
         },
@@ -275,10 +306,11 @@ module('Integration | Component | ToucanForm', function (hooks) {
       autocomplete,
       checkboxes,
       comment,
+      files,
       firstName,
+      multiselect,
       radio,
       termsAndConditions,
-      files,
     }: TestData) => {
       let errors: ErrorRecord<TestData> = {};
 
@@ -298,6 +330,16 @@ module('Integration | Component | ToucanForm', function (hooks) {
             type: 'required',
             value: autocomplete,
             message: 'One autocomplete item must be selected',
+          },
+        ];
+      }
+
+      if (!multiselect) {
+        errors.multiselect = [
+          {
+            type: 'required',
+            value: multiselect,
+            message: 'One multiselect item must be selected',
           },
         ];
       }
@@ -438,6 +480,24 @@ module('Integration | Component | ToucanForm', function (hooks) {
           </autocomplete.Option>
         </form.Autocomplete>
 
+        <form.Multiselect
+          @label="Multiselect"
+          @name="multiselect"
+          @options={{options}}
+          @rootTestSelector="data-multiselect-wrapper"
+          data-multiselect
+        >
+          <:noResults>No results</:noResults>
+
+          <:remove as |remove|>
+            <remove.Remove @label="Remove" />
+          </:remove>
+
+          <:default as |multiselect|>
+            <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+          </:default>
+        </form.Multiselect>
+
         <button type="submit" data-test-submit>Submit</button>
       </ToucanForm>
     </template>);
@@ -481,6 +541,9 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-autocomplete-wrapper"] [data-error]')
       .hasText('One autocomplete item must be selected');
+    assert
+      .dom('[data-root-field="data-multiselect-wrapper"] [data-error]')
+      .hasText('One multiselect item must be selected');
 
     // Satisfy the validation and submit the form
     await fillIn('[data-textarea]', 'A comment.');
@@ -493,6 +556,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
     });
     await fillIn('[data-autocomplete]', 'red');
     await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Enter');
+    await fillIn('[data-multiselect]', 'blue');
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
 
     await click('[data-test-submit]');
 
