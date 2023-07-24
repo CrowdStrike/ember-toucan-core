@@ -155,7 +155,6 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 <Form::Fields::Multiselect
   @contentClass='z-10'
   @onChange={{this.onChange}}
-  @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
@@ -165,7 +164,7 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 
   <:default as |multiselect|>
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Fields::Multiselect>
@@ -228,95 +227,22 @@ export default class extends Component {
 
 Required.
 
-`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `string[] | Record<string, unknown>[]`. `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
+`@options` forms the content of this component.
 
 ```hbs
 <Form::Fields::Multiselect @label='Label' @options={{this.options}}>
   <:default as |multiselect|>
     <!-- The content of each popover list item will be rendered here -->
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Fields::Multiselect>
-```
-
-## Option Key
-
-Optional.
-
-The `@optionKey` argument is used when your `@options` take the shape of an array of objects. The `@optionKey` is used to determine two things internally:
-
-1. The displayed value inside of each selected chip of the multiselect
-2. Used as the key in the default filtering scenario where we filter `@options`. To properly filter the `@options` based on the user input from the textbox, we need to know how to compare the entered value to each object. The `@optionKey` tells us which key of the object to use for this filtering.
-
-In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key that we want displayed in each selected item chip. We also want our default filtering logic to use the `label` key.
-
-```hbs
-<Form::Fields::Multiselect
-  @label='Label'
-  @onChange={{this.handleChange}}
-  @optionKey='label'
-  @options={{this.options}}
-  @selected={{this.selected}}
->
-  <:default as |multiselect|>
-    <multiselect.Option @value={{multiselect.value}}>
-      {{multiselect.option.label}}
-    </multiselect.Option>
-  </:default>
-</Form::Fields::Multiselect>
-```
-
-```js
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-
-export default class extends Component {
-  @tracked selected;
-
-  options = [
-    {
-      label: 'Blue',
-      value: 'blue',
-    },
-    {
-      label: 'Green',
-      value: 'green',
-    },
-    {
-      label: 'Yellow',
-      value: 'yellow',
-    },
-    {
-      label: 'Orange',
-      value: 'orange',
-    },
-    {
-      label: 'Red',
-      value: 'red',
-    },
-    {
-      label: 'Purple',
-      value: 'purple',
-    },
-    {
-      label: 'Teal',
-      value: 'teal',
-    },
-  ];
-
-  @action
-  handleChange(option) {
-    this.selected = option;
-  }
-}
 ```
 
 ## Selected
 
-The currently selected options. Can be either an array of objects or strings. If `@options` is an array of strings, provide an array of strings. If `@options` is an array of objects, use an array of objects. Works in combination with `@onChange`.
+The currently selected option.
 
 ```hbs
 <Form::Fields::Multiselect
@@ -345,13 +271,13 @@ export default class extends Component {
 
 Optional.
 
-By default, when `@options` are an array of strings, the built-in filtering does simple `startsWith` filtering. When `@options` are an array of objects, the same filtering logic applies, but the key of each object is determined by the provided `@optionKey`. There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `startsWith` filtering described. To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
+The built-in filtering does simple `String.prototype.startsWith` filtering. 
+Specify `onFilter` if you want to do something different.
 
 ```hbs
 <Form::Fields::Multiselect
   @onChange={{this.handleChange}}
   @onFilter={{this.handleFilter}}
-  @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
 >
@@ -409,7 +335,7 @@ export default class extends Component {
 
   @action
   handleFilter(value) {
-    return this.options.filter((option) => option.label === value);
+    return this.options.filter((option) => option === value);
   }
 }
 ```

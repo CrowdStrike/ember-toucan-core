@@ -5,7 +5,6 @@
     @hint='Select a color'
     @contentClass='z-10'
     @onChange={{this.onChange}}
-    @optionKey='label'
     @options={{this.options}}
     @selected={{this.selected}}
     placeholder='Colors'
@@ -13,12 +12,12 @@
     <:noResults>No results</:noResults>
 
     <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
     </:remove>
 
     <:default as |multiselect|>
       <multiselect.Option>
-        {{multiselect.option.label}}
+        {{multiselect.option}}
       </multiselect.Option>
     </:default>
   </Form::Fields::Multiselect>
@@ -69,7 +68,7 @@ export default class extends Component {
       name: 'teal',
       value: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   @action
   onChange(option) {

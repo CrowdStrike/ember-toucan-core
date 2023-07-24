@@ -18,11 +18,7 @@ import Cross from '../../../-private/icons/cross';
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
 import type { WithBoundArgs } from '@glint/template';
 
-export type Option = string | Record<string, unknown> | undefined;
-
-export interface ToucanFormMultiselectControlComponentSignature<
-  OPTION extends Option
-> {
+export interface ToucanFormMultiselectControlComponentSignature {
   Args: {
     /**
      * A CSS class to add to this component's content container.
@@ -49,39 +45,29 @@ export interface ToucanFormMultiselectControlComponentSignature<
      * Called when the user makes a selection.
      * It is called with the selected options (derived from `@options`) as its only argument.
      */
-    onChange?: (option: OPTION[]) => void;
+    onChange?: (options: string[]) => void;
 
     /**
      * The function called when a user types into the textbox, typically used to write custom filtering logic.
      */
-    onFilter?: (input: string) => OPTION[];
+    onFilter?: (value: string) => string[];
 
     /**
      * `@options` forms the content of this component.
      *
      * `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
      */
-    options?: OPTION[];
+    options?: string[];
 
     /**
-     * When `@options` is an array of objects, `@selected` is also an object.
-     * The `@optionKey` is used to determine which key of the object should
-     * be used for both filtering and displaying the selected values in the
-     * selected chips.
+     * The currently selected option.
      */
-    optionKey?: OPTION extends Record<string, unknown>
-      ? keyof OPTION
-      : undefined;
-
-    /**
-     * The currently selected options.  If `@options` is an array of strings, provide an array of strings.  If `@options` is an array of objects, pass an array of objects matching the format of `@options`.
-     */
-    selected?: OPTION[];
+    selected?: string[];
   };
   Blocks: {
     default: [
       {
-        option: OPTION;
+        option: string;
         Option: WithBoundArgs<
           typeof OptionComponent,
           | 'index'
@@ -97,7 +83,7 @@ export interface ToucanFormMultiselectControlComponentSignature<
     noResults: [];
     remove: [
       {
-        option: Option;
+        option: string;
         Remove: WithBoundArgs<
           typeof RemoveComponent,
           'onClick' | 'onMouseDown'
@@ -108,13 +94,11 @@ export interface ToucanFormMultiselectControlComponentSignature<
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormMultiselectControlComponent<
-  OPTION extends Option
-> extends Component<ToucanFormMultiselectControlComponentSignature<OPTION>> {
+export default class ToucanFormMultiselectControlComponent extends Component<ToucanFormMultiselectControlComponentSignature> {
   @tracked activeIndex: number | null = null;
-  @tracked inputValue: string | undefined;
+  @tracked inputValue = '';
   @tracked isPopoverOpen = false;
-  @tracked filteredOptions: OPTION[] | undefined;
+  @tracked filteredOptions: string[] | null = null;
 
   Chevron = Chevron;
   Cross = Cross;
@@ -278,35 +262,6 @@ export default class ToucanFormMultiselectControlComponent<
   }
 
   /**
-   * Action that formats each chip's label. When `@optionKey` is not provided,
-   * we assume we are dealing with an array of strings and use the raw string
-   * value.  When `@optionKey` is provided, we assume each option is an object
-   * and use the provided key for the lookup value.
-   */
-  @action
-  getOptionLabel(option: Option) {
-    let { optionKey } = this.args;
-
-    if (!optionKey) {
-      assert(
-        'Expected `option` to be a string value',
-        typeof option === 'string'
-      );
-
-      return option;
-    }
-
-    assert('Expected `@optionKey`', optionKey);
-
-    assert(
-      'Expected `option` to be an object since `@optionKey` was provided',
-      typeof option === 'object'
-    );
-
-    return option[optionKey] as string;
-  }
-
-  /**
    * Action called when a new item is selected. Ultimately calls the provided
    * `@onChange` with the newly selected item.
    */
@@ -337,7 +292,7 @@ export default class ToucanFormMultiselectControlComponent<
       selectedOption
     );
 
-    this.inputValue = undefined;
+    this.inputValue = '';
 
     // Below handles these two cases:
     // 1) We do NOT have the item already in `selected`.
@@ -359,40 +314,24 @@ export default class ToucanFormMultiselectControlComponent<
       this.args.onChange?.([...selected, selectedOption]);
     }
 
-    this.filteredOptions = undefined;
+    this.filteredOptions = null;
   }
 
   /**
    * Returns the index of a particular option from the selected array.
    * If the item is not found in the selected array, it returns -1.
    */
-  getOptionIndexFromSelected(option: Option) {
-    // Handle comparing an array of strings
-    if (!this.args.optionKey) {
-      return (this.args.selected as string[])?.findIndex(
-        (opt) => opt === option
-      );
-    }
-
-    // Handle comparing when we have an array of objects
-    if (this.args.optionKey) {
-      const optionAsObject = option as Record<string, unknown>;
-      const optionKey = this.args.optionKey as string;
-
-      return (this.args.selected as Record<string, unknown>[])?.findIndex(
-        (opt) =>
-          opt[this.args.optionKey as string] === optionAsObject[optionKey]
-      );
-    }
-
-    return -1;
+  getOptionIndexFromSelected(option: string) {
+    return (
+      this.args.selected?.findIndex((selected) => selected === option) ?? -1
+    );
   }
 
   /**
    * Compares two arguments to determine if they are equal or not.
    */
   @action
-  isEqual(one: number | Option | null, two: number | Option | null) {
+  isEqual(one: unknown, two: unknown) {
     return emberIsEqual(one, two);
   }
 
@@ -402,16 +341,10 @@ export default class ToucanFormMultiselectControlComponent<
    * will be checked.
    */
   @action
-  isSelected(option: Option) {
-    if (!this.args.selected) {
-      return false;
-    }
-
-    if (!option) {
-      return false;
-    }
-
-    return this.getOptionIndexFromSelected(option) >= 0;
+  isSelected(option: string) {
+    return !this.args.selected || !option
+      ? false
+      : this.getOptionIndexFromSelected(option) >= 0;
   }
 
   /**
@@ -564,31 +497,14 @@ export default class ToucanFormMultiselectControlComponent<
 
     this.inputValue = value;
 
-    const { options, optionKey, onFilter } = this.args;
-    const optionsArgument = options ? [...options] : [];
-
-    let filteredOptions: OPTION[] = [];
-
-    if (!onFilter && !optionKey) {
-      filteredOptions = (optionsArgument as string[])?.filter(
-        (option: string) =>
-          option.toLowerCase().startsWith(value.toLowerCase()) as unknown
-      ) as OPTION[];
-    }
-
-    if (!onFilter && optionKey) {
-      filteredOptions = optionsArgument?.filter((option) =>
-        ((option as Record<string, unknown>)[optionKey] as string)
-          ?.toLowerCase()
-          ?.startsWith(value.toLowerCase())
-      );
-    }
-
-    if (onFilter) {
-      filteredOptions = onFilter(value);
-    }
-
-    this.filteredOptions = filteredOptions;
+    this.filteredOptions =
+      this.args.options && this.args.onFilter
+        ? this.args.onFilter(value)
+        : this.args.options
+        ? this.args.options.filter((option) => {
+            return option.toLowerCase().startsWith(value.toLowerCase());
+          })
+        : [];
 
     if (this.filteredOptions?.length > 0) {
       this.activeIndex = 0;
@@ -612,11 +528,16 @@ export default class ToucanFormMultiselectControlComponent<
   @action
   handleContainerClick() {
     if (!this.isPopoverOpen) {
-      (
-        document.querySelector(
-          '[data-toucan-multiselect-input]'
-        ) as HTMLInputElement
-      )?.focus();
+      const inputElement = document.querySelector(
+        '[data-toucan-multiselect-input]'
+      );
+
+      assert(
+        '`inputElement` must be an instance of `HTMLInputElement`',
+        inputElement instanceof HTMLInputElement
+      );
+
+      inputElement.focus();
     }
   }
 
@@ -642,8 +563,8 @@ export default class ToucanFormMultiselectControlComponent<
    * Resets the value and filtered options when the input is blurred.
    */
   @action
-  resetValue() {
-    this.filteredOptions = undefined;
-    this.inputValue = undefined;
+  resetInputValueAndFilteredOptions() {
+    this.filteredOptions = null;
+    this.inputValue = '';
   }
 }

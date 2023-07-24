@@ -12,7 +12,7 @@
     as |velcro|
   >
     {{! Disabling this rule as the user interacts with the input directly. The click on the div is simply for convenience. }}
-    {{!  template-lint-disable no-invalid-interactive }}
+    {{! template-lint-disable no-invalid-interactive }}
     <div
       class="bg-overlay-1 text-titles-and-attributes flex min-h-[2.5rem] items-center justify-between rounded-sm p-1 transition-shadow
         {{this.styles}}"
@@ -34,7 +34,7 @@
             data-multiselect-selected-option
           >
             <span class="block">
-              {{(this.getOptionLabel option)}}
+              {{option}}
             </span>
 
             {{#if this.isEnabled}}
@@ -53,7 +53,7 @@
           </div>
         {{/each}}
 
-        {{! template-lint-disable no-redundant-role  }}
+        {{! template-lint-disable no-redundant-role }}
         <input
           aria-activedescendant={{this.activeDescendant}}
           aria-autocomplete="list"
@@ -85,7 +85,7 @@
             (if
               this.isDisabledOrReadOnlyOrWithoutOptions
               this.noop
-              this.resetValue
+              this.resetInputValueAndFilteredOptions
             )
           }}
           {{on

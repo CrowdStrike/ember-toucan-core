@@ -13,7 +13,7 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 ## Options
 
-`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `unknown[]` and treated as though it were opaque. `@options` is simply iterated over then passed back to you as a block parameter (`autocomplete.option`).
+`@options` forms the content of this component. 
 
 ```hbs
 <Form::Controls::Autocomplete
@@ -30,7 +30,7 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 ## Selected
 
-The currently selected option. Can be either an object or a string. If `@options` is an array of strings, provide a string. If `@options` is an array of objects, pass the entire object. Works in combination with `@onChange`.
+The currently selected option.
 
 ```hbs
 <Form::Controls::Autocomplete
@@ -154,7 +154,7 @@ export default class extends Component {
 
   @action
   handleFilter(value) {
-    return this.options.filter((option) => option.label === value);
+    return this.options.filter((option) => option === value);
   }
 }
 ```

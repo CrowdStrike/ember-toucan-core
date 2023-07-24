@@ -25,18 +25,17 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
   @options={{this.options}}
   @contentClass='z-10'
   @selected={{this.selected}}
-  @optionKey='label'
   placeholder='Colors'
 >
   <:noResults>No results</:noResults>
 
   <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
   </:remove>
 
   <:default as |multiselect|>
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Controls::Multiselect>
@@ -50,18 +49,17 @@ An example with translations may be something like:
   @options={{this.options}}
   @contentClass='z-10'
   @selected={{this.selected}}
-  @optionKey='label'
   placeholder='Colors'
 >
   <:noResults>No results</:noResults>
 
   <:remove as |remove|>
-    <remove.Remove @label={{(t 'some-key' name=remove.option.label)}} />
+    <remove.Remove @label={{(t 'some-key' name=remove.option)}} />
   </:remove>
 
   <:default as |multiselect|>
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Controls::Multiselect>
@@ -75,7 +73,6 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 <Form::Controls::Multiselect
   @contentClass='z-10'
   @onChange={{this.onChange}}
-  @optionKey='label'
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
@@ -84,12 +81,12 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
   <:noResults>No results</:noResults>
 
   <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
   </:remove>
 
   <:default as |multiselect|>
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Controls::Multiselect>
@@ -97,14 +94,14 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 
 ## Options
 
-`@options` forms the content of this component. To support a variety of data shapes, `@options` is typed as `string[] | Record<string, unknown>[]`. `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
+`@options` forms the content of this component. 
 
 ```hbs
 <Form::Controls::Multiselect @options={{this.options}}>
   <:default as |multiselect|>
     <!-- The content of each popover list item will be rendered here -->
     <multiselect.Option>
-      {{multiselect.option.label}}
+      {{multiselect.option}}
     </multiselect.Option>
   </:default>
 </Form::Controls::Multiselect>
@@ -112,7 +109,7 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 
 ## Selected
 
-The currently selected options. Can be either an array of objects or strings. If `@options` is an array of strings, provide an array of strings. If `@options` is an array of objects, use an array of objects. Works in combination with `@onChange`.
+The currently selected option.
 
 ```hbs
 <Form::Controls::Multiselect
@@ -170,90 +167,18 @@ export default class extends Component {
 }
 ```
 
-## Option Key
-
-Optional.
-
-The `@optionKey` argument is used when your `@options` take the shape of an array of objects. The `@optionKey` is used to determine two things internally:
-
-1. The displayed value inside of each selected chip of the multiselect
-2. Used as the key in the default filtering scenario where we filter `@options`. To properly filter the `@options` based on the user input from the textbox, we need to know how to compare the entered value to each object. The `@optionKey` tells us which key of the object to use for this filtering.
-
-In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key that we want displayed in each selected item chip. We also want our default filtering logic to use the `label` key.
-
-```hbs
-<Form::Controls::Multiselect
-  @onChange={{this.handleChange}}
-  @options={{this.options}}
-  @optionKey='label'
-  @selected={{this.selected}}
->
-  <:default as |multiselect|>
-    <multiselect.Option @value={{multiselect.value}}>
-      {{multiselect.option.label}}
-    </multiselect.Option>
-  </:default>
-</Form::Controls::Multiselect>
-```
-
-```js
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-
-export default class extends Component {
-  @tracked selected;
-
-  options = [
-    {
-      label: 'Blue',
-      value: 'blue',
-    },
-    {
-      label: 'Green',
-      value: 'green',
-    },
-    {
-      label: 'Yellow',
-      value: 'yellow',
-    },
-    {
-      label: 'Orange',
-      value: 'orange',
-    },
-    {
-      label: 'Red',
-      value: 'red',
-    },
-    {
-      label: 'Purple',
-      value: 'purple',
-    },
-    {
-      label: 'Teal',
-      value: 'teal',
-    },
-  ];
-
-  @action
-  handleChange(option) {
-    this.selected = option;
-  }
-}
-```
-
 ## onFilter
 
 Optional.
 
-By default, when `@options` are an array of strings, the built-in filtering does simple `startsWith` filtering. When `@options` are an array of objects, the same filtering logic applies, but the key of each object is determined by the provided `@optionKey`. There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `startsWith` filtering described. To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
+The built-in filtering does simple `String.prototype.startsWith` filtering. 
+Specify `onFilter` if you want to do something different.
 
 ```hbs
 <Form::Controls::Multiselect
   @onFilter={{this.handleFilter}}
   @onChange={{this.handleChange}}
   @options={{this.options}}
-  @optionKey='label'
   @selected={{this.selected}}
 >
   <:default as |multiselect|>
@@ -301,7 +226,7 @@ export default class extends Component {
       label: 'Teal',
       value: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   @action
   handleChange(option) {
@@ -310,7 +235,7 @@ export default class extends Component {
 
   @action
   handleFilter(value) {
-    return this.options.filter((option) => option.label === value);
+    return this.options.filter((option) => option === value);
   }
 }
 ```

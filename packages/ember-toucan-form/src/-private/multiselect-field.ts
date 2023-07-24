@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
 import type {
-  Option,
   ToucanFormMultiselectFieldComponentSignature as BaseMultiselectFieldSignature,
 } from '@crowdstrike/ember-toucan-core/components/form/fields/multiselect';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
@@ -15,7 +14,7 @@ export interface ToucanFormMultiselectFieldComponentSignature<
 > {
   Element: HTMLInputElement;
   Args: Omit<
-    BaseMultiselectFieldSignature<Option>['Args'],
+    BaseMultiselectFieldSignature['Args'],
     'error' | 'onChange'
   > & {
     /**
@@ -28,9 +27,7 @@ export interface ToucanFormMultiselectFieldComponentSignature<
      */
     form: HeadlessFormBlock<DATA>;
   };
-  // This will be updated to be typed properly with Clinton's work
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Blocks: BaseMultiselectFieldSignature<any>['Blocks'];
+  Blocks: BaseMultiselectFieldSignature['Blocks'];
 }
 
 export default class ToucanFormMultiselectFieldComponent<
@@ -54,12 +51,12 @@ export default class ToucanFormMultiselectFieldComponent<
   };
 
   @action
-  assertSelected(value: unknown): Option[] | undefined {
+  assertSelected(value: unknown) {
     assert(
-      `Only array values are expected for ${String(
+      `\`string[]\` or \`undefined\` is expected for ${String(
         this.args.name
       )}, but you passed ${typeof value}`,
-      typeof value === 'undefined' || Array.isArray(value)
+      Array.isArray(value) || value === undefined
     );
 
     return value;
