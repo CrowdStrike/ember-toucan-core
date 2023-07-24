@@ -88,77 +88,6 @@ export default class extends Component {
 }
 ```
 
-## Option Key
-
-Optional.
-
-The `@optionKey` argument is used when your `@options` take the shape of an array of objects. The `@optionKey` is used to determine two things internally:
-
-1. The displayed value inside of the input of the autocomplete
-2. Used as the key in the default filtering scenario where we filter `@options`. To properly filter the `@options` based on the user input from the textbox, we need to know how to compare the entered value to each object. The `@optionKey` tells us which key of the object to use for this filtering.
-
-In the example below, we set `@optionKey='label'`. Our `@options` objects have a `label` key and we want the label of the selected option to be used for the selected value, as well as for filtering as the user types.
-
-```hbs
-<Form::Controls::Autocomplete
-  @onChange={{this.handleChange}}
-  @options={{this.options}}
-  @optionKey='label'
-  @selected={{this.selected}}
-  as |autocomplete|
->
-  <autocomplete.Option>
-    {{autocomplete.option.label}}
-  </autocomplete.Option>
-</Form::Controls::Autocomplete>
-```
-
-```js
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-
-export default class extends Component {
-  @tracked selected;
-
-  options = [
-    {
-      label: 'Blue',
-      value: 'blue',
-    },
-    {
-      label: 'Green',
-      value: 'green',
-    },
-    {
-      label: 'Yellow',
-      value: 'yellow',
-    },
-    {
-      label: 'Orange',
-      value: 'orange',
-    },
-    {
-      label: 'Red',
-      value: 'red',
-    },
-    {
-      label: 'Purple',
-      value: 'purple',
-    },
-    {
-      label: 'Teal',
-      value: 'teal',
-    },
-  ];
-
-  @action
-  handleChange(option) {
-    this.selected = option;
-  }
-}
-```
-
 ## onFilter
 
 Optional.
@@ -170,7 +99,6 @@ By default, when `@options` are an array of strings, the built-in filtering does
   @onFilter={{this.handleFilter}}
   @onChange={{this.handleChange}}
   @options={{this.options}}
-  @optionKey='label'
   @selected={{this.selected}}
   as |autocomplete|
 >

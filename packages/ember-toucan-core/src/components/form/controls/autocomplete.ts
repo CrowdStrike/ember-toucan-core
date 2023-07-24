@@ -16,11 +16,7 @@ import Chevron from '../../../-private/icons/chevron';
 import type { Middleware as VelcroMiddleware } from '@floating-ui/dom';
 import type { WithBoundArgs } from '@glint/template';
 
-export type Option = string | Record<string, unknown> | undefined;
-
-export interface ToucanFormAutocompleteControlComponentSignature<
-  OPTION extends Option
-> {
+export interface ToucanFormAutocompleteControlComponentSignature {
   Args: {
     /**
      * A CSS class to add to this component's content container.
@@ -52,39 +48,31 @@ export interface ToucanFormAutocompleteControlComponentSignature<
      * Called when the user makes a selection.
      * It is called with the selected option (derived from `@options`) as its only argument.
      */
-    onChange?: (option: unknown) => void;
+    onChange?: (selected: string | null) => void;
 
     /**
      * The function called when a user types into the textbox, typically used to write custom filtering logic.
+     *
+     * @return An array of options to be shown in the popover.
      */
-    onFilter?: (input: string) => OPTION[];
+    onFilter?: (value: string) => string[];
 
     /**
      * `@options` forms the content of this component.
      *
      * `@options` is simply iterated over then passed back to you as a block parameter (`select.option`).
      */
-    options?: OPTION[];
+    options?: string[];
 
     /**
-     * When `@options` is an array of objects, `@selected` is also an object.
-     * The `@optionKey` is used to determine which key of the object should
-     * be used for both filtering and displayed the selected value in the
-     * textbox.
+     * The currently selected option.
      */
-    optionKey?: OPTION extends Record<string, unknown>
-      ? keyof OPTION
-      : undefined;
-
-    /**
-     * The currently selected option.  If `@options` is an array of strings, provide a string.  If `@options` is an array of objects, pass the entire object.
-     */
-    selected?: OPTION;
+    selected?: string;
   };
   Blocks: {
     default: [
       {
-        option: OPTION;
+        option: string;
         Option: WithBoundArgs<
           typeof OptionComponent,
           | 'index'
@@ -101,13 +89,11 @@ export interface ToucanFormAutocompleteControlComponentSignature<
   Element: HTMLInputElement;
 }
 
-export default class ToucanFormAutocompleteControlComponent<
-  OPTION extends Option
-> extends Component<ToucanFormAutocompleteControlComponentSignature<OPTION>> {
+export default class ToucanFormAutocompleteControlComponent extends Component<ToucanFormAutocompleteControlComponentSignature> {
   @tracked activeIndex: number | null = null;
-  @tracked inputValue: string | undefined;
+  @tracked inputValue = '';
   @tracked isPopoverOpen = false;
-  @tracked filteredOptions: OPTION[] | undefined;
+  @tracked filteredOptions: string[] | null = null;
 
   Chevron = Chevron;
   Option = OptionComponent;
@@ -115,18 +101,13 @@ export default class ToucanFormAutocompleteControlComponent<
 
   constructor(
     owner: unknown,
-    args: ToucanFormAutocompleteControlComponentSignature<OPTION>['Args']
+    args: ToucanFormAutocompleteControlComponentSignature['Args']
   ) {
     super(owner, args);
 
     // We need to set our input tag's value attribute
     // if we have a selected option provided on render
-    let { selected, optionKey } = this.args;
-
-    this.inputValue =
-      typeof selected === 'object' && optionKey
-        ? (selected[optionKey] as string | undefined)
-        : (selected as string | undefined);
+    this.inputValue = this.args.selected ?? '';
   }
 
   velcroMiddleware: VelcroMiddleware[] = [
@@ -231,8 +212,6 @@ export default class ToucanFormAutocompleteControlComponent<
       this.args.options !== undefined
     );
 
-    let { optionKey, onChange } = this.args;
-
     this.closePopover();
 
     assert(
@@ -242,7 +221,7 @@ export default class ToucanFormAutocompleteControlComponent<
 
     // This shouldn't be possible, but to satisfy TS
     if (this.activeIndex === null) {
-      onChange?.(null);
+      this.args.onChange?.(null);
 
       return;
     }
@@ -253,24 +232,17 @@ export default class ToucanFormAutocompleteControlComponent<
       this.inputValue = selectedOption;
     }
 
-    if (selectedOption && typeof selectedOption === 'object' && optionKey) {
-      let option = (selectedOption as Record<string, string>)[optionKey];
-
-      this.inputValue = option;
-    }
-
-    this.args.onChange?.(this.options[this.activeIndex]);
-
-    this.filteredOptions = undefined;
+    this.args.onChange?.(this.options[this.activeIndex] ?? null);
+    this.filteredOptions = null;
   }
 
   @action
-  isEqual(one: number | Option | null, two: number | Option | null) {
+  isEqual(one: unknown, two: unknown) {
     return emberIsEqual(one, two);
   }
 
   /**
-   * Handle keyboard events to operate like a combobox as defined at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/.
+   * Handle keyboard events to operate like a combobox as defined at https://www.w3.org/WAI/ARIA/apg/patterns/combobox.
    */
   @action
   onKeydown(event: KeyboardEvent) {
@@ -279,7 +251,7 @@ export default class ToucanFormAutocompleteControlComponent<
     }
 
     if (!this.isPopoverOpen) {
-      // Prevents keys like ArrowDown and ArrowUp from scrolling the page.
+      // Prevents ArrowUp, ArrowDown, PageUp, PageDown, Home, and End from scrolling the page.
       event.preventDefault();
 
       this.openPopover();
@@ -318,7 +290,7 @@ export default class ToucanFormAutocompleteControlComponent<
       event.key === 'End'
     ) {
       assert(
-        '`this.args.options` cannot be  `undefined`',
+        '`this.args.options` cannot be `undefined`',
         this.args.options !== undefined
       );
 
@@ -327,9 +299,7 @@ export default class ToucanFormAutocompleteControlComponent<
       // vertically through the list.
       event.preventDefault();
 
-      const activeIndex = this.args.options.length - 1;
-
-      this.activeIndex = activeIndex;
+      this.activeIndex = this.args.options.length - 1;
       this.scrollActiveOptionIntoView(false);
 
       return;
@@ -337,18 +307,18 @@ export default class ToucanFormAutocompleteControlComponent<
 
     if (event.key === 'ArrowDown') {
       assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
+
       assert(
         '`this.args.options` cannot be  `undefined`',
         this.args.options !== undefined
       );
+
       event.preventDefault();
 
-      const activeIndex =
+      this.activeIndex =
         this.activeIndex === this.args.options.length - 1
           ? this.activeIndex
           : this.activeIndex + 1;
-
-      this.activeIndex = activeIndex;
 
       this.scrollActiveOptionIntoView(false);
 
@@ -362,9 +332,7 @@ export default class ToucanFormAutocompleteControlComponent<
     ) {
       event.preventDefault();
 
-      const activeIndex = 0;
-
-      this.activeIndex = activeIndex;
+      this.activeIndex = 0;
       this.scrollActiveOptionIntoView();
 
       return;
@@ -374,10 +342,9 @@ export default class ToucanFormAutocompleteControlComponent<
       assert('`this.activeIndex` cannot be `null`', this.activeIndex !== null);
       event.preventDefault();
 
-      const activeIndex =
+      this.activeIndex =
         this.activeIndex === 0 ? this.activeIndex : this.activeIndex - 1;
 
-      this.activeIndex = activeIndex;
       this.scrollActiveOptionIntoView();
 
       return;
@@ -398,33 +365,16 @@ export default class ToucanFormAutocompleteControlComponent<
 
     this.inputValue = value;
 
-    const { options, optionKey, onFilter } = this.args;
-    const optionsArgument = options ? [...options] : [];
+    this.filteredOptions =
+      this.args.options && this.args.onFilter
+        ? this.args.onFilter(value)
+        : this.args.options
+        ? this.args.options.filter((option) => {
+            return option.toLowerCase().startsWith(value.toLowerCase());
+          })
+        : null;
 
-    let filteredOptions: OPTION[] = [];
-
-    if (!onFilter && !optionKey) {
-      filteredOptions = (optionsArgument as string[])?.filter(
-        (option: string) =>
-          option.toLowerCase().startsWith(value.toLowerCase()) as unknown
-      ) as OPTION[];
-    }
-
-    if (!onFilter && optionKey) {
-      filteredOptions = optionsArgument?.filter((option) =>
-        ((option as Record<string, unknown>)[optionKey] as string)
-          ?.toLowerCase()
-          ?.startsWith(value.toLowerCase())
-      );
-    }
-
-    if (onFilter) {
-      filteredOptions = onFilter(value);
-    }
-
-    this.filteredOptions = filteredOptions;
-
-    if (this.filteredOptions?.length > 0) {
+    if (this.filteredOptions !== null && this.filteredOptions.length > 0) {
       this.activeIndex = 0;
     }
   }
@@ -465,40 +415,30 @@ export default class ToucanFormAutocompleteControlComponent<
    *    option.
    */
   @action
-  resetValue(event: Event) {
+  resetEverything(event: Event) {
     assert(
       'Expected HTMLInputElement',
       event.target instanceof HTMLInputElement
     );
 
-    let { selected, optionKey, onChange } = this.args;
-
-    if (!selected) {
+    if (!this.args.selected) {
       return;
     }
 
     // Reset our filtered options as we are going to "clear" the input
-    this.filteredOptions = undefined;
+    this.filteredOptions = null;
 
     if (event.target.value === '') {
-      this.inputValue = undefined;
-      onChange?.(null);
+      this.inputValue = '';
+      this.args.onChange?.(null);
 
       return;
     }
 
-    if (typeof selected === 'string' && event.target.value !== selected) {
-      this.inputValue = selected;
+    if (event.target.value !== this.args.selected) {
+      this.inputValue = this.args.selected;
 
       return;
-    }
-
-    if (
-      typeof selected === 'object' &&
-      optionKey &&
-      event.target.value !== selected[optionKey]
-    ) {
-      this.inputValue = selected[optionKey] as string;
     }
   }
 
@@ -506,7 +446,7 @@ export default class ToucanFormAutocompleteControlComponent<
    * Highlights the entered value of the input when the input is clicked.
    */
   @action
-  selectInput(event: Event) {
+  highlightInputValue(event: Event) {
     assert(
       'Expected HTMLInputElement',
       event.target instanceof HTMLInputElement

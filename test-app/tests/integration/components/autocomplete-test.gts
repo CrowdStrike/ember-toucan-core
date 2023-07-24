@@ -188,33 +188,6 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.dom('[data-autocomplete]').hasValue('blue');
   });
 
-  test('it sets the value attribute via `@selected` and `@optionKey` when `@selected` is an object', async function (assert) {
-    let options = [
-      {
-        label: 'Blue',
-        value: 'blue',
-      },
-    ];
-
-    let selected = options[0];
-
-    await render(<template>
-      <Autocomplete
-        @selected={{selected}}
-        @options={{options}}
-        @optionKey="label"
-        data-autocomplete
-        as |autocomplete|
-      >
-        <autocomplete.Option data-option>
-          {{autocomplete.option.label}}
-        </autocomplete.Option>
-      </Autocomplete>
-    </template>);
-
-    assert.dom('[data-autocomplete]').hasValue('Blue');
-  });
-
   test('it sets `aria-selected` properly on the list item that is currently selected', async function (assert) {
     await render(<template>
       <Autocomplete
@@ -240,7 +213,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       .hasAttribute('aria-selected', 'false');
   });
 
-  test('it provides default filtering when `@options` is an array of strings', async function (assert) {
+  test('it provides default filtering', async function (assert) {
     await render(<template>
       <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
@@ -262,48 +235,6 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await fillIn('[data-autocomplete]', 'red');
     assert.dom('[role="option"]').exists({ count: 1 });
     assert.dom('[role="option"]').hasText('red');
-  });
-
-  test('it provides default filtering when `@options` is an array of objects and is provided with `@optionKey`', async function (assert) {
-    let options = [
-      {
-        label: 'Blue',
-        value: 'blue',
-      },
-      {
-        label: 'Red',
-        value: 'red',
-      },
-    ];
-
-    await render(<template>
-      <Autocomplete
-        @options={{options}}
-        @optionKey="label"
-        data-autocomplete
-        as |autocomplete|
-      >
-        <autocomplete.Option>{{autocomplete.option.label}}</autocomplete.Option>
-      </Autocomplete>
-    </template>);
-
-    await fillIn('[data-autocomplete]', 'blue');
-
-    // Filtering works as we expect
-    assert.dom('[role="option"]').exists({ count: 1 });
-    // NOTE: We should be using option.label (capitalized "Blue" instead of "blue")
-    assert.dom('[role="option"]').hasText('Blue');
-
-    // Resetting the filter by clearing the input should
-    // display all available options
-    await fillIn('[data-autocomplete]', '');
-    assert.dom('[role="option"]').exists({ count: 2 });
-
-    // Verify we can filter again after clearing
-    await fillIn('[data-autocomplete]', 'red');
-    assert.dom('[role="option"]').exists({ count: 1 });
-    // NOTE: We should be using option.label (capitalized "Red" instead of "red")
-    assert.dom('[role="option"]').hasText('Red');
   });
 
   test('it uses the provided `@noResultsText` when no results are found with filtering', async function (assert) {
@@ -403,7 +334,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
   test('it uses the results from `@onFilter` to populate the filtered options', async function (assert) {
     assert.expect(5);
 
-    let handleFilter = (value: unknown) => {
+    let handleFilter = (value: string) => {
       assert.strictEqual(
         value,
         'y',
@@ -429,7 +360,6 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await fillIn('[data-autocomplete]', 'y');
 
     assert.verifySteps(['onFilter']);
-
     assert.dom('[role="option"]').exists({ count: 1 });
     assert.dom('[role="option"]').hasText('yellow');
   });
@@ -762,7 +692,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.verifySteps(['handleChange']);
   });
 
-  test('it reverts to the selected option when a user enters garbage after previously having a valid selection (with `@selected` as a string)', async function (assert) {
+  test('it reverts to the selected option when a user enters garbage after previously having a valid selection', async function (assert) {
     assert.expect(3);
 
     let handleChange = () => {
@@ -796,67 +726,6 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     // Verify the input is reset to our `@selected` option
     assert.dom('[data-autocomplete]').hasValue('blue');
-
-    // NOTE: We do not expect the `@onChange`  to be called in this
-    // case as we are only visually resetting to the previously
-    // selected value
-    assert.verifySteps([]);
-
-    // We want to verify the original options are re-displayed
-    // rather than the input being filtered to garbage
-    await click('[data-autocomplete]');
-
-    assert.dom('[role="option"]').exists({ count: 2 });
-  });
-
-  test('it reverts to the selected option when a user enters garbage after previously having a valid selection (with `@selected` as an object)', async function (assert) {
-    assert.expect(3);
-
-    let options = [
-      {
-        label: 'Blue',
-        value: 'blue',
-      },
-      {
-        label: 'Red',
-        value: 'red',
-      },
-    ];
-
-    let selected = options[0];
-
-    let handleChange = () => {
-      assert.step('do-not-expect-this-to-be-called!');
-    };
-
-    // NOTE: We have a selected option
-    // NOTE: We add an input tag so we have something to blur to (by focusing another element)
-    await render(<template>
-      <Autocomplete
-        @selected={{selected}}
-        @options={{options}}
-        @optionKey="label"
-        @onChange={{handleChange}}
-        data-autocomplete
-        as |autocomplete|
-      >
-        <autocomplete.Option>{{autocomplete.option.label}}</autocomplete.Option>
-      </Autocomplete>
-
-      {{! template-lint-disable require-input-label }}
-      <input placeholder="test" data-input />
-    </template>);
-
-    await click('[data-autocomplete]');
-
-    // Enter garbage into the input
-    await fillIn('[data-autocomplete]', 'some-garbage');
-
-    // Now blur the elment
-    await click('[data-input]');
-
-    // Verify the input is reset to our `@selected` option
-    assert.dom('[data-autocomplete]').hasValue('Blue');
 
     // NOTE: We do not expect the `@onChange`  to be called in this
     // case as we are only visually resetting to the previously

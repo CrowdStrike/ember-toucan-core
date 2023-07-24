@@ -32,11 +32,10 @@
     @name='color'
     @noResultsText='No results'
     @options={{this.options}}
-    @optionKey='label'
     as |autocomplete|
   >
     <autocomplete.Option>
-      {{autocomplete.option.label}}
+      {{autocomplete.option}}
     </autocomplete.Option>
   </form.Autocomplete>
 
