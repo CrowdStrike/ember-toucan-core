@@ -273,8 +273,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.1.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
-        specifier: ^10.1.1
-        version: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
+        specifier: ^11.0.0
+        version: 11.0.0(ember-source@5.1.0)
       ember-source:
         specifier: ~5.1.0
         version: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
@@ -797,7 +797,7 @@ importers:
         version: 4.0.3(@babel/core@7.20.12)
       '@types/ember-resolver':
         specifier: ^9.0.0
-        version: 9.0.0(@ember/string@3.0.1)(ember-source@5.1.0)
+        version: 9.0.0(ember-source@5.1.0)
       '@types/ember__application':
         specifier: ^4.0.5
         version: 4.0.5(@babel/core@7.20.12)
@@ -922,8 +922,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.1.0)(qunit@2.19.4)(webpack@5.75.0)
       ember-resolver:
-        specifier: ^10.1.1
-        version: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
+        specifier: ^11.0.0
+        version: 11.0.0(ember-source@5.1.0)
       ember-source:
         specifier: ~5.1.0
         version: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
@@ -5484,13 +5484,12 @@ packages:
       - supports-color
     dev: true
 
-  /@types/ember-resolver@9.0.0(@ember/string@3.0.1)(ember-source@5.1.0):
+  /@types/ember-resolver@9.0.0(ember-source@5.1.0):
     resolution: {integrity: sha512-lEuC2QD8K6rRAbELMejrALFBgelRPt6OQtapny4Oke07ZtK/Lbf9zn5KIDl7PNkirxMD0AStsQTdUqFu6eVbVw==}
     deprecated: This is a stub types definition. ember-resolver provides its own type definitions, so you do not need this installed.
     dependencies:
-      ember-resolver: 10.1.1(@ember/string@3.0.1)(ember-source@5.1.0)
+      ember-resolver: 11.0.0(ember-source@5.1.0)
     transitivePeerDependencies:
-      - '@ember/string'
       - ember-source
       - supports-color
     dev: true
@@ -10447,17 +10446,15 @@ packages:
       - supports-color
     dev: true
 
-  /ember-resolver@10.1.1(@ember/string@3.0.1)(ember-source@5.1.0):
-    resolution: {integrity: sha512-y1zzn6C4YGJui+tJzcCKlsf1oSOSVAkRrvmg8OwqVIKnALKKb9ihx2qLCslHg8x0wJvJgMtDMXgrczvQrZW0Lw==}
+  /ember-resolver@11.0.0(ember-source@5.1.0):
+    resolution: {integrity: sha512-TOc685OnGEMMNEt04BukmQHOYVXnRJc+sGZij/vzWdxXRq+Wpsu1Nw2nLFo6fbMqqVLATk5oLKAQ1eKQwte2wQ==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
-      '@ember/string': ^3.0.1
       ember-source: ^4.8.3 || >= 5.0.0
     peerDependenciesMeta:
       ember-source:
         optional: true
     dependencies:
-      '@ember/string': 3.0.1
       ember-cli-babel: 7.26.11
       ember-source: 5.1.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
     transitivePeerDependencies:
