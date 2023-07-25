@@ -1,20 +1,22 @@
 ```hbs template
-<Form::Fields::Autocomplete
-  @contentClass='z-10'
-  @error={{this.errorMessage}}
-  @hint='Type "blue" into the field'
-  @label='Label'
-  @noResultsText='No results'
-  @onChange={{this.onChange}}
-  @options={{this.options}}
-  @selected={{this.selected}}
-  placeholder='Colors'
-  as |autocomplete|
->
-  <autocomplete.Option>
-    {{autocomplete.option}}
-  </autocomplete.Option>
-</Form::Fields::Autocomplete>
+<div class='w-96'>
+  <Form::Fields::Autocomplete
+    @contentClass='z-10'
+    @error={{this.errorMessage}}
+    @hint='Type "blue" into the field'
+    @label='Label'
+    @noResultsText='No results'
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @selected={{this.selected}}
+    placeholder='Colors'
+    as |autocomplete|
+  >
+    <autocomplete.Option>
+      {{autocomplete.option}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
+</div>
 ```
 
 ```js component

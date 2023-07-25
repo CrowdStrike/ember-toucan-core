@@ -1,5 +1,5 @@
 ```hbs template
-<div class='space-y-4'>
+<div class='space-y-4 w-96'>
   <Form::Fields::Radio
     @label='Option 1'
     @name='options'

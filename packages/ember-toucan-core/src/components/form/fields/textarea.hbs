@@ -49,6 +49,7 @@
       <Form::Controls::Textarea
         aria-invalid={{if @error "true"}}
         aria-describedby="{{if @error field.errorId}} {{if @hint field.hintId}}"
+        class="w-full"
         id={{field.id}}
         @isDisabled={{@isDisabled}}
         @isReadOnly={{@isReadOnly}}

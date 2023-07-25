@@ -1,12 +1,14 @@
 ```hbs template
-<Form::Fields::Input
-  @label='Label'
-  @hint='Type "input" into the field'
-  @error={{this.errorMessage}}
-  @value={{this.value}}
-  @onChange={{this.handleChange}}
-  type='text'
-/>
+<div class='w-96'>
+  <Form::Fields::Input
+    @label='Label'
+    @hint='Type "input" into the field'
+    @error={{this.errorMessage}}
+    @value={{this.value}}
+    @onChange={{this.handleChange}}
+    type='text'
+  />
+</div>
 ```
 
 ```js component
