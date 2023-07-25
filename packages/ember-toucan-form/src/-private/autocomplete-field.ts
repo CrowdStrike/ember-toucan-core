@@ -51,7 +51,7 @@ export default class ToucanFormAutocompleteFieldComponent<
       `A string or \`undefined\` is expected for ${String(
         this.args.name
       )}, but you passed ${typeof value}`,
-     typeof value === 'string' || value === undefined
+      typeof value === 'string' || value === undefined
     );
 
     return value;

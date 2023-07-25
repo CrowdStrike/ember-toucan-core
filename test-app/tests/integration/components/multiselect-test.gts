@@ -393,43 +393,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom(secondChip).hasText('red');
   });
 
-  test('it sets the label of each selected chip via `@selected` and `@optionKey` when `@options` are an array of objects', async function (assert) {
-    let options = [
-      {
-        label: 'Blue',
-        value: 'blue',
-      },
-    ];
-
-    let selected = [...options];
-
-    await render(<template>
-      <Multiselect
-        @selected={{selected}}
-        @options={{options}}
-        @optionKey="label"
-        data-multiselect
-      >
-        <:noResults>No results</:noResults>
-
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
-
-        <:default as |multiselect|>
-          <multiselect.Option
-            data-option
-          >{{multiselect.option.label}}</multiselect.Option>
-        </:default>
-      </Multiselect>
-    </template>);
-
-    assert.dom('[data-multiselect-selected-option]').exists({ count: 1 });
-    // NOTE: Since using `label` as `@optionKey`, we expect the uppercase version
-    assert.dom('[data-multiselect-selected-option]').hasText('Blue');
-  });
-
-  test('it sets the label of each selected chip via the raw string when `@options` is an array of strings', async function (assert) {
+  test('it sets the label of each selected chip', async function (assert) {
     let options = ['a'];
 
     let selected = [...options];
@@ -516,7 +480,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[data-multiselect-option-checkbox]:last-child').isNotChecked();
   });
 
-  test('it provides default filtering when `@options` is an array of strings', async function (assert) {
+  test('it provides default filtering', async function (assert) {
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
@@ -546,51 +510,6 @@ module('Integration | Component | Multiselect', function (hooks) {
     await fillIn('[data-multiselect]', 'red');
     assert.dom('[role="option"]').exists({ count: 1 });
     assert.dom('[role="option"]').hasText('red');
-  });
-
-  test('it provides default filtering when `@options` is an array of objects and is provided with `@optionKey`', async function (assert) {
-    let options = [
-      {
-        label: 'Blue',
-        value: 'blue',
-      },
-      {
-        label: 'Red',
-        value: 'red',
-      },
-    ];
-
-    await render(<template>
-      <Multiselect @options={{options}} @optionKey="label" data-multiselect>
-        <:noResults>No results</:noResults>
-
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
-
-        <:default as |multiselect|>
-          <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
-        </:default>
-      </Multiselect>
-    </template>);
-
-    await fillIn('[data-multiselect]', 'blue');
-
-    // Filtering works as we expect
-    assert.dom('[role="option"]').exists({ count: 1 });
-    // NOTE: We should be using option.label (capitalized "Blue" instead of "blue")
-    assert.dom('[role="option"]').hasText('Blue');
-
-    // Resetting the filter by clearing the input should
-    // display all available options
-    await fillIn('[data-multiselect]', '');
-    assert.dom('[role="option"]').exists({ count: 2 });
-
-    // Verify we can filter again after clearing
-    await fillIn('[data-multiselect]', 'red');
-    assert.dom('[role="option"]').exists({ count: 1 });
-    // NOTE: We should be using option.label (capitalized "Red" instead of "red")
-    assert.dom('[role="option"]').hasText('Red');
   });
 
   test('it renders the no results content into the `:noResults` block', async function (assert) {

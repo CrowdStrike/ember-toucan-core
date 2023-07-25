@@ -43,7 +43,6 @@
     @contentClass='z-10'
     @label='Multiselect'
     @name='multiselect'
-    @optionKey='label'
     @options={{this.options}}
   >
     <:noResults>No results</:noResults>

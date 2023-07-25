@@ -6,15 +6,10 @@ import LockIcon from '../../../-private/icons/lock';
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
 import type {
-  Option as ControlOption,
   ToucanFormMultiselectControlComponentSignature,
 } from '../controls/multiselect';
 
-export type Option = ControlOption;
-
-export interface ToucanFormMultiselectFieldComponentSignature<
-  OPTION extends Option
-> {
+export interface ToucanFormMultiselectFieldComponentSignature {
   Element: HTMLInputElement;
   Args: {
     /**
@@ -52,27 +47,19 @@ export interface ToucanFormMultiselectFieldComponentSignature<
      * Called when the user makes a selection.
      * It is called with the selected options (derived from `@options`) as its only argument.
      */
-    onChange?: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']['onChange'];
+    onChange?: ToucanFormMultiselectControlComponentSignature['Args']['onChange'];
 
     /**
      * The function called when a user types into the textbox, typically used to write custom filtering logic.
      */
-    onFilter?: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']['onFilter'];
-
-    /**
-     * When `@options` is an array of objects, `@selected` is also an object.
-     * The `@optionKey` is used to determine which key of the object should
-     * be used for both filtering and displaying the selected values in the
-     * selected chips.
-     */
-    optionKey?: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']['optionKey'];
+    onFilter?: ToucanFormMultiselectControlComponentSignature['Args']['onFilter'];
 
     /**
      * `@options` forms the content of this component.
      *
      * `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
      */
-    options?: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']['options'];
+    options?: ToucanFormMultiselectControlComponentSignature['Args']['options'];
 
     /**
      * A test selector for targeting the root element of the field.
@@ -81,22 +68,20 @@ export interface ToucanFormMultiselectFieldComponentSignature<
     rootTestSelector?: string;
 
     /**
-     * The currently selected options.  If `@options` is an array of strings, provide an array of strings.  If `@options` is an array of objects, pass an array of objects matching the format of `@options`.
+     * The currently selected option.
      */
-    selected?: ToucanFormMultiselectControlComponentSignature<OPTION>['Args']['selected'];
+    selected?: ToucanFormMultiselectControlComponentSignature['Args']['selected'];
   };
   Blocks: {
-    default: ToucanFormMultiselectControlComponentSignature<OPTION>['Blocks']['default'];
+    default: ToucanFormMultiselectControlComponentSignature['Blocks']['default'];
     hint: [];
     label: [];
-    noResults: ToucanFormMultiselectControlComponentSignature<OPTION>['Blocks']['noResults'];
-    remove: ToucanFormMultiselectControlComponentSignature<OPTION>['Blocks']['remove'];
+    noResults: ToucanFormMultiselectControlComponentSignature['Blocks']['noResults'];
+    remove: ToucanFormMultiselectControlComponentSignature['Blocks']['remove'];
   };
 }
 
-export default class ToucanFormMultiselectFieldComponent<
-  OPTION extends Option
-> extends Component<ToucanFormMultiselectFieldComponentSignature<OPTION>> {
+export default class ToucanFormMultiselectFieldComponent extends Component<ToucanFormMultiselectFieldComponentSignature> {
   LockIcon = LockIcon;
 
   assertBlockOrArgumentExists = ({

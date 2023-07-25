@@ -3,7 +3,6 @@
   <Form::Controls::Multiselect
     @contentClass='z-10'
     @onChange={{this.onChange}}
-    @optionKey='label'
     @options={{this.options}}
     @selected={{this.selected}}
     placeholder='Colors'
@@ -11,12 +10,12 @@
     <:noResults>No results</:noResults>
 
     <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
     </:remove>
 
     <:default as |multiselect|>
       <multiselect.Option>
-        {{multiselect.option.label}}
+        {{multiselect.option}}
       </multiselect.Option>
     </:default>
   </Form::Controls::Multiselect>
@@ -44,8 +43,7 @@
   <Form::Controls::Multiselect
     @contentClass='z-10'
     @onChange={{this.onChange3}}
-    @onFilter={{this.onFilterBy}}
-    @optionKey='label'
+    @onFilter={{this.onFilter}}
     @options={{this.options}}
     @selected={{this.selected3}}
     placeholder='Colors w/ Filtering'
@@ -53,12 +51,12 @@
     <:noResults>No results</:noResults>
 
     <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
+      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
     </:remove>
 
     <:default as |multiselect|>
       <multiselect.Option>
-        {{multiselect.option.label}}
+        {{multiselect.option}}
       </multiselect.Option>
     </:default>
   </Form::Controls::Multiselect>
@@ -111,7 +109,7 @@ export default class extends Component {
       name: 'teal',
       value: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   options2 = [
     'Billy',
@@ -145,16 +143,14 @@ export default class extends Component {
   }
 
   @action
-  onFilterBy(input) {
-    console.log(`filtering with the value "${input}"`);
+  onFilter(value) {
+    console.log(`filtering with the value "${value}"`);
 
-    if (input.length > 0) {
-      return this.options.filter((option) =>
-        option.label.toLowerCase().startsWith(input.toLowerCase())
+    return value === ''
+      ? this.options
+      : this.options.filter((option) =>
+        option.toLowerCase().includes(value.toLowerCase())
       );
-    } else {
-      return this.options;
-    }
   }
 }
 ```
