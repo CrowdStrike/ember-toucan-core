@@ -1,5 +1,5 @@
 ```hbs template
-<div class='flex flex-col gap-4 w-96'>
+<div class='w-96'>
   <Form::Fields::Multiselect
     @label='Label'
     @hint='Select a color'

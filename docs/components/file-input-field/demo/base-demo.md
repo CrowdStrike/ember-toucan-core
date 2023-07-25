@@ -1,5 +1,5 @@
 ```hbs template
-<div class='max-w-md'>
+<div class='w-96'>
   <Form::Fields::FileInput
     @deleteLabel='Delete file'
     @label='Label'

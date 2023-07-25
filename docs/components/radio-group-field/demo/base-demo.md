@@ -1,25 +1,27 @@
 ```hbs template
-<Form::Fields::RadioGroup
-  @label='Label'
-  @hint='Extra information about the field'
-  @name='options'
-  @value={{this.groupValue}}
-  @onChange={{this.updateValue}}
-  as |group|
->
-  <group.RadioField @label='Option 1' @value='option-1' />
-  <group.RadioField
-    @label='Option 2'
-    @value='option-2'
-    @hint='Extra information about the radio'
-  />
-  <group.RadioField @label='Option 3' @value='option-3' />
-  <group.RadioField
-    @label='Option 4'
-    @value='option-4'
-    @hint='Extra information about the radio'
-  />
-</Form::Fields::RadioGroup>
+<div class='w-96'>
+  <Form::Fields::RadioGroup
+    @label='Label'
+    @hint='Extra information about the field'
+    @name='options'
+    @value={{this.groupValue}}
+    @onChange={{this.updateValue}}
+    as |group|
+  >
+    <group.RadioField @label='Option 1' @value='option-1' />
+    <group.RadioField
+      @label='Option 2'
+      @value='option-2'
+      @hint='Extra information about the radio'
+    />
+    <group.RadioField @label='Option 3' @value='option-3' />
+    <group.RadioField
+      @label='Option 4'
+      @value='option-4'
+      @hint='Extra information about the radio'
+    />
+  </Form::Fields::RadioGroup>
+</div>
 ```
 
 ```js component

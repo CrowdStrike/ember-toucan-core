@@ -1,11 +1,13 @@
 ```hbs template
-<Form::Fields::Textarea
-  @label='Label'
-  @hint='Type "textarea" into the field'
-  @error={{this.errorMessage}}
-  @value={{this.value}}
-  @onChange={{this.updateValue}}
-/>
+<div class='w-96'>
+  <Form::Fields::Textarea
+    @label='Label'
+    @hint='Type "textarea" into the field'
+    @error={{this.errorMessage}}
+    @value={{this.value}}
+    @onChange={{this.updateValue}}
+  />
+</div>
 ```
 
 ```js component
