@@ -8,6 +8,7 @@ import { isEqual as emberIsEqual } from '@ember/utils';
 
 import { offset, size } from '@floating-ui/dom';
 
+import ChipComponent from '../../../-private/components/form/controls/multiselect/chip';
 import OptionComponent, {
   selector as optionComponentSelector,
 } from '../../../-private/components/form/controls/multiselect/option';
@@ -65,9 +66,43 @@ export interface ToucanFormMultiselectControlComponentSignature {
     selected?: string[];
   };
   Blocks: {
+    chip: [
+      {
+        /**
+         * The selected option index.
+         */
+        index: number;
+
+        /**
+         * The selected option value.
+         */
+        option: string;
+
+        /**
+         * The Chip component used to render an option.
+         */
+        Chip: WithBoundArgs<typeof ChipComponent, 'index'>;
+
+        /**
+         * The Chip component's remove button component.  It is only displayed
+         * if the multiselect is not in a readonly or disabled state.
+         */
+        Remove: WithBoundArgs<
+          typeof RemoveComponent,
+          'isVisible' | 'onClick' | 'onMouseDown'
+        >;
+      }
+    ];
     default: [
       {
+        /**
+         * The selected option value.
+         */
         option: string;
+
+        /**
+         * The Option component rendered inside of the popover list.
+         */
         Option: WithBoundArgs<
           typeof OptionComponent,
           | 'index'
@@ -81,15 +116,6 @@ export interface ToucanFormMultiselectControlComponentSignature {
       }
     ];
     noResults: [];
-    remove: [
-      {
-        option: string;
-        Remove: WithBoundArgs<
-          typeof RemoveComponent,
-          'onClick' | 'onMouseDown'
-        >;
-      }
-    ];
   };
   Element: HTMLInputElement;
 }
@@ -103,23 +129,25 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
   Chevron = Chevron;
   Cross = Cross;
   Option = OptionComponent;
+  ChipComponent = ChipComponent;
   RemoveComponent = RemoveComponent;
   popoverId = `popover--${guidFor(this)}`;
 
   /**
-   * The component requires the `:remove` block for accessibility reasons.
+   * The component requires these blocks to properly construct the
+   * multiselect.
    */
   assertRequiredBlocksExist = ({
-    removeBlockExists,
+    chipBlockExists,
     noResultsBlockExists,
   }: {
-    removeBlockExists: boolean;
+    chipBlockExists: boolean;
     noResultsBlockExists: boolean;
   }) => {
-    assert('The `:remove` block is required.', removeBlockExists);
+    assert('The `:chip` block is required.', chipBlockExists);
     assert('The `:noResults` block is required.', noResultsBlockExists);
 
-    return removeBlockExists && noResultsBlockExists;
+    return chipBlockExists && noResultsBlockExists;
   };
 
   velcroMiddleware: VelcroMiddleware[] = [

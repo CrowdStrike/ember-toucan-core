@@ -20,9 +20,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -66,9 +69,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -92,9 +98,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -123,9 +132,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -143,9 +155,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} @hasError={{true}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -167,9 +182,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -189,9 +207,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -213,9 +234,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -232,7 +256,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[role="listbox"]').exists();
   });
 
-  test('it yields the `:remove` block option and Remove component and sets the `@label` on the remove component', async function (assert) {
+  test('it yields the `option`, `index`, `Chip`, and `Remove` to the `:chip` block and sets the `@label` on the Remove component', async function (assert) {
     let selected = ['blue'];
 
     await render(<template>
@@ -243,9 +267,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" data-remove="{{remove.option}}" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip data-test-index="{{chip.index}}">
+            {{chip.option}}
+            <chip.Remove data-remove="{{chip.option}}" @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option data-option>
@@ -255,15 +282,18 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Verify the `remove.Remove` `@label` argument gets set to the aria-label properly
+    // Verify the `chip.Remove` `@label` argument gets set to the aria-label properly
     // for screenreaders.  Without an aria-label attribute, screenreader users
     // will have 0 context on what the button does.
     assert
       .dom('[data-multiselect-remove-option]')
       .hasAttribute('aria-label', 'Remove');
 
-    // Verify the `remove.option` gets yielded back properly via the `remove` block.
+    // Verify the `chip.option` gets yielded back properly via the `chip` block.
     assert.dom('[data-remove="blue"]').exists();
+
+    // Verify the chip index gets yielded back
+    assert.dom('[data-test-index="0"]').exists();
   });
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
@@ -271,9 +301,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -295,9 +328,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -317,9 +353,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -342,9 +381,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option
@@ -373,9 +415,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -402,9 +447,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -427,9 +475,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -461,9 +512,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -485,9 +539,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -517,9 +574,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No items</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -561,9 +621,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -601,9 +664,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -650,9 +716,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -692,9 +761,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -745,9 +817,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -786,9 +861,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -828,9 +906,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -858,9 +939,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -885,9 +969,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -923,9 +1010,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -952,9 +1042,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -985,9 +1078,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1023,9 +1119,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1052,9 +1151,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1080,9 +1182,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1106,9 +1211,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @options={{testColors}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1136,9 +1244,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1171,9 +1282,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1207,9 +1321,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1241,9 +1358,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1274,9 +1394,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1319,9 +1442,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1355,12 +1481,12 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[role="option"]').exists({ count: 2 });
   });
 
-  test('it throws an assertion error if no `:remove` block is provided', async function (assert) {
+  test('it throws an assertion error if no `:chip` block is provided', async function (assert) {
     assert.expect(1);
 
     setupOnerror((e: Error) => {
       assert.ok(
-        e.message.includes('The `:remove` block is required'),
+        e.message.includes('The `:chip` block is required'),
         'Expected assertion error message'
       );
     });
@@ -1396,9 +1522,12 @@ module('Integration | Component | Multiselect', function (hooks) {
       >
         <:noResults>No results</:noResults>
 
-        <:remove as |remove|>
-          <remove.Remove />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1419,9 +1548,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect @options={{testColors}} data-multiselect>
-        <:remove as |remove|>
-          <remove.Remove @label="Remove" />
-        </:remove>
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
 
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>

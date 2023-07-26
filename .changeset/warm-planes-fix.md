@@ -15,10 +15,13 @@ Added `MultiselectField` component - it's the Multiselect control wrapped around
 >
   <:noResults>No results</:noResults>
 
-  <!-- NOTE: The remove block is required and a Remove component's label is also required! -->
-  <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-  </:remove>
+  <!-- NOTE: The chip block is required and a Remove component's `@label`` is also required! -->
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>

@@ -1,7 +1,7 @@
 {{#if
   (this.assertRequiredBlocksExist
     (hash
-      removeBlockExists=(has-block "remove")
+      chipBlockExists=(has-block "chip")
       noResultsBlockExists=(has-block "noResults")
     )
   )
@@ -29,28 +29,22 @@
     >
       <div class="flex w-full flex-wrap gap-1">
         {{#each this.selected as |option index|}}
-          <div
-            class="min-h-6 bg-normal-idle flex items-center gap-x-2.5 rounded-sm px-2 py-1"
-            data-multiselect-selected-option
-          >
-            <span class="block">
-              {{option}}
-            </span>
-
-            {{#if this.isEnabled}}
-              {{yield
-                (hash
-                  option=option
-                  Remove=(component
-                    (ensure-safe-component this.RemoveComponent)
-                    onClick=(fn this.removeSelection index)
-                    onMouseDown=this.handleRemoveMouseDown
-                  )
-                )
-                to="remove"
-              }}
-            {{/if}}
-          </div>
+          {{yield
+            (hash
+              index=index
+              option=option
+              Chip=(component
+                (ensure-safe-component this.ChipComponent) index=index
+              )
+              Remove=(component
+                (ensure-safe-component this.RemoveComponent)
+                onClick=(fn this.removeSelection index)
+                onMouseDown=this.handleRemoveMouseDown
+                isVisible=this.isEnabled
+              )
+            )
+            to="chip"
+          }}
         {{/each}}
 
         {{! template-lint-disable no-redundant-role }}

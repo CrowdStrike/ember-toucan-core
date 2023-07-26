@@ -11,9 +11,12 @@
   >
     <:noResults>No results</:noResults>
 
-    <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
 
     <:default as |multiselect|>
       <multiselect.Option>

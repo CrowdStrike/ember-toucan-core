@@ -211,9 +211,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
         >
           <:noResults>No results</:noResults>
 
-          <:remove as |remove|>
-            <remove.Remove @label="Remove" />
-          </:remove>
+          <:chip as |chip|>
+            <chip.Chip>
+              {{chip.option}}
+              <chip.Remove @label="Remove" />
+            </chip.Chip>
+          </:chip>
 
           <:default as |multiselect|>
             <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -489,9 +492,12 @@ module('Integration | Component | ToucanForm', function (hooks) {
         >
           <:noResults>No results</:noResults>
 
-          <:remove as |remove|>
-            <remove.Remove @label="Remove" />
-          </:remove>
+          <:chip as |chip|>
+            <chip.Chip>
+              {{chip.option}}
+              <chip.Remove @label="Remove" />
+            </chip.Chip>
+          </:chip>
 
           <:default as |multiselect|>
             <multiselect.Option>{{multiselect.option}}</multiselect.Option>

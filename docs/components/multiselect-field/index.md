@@ -93,11 +93,29 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 </Form::Controls::Multiselect>
 ```
 
-## Remove Block
+## Chip Block
 
 Required.
 
-A `:remove` block is required and is used for the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
+A `:chip` block is required and is used for rendering each selected option. The block has the following block parameters:
+
+- `index`: The index of the current chip
+- `option`: The raw option value for the current chip
+- `Chip`: The Chip component
+- `Remove`: The Remove component
+
+The `Chip` component allows for slight customization to the underlying chip.
+
+```hbs
+<:chip as |chip|>
+  <chip.Chip class='max-w-[4rem]' data-chip>
+    <CustomTruncationComponent>{{chip.option}}</CustomTruncationComponent>
+    <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+  </chip.Chip>
+</:chip>
+```
+
+The `Remove` component contains the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
 
@@ -111,9 +129,12 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
   @options={{this.options}}
   @selected={{this.selected}}
 >
-  <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-  </:remove>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>
@@ -133,9 +154,12 @@ An example with translations may be something like:
   @options={{this.options}}
   @selected={{this.selected}}
 >
-  <:remove as |remove|>
-    <remove.Remove @label={{(t 'some-key' name=remove.option)}} />
-  </:remove>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(t 'some-key' name=remove.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>
@@ -271,7 +295,7 @@ export default class extends Component {
 
 Optional.
 
-The built-in filtering does simple `String.prototype.startsWith` filtering. 
+The built-in filtering does simple `String.prototype.startsWith` filtering.
 Specify `onFilter` if you want to do something different.
 
 ```hbs
@@ -393,9 +417,12 @@ Target the error block via `data-error`.
     @label='Label'
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -413,9 +440,12 @@ Target the error block via `data-error`.
     @hint="Hint"
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -433,9 +463,12 @@ Target the error block via `data-error`.
     <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -453,9 +486,12 @@ Target the error block via `data-error`.
     @error='With error text'
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -474,9 +510,12 @@ Target the error block via `data-error`.
     @error='With error text'
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -494,9 +533,12 @@ Target the error block via `data-error`.
     @isDisabled={{true}}
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -516,9 +558,12 @@ Target the error block via `data-error`.
     @options={{(array 'blue' 'red')}}
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -536,9 +581,12 @@ Target the error block via `data-error`.
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -556,9 +604,12 @@ Target the error block via `data-error`.
     @isReadOnly={{true}}
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}
@@ -578,9 +629,12 @@ Target the error block via `data-error`.
     @options={{(array 'blue' 'red')}}
   >
     <:noResults>No results</:noResults>
-    <:remove as |remove|>
-      <remove.Remove @label="Remove" />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label="Remove" />
+      </chip.Chip>
+    </:chip>
     <:default as |multiselect|>
       <multiselect.Option>
         {{multiselect.option}}

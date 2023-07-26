@@ -61,15 +61,17 @@
       >
         <:noResults>{{yield to="noResults"}}</:noResults>
 
-        <:remove as |remove|>
+        <:chip as |chip|>
           {{yield
             (hash
-              Remove=(component (ensure-safe-component remove.Remove))
-              option=remove.option
+              index=chip.index
+              option=chip.option
+              Chip=(component (ensure-safe-component chip.Chip))
+              Remove=(component (ensure-safe-component chip.Remove))
             )
-            to="remove"
+            to="chip"
           }}
-        </:remove>
+        </:chip>
 
         <:default as |multiselect|>
           {{yield
