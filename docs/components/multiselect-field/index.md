@@ -97,7 +97,7 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 Required.
 
-A `:chip` block is required and is used for rendering each selected option. The block returns the following:
+A `:chip` block is required and is used for rendering each selected option. The block has the following block parameters:
 
 - `index`: The index of the current chip
 - `option`: The raw option value for the current chip
