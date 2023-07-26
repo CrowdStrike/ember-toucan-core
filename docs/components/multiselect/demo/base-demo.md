@@ -9,9 +9,12 @@
   >
     <:noResults>No results</:noResults>
 
-    <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
 
     <:default as |multiselect|>
       <multiselect.Option>
@@ -29,9 +32,12 @@
   >
     <:noResults>No results</:noResults>
 
-    <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
 
     <:default as |multiselect|>
       <multiselect.Option>
@@ -50,9 +56,12 @@
   >
     <:noResults>No results</:noResults>
 
-    <:remove as |remove|>
-      <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-    </:remove>
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
 
     <:default as |multiselect|>
       <multiselect.Option>
@@ -149,8 +158,8 @@ export default class extends Component {
     return value === ''
       ? this.options
       : this.options.filter((option) =>
-        option.toLowerCase().includes(value.toLowerCase())
-      );
+          option.toLowerCase().includes(value.toLowerCase())
+        );
   }
 }
 ```

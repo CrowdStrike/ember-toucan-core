@@ -6,6 +6,12 @@ import Cross from '../../../../../-private/icons/cross';
 interface ToucanFormMultiselectRemoveComponentSignature {
   Args: {
     /**
+     * Determines if the component should be displayed or not.  When the multiselect
+     * is disabled or readonly, the remove button is not displayed.
+     */
+    isVisible?: boolean;
+
+    /**
      * Maps to the `aria-label` attribute of the button. Used for screenreaders.
      */
     label?: string;

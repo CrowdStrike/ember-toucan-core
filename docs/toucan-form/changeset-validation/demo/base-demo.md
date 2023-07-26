@@ -43,45 +43,12 @@
       <group.RadioField @label='Broccoli' @value='broccoli' data-radio-2 />
     </form.RadioGroup>
 
-    <form.Autocomplete
-      @contentClass='z-10'
-      @label='Color'
-      @name='color'
-      @noResultsText='No results'
-      @options={{this.options}}
-      as |autocomplete|
-    >
-      <autocomplete.Option>
-        {{autocomplete.option}}
-      </autocomplete.Option>
-    </form.Autocomplete>
-
-    <form.Multiselect
-      @contentClass='z-10'
-      @label='Multiselect'
-      @name='multiselect'
-      @optionKey='label'
-      @options={{this.options}}
-    >
-      <:noResults>No results</:noResults>
-
-      <:remove as |remove|>
-        <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
-      </:remove>
-
-      <:default as |multiselect|>
-        <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
-      </:default>
-    </form.Multiselect>
-
     <form.FileInput
       @label='Files to attach'
       @trigger='Select files'
       @deleteLabel='Delete'
       @name='files'
     />
-
-    <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
     <form.Autocomplete
       @contentClass='z-10'
@@ -104,21 +71,17 @@
     >
       <:noResults>No results</:noResults>
 
-      <:remove as |remove|>
-        <remove.Remove @label={{(concat 'Remove' ' ' remove.option.label)}} />
-      </:remove>
+      <:chip as |chip|>
+        <chip.Chip>
+          {{chip.option}}
+          <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+        </chip.Chip>
+      </:chip>
 
       <:default as |multiselect|>
-        <multiselect.Option>{{multiselect.option.label}}</multiselect.Option>
+        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
       </:default>
     </form.Multiselect>
-
-    <form.FileInput
-      @label='Files to attach'
-      @trigger='Select files'
-      @deleteLabel='Delete'
-      @name='files'
-    />
 
     <form.Checkbox @label='Agree to the Terms' @name='terms' />
 
@@ -181,7 +144,7 @@ export default class extends Component {
       label: 'Teal',
       value: 'teal',
     },
-  ];
+  ].map(({ label }) => label);
 
   handleSubmit(data) {
     console.log({ data: data.get('pendingData') });

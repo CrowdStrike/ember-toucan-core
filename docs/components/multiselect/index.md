@@ -11,9 +11,29 @@ A CSS class to add to this component's content container. Commonly used to speci
 <Form::Controls::Multiselect @contentClass='z-50' />
 ```
 
-## Remove Block
+## Chip Block
 
-A `:remove` block is required and is used for the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
+Required.
+
+A `:chip` block is required and is used for rendering each selected option. The block returns the following:
+
+- `index`: The index of the current chip
+- `option`: The raw option value for the current chip
+- `Chip`: The Chip component
+- `Remove`: The Remove component
+
+The `Chip` component allows for slight customization to the underlying chip.
+
+```hbs
+<:chip as |chip|>
+  <chip.Chip class='max-w-[4rem]' data-chip>
+    <CustomTruncationComponent>{{chip.option}}</CustomTruncationComponent>
+    <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+  </chip.Chip>
+</:chip>
+```
+
+The `Remove` component contains the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
 
@@ -29,9 +49,12 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
 >
   <:noResults>No results</:noResults>
 
-  <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-  </:remove>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>
@@ -53,9 +76,12 @@ An example with translations may be something like:
 >
   <:noResults>No results</:noResults>
 
-  <:remove as |remove|>
-    <remove.Remove @label={{(t 'some-key' name=remove.option)}} />
-  </:remove>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(t 'some-key' name=remove.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>
@@ -80,9 +106,12 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
   <!-- NOTE: Only text should go here. Please do not render content! -->
   <:noResults>No results</:noResults>
 
-  <:remove as |remove|>
-    <remove.Remove @label={{(concat 'Remove' ' ' remove.option)}} />
-  </:remove>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
 
   <:default as |multiselect|>
     <multiselect.Option>
@@ -94,7 +123,7 @@ A `:noResults` block is required and exposed to allow consumers to specify text 
 
 ## Options
 
-`@options` forms the content of this component. 
+`@options` forms the content of this component.
 
 ```hbs
 <Form::Controls::Multiselect @options={{this.options}}>
@@ -171,7 +200,7 @@ export default class extends Component {
 
 Optional.
 
-The built-in filtering does simple `String.prototype.startsWith` filtering. 
+The built-in filtering does simple `String.prototype.startsWith` filtering.
 Specify `onFilter` if you want to do something different.
 
 ```hbs

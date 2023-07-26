@@ -5,9 +5,7 @@ import LockIcon from '../../../-private/icons/lock';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
-import type {
-  ToucanFormMultiselectControlComponentSignature,
-} from '../controls/multiselect';
+import type { ToucanFormMultiselectControlComponentSignature } from '../controls/multiselect';
 
 export interface ToucanFormMultiselectFieldComponentSignature {
   Element: HTMLInputElement;
@@ -73,11 +71,11 @@ export interface ToucanFormMultiselectFieldComponentSignature {
     selected?: ToucanFormMultiselectControlComponentSignature['Args']['selected'];
   };
   Blocks: {
+    chip: ToucanFormMultiselectControlComponentSignature['Blocks']['chip'];
     default: ToucanFormMultiselectControlComponentSignature['Blocks']['default'];
     hint: [];
     label: [];
     noResults: ToucanFormMultiselectControlComponentSignature['Blocks']['noResults'];
-    remove: ToucanFormMultiselectControlComponentSignature['Blocks']['remove'];
   };
 }
 
