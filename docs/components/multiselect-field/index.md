@@ -49,54 +49,6 @@ Provide a string to the `@label` component argument or content to the `:label` n
 </Form::Controls::Multiselect>
 ```
 
-## Hint
-
-Optional.
-
-Use either the `@hint` component argument or the `:hint` named block.
-
-Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
-
-### @hint
-
-```hbs
-<Form::Controls::Multiselect
-  @contentClass='z-10'
-  @noResultsText='No results'
-  @hint='Here is a hint'
-  @onChange={{this.onChange}}
-  @options={{this.options}}
-  @selected={{this.selected}}
->
-  <:default as |multiselect|>
-    <multiselect.Option>
-      {{multiselect.option}}
-    </multiselect.Option>
-  </:default>
-</Form::Controls::Multiselect>
-```
-
-### `:hint`
-
-```hbs
-<Form::Controls::Multiselect
-  @contentClass='z-10'
-  @label='Label'
-  @noResultsText='No results'
-  @onChange={{this.onChange}}
-  @options={{this.options}}
-  @selected={{this.selected}}
->
-  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
-
-  <:default as |multiselect|>
-    <multiselect.Option>
-      {{multiselect.option}}
-    </multiselect.Option>
-  </:default>
-</Form::Controls::Multiselect>
-```
-
 ## Chip Block
 
 Required.
@@ -196,6 +148,54 @@ Required.
     </multiselect.Option>
   </:default>
 </Form::Fields::Multiselect>
+```
+
+## Hint
+
+Optional.
+
+Use either the `@hint` component argument or the `:hint` named block.
+
+Provide a string to the `@hint` component argument or content to `:hint` named block to render into the Hint section of the Field.
+
+### @hint
+
+```hbs
+<Form::Controls::Multiselect
+  @contentClass='z-10'
+  @noResultsText='No results'
+  @hint='Here is a hint'
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @selected={{this.selected}}
+>
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
+```
+
+### `:hint`
+
+```hbs
+<Form::Controls::Multiselect
+  @contentClass='z-10'
+  @label='Label'
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @selected={{this.selected}}
+>
+  <:hint>Here is a hint <Link to='somewhere'>Link</Link></:hint>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
 ```
 
 ## Error
@@ -370,9 +370,13 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the input in the read only state.
 

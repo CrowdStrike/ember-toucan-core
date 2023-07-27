@@ -3,14 +3,6 @@
 Provides a Toucan-styled multiselect with filtering.
 If you are building forms, you may be interested in the [MultiselectField](./multiselect-field) component instead.
 
-## Popover z-index
-
-A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
-
-```hbs
-<Form::Controls::Multiselect @contentClass='z-50' />
-```
-
 ## Chip Block
 
 Required.
@@ -119,7 +111,19 @@ Required.
 </Form::Controls::Multiselect>
 ```
 
+## Popover z-index
+
+Optional.
+
+A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
+
+```hbs
+<Form::Controls::Multiselect @contentClass='z-50' />
+```
+
 ## Options
+
+Optional.
 
 `@options` forms the content of this component.
 
@@ -135,6 +139,8 @@ Required.
 ```
 
 ## Selected
+
+Optional.
 
 The currently selected option.
 
@@ -161,6 +167,8 @@ export default class extends Component {
 ```
 
 ## onChange
+
+Optional.
 
 Called when the user makes a selection. It is called with the entire array of selected options (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
 
@@ -270,6 +278,8 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ```hbs
@@ -278,6 +288,8 @@ Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ```hbs
@@ -285,6 +297,8 @@ Set the `@isReadOnly` argument to put the input in the read only state.
 ```
 
 ## Error State
+
+Optional.
 
 Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 

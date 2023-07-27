@@ -3,7 +3,29 @@
 Provides a Toucan-styled autocomplete with filtering.
 If you are building forms, you may be interested in the [AutocompleteField](./autocomplete-field) component instead.
 
+## No results text
+
+Required.
+
+`@noResultsText` is shown when there are no results after filtering. 
+
+```hbs
+<Form::Controls::Autocomplete
+  @noResultsText='No results'
+  @options={{this.options}}
+  @selected={{this.selected}}
+  as |autocomplete|
+>
+  <autocomplete.Option>
+    <!-- The content of each popover list item will be rendered here -->
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Controls::Autocomplete>
+```
+
 ## Popover z-index
+
+Optional.
 
 A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
 
@@ -13,10 +35,13 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 ## Options
 
+Optional.
+
 `@options` forms the content of this component. 
 
 ```hbs
 <Form::Controls::Autocomplete
+  @noResultsText='No results'
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -30,10 +55,13 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 ## Selected
 
+Optional.
+
 The currently selected option.
 
 ```hbs
 <Form::Controls::Autocomplete
+  @noResultsText='No results'
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -56,11 +84,14 @@ export default class extends Component {
 
 ## onChange
 
+Optional.
+
 Called when the user makes a selection. It is called with the selected option (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
 
 ```hbs
 <Form::Controls::Autocomplete
-  @onChange={{this.handleChange}}
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -82,7 +113,7 @@ export default class extends Component {
   options = ['Blue', 'Red', 'Yellow'];
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 }
@@ -92,12 +123,15 @@ export default class extends Component {
 
 Optional.
 
-By default, when `@options` are an array of strings, the built-in filtering does simple `startsWith` filtering. When `@options` are an array of objects, the same filtering logic applies, but the key of each object is determined by the provided `@optionKey`. There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `startsWith` filtering described. To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
+By default, when `@options` are an array of strings, the built-in filtering does simple `String.prototype.startsWith` filtering. 
+There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `String.prototype.startsWith` filtering described. 
+To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
 
 ```hbs
 <Form::Controls::Autocomplete
-  @onFilter={{this.handleFilter}}
-  @onChange={{this.handleChange}}
+  @noResultsText='No results'
+  @onFilter={{this.onFilter}}
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -148,18 +182,20 @@ export default class extends Component {
   ];
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 
   @action
-  handleFilter(value) {
+  onFilter(value) {
     return this.options.filter((option) => option === value);
   }
 }
 ```
 
 ## Disabled State
+
+Optional.
 
 Set the `@isDisabled` argument to disable the input.
 
@@ -169,6 +205,8 @@ Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ```hbs
@@ -176,6 +214,8 @@ Set the `@isReadOnly` argument to put the input in the read only state.
 ```
 
 ## Error State
+
+Optional.
 
 Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 

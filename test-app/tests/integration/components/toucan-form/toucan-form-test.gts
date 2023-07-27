@@ -194,6 +194,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
         <form.Autocomplete
           @label="Autocomplete"
           @name="autocomplete"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
           as |autocomplete|
@@ -473,6 +474,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @label="Autocomplete"
           @name="autocomplete"
           @options={{options}}
+          @noResultsText="No results"
           @rootTestSelector="data-autocomplete-wrapper"
           data-autocomplete
           as |autocomplete|

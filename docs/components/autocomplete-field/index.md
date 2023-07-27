@@ -16,6 +16,7 @@ Provide a string to the `@label` component argument or content to the `:label` n
 <Form::Fields::Autocomplete
   @label='Label'
   @error={{this.errorMessage}}
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   as |autocomplete|
 >
@@ -30,6 +31,27 @@ Provide a string to the `@label` component argument or content to the `:label` n
 ```hbs
 <Form::Fields::Autocomplete
   @error={{this.errorMessage}}
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
+  placeholder='Colors'
+  as |autocomplete|
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+
+  <autocomplete.Option @label="Blue" @value="blue" />
+</Form::Fields::Autocomplete>
+```
+
+## No results text
+
+Required.
+
+`@noResultsText` is shown when there are no results after filtering. 
+
+```hbs
+<Form::Fields::Autocomplete
+  @error={{this.errorMessage}}
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   placeholder='Colors'
   as |autocomplete|
@@ -55,6 +77,7 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
   @label='Label'
   @hint='Here is a hint'
   @error={{this.errorMessage}}
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   as |autocomplete|
 >
@@ -70,6 +93,7 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 <Form::Fields::Autocomplete
   @label='Label'
   @error={{this.errorMessage}}
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   as |autocomplete|
 >
@@ -96,6 +120,7 @@ Provide a string or array of strings to `@error` to render the text into the Err
 <Form::Fields::Autocomplete
   @label='Label'
   @error={{(array 'Error 1' 'Error 2')}}
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   as |autocomplete|
 >
@@ -107,12 +132,15 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ## `@onChange`
 
+Optional.
+
 Provide an `@onChange` callback to be notified when the user's selections have changed.
 `@onChange` will receive the value as its only argument.
 
 ```hbs
 <Form::Fields::Autocomplete
   @label='Label'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   as |autocomplete|
 >
@@ -136,9 +164,13 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the input in the read only state.
 
@@ -156,7 +188,7 @@ This test selector will be used as the value for the `data-root-field` attribute
 The Field can be targeted via:
 
 ```hbs
-<Form::Fields::Autocomplete @label='Label' @rootTestSelector='example' />
+<Form::Fields::Autocomplete @label='Label' @noResultsText='No results' @rootTestSelector='example' />
 ```
 
 ```js
@@ -182,7 +214,7 @@ Target the error block via `data-error`.
 ### autocompleteField with `@label`
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Autocomplete @label='Label' placeholder='Colors' />
+  <Form::Fields::Autocomplete @noResultsText='No results' @label='Label' placeholder='Colors' />
 </div>
 
 ### autocompleteField with `@label` and `@hint`
@@ -191,6 +223,7 @@ Target the error block via `data-error`.
   <Form::Fields::Autocomplete
     @label='Label'
     @hint='With hint text'
+    @noResultsText='No results'
     placeholder='Colors'
   />
 </div>
@@ -198,7 +231,7 @@ Target the error block via `data-error`.
 ### autocompleteField with `:label` and `:hint` blocks
 
 <div class='mb-4 w-64'>
-  <Form::Fields::Autocomplete placeholder='Colors'>
+  <Form::Fields::Autocomplete @noResultsText='No results' placeholder='Colors'>
     <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
     <:default as |autocomplete|>
@@ -215,6 +248,7 @@ Target the error block via `data-error`.
   <Form::Fields::Autocomplete
     @label='Label'
     @error='With error text'
+    @noResultsText='No results'
     placeholder='Colors'
   />
 </div>
@@ -226,6 +260,7 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @error='With error text'
+    @noResultsText='No results'
     placeholder='Colors'
   />
 </div>
@@ -236,6 +271,7 @@ Target the error block via `data-error`.
   <Form::Fields::Autocomplete
     @label='Label'
     @isDisabled={{true}}
+    @noResultsText='No results'
     placeholder='Colors'
   />
 </div>
@@ -248,6 +284,7 @@ Target the error block via `data-error`.
     @isDisabled={{true}}
     @selected="blue"
     @options={{(array 'blue' 'red')}}
+    @noResultsText='No results'
     placeholder='Colors'
   as |autocomplete|>
     <autocomplete.Option>
@@ -263,6 +300,7 @@ Target the error block via `data-error`.
     @label='Label'
     @options={{(array 'blue' 'red')}}
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+    @noResultsText='No results'
     placeholder='Colors'
   as |autocomplete|>
     <autocomplete.Option>
@@ -278,6 +316,7 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @isReadOnly={{true}}
+    @noResultsText='No results'
   />
 </div>
 
@@ -289,6 +328,7 @@ Target the error block via `data-error`.
     @isReadOnly={{true}}
     @selected="blue"
     @options={{(array 'blue' 'red')}}
+    @noResultsText='No results'
     placeholder='Colors'
   as |autocomplete|>
     <autocomplete.Option>

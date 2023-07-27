@@ -9,7 +9,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" data-autocomplete />
+      <Autocomplete @noResultsText="No results" @label="Label" data-autocomplete />
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
@@ -35,7 +35,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders with a hint', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" @hint="Hint text" data-autocomplete />
+      <Autocomplete
+        @noResultsText="No results"
+        @label="Label"
+        @hint="Hint text"
+        data-autocomplete
+      />
     </template>);
 
     let hint = find('[data-hint]');
@@ -58,7 +63,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <Autocomplete data-autocomplete>
+      <Autocomplete @noResultsText="No results" data-autocomplete>
         <:label><span data-label>label block content</span></:label>
         <:hint><span data-hint>hint block content</span></:hint>
       </Autocomplete>
@@ -70,7 +75,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders with an error', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" @error="Error text" data-autocomplete />
+      <Autocomplete
+        @label="Label"
+        @error="Error text"
+        @noResultsText="No results"
+        data-autocomplete
+      />
     </template>);
 
     let error = find('[data-error]');
@@ -107,6 +117,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @error="Error text"
         @hint="Hint text"
+        @noResultsText="No results"
         data-autocomplete
       />
     </template>);
@@ -126,7 +137,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it disables the input using `@isDisabled` and renders a lock icon', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" @isDisabled={{true}} data-autocomplete />
+      <Autocomplete
+        @label="Label"
+        @isDisabled={{true}}
+        @noResultsText="No results"
+        data-autocomplete
+      />
     </template>);
 
     assert.dom('[data-autocomplete]').isDisabled();
@@ -137,7 +153,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it sets readonly on the input using `@isReadOnly` and renders a lock icon', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" @isReadOnly={{true}} data-autocomplete />
+      <Autocomplete
+        @label="Label"
+        @isReadOnly={{true}}
+        @noResultsText="No results"
+        data-autocomplete
+      />
     </template>);
 
     assert.dom('[data-autocomplete]').hasAttribute('readonly');
@@ -149,6 +170,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     await render(<template>
       <Autocomplete
         @label="Label"
+        @noResultsText="No results"
         placeholder="Placeholder text"
         data-autocomplete
       />
@@ -161,7 +183,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it sets the value attribute via `@selected`', async function (assert) {
     await render(<template>
-      <Autocomplete @label="Label" @selected="blue" data-autocomplete />
+      <Autocomplete
+        @label="Label"
+        @noResultsText="No results"
+        @selected="blue"
+        data-autocomplete
+      />
     </template>);
 
     assert.dom('[data-autocomplete]').hasValue('blue');
@@ -183,6 +210,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     await render(<template>
       <Autocomplete
         @label="Label"
+        @noResultsText="No results"
         @options={{options}}
         @onChange={{handleChange}}
         data-autocomplete
@@ -207,6 +235,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     await render(<template>
       <Autocomplete
         @label="Label"
+        @noResultsText="No results"
         @rootTestSelector="selector"
         data-autocomplete
       />
@@ -227,7 +256,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
       );
     });
 
-    await render(<template><Autocomplete /></template>);
+    await render(<template><Autocomplete @noResultsText="No results" /></template>);
   });
 
   test('it throws an assertion error if a `@label` and :label are provided', async function (assert) {
@@ -243,7 +272,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     });
 
     await render(<template>
-      <Autocomplete @label="Label">
+      <Autocomplete @label="Label" @noResultsText="No results">
         <:label>Label</:label>
       </Autocomplete>
     </template>);

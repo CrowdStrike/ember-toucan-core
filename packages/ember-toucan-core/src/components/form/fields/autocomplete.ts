@@ -44,7 +44,7 @@ export interface ToucanFormAutocompleteFieldComponentSignature {
     /**
      * A string to display when there are no results after filtering.
      */
-  noResultsText?: string;
+  noResultsText: string;
 
     /**
      * The function called when a new selection is made.
