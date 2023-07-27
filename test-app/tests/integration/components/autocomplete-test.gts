@@ -10,7 +10,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template><Autocomplete data-autocomplete /></template>);
+    await render(<template><Autocomplete @noResultsText="No results" data-autocomplete /></template>);
 
     assert.dom('[data-autocomplete]').hasTagName('input');
     assert.dom('[data-autocomplete]').hasClass('text-titles-and-attributes');
@@ -33,7 +33,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it disables the autocomplete using `@isDisabled`', async function (assert) {
     await render(<template>
-      <Autocomplete @isDisabled={{true}} data-autocomplete />
+      <Autocomplete @isDisabled={{true}} @noResultsText="No results"data-autocomplete />
     </template>);
 
     assert.dom('[data-autocomplete]').isDisabled();
@@ -45,7 +45,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets readonly on the autocomplete using `@isReadOnly`', async function (assert) {
     await render(<template>
-      <Autocomplete @isReadOnly={{true}} data-autocomplete />
+      <Autocomplete @isReadOnly={{true}} @noResultsText="No results" data-autocomplete />
     </template>);
 
     assert.dom('[data-autocomplete]').hasAttribute('readonly');
@@ -60,7 +60,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it spreads attributes to the underlying autocomplete', async function (assert) {
     await render(<template>
-      <Autocomplete placeholder="Placeholder text" data-autocomplete />
+      <Autocomplete @noResultsText="No results" placeholder="Placeholder text" data-autocomplete />
     </template>);
 
     assert
@@ -70,7 +70,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
     await render(<template>
-      <Autocomplete @hasError={{true}} data-autocomplete />
+      <Autocomplete @hasError={{true}} @noResultsText="No results" data-autocomplete />
     </template>);
 
     assert.dom('[data-autocomplete]').hasClass('shadow-error-outline');
@@ -84,7 +84,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it opens the popover on click', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete />
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete />
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -96,7 +96,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete />
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete />
     </template>);
 
     assert.dom('[role="listbox"]').doesNotExist();
@@ -108,7 +108,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option data-option>
           {{autocomplete.option}}
         </autocomplete.Option>
@@ -126,7 +126,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option data-option>
           {{autocomplete.option}}
         </autocomplete.Option>
@@ -141,6 +141,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @options={{testColors}}
         @contentClass="test-class"
+        @noResultsText="No results"
         data-autocomplete
       />
     </template>);
@@ -156,6 +157,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @options={{testColors}}
         @contentClass="test-class"
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -176,6 +178,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="blue"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -193,6 +196,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="blue"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -215,7 +219,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it provides default filtering', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -277,6 +281,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     await render(<template>
       <Autocomplete
+        @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
         data-autocomplete
@@ -309,6 +314,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     await render(<template>
       <Autocomplete
+        @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
         data-autocomplete
@@ -350,6 +356,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
         @selected="blue"
         @options={{testColors}}
         @onFilter={{handleFilter}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -369,6 +376,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="blue"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -393,6 +401,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="blue"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -422,6 +431,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="red"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -445,7 +455,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -464,7 +474,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
 
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -482,7 +492,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
-      <Autocomplete @options={{testColors}} data-autocomplete as |autocomplete|>
+      <Autocomplete @noResultsText="No results" @options={{testColors}} data-autocomplete as |autocomplete|>
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -506,6 +516,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="f"
         @options={{options}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -537,6 +548,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="a"
         @options={{options}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -569,6 +581,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="a"
         @options={{options}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -599,6 +612,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="f"
         @options={{options}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -628,6 +642,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="f"
         @options={{options}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -670,6 +685,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
         @selected="blue"
         @options={{testColors}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -706,6 +722,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
         @selected="blue"
         @options={{testColors}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >
@@ -744,6 +761,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       <Autocomplete
         @selected="blue"
         @options={{testColors}}
+        @noResultsText="No results"
         data-autocomplete
         as |autocomplete|
       >

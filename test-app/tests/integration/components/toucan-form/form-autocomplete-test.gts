@@ -24,6 +24,7 @@ module('Integration | Component | ToucanForm | Autocomplete', function (hooks) {
           @label="Label"
           @hint="Hint"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
           as |autocomplete|
@@ -49,6 +50,7 @@ module('Integration | Component | ToucanForm | Autocomplete', function (hooks) {
         <form.Autocomplete
           @hint="Hint"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >
@@ -79,6 +81,7 @@ module('Integration | Component | ToucanForm | Autocomplete', function (hooks) {
         <form.Autocomplete
           @label="Label"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >
@@ -108,6 +111,7 @@ module('Integration | Component | ToucanForm | Autocomplete', function (hooks) {
       <ToucanForm @data={{data}} as |form|>
         <form.Autocomplete
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >

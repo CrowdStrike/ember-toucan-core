@@ -17,6 +17,7 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 ```hbs
 <Form::Controls::Autocomplete
+  @noResultsText='No results'
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -34,6 +35,7 @@ The currently selected option.
 
 ```hbs
 <Form::Controls::Autocomplete
+  @noResultsText='No results'
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -60,7 +62,8 @@ Called when the user makes a selection. It is called with the selected option (d
 
 ```hbs
 <Form::Controls::Autocomplete
-  @onChange={{this.handleChange}}
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -82,7 +85,7 @@ export default class extends Component {
   options = ['Blue', 'Red', 'Yellow'];
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 }
@@ -92,12 +95,15 @@ export default class extends Component {
 
 Optional.
 
-By default, when `@options` are an array of strings, the built-in filtering does simple `startsWith` filtering. When `@options` are an array of objects, the same filtering logic applies, but the key of each object is determined by the provided `@optionKey`. There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `startsWith` filtering described. To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
+By default, when `@options` are an array of strings, the built-in filtering does simple `String.prototype.startsWith` filtering. 
+There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `String.prototype.startsWith` filtering described. 
+To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
 
 ```hbs
 <Form::Controls::Autocomplete
-  @onFilter={{this.handleFilter}}
-  @onChange={{this.handleChange}}
+  @noResultsText='No results'
+  @onFilter={{this.onFilter}}
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   as |autocomplete|
@@ -148,12 +154,12 @@ export default class extends Component {
   ];
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 
   @action
-  handleFilter(value) {
+  onFilter(value) {
     return this.options.filter((option) => option === value);
   }
 }
