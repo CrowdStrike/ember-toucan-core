@@ -43,6 +43,11 @@ export interface ToucanFormMultiselectControlComponentSignature {
     isReadOnly?: boolean;
 
     /**
+     * A string to display when there are no results after filtering.
+     */
+    noResultsText: string;
+
+    /**
      * Called when the user makes a selection.
      * It is called with the selected options (derived from `@options`) as its only argument.
      */
@@ -115,7 +120,6 @@ export interface ToucanFormMultiselectControlComponentSignature {
         >;
       }
     ];
-    noResults: [];
   };
   Element: HTMLInputElement;
 }
@@ -139,15 +143,12 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
    */
   assertRequiredBlocksExist = ({
     chipBlockExists,
-    noResultsBlockExists,
   }: {
     chipBlockExists: boolean;
-    noResultsBlockExists: boolean;
   }) => {
     assert('The `:chip` block is required.', chipBlockExists);
-    assert('The `:noResults` block is required.', noResultsBlockExists);
 
-    return chipBlockExists && noResultsBlockExists;
+    return chipBlockExists;
   };
 
   velcroMiddleware: VelcroMiddleware[] = [

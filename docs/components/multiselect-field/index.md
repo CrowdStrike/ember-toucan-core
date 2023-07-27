@@ -16,6 +16,7 @@ Provide a string to the `@label` component argument or content to the `:label` n
 <Form::Controls::Multiselect
   @contentClass='z-10'
   @label='Label'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -33,6 +34,7 @@ Provide a string to the `@label` component argument or content to the `:label` n
 ```hbs
 <Form::Controls::Multiselect
   @contentClass='z-10'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -60,6 +62,7 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 ```hbs
 <Form::Controls::Multiselect
   @contentClass='z-10'
+  @noResultsText='No results'
   @hint='Here is a hint'
   @onChange={{this.onChange}}
   @options={{this.options}}
@@ -79,6 +82,7 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 <Form::Controls::Multiselect
   @contentClass='z-10'
   @label='Label'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -125,6 +129,7 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
 <Form::Fields::Multiselect
   @contentClass='z-10'
   @label='Label'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -150,6 +155,7 @@ An example with translations may be something like:
 <Form::Fields::Multiselect
   @contentClass='z-10'
   @label='Label'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -169,23 +175,21 @@ An example with translations may be something like:
 </Form::Fields::Multiselect>
 ```
 
-## No Results Block
+## No results text
 
 Required.
 
-A `:noResults` block is required and exposed to allow consumers to specify text when there are no results after filtering the options. Since it is a named block, any content can be rendered inside; however, we recommend only putting text as the content.
+`@noResultsText` is shown when there are no results after filtering. 
 
 ```hbs
 <Form::Fields::Multiselect
   @contentClass='z-10'
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
 >
-  <!-- NOTE: Only text should go here. Please do not render content! -->
-  <:noResults>No results</:noResults>
-
   <:default as |multiselect|>
     <multiselect.Option>
       {{multiselect.option}}
@@ -415,8 +419,8 @@ Target the error block via `data-error`.
   <Form::Fields::Multiselect
     @contentClass='z-10'
     @label='Label'
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -438,8 +442,8 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @hint="Hint"
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -459,10 +463,10 @@ Target the error block via `data-error`.
 <div class='mb-4 w-64'>
   <Form::Fields::Multiselect
     @contentClass='z-10'
+    @noResultsText='No results'
   >
     <:label>Label <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 11-6.364 2.636A8.972 8.972 0 0112 3zm0 4.7v5.2m0 3.39v.01" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></:label>
     <:hint>Hint text <a href="https://www.crowdstrike.com/">link</a></:hint>
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -484,8 +488,8 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @error='With error text'
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -508,8 +512,8 @@ Target the error block via `data-error`.
     @label='Label'
     @hint='With hint text'
     @error='With error text'
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -531,8 +535,8 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @isDisabled={{true}}
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -554,10 +558,10 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @isDisabled={{true}}
-    @selected={{(array 'blue')}}
+    @noResultsText='No results'
     @options={{(array 'blue' 'red')}}
+    @selected={{(array 'blue')}}
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -579,8 +583,8 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @error={{(array 'With error 1' 'With error 2' 'With error 3')}}
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -602,8 +606,8 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @isReadOnly={{true}}
+    @noResultsText='No results'
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}
@@ -625,10 +629,10 @@ Target the error block via `data-error`.
     @contentClass='z-10'
     @label='Label'
     @isReadOnly={{true}}
-    @selected={{(array 'blue')}}
+    @noResultsText='No results'
     @options={{(array 'blue' 'red')}}
+    @selected={{(array 'blue')}}
   >
-    <:noResults>No results</:noResults>
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}

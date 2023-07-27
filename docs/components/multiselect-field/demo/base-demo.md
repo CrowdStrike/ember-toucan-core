@@ -6,11 +6,10 @@
     @contentClass='z-10'
     @onChange={{this.onChange}}
     @options={{this.options}}
+    @noResultsText="No results"
     @selected={{this.selected}}
     placeholder='Colors'
   >
-    <:noResults>No results</:noResults>
-
     <:chip as |chip|>
       <chip.Chip>
         {{chip.option}}

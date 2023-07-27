@@ -24,11 +24,10 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
           @label="Label"
           @hint="Hint"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-multiselect
         >
-          <:noResults>No results</:noResults>
-
           <:chip as |chip|>
             <chip.Chip>
               {{chip.option}}
@@ -57,12 +56,11 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
         <form.Multiselect
           @hint="Hint"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >
           <:label><span data-label-block>Label</span></:label>
-
-          <:noResults>No results</:noResults>
 
           <:chip as |chip|>
             <chip.Chip>
@@ -75,7 +73,7 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
           </:default>
         </form.Multiselect>
       </ToucanForm>
-    </template>);
+    </template> );
 
     assert.dom('[data-label-block]').exists();
 
@@ -94,12 +92,11 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
         <form.Multiselect
           @label="Label"
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >
           <:hint><span data-hint-block>Hint</span></:hint>
-
-          <:noResults>No results</:noResults>
 
           <:chip as |chip|>
             <chip.Chip>
@@ -131,13 +128,12 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
       <ToucanForm @data={{data}} as |form|>
         <form.Multiselect
           @name="selection"
+          @noResultsText="No results"
           @options={{options}}
           data-autocomplete
         >
           <:label><span data-label-block>Label</span></:label>
           <:hint><span data-hint-block>Hint</span></:hint>
-
-          <:noResults>No results</:noResults>
 
           <:chip as |chip|>
             <chip.Chip>

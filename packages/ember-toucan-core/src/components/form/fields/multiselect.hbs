@@ -53,14 +53,13 @@
         @hasError={{this.hasError}}
         @isDisabled={{@isDisabled}}
         @isReadOnly={{@isReadOnly}}
+        @noResultsText={{@noResultsText}}
         @onChange={{@onChange}}
         @onFilter={{@onFilter}}
         @options={{@options}}
         @selected={{@selected}}
         ...attributes
       >
-        <:noResults>{{yield to="noResults"}}</:noResults>
-
         <:chip as |chip|>
           {{yield
             (hash

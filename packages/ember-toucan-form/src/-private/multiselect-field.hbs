@@ -25,6 +25,7 @@
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
       @label={{@label}}
+      @noResultsText={{@noResultsText}}
       {{! @glint-expect-error }}
       @onChange={{field.setValue}}
       @onFilter={{@onFilter}}
@@ -35,8 +36,6 @@
       ...attributes
     >
       <:label>{{yield to='label'}}</:label>
-
-      <:noResults>{{yield to='noResults'}}</:noResults>
 
       <:chip as |chip|>
         {{yield
@@ -68,6 +67,7 @@
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
       @label={{@label}}
+      @noResultsText={{@noResultsText}}
       {{! @glint-expect-error }}
       @onChange={{field.setValue}}
       @onFilter={{@onFilter}}
@@ -79,8 +79,6 @@
     >
       <:label>{{yield to='label'}}</:label>
       <:hint>{{yield to='hint'}}</:hint>
-
-      <:noResults>{{yield to='noResults'}}</:noResults>
 
       <:chip as |chip|>
         {{yield
@@ -111,6 +109,7 @@
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
       @label={{@label}}
+      @noResultsText={{@noResultsText}}
       {{! @glint-expect-error }}
       @onChange={{field.setValue}}
       @onFilter={{@onFilter}}
@@ -121,8 +120,6 @@
       ...attributes
     >
       <:hint>{{yield to='hint'}}</:hint>
-
-      <:noResults>{{yield to='noResults'}}</:noResults>
 
       <:chip as |chip|>
         {{yield
@@ -154,6 +151,7 @@
       @isDisabled={{@isDisabled}}
       @isReadOnly={{@isReadOnly}}
       @label={{@label}}
+      @noResultsText={{@noResultsText}}
       {{! @glint-expect-error }}
       @onChange={{field.setValue}}
       @onFilter={{@onFilter}}
@@ -163,8 +161,6 @@
       name={{@name}}
       ...attributes
     >
-      <:noResults>{{yield to='noResults'}}</:noResults>
-
       <:chip as |chip|>
         {{yield
           (hash

@@ -17,9 +17,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -63,12 +65,11 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it disables the component using `@isDisabled`', async function (assert) {
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{testColors}}
         @isDisabled={{true}}
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -92,12 +93,11 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it sets readonly on the input using `@isReadOnly`', async function (assert) {
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{testColors}}
         @isReadOnly={{true}}
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -126,12 +126,11 @@ module('Integration | Component | Multiselect', function (hooks) {
   test('it spreads attributes to the underlying input', async function (assert) {
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{testColors}}
         placeholder="Placeholder text"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -152,9 +151,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it applies the error shadow when `@hasError={{true}}`', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} @hasError={{true}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        @hasError={{true}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -179,9 +181,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it opens the popover on click', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -204,9 +208,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -231,9 +237,11 @@ module('Integration | Component | Multiselect', function (hooks) {
   //       that the input gets focused
   test('it focuses the input when the container element is clicked', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -261,12 +269,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{selected}}
         @selected={{selected}}
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip data-test-index="{{chip.index}}">
             {{chip.option}}
@@ -298,9 +305,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -325,9 +334,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -349,10 +360,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @contentClass="test-class"
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -377,10 +387,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @contentClass="test-class"
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -411,10 +420,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -444,9 +452,12 @@ module('Integration | Component | Multiselect', function (hooks) {
     let selected = [...options];
 
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -471,10 +482,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -508,10 +518,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -536,9 +545,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it provides default filtering', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -569,11 +580,13 @@ module('Integration | Component | Multiselect', function (hooks) {
     assert.dom('[role="option"]').hasText('red');
   });
 
-  test('it renders the no results content into the `:noResults` block', async function (assert) {
+  test('it renders `@noResultsText`', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No items</:noResults>
-
+      <Multiselect
+        @noResultsText="No items"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -615,12 +628,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -658,12 +670,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     await render(<template>
       <Multiselect
+        @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -712,10 +723,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -757,10 +767,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -813,10 +822,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -857,10 +865,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -902,10 +909,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -935,10 +941,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @isDisabled={{true}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -965,10 +970,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @isReadOnly={{true}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1006,10 +1010,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @onFilter={{handleFilter}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1038,10 +1041,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1074,10 +1076,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1115,10 +1116,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @selected={{selected}}
         @options={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1148,9 +1148,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1179,9 +1181,11 @@ module('Integration | Component | Multiselect', function (hooks) {
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" data-input />
 
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1208,9 +1212,11 @@ module('Integration | Component | Multiselect', function (hooks) {
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1241,9 +1247,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1279,9 +1288,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1318,9 +1330,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the top of the list!
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1355,9 +1370,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1391,9 +1409,12 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // NOTE: Our selected option is currently at the bottom of the list!
     await render(<template>
-      <Multiselect @selected={{selected}} @options={{options}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @selected={{selected}}
+        @options={{options}}
+        @noResultsText="No results"
+        data-multiselect
+      >
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1438,10 +1459,9 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @onChange={{handleChange}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -1492,9 +1512,11 @@ module('Integration | Component | Multiselect', function (hooks) {
     });
 
     await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:noResults>No results</:noResults>
-
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
         </:default>
@@ -1518,40 +1540,13 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @options={{testColors}}
         @selected={{testColors}}
+        @noResultsText="No results"
         data-multiselect
       >
-        <:noResults>No results</:noResults>
-
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
             <chip.Remove />
-          </chip.Chip>
-        </:chip>
-
-        <:default as |multiselect|>
-          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
-        </:default>
-      </Multiselect>
-    </template>);
-  });
-
-  test('it throws an assertion error if no `:noResults` block is provided', async function (assert) {
-    assert.expect(1);
-
-    setupOnerror((e: Error) => {
-      assert.ok(
-        e.message.includes('The `:noResults` block is required'),
-        'Expected assertion error message'
-      );
-    });
-
-    await render(<template>
-      <Multiselect @options={{testColors}} data-multiselect>
-        <:chip as |chip|>
-          <chip.Chip>
-            {{chip.option}}
-            <chip.Remove @label="Remove" />
           </chip.Chip>
         </:chip>
 

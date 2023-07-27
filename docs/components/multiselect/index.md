@@ -41,14 +41,13 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
 
 ```hbs
 <Form::Controls::Multiselect
+  @noResultsText="No results"
   @onChange={{this.onChange}}
   @options={{this.options}}
   @contentClass='z-10'
   @selected={{this.selected}}
   placeholder='Colors'
 >
-  <:noResults>No results</:noResults>
-
   <:chip as |chip|>
     <chip.Chip>
       {{chip.option}}
@@ -68,14 +67,13 @@ An example with translations may be something like:
 
 ```hbs
 <Form::Controls::Multiselect
+  @noResultsText="No results"
   @onChange={{this.onChange}}
   @options={{this.options}}
   @contentClass='z-10'
   @selected={{this.selected}}
   placeholder='Colors'
 >
-  <:noResults>No results</:noResults>
-
   <:chip as |chip|>
     <chip.Chip>
       {{chip.option}}
@@ -91,21 +89,21 @@ An example with translations may be something like:
 </Form::Controls::Multiselect>
 ```
 
-## No Results Block
+## No results text
 
-A `:noResults` block is required and exposed to allow consumers to specify text when there are no results after filtering the options. Since it is a named block, any content can be rendered inside; however, we recommend only putting text as the content.
+Required.
+
+`@noResultsText` is shown when there are no results after filtering. 
 
 ```hbs
 <Form::Controls::Multiselect
   @contentClass='z-10'
+  @noResultsText="No results"
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   placeholder='Colors'
 >
-  <!-- NOTE: Only text should go here. Please do not render content! -->
-  <:noResults>No results</:noResults>
-
   <:chip as |chip|>
     <chip.Chip>
       {{chip.option}}
@@ -168,7 +166,7 @@ Called when the user makes a selection. It is called with the entire array of se
 
 ```hbs
 <Form::Controls::Multiselect
-  @onChange={{this.handleChange}}
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
   as |multiselect|
@@ -190,7 +188,7 @@ export default class extends Component {
   options = ['Blue', 'Red', 'Yellow'];
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 }
@@ -205,8 +203,9 @@ Specify `onFilter` if you want to do something different.
 
 ```hbs
 <Form::Controls::Multiselect
-  @onFilter={{this.handleFilter}}
-  @onChange={{this.handleChange}}
+  @noResultsText="No results"
+  @onFilter={{this.onFilter}}
+  @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
 >
@@ -258,12 +257,12 @@ export default class extends Component {
   ].map(({ label }) => label);
 
   @action
-  handleChange(option) {
+  onChange(option) {
     this.selected = option;
   }
 
   @action
-  handleFilter(value) {
+  onFilter(value) {
     return this.options.filter((option) => option === value);
   }
 }

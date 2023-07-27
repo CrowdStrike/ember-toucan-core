@@ -67,10 +67,9 @@
       @contentClass='z-10'
       @label='Multiselect'
       @name='multiselect'
+      @noResultsText='No results'
       @options={{this.options}}
     >
-      <:noResults>No results</:noResults>
-
       <:chip as |chip|>
         <chip.Chip>
           {{chip.option}}
