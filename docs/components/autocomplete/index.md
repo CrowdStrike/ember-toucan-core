@@ -3,7 +3,29 @@
 Provides a Toucan-styled autocomplete with filtering.
 If you are building forms, you may be interested in the [AutocompleteField](./autocomplete-field) component instead.
 
+## No results text
+
+Required.
+
+`@noResultsText` is shown when there are no results after filtering. 
+
+```hbs
+<Form::Controls::Autocomplete
+  @noResultsText='No results'
+  @options={{this.options}}
+  @selected={{this.selected}}
+  as |autocomplete|
+>
+  <autocomplete.Option>
+    <!-- The content of each popover list item will be rendered here -->
+    {{autocomplete.option}}
+  </autocomplete.Option>
+</Form::Controls::Autocomplete>
+```
+
 ## Popover z-index
+
+Optional.
 
 A CSS class to add to this component's content container. Commonly used to specify a `z-index`.
 
@@ -12,6 +34,8 @@ A CSS class to add to this component's content container. Commonly used to speci
 ```
 
 ## Options
+
+Optional.
 
 `@options` forms the content of this component. 
 
@@ -30,6 +54,8 @@ A CSS class to add to this component's content container. Commonly used to speci
 ```
 
 ## Selected
+
+Optional.
 
 The currently selected option.
 
@@ -57,6 +83,8 @@ export default class extends Component {
 ```
 
 ## onChange
+
+Optional.
 
 Called when the user makes a selection. It is called with the selected option (derived from `@options`) as its only argument. You'll want to update `@selected` with the new value in your on change handler.
 
@@ -167,6 +195,8 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ```hbs
@@ -175,6 +205,8 @@ Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ```hbs
@@ -182,6 +214,8 @@ Set the `@isReadOnly` argument to put the input in the read only state.
 ```
 
 ## Error State
+
+Optional.
 
 Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 

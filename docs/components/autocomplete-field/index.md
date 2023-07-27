@@ -42,6 +42,26 @@ Provide a string to the `@label` component argument or content to the `:label` n
 </Form::Fields::Autocomplete>
 ```
 
+## No results text
+
+Required.
+
+`@noResultsText` is shown when there are no results after filtering. 
+
+```hbs
+<Form::Fields::Autocomplete
+  @error={{this.errorMessage}}
+  @noResultsText='No results'
+  @onChange={{this.onChange}}
+  placeholder='Colors'
+  as |autocomplete|
+>
+  <:label>Here is a label <IconButton><Tooltip /><IconButton></:label>
+
+  <autocomplete.Option @label="Blue" @value="blue" />
+</Form::Fields::Autocomplete>
+```
+
 ## Hint
 
 Optional.
@@ -112,6 +132,8 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ## `@onChange`
 
+Optional.
+
 Provide an `@onChange` callback to be notified when the user's selections have changed.
 `@onChange` will receive the value as its only argument.
 
@@ -142,9 +164,13 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the input in the read only state.
 
