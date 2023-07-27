@@ -40,7 +40,7 @@ export interface ToucanFormAutocompleteControlComponentSignature {
     isReadOnly?: boolean;
 
     /**
-     * A string to display when there are no results after the user's filter.
+     * A string to display when there are no results after filtering.
      */
     noResultsText?: string;
 

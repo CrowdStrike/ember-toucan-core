@@ -42,6 +42,11 @@ export interface ToucanFormMultiselectFieldComponentSignature {
     label?: string;
 
     /**
+     * A string to display when there are no results after filtering.
+     */
+    noResultsText: string;
+
+    /**
      * Called when the user makes a selection.
      * It is called with the selected options (derived from `@options`) as its only argument.
      */
@@ -75,7 +80,6 @@ export interface ToucanFormMultiselectFieldComponentSignature {
     default: ToucanFormMultiselectControlComponentSignature['Blocks']['default'];
     hint: [];
     label: [];
-    noResults: ToucanFormMultiselectControlComponentSignature['Blocks']['noResults'];
   };
 }
 

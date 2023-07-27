@@ -2,7 +2,6 @@
   (this.assertRequiredBlocksExist
     (hash
       chipBlockExists=(has-block "chip")
-      noResultsBlockExists=(has-block "noResults")
     )
   )
 }}
@@ -144,7 +143,7 @@
             aria-live="assertive"
             class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
             role="status"
-          >{{yield to="noResults"}}</li>
+          >{{@noResultsText}}</li>
         {{/if}}
       </ul>
     {{/if}}

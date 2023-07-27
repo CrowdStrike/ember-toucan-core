@@ -206,11 +206,10 @@ module('Integration | Component | ToucanForm', function (hooks) {
         <form.Multiselect
           @label="Multiselect"
           @name="multiselect"
+          @noResultsText="No results"
           @options={{options}}
           data-multiselect
         >
-          <:noResults>No results</:noResults>
-
           <:chip as |chip|>
             <chip.Chip>
               {{chip.option}}
@@ -486,12 +485,11 @@ module('Integration | Component | ToucanForm', function (hooks) {
         <form.Multiselect
           @label="Multiselect"
           @name="multiselect"
+          @noResultsText="No results"
           @options={{options}}
           @rootTestSelector="data-multiselect-wrapper"
           data-multiselect
         >
-          <:noResults>No results</:noResults>
-
           <:chip as |chip|>
             <chip.Chip>
               {{chip.option}}
