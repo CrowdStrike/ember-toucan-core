@@ -1,5 +1,153 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.3.0
+
+### Minor Changes
+
+- [#232](https://github.com/CrowdStrike/ember-toucan-core/pull/232) [`3d6c159`](https://github.com/CrowdStrike/ember-toucan-core/commit/3d6c159b9c2dfa16f9243339f958129395dd9d4a) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updated all form elements to have the `w-full` class, making them full width by default. The width of the element is now determined by the container. To restrict the width of the element, use a wrapping tag with an appropriate class name applied.
+
+- [#238](https://github.com/CrowdStrike/ember-toucan-core/pull/238) [`40465de`](https://github.com/CrowdStrike/ember-toucan-core/commit/40465de089a8e2af17670f2ef596183d7c4f65b0) Thanks [@clintcs](https://github.com/clintcs)! - Replace Multiselect's `:noResults` block with a `@noResultsText` argument.
+
+- [#226](https://github.com/CrowdStrike/ember-toucan-core/pull/226) [`9ef84d2`](https://github.com/CrowdStrike/ember-toucan-core/commit/9ef84d2f2b668e8a439ff8cef3ceec235a1b7aed) Thanks [@clintcs](https://github.com/clintcs)! - Removed from Autocomplete support for `@options` as an array of objects.
+
+- [#240](https://github.com/CrowdStrike/ember-toucan-core/pull/240) [`b59a575`](https://github.com/CrowdStrike/ember-toucan-core/commit/b59a5752bc8e5d6bdb028db7a17da7315d66e326) Thanks [@clintcs](https://github.com/clintcs)! - Make Autocomplete `@noResultsText` required.
+
+### Patch Changes
+
+- [#219](https://github.com/CrowdStrike/ember-toucan-core/pull/219) [`1669550`](https://github.com/CrowdStrike/ember-toucan-core/commit/16695506e740b9b0240a57b5faf3f3f14193e104) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added an `Multiselect` component.
+
+  It has a similar API to `Autocomplete`, but allows for selecting multiple options rather than only one.
+
+  ```hbs
+  <Form::Controls::Multiselect
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @contentClass='z-10'
+    @selected={{this.selected}}
+    @optionKey='label'
+    placeholder='Colors'
+  >
+    <:noResults>No results</:noResults>
+
+    <!-- NOTE: The chip block is required and a Remove component's label is also required! -->
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option.label}}
+      </multiselect.Option>
+    </:default>
+  </Form::Controls::Multiselect>
+  ```
+
+- [#200](https://github.com/CrowdStrike/ember-toucan-core/pull/200) [`91204aa`](https://github.com/CrowdStrike/ember-toucan-core/commit/91204aacd1dbec2b4102df0ed7c2c03556520a4d) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added an `Autocomplete` component to both core and form packages.
+
+  If you're using `toucan-core`, the control and field components are exposed:
+
+  ```hbs
+  <Form::Controls::Autocomplete
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @contentClass='z-10'
+    @selected={{this.selected}}
+    @noResultsText='No results'
+    placeholder='Colors'
+    as |autocomplete|
+  >
+    <autocomplete.Option>
+      {{autocomplete.option.label}}
+    </autocomplete.Option>
+  </Form::Controls::Autocomplete>
+
+  <Form::Fields::Autocomplete
+    @contentClass='z-10'
+    @error={{this.errorMessage}}
+    @hint='Type "blue" into the field'
+    @label='Label'
+    @noResultsText='No results'
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @selected={{this.selected}}
+    placeholder='Colors'
+    as |autocomplete|
+  >
+    <autocomplete.Option>
+      {{autocomplete.option.label}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
+  ```
+
+  If you're using `toucan-form`, the component is exposed via:
+
+  ```hbs
+  <ToucanForm as |form|>
+    <form.Autocomplete
+      @label='Autocomplete'
+      @name='autocomplete'
+      @options={{options}}
+      data-autocomplete
+      as |autocomplete|
+    >
+      <autocomplete.Option data-option>
+        {{autocomplete.option}}
+      </autocomplete.Option>
+    </form.Autocomplete>
+  </ToucanForm>
+  ```
+
+  For more information on using these components, view [the docs](https://ember-toucan-core.pages.dev/docs/components/autocomplete).
+
+- [#225](https://github.com/CrowdStrike/ember-toucan-core/pull/225) [`50b4f24`](https://github.com/CrowdStrike/ember-toucan-core/commit/50b4f24cd093a2db44b5782cb8239a7541791b1a) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added `MultiselectField` component - it's the Multiselect control wrapped around a `Field`.
+
+  ```hbs
+  <Form::Controls::Multiselect
+    @contentClass='z-10'
+    @hint='Select a color'
+    @label='Label'
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @selected={{this.selected}}
+  >
+    <:noResults>No results</:noResults>
+
+    <!-- NOTE: The chip block is required and a Remove component's `@label`` is also required! -->
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option}}
+      </multiselect.Option>
+    </:default>
+  </Form::Controls::Multiselect>
+  ```
+
+  ```js
+  import Component from '@glimmer/component';
+  import { action } from '@ember/object';
+  import { tracked } from '@glimmer/tracking';
+
+  export default class extends Component {
+    @tracked selected;
+
+    options = ['Blue', 'Red', 'Yellow'];
+
+    @action
+    onChange(options) {
+      this.selected = options;
+    }
+  }
+  ```
+
 ## 0.2.2
 
 ### Patch Changes
