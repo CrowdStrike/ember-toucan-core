@@ -1,5 +1,126 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.3.0
+
+### Minor Changes
+
+- [#232](https://github.com/CrowdStrike/ember-toucan-core/pull/232) [`3d6c159`](https://github.com/CrowdStrike/ember-toucan-core/commit/3d6c159b9c2dfa16f9243339f958129395dd9d4a) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Updated all form elements to have the `w-full` class, making them full width by default. The width of the element is now determined by the container. To restrict the width of the element, use a wrapping tag with an appropriate class name applied.
+
+- [#238](https://github.com/CrowdStrike/ember-toucan-core/pull/238) [`40465de`](https://github.com/CrowdStrike/ember-toucan-core/commit/40465de089a8e2af17670f2ef596183d7c4f65b0) Thanks [@clintcs](https://github.com/clintcs)! - Replace Multiselect's `:noResults` block with a `@noResultsText` argument.
+
+- [#226](https://github.com/CrowdStrike/ember-toucan-core/pull/226) [`9ef84d2`](https://github.com/CrowdStrike/ember-toucan-core/commit/9ef84d2f2b668e8a439ff8cef3ceec235a1b7aed) Thanks [@clintcs](https://github.com/clintcs)! - Removed from Autocomplete support for `@options` as an array of objects.
+
+- [#240](https://github.com/CrowdStrike/ember-toucan-core/pull/240) [`b59a575`](https://github.com/CrowdStrike/ember-toucan-core/commit/b59a5752bc8e5d6bdb028db7a17da7315d66e326) Thanks [@clintcs](https://github.com/clintcs)! - Make Autocomplete `@noResultsText` required.
+
+### Patch Changes
+
+- [#222](https://github.com/CrowdStrike/ember-toucan-core/pull/222) [`ff50f27`](https://github.com/CrowdStrike/ember-toucan-core/commit/ff50f274aad06257f05dd8ddbb39e76377edf755) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Expose the `:secondary` block and Character Counter component from `<ToucanForm` input and textarea components.
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Input @name='input'>
+      <:label>Label</:label>
+      <:hint>Hint</:hint>
+      <:secondary as |secondary|>
+        <secondary.CharacterCount @max={{255}} />
+      </:secondary>
+    </form.Input>
+
+    <form.Textarea @name='textarea'>
+      <:label>Label</:label>
+      <:hint>Hint</:hint>
+      <:secondary as |secondary|>
+        <secondary.CharacterCount @max={{255}} />
+      </:secondary>
+    </form.Textarea>
+  </ToucanForm>
+  ```
+
+- [#227](https://github.com/CrowdStrike/ember-toucan-core/pull/227) [`c8a4eb1`](https://github.com/CrowdStrike/ember-toucan-core/commit/c8a4eb139298d2442b8f0df29c1c40bb2874d2cc) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added `form.Multiselect` support.
+
+  ```hbs
+  <ToucanForm @data={{data}} as |form|>
+    <form.Multiselect
+      @hint='Hint'
+      @label='Label'
+      @name='selection'
+      @noResultsText='No results'
+      @options={{this.options}}
+    >
+      <:chip as |chip|>
+        <chip.Chip>
+          {{chip.option}}
+          <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+        </chip.Chip>
+      </:chip>
+
+      <:default as |multiselect|>
+        <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+      </:default>
+    </form.Multiselect>
+  </ToucanForm>
+  ```
+
+- [#200](https://github.com/CrowdStrike/ember-toucan-core/pull/200) [`91204aa`](https://github.com/CrowdStrike/ember-toucan-core/commit/91204aacd1dbec2b4102df0ed7c2c03556520a4d) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Added an `Autocomplete` component to both core and form packages.
+
+  If you're using `toucan-core`, the control and field components are exposed:
+
+  ```hbs
+  <Form::Controls::Autocomplete
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @contentClass='z-10'
+    @selected={{this.selected}}
+    @noResultsText='No results'
+    placeholder='Colors'
+    as |autocomplete|
+  >
+    <autocomplete.Option>
+      {{autocomplete.option.label}}
+    </autocomplete.Option>
+  </Form::Controls::Autocomplete>
+
+  <Form::Fields::Autocomplete
+    @contentClass='z-10'
+    @error={{this.errorMessage}}
+    @hint='Type "blue" into the field'
+    @label='Label'
+    @noResultsText='No results'
+    @onChange={{this.onChange}}
+    @options={{this.options}}
+    @selected={{this.selected}}
+    placeholder='Colors'
+    as |autocomplete|
+  >
+    <autocomplete.Option>
+      {{autocomplete.option.label}}
+    </autocomplete.Option>
+  </Form::Fields::Autocomplete>
+  ```
+
+  If you're using `toucan-form`, the component is exposed via:
+
+  ```hbs
+  <ToucanForm as |form|>
+    <form.Autocomplete
+      @label='Autocomplete'
+      @name='autocomplete'
+      @options={{options}}
+      data-autocomplete
+      as |autocomplete|
+    >
+      <autocomplete.Option data-option>
+        {{autocomplete.option}}
+      </autocomplete.Option>
+    </form.Autocomplete>
+  </ToucanForm>
+  ```
+
+  For more information on using these components, view [the docs](https://ember-toucan-core.pages.dev/docs/components/autocomplete).
+
+- Updated dependencies [[`1669550`](https://github.com/CrowdStrike/ember-toucan-core/commit/16695506e740b9b0240a57b5faf3f3f14193e104), [`3d6c159`](https://github.com/CrowdStrike/ember-toucan-core/commit/3d6c159b9c2dfa16f9243339f958129395dd9d4a), [`40465de`](https://github.com/CrowdStrike/ember-toucan-core/commit/40465de089a8e2af17670f2ef596183d7c4f65b0), [`9ef84d2`](https://github.com/CrowdStrike/ember-toucan-core/commit/9ef84d2f2b668e8a439ff8cef3ceec235a1b7aed), [`b59a575`](https://github.com/CrowdStrike/ember-toucan-core/commit/b59a5752bc8e5d6bdb028db7a17da7315d66e326), [`91204aa`](https://github.com/CrowdStrike/ember-toucan-core/commit/91204aacd1dbec2b4102df0ed7c2c03556520a4d), [`50b4f24`](https://github.com/CrowdStrike/ember-toucan-core/commit/50b4f24cd093a2db44b5782cb8239a7541791b1a)]:
+  - @crowdstrike/ember-toucan-core@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
