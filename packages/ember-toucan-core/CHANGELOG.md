@@ -20,15 +20,14 @@
 
   ```hbs
   <Form::Controls::Multiselect
-    @onChange={{this.onChange}}
-    @options={{this.options}}
     @contentClass='z-10'
-    @selected={{this.selected}}
+    @noResultsText='No results'
+    @onChange={{this.onChange}}
     @optionKey='label'
+    @options={{this.options}}
+    @selected={{this.selected}}
     placeholder='Colors'
   >
-    <:noResults>No results</:noResults>
-
     <!-- NOTE: The chip block is required and a Remove component's label is also required! -->
     <:chip as |chip|>
       <chip.Chip>
@@ -109,12 +108,11 @@
     @contentClass='z-10'
     @hint='Select a color'
     @label='Label'
+    @noResultsText='No results'
     @onChange={{this.onChange}}
     @options={{this.options}}
     @selected={{this.selected}}
   >
-    <:noResults>No results</:noResults>
-
     <!-- NOTE: The chip block is required and a Remove component's `@label`` is also required! -->
     <:chip as |chip|>
       <chip.Chip>

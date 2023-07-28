@@ -1,6 +1,6 @@
 # @crowdstrike/ember-toucan-form
 
-## 1.0.0
+## 0.3.0
 
 ### Minor Changes
 
@@ -41,13 +41,12 @@
   ```hbs
   <ToucanForm @data={{data}} as |form|>
     <form.Multiselect
-      @label='Label'
       @hint='Hint'
+      @label='Label'
       @name='selection'
+      @noResultsText='No results'
       @options={{this.options}}
     >
-      <:noResults>No results</:noResults>
-
       <:chip as |chip|>
         <chip.Chip>
           {{chip.option}}
