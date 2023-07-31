@@ -9,7 +9,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @label="Label" data-autocomplete />
+      <Autocomplete @noResultsText="No results" @label="Label" data-input />
     </template>);
 
     assert.dom('[data-label]').hasText('Label');
@@ -20,9 +20,9 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         'Expected hint block not to be displayed as a hint was not provided'
       );
 
-    assert.dom('[data-autocomplete]').hasTagName('input');
-    assert.dom('[data-autocomplete]').hasAttribute('id');
-    assert.dom('[data-autocomplete]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-input]').hasTagName('input');
+    assert.dom('[data-input]').hasAttribute('id');
+    assert.dom('[data-input]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-error]')
@@ -39,7 +39,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @noResultsText="No results"
         @label="Label"
         @hint="Hint text"
-        data-autocomplete
+       data-input
       />
     </template>);
 
@@ -53,7 +53,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     let describedby =
-      find('[data-autocomplete]')?.getAttribute('aria-describedby') || '';
+      find('[data-input]')?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(hintId),
@@ -63,7 +63,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" data-autocomplete>
+      <Autocomplete @noResultsText="No results" data-input>
         <:label><span data-label>label block content</span></:label>
         <:hint><span data-hint>hint block content</span></:hint>
       </Autocomplete>
@@ -79,7 +79,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @error="Error text"
         @noResultsText="No results"
-        data-autocomplete
+       data-input
       />
     </template>);
 
@@ -93,21 +93,21 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     let describedby =
-      find('[data-autocomplete]')?.getAttribute('aria-describedby') || '';
+      find('[data-input]')?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(errorId),
       'Expected errorId to be included in the aria-describedby'
     );
 
-    assert.dom('[data-autocomplete]').hasAttribute('aria-invalid', 'true');
+    assert.dom('[data-input]').hasAttribute('aria-invalid', 'true');
 
-    assert.dom('[data-autocomplete]').hasClass('shadow-error-outline');
+    assert.dom('[data-input]').hasClass('shadow-error-outline');
     assert
-      .dom('[data-autocomplete]')
+      .dom('[data-input]')
       .hasClass('focus:shadow-error-focus-outline');
     assert
-      .dom('[data-autocomplete]')
+      .dom('[data-input]')
       .doesNotHaveClass('shadow-focusable-outline');
   });
 
@@ -118,7 +118,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @error="Error text"
         @hint="Hint text"
         @noResultsText="No results"
-        data-autocomplete
+       data-input
       />
     </template>);
 
@@ -131,7 +131,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
-      .dom('[data-autocomplete]')
+      .dom('[data-input]')
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
@@ -141,12 +141,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @isDisabled={{true}}
         @noResultsText="No results"
-        data-autocomplete
+       data-input
       />
     </template>);
 
-    assert.dom('[data-autocomplete]').isDisabled();
-    assert.dom('[data-autocomplete]').hasClass('text-disabled');
+    assert.dom('[data-input]').isDisabled();
+    assert.dom('[data-input]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
   });
@@ -157,11 +157,11 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @isReadOnly={{true}}
         @noResultsText="No results"
-        data-autocomplete
+       data-input
       />
     </template>);
 
-    assert.dom('[data-autocomplete]').hasAttribute('readonly');
+    assert.dom('[data-input]').hasAttribute('readonly');
 
     assert.dom('[data-lock-icon]').exists();
   });
@@ -172,12 +172,12 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @noResultsText="No results"
         placeholder="Placeholder text"
-        data-autocomplete
+       data-input
       />
     </template>);
 
     assert
-      .dom('[data-autocomplete]')
+      .dom('[data-input]')
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
@@ -187,11 +187,11 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @noResultsText="No results"
         @selected="blue"
-        data-autocomplete
+       data-input
       />
     </template>);
 
-    assert.dom('[data-autocomplete]').hasValue('blue');
+    assert.dom('[data-input]').hasValue('blue');
   });
 
   // NOTE: This functionality is deeply tested in the Control, as it can
@@ -213,7 +213,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @noResultsText="No results"
         @options={{options}}
         @onChange={{handleChange}}
-        data-autocomplete
+       data-input
         as |combobox|
       >
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
@@ -222,7 +222,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
 
     assert.verifySteps([]);
 
-    await fillIn('[data-autocomplete]', 'blue');
+    await fillIn('[data-input]', 'blue');
 
     assert.dom('[role="option"]').exists({ count: 1 });
 
@@ -237,7 +237,7 @@ module('Integration | Component | Fields | Autocomplete', function (hooks) {
         @label="Label"
         @noResultsText="No results"
         @rootTestSelector="selector"
-        data-autocomplete
+       data-input
       />
     </template>);
 
