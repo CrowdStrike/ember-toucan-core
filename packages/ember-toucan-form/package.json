@@ -105,7 +105,6 @@
     "rollup": "^3.12.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-ts": "^3.0.2",
-    "rsvp": "^4.8.5",
     "tailwindcss": "^2.2.15",
     "typescript": "^5.0.0"
   },
