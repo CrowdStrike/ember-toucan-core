@@ -7,7 +7,8 @@ If you are building forms, you may be interested in the [MultiselectField](./mul
 
 Required.
 
-A `:chip` block is required and is used for rendering each selected option. The block returns the following:
+A `:chip` block is required and is used for rendering each selected option. 
+The block returns the following:
 
 - `index`: The index of the current chip
 - `option`: The raw option value for the current chip
@@ -25,7 +26,9 @@ The `Chip` component allows for slight customization to the underlying chip.
 </:chip>
 ```
 
-The `Remove` component contains the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
+The `Remove` component contains the removal `X` on each selected chip. 
+Clicking the button will remove the item from the selected options array. 
+When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
 

@@ -1,8 +1,11 @@
 # Checkbox
 
-Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox). If you are building forms, you may be interested in the [CheckboxField](./checkbox-field) component instead.
+Provides a Toucan-styled [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox). 
+If you are building forms, you may be interested in the [CheckboxField](./checkbox-field) component instead.
 
 ## Checked State
+
+Optional.
 
 To set the `checked` attribute of the checkbox, provide `@isChecked`.
 
@@ -20,7 +23,11 @@ assert.dom('[data-checkbox-2]').isNotChecked();
 
 ## Indeterminate
 
-Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). This is accomplished with `@isIndeterminate`. It is up to the consumer to decide what will force the checkbox into the indeterminate state.
+Optional.
+
+Checkboxes have the ability to be in the [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes). 
+This is accomplished with `@isIndeterminate`. 
+It is up to the consumer to decide what will force the checkbox into the indeterminate state.
 
 ```hbs
 <Form::Controls::Checkbox @isIndeterminate={{true}} data-checkbox />
@@ -34,6 +41,8 @@ assert.dom('[data-checkbox]').hasProperty('indeterminate', true);
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the checkbox.
 
 ```hbs
@@ -42,6 +51,8 @@ Set the `@isDisabled` argument to disable the checkbox.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the checkbox in the read only state.
 
 ```hbs
@@ -49,6 +60,8 @@ Set the `@isReadOnly` argument to put the checkbox in the read only state.
 ```
 
 ## onChange
+
+Optional.
 
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 

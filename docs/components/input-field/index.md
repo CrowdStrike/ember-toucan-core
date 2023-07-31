@@ -74,7 +74,8 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 Optional.
 
-A character counter is exposed via a `secondary` block. It can be combined with any of the other named blocks or label/hint arguments.
+A character counter is exposed via a `secondary` block. 
+It can be combined with any of the other named blocks or label/hint arguments.
 
 ```hbs
 <Form::Fields::Input class='w-full' @label='Label' @hint='With hint text'>
@@ -103,7 +104,11 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ## Value and onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments, the first being the value, while the second being the raw event object. It's most common to use this in combination with `@value` which will set the value for the input based on the input received from the change event.
+Optional.
+
+To tie into the input event, provide `@onChange`. 
+`@onChange` will return two arguments, the first being the value, while the second being the raw event object. 
+It's most common to use this in combination with `@value` which will set the value for the input based on the input received from the change event.
 
 ```hbs
 <Form::Fields::Input
@@ -129,21 +134,30 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the input.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.
+Optional.
+
+Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. 
+Modifiers can also be added directly to the input as shown in the demo.
 
 ## Test Selectors
 
 ### Root Element
 
-Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
+Provide a custom selector via `@rootTestSelector`. 
+This test selector will be used as the value for the `data-root-field` attribute. 
+The Field can be targeted via:
 
 ```hbs
 <Form::Fields::Input @label='Label' @rootTestSelector='example' />

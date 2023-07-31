@@ -83,6 +83,8 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ## Value and onChange
 
+Optional.
+
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the checked attribute from the target
@@ -118,25 +120,37 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the checkbox.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the checkbox in the read only state.
 
 ## Indeterminate State
 
-Set the `@isIndeterminate` argument. To learn more, view the [Checkbox documentation](./checkbox).
+Optional.
+
+Set the `@isIndeterminate` argument. 
+To learn more, view the [Checkbox documentation](./checkbox).
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox), so all attributes are supported. Modifiers can also be added directly to the Checkbox as shown in the demo.
+Optional.
+
+Consumers have direct access to the underlying [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox), so all attributes are supported. 
+Modifiers can also be added directly to the Checkbox as shown in the demo.
 
 ## Test Selectors
 
 ### Root Element
 
-Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
+Provide a custom selector via `@rootTestSelector`. 
+This test selector will be used as the value for the `data-root-field` attribute. 
+The Field can be targeted via:
 
 ```hbs
 <Form::Fields::Checkbox @label='Label' @rootTestSelector='example' />

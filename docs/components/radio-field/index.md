@@ -1,6 +1,7 @@
 # Radio Field
 
-Provides an opinionated radio element building on top of the Field component. If you are building real radio groups in forms, you'll want to check out our [RadioGroupField](./radio-group-field) component.
+Provides an opinionated radio element building on top of the Field component. 
+If you are building real radio groups in forms, you'll want to check out our [RadioGroupField](./radio-group-field) component.
 
 ## Label
 
@@ -86,12 +87,16 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 ## Value, Checked State, and onChange
 
-The `@value` argument is required. To tie into the change event, provide `@onChange`. `@onChange` will return two arguments:
+Optional.
+
+The `@value` argument is required. To tie into the change event, provide `@onChange`. 
+`@onChange` will return two arguments:
 
 1. the value attribute from the target
 2. the raw event object
 
-To set the checked state of the radio, the `@selectedValue` and `@value` must match. If these two arguments do not match, the radio will not be checked.
+To set the checked state of the radio, the `@selectedValue` and `@value` must match. 
+If these two arguments do not match, the radio will not be checked.
 
 ```hbs
 <Form::Fields::Radio
@@ -121,13 +126,19 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the radio.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the radio in the read only state.
 
 ## Attributes and Modifiers
+
+Optional.
 
 Consumers have direct access to the underlying [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio), so all attributes are supported. Modifiers can also be added directly to the Radio as shown in the demo.
 

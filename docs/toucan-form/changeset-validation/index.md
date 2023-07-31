@@ -34,7 +34,9 @@ By default, Toucan Form will set the `@validateOn` argument to `focusout` (meani
 
 ## Form data and TypeScript
 
-The provided form `@data` argument must be properly typed if you are using TypeScript. Follow the ember-headless-form [typing of form data docs](https://ember-headless-form.pages.dev/docs/typescript#typing-of-form-data) for more information. Essentially your `@data` argument type must properly match the form fields used in your templates.
+The provided form `@data` argument must be properly typed if you are using TypeScript. 
+Follow the ember-headless-form [typing of form data docs](https://ember-headless-form.pages.dev/docs/typescript#typing-of-form-data) for more information. 
+Essentially your `@data` argument type must properly match the form fields used in your templates.
 
 ```ts
 interface MyFormData {
@@ -56,7 +58,8 @@ const data: MyFormData = {};
 
 The component yields back `submit` and `reset` actions for more complex cases of submitting or resetting your form data.
 
-**NOTE:** Calling `submit` directly is **not** required for most cases. The implementation only requires a button tag with the `type="submit"` attribute set.
+**NOTE:** Calling `submit` directly is **not** required for most cases. 
+The implementation only requires a button tag with the `type="submit"` attribute set.
 
 ```hbs
 <ToucanForm as |form|>

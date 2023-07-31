@@ -53,7 +53,8 @@ Provide a string to the `@label` component argument or content to the `:label` n
 
 Required.
 
-A `:chip` block is required and is used for rendering each selected option. The block has the following block parameters:
+A `:chip` block is required and is used for rendering each selected option. 
+The block has the following block parameters:
 
 - `index`: The index of the current chip
 - `option`: The raw option value for the current chip
@@ -71,7 +72,9 @@ The `Chip` component allows for slight customization to the underlying chip.
 </:chip>
 ```
 
-The `Remove` component contains the removal `X` on each selected chip. Clicking the button will remove the item from the selected options array. When the multiselect is disabled or in the readonly state, the button will not be available.
+The `Remove` component contains the removal `X` on each selected chip. 
+Clicking the button will remove the item from the selected options array. 
+When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
 
@@ -270,6 +273,8 @@ Required.
 
 ## Selected
 
+Optional.
+
 The currently selected option.
 
 ```hbs
@@ -381,6 +386,8 @@ Optional.
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ## Attributes and Modifiers
+
+Optional.
 
 Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported.
 Modifiers can also be added directly to the input.

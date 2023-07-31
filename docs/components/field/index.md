@@ -1,6 +1,8 @@
 # Field
 
-Field is a component to aid in creating form components. It provides a label, hint sections for things like help text, a control block, and an error section for rendering errors. It allows users to provide custom controls with a consistent form-element shell and is not opinionated on what underlying control element is used.
+Field is a component to aid in creating form components. 
+It provides a label, hint sections for things like help text, a control block, and an error section for rendering errors. 
+It allows users to provide custom controls with a consistent form-element shell and is not opinionated on what underlying control element is used.
 
 ## Yielded Items
 
@@ -34,7 +36,8 @@ The Field component does not handle accessibility automatically for the label, h
 
 ## Optionally Rendering Components
 
-The yielded components from Field can be optionally rendered by using the `{{#if}}` helper. The below example optionally renders the Hint and Error based on component arguments.
+The yielded components from Field can be optionally rendered by using the `{{#if}}` helper. 
+The below example optionally renders the Hint and Error based on component arguments.
 
 ```hbs
 <Form::Field as |field|>
@@ -56,6 +59,8 @@ The yielded components from Field can be optionally rendered by using the `{{#if
 
 ### Attributes and Modifiers
 
+Optional.
+
 Attributes are spread to each sub component of the Field via `...attributes`, so HTML attributes and Ember modifiers can be added.
 
 ```hbs
@@ -72,7 +77,8 @@ Attributes are spread to each sub component of the Field via `...attributes`, so
 
 ### Ordering of Components
 
-Ordering of the elements can be changed by adjusting the order of the children. For example, if it is preferred to put the hint block underneath the control.
+Ordering of the elements can be changed by adjusting the order of the children. 
+For example, if it is preferred to put the hint block underneath the control.
 
 ```hbs
 <Form::Field as |field|>
