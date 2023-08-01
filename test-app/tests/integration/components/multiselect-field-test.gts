@@ -376,6 +376,37 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     assert.verifySteps(['handleChange']);
   });
 
+  // NOTE: This functionality is tested more in-depth via the control component
+  // integration test.  We simply want to ensure the component argument gets
+  // passed through in this test.
+  test('it renders the `Select all` option', async function (assert) {
+    await render(<template>
+      <Multiselect
+        @label="Label"
+        @noResultsText="No results"
+        @selectAllText="Select all"
+        @options={{testColors}}
+        data-multiselect
+      >
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
+
+    await click('[data-multiselect]');
+
+    assert.dom('[data-multiselect-select-all-option]').exists();
+    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
+  });
+
   test('it throws an assertion error if no `@label` is provided', async function (assert) {
     assert.expect(1);
 

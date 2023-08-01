@@ -53,7 +53,7 @@ Provide a string to the `@label` component argument or content to the `:label` n
 
 Required.
 
-A `:chip` block is required and is used for rendering each selected option. 
+A `:chip` block is required and is used for rendering each selected option.
 The block has the following block parameters:
 
 - `index`: The index of the current chip
@@ -72,8 +72,8 @@ The `Chip` component allows for slight customization to the underlying chip.
 </:chip>
 ```
 
-The `Remove` component contains the removal `X` on each selected chip. 
-Clicking the button will remove the item from the selected options array. 
+The `Remove` component contains the removal `X` on each selected chip.
+Clicking the button will remove the item from the selected options array.
 When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
@@ -134,7 +134,7 @@ An example with translations may be something like:
 
 Required.
 
-`@noResultsText` is shown when there are no results after filtering. 
+`@noResultsText` is shown when there are no results after filtering.
 
 ```hbs
 <Form::Fields::Multiselect
@@ -298,6 +298,44 @@ import { tracked } from '@glimmer/tracking';
 export default class extends Component {
   @tracked selected;
 }
+```
+
+## Select all
+
+Optional.
+
+"Select all" functionality can be opted into by providing the `@selectAllText` argument.
+
+By providing this argument, a checkbox will be rendered at the top of the list to allow users a convenient way to select all visible options. When clicking this item, all `@options` are returned to the `@onChange` handler. The "Select all" checkbox has the following state rules:
+
+- The checkbox only appears when filtering is not active.
+- The checkbox will be checked when all options are selected.
+- If no options are selected, the checkbox will be unchecked.
+- If more than one option is selected, but not all of them, then the checkbox will be in the indeterminate state.
+- When the checkbox is in the indeterminate state, clicking the checkbox re-selects all options.
+
+```hbs
+<Form::Fields::Multiselect
+  @contentClass='z-10'
+  @label='Label'
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @selectAllText='Select all'
+  @selected={{this.selected}}
+>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
+</Form::Fields::Multiselect>
 ```
 
 ## onFilter

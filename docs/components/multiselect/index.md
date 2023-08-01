@@ -7,7 +7,7 @@ If you are building forms, you may be interested in the [MultiselectField](./mul
 
 Required.
 
-A `:chip` block is required and is used for rendering each selected option. 
+A `:chip` block is required and is used for rendering each selected option.
 The block returns the following:
 
 - `index`: The index of the current chip
@@ -26,8 +26,8 @@ The `Chip` component allows for slight customization to the underlying chip.
 </:chip>
 ```
 
-The `Remove` component contains the removal `X` on each selected chip. 
-Clicking the button will remove the item from the selected options array. 
+The `Remove` component contains the removal `X` on each selected chip.
+Clicking the button will remove the item from the selected options array.
 When the multiselect is disabled or in the readonly state, the button will not be available.
 
 A `@label` argument is **required** for accessibility reasons for the Remove component.
@@ -36,7 +36,7 @@ The `option` for that chip is yielded back to the consumer so that an appropriat
 
 ```hbs
 <Form::Controls::Multiselect
-  @noResultsText="No results"
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @contentClass='z-10'
@@ -62,7 +62,7 @@ An example with translations may be something like:
 
 ```hbs
 <Form::Controls::Multiselect
-  @noResultsText="No results"
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @contentClass='z-10'
@@ -88,12 +88,12 @@ An example with translations may be something like:
 
 Required.
 
-`@noResultsText` is shown when there are no results after filtering. 
+`@noResultsText` is shown when there are no results after filtering.
 
 ```hbs
 <Form::Controls::Multiselect
   @contentClass='z-10'
-  @noResultsText="No results"
+  @noResultsText='No results'
   @onChange={{this.onChange}}
   @options={{this.options}}
   @selected={{this.selected}}
@@ -205,6 +205,43 @@ export default class extends Component {
 }
 ```
 
+## Select all
+
+Optional.
+
+"Select all" functionality can be opted into by providing the `@selectAllText` argument.
+
+By providing this argument, a checkbox will be rendered at the top of the list to allow users a convenient way to select all visible options. When clicking this item, all `@options` are returned to the `@onChange` handler. The "Select all" checkbox has the following state rules:
+
+- The checkbox only appears when filtering is not active.
+- The checkbox will be checked when all options are selected.
+- If no options are selected, the checkbox will be unchecked.
+- If more than one option is selected, but not all of them, then the checkbox will be in the indeterminate state.
+- When the checkbox is in the indeterminate state, clicking the checkbox re-selects all options.
+
+```hbs
+<Form::Controls::Multiselect
+  @contentClass='z-10'
+  @onChange={{this.onChange}}
+  @options={{this.options}}
+  @selectAllText='Select all'
+  @selected={{this.selected}}
+>
+  <:chip as |chip|>
+    <chip.Chip>
+      {{chip.option}}
+      <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+    </chip.Chip>
+  </:chip>
+
+  <:default as |multiselect|>
+    <multiselect.Option>
+      {{multiselect.option}}
+    </multiselect.Option>
+  </:default>
+</Form::Controls::Multiselect>
+```
+
 ## onFilter
 
 Optional.
@@ -214,7 +251,7 @@ Specify `onFilter` if you want to do something different.
 
 ```hbs
 <Form::Controls::Multiselect
-  @noResultsText="No results"
+  @noResultsText='No results'
   @onFilter={{this.onFilter}}
   @onChange={{this.onChange}}
   @options={{this.options}}

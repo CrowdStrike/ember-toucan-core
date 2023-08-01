@@ -71,6 +71,19 @@ export interface ToucanFormMultiselectFieldComponentSignature {
     rootTestSelector?: string;
 
     /**
+     * A string to render as the "Select all" option label.  By providing this argument,
+     * you are opting into the "Select all" functionality and the checkbox will be rendered
+     * at the top of the popover.
+     *
+     * - The checkbox only appears when filtering is not active.
+     * - The checkbox will be checked when all options are selected.
+     * - If no options are selected, the checkbox will be unchecked.
+     * - If more than one option is selected, but not all of them, then the checkbox will be in the indeterminate state.
+     * - When the checkbox is in the indeterminate state, clicking the checkbox re-selects all options.
+     */
+    selectAllText?: string;
+
+    /**
      * The currently selected option.
      */
     selected?: ToucanFormMultiselectControlComponentSignature['Args']['selected'];

@@ -1,4 +1,4 @@
-import { render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
@@ -152,5 +152,41 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
 
     assert.dom('[data-label-block]').exists();
     assert.dom('[data-hint-block]').exists();
+  });
+
+  test('it renders the `Select all` option', async function (assert) {
+    const data: TestData = {
+      selection: undefined,
+    };
+
+    await render(<template>
+      <ToucanForm @data={{data}} as |form|>
+        <form.Multiselect
+          @label="Label"
+          @hint="Hint"
+          @name="selection"
+          @noResultsText="No results"
+          @options={{options}}
+          @selectAllText="Select all"
+          data-multiselect
+        >
+          <:chip as |chip|>
+            <chip.Chip>
+              {{chip.option}}
+              <chip.Remove @label="Remove" />
+            </chip.Chip>
+          </:chip>
+
+          <:default as |multiselect|>
+            <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+          </:default>
+        </form.Multiselect>
+      </ToucanForm>
+    </template>);
+
+    await click('[data-multiselect]');
+
+    assert.dom('[data-multiselect-select-all-option]').exists();
+    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
   });
 });

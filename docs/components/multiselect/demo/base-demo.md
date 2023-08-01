@@ -2,7 +2,7 @@
 <div class='flex flex-col gap-4 w-96'>
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText="No results"
+    @noResultsText='No results'
     @onChange={{this.onChange}}
     @options={{this.options}}
     @selected={{this.selected}}
@@ -24,7 +24,7 @@
 
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText="No results"
+    @noResultsText='No results'
     @onChange={{this.onChange2}}
     @options={{this.options2}}
     @selected={{this.selected2}}
@@ -46,12 +46,35 @@
 
   <Form::Controls::Multiselect
     @contentClass='z-10'
-    @noResultsText="No results"
+    @noResultsText='No results'
     @onChange={{this.onChange3}}
     @onFilter={{this.onFilter}}
     @options={{this.options}}
     @selected={{this.selected3}}
     placeholder='Colors w/ Filtering'
+  >
+    <:chip as |chip|>
+      <chip.Chip>
+        {{chip.option}}
+        <chip.Remove @label={{(concat 'Remove' ' ' chip.option)}} />
+      </chip.Chip>
+    </:chip>
+
+    <:default as |multiselect|>
+      <multiselect.Option>
+        {{multiselect.option}}
+      </multiselect.Option>
+    </:default>
+  </Form::Controls::Multiselect>
+
+  <Form::Controls::Multiselect
+    @contentClass='z-10'
+    @noResultsText='No results'
+    @onChange={{this.onChange4}}
+    @options={{this.options}}
+    @selected={{this.selected4}}
+    @selectAllText='Select all'
+    placeholder='Colors w/ Select All'
   >
     <:chip as |chip|>
       <chip.Chip>
@@ -78,6 +101,7 @@ export default class extends Component {
   @tracked selected;
   @tracked selected2;
   @tracked selected3;
+  @tracked selected4;
 
   options = [
     {
@@ -145,6 +169,12 @@ export default class extends Component {
   @action
   onChange3(option) {
     this.selected3 = option;
+    console.log(option);
+  }
+
+  @action
+  onChange4(option) {
+    this.selected4 = option;
     console.log(option);
   }
 

@@ -13,6 +13,7 @@ import OptionComponent, {
   selector as optionComponentSelector,
 } from '../../../-private/components/form/controls/multiselect/option';
 import RemoveComponent from '../../../-private/components/form/controls/multiselect/remove';
+import SelectAllComponent from '../../../-private/components/form/controls/multiselect/select-all';
 import Chevron from '../../../-private/icons/chevron';
 import Cross from '../../../-private/icons/cross';
 
@@ -64,6 +65,19 @@ export interface ToucanFormMultiselectControlComponentSignature {
      * `@options` is simply iterated over then passed back to you as a block parameter (`multiselect.option`).
      */
     options?: string[];
+
+    /**
+     * A string to render as the "Select all" option label.  By providing this argument,
+     * you are opting into the "Select all" functionality and the checkbox will be rendered
+     * at the top of the popover.
+     *
+     * - The checkbox only appears when filtering is not active.
+     * - The checkbox will be checked when all options are selected.
+     * - If no options are selected, the checkbox will be unchecked.
+     * - If more than one option is selected, but not all of them, then the checkbox will be in the indeterminate state.
+     * - When the checkbox is in the indeterminate state, clicking the checkbox re-selects all options.
+     */
+    selectAllText?: string;
 
     /**
      * The currently selected option.
@@ -135,6 +149,7 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
   Option = OptionComponent;
   ChipComponent = ChipComponent;
   RemoveComponent = RemoveComponent;
+  SelectAllComponent = SelectAllComponent;
   popoverId = `popover--${guidFor(this)}`;
 
   /**
@@ -149,6 +164,13 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
     assert('The `:chip` block is required.', chipBlockExists);
 
     return chipBlockExists;
+  };
+
+  /**
+   * Helper for generating indexes for options.
+   */
+  generateIndex = (index: number) => {
+    return this.isSelectAllVisible ? index + 1 : index;
   };
 
   velcroMiddleware: VelcroMiddleware[] = [
@@ -174,6 +196,56 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
     }
 
     return `${this.popoverId}-${this.activeIndex}`;
+  }
+
+  /**
+   * Convenience getter for determining if our "Select all" feature
+   * is enabled.
+   */
+  get isSelectAllEnabled() {
+    return Boolean(this.args.selectAllText);
+  }
+
+  /**
+   * Helps us determine if the "Select all" option should be
+   * visible in the UI or not based on our rules above in the component
+   * argument section.
+   */
+  get isSelectAllVisible() {
+    return this.isSelectAllEnabled && this.inputValue?.length === 0;
+  }
+
+  /**
+   * Helps us determine if the "Select all" option checkbox
+   * should be checked or not.
+   */
+  get isSelectAllChecked() {
+    // We need to use this comparison method when comparing arrays
+    // as Ember's `isEqual` is only for objects.
+    // This is relatively safe as `@selected` can only contain unique values
+    // due to the business logic of re-selecting an already selected item removes
+    // it from `@selected`.
+    return (
+      JSON.stringify(this.selected?.sort()) ===
+      JSON.stringify(this.options?.sort())
+    );
+  }
+
+  /**
+   * Helps us determine if the "Select all" option checkbox
+   * should be indeterminate or not.
+   */
+  get isSelectAllIndeterminate() {
+    return (
+      this.selected?.length > 0 &&
+      // We need to use this comparison method when comparing arrays
+      // as Ember's `isEqual` is only for objects.
+      // This is relatively safe as `@selected` can only contain unique values
+      // due to the business logic of re-selecting an already selected item removes
+      // it from `@selected`.
+      JSON.stringify(this.selected?.sort()) !==
+        JSON.stringify(this.options?.sort())
+    );
   }
 
   /**
@@ -313,8 +385,63 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
       return;
     }
 
+    // The user has opted-in to the "Select all" functionality, the "Select all"
+    // option is **not** checked, and they click it.
+    // Due to this interaction, all options should be selected.
+    if (
+      this.isSelectAllEnabled &&
+      !this.inputValue &&
+      this.activeIndex === 0 &&
+      !this.isSelectAllChecked
+    ) {
+      this.args.onChange?.(this.args.options || []);
+
+      return;
+    }
+
+    // The user has opted-in to the "Select all" functionality, the "Select all"
+    // option is currently checked, and they re-click it.
+    // Due to this interaction, all selected options should be removed.
+    if (
+      this.isSelectAllEnabled &&
+      !this.inputValue &&
+      this.activeIndex === 0 &&
+      this.isSelectAllChecked
+    ) {
+      this.args.onChange?.([]);
+
+      return;
+    }
+
+    // The user has opted-in to the "Select all" functionality, the "Select all"
+    // option is currently indeterminate, and they re-click it.
+    // Due to this interaction, all options should be re-selected.
+    if (
+      this.isSelectAllEnabled &&
+      !this.inputValue &&
+      this.activeIndex === 0 &&
+      this.isSelectAllIndeterminate
+    ) {
+      this.args.onChange?.(this.args.options || []);
+
+      return;
+    }
+
     const selected = this.selected;
-    const selectedOption = this.options[this.activeIndex];
+
+    let selectedOption = this.options[this.activeIndex];
+
+    // When select all is enabled, the "Select all" item/checkbox is always the
+    // first item rendered in the list at index 0.
+    // When a user is **not** filtering, that means the "Select all" is visible
+    // and has to be accounted for.
+    // Due to that, we need to subtract 1 from our `activeIndex` so that our
+    // selected option lines up with what the user is interacting with.  Otherwise,
+    // the selected option will always be selected + 1 due to "Select all" taking
+    // up the first item in the popover.
+    if (this.isSelectAllEnabled && !this.inputValue) {
+      selectedOption = this.options[this.activeIndex - 1];
+    }
 
     assert(
       '`this.options[this.activeIndex]` was unexpectedly empty in an on change handler. If you see this, please report it as a bug to ember-toucan-core!',
@@ -455,7 +582,20 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
       // vertically through the list.
       event.preventDefault();
 
-      const activeIndex = this.args.options.length - 1;
+      let activeIndex = null;
+
+      // The "Select all" item/checkbox is always the first item rendered in the list at index 0.
+      // Due to that, our `activeIndex` needs to account for the extra option
+      // by using the array length.
+      if (this.isSelectAllEnabled) {
+        activeIndex = this.args.options.length;
+      }
+
+      // When "Select all" is not enabled, our `activeIndex` needs to subtract
+      // 1 from the array length since the index is 0-based.
+      if (!this.isSelectAllEnabled) {
+        activeIndex = this.args.options.length - 1;
+      }
 
       this.activeIndex = activeIndex;
       this.scrollActiveOptionIntoView(false);
@@ -471,10 +611,29 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
       );
       event.preventDefault();
 
-      const activeIndex =
-        this.activeIndex === this.args.options.length - 1
-          ? this.activeIndex
-          : this.activeIndex + 1;
+      let activeIndex = null;
+
+      // When select all is enabled, the "Select all" item/checkbox is always the
+      // first item rendered in the list at index 0.
+      // Due to that, we need to use the raw options array
+      // length to ensure we can navigate to the very
+      // bottom of the list properly.
+      if (this.isSelectAllEnabled) {
+        activeIndex =
+          this.activeIndex === this.args.options.length
+            ? this.activeIndex
+            : this.activeIndex + 1;
+      }
+
+      // Without the "Select all" functionality, we can
+      // safely subtract 1 from the options array length
+      // to determine which item should be active.
+      if (!this.isSelectAllEnabled) {
+        activeIndex =
+          this.activeIndex === this.args.options.length - 1
+            ? this.activeIndex
+            : this.activeIndex + 1;
+      }
 
       this.activeIndex = activeIndex;
 
