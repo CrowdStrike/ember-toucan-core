@@ -1,8 +1,11 @@
 # Radio
 
-Provides a Toucan-styled [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio). If you are building forms, you may be interested in the [RadioField](./radio-field) component instead.
+Provides a Toucan-styled [radio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio). 
+If you are building forms, you may be interested in the [RadioField](./radio-field) component instead.
 
 ## Value
+
+Optional.
 
 To set the `value` attribute of the radio, provide `@value`. This is required.
 
@@ -12,6 +15,8 @@ To set the `value` attribute of the radio, provide `@value`. This is required.
 ```
 
 ## Checked State
+
+Optional.
 
 To set the `checked` attribute of the radio, provide `@isChecked`.
 
@@ -26,6 +31,8 @@ assert.dom('[data-radio-2]').isNotChecked();
 ```
 
 ## onChange
+
+Optional.
 
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
@@ -51,6 +58,8 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the radio.
 
 ```hbs
@@ -58,6 +67,8 @@ Set the `@isDisabled` argument to disable the radio.
 ```
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the radio in the read only state.
 

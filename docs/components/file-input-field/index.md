@@ -2,12 +2,6 @@
 
 Provides an underlying `<input type="file">` element building on top of the Field component.
 
-## Accepts
-
-Optional.
-
-Used to specify the types of files allowed. [See related documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept).
-
 ## Label
 
 Required.
@@ -53,6 +47,13 @@ Provide a string to `@deleteLabel` to render the accessible text (screenread-onl
 Required.
 
 Provide trigger text for the FileInputField (aka `Select Files`) via `@trigger`.
+
+## Accepts
+
+Optional.
+
+Used to specify the types of files allowed. 
+[See related documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept).
 
 ## Hint
 
@@ -101,19 +102,22 @@ Optional.
 
 Provide an array of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects to the File input via `@files`.
 
-**Note:** To make things easier, the `@files` argument is an array. This makes it convenient to use existing Array methods like `find` and `filter`.
+**Note:** To make things easier, the `@files` argument is an array. 
+This makes it convenient to use existing Array methods like `find` and `filter`.
 
 ## Multiple
 
 Optional.
 
-If true, allows users to upload multiple files. If false, the `multiple` attribute is not added to the underlying input.
+If true, allows users to upload multiple files. 
+If false, the `multiple` attribute is not added to the underlying input.
 
 ## Value and onChange
 
-Optional
+Optional.
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
+To tie into the input event, provide `@onChange`. 
+`@onChange` will return two arguments:
 
 1. the list of files selected
 2. the raw FileEvent
@@ -147,21 +151,30 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the `<input type="file">`.
 
 ## Read Only State
+
+Optional.
 
 Set the `@isReadOnly` argument to put the input in the read only state.
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. Modifiers can also be added directly to the input as shown in the demo.
+Optional.
+
+Consumers have direct access to the underlying [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), so all attributes are supported. 
+Modifiers can also be added directly to the input as shown in the demo.
 
 ## Test Selectors
 
 ### Root Element
 
-Provide a custom selector via `@rootTestSelector`. This test selector will be used as the value for the `data-root-field` attribute. The Field can be targeted via:
+Provide a custom selector via `@rootTestSelector`. 
+This test selector will be used as the value for the `data-root-field` attribute. 
+The Field can be targeted via:
 
 ```hbs
 // in a test: assert.dom('[data-root-field="example"]');

@@ -1,8 +1,11 @@
 # Button
 
-Buttons are clickable elements used primarily for actions. Button content expresses what action will occur when the user interacts with it.
+Buttons are clickable elements used primarily for actions. 
+Button content expresses what action will occur when the user interacts with it.
 
 ## Variants
+
+Optional.
 
 You can customize the appearance of the button with the `@variant` component argument.
 
@@ -17,6 +20,8 @@ You can customize the appearance of the button with the `@variant` component arg
 
 ## Handling Clicks
 
+Optional.
+
 To handle click events use the `@onClick` component argument.
 
 ```hbs
@@ -25,7 +30,10 @@ To handle click events use the `@onClick` component argument.
 
 ## Disabled State
 
-`aria-disabled` is used over the `disabled` attribute so that screenreaders can still focus the element. To set the button as disabled, use `@isDisabled`.
+Optional.
+
+`aria-disabled` is used over the `disabled` attribute so that screenreaders can still focus the element. 
+To set the button as disabled, use `@isDisabled`.
 
 ```hbs
 <Button @isDisabled={{true}}>Disabled</Button>
@@ -89,7 +97,10 @@ A disabled named block is provided so that users can optionally render additiona
 
 ## Loading State
 
-Button exposes an `@isLoading` component argument. The button content will be only visible to screenreaders.
+Optional.
+
+Button exposes an `@isLoading` component argument. 
+The button content will be only visible to screenreaders.
 
 ```hbs
 <Button @isLoading={{true}}>Loading…</Button>

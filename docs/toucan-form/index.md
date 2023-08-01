@@ -5,7 +5,8 @@ order: 1
 
 # Toucan Form
 
-Want to use Toucan Core components with forms without having to build the form logic yourself? The Toucan Form add-on uses [ember-headless-form](https://ember-headless-form.pages.dev/) and provides yielded Toucan Core components so you can spend less time building form logic and more time using our building blocks to build features.
+Want to use Toucan Core components with forms without having to build the form logic yourself? 
+The Toucan Form add-on uses [ember-headless-form](https://ember-headless-form.pages.dev/) and provides yielded Toucan Core components so you can spend less time building form logic and more time using our building blocks to build features.
 
 ## Installation
 

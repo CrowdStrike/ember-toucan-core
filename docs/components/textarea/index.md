@@ -1,8 +1,11 @@
 # Textarea
 
-Provides a Toucan-styled [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea). If you are building forms, you may be interested in the [TextareaField](./textarea-field) component instead.
+Provides a Toucan-styled [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea). 
+If you are building forms, you may be interested in the [TextareaField](./textarea-field) component instead.
 
 ## Value
+
+Optional.
 
 To set the `value` attribute of the `<textarea>`, provide `@value`.
 
@@ -12,7 +15,10 @@ To set the `value` attribute of the `<textarea>`, provide `@value`.
 
 ## onChange
 
-To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
+Optional.
+
+To tie into the input event, provide `@onChange`. 
+`@onChange` will return two arguments:
 
 1. the value from the target
 2. the raw event object
@@ -42,6 +48,8 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the textarea.
 
 ```hbs
@@ -50,6 +58,8 @@ Set the `@isDisabled` argument to disable the textarea.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the textarea in the read only state.
 
 ```hbs
@@ -57,6 +67,8 @@ Set the `@isReadOnly` argument to put the textarea in the read only state.
 ```
 
 ## Error State
+
+Optional.
 
 Set the `@hasError` argument to apply an error box shadow to the textarea.
 

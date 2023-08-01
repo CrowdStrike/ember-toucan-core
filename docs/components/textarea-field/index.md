@@ -99,6 +99,8 @@ Provide a string or array of strings to `@error` to render the text into the Err
 
 ## Value and onChange
 
+Optional.
+
 To tie into the input event, provide `@onChange`. `@onChange` will return two arguments:
 
 1. the value from the target
@@ -132,13 +134,19 @@ export default class extends Component {
 
 ## Disabled State
 
+Optional.
+
 Set the `@isDisabled` argument to disable the textarea.
 
 ## Read Only State
 
+Optional.
+
 Set the `@isReadOnly` argument to put the textarea in the read only state.
 
 ## Attributes and Modifiers
+
+Optional.
 
 Consumers have direct access to the underlying [textarea element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea), so all attributes are supported. Modifiers can also be added directly to the textarea as shown in the demo.
 

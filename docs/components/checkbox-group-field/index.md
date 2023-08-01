@@ -1,10 +1,13 @@
 # Checkbox Group Field
 
-Provides a checkbox group to be used within forms. It yields [CheckboxFields](./checkbox-field) back to the consumer so they can render as many checkboxes as needed with built-in state tracking for the selected values.
+Provides a checkbox group to be used within forms. 
+It yields [CheckboxFields](./checkbox-field) back to the consumer so they can render as many checkboxes as needed with built-in state tracking for the selected values.
 
 ## Yielded Items
 
-- `CheckboxField`: An underlying [CheckboxField](./checkbox-field) component. All arguments and attributes of CheckboxField can be supplied (e.g., `@isDisabled`, `@hint`, etc.). To give each option a unique value, use the `@value` argument.
+- `CheckboxField`: An underlying [CheckboxField](./checkbox-field) component. 
+All arguments and attributes of CheckboxField can be supplied (e.g., `@isDisabled`, `@hint`, etc.). 
+To give each option a unique value, use the `@value` argument.
 
 ## Label
 
@@ -78,7 +81,9 @@ Provide a string to the `@hint` component argument or content to `:hint` named b
 
 ## Error
 
-Optional. Provide a string to `@error` to render the text into the Error section of the fieldset.
+Optional. 
+
+Provide a string to `@error` to render the text into the Error section of the fieldset.
 
 ## Value and onChange
 
@@ -87,7 +92,9 @@ To tie into the input event when a checkbox is clicked, provide `@onChange`. `@o
 1. an array containing the selected values
 2. the raw event object
 
-A `@value` argument to the CheckboxGroupField is used to determine which of the checkboxes is currently selected. It does so by comparing `@value` provided to the CheckboxGroupField to each `@value` of the checkbox. When an `@onChange` event occurs, it's most common to update the `@value` argument to the newly selected values as shown in the example below.
+A `@value` argument to the CheckboxGroupField is used to determine which of the checkboxes is currently selected. 
+It does so by comparing `@value` provided to the CheckboxGroupField to each `@value` of the checkbox. 
+When an `@onChange` event occurs, it's most common to update the `@value` argument to the newly selected values as shown in the example below.
 
 ```hbs
 <Form::Fields::CheckboxGroup
@@ -118,6 +125,8 @@ export default class extends Component {
 ```
 
 ## Disabled State
+
+Optional.
 
 ### Fieldset
 
@@ -159,6 +168,8 @@ To disable individual checkbox fields, set the `@isDisabled` argument directly o
 
 ## Read Only State
 
+Optional.
+
 ### Fieldset
 
 To set all checkbox group options to readonly, use the `@isReadOnly` argument directly on the Checkbox Group.
@@ -199,7 +210,10 @@ Individual checkboxes can be set to read only by setting the `@isReadOnly` argum
 
 ## Attributes and Modifiers
 
-Consumers have direct access to the underlying [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox), so all attributes are supported. Modifiers can also be added directly to individual radio fields.
+Optional.
+
+Consumers have direct access to the underlying [checkbox element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox), so all attributes are supported. 
+Modifiers can also be added directly to individual radio fields.
 
 ## All UI States
 
