@@ -1,3 +1,4 @@
+import { tracked } from '@glimmer/tracking';
 import {
   click,
   fillIn,
@@ -1499,6 +1500,134 @@ module('Integration | Component | Multiselect', function (hooks) {
     await click('[data-multiselect]');
 
     assert.dom('[role="option"]').exists({ count: 2 });
+  });
+
+  test('it renders the `Select all` option when provided with `@selectAllText`', async function (assert) {
+    await render(<template>
+      <Multiselect
+        @options={{testColors}}
+        @noResultsText="No results"
+        @selectAllText="Select all"
+        data-multiselect
+      >
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
+
+    await click('[data-multiselect]');
+
+    assert.dom('[data-multiselect-select-all-option]').exists();
+    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
+
+    assert.dom('[data-multiselect-select-all-checkbox]').exists();
+  });
+
+  test('it handles all possible state changes when the `Select all` option is interacted with', async function (assert) {
+    assert.expect(22);
+
+    class State {
+      @tracked selected: string[] = [];
+    }
+
+    let state = new State();
+
+    let handleChange = (values: string[]) => {
+      state.selected = values;
+      assert.step(values?.length > 0 ? values.join(',') : 'empty');
+    };
+
+    await render(<template>
+      <Multiselect
+        @selected={{state.selected}}
+        @options={{testColors}}
+        @onChange={{handleChange}}
+        @noResultsText="No results"
+        @selectAllText="Select all"
+        data-multiselect
+      >
+        <:chip as |chip|>
+          <chip.Chip>
+            {{chip.option}}
+            <chip.Remove @label="Remove" />
+          </chip.Chip>
+        </:chip>
+
+        <:default as |multiselect|>
+          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+        </:default>
+      </Multiselect>
+    </template>);
+
+    // Open the popover
+    await click('[data-multiselect]');
+
+    // Verify default state of `Select all` is not checked
+    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
+    assert.dom('[data-multiselect-select-all-checkbox]').isNotChecked();
+
+    // Verify the list item has the proper default aria-selected attribute of false
+    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
+
+    // Unchecked -> checked should make all options selected
+    await click('[data-multiselect-select-all-option]');
+
+    // Verify `Select all` checkbox state
+    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
+    assert.dom('[data-multiselect-select-all-checkbox]').isChecked();
+
+    // Verify the list item has the proper aria-selected attribute of true, since it's selected
+    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'true');
+
+    assert.verifySteps(['blue,red']);
+
+    // Remove the "red" option by selecting it
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+
+    // Our selected item should now only be "blue" since we removed "red" above
+    assert.verifySteps(['blue']);
+
+    // Verify the `Select all` checkbox is now indeterminate
+    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', true);
+
+    // Verify the list item has the proper aria-selected attribute of false, since the
+    // checkbox is in the indeterminate state
+    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
+
+    // When the `Select all` checkbox is indeterminate, clicking it should re-select all options
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+
+    assert.verifySteps(['blue,red']);
+
+    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
+    assert.dom('[data-multiselect-select-all-checkbox]').isChecked();
+
+    // Verify the list item has the proper aria-selected attribute of true, since it's selected
+    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'true');
+
+    // Re-clicking the `Select all` checkbox when it's checked should un-check all options
+    // Go back to the top and select it
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Home');
+    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+
+    assert.verifySteps(['empty']);
+
+    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
+    assert.dom('[data-multiselect-select-all-checkbox]').isNotChecked();
+
+    // Verify the list item has the proper aria-selected attribute of false, since it's
+    // no longer selected
+    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
   });
 
   test('it throws an assertion error if no `:chip` block is provided', async function (assert) {

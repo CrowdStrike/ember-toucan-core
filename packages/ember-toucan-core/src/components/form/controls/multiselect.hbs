@@ -1,9 +1,5 @@
 {{#if
-  (this.assertRequiredBlocksExist
-    (hash
-      chipBlockExists=(has-block "chip")
-    )
-  )
+  (this.assertRequiredBlocksExist (hash chipBlockExists=(has-block "chip")))
 }}
   <Velcro
     @middleware={{this.velcroMiddleware}}
@@ -120,23 +116,40 @@
         {{velcro.loop}}
       >
         {{#if this.options}}
+          {{#if this.isSelectAllVisible}}
+            <this.SelectAllComponent
+              @index={{0}}
+              @isActive={{(this.isEqual 0 this.activeIndex)}}
+              @isDisabled={{@isDisabled}}
+              @isSelected={{this.isSelectAllChecked}}
+              @isIndeterminate={{this.isSelectAllIndeterminate}}
+              @onClick={{this.onChange}}
+              @onMouseover={{(fn this.onOptionMouseover 0)}}
+              @popoverId={{this.popoverId}}
+            >
+              {{@selectAllText}}
+            </this.SelectAllComponent>
+          {{/if}}
+
           {{#each this.options as |option index|}}
-            {{yield
-              (hash
-                Option=(component
-                  (ensure-safe-component this.Option)
-                  isActive=(this.isEqual index this.activeIndex)
-                  isDisabled=@isDisabled
-                  isSelected=(this.isSelected option)
-                  isReadOnly=@isReadOnly
-                  onClick=(fn this.onChange index)
-                  onMouseover=(fn this.onOptionMouseover index)
-                  popoverId=this.popoverId
-                  index=index
+            {{#let (this.generateIndex index) as |generatedIndex|}}
+              {{yield
+                (hash
+                  Option=(component
+                    (ensure-safe-component this.Option)
+                    isActive=(this.isEqual generatedIndex this.activeIndex)
+                    isDisabled=@isDisabled
+                    isSelected=(this.isSelected option)
+                    isReadOnly=@isReadOnly
+                    onClick=this.onChange
+                    onMouseover=(fn this.onOptionMouseover generatedIndex)
+                    popoverId=this.popoverId
+                    index=(if this.isSelectAllEnabled generatedIndex index)
+                  )
+                  option=option
                 )
-                option=option
-              )
-            }}
+              }}
+            {{/let}}
           {{/each}}
         {{else}}
           <li

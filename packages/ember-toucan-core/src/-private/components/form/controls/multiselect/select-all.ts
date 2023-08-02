@@ -1,7 +1,9 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-interface ToucanFormMultiselectOptionControlComponentSignature {
+import { className } from './option';
+
+interface ToucanFormMultiselectSelectAllControlComponentSignature {
   Args: {
     /**
      * When true, means that the option is currently hovered over with a mouse
@@ -13,6 +15,11 @@ interface ToucanFormMultiselectOptionControlComponentSignature {
      * Sets the underlying checkbox element to disabled.
      */
     isDisabled?: boolean;
+
+    /**
+     * Sets the undelrying checkbox to the indeterminate state.
+     */
+    isIndeterminate?: boolean;
 
     /**
      * Sets the underlying checkbox element to readonly.
@@ -56,11 +63,9 @@ interface ToucanFormMultiselectOptionControlComponentSignature {
   Element: HTMLLIElement;
 }
 
-export const className = 'toucan-form-select-option-control';
-
-export const selector = `.${className}`;
-
-export default class ToucanFormMultiselectOptionControlComponent extends Component<ToucanFormMultiselectOptionControlComponentSignature> {
+export default class ToucanFormMultiselectSelectAllControlComponent extends Component<ToucanFormMultiselectSelectAllControlComponentSignature> {
+  // NOTE: This shares the className with the option component
+  //       so that both listbox items have a common selector.
   className = className;
 
   get styles() {
