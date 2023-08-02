@@ -1,5 +1,15 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.3.1
+
+### Patch Changes
+
+- [#230](https://github.com/CrowdStrike/ember-toucan-core/pull/230) [`d3b7d42`](https://github.com/CrowdStrike/ember-toucan-core/commit/d3b7d42d150cae765354cc8e3548e4255d3967db) Thanks [@joelamb](https://github.com/joelamb)! - horizontally centre disabled button label
+
+- [#241](https://github.com/CrowdStrike/ember-toucan-core/pull/241) [`1eda28b`](https://github.com/CrowdStrike/ember-toucan-core/commit/1eda28b99b5eedf7611225f5c726c59cc29191e7) Thanks [@clintcs](https://github.com/clintcs)! - Improve documentation consistency.
+
+- [#244](https://github.com/CrowdStrike/ember-toucan-core/pull/244) [`3312a38`](https://github.com/CrowdStrike/ember-toucan-core/commit/3312a3868d50adc826bd0f7b9799fba863bb8121) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Adds "Select all" functionality to the `Multiselect` via a new component argument. Provide `@selectAllText` to opt-in to the functionality.
+
 ## 0.3.0
 
 ### Minor Changes
