@@ -9,7 +9,7 @@
     {{yield to="loading"}}
     <span class="sr-only" data-loading>{{yield}}</span>
   {{else if @isDisabled}}
-    <span class="flex flex-grow items-center gap-x-2">
+    <span class="flex flex-grow items-center justify-center gap-x-2">
       {{yield}}
       {{yield to="disabled"}}
     </span>
