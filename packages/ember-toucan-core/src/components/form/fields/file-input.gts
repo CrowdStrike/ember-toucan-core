@@ -12,7 +12,12 @@ import FileList from '../file-input/list';
 
 import type { AssertBlockOrArg } from '../../../-private/assert-block-or-argument-exists';
 import type { ErrorMessage } from '../../../-private/types';
-import type { ToucanFormControlsFileInputComponentSignature } from '../controls/file-input';
+import type {
+  FileEvent as FileInputFileEvent,
+  ToucanFormControlsFileInputComponentSignature,
+} from '../controls/file-input';
+
+export type FileEvent = FileInputFileEvent;
 
 export interface ToucanFormFileInputFieldComponentSignature {
   Element: HTMLInputElement;
