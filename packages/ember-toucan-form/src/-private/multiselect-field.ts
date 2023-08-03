@@ -3,9 +3,7 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import type { HeadlessFormBlock, UserData } from './types';
-import type {
-  ToucanFormMultiselectFieldComponentSignature as BaseMultiselectFieldSignature,
-} from '@crowdstrike/ember-toucan-core/components/form/fields/multiselect';
+import type { ToucanFormMultiselectFieldComponentSignature as BaseMultiselectFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/multiselect';
 import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
 
 export interface ToucanFormMultiselectFieldComponentSignature<
@@ -13,10 +11,7 @@ export interface ToucanFormMultiselectFieldComponentSignature<
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>
 > {
   Element: HTMLInputElement;
-  Args: Omit<
-    BaseMultiselectFieldSignature['Args'],
-    'error' | 'onChange'
-  > & {
+  Args: Omit<BaseMultiselectFieldSignature['Args'], 'error' | 'onChange'> & {
     /**
      * The name of your field, which must match a property of the `@data` passed to the form
      */

@@ -39,7 +39,7 @@
     "@changesets/cli": "^2.26.0",
     "concurrently": "^8.0.0",
     "pnpm-sync-dependencies-meta-injected": "^0.0.9",
-    "prettier": "^2.8.3",
+    "prettier": "^3.0.1",
     "turbo": "^1.8.8"
   },
   "pnpm": {
