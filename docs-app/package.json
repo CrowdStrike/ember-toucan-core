@@ -25,6 +25,9 @@
     "test:ember": "ember test",
     "_syncPnpm": "pnpm sync-dependencies-meta-injected"
   },
+  "devDependencyComments": {
+    "@embroider/core": "Had to pin to v2.0.2 as the other versions of embroider break our builds due to the beta-y nature of releases of embroider. We will upgrade to the latest version as part of https://github.com/CrowdStrike/ember-toucan-core/issues/210"
+  },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/eslint-parser": "^7.19.1",
@@ -36,7 +39,7 @@
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^3.1.0",
     "@embroider/compat": "^2.0.0",
-    "@embroider/core": "^2.0.0",
+    "@embroider/core": "2.0.2",
     "@embroider/webpack": "^2.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
