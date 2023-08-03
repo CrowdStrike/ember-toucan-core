@@ -1,4 +1,7 @@
 import Component from '@glimmer/component';
+import { hash } from '@ember/helper';
+
+import { HeadlessForm } from 'ember-headless-form';
 
 import AutocompleteFieldComponent from '../-private/autocomplete-field';
 import CheckboxFieldComponent from '../-private/checkbox-field';
@@ -15,12 +18,12 @@ import type { HeadlessFormComponentSignature } from 'ember-headless-form/compone
 
 type HeadlessFormArguments<
   DATA extends UserData,
-  SUBMISSION_VALUE
+  SUBMISSION_VALUE,
 > = HeadlessFormComponentSignature<DATA, SUBMISSION_VALUE>['Args'];
 
 export interface ToucanFormComponentSignature<
   DATA extends UserData,
-  SUBMISSION_VALUE
+  SUBMISSION_VALUE,
 > {
   Element: HTMLFormElement;
   Args: HeadlessFormArguments<DATA, SUBMISSION_VALUE>;
@@ -64,14 +67,14 @@ export interface ToucanFormComponentSignature<
          * View ember-headless-form's documentation for more information.
          */
         reset: () => void;
-      }
+      },
     ];
   };
 }
 
 export default class ToucanFormComponent<
   DATA extends UserData,
-  SUBMISSION_VALUE
+  SUBMISSION_VALUE,
 > extends Component<ToucanFormComponentSignature<DATA, SUBMISSION_VALUE>> {
   AutocompleteFieldComponent = AutocompleteFieldComponent<DATA>;
   CheckboxComponent = CheckboxFieldComponent<DATA>;
@@ -87,4 +90,34 @@ export default class ToucanFormComponent<
 
     return validateOn || 'focusout';
   }
+
+  <template>
+    <HeadlessForm
+      @data={{@data}}
+      @dataMode={{@dataMode}}
+      @validateOn={{this.validateOn}}
+      @revalidateOn={{@revalidateOn}}
+      @validate={{@validate}}
+      @onSubmit={{@onSubmit}}
+      @onInvalid={{@onInvalid}}
+      ...attributes
+      as |form|
+    >
+      {{yield
+        (hash
+          Autocomplete=(component this.AutocompleteFieldComponent form=form)
+          Checkbox=(component this.CheckboxComponent form=form)
+          CheckboxGroup=(component this.CheckboxGroupComponent form=form)
+          Field=form.Field
+          FileInput=(component this.FileInputFieldComponent form=form)
+          Input=(component this.InputFieldComponent form=form)
+          Multiselect=(component this.MultiselectFieldComponent form=form)
+          RadioGroup=(component this.RadioGroupFieldComponent form=form)
+          Textarea=(component this.TextareaFieldComponent form=form)
+          reset=form.reset
+          submit=form.submit
+        )
+      }}
+    </HeadlessForm>
+  </template>
 }

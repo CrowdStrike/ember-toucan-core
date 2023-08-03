@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-ts';
 import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
+import { glimmerTemplateTag } from 'rollup-plugin-glimmer-template-tag';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -26,11 +27,15 @@ export default {
     // not everything in publicEntrypoints necessarily needs to go here.
     addon.appReexports(['components/**/*.js']),
 
+    // compile <template> tag into plain JS
+    glimmerTemplateTag({ preprocessOnly: true }),
+
     // compile TypeScript to latest JavaScript, including Babel transpilation
     typescript({
       transpiler: 'babel',
       browserslist: false,
-      transpileOnly: false,
+      // Reasoning for this being set to true: https://github.com/NullVoxPopuli/rollup-plugin-glimmer-template-tag/#configure-rollup-plugin-ts-ts-only
+      transpileOnly: true,
     }),
 
     // Follow the V2 Addon rules about dependencies. Your code can import from
