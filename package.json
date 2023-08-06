@@ -13,7 +13,7 @@
   },
   "volta": {
     "node": "18.17.0",
-    "pnpm": "8.6.11"
+    "pnpm": "8.6.12"
   },
   "license": "MIT",
   "author": "CrowdStrike UX Team",
