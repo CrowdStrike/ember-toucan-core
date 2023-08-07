@@ -1,0 +1,186 @@
+import Component from '@glimmer/component';
+import { assert } from '@ember/debug';
+import { hash } from '@ember/helper';
+import { action } from '@ember/object';
+
+import AutocompleteField from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
+
+import type { HeadlessFormBlock, UserData } from './types';
+import type { ToucanFormAutocompleteFieldComponentSignature as BaseAutocompleteFieldSignature } from '@crowdstrike/ember-toucan-core/components/form/fields/autocomplete';
+import type { FormData, FormKey, ValidationError } from 'ember-headless-form';
+
+export interface ToucanFormAutocompleteFieldComponentSignature<
+  DATA extends UserData,
+  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>,
+> {
+  Element: HTMLInputElement;
+  Args: Omit<BaseAutocompleteFieldSignature['Args'], 'error' | 'onChange'> & {
+    /**
+     * The name of your field, which must match a property of the `@data` passed to the form
+     */
+    name: KEY;
+
+    /*
+     * @internal
+     */
+    form: HeadlessFormBlock<DATA>;
+  };
+  Blocks: BaseAutocompleteFieldSignature['Blocks'];
+}
+
+export default class ToucanFormAutocompleteFieldComponent<
+  DATA extends UserData,
+  KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>,
+> extends Component<ToucanFormAutocompleteFieldComponentSignature<DATA, KEY>> {
+  hasOnlyLabelBlock = (hasLabel: boolean, hasHint: boolean) =>
+    hasLabel && !hasHint;
+  hasHintAndLabelBlocks = (hasLabel: boolean, hasHint: boolean) =>
+    hasLabel && hasHint;
+  hasLabelArgAndHintBlock = (hasLabel: string | undefined, hasHint: boolean) =>
+    hasLabel && hasHint;
+
+  mapErrors = (errors?: ValidationError[]) => {
+    if (!errors) {
+      return;
+    }
+
+    // @todo we need to figure out what to do when message is undefined
+    return errors.map((error) => error.message ?? error.type);
+  };
+
+  @action
+  assertSelected(value: unknown) {
+    assert(
+      `A string or \`undefined\` is expected for ${String(
+        this.args.name,
+      )}, but you passed ${typeof value}`,
+      typeof value === 'string' || value === undefined,
+    );
+
+    return value;
+  }
+
+  <template>
+    {{!
+  Regarding Conditionals
+
+  This looks really messy, but Autocomplete exposes named blocks; HOWEVER,
+  we cannot conditionally render named blocks due to https://github.com/emberjs/rfcs/issues/735.
+
+  We *can* conditionally render components though, based on the blocks and argument combinations
+  users provide us.  This is very brittle, but until https://github.com/emberjs/rfcs/issues/735
+  is resolved and a solution is found, this appears to be the only way to truly expose
+  conditional named blocks.
+
+  ---
+
+  Regarding glint-expect-error
+
+  "@onChange" of the component expects a string or object typed value, but field.setValue is generic,
+  accepting anything that DATA[KEY] could be. Similar case with "@selected", but there casting is easy.
+}}
+    <@form.Field @name={{@name}} as |field|>
+      {{#if (this.hasOnlyLabelBlock (has-block "label") (has-block "hint"))}}
+        <AutocompleteField
+          @contentClass={{@contentClass}}
+          @error={{this.mapErrors field.rawErrors}}
+          @hint={{@hint}}
+          @isDisabled={{@isDisabled}}
+          @isReadOnly={{@isReadOnly}}
+          @label={{@label}}
+          @noResultsText={{@noResultsText}}
+          {{! @glint-expect-error }}
+          @onChange={{field.setValue}}
+          @onFilter={{@onFilter}}
+          @options={{@options}}
+          @rootTestSelector={{@rootTestSelector}}
+          @selected={{this.assertSelected field.value}}
+          name={{@name}}
+          ...attributes
+        >
+          <:label>{{yield to="label"}}</:label>
+          <:default as |autocomplete|>
+            {{yield
+              (hash Option=autocomplete.Option option=autocomplete.option)
+            }}
+          </:default>
+        </AutocompleteField>
+      {{else if
+        (this.hasHintAndLabelBlocks (has-block "label") (has-block "hint"))
+      }}
+        <AutocompleteField
+          @contentClass={{@contentClass}}
+          @error={{this.mapErrors field.rawErrors}}
+          @hint={{@hint}}
+          @isDisabled={{@isDisabled}}
+          @isReadOnly={{@isReadOnly}}
+          @label={{@label}}
+          @noResultsText={{@noResultsText}}
+          {{! @glint-expect-error }}
+          @onChange={{field.setValue}}
+          @onFilter={{@onFilter}}
+          @options={{@options}}
+          @rootTestSelector={{@rootTestSelector}}
+          @selected={{this.assertSelected field.value}}
+          name={{@name}}
+          ...attributes
+        >
+          <:label>{{yield to="label"}}</:label>
+          <:hint>{{yield to="hint"}}</:hint>
+          <:default as |autocomplete|>
+            {{yield
+              (hash Option=autocomplete.Option option=autocomplete.option)
+            }}
+          </:default>
+        </AutocompleteField>
+      {{else if (this.hasLabelArgAndHintBlock @label (has-block "hint"))}}
+        <AutocompleteField
+          @contentClass={{@contentClass}}
+          @error={{this.mapErrors field.rawErrors}}
+          @hint={{@hint}}
+          @isDisabled={{@isDisabled}}
+          @isReadOnly={{@isReadOnly}}
+          @label={{@label}}
+          @noResultsText={{@noResultsText}}
+          {{! @glint-expect-error }}
+          @onChange={{field.setValue}}
+          @onFilter={{@onFilter}}
+          @options={{@options}}
+          @rootTestSelector={{@rootTestSelector}}
+          @selected={{this.assertSelected field.value}}
+          name={{@name}}
+          ...attributes
+        >
+          <:hint>{{yield to="hint"}}</:hint>
+          <:default as |autocomplete|>
+            {{yield
+              (hash Option=autocomplete.Option option=autocomplete.option)
+            }}
+          </:default>
+        </AutocompleteField>
+      {{else}}
+        {{! Argument-only case }}
+        <AutocompleteField
+          @contentClass={{@contentClass}}
+          @error={{this.mapErrors field.rawErrors}}
+          @hint={{@hint}}
+          @isDisabled={{@isDisabled}}
+          @isReadOnly={{@isReadOnly}}
+          @label={{@label}}
+          @noResultsText={{@noResultsText}}
+          {{! @glint-expect-error }}
+          @onChange={{field.setValue}}
+          @onFilter={{@onFilter}}
+          @options={{@options}}
+          @rootTestSelector={{@rootTestSelector}}
+          @selected={{this.assertSelected field.value}}
+          name={{@name}}
+          ...attributes
+          as |autocomplete|
+        >
+          {{yield (hash Option=autocomplete.Option option=autocomplete.option)}}
+        </AutocompleteField>
+      {{/if}}
+    </@form.Field>
+  </template>
+}
