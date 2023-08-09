@@ -158,7 +158,6 @@ export default class ToucanFormInputFieldComponent extends Component<ToucanFormI
               field.errorId
             }}"
             aria-invalid={{if @error "true"}}
-            class="w-full"
             @isDisabled={{@isDisabled}}
             @isReadOnly={{@isReadOnly}}
             @value={{@value}}

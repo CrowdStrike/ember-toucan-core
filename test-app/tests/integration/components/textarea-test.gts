@@ -16,13 +16,13 @@ module('Integration | Component | Textarea', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').hasTagName('textarea');
-    assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
-    assert.dom('[data-textarea]').hasClass('shadow-focusable-outline');
-    assert.dom('[data-textarea]').doesNotHaveClass('text-disabled');
-    assert.dom('[data-textarea]').doesNotHaveClass('shadow-error-outline');
+    assert.dom('[data-container]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-container]').hasClass('shadow-focusable-outline');
+    assert.dom('[data-container]').doesNotHaveClass('text-disabled');
+    assert.dom('[data-container]').doesNotHaveClass('shadow-error-outline');
     assert
-      .dom('[data-textarea]')
-      .doesNotHaveClass('focus:shadow-error-focus-outline');
+      .dom('[data-container]')
+      .doesNotHaveClass('focus-within:shadow-error-focus-outline');
   });
 
   test('it disables the textarea using `@isDisabled`', async function (assert) {
@@ -33,9 +33,9 @@ module('Integration | Component | Textarea', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').isDisabled();
-    assert.dom('[data-textarea]').hasClass('text-disabled');
+    assert.dom('[data-container]').hasClass('text-disabled');
     assert
-      .dom('[data-textarea]')
+      .dom('[data-container]')
       .doesNotHaveClass('text-titles-and-attributes');
   });
 
@@ -48,12 +48,12 @@ module('Integration | Component | Textarea', function (hooks) {
 
     assert.dom('[data-textarea]').hasAttribute('readonly');
 
-    assert.dom('[data-textarea]').hasClass('shadow-read-only-outline');
-    assert.dom('[data-textarea]').hasClass('bg-surface-xl');
-    assert.dom('[data-textarea]').hasNoClass('bg-overlay-1');
-    assert.dom('[data-textarea]').hasNoClass('text-disabled');
-    assert.dom('[data-textarea]').hasNoClass('shadow-error-outline');
-    assert.dom('[data-textarea]').hasNoClass('shadow-focusable-outline');
+    assert.dom('[data-container]').hasClass('shadow-read-only-outline');
+    assert.dom('[data-container]').hasClass('bg-surface-xl');
+    assert.dom('[data-container]').hasNoClass('bg-overlay-1');
+    assert.dom('[data-container]').hasNoClass('text-disabled');
+    assert.dom('[data-container]').hasNoClass('shadow-error-outline');
+    assert.dom('[data-container]').hasNoClass('shadow-focusable-outline');
   });
 
   test('it spreads attributes to the underlying textarea', async function (assert) {
@@ -108,8 +108,10 @@ module('Integration | Component | Textarea', function (hooks) {
       <TextareaControl @hasError={{true}} data-textarea />
     </template>);
 
-    assert.dom('[data-textarea]').hasClass('shadow-error-outline');
-    assert.dom('[data-textarea]').hasClass('focus:shadow-error-focus-outline');
-    assert.dom('[data-textarea]').doesNotHaveClass('shadow-focusable-outline');
+    assert.dom('[data-container]').hasClass('shadow-error-outline');
+    assert
+      .dom('[data-container]')
+      .hasClass('focus-within:shadow-error-focus-outline');
+    assert.dom('[data-container]').doesNotHaveClass('shadow-focusable-outline');
   });
 });

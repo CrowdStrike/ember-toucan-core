@@ -63,7 +63,7 @@ export default class ToucanFormControlsInputComponent extends Component<ToucanFo
 
   <template>
     <input
-      class="focus:outline-none block rounded-sm p-1 transition-shadow
+      class="focus:outline-none block rounded-sm py-1 transition-shadow w-full px-2
         {{this.styles}}"
       disabled={{@isDisabled}}
       readonly={{@isReadOnly}}
