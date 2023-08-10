@@ -4,6 +4,8 @@ import { module, test } from 'qunit';
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+import { MultiselectPageObject } from '@crowdstrike/ember-toucan-core/test-support';
+
 const options = ['blue', 'red', 'yellow'];
 
 interface TestData {
@@ -12,6 +14,10 @@ interface TestData {
 
 module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
   setupRenderingTest(hooks);
+
+  let multiselectPageObject = new MultiselectPageObject(
+    '[data-multiselect-input]',
+  );
 
   test('it renders `@label` and `@hint` component arguments', async function (assert) {
     const data: TestData = {
@@ -26,7 +32,7 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
           @name="selection"
           @noResultsText="No results"
           @options={{options}}
-          data-multiselect
+          data-multiselect-input
         >
           <:chip as |chip|>
             <chip.Chip>
@@ -73,7 +79,7 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
           </:default>
         </form.Multiselect>
       </ToucanForm>
-    </template> );
+    </template>);
 
     assert.dom('[data-label-block]').exists();
 
@@ -168,7 +174,7 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
           @noResultsText="No results"
           @options={{options}}
           @selectAllText="Select all"
-          data-multiselect
+          data-multiselect-input
         >
           <:chip as |chip|>
             <chip.Chip>
@@ -184,9 +190,12 @@ module('Integration | Component | ToucanForm | Multiselect', function (hooks) {
       </ToucanForm>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[data-multiselect-select-all-option]').exists();
-    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    assert.dom(multiselectPageObject.selectAll).exists();
+    assert.dom(multiselectPageObject.selectAll).hasText('Select all');
   });
 });

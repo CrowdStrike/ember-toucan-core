@@ -14,20 +14,42 @@ module('Integration | Component | Autocomplete', function (hooks) {
   let autocompletePageObject = new AutocompletePageObject('[data-input]');
 
   test('it renders', async function (assert) {
-    await render(<template><Autocomplete @noResultsText="No results" data-input /></template>);
+    await render(<template>
+      <Autocomplete @noResultsText="No results" data-input />
+    </template>);
 
     assert.dom(autocompletePageObject.element).hasTagName('input');
-    assert.dom(autocompletePageObject.element).hasClass('text-titles-and-attributes');
-    assert.dom(autocompletePageObject.element).hasClass('shadow-focusable-outline');
-    assert.dom(autocompletePageObject.element).doesNotHaveClass('text-disabled');
-    assert.dom(autocompletePageObject.element).doesNotHaveClass('shadow-error-outline');
-    assert.dom(autocompletePageObject.element).hasAttribute('aria-autocomplete', 'list');
-    assert.dom(autocompletePageObject.element).hasAttribute('aria-haspopup', 'listbox');
-    assert.dom(autocompletePageObject.element).hasAttribute('autocapitalize', 'none');
-    assert.dom(autocompletePageObject.element).hasAttribute('autocomplete', 'off');
-    assert.dom(autocompletePageObject.element).hasAttribute('autocorrect', 'off');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasClass('text-titles-and-attributes');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasClass('shadow-focusable-outline');
+    assert
+      .dom(autocompletePageObject.element)
+      .doesNotHaveClass('text-disabled');
+    assert
+      .dom(autocompletePageObject.element)
+      .doesNotHaveClass('shadow-error-outline');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('aria-autocomplete', 'list');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('aria-haspopup', 'listbox');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('autocapitalize', 'none');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('autocomplete', 'off');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('autocorrect', 'off');
     assert.dom(autocompletePageObject.element).hasAttribute('role', 'combobox');
-    assert.dom(autocompletePageObject.element).hasAttribute('spellcheck', 'false');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasAttribute('spellcheck', 'false');
     assert.dom(autocompletePageObject.element).hasAttribute('type', 'text');
 
     assert
@@ -37,7 +59,11 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it disables the autocomplete using `@isDisabled`', async function (assert) {
     await render(<template>
-      <Autocomplete @isDisabled={{true}} @noResultsText="No results" data-input />
+      <Autocomplete
+        @isDisabled={{true}}
+        @noResultsText="No results"
+        data-input
+      />
     </template>);
 
     assert.dom(autocompletePageObject.element).isDisabled();
@@ -50,21 +76,35 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets readonly on the autocomplete using `@isReadOnly`', async function (assert) {
     await render(<template>
-      <Autocomplete @isReadOnly={{true}} @noResultsText="No results" data-input />
+      <Autocomplete
+        @isReadOnly={{true}}
+        @noResultsText="No results"
+        data-input
+      />
     </template>);
 
     assert.dom(autocompletePageObject.element).hasAttribute('readonly');
-    assert.dom(autocompletePageObject.element).hasClass('shadow-read-only-outline');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasClass('shadow-read-only-outline');
     assert.dom(autocompletePageObject.element).hasClass('bg-surface-xl');
     assert.dom(autocompletePageObject.element).hasNoClass('bg-overlay-1');
     assert.dom(autocompletePageObject.element).hasNoClass('text-disabled');
-    assert.dom(autocompletePageObject.element).hasNoClass('shadow-error-outline');
-    assert.dom(autocompletePageObject.element).hasNoClass('shadow-focusable-outline');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasNoClass('shadow-error-outline');
+    assert
+      .dom(autocompletePageObject.element)
+      .hasNoClass('shadow-focusable-outline');
   });
 
   test('it spreads attributes to the underlying autocomplete', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" placeholder="Placeholder text" data-input />
+      <Autocomplete
+        @noResultsText="No results"
+        placeholder="Placeholder text"
+        data-input
+      />
     </template>);
 
     assert
@@ -90,7 +130,11 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it opens the popover on click', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input />
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+      />
     </template>);
 
     assert.dom(autocompletePageObject.list).doesNotExist();
@@ -104,7 +148,11 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it opens the popover when the input receives input', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input />
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+      />
     </template>);
 
     assert.dom(autocompletePageObject.list).doesNotExist();
@@ -119,7 +167,12 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets `aria-expanded` based on the popover state', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option data-option>
           {{autocomplete.option}}
         </autocomplete.Option>
@@ -138,7 +191,12 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it sets `aria-controls`', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option>
           {{autocomplete.option}}
         </autocomplete.Option>
@@ -187,7 +245,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
     // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
     await click(autocompletePageObject.element as Element);
 
-    assert.strictEqual(autocompletePageObject.options?.length, 2)
+    assert.strictEqual(autocompletePageObject.options?.length, 2);
   });
 
   test('it sets the value attribute via `@selected`', async function (assert) {
@@ -233,13 +291,22 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     // ...but not the "red" one!
     assert
-      .dom(autocompletePageObject.options?.[autocompletePageObject.options?.length - 1])
+      .dom(
+        autocompletePageObject.options?.[
+          autocompletePageObject.options?.length - 1
+        ],
+      )
       .hasAttribute('aria-selected', 'false');
   });
 
   test('it provides default filtering', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -279,7 +346,10 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.dom(autocompletePageObject.element).exists();
 
     // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
-    await fillIn(autocompletePageObject.element as Element, 'something-not-in-the-list');
+    await fillIn(
+      autocompletePageObject.element as Element,
+      'something-not-in-the-list',
+    );
 
     // We should not have any list items
     assert.strictEqual(autocompletePageObject.options?.length, 0);
@@ -294,7 +364,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       .hasAttribute(
         'aria-live',
         'assertive',
-        'Expected assertive so it is announced to screenreaders'
+        'Expected assertive so it is announced to screenreaders',
       );
   });
 
@@ -364,7 +434,11 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     assert.strictEqual(autocompletePageObject.options?.length, 1);
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'Enter');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['handleChange']);
   });
@@ -376,7 +450,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
       assert.strictEqual(
         value,
         'y',
-        'Expected the input to match what was entered via fillIn'
+        'Expected the input to match what was entered via fillIn',
       );
       assert.step('onFilter');
 
@@ -407,7 +481,9 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
     // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
-    assert.dom(autocompletePageObject.options?.[0] as Element).hasText('yellow');
+    assert
+      .dom(autocompletePageObject.options?.[0] as Element)
+      .hasText('yellow');
   });
 
   test('it sets the "active" item to the first one in the list when the autocomplete gains focus', async function (assert) {
@@ -428,11 +504,13 @@ module('Integration | Component | Autocomplete', function (hooks) {
     // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
     await click(autocompletePageObject.element as Element);
 
-    assert.strictEqual(autocompletePageObject.options?.length, 2)
+    assert.strictEqual(autocompletePageObject.options?.length, 2);
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
   });
 
   test('it sets the "active" item to the next item in the list when `ArrowDown` is pressed', async function (assert) {
@@ -453,14 +531,20 @@ module('Integration | Component | Autocomplete', function (hooks) {
     // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
     await click(autocompletePageObject.element as Element);
 
-    assert.strictEqual(autocompletePageObject.options?.length, 2)
+    assert.strictEqual(autocompletePageObject.options?.length, 2);
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert.dom(autocompletePageObject.options?.[1]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[1],
+      autocompletePageObject.active,
+    );
   });
 
   test('it sets the "active" item to the previous item in the list when `ArrowUp` is pressed', async function (assert) {
@@ -484,20 +568,31 @@ module('Integration | Component | Autocomplete', function (hooks) {
     // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
     await click(autocompletePageObject.element as Element);
 
-    assert.strictEqual(autocompletePageObject.options?.length, 2)
+    assert.strictEqual(autocompletePageObject.options?.length, 2);
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowUp');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowUp',
+    );
 
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
   });
 
   test('it closes an open popover when `Escape` is pressed', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -509,7 +604,11 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
     assert.dom(autocompletePageObject.list).exists();
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'Escape');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'Escape',
+    );
 
     assert.dom(autocompletePageObject.list).doesNotExist();
   });
@@ -519,7 +618,12 @@ module('Integration | Component | Autocomplete', function (hooks) {
       {{! template-lint-disable require-input-label }}
       <input placeholder="test" />
 
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -539,7 +643,12 @@ module('Integration | Component | Autocomplete', function (hooks) {
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
     await render(<template>
-      <Autocomplete @noResultsText="No results" @options={{testColors}} data-input as |autocomplete|>
+      <Autocomplete
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-input
+        as |autocomplete|
+      >
         <autocomplete.Option>{{autocomplete.option}}</autocomplete.Option>
       </Autocomplete>
     </template>);
@@ -550,10 +659,18 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await click(autocompletePageObject.element as Element);
 
     // Now close it
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'Escape');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'Escape',
+    );
 
     // Now reopen it
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert.dom(autocompletePageObject.list).exists();
   });
@@ -580,21 +697,34 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await click(autocompletePageObject.element as Element);
 
     // Activate the second option so we can later be sure that pressing `metaKey` and `ArrowUp` did something.
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown' );
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert.dom(autocompletePageObject.options?.[1]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[1],
+      autocompletePageObject.active,
+    );
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowUp', {
-      metaKey: true,
-    });
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowUp',
+      {
+        metaKey: true,
+      },
+    );
 
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    assert
-     .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
   });
 
   test('it makes the last option "active" when the `metaKey` and `ArrowDown` are pressed', async function (assert) {
@@ -621,17 +751,26 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
     // Assert that the first option is activated so we can later be sure that pressing `metaKey` and `ArrowDown` did something.
-    assert
-      .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown', {
-      metaKey: true,
-    });
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+      {
+        metaKey: true,
+      },
+    );
 
     assert.dom(autocompletePageObject.options?.[options.length - 1]).exists();
 
-    assert
-     .strictEqual(autocompletePageObject.options?.[options.length - 1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[options.length - 1],
+      autocompletePageObject.active,
+    );
   });
 
   test('it makes the last option "active" when `PageDown` is pressed', async function (assert) {
@@ -656,15 +795,23 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await click(autocompletePageObject.element as Element);
 
     // Assert that the first option is activated so we can later be sure that pressing `metaKey` and `ArrowDown` did something.
-    assert
-      .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'PageDown');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'PageDown',
+    );
 
     assert.dom(autocompletePageObject.options?.[options.length - 1]).exists();
 
-    assert
-     .strictEqual(autocompletePageObject.options?.[options.length - 1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[options.length - 1],
+      autocompletePageObject.active,
+    );
   });
 
   test('it makes the first option "active" when `PageUp` is pressed', async function (assert) {
@@ -689,19 +836,31 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await click(autocompletePageObject.element as Element);
 
     // Activate the second option so we can later be sure that pressing `PageUp` did something.
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown' );
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert.dom(autocompletePageObject.options?.[1]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[1],
+      autocompletePageObject.active,
+    );
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'PageUp');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'PageUp',
+    );
 
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    assert
-     .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
   });
 
   test('it makes the first option "active" when `Home` is pressed', async function (assert) {
@@ -726,19 +885,31 @@ module('Integration | Component | Autocomplete', function (hooks) {
     await click(autocompletePageObject.element as Element);
 
     // Activate the second option so we can later be sure that pressing `Home` did something.
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'ArrowDown' );
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert.dom(autocompletePageObject.options?.[1]).exists();
 
-    assert
-      .strictEqual(autocompletePageObject.options?.[1], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[1],
+      autocompletePageObject.active,
+    );
 
-    await triggerKeyEvent(autocompletePageObject.element as Element, 'keydown', 'Home');
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'Home',
+    );
 
     assert.dom(autocompletePageObject.options?.[0]).exists();
 
-    assert
-     .strictEqual(autocompletePageObject.options?.[0], autocompletePageObject.active)
+    assert.strictEqual(
+      autocompletePageObject.options?.[0],
+      autocompletePageObject.active,
+    );
   });
 
   /**
@@ -854,7 +1025,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.strictEqual(
       document.getSelection()?.toString(),
       '',
-      'Expected nothing to be selected by default as we have not interacted with the component'
+      'Expected nothing to be selected by default as we have not interacted with the component',
     );
 
     assert.dom(autocompletePageObject.element).exists();
@@ -865,7 +1036,7 @@ module('Integration | Component | Autocomplete', function (hooks) {
     assert.strictEqual(
       document.getSelection()?.toString(),
       'blue',
-      'Expected "blue" to be selected since that is our `@selected` value'
+      'Expected "blue" to be selected since that is our `@selected` value',
     );
   });
 });

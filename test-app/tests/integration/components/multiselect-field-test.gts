@@ -4,18 +4,24 @@ import { module, test } from 'qunit';
 import Multiselect from '@crowdstrike/ember-toucan-core/components/form/fields/multiselect';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+import { MultiselectPageObject } from '@crowdstrike/ember-toucan-core/test-support';
+
 let testColors = ['blue', 'red'];
 
 module('Integration | Component | Fields | Multiselect', function (hooks) {
   setupRenderingTest(hooks);
 
+  let multiselectPageObject = new MultiselectPageObject(
+    '[data-multiselect-input]',
+  );
+
   test('it renders', async function (assert) {
     await render(<template>
       <Multiselect
         @label="Label"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -35,16 +41,16 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     assert
       .dom('[data-hint]')
       .doesNotExist(
-        'Expected hint block not to be displayed as a hint was not provided'
+        'Expected hint block not to be displayed as a hint was not provided',
       );
 
-    assert.dom('[data-multiselect]').hasTagName('input');
-    assert.dom('[data-multiselect]').hasAttribute('id');
+    assert.dom(multiselectPageObject.element).hasTagName('input');
+    assert.dom(multiselectPageObject.element).hasAttribute('id');
 
     assert
       .dom('[data-error]')
       .doesNotExist(
-        'Expected hint block not to be displayed as an error or @hint was not provided'
+        'Expected hint block not to be displayed as an error or @hint was not provided',
       );
 
     assert.dom('[data-lock-icon]').doesNotExist();
@@ -56,8 +62,8 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
         @label="Label"
         @hint="Hint text"
         @options={{testColors}}
-        @noResultsText='No results'
-        data-multiselect
+        @noResultsText="No results"
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -81,18 +87,24 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
 
     assert.ok(hintId, 'Expected hintId to be truthy');
 
+    assert.dom(multiselectPageObject.element).exists();
+
     let describedby =
-      find('[data-multiselect]')?.getAttribute('aria-describedby') || '';
+      multiselectPageObject.element?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(hintId),
-      'Expected hintId to be included in the aria-describedby'
+      'Expected hintId to be included in the aria-describedby',
     );
   });
 
   test('it renders with a hint and label block', async function (assert) {
     await render(<template>
-      <Multiselect @noResultsText='No results' @options={{testColors}} data-multiselect>
+      <Multiselect
+        @noResultsText="No results"
+        @options={{testColors}}
+        data-multiselect
+      >
         <:label><span data-label>label block content</span></:label>
         <:hint><span data-hint>hint block content</span></:hint>
 
@@ -118,9 +130,9 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       <Multiselect
         @label="Label"
         @error="Error text"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -145,21 +157,27 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     assert.ok(errorId, 'Expected errorId to be truthy');
 
     let describedby =
-      find('[data-multiselect]')?.getAttribute('aria-describedby') || '';
+      multiselectPageObject.element?.getAttribute('aria-describedby') || '';
 
     assert.ok(
       describedby.includes(errorId),
-      'Expected errorId to be included in the aria-describedby'
+      'Expected errorId to be included in the aria-describedby',
     );
 
-    assert.dom('[data-multiselect]').hasAttribute('aria-invalid', 'true');
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('aria-invalid', 'true');
 
-    assert.dom('[data-multiselect-container]').hasClass('shadow-error-outline');
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
+      .hasClass('shadow-error-outline');
+
+    assert
+      .dom(multiselectPageObject.container)
       .hasClass('focus-within:shadow-error-focus-outline');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .doesNotHaveClass('shadow-focusable-outline');
   });
 
@@ -169,9 +187,9 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
         @label="Label"
         @error="Error text"
         @hint="Hint text"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -195,7 +213,7 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     assert.ok(hintId, 'Expected hintId to be truthy');
 
     assert
-      .dom('[data-multiselect]')
+      .dom(multiselectPageObject.element)
       .hasAttribute('aria-describedby', `${errorId} ${hintId}`);
   });
 
@@ -204,9 +222,9 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       <Multiselect
         @label="Label"
         @isDisabled={{true}}
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -221,8 +239,8 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').isDisabled();
-    assert.dom('[data-multiselect]').hasClass('text-disabled');
+    assert.dom(multiselectPageObject.element).isDisabled();
+    assert.dom(multiselectPageObject.element).hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
   });
@@ -232,9 +250,9 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       <Multiselect
         @label="Label"
         @isReadOnly={{true}}
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -249,7 +267,7 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').hasAttribute('readonly');
+    assert.dom(multiselectPageObject.element).hasAttribute('readonly');
 
     assert.dom('[data-lock-icon]').exists();
   });
@@ -258,10 +276,10 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     await render(<template>
       <Multiselect
         @label="Label"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
         placeholder="Placeholder text"
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -277,7 +295,7 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     </template>);
 
     assert
-      .dom('[data-multiselect]')
+      .dom(multiselectPageObject.element)
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
@@ -285,10 +303,10 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     await render(<template>
       <Multiselect
         @label="Label"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
         @rootTestSelector="selector"
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -310,11 +328,11 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     await render(<template>
       <Multiselect
         @label="Label"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
         @selected={{testColors}}
         placeholder="Placeholder text"
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -329,21 +347,17 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
+    assert.strictEqual(multiselectPageObject.chips?.length, 2);
 
-    let [firstChip, secondChip] = document.querySelectorAll(
-      '[data-multiselect-selected-option]'
-    );
-
-    assert.dom(firstChip).hasText('blue');
-    assert.dom(secondChip).hasText('red');
+    assert.dom(multiselectPageObject.chips?.[0]).hasText('blue');
+    assert.dom(multiselectPageObject.chips?.[1]).hasText('red');
   });
 
   // NOTE: This functionality is deeply tested in the Control, as it can
   // get pretty complex.  This test is to ensure `@onChange` is generally
   // working.
   test('it calls `@onChange` when an option is selected', async function (assert) {
-    assert.expect(5);
+    assert.expect(7);
 
     let options = ['blue', 'red'];
 
@@ -358,7 +372,7 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{options}}
         @onChange={{handleChange}}
-        data-multiselect
+        data-multiselect-input
         as |combobox|
       >
         <combobox.Option data-option>{{combobox.option}}</combobox.Option>
@@ -367,11 +381,17 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
 
     assert.verifySteps([]);
 
-    await fillIn('[data-multiselect]', 'blue');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="option"]').exists({ count: 1 });
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'blue');
 
-    await click('[role="option"]');
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.options?.[0] as Element);
 
     assert.verifySteps(['handleChange']);
   });
@@ -386,7 +406,7 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
         @noResultsText="No results"
         @selectAllText="Select all"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -401,10 +421,13 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[data-multiselect-select-all-option]').exists();
-    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    assert.dom(multiselectPageObject.selectAll).exists();
+    assert.dom(multiselectPageObject.selectAll).hasText('Select all');
   });
 
   test('it throws an assertion error if no `@label` is provided', async function (assert) {
@@ -413,17 +436,17 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Assertion Failed: You need either :label or @label'
+          'Assertion Failed: You need either :label or @label',
         ),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
     await render(<template>
       <Multiselect
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -445,18 +468,18 @@ module('Integration | Component | Fields | Multiselect', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Assertion Failed: You can have :label or @label, but not both'
+          'Assertion Failed: You can have :label or @label, but not both',
         ),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
     await render(<template>
       <Multiselect
         @label="Label"
-        @noResultsText='No results'
+        @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-multiselect-input
       >
         <:label>Label</:label>
 

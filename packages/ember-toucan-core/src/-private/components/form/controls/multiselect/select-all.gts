@@ -101,13 +101,13 @@ export default class ToucanCoreMultiselectSelectAllControlComponent extends Comp
     {{! template-lint-disable require-presentational-children }}
     {{#let (uniqueId) as |id|}}
       <li
+        aria-current={{if @isActive "true" "false"}}
         aria-selected={{if @isSelected "true" "false"}}
         class="my-0 cursor-default px-2 leading-4
           {{this.styles}}
           {{this.className}}
           "
-        data-active={{if @isActive "true" "false"}}
-        data-multiselect-select-all-option
+        data-multiselect-select-all
         id="{{@popoverId}}-{{@index}}"
         role="option"
         {{on "click" this.onClick}}

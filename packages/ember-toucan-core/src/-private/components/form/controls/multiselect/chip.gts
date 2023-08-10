@@ -18,7 +18,7 @@ const ToucanCoreMultiselectChipComponent: TemplateOnlyComponent<ToucanCoreMultis
     <div
       class="min-h-6 bg-normal-idle flex items-center gap-x-2.5 rounded-sm px-2 py-1"
       data-index={{@index}}
-      data-multiselect-selected-option
+      data-multiselect-chip
       ...attributes
     >
       {{yield}}
