@@ -325,8 +325,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
-        specifier: ^0.4.0
-        version: 0.4.0(prettier@3.0.1)
+        specifier: ^0.5.0
+        version: 0.5.0(prettier@3.0.1)
       qunit:
         specifier: ^2.19.1
         version: 2.19.4
@@ -529,8 +529,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
-        specifier: ^0.4.0
-        version: 0.4.0(prettier@3.0.1)
+        specifier: ^0.5.0
+        version: 0.5.0(prettier@3.0.1)
       rollup:
         specifier: ^3.12.1
         version: 3.12.1
@@ -731,8 +731,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
-        specifier: ^0.4.0
-        version: 0.4.0(prettier@3.0.1)
+        specifier: ^0.5.0
+        version: 0.5.0(prettier@3.0.1)
       rollup:
         specifier: ^3.12.1
         version: 3.12.1
@@ -16771,9 +16771,9 @@ packages:
       - supports-color
     dev: true
 
-  /prettier-plugin-tailwindcss@0.4.0(prettier@3.0.1):
-    resolution: {integrity: sha512-Rna0sDPETA0KNhMHlN8wxKNgfSa8mTl2hPPAGxnbv6tUcHT6J4RQmQ8TLXyhB7Dm5Von4iHloBxTyClYM6wT0A==}
-    engines: {node: '>=12.17.0'}
+  /prettier-plugin-tailwindcss@0.5.0(prettier@3.0.1):
+    resolution: {integrity: sha512-EpP/Hg/D/LzjKJ+gYiSnsqk+PkrHSFQAuRHx/sj3O4r2kH0iJAOrKeKmI1X4Fm96M1BY+tO0KiV+/Y03MYbArg==}
+    engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
       '@prettier/plugin-pug': '*'
