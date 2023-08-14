@@ -2,7 +2,7 @@ import { click } from '@ember/test-helpers';
 
 import { PageObject } from 'fractal-page-object';
 
-export class Button extends PageObject {
+export class ButtonPageObject extends PageObject {
   async click() {
     if (this.element) {
       await click(this.element);

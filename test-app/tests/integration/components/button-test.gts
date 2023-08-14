@@ -4,12 +4,12 @@ import { module, test } from 'qunit';
 import Button from '@crowdstrike/ember-toucan-core/components/button';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import { Button as TestButton } from '@crowdstrike/ember-toucan-core/test-support';
+import { ButtonPageObject } from '@crowdstrike/ember-toucan-core/test-support';
 
 module('Integration | Component | button', function (hooks) {
   setupRenderingTest(hooks);
 
-  let button = new TestButton('[data-button]');
+  let buttonPageObject = new ButtonPageObject('[data-button]');
 
   test('it renders', async function (assert) {
     await render(<template>
@@ -18,14 +18,15 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.strictEqual(button.text, 'text');
-    assert.false(button.isDisabled);
+    assert.strictEqual(buttonPageObject.text, 'text');
+    assert.false(buttonPageObject.isDisabled);
+
     assert
-      .dom(button.element)
+      .dom(buttonPageObject.element)
       .hasAttribute('type', 'button', 'Expected default type to be "button"');
   });
 
-  test('it yields a loading named block when `@isLoading={{true}}', async function (assert) {
+  test('it yields a loading named block when `@isLoading={{true}}`', async function (assert) {
     await render(<template>
       <Button @isLoading={{true}} data-button>
         <:loading>
@@ -34,7 +35,7 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.true(button.isLoading);
+    assert.true(buttonPageObject.isLoading);
 
     assert
       .dom('[data-test-loading-content]')
@@ -54,7 +55,7 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.false(button.isLoading);
+    assert.false(buttonPageObject.isLoading);
 
     assert
       .dom('[data-test-loading]')
@@ -72,7 +73,7 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.true(button.isDisabled);
+    assert.true(buttonPageObject.isDisabled);
   });
 
   test('it yields a disabled named block when `@isDisabled={{true}}', async function (assert) {
@@ -122,7 +123,7 @@ module('Integration | Component | button', function (hooks) {
 
     assert.verifySteps([]);
 
-    await button.click();
+    await buttonPageObject.click();
 
     assert.verifySteps(['clicked']);
   });
@@ -138,7 +139,7 @@ module('Integration | Component | button', function (hooks) {
 
     assert.verifySteps([]);
 
-    await button.click();
+    await buttonPageObject.click();
 
     assert.verifySteps([]);
   });

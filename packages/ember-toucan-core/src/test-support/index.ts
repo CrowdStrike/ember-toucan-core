@@ -1,1 +1,2 @@
-export { Button } from './components/button';
+export { AutocompletePageObject } from './components/autocomplete';
+export { ButtonPageObject } from './components/button';

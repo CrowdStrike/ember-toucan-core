@@ -19,6 +19,10 @@ Toucan provides a set of accessible and reusable components that make it easy to
 
 The `core` package contains the Toucan-styled Ember components. The `form` package allows users to build forms using [`ember-headless-form`](https://github.com/CrowdStrike/ember-headless-form) with the `core` components.
 
+## Usage
+
+Visit our [documentation website](https://ember-toucan-core.pages.dev/).
+
 ### Compatibility
 
 - Ember.js 4.8 or above
@@ -50,10 +54,6 @@ npm install @crowdstrike/ember-toucan-form
 # or
 ember install @crowdstrike/ember-toucan-form
 ```
-
-## Usage
-
-Visit our [documentation website](https://ember-toucan-core.pages.dev/).
 
 ## Contributing
 

@@ -96,12 +96,12 @@ export default class ToucanCoreAutocompleteOptionComponent extends Component<Tou
   <template>
     {{! template-lint-disable require-presentational-children }}
     <li
+      aria-current={{if @isActive "true" "false"}}
       aria-selected={{if @isSelected "true" "false"}}
       class="my-0 flex cursor-default items-center gap-2 px-2 py-2 leading-4
         {{this.styles}}
         {{this.className}}
         "
-      data-active={{if @isActive "true" "false"}}
       id="{{@popoverId}}-{{@index}}"
       role="option"
       {{on "click" this.onClick}}
