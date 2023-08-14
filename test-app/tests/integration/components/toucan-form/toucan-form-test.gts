@@ -80,7 +80,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
       assert.deepEqual(
         data,
         { name: 'text', email: 'a@b.com' },
-        'Expected form data to match'
+        'Expected form data to match',
       );
       assert.step('onSubmit');
     };
@@ -196,7 +196,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @name="autocomplete"
           @noResultsText="No results"
           @options={{options}}
-          data-autocomplete
+          data-autocomplete-input
           as |autocomplete|
         >
           <autocomplete.Option
@@ -254,15 +254,18 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.dom('[data-files] [data-file-name]').hasText('file.txt');
 
     // Autocomplete
-    assert.dom('[data-autocomplete]').hasAttribute('name', 'autocomplete');
-    assert.dom('[data-autocomplete]').hasValue('blue');
+    assert
+      .dom('[data-autocomplete-input]')
+      .hasAttribute('name', 'autocomplete');
+
+    assert.dom('[data-autocomplete-input]').hasValue('blue');
 
     // Multiselect
     assert.dom('[data-multiselect]').hasAttribute('name', 'multiselect');
     assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
 
     let [firstChip, secondChip] = document.querySelectorAll(
-      '[data-multiselect-selected-option]'
+      '[data-multiselect-selected-option]',
     );
 
     assert.dom(firstChip).hasText('red');
@@ -281,7 +284,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
       assert.strictEqual(
         files?.length,
         1,
-        'Expected only a single file to be added'
+        'Expected only a single file to be added',
       );
       assert.strictEqual(files?.[0]?.name, 'file.txt');
       assert.strictEqual(files?.[0]?.type, 'text/plain');
@@ -298,7 +301,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           radio: 'option-2',
           termsAndConditions: true,
         },
-        'Expected test data to match selections'
+        'Expected test data to match selections',
       );
       assert.step('onSubmit');
     };
@@ -476,7 +479,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @options={{options}}
           @noResultsText="No results"
           @rootTestSelector="data-autocomplete-wrapper"
-          data-autocomplete
+          data-autocomplete-input
           as |autocomplete|
         >
           <autocomplete.Option data-option>
@@ -513,7 +516,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-error]')
       .doesNotExist(
-        'Expected no errors present since we have not submitted yet'
+        'Expected no errors present since we have not submitted yet',
       );
 
     await click('[data-test-submit]');
@@ -529,24 +532,31 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-root-field="data-textarea-wrapper"] [data-error]')
       .hasText('Comment is required');
+
     assert
       .dom('[data-root-field="data-input-wrapper"] [data-error]')
       .hasText('First name is required');
+
     assert
       .dom('[data-root-field="data-checkbox-wrapper"] [data-error]')
       .hasText('Terms must be checked');
+
     assert
       .dom('[data-root-field="data-radio-wrapper"] [data-error]')
       .hasText('One radio must be selected');
+
     assert
       .dom('[data-root-field="data-checkbox-group-wrapper"] [data-error]')
       .hasText('One checkbox must be selected');
+
     assert
       .dom('[data-root-field="data-file-input-wrapper"] [data-error]')
       .hasText('A file must be added');
+
     assert
       .dom('[data-root-field="data-autocomplete-wrapper"] [data-error]')
       .hasText('One autocomplete item must be selected');
+
     assert
       .dom('[data-root-field="data-multiselect-wrapper"] [data-error]')
       .hasText('One multiselect item must be selected');
@@ -560,8 +570,8 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await triggerEvent('[data-file-input-field]', 'change', {
       files: [testFile],
     });
-    await fillIn('[data-autocomplete]', 'red');
-    await triggerKeyEvent('[data-autocomplete]', 'keydown', 'Enter');
+    await fillIn('[data-autocomplete-input]', 'red');
+    await triggerKeyEvent('[data-autocomplete-input]', 'keydown', 'Enter');
     await fillIn('[data-multiselect]', 'blue');
     await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
 
@@ -570,7 +580,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert
       .dom('[data-error]')
       .doesNotExist(
-        'Expected errors to be removed due to satisfying validation'
+        'Expected errors to be removed due to satisfying validation',
       );
 
     assert.verifySteps(['onSubmit']);
