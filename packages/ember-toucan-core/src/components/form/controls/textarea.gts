@@ -44,14 +44,14 @@ export default class ToucanFormTextareaControlComponent extends Component<Toucan
     }
 
     if (isReadOnly) {
-      return 'focus:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes';
+      return 'focus-within:shadow-focus-outline bg-surface-xl shadow-read-only-outline text-titles-and-attributes';
     }
 
     if (hasError) {
-      return 'shadow-error-outline focus:shadow-error-focus-outline bg-overlay-1 text-titles-and-attributes';
+      return 'shadow-error-outline focus-within:shadow-error-focus-outline bg-overlay-1 text-titles-and-attributes';
     }
 
-    return 'shadow-focusable-outline focus:shadow-focus-outline bg-overlay-1 text-titles-and-attributes';
+    return 'shadow-focusable-outline focus-within:shadow-focus-outline bg-overlay-1 text-titles-and-attributes';
   }
 
   @action
@@ -65,13 +65,22 @@ export default class ToucanFormTextareaControlComponent extends Component<Toucan
   }
 
   <template>
-    <textarea
-      class="min-h-6 focus:outline-none block h-20 rounded-sm p-1 transition-shadow
-        {{this.styles}}"
-      disabled={{@isDisabled}}
-      readonly={{@isReadOnly}}
-      ...attributes
-      {{on "input" this.handleInput}}
-    >{{@value}}</textarea>
+    {{!
+        A styled container div is used here so that we can give some space for
+        the textarea resize handle and focus/error shadows.  Otherwise, the
+        shadows / handle visually collides.
+     }}
+    <div
+      class="{{this.styles}} w-full py-1 px-2 rounded-sm transition-shadow"
+      data-container
+    >
+      <textarea
+        class="min-h-6 focus:outline-none block h-20 bg-transparent w-full"
+        disabled={{@isDisabled}}
+        readonly={{@isReadOnly}}
+        ...attributes
+        {{on "input" this.handleInput}}
+      >{{@value}}</textarea>
+    </div>
   </template>
 }

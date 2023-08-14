@@ -163,7 +163,6 @@ export default class ToucanFormTextareaFieldComponent extends Component<ToucanFo
               @hint
               field.hintId
             }}"
-            class="w-full"
             id={{field.id}}
             @isDisabled={{@isDisabled}}
             @isReadOnly={{@isReadOnly}}

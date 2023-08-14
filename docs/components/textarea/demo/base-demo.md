@@ -1,5 +1,7 @@
 ```hbs template
-<Form::Controls::Textarea />
+<div class='w-96'>
+  <Form::Controls::Textarea />
+</div>
 ```
 
 ```js component

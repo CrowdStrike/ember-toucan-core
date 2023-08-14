@@ -19,17 +19,17 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     assert
       .dom('[data-hint]')
       .doesNotExist(
-        'Expected hint block not to be displayed as a hint was not provided'
+        'Expected hint block not to be displayed as a hint was not provided',
       );
 
     assert.dom('[data-textarea]').hasTagName('textarea');
     assert.dom('[data-textarea]').hasAttribute('id');
-    assert.dom('[data-textarea]').hasClass('text-titles-and-attributes');
+    assert.dom('[data-container]').hasClass('text-titles-and-attributes');
 
     assert
       .dom('[data-error]')
       .doesNotExist(
-        'Expected hint block not to be displayed as an error was not provided'
+        'Expected hint block not to be displayed as an error was not provided',
       );
 
     assert.dom('[data-lock-icon]').doesNotExist();
@@ -54,7 +54,7 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
 
     assert.ok(
       describedby.includes(hintId),
-      'Expected hintId to be included in the aria-describedby'
+      'Expected hintId to be included in the aria-describedby',
     );
   });
 
@@ -89,14 +89,16 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
 
     assert.ok(
       describedby.includes(errorId),
-      'Expected errorId to be included in the aria-describedby'
+      'Expected errorId to be included in the aria-describedby',
     );
 
     assert.dom('[data-textarea]').hasAttribute('aria-invalid', 'true');
 
-    assert.dom('[data-textarea]').hasClass('shadow-error-outline');
-    assert.dom('[data-textarea]').hasClass('focus:shadow-error-focus-outline');
-    assert.dom('[data-textarea]').doesNotHaveClass('shadow-focusable-outline');
+    assert.dom('[data-container]').hasClass('shadow-error-outline');
+    assert
+      .dom('[data-container]')
+      .hasClass('focus-within:shadow-error-focus-outline');
+    assert.dom('[data-container]').doesNotHaveClass('shadow-focusable-outline');
   });
 
   test('it sets aria-describedby when both a hint and error are provided using the hint and errorIds', async function (assert) {
@@ -128,7 +130,7 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     </template>);
 
     assert.dom('[data-textarea]').isDisabled();
-    assert.dom('[data-textarea]').hasClass('text-disabled');
+    assert.dom('[data-container]').hasClass('text-disabled');
 
     assert.dom('[data-lock-icon]').exists();
 
@@ -208,9 +210,9 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Assertion Failed: You need either :label or @label'
+          'Assertion Failed: You need either :label or @label',
         ),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
@@ -223,9 +225,9 @@ module('Integration | Component | Fields | Textarea', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'Assertion Failed: You can have :label or @label, but not both'
+          'Assertion Failed: You can have :label or @label, but not both',
         ),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
