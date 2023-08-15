@@ -768,162 +768,164 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
         @placement="bottom-start"
         as |velcro|
       >
-        {{! Disabling this rule as the user interacts with the input directly. The click on the div is simply for convenience. }}
-        {{! template-lint-disable no-invalid-interactive }}
-        <div
-          class="bg-overlay-1 text-titles-and-attributes flex min-h-[2.5rem] w-full items-center justify-between rounded-sm p-1 transition-shadow
-            {{this.styles}}"
-          {{on
-            "click"
-            (if
-              this.isDisabledOrReadOnlyOrWithoutOptions
-              this.noop
-              this.handleContainerClick
-            )
-          }}
-          data-multiselect-container
-          {{velcro.hook}}
-        >
-          <div class="flex w-full flex-wrap gap-1">
-            {{#each this.selected as |option index|}}
-              {{yield
-                (hash
-                  index=index
-                  option=option
-                  Chip=(component this.ChipComponent index=index)
-                  Remove=(component
-                    this.RemoveComponent
-                    onClick=(fn this.removeSelection index)
-                    onMouseDown=this.handleRemoveMouseDown
-                    isVisible=this.isEnabled
+      <div data-multiselect>
+          {{! Disabling this rule as the user interacts with the input directly. The click on the div is simply for convenience. }}
+          {{! template-lint-disable no-invalid-interactive }}
+          <div
+            class="bg-overlay-1 text-titles-and-attributes flex min-h-[2.5rem] w-full items-center justify-between rounded-sm p-1 transition-shadow
+              {{this.styles}}"
+            {{on
+              "click"
+              (if
+                this.isDisabledOrReadOnlyOrWithoutOptions
+                this.noop
+                this.handleContainerClick
+              )
+            }}
+            data-multiselect-container
+            {{velcro.hook}}
+          >
+            <div class="flex w-full flex-wrap gap-1">
+              {{#each this.selected as |option index|}}
+                {{yield
+                  (hash
+                    index=index
+                    option=option
+                    Chip=(component this.ChipComponent index=index)
+                    Remove=(component
+                      this.RemoveComponent
+                      onClick=(fn this.removeSelection index)
+                      onMouseDown=this.handleRemoveMouseDown
+                      isVisible=this.isEnabled
+                    )
                   )
-                )
-                to="chip"
-              }}
-            {{/each}}
+                  to="chip"
+                }}
+              {{/each}}
 
-            {{! template-lint-disable no-redundant-role }}
-            <input
-              aria-activedescendant={{this.activeDescendant}}
-              aria-autocomplete="list"
-              aria-controls={{this.popoverId}}
-              aria-expanded={{this.isPopoverOpen}}
-              aria-haspopup="listbox"
-              autocapitalize="none"
-              autocomplete="off"
-              autocorrect="off"
-              class="focus:outline-none flex-grow bg-transparent pl-1
-                {{if @isDisabled 'placeholder:text-disabled text-disabled'}}"
-              data-toucan-multiselect-input
-              disabled={{@isDisabled}}
-              readonly={{@isReadOnly}}
-              role="combobox"
-              spellcheck="false"
-              type="text"
-              value={{this.inputValue}}
-              {{on
-                "blur"
-                (if
-                  this.isDisabledOrReadOnlyOrWithoutOptions
-                  this.noop
-                  this.closePopover
-                )
-              }}
-              {{on
-                "blur"
-                (if
-                  this.isDisabledOrReadOnlyOrWithoutOptions
-                  this.noop
-                  this.resetInputValueAndFilteredOptions
-                )
-              }}
-              {{on
-                "focus"
-                (if
-                  this.isDisabledOrReadOnlyOrWithoutOptions
-                  this.noop
-                  this.openPopover
-                )
-              }}
-              {{on
-                "keydown"
-                (if
-                  this.isDisabledOrReadOnlyOrWithoutOptions
-                  this.noop
-                  this.onKeydown
-                )
-              }}
-              {{on
-                "input"
-                (if
-                  this.isDisabledOrReadOnlyOrWithoutOptions
-                  this.noop
-                  this.onInput
-                )
-              }}
-              ...attributes
+              {{! template-lint-disable no-redundant-role }}
+              <input
+                aria-activedescendant={{this.activeDescendant}}
+                aria-autocomplete="list"
+                aria-controls={{this.popoverId}}
+                aria-expanded={{this.isPopoverOpen}}
+                aria-haspopup="listbox"
+                autocapitalize="none"
+                autocomplete="off"
+                autocorrect="off"
+                class="focus:outline-none flex-grow bg-transparent pl-1
+                  {{if @isDisabled 'placeholder:text-disabled text-disabled'}}"
+                data-toucan-multiselect-input
+                disabled={{@isDisabled}}
+                readonly={{@isReadOnly}}
+                role="combobox"
+                spellcheck="false"
+                type="text"
+                value={{this.inputValue}}
+                {{on
+                  "blur"
+                  (if
+                    this.isDisabledOrReadOnlyOrWithoutOptions
+                    this.noop
+                    this.closePopover
+                  )
+                }}
+                {{on
+                  "blur"
+                  (if
+                    this.isDisabledOrReadOnlyOrWithoutOptions
+                    this.noop
+                    this.resetInputValueAndFilteredOptions
+                  )
+                }}
+                {{on
+                  "focus"
+                  (if
+                    this.isDisabledOrReadOnlyOrWithoutOptions
+                    this.noop
+                    this.openPopover
+                  )
+                }}
+                {{on
+                  "keydown"
+                  (if
+                    this.isDisabledOrReadOnlyOrWithoutOptions
+                    this.noop
+                    this.onKeydown
+                  )
+                }}
+                {{on
+                  "input"
+                  (if
+                    this.isDisabledOrReadOnlyOrWithoutOptions
+                    this.noop
+                    this.onInput
+                  )
+                }}
+                ...attributes
+              />
+            </div>
+
+            <this.Chevron
+              class="min-w-6 min-h-6 text-text-and-icons right-1 top-0 h-6 w-6 transform-gpu transition-transform duration-300
+                {{if this.isPopoverOpen 'rotate-180'}}"
             />
           </div>
 
-          <this.Chevron
-            class="min-w-6 min-h-6 text-text-and-icons right-1 top-0 h-6 w-6 transform-gpu transition-transform duration-300
-              {{if this.isPopoverOpen 'rotate-180'}}"
-          />
-        </div>
+          {{#if this.isPopoverOpen}}
+            <ul
+              class="border-surface-inner bg-surface-2xl max-h-listbox my-0 list-none overflow-y-auto overscroll-contain rounded-sm border py-1 pl-0 shadow-xl
+                {{if @contentClass @contentClass}}"
+              id={{this.popoverId}}
+              role="listbox"
+              {{velcro.loop}}
+            >
+              {{#if this.options}}
+                {{#if this.isSelectAllVisible}}
+                  <this.SelectAllComponent
+                    @index={{0}}
+                    @isActive={{(this.isEqual 0 this.activeIndex)}}
+                    @isDisabled={{@isDisabled}}
+                    @isSelected={{this.isSelectAllChecked}}
+                    @isIndeterminate={{this.isSelectAllIndeterminate}}
+                    @onClick={{this.onChange}}
+                    @onMouseover={{(fn this.onOptionMouseover 0)}}
+                    @popoverId={{this.popoverId}}
+                  >
+                    {{@selectAllText}}
+                  </this.SelectAllComponent>
+                {{/if}}
 
-        {{#if this.isPopoverOpen}}
-          <ul
-            class="border-surface-inner bg-surface-2xl max-h-listbox my-0 list-none overflow-y-auto overscroll-contain rounded-sm border py-1 pl-0 shadow-xl
-              {{if @contentClass @contentClass}}"
-            id={{this.popoverId}}
-            role="listbox"
-            {{velcro.loop}}
-          >
-            {{#if this.options}}
-              {{#if this.isSelectAllVisible}}
-                <this.SelectAllComponent
-                  @index={{0}}
-                  @isActive={{(this.isEqual 0 this.activeIndex)}}
-                  @isDisabled={{@isDisabled}}
-                  @isSelected={{this.isSelectAllChecked}}
-                  @isIndeterminate={{this.isSelectAllIndeterminate}}
-                  @onClick={{this.onChange}}
-                  @onMouseover={{(fn this.onOptionMouseover 0)}}
-                  @popoverId={{this.popoverId}}
-                >
-                  {{@selectAllText}}
-                </this.SelectAllComponent>
-              {{/if}}
-
-              {{#each this.options as |option index|}}
-                {{#let (this.generateIndex index) as |generatedIndex|}}
-                  {{yield
-                    (hash
-                      Option=(component
-                        this.Option
-                        isActive=(this.isEqual generatedIndex this.activeIndex)
-                        isDisabled=@isDisabled
-                        isSelected=(this.isSelected option)
-                        isReadOnly=@isReadOnly
-                        onClick=this.onChange
-                        onMouseover=(fn this.onOptionMouseover generatedIndex)
-                        popoverId=this.popoverId
-                        index=(if this.isSelectAllEnabled generatedIndex index)
+                {{#each this.options as |option index|}}
+                  {{#let (this.generateIndex index) as |generatedIndex|}}
+                    {{yield
+                      (hash
+                        Option=(component
+                          this.Option
+                          isActive=(this.isEqual generatedIndex this.activeIndex)
+                          isDisabled=@isDisabled
+                          isSelected=(this.isSelected option)
+                          isReadOnly=@isReadOnly
+                          onClick=this.onChange
+                          onMouseover=(fn this.onOptionMouseover generatedIndex)
+                          popoverId=this.popoverId
+                          index=(if this.isSelectAllEnabled generatedIndex index)
+                        )
+                        option=option
                       )
-                      option=option
-                    )
-                  }}
-                {{/let}}
-              {{/each}}
-            {{else}}
-              <li
-                aria-live="assertive"
-                class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
-                role="status"
-              >{{@noResultsText}}</li>
-            {{/if}}
-          </ul>
-        {{/if}}
+                    }}
+                  {{/let}}
+                {{/each}}
+              {{else}}
+                <li
+                  aria-live="assertive"
+                  class="text-titles-and-attributes my-0 flex cursor-default items-center px-3 py-2 leading-4"
+                  role="status"
+                >{{@noResultsText}}</li>
+              {{/if}}
+            </ul>
+          {{/if}}
+        </div>
       </Velcro>
     {{/if}}
   </template>

@@ -11,17 +11,21 @@ import { module, test } from 'qunit';
 import Multiselect from '@crowdstrike/ember-toucan-core/components/form/controls/multiselect';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+import { MultiselectPageObject } from '@crowdstrike/ember-toucan-core/test-support';
+
 let testColors = ['blue', 'red'];
 
 module('Integration | Component | Multiselect', function (hooks) {
   setupRenderingTest(hooks);
+
+  let multiselectPageObject = new MultiselectPageObject('[data-input]');
 
   test('it renders', async function (assert) {
     await render(<template>
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -36,31 +40,53 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').hasTagName('input');
+    assert.dom(multiselectPageObject.element).hasTagName('input');
+    assert.dom(multiselectPageObject.element).hasAttribute('role', 'combobox');
+    assert.dom(multiselectPageObject.element).hasAttribute('type', 'text');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .hasClass('text-titles-and-attributes');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .hasClass('shadow-focusable-outline');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .doesNotHaveClass('text-disabled');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .doesNotHaveClass('shadow-error-outline');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .doesNotHaveClass('focus-within:shadow-error-focus-outline');
 
-    assert.dom('[data-multiselect]').hasAttribute('aria-autocomplete', 'list');
-    assert.dom('[data-multiselect]').hasAttribute('aria-haspopup', 'listbox');
-    assert.dom('[data-multiselect]').hasAttribute('autocapitalize', 'none');
-    assert.dom('[data-multiselect]').hasAttribute('autocomplete', 'off');
-    assert.dom('[data-multiselect]').hasAttribute('autocorrect', 'off');
-    assert.dom('[data-multiselect]').hasAttribute('role', 'combobox');
-    assert.dom('[data-multiselect]').hasAttribute('spellcheck', 'false');
-    assert.dom('[data-multiselect]').hasAttribute('type', 'text');
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('aria-autocomplete', 'list');
+
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('aria-haspopup', 'listbox');
+
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('autocapitalize', 'none');
+
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('autocomplete', 'off');
+
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('autocorrect', 'off');
+
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('spellcheck', 'false');
   });
 
   test('it disables the component using `@isDisabled`', async function (assert) {
@@ -69,7 +95,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         @isDisabled={{true}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -84,10 +110,11 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').isDisabled();
-    assert.dom('[data-multiselect]').hasClass('text-disabled');
+    assert.dom(multiselectPageObject.element).isDisabled();
+    assert.dom(multiselectPageObject.element).hasClass('text-disabled');
+
     assert
-      .dom('[data-multiselect]')
+      .dom(multiselectPageObject.element)
       .doesNotHaveClass('text-titles-and-attributes');
   });
 
@@ -97,7 +124,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         @isReadOnly={{true}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -112,16 +139,21 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').hasAttribute('readonly');
+    assert.dom(multiselectPageObject.element).hasAttribute('readonly');
 
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .hasClass('shadow-read-only-outline');
-    assert.dom('[data-multiselect-container]').hasClass('bg-surface-xl');
-    assert.dom('[data-multiselect]').hasNoClass('bg-overlay-1');
-    assert.dom('[data-multiselect]').hasNoClass('text-disabled');
-    assert.dom('[data-multiselect]').hasNoClass('shadow-error-outline');
-    assert.dom('[data-multiselect]').hasNoClass('shadow-focusable-outline');
+
+    assert.dom(multiselectPageObject.container).hasClass('bg-surface-xl');
+    assert.dom(multiselectPageObject.element).hasNoClass('bg-overlay-1');
+    assert.dom(multiselectPageObject.element).hasNoClass('text-disabled');
+    assert
+      .dom(multiselectPageObject.element)
+      .hasNoClass('shadow-error-outline');
+    assert
+      .dom(multiselectPageObject.element)
+      .hasNoClass('shadow-focusable-outline');
   });
 
   test('it spreads attributes to the underlying input', async function (assert) {
@@ -130,7 +162,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         placeholder="Placeholder text"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -146,7 +178,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     </template>);
 
     assert
-      .dom('[data-multiselect]')
+      .dom(multiselectPageObject.element)
       .hasAttribute('placeholder', 'Placeholder text');
   });
 
@@ -156,7 +188,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         @hasError={{true}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -171,12 +203,16 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-container]').hasClass('shadow-error-outline');
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
+      .hasClass('shadow-error-outline');
+
+    assert
+      .dom(multiselectPageObject.container)
       .hasClass('focus-within:shadow-error-focus-outline');
+
     assert
-      .dom('[data-multiselect-container]')
+      .dom(multiselectPageObject.container)
       .doesNotHaveClass('shadow-focusable-outline');
   });
 
@@ -185,7 +221,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -200,11 +236,13 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    assert.dom(multiselectPageObject.list).doesNotExist();
+    assert.dom(multiselectPageObject.element).exists();
 
-    await click('[data-multiselect]');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
   test('it opens the popover when the input receives input', async function (assert) {
@@ -212,7 +250,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -227,11 +265,13 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    assert.dom(multiselectPageObject.list).doesNotExist();
+    assert.dom(multiselectPageObject.element).exists();
 
-    await fillIn('[data-multiselect]', 'b');
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'b');
 
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
   // NOTE: This ensures that when a user clicks the border or the chevron
@@ -241,7 +281,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -256,13 +296,14 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    assert.dom(multiselectPageObject.list).doesNotExist();
+    assert.dom(multiselectPageObject.container).exists();
 
-    await click('[data-multiselect-container]');
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.container as Element);
 
-    assert.dom('[data-multiselect]').isFocused();
-
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.element).isFocused();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
   test('it yields the `option`, `index`, `Chip`, and `Remove` to the `:chip` block and sets the `@label` on the Remove component', async function (assert) {
@@ -273,7 +314,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{selected}}
         @selected={{selected}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip data-test-index="{{chip.index}}">
@@ -294,7 +335,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     // for screenreaders.  Without an aria-label attribute, screenreader users
     // will have 0 context on what the button does.
     assert
-      .dom('[data-multiselect-remove-option]')
+      .dom(multiselectPageObject.removes?.[0])
       .hasAttribute('aria-label', 'Remove');
 
     // Verify the `chip.option` gets yielded back properly via the `chip` block.
@@ -309,7 +350,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -324,13 +365,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    assert.dom(multiselectPageObject.list).doesNotExist();
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[data-multiselect]').hasNoAttribute('aria-expanded');
+    assert.dom(multiselectPageObject.element).hasNoAttribute('aria-expanded');
 
-    await click('[data-multiselect]');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert.dom('[data-multiselect]').hasAttribute('aria-expanded');
+    assert.dom(multiselectPageObject.element).hasAttribute('aria-expanded');
   });
 
   test('it sets `aria-controls`', async function (assert) {
@@ -338,7 +381,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -353,7 +396,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect]').hasAttribute('aria-controls');
+    assert.dom(multiselectPageObject.element).hasAttribute('aria-controls');
   });
 
   test('it applies the provided `@contentClass` to the popover content list', async function (assert) {
@@ -362,7 +405,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @contentClass="test-class"
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -377,10 +420,13 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="listbox"]').exists();
-    assert.dom('[role="listbox"]').hasClass('test-class');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    assert.dom(multiselectPageObject.list).exists();
+    assert.dom(multiselectPageObject.list).hasClass('test-class');
   });
 
   test('it renders the provided options in the popover list', async function (assert) {
@@ -389,7 +435,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @contentClass="test-class"
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -406,11 +452,11 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    // We want to verify our options have `role="option"` for accessibility reasons
-    assert.dom('[role="option"]').exists({ count: 2 });
-    // We can also verify our data attributes are spread to each option
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
     assert.dom('[data-option]').exists({ count: 2 });
   });
 
@@ -422,7 +468,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -437,14 +483,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
-
-    let [firstChip, secondChip] = document.querySelectorAll(
-      '[data-multiselect-selected-option]'
-    );
-
-    assert.dom(firstChip).hasText('blue');
-    assert.dom(secondChip).hasText('red');
+    assert.strictEqual(multiselectPageObject.chips?.length, 2);
+    assert.dom(multiselectPageObject.chips?.[0]).hasText('blue');
+    assert.dom(multiselectPageObject.chips?.[1]).hasText('red');
   });
 
   test('it sets the label of each selected chip', async function (assert) {
@@ -457,7 +498,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -472,8 +513,8 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-selected-option]').exists({ count: 1 });
-    assert.dom('[data-multiselect-selected-option]').hasText('a');
+    assert.strictEqual(multiselectPageObject.chips?.length, 1);
+    assert.dom(multiselectPageObject.chips?.[0]).hasText('a');
   });
 
   test('it sets `aria-selected` properly on the list item that is currently selected', async function (assert) {
@@ -484,7 +525,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -499,16 +540,19 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
     // Since `@selected=["blue"]`, we expect it to be selected
     assert
-      .dom('[role="option"]:first-child')
+      .dom(multiselectPageObject.options?.[0])
       .hasAttribute('aria-selected', 'true');
 
     // ...but not the "red" one!
     assert
-      .dom('[role="option"]:last-child')
+      .dom(multiselectPageObject.options?.[1])
       .hasAttribute('aria-selected', 'false');
   });
 
@@ -520,7 +564,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -535,13 +579,22 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
     // Since `@selected=['blue']`, we expect it to be checked
-    assert.dom('[data-multiselect-option-checkbox]:first-child').isChecked();
+    assert.dom(multiselectPageObject.checkboxes?.[0]).isChecked();
 
     // ...but not the "red" one!
-    assert.dom('[data-multiselect-option-checkbox]:last-child').isNotChecked();
+    assert
+      .dom(
+        multiselectPageObject.checkboxes?.[
+          multiselectPageObject.checkboxes.length - 1
+        ],
+      )
+      .isNotChecked();
   });
 
   test('it provides default filtering', async function (assert) {
@@ -549,7 +602,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -564,30 +617,29 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await fillIn('[data-multiselect]', 'blue');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'blue');
 
     // Filtering works as we expect
-    assert.dom('[role="option"]').exists({ count: 1 });
-    assert.dom('[role="option"]').hasText('blue');
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
+    assert.dom(multiselectPageObject.options?.[0]).hasText('blue');
 
     // Resetting the filter by clearing the input should
     // display all available options
-    await fillIn('[data-multiselect]', '');
-    assert.dom('[role="option"]').exists({ count: 2 });
+    await fillIn(multiselectPageObject.element as Element, '');
+    assert.strictEqual(multiselectPageObject.options?.length, 2);
 
     // Verify we can filter again after clearing
-    await fillIn('[data-multiselect]', 'red');
-    assert.dom('[role="option"]').exists({ count: 1 });
-    assert.dom('[role="option"]').hasText('red');
+    await fillIn(multiselectPageObject.element as Element, 'red');
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
+    assert.dom(multiselectPageObject.options?.[0]).hasText('red');
   });
 
   test('it renders `@noResultsText`', async function (assert) {
     await render(<template>
-      <Multiselect
-        @noResultsText="No items"
-        @options={{testColors}}
-        data-multiselect
-      >
+      <Multiselect @noResultsText="No items" @options={{testColors}} data-input>
         <:chip as |chip|>
           <chip.Chip>
             {{chip.option}}
@@ -601,26 +653,33 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await fillIn('[data-multiselect]', 'something-not-in-the-list');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(
+      multiselectPageObject.element as Element,
+      'something-not-in-the-list',
+    );
 
     // We should not have any list items
-    assert.dom('[role="option"]').exists({ count: 0 });
+    assert.strictEqual(multiselectPageObject.options?.length, 0);
 
     // ...but we should have our no results item!
-    assert.dom('[role="status"]').exists();
-    assert.dom('[role="status"]').hasTagName('li');
-    assert.dom('[role="status"]').hasText('No items');
+    assert.dom(multiselectPageObject.status).exists();
+    assert.dom(multiselectPageObject.status).hasTagName('li');
+    assert.dom(multiselectPageObject.status).hasText('No items');
+
     assert
-      .dom('[role="status"]')
+      .dom(multiselectPageObject.status)
       .hasAttribute(
         'aria-live',
         'assertive',
-        'Expected assertive so it is announced to screenreaders'
+        'Expected assertive so it is announced to screenreaders',
       );
   });
 
-  test('it calls `@onChange` when an option is selected via mouse click and keeps the popover oepn', async function (assert) {
-    assert.expect(6);
+  test('it calls `@onChange` when an option is selected via mouse click and keeps the popover open', async function (assert) {
+    assert.expect(8);
 
     let handleChange = (value: string[]) => {
       assert.deepEqual(value, ['blue'], 'Expected input to match');
@@ -632,7 +691,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -649,20 +708,26 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     assert.verifySteps([]);
 
-    await fillIn('[data-multiselect]', 'blue');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="option"]').exists({ count: 1 });
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'blue');
 
-    await click('[role="option"]');
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.options?.[0] as Element);
 
     assert.verifySteps(['handleChange']);
 
     // Verify the popover remains open
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
-  test('it calls `@onChange` when an option is selected via the keyboard with ENTER and keeps the popover open', async function (assert) {
-    assert.expect(6);
+  test('it calls `@onChange` when an option is selected via the keyboard using the `Enter` key and keeps the popover open', async function (assert) {
+    assert.expect(7);
 
     let handleChange = (value: string[]) => {
       assert.deepEqual(value, ['blue'], 'Expected input to match');
@@ -674,7 +739,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @noResultsText="No results"
         @options={{testColors}}
         @onChange={{handleChange}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -690,21 +755,27 @@ module('Integration | Component | Multiselect', function (hooks) {
     </template>);
 
     assert.verifySteps([]);
+    assert.dom(multiselectPageObject.element).exists();
 
-    await fillIn('[data-multiselect]', 'blue');
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'blue');
 
-    assert.dom('[role="option"]').exists({ count: 1 });
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['handleChange']);
 
     // Verify the popover remains open
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
   test('it calls `@onChange` with newly added values', async function (assert) {
-    assert.expect(3);
+    assert.expect(4);
 
     let selected = ['a', 'b', 'c'];
     let options = ['a', 'b', 'c', 'd', 'e', 'f'];
@@ -713,7 +784,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       assert.deepEqual(
         value,
         ['a', 'b', 'c', 'd'],
-        'Expected "d" to be added on change'
+        'Expected "d" to be added on change',
       );
       assert.step('handleChange');
     };
@@ -725,7 +796,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -740,9 +811,16 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Select another option, "d"
-    await fillIn('[data-multiselect]', 'd');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Select another option, "d". `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'd');
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['handleChange']);
   });
@@ -757,8 +835,9 @@ module('Integration | Component | Multiselect', function (hooks) {
       assert.deepEqual(
         value,
         ['a', 'c'],
-        'Expected "b" to be removed on change'
+        'Expected "b" to be removed on change',
       );
+
       assert.step('handleChange');
     };
 
@@ -769,7 +848,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -784,26 +863,23 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-remove-option]').exists({ count: 3 });
+    assert.strictEqual(multiselectPageObject.removes?.length, 3);
 
-    let removeButtons = document.querySelectorAll(
-      '[data-multiselect-remove-option]'
-    );
-
-    assert.ok(removeButtons, 'Expected queryable remove buttons');
     assert.ok(
-      removeButtons[1],
-      'Expected the middle remove button to be available'
+      multiselectPageObject.removes?.[1],
+      'Expected the middle remove button to be available',
     );
 
-    // Remove the middle item
-    await click(removeButtons[1] as Element);
+    assert.dom(multiselectPageObject.removes?.[1]).exists();
+
+    // Remove the middle item. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.removes?.[1] as Element);
 
     assert.verifySteps(['handleChange']);
   });
 
-  test('it removes the last selected item and calls `@onChange` when the backspace key is pressed with an empty input', async function (assert) {
-    assert.expect(3);
+  test('it removes the last selected item and calls `@onChange` when `Backspace` is pressed with an empty input', async function (assert) {
+    assert.expect(4);
 
     let options = ['a', 'b', 'c'];
     let selected = [...options];
@@ -812,7 +888,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       assert.deepEqual(
         value,
         ['a', 'b'],
-        'Expected "b" to be removed on change'
+        'Expected "b" to be removed on change',
       );
       assert.step('handleChange');
     };
@@ -824,7 +900,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -839,14 +915,22 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Backspace');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Backspace',
+    );
 
     assert.verifySteps(['handleChange']);
   });
 
   test('it removes an item when it is re-selected after already being selected and calls `@onChange`', async function (assert) {
-    assert.expect(3);
+    assert.expect(4);
 
     let options = ['a', 'b', 'c'];
     let selected = [...options];
@@ -855,7 +939,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       assert.deepEqual(
         value,
         ['b', 'c'],
-        'Expected "a" to be removed on change as it was re-selected'
+        'Expected "a" to be removed on change as it was re-selected',
       );
       assert.step('handleChange');
     };
@@ -867,7 +951,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -882,8 +966,15 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await fillIn('[data-multiselect]', 'a');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'a');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['handleChange']);
   });
@@ -895,7 +986,7 @@ module('Integration | Component | Multiselect', function (hooks) {
    * an item.
    */
   test('it does **NOT** call `@onChange` if the input has a value and the backspace key is pressed', async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     let selected = ['a', 'b', 'c'];
     let options = ['a', 'b', 'c'];
@@ -911,7 +1002,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -926,8 +1017,16 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await fillIn('[data-multiselect]', 'testing');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Backspace');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'testing');
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Backspace',
+    );
 
     assert.verifySteps([]);
   });
@@ -943,7 +1042,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @isDisabled={{true}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -958,7 +1057,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-remove-option]').doesNotExist();
+    assert.strictEqual(multiselectPageObject.removes?.length, 0);
   });
 
   test('it does not render the "X"/remove button on selected chips when `@isReadOnly={{true}}`', async function (assert) {
@@ -972,7 +1071,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{options}}
         @isReadOnly={{true}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -987,11 +1086,11 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    assert.dom('[data-multiselect-remove-option]').doesNotExist();
+    assert.strictEqual(multiselectPageObject.removes?.length, 0);
   });
 
   test('it uses the results from `@onFilter` to populate the filtered options', async function (assert) {
-    assert.expect(5);
+    assert.expect(6);
 
     let selected = ['blue'];
 
@@ -999,7 +1098,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       assert.strictEqual(
         value,
         'y',
-        'Expected the input to match what was entered via fillIn'
+        'Expected the input to match what was entered via fillIn',
       );
       assert.step('onFilter');
 
@@ -1012,7 +1111,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @onFilter={{handleFilter}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1027,12 +1126,14 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await fillIn('[data-multiselect]', 'y');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'y');
 
     assert.verifySteps(['onFilter']);
-
-    assert.dom('[role="option"]').exists({ count: 1 });
-    assert.dom('[role="option"]').hasText('yellow');
+    assert.strictEqual(multiselectPageObject.options?.length, 1);
+    assert.dom(multiselectPageObject.options?.[0]).hasText('yellow');
   });
 
   test('it sets the "active" item to the first one in the list when the input gains focus', async function (assert) {
@@ -1043,7 +1144,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1058,19 +1159,22 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="option"]').exists({ count: 2 });
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'true');
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'false');
+    assert.strictEqual(multiselectPageObject.options?.length, 2);
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[0],
+      multiselectPageObject.active,
+    );
   });
 
-  test('it sets the "active" item to the next item in the list when using the DOWN arrow', async function (assert) {
+  test('it sets the "active" item to the next item in the list when `ArrowDown` is pressed', async function (assert) {
     let selected = ['blue'];
 
     await render(<template>
@@ -1078,7 +1182,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1093,21 +1197,34 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="option"]').exists({ count: 2 });
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
+    assert.strictEqual(multiselectPageObject.options?.length, 2);
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
     assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'false');
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'true');
+      .dom(
+        multiselectPageObject.options?.[
+          multiselectPageObject.options.length - 1
+        ],
+      )
+      .exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[multiselectPageObject.options.length - 1],
+      multiselectPageObject.active,
+    );
   });
 
-  test('it sets the "active" item to the previous item in the list when using the UP arrow', async function (assert) {
+  test('it sets the "active" item to the previous item in the list when `ArrowUp` is pressed', async function (assert) {
     let selected = ['red'];
 
     // NOTE: Setting the selected option to "red" here so that
@@ -1118,7 +1235,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1133,18 +1250,25 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="option"]').exists({ count: 2 });
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowUp');
+    assert.strictEqual(multiselectPageObject.options?.length, 2);
 
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'true');
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'false');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowUp',
+    );
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[0],
+      multiselectPageObject.active,
+    );
   });
 
   test('it closes an open popover when the ESCAPE key is pressed', async function (assert) {
@@ -1152,7 +1276,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1167,25 +1291,32 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="listbox"]').exists();
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Escape');
+    assert.dom(multiselectPageObject.list).exists();
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Escape',
+    );
+
+    assert.dom(multiselectPageObject.list).doesNotExist();
   });
 
   test('it closes an open popover when the component is blurred', async function (assert) {
     // NOTE: We add an input tag so we have something to blur to (by focusing another element)
     await render(<template>
       {{! template-lint-disable require-input-label }}
-      <input placeholder="test" data-input />
+      <input placeholder="test" />
 
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1200,15 +1331,18 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[role="listbox"]').exists();
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    assert.dom(multiselectPageObject.list).exists();
 
     // Now blur the element by focusing the other input element in our test
-    await click('[data-input]');
 
-    assert.dom('[role="listbox"]').doesNotExist();
+    await click('[placeholder="test"]');
+
+    assert.dom(multiselectPageObject.list).doesNotExist();
   });
 
   test('it reopens the popover when any key is pressed if the popover is closed', async function (assert) {
@@ -1216,7 +1350,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1231,15 +1365,23 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
     // Now close it
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Escape');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Escape',
+    );
     // Now reopen it
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
 
-    assert.dom('[role="listbox"]').exists();
+    assert.dom(multiselectPageObject.list).exists();
   });
 
   test('it makes the first option "active" when the metakey and UP arrow is pressed', async function (assert) {
@@ -1252,7 +1394,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1267,20 +1409,40 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowUp', {
-      metaKey: true,
-    });
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'true');
-    // Verify our last item is no longer "active"
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'false');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
+
+    assert.dom(multiselectPageObject.options?.[1]).exists();
+
+    // Assert that the first option is activated so we can later be sure that pressing `metaKey` and `ArrowDown` did something.
+    assert.strictEqual(
+      multiselectPageObject.options?.[1],
+      multiselectPageObject.active,
+    );
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowUp',
+      {
+        metaKey: true,
+      },
+    );
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[0],
+      multiselectPageObject.active,
+    );
   });
 
   test('it makes the last option "active" when the metakey and DOWN arrow is pressed', async function (assert) {
@@ -1293,7 +1455,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1308,24 +1470,35 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown', {
-      metaKey: true,
-    });
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+      {
+        metaKey: true,
+      },
+    );
 
     assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'true');
+      .dom(
+        multiselectPageObject.options?.[
+          multiselectPageObject.options.length - 1
+        ],
+      )
+      .exists();
 
-    // Verify our first item is no longer "active"
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'false');
+    assert.strictEqual(
+      multiselectPageObject.options?.[multiselectPageObject.options.length - 1],
+      multiselectPageObject.active,
+    );
   });
 
-  test('it makes the last option "active" when the PAGEDOWN key is pressed', async function (assert) {
+  test('it makes the last option "active" when `PageDown` is pressed', async function (assert) {
     let selected = ['a'];
     let options = ['a', 'b', 'c', 'd', 'e', 'f'];
 
@@ -1335,7 +1508,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1350,22 +1523,32 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'PageDown');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'PageDown',
+    );
 
     assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'true');
+      .dom(
+        multiselectPageObject.options?.[
+          multiselectPageObject.options.length - 1
+        ],
+      )
+      .exists();
 
-    // Verify our first item is no longer "active"
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'false');
+    assert.strictEqual(
+      multiselectPageObject.options?.[multiselectPageObject.options.length - 1],
+      multiselectPageObject.active,
+    );
   });
 
-  test('it makes the first option "active" when the PAGEUP key is pressed', async function (assert) {
+  test('it makes the first option "active" when `PageUp` is pressed', async function (assert) {
     let selected = ['f'];
     let options = ['a', 'b', 'c', 'd', 'e', 'f'];
 
@@ -1375,7 +1558,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1390,21 +1573,40 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'PageUp');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'true');
-    // Verify our last item is no longer "active"
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'false');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
+
+    assert.dom(multiselectPageObject.options?.[1]).exists();
+
+    // Assert that the first option is activated so we can later be sure that pressing `metaKey` and `ArrowDown` did something.
+    assert.strictEqual(
+      multiselectPageObject.options?.[1],
+      multiselectPageObject.active,
+    );
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'PageUp',
+    );
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[0],
+      multiselectPageObject.active,
+    );
   });
 
-  test('it makes the first option "active" when the HOME key is pressed', async function (assert) {
+  test('it makes the first option "active" when `Home` is pressed', async function (assert) {
     let selected = ['f'];
     let options = ['a', 'b', 'c', 'd', 'e', 'f'];
 
@@ -1414,7 +1616,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @selected={{selected}}
         @options={{options}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1429,23 +1631,42 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover by clicking it
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Home');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert
-      .dom('[role="option"]:first-child')
-      .hasAttribute('data-active', 'true');
-    // Verify our last item is no longer "active"
-    assert
-      .dom('[role="option"]:last-child')
-      .hasAttribute('data-active', 'false');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
+
+    assert.dom(multiselectPageObject.options?.[1]).exists();
+
+    // Assert that the first option is activated so we can later be sure that pressing `metaKey` and `ArrowDown` did something.
+    assert.strictEqual(
+      multiselectPageObject.options?.[1],
+      multiselectPageObject.active,
+    );
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Home',
+    );
+
+    assert.dom(multiselectPageObject.options?.[0]).exists();
+
+    assert.strictEqual(
+      multiselectPageObject.options?.[0],
+      multiselectPageObject.active,
+    );
   });
 
   // This tests our `resetValue` action
   test('it clears the input value when a user enters invalid text into the input without selecting anything and then blurs the input', async function (assert) {
-    assert.expect(3);
+    assert.expect(4);
 
     let selected = ['blue'];
 
@@ -1461,7 +1682,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @onChange={{handleChange}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1476,19 +1697,19 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
 
       {{! template-lint-disable require-input-label }}
-      <input placeholder="test" data-input />
+      <input placeholder="test" />
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    // Enter garbage into the input
-    await fillIn('[data-multiselect]', 'some-garbage');
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(multiselectPageObject.element as Element, 'garbage');
 
-    // Now blur the element
-    await click('[data-input]');
+    // Now blur autocomplete's input by focusing another element
+    await click('[placeholder="test"]');
 
     // Verify the input is reset to our `@selected` option
-    assert.dom('[data-multiselect]').hasValue('');
+    assert.dom(multiselectPageObject.element).hasValue('');
 
     // NOTE: We do not expect the `@onChange`  to be called in this
     // case as we are only visually resetting to the previously
@@ -1497,9 +1718,9 @@ module('Integration | Component | Multiselect', function (hooks) {
 
     // We want to verify the original options are re-displayed
     // rather than the input being filtered to garbage
-    await click('[data-multiselect]');
+    await click(multiselectPageObject.element as Element);
 
-    assert.dom('[role="option"]').exists({ count: 2 });
+    assert.strictEqual(multiselectPageObject.options?.length, 2);
   });
 
   test('it renders the `Select all` option when provided with `@selectAllText`', async function (assert) {
@@ -1508,7 +1729,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @noResultsText="No results"
         @selectAllText="Select all"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1523,16 +1744,19 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
 
-    assert.dom('[data-multiselect-select-all-option]').exists();
-    assert.dom('[data-multiselect-select-all-option]').hasText('Select all');
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
-    assert.dom('[data-multiselect-select-all-checkbox]').exists();
+    assert.dom(multiselectPageObject.selectAll).exists();
+    assert.dom(multiselectPageObject.selectAll).hasText('Select all');
+
+    assert.dom(multiselectPageObject.selectAllCheckbox).exists();
   });
 
   test('it handles all possible state changes when the `Select all` option is interacted with', async function (assert) {
-    assert.expect(22);
+    assert.expect(24);
 
     class State {
       @tracked selected: string[] = [];
@@ -1552,7 +1776,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @onChange={{handleChange}}
         @noResultsText="No results"
         @selectAllText="Select all"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>
@@ -1567,67 +1791,122 @@ module('Integration | Component | Multiselect', function (hooks) {
       </Multiselect>
     </template>);
 
-    // Open the popover
-    await click('[data-multiselect]');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Open the popover. `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await click(multiselectPageObject.element as Element);
 
     // Verify default state of `Select all` is not checked
-    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
-    assert.dom('[data-multiselect-select-all-checkbox]').isNotChecked();
+    assert
+      .dom(multiselectPageObject.selectAllCheckbox)
+      .hasProperty('indeterminate', false);
+
+    assert.dom(multiselectPageObject.selectAllCheckbox).isNotChecked();
 
     // Verify the list item has the proper default aria-selected attribute of false
-    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
+    assert
+      .dom(multiselectPageObject.selectAll)
+      .hasAttribute('aria-selected', 'false');
 
-    // Unchecked -> checked should make all options selected
-    await click('[data-multiselect-select-all-option]');
+    assert.dom(multiselectPageObject.element).exists();
+
+    // Unchecked -> checked should make all options selected. `assert.dom().exists` should narrow the type, removing `null`.
+    // But it doesn't. Thus the cast.
+    await click(multiselectPageObject.selectAll as Element);
 
     // Verify `Select all` checkbox state
-    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
-    assert.dom('[data-multiselect-select-all-checkbox]').isChecked();
+    assert
+      .dom(multiselectPageObject.selectAllCheckbox)
+      .hasProperty('indeterminate', false);
+
+    assert.dom(multiselectPageObject.selectAllCheckbox).isChecked();
 
     // Verify the list item has the proper aria-selected attribute of true, since it's selected
-    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'true');
+    assert
+      .dom(multiselectPageObject.selectAll)
+      .hasAttribute('aria-selected', 'true');
 
     assert.verifySteps(['blue,red']);
 
     // Remove the "red" option by selecting it
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'ArrowDown');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'ArrowDown',
+    );
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     // Our selected item should now only be "blue" since we removed "red" above
     assert.verifySteps(['blue']);
 
     // Verify the `Select all` checkbox is now indeterminate
-    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', true);
+    assert
+      .dom(multiselectPageObject.selectAllCheckbox)
+      .hasProperty('indeterminate', true);
 
     // Verify the list item has the proper aria-selected attribute of false, since the
     // checkbox is in the indeterminate state
-    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
+    assert
+      .dom(multiselectPageObject.selectAll)
+      .hasAttribute('aria-selected', 'false');
 
     // When the `Select all` checkbox is indeterminate, clicking it should re-select all options
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['blue,red']);
 
-    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
-    assert.dom('[data-multiselect-select-all-checkbox]').isChecked();
+    assert
+      .dom(multiselectPageObject.selectAllCheckbox)
+      .hasProperty('indeterminate', false);
+
+    assert.dom(multiselectPageObject.selectAllCheckbox).isChecked();
 
     // Verify the list item has the proper aria-selected attribute of true, since it's selected
-    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'true');
+    assert
+      .dom(multiselectPageObject.selectAll)
+      .hasAttribute('aria-selected', 'true');
 
     // Re-clicking the `Select all` checkbox when it's checked should un-check all options
     // Go back to the top and select it
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Home');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Home',
+    );
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     assert.verifySteps(['empty']);
 
-    assert.dom('[data-multiselect-select-all-checkbox]').hasProperty('indeterminate', false);
-    assert.dom('[data-multiselect-select-all-checkbox]').isNotChecked();
+    assert
+      .dom(multiselectPageObject.selectAllCheckbox)
+      .hasProperty('indeterminate', false);
+
+    assert.dom(multiselectPageObject.selectAllCheckbox).isNotChecked();
 
     // Verify the list item has the proper aria-selected attribute of false, since it's
     // no longer selected
-    assert.dom('[data-multiselect-select-all-option]').hasAttribute('aria-selected', 'false');
+    assert
+      .dom(multiselectPageObject.selectAll)
+      .hasAttribute('aria-selected', 'false');
   });
 
   test('it throws an assertion error if no `:chip` block is provided', async function (assert) {
@@ -1636,7 +1915,7 @@ module('Integration | Component | Multiselect', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes('The `:chip` block is required'),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
@@ -1644,7 +1923,7 @@ module('Integration | Component | Multiselect', function (hooks) {
       <Multiselect
         @noResultsText="No results"
         @options={{testColors}}
-        data-multiselect
+        data-input
       >
         <:default as |multiselect|>
           <multiselect.Option>{{multiselect.option}}</multiselect.Option>
@@ -1659,9 +1938,9 @@ module('Integration | Component | Multiselect', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes(
-          'The Remove component "@label" argument is required'
+          'The Remove component "@label" argument is required',
         ),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
@@ -1670,7 +1949,7 @@ module('Integration | Component | Multiselect', function (hooks) {
         @options={{testColors}}
         @selected={{testColors}}
         @noResultsText="No results"
-        data-multiselect
+        data-input
       >
         <:chip as |chip|>
           <chip.Chip>

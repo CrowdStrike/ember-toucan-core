@@ -7,7 +7,7 @@ If you are building forms, you may be interested in the [AutocompleteField](./au
 
 Required.
 
-`@noResultsText` is shown when there are no results after filtering. 
+`@noResultsText` is shown when there are no results after filtering.
 
 ```hbs
 <Form::Controls::Autocomplete
@@ -37,7 +37,7 @@ A CSS class to add to this component's content container. Commonly used to speci
 
 Optional.
 
-`@options` forms the content of this component. 
+`@options` forms the content of this component.
 
 ```hbs
 <Form::Controls::Autocomplete
@@ -86,8 +86,8 @@ export default class extends Component {
 
 Optional.
 
-Called when the user makes a selection. 
-It is called with the selected option (derived from `@options`) as its only argument. 
+Called when the user makes a selection.
+It is called with the selected option (derived from `@options`) as its only argument.
 You'll want to update `@selected` with the new value in your on change handler.
 
 ```hbs
@@ -125,8 +125,8 @@ export default class extends Component {
 
 Optional.
 
-By default, when `@options` are an array of strings, the built-in filtering does simple `String.prototype.startsWith` filtering. 
-There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `String.prototype.startsWith` filtering described. 
+By default, when `@options` are an array of strings, the built-in filtering does simple `String.prototype.startsWith` filtering.
+There may be cases where you need to write your own filtering logic completely that is more complex than the built-in `String.prototype.startsWith` filtering described.
 To do so, leverage `@onFilter` instead. This function should return an array of items that will then be used to populate the dropdown results.
 
 ```hbs
@@ -224,3 +224,7 @@ Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 ```hbs
 <Form::Controls::Autocomplete @hasError={{true}} />
 ```
+
+## Test Helpers
+
+Test helpers for selecting common elements are available via `@crowdstrike/ember-toucan-core/test-support`.

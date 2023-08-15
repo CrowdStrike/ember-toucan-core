@@ -346,36 +346,6 @@ Set the `@hasError` argument to apply an error box shadow to the `<input>`.
 <Form::Controls::Multiselect @hasError={{true}} />
 ```
 
-## Test Selectors
+## Test Helpers
 
-### Container
-
-`data-multiselect-container` is provided to target the wrapping div element for the entire component.
-
-```js
-assert.dom('[data-multiselect-container]').hasClass('bg-overlay');
-```
-
-### Selected Chips
-
-Target selected chips via `data-multiselect-selected-option`.
-
-```js
-// Query how many selected chips there are
-assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
-```
-
-### Select Chip Remove Button
-
-Target a selected chip's remove button via `data-multiselect-remove-option`.
-
-```js
-// Query how many remove buttons there are
-assert.dom('[data-multiselect-remove-option]').exists({ count: 3 });
-
-// Click a particular remove button
-let removeButtons = document.querySelectorAll(
-  '[data-multiselect-remove-option]'
-);
-await click(removeButtons[1]);
-```
+Test helpers for selecting common elements are available via `@crowdstrike/ember-toucan-core/test-support`.

@@ -12,6 +12,11 @@ import { module, test } from 'qunit';
 import ToucanForm from '@crowdstrike/ember-toucan-form/components/toucan-form';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
+import {
+  AutocompletePageObject,
+  MultiselectPageObject,
+} from '@crowdstrike/ember-toucan-core/test-support';
+
 import type { ErrorRecord } from 'ember-headless-form';
 
 const testFile = new File(['Some sample content'], 'file.txt', {
@@ -33,6 +38,14 @@ interface TestData {
 
 module('Integration | Component | ToucanForm', function (hooks) {
   setupRenderingTest(hooks);
+
+  let autocompletePageObject = new AutocompletePageObject(
+    '[data-autocomplete-input]',
+  );
+
+  let multiselectPageObject = new MultiselectPageObject(
+    '[data-multiselect-input]',
+  );
 
   test('it renders', async function (assert) {
     await render(<template><ToucanForm data-toucan-form /></template>);
@@ -209,7 +222,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @name="multiselect"
           @noResultsText="No results"
           @options={{options}}
-          data-multiselect
+          data-multiselect-input
         >
           <:chip as |chip|>
             <chip.Chip>
@@ -254,26 +267,28 @@ module('Integration | Component | ToucanForm', function (hooks) {
     assert.dom('[data-files] [data-file-name]').hasText('file.txt');
 
     // Autocomplete
+    assert.dom(multiselectPageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
     assert
-      .dom('[data-autocomplete-input]')
+      .dom(autocompletePageObject.element as Element)
       .hasAttribute('name', 'autocomplete');
 
-    assert.dom('[data-autocomplete-input]').hasValue('blue');
+    assert.dom(autocompletePageObject.element as Element).hasValue('blue');
 
     // Multiselect
-    assert.dom('[data-multiselect]').hasAttribute('name', 'multiselect');
-    assert.dom('[data-multiselect-selected-option]').exists({ count: 2 });
+    assert
+      .dom(multiselectPageObject.element)
+      .hasAttribute('name', 'multiselect');
 
-    let [firstChip, secondChip] = document.querySelectorAll(
-      '[data-multiselect-selected-option]',
-    );
+    assert.strictEqual(multiselectPageObject.chips?.length, 2);
 
-    assert.dom(firstChip).hasText('red');
-    assert.dom(secondChip).hasText('yellow');
+    assert.dom(multiselectPageObject.chips?.[0]).hasText('red');
+    assert.dom(multiselectPageObject.chips?.[1]).hasText('yellow');
   });
 
   test('it triggers validation and shows error messages in the Toucan Core components', async function (assert) {
-    assert.expect(20);
+    assert.expect(22);
 
     const handleSubmit = ({ files, ...data }: TestData) => {
       // Checking deep equality on files can get really tricky due
@@ -281,11 +296,13 @@ module('Integration | Component | ToucanForm', function (hooks) {
       // and `lastModified`.  Due to that, we will assert `files` separately from the other
       // submitted values.
       assert.ok(files, 'Expected files to be included');
+
       assert.strictEqual(
         files?.length,
         1,
         'Expected only a single file to be added',
       );
+
       assert.strictEqual(files?.[0]?.name, 'file.txt');
       assert.strictEqual(files?.[0]?.type, 'text/plain');
 
@@ -493,7 +510,7 @@ module('Integration | Component | ToucanForm', function (hooks) {
           @noResultsText="No results"
           @options={{options}}
           @rootTestSelector="data-multiselect-wrapper"
-          data-multiselect
+          data-multiselect-input
         >
           <:chip as |chip|>
             <chip.Chip>
@@ -567,13 +584,31 @@ module('Integration | Component | ToucanForm', function (hooks) {
     await click('[data-checkbox]');
     await click('[data-radio-2]');
     await click('[data-checkbox-group-2]');
+
     await triggerEvent('[data-file-input-field]', 'change', {
       files: [testFile],
     });
-    await fillIn('[data-autocomplete-input]', 'red');
-    await triggerKeyEvent('[data-autocomplete-input]', 'keydown', 'Enter');
-    await fillIn('[data-multiselect]', 'blue');
-    await triggerKeyEvent('[data-multiselect]', 'keydown', 'Enter');
+
+    assert.dom(autocompletePageObject.element).exists();
+
+    // `assert.dom().exists` should narrow the type, removing `null`. But it doesn't. Thus the cast.
+    await fillIn(autocompletePageObject.element as Element, 'red');
+
+    await triggerKeyEvent(
+      autocompletePageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
+
+    assert.dom(multiselectPageObject.element).exists();
+
+    await fillIn(multiselectPageObject.element as Element, 'blue');
+
+    await triggerKeyEvent(
+      multiselectPageObject.element as Element,
+      'keydown',
+      'Enter',
+    );
 
     await click('[data-test-submit]');
 
