@@ -1,15 +1,11 @@
-import { render, setupOnerror } from '@ember/test-helpers';
+import { click, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import Button from '@crowdstrike/ember-toucan-core/components/button';
 import { setupRenderingTest } from 'test-app/tests/helpers';
 
-import { ButtonPageObject } from '@crowdstrike/ember-toucan-core/test-support';
-
 module('Integration | Component | button', function (hooks) {
   setupRenderingTest(hooks);
-
-  let buttonPageObject = new ButtonPageObject('[data-button]');
 
   test('it renders', async function (assert) {
     await render(<template>
@@ -18,11 +14,11 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.strictEqual(buttonPageObject.text, 'text');
-    assert.false(buttonPageObject.isDisabled);
+    assert.dom('[data-button]').hasText('text');
+    assert.dom('[data-button]').isEnabled();
 
     assert
-      .dom(buttonPageObject.element)
+      .dom('[data-button]')
       .hasAttribute('type', 'button', 'Expected default type to be "button"');
   });
 
@@ -34,8 +30,6 @@ module('Integration | Component | button', function (hooks) {
         </:loading>
       </Button>
     </template>);
-
-    assert.true(buttonPageObject.isLoading);
 
     assert
       .dom('[data-test-loading-content]')
@@ -55,8 +49,6 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.false(buttonPageObject.isLoading);
-
     assert
       .dom('[data-test-loading]')
       .doesNotExist('Expected to NOT have loading named block rendered');
@@ -73,7 +65,7 @@ module('Integration | Component | button', function (hooks) {
       </Button>
     </template>);
 
-    assert.true(buttonPageObject.isDisabled);
+    assert.dom('[data-button]').hasAttribute('aria-disabled', 'true');
   });
 
   test('it yields a disabled named block when `@isDisabled={{true}}', async function (assert) {
@@ -123,7 +115,7 @@ module('Integration | Component | button', function (hooks) {
 
     assert.verifySteps([]);
 
-    await buttonPageObject.click();
+    await click('[data-button]');
 
     assert.verifySteps(['clicked']);
   });
@@ -139,7 +131,7 @@ module('Integration | Component | button', function (hooks) {
 
     assert.verifySteps([]);
 
-    await buttonPageObject.click();
+    await click('[data-button]');
 
     assert.verifySteps([]);
   });
@@ -150,7 +142,7 @@ module('Integration | Component | button', function (hooks) {
     setupOnerror((e: Error) => {
       assert.ok(
         e.message.includes('Invalid variant for Button'),
-        'Expected assertion error message'
+        'Expected assertion error message',
       );
     });
 
