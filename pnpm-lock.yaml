@@ -229,8 +229,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(@glint/template@1.0.2)(webpack@5.75.0)
       ember-cli:
-        specifier: ~5.1.0
-        version: 5.1.0
+        specifier: ~5.2.0
+        version: 5.2.0
       ember-cli-app-version:
         specifier: ^6.0.1
         version: 6.0.1(ember-source@5.2.0)
@@ -239,7 +239,7 @@ importers:
         version: 7.26.11
       ember-cli-dependency-checker:
         specifier: ^3.3.1
-        version: 3.3.1(ember-cli@5.1.0)
+        version: 3.3.1(ember-cli@5.2.0)
       ember-cli-deprecation-workflow:
         specifier: ^2.1.0
         version: 2.1.0
@@ -899,8 +899,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4
       ember-cli:
-        specifier: ~5.1.0
-        version: 5.1.0
+        specifier: ~5.2.0
+        version: 5.2.0
       ember-cli-app-version:
         specifier: ^6.0.1
         version: 6.0.1(ember-source@5.2.0)
@@ -909,7 +909,7 @@ importers:
         version: 7.26.11
       ember-cli-dependency-checker:
         specifier: ^3.3.1
-        version: 3.3.1(ember-cli@5.1.0)
+        version: 3.3.1(ember-cli@5.2.0)
       ember-cli-htmlbars:
         specifier: ^6.1.1
         version: 6.2.0
@@ -10702,14 +10702,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli-dependency-checker@3.3.1(ember-cli@5.1.0):
+  /ember-cli-dependency-checker@3.3.1(ember-cli@5.2.0):
     resolution: {integrity: sha512-Tg6OeijjXNKWkDm6057Tr0N9j9Vlz/ITewXWpn1A/+Wbt3EowBx5ZKfvoupqz05EznKgL1B/ecG0t+JN7Qm6MA==}
     engines: {node: '>= 6'}
     peerDependencies:
       ember-cli: ^3.2.0 || ^4.0.0
     dependencies:
       chalk: 2.4.2
-      ember-cli: 5.1.0
+      ember-cli: 5.2.0
       find-yarn-workspace-root: 1.2.1
       is-git-url: 1.0.0
       resolve: 1.22.1
@@ -10995,12 +10995,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli@5.1.0:
-    resolution: {integrity: sha512-TlnfO+V5lZqRQ7eGXt+P8q24Cu90GSXXAS/2NasaCtC1WY7eVzhfMsoNZiOw3Pe1CaB7i5fPDR8jAMsTwx8Tpg==}
+  /ember-cli@5.2.0:
+    resolution: {integrity: sha512-VZ/yhnM9tNWxZQQ+3dGe0MkUhkcS51W7WQWxlIr+NxlqG+WLe6qi8IKHElXwI3nY/Gbh5kSU5rF31WmGeGXjbg==}
     engines: {node: '>= 16'}
     hasBin: true
     dependencies:
-      '@babel/core': 7.21.4
+      '@babel/core': 7.22.9
       '@pnpm/find-workspace-dir': 6.0.2
       broccoli: 3.5.2
       broccoli-builder: 0.18.14
@@ -11035,7 +11035,7 @@ packages:
       execa: 5.1.1
       exit: 0.1.2
       express: 4.18.2
-      filesize: 10.0.6
+      filesize: 10.0.12
       find-up: 5.0.0
       find-yarn-workspace-root: 2.0.0
       fixturify-project: 2.1.1
@@ -11070,9 +11070,9 @@ packages:
       promise.hash.helper: 1.0.8
       quick-temp: 0.1.8
       remove-types: 1.0.0
-      resolve: 1.22.2
+      resolve: 1.22.3
       resolve-package-path: 4.0.3
-      safe-stable-stringify: 2.4.2
+      safe-stable-stringify: 2.4.3
       sane: 5.0.1
       semver: 7.5.1
       silent-error: 1.1.1
@@ -12771,8 +12771,8 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
-  /filesize@10.0.6:
-    resolution: {integrity: sha512-rzpOZ4C9vMFDqOa6dNpog92CoLYjD79dnjLk2TYDDtImRIyLTOzqojCb05Opd1WuiWjs+fshhCgTd8cl7y5t+g==}
+  /filesize@10.0.12:
+    resolution: {integrity: sha512-6RS9gDchbn+qWmtV2uSjo5vmKizgfCQeb5jKmqx8HyzA3MoLqqyQxN+QcjkGBJt7FjJ9qFce67Auyya5rRRbpw==}
     engines: {node: '>= 10.4.0'}
     dev: true
 
@@ -17770,8 +17770,8 @@ packages:
       ret: 0.1.15
     dev: true
 
-  /safe-stable-stringify@2.4.2:
-    resolution: {integrity: sha512-gMxvPJYhP0O9n2pvcfYfIuYgbledAOJFcqRThtPRmjscaipiwcwPPKLytpVzMkG2HAN87Qmo2d4PtGiri1dSLA==}
+  /safe-stable-stringify@2.4.3:
+    resolution: {integrity: sha512-e2bDA2WJT0wxseVd4lsDP4+3ONX6HpMXQa1ZhFQ7SU+GjvORCmShbCMltrtIDfkYhVHrOcPtj+KhmDBdPdZD1g==}
     engines: {node: '>=10'}
     dev: true
 
