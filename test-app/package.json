@@ -32,7 +32,7 @@
     "@babel/eslint-parser": "^7.22.10",
     "@crowdstrike/ember-toucan-core": "workspace:*",
     "@crowdstrike/ember-toucan-form": "workspace:*",
-    "@crowdstrike/ember-toucan-styles": "^2.0.1",
+    "@crowdstrike/ember-toucan-styles": "^2.0.2",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^3.1.0",
