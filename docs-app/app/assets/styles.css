@@ -5,6 +5,6 @@
 /**
  * postcss-import doesn't follow "exports" entries in package.json
  */
-@import '@crowdstrike/ember-oss-docs/dist/styles/tailwind-extensions.css';
-@import '@crowdstrike/ember-oss-docs/dist/styles/docfy-overrides.css';
-@import '@crowdstrike/ember-oss-docs/dist/styles/hljs.css';
+@import '@crowdstrike/ember-oss-docs/styles/tailwind-extensions.css';
+@import '@crowdstrike/ember-oss-docs/styles/docfy-overrides.css';
+@import '@crowdstrike/ember-oss-docs/styles/hljs.css';
