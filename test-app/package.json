@@ -28,8 +28,8 @@
     "_syncPnpm": "pnpm sync-dependencies-meta-injected"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/eslint-parser": "^7.19.1",
+    "@babel/core": "^7.22.10",
+    "@babel/eslint-parser": "^7.22.10",
     "@crowdstrike/ember-toucan-core": "workspace:*",
     "@crowdstrike/ember-toucan-form": "workspace:*",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",

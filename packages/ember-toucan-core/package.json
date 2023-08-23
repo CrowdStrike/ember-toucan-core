@@ -42,18 +42,18 @@
     "tailwindcss": "^2.2.15 || ^3.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.20.7",
+    "@babel/runtime": "^7.22.10",
     "@embroider/addon-shim": "^1.0.0",
     "@floating-ui/dom": "^1.4.2",
     "ember-velcro": "^2.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.0",
-    "@babel/eslint-parser": "^7.19.1",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-proposal-decorators": "^7.17.0",
-    "@babel/plugin-syntax-decorators": "^7.17.0",
-    "@babel/preset-typescript": "^7.18.6",
+    "@babel/core": "^7.22.10",
+    "@babel/eslint-parser": "^7.22.10",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-decorators": "^7.22.10",
+    "@babel/plugin-syntax-decorators": "^7.22.10",
+    "@babel/preset-typescript": "^7.22.5",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/test-helpers": "^3.1.0",
     "@embroider/addon-dev": "^4.1.0",
@@ -106,7 +106,7 @@
     "rollup": "^3.12.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-glimmer-template-tag": "^0.4.1",
-    "rollup-plugin-ts": "^3.0.2",
+    "rollup-plugin-ts": "^3.4.4",
     "tailwindcss": "^2.2.15",
     "typescript": "^5.0.0"
   },
