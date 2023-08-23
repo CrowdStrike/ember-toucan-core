@@ -33,7 +33,7 @@ export default {
     // compile TypeScript to latest JavaScript, including Babel transpilation
     typescript({
       transpiler: 'babel',
-      browserslist: false,
+      browserslist: ['last 1 chrome versions'],
       // Reasoning for this being set to true: https://github.com/NullVoxPopuli/rollup-plugin-glimmer-template-tag/#configure-rollup-plugin-ts-ts-only
       transpileOnly: true,
     }),
