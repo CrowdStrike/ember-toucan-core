@@ -1,6 +1,6 @@
 {
   "name": "@crowdstrike/ember-toucan-form",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Build forms with ember-headless-form and ember-toucan-core",
   "keywords": [
     "ember-addon"
