@@ -1,5 +1,28 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.4.0
+
+### Minor Changes
+
+- [#254](https://github.com/CrowdStrike/ember-toucan-core/pull/254) [`532ab89`](https://github.com/CrowdStrike/ember-toucan-core/commit/532ab8997917c9dc4beb3da93e19578ec73b3f09) Thanks [@clintcs](https://github.com/clintcs)! - Add Multiselect test helpers.
+
+- [#253](https://github.com/CrowdStrike/ember-toucan-core/pull/253) [`c18922f`](https://github.com/CrowdStrike/ember-toucan-core/commit/c18922f97912b3189c45a572afcf89ce522d7365) Thanks [@ynotdraw](https://github.com/ynotdraw)! - Both `Textarea` and `Input` Controls are now full width by default.
+
+  The `Textarea` Control markup was adjusted to account for collision with the resize handle and focus/error shadows.
+
+  The `Input` Control now has small padding along the x-axis.
+
+- [#257](https://github.com/CrowdStrike/ember-toucan-core/pull/257) [`ce91639`](https://github.com/CrowdStrike/ember-toucan-core/commit/ce91639ffab71d3e5432ef22ca641d4eb4de4174) Thanks [@clintcs](https://github.com/clintcs)! - Remove Button's test helpers
+
+### Patch Changes
+
+- [#246](https://github.com/CrowdStrike/ember-toucan-core/pull/246) [`0e817b6`](https://github.com/CrowdStrike/ember-toucan-core/commit/0e817b6ca73c8225546e33fe7e02d44ed0afedfd) Thanks [@ynotdraw](https://github.com/ynotdraw)! - (internal) Updated both packages to use the `<template>` tag and `gts` file extension.
+
+- [#248](https://github.com/CrowdStrike/ember-toucan-core/pull/248) [`52ded27`](https://github.com/CrowdStrike/ember-toucan-core/commit/52ded27bbefb35fee23ce937331f8b214b0d4c5f) Thanks [@clintcs](https://github.com/clintcs)! - add Autocomplete test helpers.
+
+- Updated dependencies [[`532ab89`](https://github.com/CrowdStrike/ember-toucan-core/commit/532ab8997917c9dc4beb3da93e19578ec73b3f09), [`0e817b6`](https://github.com/CrowdStrike/ember-toucan-core/commit/0e817b6ca73c8225546e33fe7e02d44ed0afedfd), [`52ded27`](https://github.com/CrowdStrike/ember-toucan-core/commit/52ded27bbefb35fee23ce937331f8b214b0d4c5f), [`c18922f`](https://github.com/CrowdStrike/ember-toucan-core/commit/c18922f97912b3189c45a572afcf89ce522d7365), [`ce91639`](https://github.com/CrowdStrike/ember-toucan-core/commit/ce91639ffab71d3e5432ef22ca641d4eb4de4174)]:
+  - @crowdstrike/ember-toucan-core@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes
