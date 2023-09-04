@@ -22,7 +22,7 @@ jobs:
     name: Install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -35,7 +35,7 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -60,7 +60,7 @@ jobs:
           - typescript@5.0
           - typescript@5.1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -79,7 +79,7 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -94,7 +94,7 @@ jobs:
     needs:
       - install_dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -123,7 +123,7 @@ jobs:
           # - "'ember-lts-4.8 + embroider-optimized'"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: TurboRepo local server
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
@@ -146,7 +146,7 @@ jobs:
       - try_scenarios
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: TurboRepo local server
@@ -176,7 +176,7 @@ jobs:
       deployments: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: ./.github/actions/pnpm
