@@ -89,7 +89,7 @@
     "autoprefixer": "^10.0.2",
     "concurrently": "^8.0.0",
     "ember-cli-htmlbars": "^6.1.1",
-    "ember-source": "~5.2.0",
+    "ember-source": "~5.3.0",
     "ember-template-imports": "^3.4.2",
     "ember-template-lint": "^5.8.0",
     "eslint": "^8.32.0",
