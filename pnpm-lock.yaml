@@ -271,8 +271,8 @@ importers:
         specifier: ^8.0.0-beta.0
         version: 8.0.0-beta.0
       ember-qunit:
-        specifier: ^7.0.0
-        version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.2.0)(qunit@2.19.4)(webpack@5.75.0)
+        specifier: ^8.0.0
+        version: 8.0.1(@ember/test-helpers@3.1.0)(@glint/template@1.0.2)(ember-source@5.2.0)(qunit@2.19.4)
       ember-resolver:
         specifier: ^11.0.0
         version: 11.0.0(ember-source@5.2.0)
@@ -938,8 +938,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.20.12)
       ember-qunit:
-        specifier: ^7.0.0
-        version: 7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.2.0)(qunit@2.19.4)(webpack@5.75.0)
+        specifier: ^8.0.0
+        version: 8.0.1(@ember/test-helpers@3.1.0)(@glint/template@1.0.2)(ember-source@5.2.0)(qunit@2.19.4)
       ember-resolver:
         specifier: ^11.0.0
         version: 11.0.0(ember-source@5.2.0)
@@ -4892,6 +4892,17 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@embroider/addon-shim@1.8.6:
+    resolution: {integrity: sha512-siC9kP78uucEbpDcVyxjkwa76pcs5rVzDVpWO4PDc9EAXRX+pzmUuSTLAK3GztUwx7/PWhz1BenAivqdSvSgfg==}
+    engines: {node: 12.* || 14.* || >= 16}
+    dependencies:
+      '@embroider/shared-internals': 2.4.0
+      broccoli-funnel: 3.0.8
+      semver: 7.5.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@embroider/babel-loader-8@2.0.0(@embroider/core@2.1.1)(supports-color@8.1.1)(webpack@5.75.0):
     resolution: {integrity: sha512-a1bLodfox8JEgNHuhiIBIcXJ4b8NNnKWYkMIpJx216pn80Jf1jcFosQpxnqC8hYHrnG0XRKzQ9zJYgJXoa1wfg==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -5089,7 +5100,7 @@ packages:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       resolve-package-path: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       typescript-memoize: 1.1.1
     transitivePeerDependencies:
       - supports-color
@@ -9078,7 +9089,7 @@ packages:
       caniuse-lite: 1.0.30001517
       isbot: 3.6.5
       object-path: 0.11.8
-      semver: 7.5.1
+      semver: 7.5.4
       ua-parser-js: 1.0.33
     dev: true
 
@@ -9129,7 +9140,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /bytes@1.0.0:
@@ -9993,7 +10004,7 @@ packages:
       postcss-modules-values: 4.0.0(postcss@8.4.21)
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.75.0
 
   /css-select@5.1.0:
@@ -10621,7 +10632,7 @@ packages:
       ember-auto-import: 2.6.0(webpack@5.75.0)
       ember-cli-babel: 7.26.11
       ember-get-config: 1.1.0(@glint/template@1.0.2)
-      ember-validators: 4.1.2
+      ember-validators: 4.1.2(@glint/template@1.0.2)
       validated-changeset: 1.3.4
     transitivePeerDependencies:
       - '@glint/template'
@@ -10834,8 +10845,8 @@ packages:
       - supports-color
     dev: true
 
-  /ember-cli-test-loader@3.0.0:
-    resolution: {integrity: sha512-wfFRBrfO9gaKScYcdQxTfklx9yp1lWK6zv1rZRpkas9z2SHyJojF7NOQRWQgSB3ypm7vfpiF8VsFFVVr7VBzAQ==}
+  /ember-cli-test-loader@3.1.0:
+    resolution: {integrity: sha512-0aocZV9SIoOHiU3hrH3IuLR6busWhTX6UVXgd490hmJkIymmOXNH2+jJoC7Ebkeo3PiOfAdjqhb765QDlHSJOw==}
     engines: {node: 10.* || >= 12}
     dependencies:
       ember-cli-babel: 7.26.11
@@ -10960,9 +10971,9 @@ packages:
       debug: 4.3.4(supports-color@9.4.0)
       execa: 4.1.0
       fs-extra: 9.1.0
-      resolve: 1.22.2
+      resolve: 1.22.3
       rsvp: 4.8.5
-      semver: 7.5.1
+      semver: 7.5.4
       stagehand: 1.0.1
       walk-sync: 2.2.0
     transitivePeerDependencies:
@@ -11323,29 +11334,22 @@ packages:
       - supports-color
     dev: true
 
-  /ember-qunit@7.0.0(@ember/test-helpers@3.1.0)(ember-source@5.2.0)(qunit@2.19.4)(webpack@5.75.0):
-    resolution: {integrity: sha512-KhrndHYEXsHnXvmsGyJLJQ6VCudXaRs5dzPZBsdttZJIhsB6PmYAvq2Q+mh3GRDT/59T/sRDrB3FD3/lATS8aA==}
-    engines: {node: 16.* || >= 18}
+  /ember-qunit@8.0.1(@ember/test-helpers@3.1.0)(@glint/template@1.0.2)(ember-source@5.2.0)(qunit@2.19.4):
+    resolution: {integrity: sha512-13PtywHNPTQKkDW4o8QRkJvcdsZr8hRyvh6xh/YLAX8+HaRLd3nPL8mBF4O/Kur/DAj3QWLvjzktZ2uRNGSh3A==}
     peerDependencies:
       '@ember/test-helpers': '>=3.0.3'
       ember-source: '>=4.0.0'
       qunit: ^2.13.0
     dependencies:
       '@ember/test-helpers': 3.1.0(ember-source@5.2.0)(webpack@5.75.0)
-      broccoli-funnel: 3.0.8
-      broccoli-merge-trees: 3.0.2
-      common-tags: 1.8.2
-      ember-auto-import: 2.6.3(webpack@5.75.0)
-      ember-cli-babel: 7.26.11
-      ember-cli-test-loader: 3.0.0
+      '@embroider/addon-shim': 1.8.6
+      '@embroider/macros': 1.13.1(@glint/template@1.0.2)
+      ember-cli-test-loader: 3.1.0
       ember-source: 5.2.0(@babel/core@7.20.12)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.75.0)
       qunit: 2.19.4
-      resolve-package-path: 4.0.3
-      silent-error: 1.1.1
-      validate-peer-dependencies: 2.2.0
     transitivePeerDependencies:
+      - '@glint/template'
       - supports-color
-      - webpack
     dev: true
 
   /ember-raf-scheduler@0.3.0:
@@ -11687,7 +11691,7 @@ packages:
       ember-cli-babel: 7.26.11
       ember-cli-typescript: 3.1.4(@babel/core@7.20.12)
       ember-cli-version-checker: 5.1.2
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -11748,13 +11752,14 @@ packages:
       - supports-color
     dev: false
 
-  /ember-validators@4.1.2:
+  /ember-validators@4.1.2(@glint/template@1.0.2):
     resolution: {integrity: sha512-aNyJW52eWvWhdcRfnb0pGYSDuQU4i4XjA682aDG1ocmz7eUEDw7bXXvKEYGtVsPTtPLtUPvTtaH9mXKpMG+1xA==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
-      '@embroider/macros': 1.10.0
+      '@embroider/macros': 1.13.1(@glint/template@1.0.2)
       ember-cli-babel: 7.26.11
     transitivePeerDependencies:
+      - '@glint/template'
       - supports-color
     dev: true
 
@@ -19428,15 +19433,7 @@ packages:
     resolution: {integrity: sha512-nd2HUpKc6RWblPZQ2GDuI65sxJ2n/UqZwSBVtj64xlWjMx0m7ZB2m9b2JS3v1f+n9VWH/dd1CMhkHfP6pIdckA==}
     dependencies:
       resolve-package-path: 3.1.0
-      semver: 7.5.1
-    dev: true
-
-  /validate-peer-dependencies@2.2.0:
-    resolution: {integrity: sha512-8X1OWlERjiUY6P6tdeU9E0EwO8RA3bahoOVG7ulOZT5MqgNDUO/BQoVjYiHPcNe+v8glsboZRIw9iToMAA2zAA==}
-    engines: {node: '>= 12'}
-    dependencies:
-      resolve-package-path: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /validated-changeset@1.3.4:
