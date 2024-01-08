@@ -31,7 +31,7 @@ export interface ToucanFormRadioGroupFieldComponentSignature<
   Blocks: BaseRadioGroupFieldSignature['Blocks'];
 }
 
-export default class ToucanFormTextareaFieldComponent<
+export default class ToucanFormRadioGroupFieldComponent<
   DATA extends UserData,
   KEY extends FormKey<FormData<DATA>> = FormKey<FormData<DATA>>,
 > extends Component<ToucanFormRadioGroupFieldComponentSignature<DATA, KEY>> {
