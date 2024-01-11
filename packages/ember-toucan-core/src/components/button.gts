@@ -110,6 +110,7 @@ export default class Button extends Component<ButtonSignature> {
   onClick(event: MouseEvent) {
     if (this.args.isDisabled) {
       event.stopImmediatePropagation();
+      event.preventDefault();
 
       return;
     }
