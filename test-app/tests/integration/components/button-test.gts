@@ -1,3 +1,4 @@
+import { on } from '@ember/modifier';
 import { click, render, setupOnerror } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
@@ -120,13 +121,33 @@ module('Integration | Component | button', function (hooks) {
     assert.verifySteps(['clicked']);
   });
 
-  test('it does NOT call the provided `@onClick` if `@isDisabled={{true}}', async function (assert) {
+  test('it does NOT call the provided `@onClick` if `@isDisabled={{true}}`', async function (assert) {
     let handleClick = () => assert.step('clicked');
 
     await render(<template>
       <Button @isDisabled={{true}} @onClick={{handleClick}} data-button>
         button
       </Button>
+    </template>);
+
+    assert.verifySteps([]);
+
+    await click('[data-button]');
+
+    assert.verifySteps([]);
+  });
+
+  test('it does NOT submit the form if `@isDisabled={{true}}`', async function (assert) {
+    let handleSubmit = () => {
+      assert.step('submitted');
+    }
+
+    await render(<template>
+      <form {{on "submit" handleSubmit}}>
+        <Button @isDisabled={{true}} type="submit" data-button>
+          button
+        </Button>
+      </form>
     </template>);
 
     assert.verifySteps([]);
