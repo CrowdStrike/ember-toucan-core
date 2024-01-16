@@ -40,7 +40,7 @@ importers:
         version: file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.5.0)(fractal-page-object@0.5.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@3.2.4)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@3.2.4)
       '@ember/test-waiters':
         specifier: ^3.0.2
         version: 3.0.2
@@ -316,8 +316,8 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0(postcss@8.4.21)
       postcss-loader:
-        specifier: ^7.0.1
-        version: 7.0.2(postcss@8.4.21)(webpack@5.75.0)
+        specifier: ^8.0.0
+        version: 8.0.0(postcss@8.4.21)(typescript@5.0.2)(webpack@5.75.0)
       prettier:
         specifier: ^3.0.1
         version: 3.0.1
@@ -768,7 +768,7 @@ importers:
         version: file:packages/ember-toucan-core(@babel/core@7.20.12)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.5.0)(fractal-page-object@0.5.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
         specifier: ^2.0.1
         version: 2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.13)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@2.2.19)
@@ -4359,7 +4359,7 @@ packages:
       calculate-cache-key-for-tree: 2.0.0
       ember-cli-babel: 7.26.11
       ember-cli-version-checker: 5.1.2
-      semver: 7.3.8
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -4534,7 +4534,7 @@ packages:
       find-up: 5.0.0
       lodash: 4.17.21
       resolve: 1.22.2
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -4555,7 +4555,7 @@ packages:
       find-up: 5.0.0
       lodash: 4.17.21
       resolve: 1.22.3
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -9451,6 +9451,22 @@ packages:
       path-type: 4.0.0
     dev: true
 
+  /cosmiconfig@9.0.0(typescript@5.0.2):
+    resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      typescript: '>=4.9.5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      env-paths: 2.2.1
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+      typescript: 5.0.2
+    dev: true
+
   /cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
     dependencies:
@@ -10137,7 +10153,7 @@ packages:
       parse5: 6.0.1
       resolve: 1.22.2
       resolve-package-path: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       style-loader: 2.0.0(webpack@5.75.0)
       typescript-memoize: 1.1.1
       walk-sync: 3.0.0
@@ -11479,6 +11495,11 @@ packages:
   /entities@4.4.0:
     resolution: {integrity: sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==}
     engines: {node: '>=0.12'}
+    dev: true
+
+  /env-paths@2.2.1:
+    resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
+    engines: {node: '>=6'}
     dev: true
 
   /errlop@2.2.0:
@@ -13980,6 +14001,11 @@ packages:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
+  /jiti@1.21.0:
+    resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
+    hasBin: true
+    dev: true
+
   /js-sdsl@4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
     dev: true
@@ -14208,11 +14234,6 @@ packages:
   /kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
-
-  /klona@2.0.6:
-    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
-    engines: {node: '>= 8'}
-    dev: true
 
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
@@ -15972,9 +15993,9 @@ packages:
       postcss: 8.4.21
       yaml: 1.10.2
 
-  /postcss-loader@7.0.2(postcss@8.4.21)(webpack@5.75.0):
-    resolution: {integrity: sha512-fUJzV/QH7NXUAqV8dWJ9Lg4aTkDCezpTS5HgJ2DvqznexTbSTxgi/dTECvTZ15BwKTtk8G/bqI/QTu2HPd3ZCg==}
-    engines: {node: '>= 14.15.0'}
+  /postcss-loader@8.0.0(postcss@8.4.21)(typescript@5.0.2)(webpack@5.75.0):
+    resolution: {integrity: sha512-+RiNlmYd1aXYv6QSBOAu6n9eJYy0ydyXTfjljAJ3vFU6MMo2M552zTVcBpBH+R5aAeKaYVG1K9UEyAVsLL1Qjg==}
+    engines: {node: '>= 18.12.0'}
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
       webpack: ^5.0.0
@@ -15982,11 +16003,13 @@ packages:
       webpack:
         optional: true
     dependencies:
-      cosmiconfig: 7.1.0
-      klona: 2.0.6
+      cosmiconfig: 9.0.0(typescript@5.0.2)
+      jiti: 1.21.0
       postcss: 8.4.21
-      semver: 7.3.8
+      semver: 7.5.4
       webpack: 5.75.0
+    transitivePeerDependencies:
+      - typescript
     dev: true
 
   /postcss-merge-longhand@6.0.0(postcss@8.4.21):
@@ -19618,12 +19641,12 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.4.0
+      '@crowdstrike/ember-toucan-core': ^0.4.1
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
       '@glimmer/tracking': ^1.1.2
@@ -19647,12 +19670,12 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.0)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@3.2.4):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.5.0)(postcss@8.4.21)(tailwindcss@3.2.4):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
     peerDependencies:
-      '@crowdstrike/ember-toucan-core': ^0.4.0
+      '@crowdstrike/ember-toucan-core': ^0.4.1
       '@crowdstrike/ember-toucan-styles': ^2.0.1
       '@ember/test-helpers': ^2.8.1 || ^3.0.0
       '@glimmer/tracking': ^1.1.2
