@@ -115,7 +115,7 @@ export default class ToucanFormCheckboxFieldComponent extends Component<ToucanFo
     args: ToucanFormCheckboxFieldComponentSignature['Args'],
   ) {
     assert(
-      'Both "@value" and "@isChecked" arguments were supplied. "@value" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@value" sets the checked state of the checkbox. Please use either "@value" or "@isChecked", but not both.',
+      'Both "@value" and "@isChecked" arguments were supplied. "@value" is reserved for being used in a CheckboxGroupField to specify the value attribute, while "@isChecked" sets the checked state of the checkbox. Please use either "@value" or "@isChecked", but not both.',
       !(args.isChecked && args.value),
     );
 
