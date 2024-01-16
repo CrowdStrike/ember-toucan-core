@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.1
+
+### Patch Changes
+
+- [#304](https://github.com/CrowdStrike/ember-toucan-core/pull/304) [`23df6cb`](https://github.com/CrowdStrike/ember-toucan-core/commit/23df6cbdd115f57cca26428bc514f6880439f8cc) Thanks [@davideferre](https://github.com/davideferre)! - Add event.preventDefault() when clicking on disabled button to prevent submitting a form
+
 ## 0.4.0
 
 ### Minor Changes
