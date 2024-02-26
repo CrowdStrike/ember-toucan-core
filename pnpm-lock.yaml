@@ -49,7 +49,7 @@ importers:
         version: 2.0.0(@embroider/core@2.1.1)(@types/ember__routing@4.0.12)
       dompurify:
         specifier: ^3.0.0
-        version: 3.0.0
+        version: 3.0.9
       ember-browser-services:
         specifier: ^4.0.4
         version: 4.0.4
@@ -11119,8 +11119,8 @@ packages:
     resolution: {integrity: sha512-kxxKlPEDa6Nc5WJi+qRgPbOAbgTpSULL+vI3NUXsZMlkJxTqYI9wg5ZTay2sFrdZRWHPWNi+EdAhcJf81WtoMQ==}
     dev: false
 
-  /dompurify@3.0.0:
-    resolution: {integrity: sha512-0g/yr2IJn4nTbxwL785YxS7/AvvgGFJw6LLWP+BzWzB1+BYOqPUT9Hy0rXrZh5HLdHnxH72aDdzvC9SdTjsuaA==}
+  /dompurify@3.0.9:
+    resolution: {integrity: sha512-uyb4NDIvQ3hRn6NiC+SIFaP4mJ/MdXlvtunaqK9Bn6dD3RuB/1S/gasEjDHD8eiaqdSael2vBv+hOs7Y+jhYOQ==}
     dev: false
 
   /domutils@3.1.0:
