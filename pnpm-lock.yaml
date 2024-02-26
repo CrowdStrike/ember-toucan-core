@@ -34,7 +34,7 @@ importers:
     dependencies:
       '@crowdstrike/ember-oss-docs':
         specifier: ^1.1.6
-        version: 1.1.6(@babel/core@7.20.12)(@crowdstrike/tailwind-toucan-base@4.0.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.0.2)(@glint/template@1.0.2)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1)
+        version: 1.1.7(@babel/core@7.20.12)(@crowdstrike/tailwind-toucan-base@4.0.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.0.2)(@glint/template@1.0.2)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.0.1)(@ember/test-helpers@3.1.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.17)(ember-modifier@4.1.0)(ember-source@5.6.0)(fractal-page-object@0.5.0)(postcss@8.4.35)(tailwindcss@3.2.4)
@@ -1286,7 +1286,7 @@ packages:
     resolution: {integrity: sha512-duORpUiYrEpzKIop6iNbjnwKLAKnJ47csTyRACyEmWj0QdUrm5aqNJGHSSEQSUAvNW0ojX0dOmK9dZduvkfeXA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-annotate-as-pure@7.22.5:
     resolution: {integrity: sha512-LvBTxu8bQSQkcyKOU+a1btnNFQ1dMAd0R6PyW3arXes06F6QLWLIrd681bxRPIXlrMGR3XYnW9JyML7dP3qgxg==}
@@ -1298,7 +1298,7 @@ packages:
     resolution: {integrity: sha512-QkBXwGgaoC2GtGZRoma6kv7Szfv06khvhFav67ZExau2RaXzy8MpHSMO2PNoP2XtmQphJQRHFfg77Bq731Yizw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.0
 
   /@babel/helper-compilation-targets@7.20.7(@babel/core@7.20.12):
     resolution: {integrity: sha512-4tGORmfQcrc+bvrjb5y3dG9Mx1IOZjsHqQVUz7XCNHO+iTmqxWnVg3KRygjGmpRLJGdQSKuvFinbIb0CnZwHAQ==}
@@ -1517,7 +1517,7 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       debug: 4.3.4(supports-color@9.4.0)
       lodash.debounce: 4.0.8
-      resolve: 1.22.1
+      resolve: 1.22.8
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -1533,7 +1533,7 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       debug: 4.3.4(supports-color@9.4.0)
       lodash.debounce: 4.0.8
-      resolve: 1.22.1
+      resolve: 1.22.8
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -1548,7 +1548,7 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       debug: 4.3.4(supports-color@9.4.0)
       lodash.debounce: 4.0.8
-      resolve: 1.22.1
+      resolve: 1.22.8
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -1576,7 +1576,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.15
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-function-name@7.23.0:
     resolution: {integrity: sha512-OErEqsrxjZTJciZ4Oo+eoZqeW9UIiOcuYKRJA4ZAgV9myA+pOXhhmpfNCKjEH/auVfEYVFJ6y1Tc4r0eIApqiw==}
@@ -1595,7 +1595,7 @@ packages:
     resolution: {integrity: sha512-9J0CxJLq315fEdi4s7xK5TQaNYjZw+nDVpVqr1axNGKzdrdwYBD5b4uKv3n75aABG0rCCTK8Im8Ww7eYfMrZgw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-member-expression-to-functions@7.23.0:
     resolution: {integrity: sha512-6gfrPwh7OuT6gZyJZvd6WbTfrqAo7vm4xCzAXOusKqq/vWdKXphTpj5klHKNmRUU6/QRGlBsyU9mAIPaWHlqJA==}
@@ -1739,7 +1739,7 @@ packages:
     resolution: {integrity: sha512-HP59oD9/fEHQkdcbgFCnbmgH5vIQTJbxh2yf+CdM89/glUNnuzr87Q8GIjGEnOktTROemO0Pe0iPAYbqZuOUiA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-optimise-call-expression@7.22.5:
     resolution: {integrity: sha512-HBwaojN0xFRx4yIvpwGqxiV2tUfl7401jlok564NgB9EHS1y6QT17FmKWm4ztqjeVdXLuC4fSvHc5ePpQjoTbw==}
@@ -1786,7 +1786,7 @@ packages:
       '@babel/helper-optimise-call-expression': 7.18.6
       '@babel/template': 7.22.15
       '@babel/traverse': 7.22.20
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
     transitivePeerDependencies:
       - supports-color
 
@@ -1834,7 +1834,7 @@ packages:
     resolution: {integrity: sha512-5y1JYeNKfvnT8sZcK9DVRtpTbGiomYIHviSP3OQWmDPU3DeH4a1ZlT/N2lyQ5P8egjcRaT/Y9aNqUxK0WsnIIg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-skip-transparent-expression-wrappers@7.22.5:
     resolution: {integrity: sha512-tK14r66JZKiC43p8Ki33yLBVJKlQDFoA8GYN67lWCDCqoL6EMMSuM9b+Iff2jHaM/RRFYl7K+iiru7hbRqNx8Q==}
@@ -1846,13 +1846,13 @@ packages:
     resolution: {integrity: sha512-bde1etTx6ZyTmobl9LLMMQsaizFVZrquTEHOqKeQESMKo4PlObf+8+JA25ZsIpZhT/WEd39+vOdLXAFG/nELpA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-split-export-declaration@7.22.6:
     resolution: {integrity: sha512-AsUnxuLhRYsisFiaJwvp1QF+I3KjD5FOxut14q/GzovUe6orHLesW2C7d754kRm53h5gqrz6sFl6sxc4BVtE/g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.19
+      '@babel/types': 7.23.9
 
   /@babel/helper-string-parser@7.22.5:
     resolution: {integrity: sha512-mM4COjgZox8U+JcXQwPijIZLElkgEpO5rsERVDJTc2qfCDfERyob6k5WegS14SX18IIjv+XD+GrqNumY5JRCDw==}
@@ -1885,7 +1885,7 @@ packages:
     dependencies:
       '@babel/helper-function-name': 7.23.0
       '@babel/template': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.0
 
   /@babel/helpers@7.20.13:
     resolution: {integrity: sha512-nzJ0DWCL3gB5RCXbUO3KIMMsBY2Eqbx8mBpKGE/02PgyRQFcPQLbkQ1vyy596mZLaP+dAfD+R4ckASzNVmW3jg==}
@@ -2391,6 +2391,7 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.20.12)
+    dev: true
 
   /@babel/plugin-proposal-optional-chaining@7.20.7(@babel/core@7.22.20):
     resolution: {integrity: sha512-T+A7b1kfjtRM51ssoOfS1+wbyCVqorfyZhT99TvxxLMirPShD8CzKMRepMlCBGM5RpHMbn8s+5MMHnPstJH6mQ==}
@@ -2402,6 +2403,19 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.22.20)
+
+  /@babel/plugin-proposal-optional-chaining@7.21.0(@babel/core@7.20.12):
+    resolution: {integrity: sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==}
+    engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
+      '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.20.12)
+    dev: false
 
   /@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.20.12):
     resolution: {integrity: sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA==}
@@ -4624,7 +4638,7 @@ packages:
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/parser': 7.23.6
-      '@babel/types': 7.23.6
+      '@babel/types': 7.23.9
       debug: 4.3.4(supports-color@9.4.0)
       globals: 11.12.0
     transitivePeerDependencies:
@@ -4658,7 +4672,7 @@ packages:
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/parser': 7.23.6
-      '@babel/types': 7.23.6
+      '@babel/types': 7.23.0
       debug: 4.3.4(supports-color@9.4.0)
       globals: 11.12.0
     transitivePeerDependencies:
@@ -4714,14 +4728,6 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
-
-  /@babel/types@7.22.19:
-    resolution: {integrity: sha512-P7LAw/LbojPzkgp5oznjE6tQEIWbp4PkkfrZDINTro9zgBRtI324/EYsiSI7lhPbpIQ+DCeR2NNmMWANGGfZsg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.22.5
-      '@babel/helper-validator-identifier': 7.22.20
-      to-fast-properties: 2.0.0
 
   /@babel/types@7.23.0:
     resolution: {integrity: sha512-0oIyUfKoI3mSqMvsxBdclDwxXKXAUA8v/apZbc+iSyARYou1o8ZGDxbUYyLFoW2arqS2jDGqJuZvv1d/io1axg==}
@@ -5009,8 +5015,8 @@ packages:
     dev: true
     optional: true
 
-  /@crowdstrike/ember-oss-docs@1.1.6(@babel/core@7.20.12)(@crowdstrike/tailwind-toucan-base@4.0.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.0.2)(@glint/template@1.0.2)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1):
-    resolution: {integrity: sha512-hq6FxeQFjdlCsGniG3EvcUSxZWGfAKAcVg/2rcUxgdiauTkgvJAaCa68oggpTe+m5B4jaijoeNr3eAV5yj8o4w==}
+  /@crowdstrike/ember-oss-docs@1.1.7(@babel/core@7.20.12)(@crowdstrike/tailwind-toucan-base@4.0.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.0.2)(@glint/template@1.0.2)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1):
+    resolution: {integrity: sha512-yysIcp6fnCwWiG0Tml9tAZd+jDFhJM+PnTjqNyFV+dUHi4kPKmSK2QZGW76ij5O3hv0LKaeWOSI9Y4FO40Hnkw==}
     peerDependencies:
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
       '@docfy/core': ^0.5.0
@@ -5023,26 +5029,30 @@ packages:
       highlight.js: ^11.6.0
       highlightjs-glimmer: ^1.4.1 || ^2.0.0
     dependencies:
-      '@babel/runtime': 7.21.5
+      '@babel/runtime': 7.23.9
       '@crowdstrike/tailwind-toucan-base': 4.0.0(autoprefixer@10.4.17)(postcss@8.4.35)
       '@docfy/core': 0.8.0
       '@docfy/ember': 0.8.5(@babel/core@7.20.12)(@glint/template@1.0.2)
-      '@embroider/addon-shim': 1.8.4
+      '@embroider/addon-shim': 1.8.7
       '@glimmer/component': 1.1.2(@babel/core@7.20.12)
       '@glint/environment-ember-loose': 1.0.2(@glimmer/component@1.1.2)(@glint/template@1.0.2)(@types/ember__array@4.0.3)(@types/ember__component@4.0.12)(@types/ember__controller@4.0.4)(@types/ember__object@4.0.5)(@types/ember__routing@4.0.12)(ember-cli-htmlbars@6.2.0)(ember-modifier@4.1.0)
       '@glint/template': 1.0.2
       '@tailwindcss/typography': 0.5.10(tailwindcss@3.2.4)
-      dompurify: 2.4.3
+      dompurify: 2.4.7
       ember-browser-services: 4.0.4
       ember-modifier: 4.1.0(ember-source@5.6.0)
-      ember-url-hash-polyfill: 1.0.8(@babel/core@7.20.12)
+      ember-url-hash-polyfill: 1.0.11(@babel/core@7.20.12)
       highlight.js: 11.7.0
       highlightjs-glimmer: 2.0.1(highlight.js@11.7.0)
       lodash.merge: 4.6.2
     transitivePeerDependencies:
       - '@babel/core'
+      - '@swc/core'
       - ember-source
+      - esbuild
       - supports-color
+      - uglify-js
+      - webpack-cli
     dev: false
 
   /@crowdstrike/ember-toucan-styles@2.0.1(@glimmer/tracking@1.1.2)(autoprefixer@10.4.17)(ember-source@5.6.0)(postcss@8.4.35)(tailwindcss@2.2.19):
@@ -9657,7 +9667,7 @@ packages:
       caniuse-lite: 1.0.30001517
       isbot: 3.6.5
       object-path: 0.11.8
-      semver: 7.5.4
+      semver: 7.6.0
       ua-parser-js: 1.0.33
     dev: true
 
@@ -11105,8 +11115,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@2.4.3:
-    resolution: {integrity: sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==}
+  /dompurify@2.4.7:
+    resolution: {integrity: sha512-kxxKlPEDa6Nc5WJi+qRgPbOAbgTpSULL+vI3NUXsZMlkJxTqYI9wg5ZTay2sFrdZRWHPWNi+EdAhcJf81WtoMQ==}
     dev: false
 
   /dompurify@3.0.0:
@@ -11623,7 +11633,7 @@ packages:
     engines: {node: 8.* || >= 10.*}
     dependencies:
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.20.12)
-      '@babel/plugin-proposal-optional-chaining': 7.20.7(@babel/core@7.20.12)
+      '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.20.12)
       '@babel/plugin-transform-typescript': 7.8.7(@babel/core@7.20.12)
       ansi-to-html: 0.6.15
       broccoli-stew: 3.0.0
@@ -12398,17 +12408,22 @@ packages:
       - supports-color
     dev: true
 
-  /ember-url-hash-polyfill@1.0.8(@babel/core@7.20.12):
-    resolution: {integrity: sha512-4BWDhDjYr8d13kKTbcMyqX9p+hMXYNrV33enPNB6bcOS6sgJu3HOGGfzc7sIb9Gft4qLENTUBHRKl8xIU8f6fg==}
-    engines: {node: 10.* || >= 12}
+  /ember-url-hash-polyfill@1.0.11(@babel/core@7.20.12):
+    resolution: {integrity: sha512-p1/qhNWljChZLQXfGtRNFPu5iLdAhg7QRjfZZNLrhet25oQII35Y9GcdbyHffHc+2swZzRUbT8+RgZmG4vmySA==}
+    engines: {node: 16.* || >= 18}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 5.7.2
-      ember-cli-typescript: 4.2.1
+      ember-cli-htmlbars: 6.2.0
+      ember-cli-typescript: 5.2.1
       ember-test-waiters: 2.1.3(@babel/core@7.20.12)
+      webpack: 5.76.0
     transitivePeerDependencies:
       - '@babel/core'
+      - '@swc/core'
+      - esbuild
       - supports-color
+      - uglify-js
+      - webpack-cli
     dev: false
 
   /ember-validators@4.1.2(@glint/template@1.0.2):
