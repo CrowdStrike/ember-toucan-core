@@ -536,7 +536,7 @@ importers:
         version: 3.12.1
       rollup-plugin-copy:
         specifier: ^3.4.0
-        version: 3.4.0
+        version: 3.5.0
       rollup-plugin-glimmer-template-tag:
         specifier: ^0.4.1
         version: 0.4.1(@babel/core@7.23.9)(ember-source@5.6.0)(ember-template-imports@3.4.2)
@@ -738,7 +738,7 @@ importers:
         version: 3.12.1
       rollup-plugin-copy:
         specifier: ^3.4.0
-        version: 3.4.0
+        version: 3.5.0
       rollup-plugin-glimmer-template-tag:
         specifier: ^0.4.1
         version: 0.4.1(@babel/core@7.23.9)(ember-source@5.6.0)(ember-template-imports@3.4.2)
@@ -4064,7 +4064,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.15.0
+      fastq: 1.17.1
 
   /@nullvoxpopuli/eslint-configs@3.1.1(@babel/core@7.23.9)(@babel/eslint-parser@7.23.10)(@typescript-eslint/eslint-plugin@5.50.0)(@typescript-eslint/parser@5.50.0)(eslint-config-prettier@8.6.0)(eslint-plugin-ember@11.8.0)(eslint-plugin-qunit@7.3.4)(eslint@8.33.0)(prettier@3.0.1):
     resolution: {integrity: sha512-7ERkp5DJCC/5RryMD27Kc6NWJsT19rZab5MuaeDEXND6fGiNSnVkjh/b38Qh7U3VGzG8YRZ5VMa9BnhWO29BoA==}
@@ -4946,8 +4946,8 @@ packages:
     dependencies:
       '@types/node': 20.11.20
 
-  /@types/fs-extra@8.1.2:
-    resolution: {integrity: sha512-SvSrYXfWSc7R4eqnOzbQF4TZmfpNSM9FrSWLU3EUnWBuyZqNBOrv1B1JA3byUDPUl9z4Ab3jeZG2eDdySlgNMg==}
+  /@types/fs-extra@8.1.5:
+    resolution: {integrity: sha512-0dzKcwO+S8s2kuF5Z9oUWatQJj5Uq/iqphEtE3GQJVRRYm/tD1LglU2UnXi2A8jLq5umkGouOXOR9y0n613ZwQ==}
     dependencies:
       '@types/node': 20.11.20
     dev: true
@@ -4959,8 +4959,8 @@ packages:
       '@types/node': 20.11.20
     dev: true
 
-  /@types/glob@8.0.1:
-    resolution: {integrity: sha512-8bVUjXZvJacUFkJXHdyZ9iH1Eaj5V7I8c4NdH5sQJsdXkqT4CA5Dhb4yb4VE/3asyx4L9ayZr1NIhTsWHczmMw==}
+  /@types/glob@8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
       '@types/node': 20.11.20
@@ -5049,7 +5049,7 @@ packages:
   /@types/rimraf@2.0.5:
     resolution: {integrity: sha512-YyP+VfeaqAyFmXoTh3HChxOQMyjByRMsHU7kc5KOJkSlXudhMhQIALbYV7rHh/l8d2lX3VUQzprrcAgWdRuU8g==}
     dependencies:
-      '@types/glob': 8.0.1
+      '@types/glob': 8.1.0
       '@types/node': 20.11.20
 
   /@types/rsvp@4.0.4:
@@ -10807,8 +10807,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /fastq@1.15.0:
-    resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
+  /fastq@1.17.1:
+    resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
     dependencies:
       reusify: 1.0.4
 
@@ -11044,7 +11044,7 @@ packages:
     resolution: {integrity: sha512-SRgwIMXlxkb6AUgaVjIX+jCEqdhyXu9hah7mcK+lWynjKtX73Ux1TDv71B7XyaQ+LJxkYRHl5yCL8IycAvQRUw==}
     engines: {node: 10.* || >= 12.*}
     dependencies:
-      '@types/fs-extra': 8.1.2
+      '@types/fs-extra': 8.1.5
       '@types/minimatch': 3.0.5
       '@types/rimraf': 2.0.5
       fs-extra: 8.1.0
@@ -11479,9 +11479,9 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.3.2
       glob: 7.2.3
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
@@ -12693,7 +12693,7 @@ packages:
   /jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
     dependencies:
-      universalify: 2.0.0
+      universalify: 2.0.1
     optionalDependencies:
       graceful-fs: 4.2.11
 
@@ -15649,11 +15649,11 @@ packages:
       rollup: 3.12.1
     dev: true
 
-  /rollup-plugin-copy@3.4.0:
-    resolution: {integrity: sha512-rGUmYYsYsceRJRqLVlE9FivJMxJ7X6jDlP79fmFkL8sJs7VVMSVyA2yfyL+PGyO/vJs4A87hwhgVfz61njI+uQ==}
+  /rollup-plugin-copy@3.5.0:
+    resolution: {integrity: sha512-wI8D5dvYovRMx/YYKtUNt3Yxaw4ORC9xo6Gt9t22kveWz1enG9QrhVlagzwrxSC455xD1dHMKhIJkbsQ7d48BA==}
     engines: {node: '>=8.3'}
     dependencies:
-      '@types/fs-extra': 8.1.2
+      '@types/fs-extra': 8.1.5
       colorette: 1.4.0
       fs-extra: 8.1.0
       globby: 10.0.1
@@ -17495,10 +17495,6 @@ packages:
   /universalify@0.2.0:
     resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
     engines: {node: '>= 4.0.0'}
-
-  /universalify@2.0.0:
-    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
-    engines: {node: '>= 10.0.0'}
 
   /universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
