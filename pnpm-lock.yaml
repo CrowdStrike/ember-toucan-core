@@ -34,7 +34,7 @@ importers:
     dependencies:
       '@crowdstrike/ember-oss-docs':
         specifier: ^1.1.6
-        version: 1.1.7(@babel/core@7.24.0)(@crowdstrike/tailwind-toucan-base@4.4.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.3.0)(@glint/template@1.3.0)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1)
+        version: 1.1.7(@babel/core@7.24.0)(@crowdstrike/tailwind-toucan-base@4.4.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.3.0)(@glint/template@1.3.0)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.9.0)(highlightjs-glimmer@2.0.1)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.6.0)(fractal-page-object@0.5.0)(postcss@8.4.35)(tailwindcss@3.4.1)
@@ -64,10 +64,10 @@ importers:
         version: 2.1.3(ember-modifier@4.1.0)(ember-source@5.6.0)
       highlight.js:
         specifier: ^11.6.0
-        version: 11.7.0
+        version: 11.9.0
       highlightjs-glimmer:
         specifier: ^2.0.0
-        version: 2.0.1(highlight.js@11.7.0)
+        version: 2.0.1(highlight.js@11.9.0)
       tracked-built-ins:
         specifier: ^3.1.0
         version: 3.1.1
@@ -1092,6 +1092,7 @@ packages:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/eslint-parser@7.23.10(@babel/core@7.24.0)(eslint@8.33.0):
     resolution: {integrity: sha512-3wSYDPZVnhseRnxRJH6ZVTNknBz76AEnyC+AYYhasjP3Yy23qz0ERR7Fcd2SHmYuSFJ2kY9gaaDd3vyqU09eSw==}
@@ -1256,7 +1257,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.24.0(supports-color@8.1.1)
+      '@babel/core': 7.24.0
       '@babel/helper-environment-visitor': 7.22.20
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-simple-access': 7.22.5
@@ -1365,6 +1366,7 @@ packages:
       '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
@@ -2700,6 +2702,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/types@7.20.7:
     resolution: {integrity: sha512-69OnhBxSSgK0OzTJai4kyPDiKTIe3j+ctaHdIGVbRahTLAT7L3R9oeXHC2aVSuGYt3cVnoAMDmOCgJ2yaiLMvg==}
@@ -2945,7 +2948,7 @@ packages:
     dev: true
     optional: true
 
-  /@crowdstrike/ember-oss-docs@1.1.7(@babel/core@7.24.0)(@crowdstrike/tailwind-toucan-base@4.4.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.3.0)(@glint/template@1.3.0)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.7.0)(highlightjs-glimmer@2.0.1):
+  /@crowdstrike/ember-oss-docs@1.1.7(@babel/core@7.24.0)(@crowdstrike/tailwind-toucan-base@4.4.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.3.0)(@glint/template@1.3.0)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.6.0)(highlight.js@11.9.0)(highlightjs-glimmer@2.0.1):
     resolution: {integrity: sha512-yysIcp6fnCwWiG0Tml9tAZd+jDFhJM+PnTjqNyFV+dUHi4kPKmSK2QZGW76ij5O3hv0LKaeWOSI9Y4FO40Hnkw==}
     peerDependencies:
       '@crowdstrike/tailwind-toucan-base': ^3.3.1
@@ -2972,8 +2975,8 @@ packages:
       ember-browser-services: 4.0.4
       ember-modifier: 4.1.0(ember-source@5.6.0)
       ember-url-hash-polyfill: 1.0.11(@babel/core@7.24.0)
-      highlight.js: 11.7.0
-      highlightjs-glimmer: 2.0.1(highlight.js@11.7.0)
+      highlight.js: 11.9.0
+      highlightjs-glimmer: 2.0.1(highlight.js@11.9.0)
       lodash.merge: 4.6.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -8427,6 +8430,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 8.1.1
+    dev: true
 
   /debug@4.3.4(supports-color@9.4.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -11849,18 +11853,18 @@ packages:
   /hex-color-regex@1.1.0:
     resolution: {integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==}
 
-  /highlight.js@11.7.0:
-    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
+  /highlight.js@11.9.0:
+    resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
     engines: {node: '>=12.0.0'}
     dev: false
 
-  /highlightjs-glimmer@2.0.1(highlight.js@11.7.0):
+  /highlightjs-glimmer@2.0.1(highlight.js@11.9.0):
     resolution: {integrity: sha512-xExe0gkvvtuP/pvxNeRD0LVO/nrjFjDzVwPC7odHdHq/OAV1zTJSasa4jJkY9OUtBHghrXyfYqwn3pofZfBpiA==}
     engines: {node: ^14 || ^16 || ^18}
     peerDependencies:
       highlight.js: '>= 11.0.0'
     dependencies:
-      highlight.js: 11.7.0
+      highlight.js: 11.9.0
     dev: false
 
   /homedir-polyfill@1.0.3:
