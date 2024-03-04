@@ -103,7 +103,7 @@
     "prettier": "^3.0.1",
     "prettier-plugin-ember-template-tag": "^2.0.0",
     "prettier-plugin-tailwindcss": "^0.5.0",
-    "rollup": "^3.12.1",
+    "rollup": "^4.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-glimmer-template-tag": "^0.4.1",
     "rollup-plugin-ts": "^3.0.2",
