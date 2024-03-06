@@ -326,7 +326,7 @@ importers:
         version: 2.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
         specifier: ^0.5.0
-        version: 0.5.11(prettier@3.0.1)
+        version: 0.5.12(prettier@3.0.1)
       qunit:
         specifier: ^2.19.1
         version: 2.20.1
@@ -530,7 +530,7 @@ importers:
         version: 2.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
         specifier: ^0.5.0
-        version: 0.5.11(prettier@3.0.1)
+        version: 0.5.12(prettier@3.0.1)
       rollup:
         specifier: ^4.0.0
         version: 4.12.1
@@ -732,7 +732,7 @@ importers:
         version: 2.0.0(prettier@3.0.1)
       prettier-plugin-tailwindcss:
         specifier: ^0.5.0
-        version: 0.5.11(prettier@3.0.1)
+        version: 0.5.12(prettier@3.0.1)
       rollup:
         specifier: ^4.0.0
         version: 4.12.1
@@ -15151,8 +15151,8 @@ packages:
       - supports-color
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.11(prettier@3.0.1):
-    resolution: {integrity: sha512-AvI/DNyMctyyxGOjyePgi/gqj5hJYClZ1avtQvLlqMT3uDZkRbi4HhGUpok3DRzv9z7Lti85Kdj3s3/1CeNI0w==}
+  /prettier-plugin-tailwindcss@0.5.12(prettier@3.0.1):
+    resolution: {integrity: sha512-o74kiDBVE73oHW+pdkFSluHBL3cYEvru5YgEqNkBMFF7Cjv+w1vI565lTlfoJT4VLWDe0FMtZ7FkE/7a4pMXSQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -15167,6 +15167,7 @@ packages:
       prettier-plugin-marko: '*'
       prettier-plugin-organize-attributes: '*'
       prettier-plugin-organize-imports: '*'
+      prettier-plugin-sort-imports: '*'
       prettier-plugin-style-order: '*'
       prettier-plugin-svelte: '*'
       prettier-plugin-twig-melody: '*'
@@ -15192,6 +15193,8 @@ packages:
       prettier-plugin-organize-attributes:
         optional: true
       prettier-plugin-organize-imports:
+        optional: true
+      prettier-plugin-sort-imports:
         optional: true
       prettier-plugin-style-order:
         optional: true
