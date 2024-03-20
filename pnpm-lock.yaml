@@ -37,10 +37,10 @@ importers:
         version: 1.1.7(@babel/core@7.24.3)(@crowdstrike/tailwind-toucan-base@5.0.0)(@docfy/core@0.8.0)(@docfy/ember@0.8.5)(@glimmer/component@1.1.2)(@glint/environment-ember-loose@1.3.0)(@glint/template@1.3.0)(@tailwindcss/typography@0.5.10)(ember-browser-services@4.0.4)(ember-source@5.7.0)(highlight.js@11.9.0)(highlightjs-glimmer@2.2.1)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
       '@ember/test-waiters':
         specifier: ^3.0.2
         version: 3.0.2
@@ -79,8 +79,8 @@ importers:
         specifier: ^7.19.1
         version: 7.24.1(@babel/core@7.24.3)(eslint@8.33.0)
       '@crowdstrike/ember-toucan-styles':
-        specifier: ^2.0.1
-        version: 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+        specifier: ^3.0.0
+        version: 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
       '@crowdstrike/tailwind-toucan-base':
         specifier: ^5.0.0
         version: 5.0.0(autoprefixer@10.4.18)(postcss@8.4.37)
@@ -385,8 +385,8 @@ importers:
         specifier: ^7.18.6
         version: 7.24.1(@babel/core@7.24.3)
       '@crowdstrike/ember-toucan-styles':
-        specifier: ^2.0.1
-        version: 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        specifier: ^3.0.0
+        version: 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@ember/test-helpers':
         specifier: ^3.1.0
         version: 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
@@ -582,10 +582,10 @@ importers:
         version: 7.24.1(@babel/core@7.24.3)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
-        specifier: ^2.0.1
-        version: 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        specifier: ^3.0.0
+        version: 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@ember/test-helpers':
         specifier: ^3.1.0
         version: 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
@@ -765,13 +765,13 @@ importers:
         version: 7.24.1(@babel/core@7.24.3)(eslint@8.33.0)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
-        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-form':
         specifier: workspace:*
-        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        version: file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@crowdstrike/ember-toucan-styles':
-        specifier: ^2.0.1
-        version: 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+        specifier: ^3.0.0
+        version: 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@ember/optional-features':
         specifier: ^2.0.0
         version: 2.1.0
@@ -3000,14 +3000,14 @@ packages:
       - webpack-cli
     dev: false
 
-  /@crowdstrike/ember-toucan-styles@2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19):
-    resolution: {integrity: sha512-cTLSsWh5QI5ql0AwkAQqq1TuvYMqMlonZ647RSz98fa5XooOhHdTO5oF12qpg1OUxxeKu/6k5jn1x/SAfewY3Q==}
+  /@crowdstrike/ember-toucan-styles@3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19):
+    resolution: {integrity: sha512-Hc6rx3vojrWXkT82xnf3lvCvwFzjTxtAa+VSAENKq0B2yojwxgzKUBfGmOA0+c+XaNnqfHkFlvi3TEMaO8UE8w==}
     peerDependencies:
       '@glimmer/tracking': ^1.1.2
       ember-source: ^3.24.0 || >= 4.0.0
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
-      '@crowdstrike/tailwind-toucan-base': 4.4.0(autoprefixer@10.4.18)(postcss@8.4.37)
+      '@crowdstrike/tailwind-toucan-base': 5.0.0(autoprefixer@10.4.18)(postcss@8.4.37)
       '@embroider/addon-shim': 1.8.7
       '@glimmer/tracking': 1.1.2
       ember-browser-services: 4.0.4
@@ -3020,14 +3020,14 @@ packages:
       - ts-node
     dev: true
 
-  /@crowdstrike/ember-toucan-styles@2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-cTLSsWh5QI5ql0AwkAQqq1TuvYMqMlonZ647RSz98fa5XooOhHdTO5oF12qpg1OUxxeKu/6k5jn1x/SAfewY3Q==}
+  /@crowdstrike/ember-toucan-styles@3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-Hc6rx3vojrWXkT82xnf3lvCvwFzjTxtAa+VSAENKq0B2yojwxgzKUBfGmOA0+c+XaNnqfHkFlvi3TEMaO8UE8w==}
     peerDependencies:
       '@glimmer/tracking': ^1.1.2
       ember-source: ^3.24.0 || >= 4.0.0
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
-      '@crowdstrike/tailwind-toucan-base': 4.4.0(autoprefixer@10.4.18)(postcss@8.4.37)
+      '@crowdstrike/tailwind-toucan-base': 5.0.0(autoprefixer@10.4.18)(postcss@8.4.37)
       '@embroider/addon-shim': 1.8.7
       '@glimmer/tracking': 1.1.2
       ember-browser-services: 4.0.4
@@ -3037,16 +3037,6 @@ packages:
       - autoprefixer
       - postcss
       - supports-color
-      - ts-node
-
-  /@crowdstrike/tailwind-toucan-base@4.4.0(autoprefixer@10.4.18)(postcss@8.4.37):
-    resolution: {integrity: sha512-43B4MO3tpIxpLoQiCm8WhQmx14NVD5PDCUa2m0mW9y1+Ij8WoKxz6MjvT7V4+Vh50PL/lJisUbVFRHq7XE27Tg==}
-    engines: {node: '>=14.15.0'}
-    dependencies:
-      tailwindcss: 2.2.19(autoprefixer@10.4.18)(postcss@8.4.37)
-    transitivePeerDependencies:
-      - autoprefixer
-      - postcss
       - ts-node
 
   /@crowdstrike/tailwind-toucan-base@5.0.0(autoprefixer@10.4.18)(postcss@8.4.37):
@@ -5531,7 +5521,7 @@ packages:
       eslint: 8.33.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0(eslint@8.33.0)
-      semver: 7.3.8
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7582,7 +7572,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: 7.6.0
     dev: true
 
   /bytes@1.0.0:
@@ -9083,7 +9073,7 @@ packages:
   /ember-browser-services@4.0.4:
     resolution: {integrity: sha512-ZjQPD7wlqMhHIq+uuesW+SWYCN+TsQtyY2Fy7QpluxEQff/j2JHiQAk3K0GUtEwef1gJ8/dRsBqSnaG2/Fxhmg==}
     dependencies:
-      '@embroider/addon-shim': 1.8.4
+      '@embroider/addon-shim': 1.8.7
       ember-window-mock: 0.8.1
     transitivePeerDependencies:
       - supports-color
@@ -10027,7 +10017,7 @@ packages:
       lodash: 4.17.21
       package-json: 6.5.0
       remote-git-tags: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -18624,7 +18614,7 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
-  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -18639,7 +18629,7 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-styles': 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+      '@crowdstrike/ember-toucan-styles': 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@ember/test-helpers': 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@embroider/addon-shim': 1.8.4
       '@floating-ui/dom': 1.4.4
@@ -18655,7 +18645,7 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1):
+  file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1):
     resolution: {directory: packages/ember-toucan-core, type: directory}
     id: file:packages/ember-toucan-core
     name: '@crowdstrike/ember-toucan-core'
@@ -18670,7 +18660,7 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-styles': 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+      '@crowdstrike/ember-toucan-styles': 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
       '@ember/test-helpers': 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@embroider/addon-shim': 1.8.4
       '@floating-ui/dom': 1.4.4
@@ -18686,7 +18676,7 @@ packages:
       - supports-color
     dev: false
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
@@ -18701,8 +18691,8 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
-      '@crowdstrike/ember-toucan-styles': 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@2.2.19)
+      '@crowdstrike/ember-toucan-styles': 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@2.2.19)
       '@ember/test-helpers': 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
@@ -18715,7 +18705,7 @@ packages:
       - supports-color
     dev: true
 
-  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1):
+  file:packages/ember-toucan-form(@crowdstrike/ember-toucan-core@0.4.1)(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(ember-headless-form@1.0.0)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1):
     resolution: {directory: packages/ember-toucan-form, type: directory}
     id: file:packages/ember-toucan-form
     name: '@crowdstrike/ember-toucan-form'
@@ -18730,8 +18720,8 @@ packages:
       tailwindcss: ^2.2.15 || ^3.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@2.2.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1)
-      '@crowdstrike/ember-toucan-styles': 2.2.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+      '@crowdstrike/ember-toucan-core': file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.0)(@ember/test-helpers@3.3.0)(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-modifier@4.1.0)(ember-source@5.7.0)(fractal-page-object@0.5.0)(postcss@8.4.37)(tailwindcss@3.4.1)
+      '@crowdstrike/ember-toucan-styles': 3.0.0(@glimmer/tracking@1.1.2)(autoprefixer@10.4.18)(ember-source@5.7.0)(postcss@8.4.37)(tailwindcss@3.4.1)
       '@ember/test-helpers': 3.3.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@embroider/addon-shim': 1.8.4
       '@glimmer/tracking': 1.1.2
