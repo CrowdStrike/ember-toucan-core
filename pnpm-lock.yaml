@@ -49,7 +49,7 @@ importers:
         version: 2.1.6(@embroider/core@2.1.1)
       dompurify:
         specifier: ^3.0.0
-        version: 3.0.11
+        version: 3.1.0
       ember-browser-services:
         specifier: ^4.0.4
         version: 4.0.4
@@ -2983,7 +2983,7 @@ packages:
       '@glint/environment-ember-loose': 1.4.0(@glimmer/component@1.1.2)(@glint/template@1.4.0)(@types/ember__array@4.0.10)(@types/ember__component@4.0.22)(@types/ember__controller@4.0.12)(@types/ember__object@4.0.12)(@types/ember__routing@4.0.22)(ember-cli-htmlbars@6.3.0)(ember-modifier@4.1.0)
       '@glint/template': 1.4.0
       '@tailwindcss/typography': 0.5.12(tailwindcss@3.4.3)
-      dompurify: 2.4.9
+      dompurify: 2.5.0
       ember-browser-services: 4.0.4
       ember-modifier: 4.1.0(ember-source@5.7.0)
       ember-url-hash-polyfill: 1.0.11(@babel/core@7.24.4)
@@ -8971,12 +8971,12 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@2.4.9:
-    resolution: {integrity: sha512-iHtnxYMotKgOTvxIqq677JsKHvCOkAFqj9x8Mek2zdeHW1XjuFKwjpmZeMaXQRQ8AbJZDbcRz/+r1QhwvFtmQg==}
+  /dompurify@2.5.0:
+    resolution: {integrity: sha512-5RXhAXSCrKTqt9pSbobT9PVRX+oPpENplTZqCiK1l0ya+ZOzwo9kqsGLbYRsAhzIiLCwKEy99XKSSrqnRTLVcw==}
     dev: false
 
-  /dompurify@3.0.11:
-    resolution: {integrity: sha512-Fan4uMuyB26gFV3ovPoEoQbxRRPfTu3CvImyZnhGq5fsIEO+gEFLp45ISFt+kQBWsK5ulDdT0oV28jS1UrwQLg==}
+  /dompurify@3.1.0:
+    resolution: {integrity: sha512-yoU4rhgPKCo+p5UrWWWNKiIq+ToGqmVVhk0PmMYBK4kRsR3/qhemNFL8f6CFmBd4gMwm3F4T7HBoydP5uY07fA==}
     dev: false
 
   /domutils@3.1.0:
