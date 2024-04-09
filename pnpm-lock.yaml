@@ -61,7 +61,7 @@ importers:
         version: 7.0.0(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.4.0)(ember-source@5.7.0)
       ember-velcro:
         specifier: ^2.1.0
-        version: 2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0)
+        version: 2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0)
       highlight.js:
         specifier: ^11.6.0
         version: 11.9.0
@@ -364,7 +364,7 @@ importers:
         version: 1.4.4
       ember-velcro:
         specifier: ^2.1.0
-        version: 2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0)
+        version: 2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.17.0
@@ -960,7 +960,7 @@ importers:
         version: 3.0.0
       ember-velcro:
         specifier: ^2.1.0
-        version: 2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0)
+        version: 2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0)
       eslint:
         specifier: ^8.32.0
         version: 8.33.0
@@ -1092,7 +1092,6 @@ packages:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/eslint-parser@7.24.1(@babel/core@7.24.4)(eslint@8.33.0):
     resolution: {integrity: sha512-d5guuzMlPeDfZIbpQ8+g1NaCNuAGBBGNECh0HVqz1sjOeVLh2CEaifuOysCH18URW6R7pqXINvf5PaR/dC6jLQ==}
@@ -1263,7 +1262,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.24.4
+      '@babel/core': 7.24.4(supports-color@8.1.1)
       '@babel/helper-environment-visitor': 7.22.20
       '@babel/helper-module-imports': 7.24.3
       '@babel/helper-simple-access': 7.22.5
@@ -1374,7 +1373,6 @@ packages:
       '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/highlight@7.24.2:
     resolution: {integrity: sha512-Yac1ao4flkTxTteCDZLEvdxg2fZfz1v8M4QpaGypq/WPDqg3ijHYbDfs+LG5hvzSoqaSZ9/Z9lKSP3CjZjv+pA==}
@@ -2723,7 +2721,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/types@7.23.0:
     resolution: {integrity: sha512-0oIyUfKoI3mSqMvsxBdclDwxXKXAUA8v/apZbc+iSyARYou1o8ZGDxbUYyLFoW2arqS2jDGqJuZvv1d/io1axg==}
@@ -8489,7 +8486,7 @@ packages:
       postcss-modules-values: 4.0.0(postcss@8.4.38)
       postcss-value-parser: 4.2.0
       schema-utils: 3.3.0
-      semver: 7.3.8
+      semver: 7.6.0
       webpack: 5.91.0
 
   /css-select@5.1.0:
@@ -8713,7 +8710,6 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 8.1.1
-    dev: true
 
   /debug@4.3.4(supports-color@9.4.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -9088,7 +9084,7 @@ packages:
   /ember-browser-services@4.0.4:
     resolution: {integrity: sha512-ZjQPD7wlqMhHIq+uuesW+SWYCN+TsQtyY2Fy7QpluxEQff/j2JHiQAk3K0GUtEwef1gJ8/dRsBqSnaG2/Fxhmg==}
     dependencies:
-      '@embroider/addon-shim': 1.8.7
+      '@embroider/addon-shim': 1.8.4
       ember-window-mock: 0.8.1
     transitivePeerDependencies:
       - supports-color
@@ -10086,8 +10082,8 @@ packages:
       - supports-color
     dev: true
 
-  /ember-velcro@2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0):
-    resolution: {integrity: sha512-4V6rT9b9XSeMaPmiYYA2hIhfMD088vru6AvfGWBY7L1w/st5hYv6iIfamy9+W1l9xKvIH3Hcl8+B0637/SRmzQ==}
+  /ember-velcro@2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0):
+    resolution: {integrity: sha512-+5qVN0xGgr5N+CVEK1cKBGsfUNBfOQrakfz/4qOdE8YYFc0Prlo8ZXs8Je/Juop4OcZTGXMa5QlY/2okMo+X8A==}
     engines: {node: 14.* || >= 16}
     peerDependencies:
       ember-modifier: ^3.2.7 || >= 4.0.0
@@ -18645,7 +18641,7 @@ packages:
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.19(postcss@8.4.38)
       ember-source: 5.7.0(@babel/core@7.24.4)(@glimmer/component@1.1.2)(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.91.0)
-      ember-velcro: 2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0)
+      ember-velcro: 2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0)
       fractal-page-object: 0.5.0
       postcss: 8.4.38
       tailwindcss: 2.2.19(autoprefixer@10.4.19)(postcss@8.4.38)
@@ -18676,7 +18672,7 @@ packages:
       '@glimmer/tracking': 1.1.2
       autoprefixer: 10.4.19(postcss@8.4.38)
       ember-source: 5.7.0(@babel/core@7.24.4)(@glimmer/component@1.1.2)(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.91.0)
-      ember-velcro: 2.1.3(ember-modifier@4.1.0)(ember-source@5.7.0)
+      ember-velcro: 2.2.0(ember-modifier@4.1.0)(ember-source@5.7.0)
       fractal-page-object: 0.5.0
       postcss: 8.4.38
       tailwindcss: 3.4.3
