@@ -77,7 +77,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "chai": "^5.0.0",
     "concurrently": "^8.0.0",
-    "cssnano": "^6.0.0",
+    "cssnano": "^7.0.0",
     "ember-auto-import": "^2.4.2",
     "ember-changeset": "^4.1.2",
     "ember-changeset-validations": "^4.1.1",
