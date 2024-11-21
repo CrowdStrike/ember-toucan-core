@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { hash } from '@ember/helper';
 
 import { HeadlessForm } from 'ember-headless-form';
+import { TrackedAsyncData } from 'ember-async-data';
 
 import AutocompleteFieldComponent from '../-private/autocomplete-field';
 import CheckboxFieldComponent from '../-private/checkbox-field';
@@ -14,6 +15,7 @@ import TextareaFieldComponent from '../-private/textarea-field';
 
 import type { HeadlessFormBlock, UserData } from '../-private/types';
 import type { WithBoundArgs } from '@glint/template';
+import type { ErrorRecord } from 'ember-headless-form';
 import type { HeadlessFormComponentSignature } from 'ember-headless-form/components/headless-form';
 
 type HeadlessFormArguments<
@@ -51,6 +53,30 @@ export interface ToucanFormComponentSignature<
           'form'
         >;
         Textarea: WithBoundArgs<typeof TextareaFieldComponent<DATA>, 'form'>;
+
+       /**
+         * The (async) validation state as `TrackedAsyncData`.
+         *
+         * Use derived state like `.isPending` to render the UI conditionally.
+         */
+        validationState?: TrackedAsyncData<ErrorRecord<DATA>>;
+
+        /**
+         * The (async) submission state as `TrackedAsyncData`.
+         *
+         * Use derived state like `.isPending` to render the UI conditionally.
+         */
+        submissionState?: TrackedAsyncData<SUBMISSION_VALUE>;
+
+        /**
+         * Will be true if at least one form field is invalid.
+         */
+        isInvalid: boolean;
+
+        /**
+         * An ErrorRecord, for custom rendering of error output
+         */
+        rawErrors?: ErrorRecord<DATA>;
 
         /**
          * Yielded action that will trigger form validation and submission, same as when triggering the native `submit` event on the form.
@@ -114,6 +140,10 @@ export default class ToucanFormComponent<
           Multiselect=(component this.MultiselectFieldComponent form=form)
           RadioGroup=(component this.RadioGroupFieldComponent form=form)
           Textarea=(component this.TextareaFieldComponent form=form)
+          validationState=form.validationState
+          submissionState=form.submissionState
+          isInvalid=form.isInvalid
+          rawErrors=form.rawErrors
           reset=form.reset
           submit=form.submit
         )
