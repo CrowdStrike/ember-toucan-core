@@ -1,9 +1,11 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
-import { fillIn, render } from '@ember/test-helpers';
+import { fillIn, render, settled } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import TextareaControl from '@crowdstrike/ember-toucan-core/components/form/controls/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 module('Integration | Component | Textarea', function (hooks) {
   setupRenderingTest(hooks);
@@ -77,6 +79,60 @@ module('Integration | Component | Textarea', function (hooks) {
 
     assert.dom('[data-textarea]').hasValue('tony');
   });
+
+  test('it keeps the value in sync with external changes to `@value`', async function (assert) {
+    class TestContext {
+      @tracked testValue;
+    }
+    const testContext = new TestContext();
+    testContext.testValue = 'initial';
+
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @value={{testContext.testValue}} data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasValue('initial');
+
+    testContext.testValue = 'updated';
+
+    await settled();
+
+    assert.dom('[data-textarea]').hasValue('updated');
+  });
+
+  test('it keeps the value in sync with external changes to `@value` after the value is changed', async function (assert) {
+    class TestContext {
+      @tracked testValue;
+
+      @action
+      updateTestValue(value, e) {
+        this.testValue = value;
+      }
+    }
+    const testContext = new TestContext();
+    testContext.testValue = 'initial';
+
+    await render(<template>
+      {{! we do not require a label, but instead suggest using Field / TextareaField }}
+      {{! template-lint-disable require-input-label }}
+      <TextareaControl @value={{testContext.testValue}} @onChange={{testContext.updateTestValue}} data-textarea />
+    </template>);
+
+    assert.dom('[data-textarea]').hasValue('initial');
+
+    await fillIn('[data-textarea]', 'test');
+
+    assert.dom('[data-textarea]').hasValue('test');
+
+    testContext.testValue = 'updated';
+
+    await settled();
+
+    assert.dom('[data-textarea]').hasValue('updated');
+  });
+
 
   test('it calls `@onChange` when input is received', async function (assert) {
     assert.expect(6);
