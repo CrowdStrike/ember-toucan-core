@@ -9,11 +9,11 @@
   },
   "engines": {
     "node": ">=16",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "8.15.8"
+    "pnpm": "9.11.0"
   },
   "license": "MIT",
   "author": "CrowdStrike UX Team",
