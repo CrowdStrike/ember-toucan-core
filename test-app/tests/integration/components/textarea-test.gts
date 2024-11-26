@@ -102,7 +102,7 @@ module('Integration | Component | Textarea', function (hooks) {
     assert.dom('[data-textarea]').hasValue('updated');
   });
 
-  test('it keeps the value in sync with external changes to `@value` after the value is changed', async function (assert) {
+  test('it keeps the <textarea> value in sync with external changes to `@value` after the value is changed', async function (assert) { 
     class TestContext {
       @tracked testValue;
 
