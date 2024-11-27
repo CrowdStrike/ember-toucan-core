@@ -1,5 +1,16 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.5.0
+
+### Minor Changes
+
+- [#466](https://github.com/CrowdStrike/ember-toucan-core/pull/466) [`c862e5d`](https://github.com/CrowdStrike/ember-toucan-core/commit/c862e5db65a3a4233e7032a143369cbf6bb95a86) Thanks [@bradaune-cs](https://github.com/bradaune-cs)! - Exposes validationState, submissionState, isInvalid and rawErrors from the HeadlessForm component
+
+### Patch Changes
+
+- Updated dependencies [[`e274211`](https://github.com/CrowdStrike/ember-toucan-core/commit/e27421184d4a4f0c238b6917e5656d701eb02c68)]:
+  - @crowdstrike/ember-toucan-core@0.4.2
+
 ## 0.4.0
 
 ### Minor Changes
