@@ -1,11 +1,11 @@
 /* eslint-disable no-undef -- Until https://github.com/ember-cli/eslint-plugin-ember/issues/1747 is resolved... */
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 import { fillIn, render, settled } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 
 import TextareaControl from '@crowdstrike/ember-toucan-core/components/form/controls/textarea';
 import { setupRenderingTest } from 'test-app/tests/helpers';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 
 module('Integration | Component | Textarea', function (hooks) {
   setupRenderingTest(hooks);
@@ -82,9 +82,11 @@ module('Integration | Component | Textarea', function (hooks) {
 
   test('it keeps the <textarea> value in sync with external changes to `@value`', async function (assert) {
     class TestContext {
-      @tracked testValue;
+      @tracked testValue = '';
     }
+
     const testContext = new TestContext();
+
     testContext.testValue = 'initial';
 
     await render(<template>
@@ -102,16 +104,18 @@ module('Integration | Component | Textarea', function (hooks) {
     assert.dom('[data-textarea]').hasValue('updated');
   });
 
-  test('it keeps the <textarea> value in sync with external changes to `@value` after the value is changed', async function (assert) { 
+  test('it keeps the <textarea> value in sync with external changes to `@value` after the value is changed', async function (assert) {
     class TestContext {
-      @tracked testValue;
+      @tracked testValue = '';
 
       @action
-      updateTestValue(value, e) {
+      updateTestValue(value: string) {
         this.testValue = value;
       }
     }
+
     const testContext = new TestContext();
+
     testContext.testValue = 'initial';
 
     await render(<template>
