@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.2
+
+### Patch Changes
+
+- [#308](https://github.com/CrowdStrike/ember-toucan-core/pull/308) [`e274211`](https://github.com/CrowdStrike/ember-toucan-core/commit/e27421184d4a4f0c238b6917e5656d701eb02c68) Thanks [@bartocc](https://github.com/bartocc)! - Updated incorrect assertion message with CheckboxField
+
 ## 0.4.1
 
 ### Patch Changes
