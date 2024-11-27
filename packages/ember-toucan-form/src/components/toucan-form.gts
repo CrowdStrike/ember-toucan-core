@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { hash } from '@ember/helper';
 
 import { HeadlessForm } from 'ember-headless-form';
-import { TrackedAsyncData } from 'ember-async-data';
 
 import AutocompleteFieldComponent from '../-private/autocomplete-field';
 import CheckboxFieldComponent from '../-private/checkbox-field';
@@ -15,6 +14,7 @@ import TextareaFieldComponent from '../-private/textarea-field';
 
 import type { HeadlessFormBlock, UserData } from '../-private/types';
 import type { WithBoundArgs } from '@glint/template';
+import type { TrackedAsyncData } from 'ember-async-data';
 import type { ErrorRecord } from 'ember-headless-form';
 import type { HeadlessFormComponentSignature } from 'ember-headless-form/components/headless-form';
 
