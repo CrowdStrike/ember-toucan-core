@@ -135,7 +135,7 @@
     "@ember/test-waiters": "^3.0.2",
     "@embroider/router": "^2.0.0",
     "dompurify": "^3.0.0",
-    "ember-browser-services": "^4.0.4",
+    "ember-browser-services": "^5.0.0",
     "ember-modifier": "^4.1.0",
     "ember-resources": "^7.0.0",
     "ember-velcro": "^2.1.0",
