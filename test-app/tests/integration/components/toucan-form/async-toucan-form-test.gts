@@ -309,7 +309,7 @@ module('Integration Component ToucanForm > Async state', function (hooks) {
       assert
         .dom('[data-test-submission-state]')
         .doesNotExist(
-          'form.submissionStatenis not present until validation has finished'
+          'form.submissionState is not present until validation has finished'
         );
 
       await waitFor('[data-test-submission-state]');
