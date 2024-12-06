@@ -132,7 +132,7 @@
     "@crowdstrike/ember-oss-docs": "^1.1.6",
     "@crowdstrike/ember-toucan-core": "workspace:*",
     "@crowdstrike/ember-toucan-form": "workspace:*",
-    "@ember/test-waiters": "^3.0.2",
+    "@ember/test-waiters": "^3.0.2 || ^4.0.0",
     "@embroider/router": "^2.0.0",
     "dompurify": "^3.0.0",
     "ember-browser-services": "^5.0.0",
