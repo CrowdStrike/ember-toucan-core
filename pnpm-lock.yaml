@@ -42,7 +42,7 @@ importers:
         specifier: workspace:*
         version: file:packages/ember-toucan-form(emc5ovquqb6ca7ob3lb3p42rdy)
       '@ember/test-waiters':
-        specifier: ^3.0.2
+        specifier: ^3.0.2 || ^4.0.0
         version: 3.0.2
       '@embroider/router':
         specifier: ^2.0.0
@@ -12586,7 +12586,7 @@ snapshots:
       calculate-cache-key-for-tree: 2.0.0
       ember-cli-babel: 7.26.11
       ember-cli-version-checker: 5.1.2
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
