@@ -266,7 +266,7 @@ importers:
         version: 1.1.1(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/environment-ember-loose@1.5.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(@types/ember__array@4.0.10(@babel/core@7.26.0))(@types/ember__component@4.0.22(@babel/core@7.26.0))(@types/ember__controller@4.0.12(@babel/core@7.26.0))(@types/ember__object@4.0.12(@babel/core@7.26.0))(@types/ember__routing@4.0.22(@babel/core@7.26.0))(ember-cli-htmlbars@6.3.0)(ember-modifier@4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))))(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))(eslint@8.33.0)
       ember-headless-form-changeset:
         specifier: 1.0.0
-        version: 1.0.0(5gswr6wznnf3t55lvktpmxszlu)
+        version: 1.0.0(en3ln5lia37vrhtbeop3egmh2i)
       ember-headless-form-yup:
         specifier: 1.0.0
         version: 1.0.0(ember-headless-form@1.1.1(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/environment-ember-loose@1.5.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(@types/ember__array@4.0.10(@babel/core@7.26.0))(@types/ember__component@4.0.22(@babel/core@7.26.0))(@types/ember__controller@4.0.12(@babel/core@7.26.0))(@types/ember__object@4.0.12(@babel/core@7.26.0))(@types/ember__routing@4.0.22(@babel/core@7.26.0))(ember-cli-htmlbars@6.3.0)(ember-modifier@4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))))(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))(eslint@8.33.0))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))(yup@1.5.0)
@@ -347,7 +347,7 @@ importers:
         version: 5.0.2
       validated-changeset:
         specifier: ^1.3.4
-        version: 1.3.4
+        version: 1.3.5
       webpack:
         specifier: ^5.74.0
         version: 5.97.1
@@ -3417,9 +3417,6 @@ packages:
 
   '@types/ua-parser-js@0.7.39':
     resolution: {integrity: sha512-P/oDfpofrdtF5xw433SPALpdSchtJmY7nsJItf8h3KXqOslkbySh8zq4dSWXH2oTjRvJ5PczVEoCZPow6GicLg==}
-
-  '@types/ungap__structured-clone@0.3.0':
-    resolution: {integrity: sha512-eBWREUhVUGPze+bUW22AgUr05k8u+vETzuYdLYSvWqGTUe0KOf+zVnOB1qER5wMcw8V6D9Ar4DfJmVvD1yu0kQ==}
 
   '@types/unist@2.0.6':
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
@@ -6716,10 +6713,6 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
-  i@0.3.7:
-    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
-    engines: {node: '>=0.4'}
-
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -7860,85 +7853,6 @@ packages:
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
-
-  npm@8.19.4:
-    resolution: {integrity: sha512-3HANl8i9DKnUA89P4KEgVNN28EjSeDCmvEqbzOAuxCFDzdBZzjUl99zgnGpOUumvW5lvJo2HKcjrsc+tfyv1Hw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    hasBin: true
-    bundledDependencies:
-      - '@isaacs/string-locale-compare'
-      - '@npmcli/arborist'
-      - '@npmcli/ci-detect'
-      - '@npmcli/config'
-      - '@npmcli/fs'
-      - '@npmcli/map-workspaces'
-      - '@npmcli/package-json'
-      - '@npmcli/run-script'
-      - abbrev
-      - archy
-      - cacache
-      - chalk
-      - chownr
-      - cli-columns
-      - cli-table3
-      - columnify
-      - fastest-levenshtein
-      - fs-minipass
-      - glob
-      - graceful-fs
-      - hosted-git-info
-      - ini
-      - init-package-json
-      - is-cidr
-      - json-parse-even-better-errors
-      - libnpmaccess
-      - libnpmdiff
-      - libnpmexec
-      - libnpmfund
-      - libnpmhook
-      - libnpmorg
-      - libnpmpack
-      - libnpmpublish
-      - libnpmsearch
-      - libnpmteam
-      - libnpmversion
-      - make-fetch-happen
-      - minimatch
-      - minipass
-      - minipass-pipeline
-      - mkdirp
-      - mkdirp-infer-owner
-      - ms
-      - node-gyp
-      - nopt
-      - npm-audit-report
-      - npm-install-checks
-      - npm-package-arg
-      - npm-pick-manifest
-      - npm-profile
-      - npm-registry-fetch
-      - npm-user-validate
-      - npmlog
-      - opener
-      - p-map
-      - pacote
-      - parse-conflict-json
-      - proc-log
-      - qrcode-terminal
-      - read
-      - read-package-json
-      - read-package-json-fast
-      - readdir-scoped-modules
-      - rimraf
-      - semver
-      - ssri
-      - tar
-      - text-table
-      - tiny-relative-date
-      - treeverse
-      - validate-npm-package-name
-      - which
-      - write-file-atomic
 
   npmlog@6.0.2:
     resolution: {integrity: sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==}
@@ -10171,8 +10085,8 @@ packages:
   validate-peer-dependencies@1.2.0:
     resolution: {integrity: sha512-nd2HUpKc6RWblPZQ2GDuI65sxJ2n/UqZwSBVtj64xlWjMx0m7ZB2m9b2JS3v1f+n9VWH/dd1CMhkHfP6pIdckA==}
 
-  validated-changeset@1.3.4:
-    resolution: {integrity: sha512-kodJCCnd3oA7sCtUkkl7olhB1MQUz2uTAYUnE38R4Dn8hIU4bZVWass8KPGt0fvu2WdkjFJOGpXDrT0isqNKqw==}
+  validated-changeset@1.3.5:
+    resolution: {integrity: sha512-FLKdrzYoaoltu8Sd6ZrZ/FcYtBSPzML8fVp/+vm3be1Nk2EN5N4UOmHbpovbHtAkTVuapQdU6ZehZrJYDZRzYg==}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -13455,7 +13369,7 @@ snapshots:
       eslint: 8.33.0
       eslint-import-resolver-typescript: 3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0)
       eslint-plugin-decorator-position: 5.0.2(@babel/eslint-parser@7.25.9(@babel/core@7.26.0)(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       eslint-plugin-json: 3.1.0
       eslint-plugin-n: 16.6.2(eslint@8.33.0)
       eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.6.0(eslint@8.33.0))(eslint@8.33.0)(prettier@3.0.1)
@@ -14196,8 +14110,6 @@ snapshots:
   '@types/trusted-types@2.0.7': {}
 
   '@types/ua-parser-js@0.7.39': {}
-
-  '@types/ungap__structured-clone@0.3.0': {}
 
   '@types/unist@2.0.6': {}
 
@@ -16709,7 +16621,7 @@ snapshots:
       ember-cli-babel: 7.26.11
       ember-get-config: 1.1.0(@glint/template@1.5.0)
       ember-validators: 4.1.2(@glint/template@1.5.0)
-      validated-changeset: 1.3.4
+      validated-changeset: 1.3.5
     transitivePeerDependencies:
       - '@glint/template'
       - supports-color
@@ -16721,7 +16633,7 @@ snapshots:
       '@glimmer/tracking': 1.1.2
       ember-auto-import: 2.10.0(@glint/template@1.5.0)(webpack@5.97.1)
       ember-cli-babel: 7.26.11
-      validated-changeset: 1.3.4
+      validated-changeset: 1.3.5
     transitivePeerDependencies:
       - '@glint/template'
       - supports-color
@@ -17214,13 +17126,13 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  ember-headless-form-changeset@1.0.0(5gswr6wznnf3t55lvktpmxszlu):
+  ember-headless-form-changeset@1.0.0(en3ln5lia37vrhtbeop3egmh2i):
     dependencies:
       '@embroider/addon-shim': 1.9.0
       ember-changeset: 4.1.2(@glint/template@1.5.0)(webpack@5.97.1)
       ember-headless-form: 1.1.1(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/environment-ember-loose@1.5.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(@types/ember__array@4.0.10(@babel/core@7.26.0))(@types/ember__component@4.0.22(@babel/core@7.26.0))(@types/ember__controller@4.0.12(@babel/core@7.26.0))(@types/ember__object@4.0.12(@babel/core@7.26.0))(@types/ember__routing@4.0.22(@babel/core@7.26.0))(ember-cli-htmlbars@6.3.0)(ember-modifier@4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))))(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))(eslint@8.33.0)
       ember-source: 5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1)
-      validated-changeset: 1.3.4
+      validated-changeset: 1.3.5
     transitivePeerDependencies:
       - supports-color
 
@@ -17780,7 +17692,7 @@ snapshots:
       enhanced-resolve: 5.17.1
       eslint: 8.33.0
       eslint-module-utils: 2.8.1(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -17889,7 +17801,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0):
+  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.4
@@ -19061,8 +18973,6 @@ snapshots:
   human-signals@1.1.1: {}
 
   human-signals@2.1.0: {}
-
-  i@0.3.7: {}
 
   iconv-lite@0.4.24:
     dependencies:
@@ -20271,8 +20181,6 @@ snapshots:
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
-
-  npm@8.19.4: {}
 
   npmlog@6.0.2:
     dependencies:
@@ -22699,12 +22607,9 @@ snapshots:
       resolve-package-path: 3.1.0
       semver: 7.6.3
 
-  validated-changeset@1.3.4:
+  validated-changeset@1.3.5:
     dependencies:
-      '@types/ungap__structured-clone': 0.3.0
       '@ungap/structured-clone': 0.3.4
-      i: 0.3.7
-      npm: 8.19.4
 
   vary@1.1.2: {}
 
