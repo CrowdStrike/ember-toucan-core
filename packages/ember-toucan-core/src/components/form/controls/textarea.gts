@@ -80,7 +80,8 @@ export default class ToucanFormTextareaControlComponent extends Component<Toucan
         readonly={{@isReadOnly}}
         ...attributes
         {{on "input" this.handleInput}}
-      >{{@value}}</textarea>
+        value={{@value}}
+      ></textarea>
     </div>
   </template>
 }
