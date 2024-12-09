@@ -1,6 +1,6 @@
 {
   "name": "@crowdstrike/ember-toucan-core",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "CrowdStrike's Toucan Design System",
   "keywords": [
     "ember-addon"
