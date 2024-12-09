@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.3
+
+### Patch Changes
+
+- [#447](https://github.com/CrowdStrike/ember-toucan-core/pull/447) [`cb3db50`](https://github.com/CrowdStrike/ember-toucan-core/commit/cb3db50d73bcb6f166759480b2e5c542eb61e932) Thanks [@kmillns](https://github.com/kmillns)! - Update Textarea to ensure underlying <textarea> value stays in sync with both typing and @value changes
+
 ## 0.4.2
 
 ### Patch Changes
