@@ -34,7 +34,7 @@ importers:
     dependencies:
       '@crowdstrike/ember-oss-docs':
         specifier: ^1.1.6
-        version: 1.1.8(3kixp7clxzuvvsz2bwgnhjv53q)
+        version: 1.1.8(crblxqt22pg3rczn7g5hvr43ge)
       '@crowdstrike/ember-toucan-core':
         specifier: workspace:*
         version: file:packages/ember-toucan-core(@crowdstrike/ember-toucan-styles@3.0.1(@glimmer/tracking@1.1.2)(@glint/template@1.5.0)(autoprefixer@10.4.20(postcss@8.4.49))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))(postcss@8.4.49)(tailwindcss@3.4.17))(@ember/test-helpers@3.3.1(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))(webpack@5.97.1))(@glimmer/tracking@1.1.2)(autoprefixer@10.4.20(postcss@8.4.49))(ember-modifier@4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1)))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.97.1))(fractal-page-object@1.0.0)(postcss@8.4.49)(tailwindcss@3.4.17)
@@ -64,10 +64,10 @@ importers:
         version: 2.2.0(ember-modifier@4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))
       highlight.js:
         specifier: ^11.6.0
-        version: 11.11.0
+        version: 11.11.1
       highlightjs-glimmer:
         specifier: ^2.0.0
-        version: 2.2.2(highlight.js@11.11.0)
+        version: 2.2.2(highlight.js@11.11.1)
       tracked-built-ins:
         specifier: ^3.1.0
         version: 3.4.0(@babel/core@7.26.0)
@@ -6606,8 +6606,8 @@ packages:
   hex-color-regex@1.1.0:
     resolution: {integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==}
 
-  highlight.js@11.11.0:
-    resolution: {integrity: sha512-6ErL7JlGu2CNFHyRQEuDogOyGPNiqcuWdt4iSSFUPyferNTGlNTPFqeV36Y/XwA4V/TJ8l0sxp6FTnxud/mf8g==}
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
     engines: {node: '>=12.0.0'}
 
   highlightjs-glimmer@2.2.2:
@@ -12252,7 +12252,7 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@crowdstrike/ember-oss-docs@1.1.8(3kixp7clxzuvvsz2bwgnhjv53q)':
+  '@crowdstrike/ember-oss-docs@1.1.8(crblxqt22pg3rczn7g5hvr43ge)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@crowdstrike/tailwind-toucan-base': 5.0.0(autoprefixer@10.4.20(postcss@8.4.49))(postcss@8.4.49)
@@ -12267,8 +12267,8 @@ snapshots:
       ember-browser-services: 5.0.1(@glint/template@1.5.0)
       ember-modifier: 4.1.0(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))
       ember-url-hash-polyfill: 1.0.11(@babel/core@7.26.0)
-      highlight.js: 11.11.0
-      highlightjs-glimmer: 2.2.2(highlight.js@11.11.0)
+      highlight.js: 11.11.1
+      highlightjs-glimmer: 2.2.2(highlight.js@11.11.1)
       lodash.merge: 4.6.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -13237,7 +13237,7 @@ snapshots:
       eslint: 8.33.0
       eslint-import-resolver-typescript: 3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0)
       eslint-plugin-decorator-position: 5.0.2(@babel/eslint-parser@7.25.9(@babel/core@7.26.0)(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       eslint-plugin-json: 3.1.0
       eslint-plugin-n: 16.6.2(eslint@8.33.0)
       eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.6.0(eslint@8.33.0))(eslint@8.33.0)(prettier@3.0.1)
@@ -17575,7 +17575,7 @@ snapshots:
       enhanced-resolve: 5.17.1
       eslint: 8.33.0
       eslint-module-utils: 2.8.1(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -17684,7 +17684,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0):
+  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.4
@@ -18762,11 +18762,11 @@ snapshots:
 
   hex-color-regex@1.1.0: {}
 
-  highlight.js@11.11.0: {}
+  highlight.js@11.11.1: {}
 
-  highlightjs-glimmer@2.2.2(highlight.js@11.11.0):
+  highlightjs-glimmer@2.2.2(highlight.js@11.11.1):
     dependencies:
-      highlight.js: 11.11.0
+      highlight.js: 11.11.1
 
   homedir-polyfill@1.0.3:
     dependencies:
