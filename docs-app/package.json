@@ -37,7 +37,7 @@
     "@docfy/ember": "^0.8.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^4.0.0",
-    "@ember/test-helpers": "^3.1.0",
+    "@ember/test-helpers": "^4.0.0",
     "@embroider/compat": "^2.0.0",
     "@embroider/core": "2.1.1",
     "@embroider/webpack": "^2.0.0",
