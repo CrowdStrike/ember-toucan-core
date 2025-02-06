@@ -1,5 +1,13 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.4
+
+### Patch Changes
+
+- [#561](https://github.com/CrowdStrike/ember-toucan-core/pull/561) [`f6c8b66`](https://github.com/CrowdStrike/ember-toucan-core/commit/f6c8b66aa5d2b18e7c6ede3293c512f7f1b68240) Thanks [@nicolechung](https://github.com/nicolechung)! - Added min-w-0 to the button component to enable truncation for components that use button.
+
+  https://css-tricks.com/flexbox-truncated-text
+
 ## 0.4.3
 
 ### Patch Changes
