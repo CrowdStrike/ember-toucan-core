@@ -130,7 +130,10 @@ export default class Button extends Component<ButtonSignature> {
         {{yield to="loading"}}
         <span class="sr-only" data-loading>{{yield}}</span>
       {{else if @isDisabled}}
-        <span class="flex flex-grow items-center justify-center gap-x-2">
+        {{! min-w-0: https://css-tricks.com/flexbox-truncated-text/ }}
+        <span
+          class="flex flex-grow items-center justify-center min-w-0 gap-x-2"
+        >
           {{yield}}
           {{yield to="disabled"}}
         </span>
