@@ -96,7 +96,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ember": "^11.8.0",
     "eslint-plugin-n": "^16.0.0",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^14.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "fractal-page-object": "^1.0.0",
     "postcss": "^8.2.14",
