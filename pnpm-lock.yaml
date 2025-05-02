@@ -27,8 +27,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       turbo:
-        specifier: ^1.8.8
-        version: 1.13.4
+        specifier: ^2.0.0
+        version: 2.5.2
 
   docs-app:
     dependencies:
@@ -10068,38 +10068,38 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
 
-  turbo-darwin-64@1.13.4:
-    resolution: {integrity: sha512-A0eKd73R7CGnRinTiS7txkMElg+R5rKFp9HV7baDiEL4xTG1FIg/56Vm7A5RVgg8UNgG2qNnrfatJtb+dRmNdw==}
+  turbo-darwin-64@2.5.2:
+    resolution: {integrity: sha512-2aIl0Sx230nLk+Cg2qSVxvPOBWCZpwKNuAMKoROTvWKif6VMpkWWiR9XEPoz7sHeLmCOed4GYGMjL1bqAiIS/g==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@1.13.4:
-    resolution: {integrity: sha512-eG769Q0NF6/Vyjsr3mKCnkG/eW6dKMBZk6dxWOdrHfrg6QgfkBUk0WUUujzdtVPiUIvsh4l46vQrNVd9EOtbyA==}
+  turbo-darwin-arm64@2.5.2:
+    resolution: {integrity: sha512-MrFYhK/jYu8N6QlqZtqSHi3e4QVxlzqU3ANHTKn3/tThuwTLbNHEvzBPWSj5W7nZcM58dCqi6gYrfRz6bJZyAA==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@1.13.4:
-    resolution: {integrity: sha512-Bq0JphDeNw3XEi+Xb/e4xoKhs1DHN7OoLVUbTIQz+gazYjigVZvtwCvgrZI7eW9Xo1eOXM2zw2u1DGLLUfmGkQ==}
+  turbo-linux-64@2.5.2:
+    resolution: {integrity: sha512-LxNqUE2HmAJQ/8deoLgMUDzKxd5bKxqH0UBogWa+DF+JcXhtze3UTMr6lEr0dEofdsEUYK1zg8FRjglmwlN5YA==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@1.13.4:
-    resolution: {integrity: sha512-BJcXw1DDiHO/okYbaNdcWN6szjXyHWx9d460v6fCHY65G8CyqGU3y2uUTPK89o8lq/b2C8NK0yZD+Vp0f9VoIg==}
+  turbo-linux-arm64@2.5.2:
+    resolution: {integrity: sha512-0MI1Ao1q8zhd+UUbIEsrM+yLq1BsrcJQRGZkxIsHFlGp7WQQH1oR3laBgfnUCNdCotCMD6w4moc9pUbXdOR3bg==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@1.13.4:
-    resolution: {integrity: sha512-OFFhXHOFLN7A78vD/dlVuuSSVEB3s9ZBj18Tm1hk3aW1HTWTuAw0ReN6ZNlVObZUHvGy8d57OAGGxf2bT3etQw==}
+  turbo-windows-64@2.5.2:
+    resolution: {integrity: sha512-hOLcbgZzE5ttACHHyc1ajmWYq4zKT42IC3G6XqgiXxMbS+4eyVYTL+7UvCZBd3Kca1u4TLQdLQjeO76zyDJc2A==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@1.13.4:
-    resolution: {integrity: sha512-u5A+VOKHswJJmJ8o8rcilBfU5U3Y1TTAfP9wX8bFh8teYF1ghP0EhtMRLjhtp6RPa+XCxHHVA2CiC3gbh5eg5g==}
+  turbo-windows-arm64@2.5.2:
+    resolution: {integrity: sha512-fMU41ABhSLa18H8V3Z7BMCGynQ8x+wj9WyBMvWm1jeyRKgkvUYJsO2vkIsy8m0vrwnIeVXKOIn6eSe1ddlBVqw==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@1.13.4:
-    resolution: {integrity: sha512-1q7+9UJABuBAHrcC4Sxp5lOqYS5mvxRrwa33wpIyM18hlOCpRD/fTJNxZ0vhbMcJmz15o9kkVm743mPn7p6jpQ==}
+  turbo@2.5.2:
+    resolution: {integrity: sha512-Qo5lfuStr6LQh3sPQl7kIi243bGU4aHGDQJUf6ylAdGwks30jJFloc9NYHP7Y373+gGU9OS0faA4Mb5Sy8X9Xw==}
     hasBin: true
 
   type-check@0.3.2:
@@ -13703,7 +13703,7 @@ snapshots:
       eslint: 8.33.0
       eslint-import-resolver-typescript: 3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0)
       eslint-plugin-decorator-position: 5.0.2(@babel/eslint-parser@7.27.0(@babel/core@7.26.10)(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       eslint-plugin-json: 3.1.0
       eslint-plugin-n: 16.6.2(eslint@8.33.0)
       eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.6.0(eslint@8.33.0))(eslint@8.33.0)(prettier@3.0.1)
@@ -18086,7 +18086,7 @@ snapshots:
       enhanced-resolve: 5.18.1
       eslint: 8.33.0
       eslint-module-utils: 2.8.1(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
-      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0)
+      eslint-plugin-import: 2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -18189,7 +18189,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1(eslint-plugin-import@2.29.1(eslint@8.33.0))(eslint@8.33.0))(eslint@8.33.0):
+  eslint-plugin-import@2.29.1(eslint-import-resolver-typescript@3.6.1)(eslint@8.33.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.4
@@ -22816,32 +22816,32 @@ snapshots:
       tslib: 1.14.1
       typescript: 5.0.2
 
-  turbo-darwin-64@1.13.4:
+  turbo-darwin-64@2.5.2:
     optional: true
 
-  turbo-darwin-arm64@1.13.4:
+  turbo-darwin-arm64@2.5.2:
     optional: true
 
-  turbo-linux-64@1.13.4:
+  turbo-linux-64@2.5.2:
     optional: true
 
-  turbo-linux-arm64@1.13.4:
+  turbo-linux-arm64@2.5.2:
     optional: true
 
-  turbo-windows-64@1.13.4:
+  turbo-windows-64@2.5.2:
     optional: true
 
-  turbo-windows-arm64@1.13.4:
+  turbo-windows-arm64@2.5.2:
     optional: true
 
-  turbo@1.13.4:
+  turbo@2.5.2:
     optionalDependencies:
-      turbo-darwin-64: 1.13.4
-      turbo-darwin-arm64: 1.13.4
-      turbo-linux-64: 1.13.4
-      turbo-linux-arm64: 1.13.4
-      turbo-windows-64: 1.13.4
-      turbo-windows-arm64: 1.13.4
+      turbo-darwin-64: 2.5.2
+      turbo-darwin-arm64: 2.5.2
+      turbo-linux-64: 2.5.2
+      turbo-linux-arm64: 2.5.2
+      turbo-windows-64: 2.5.2
+      turbo-windows-arm64: 2.5.2
 
   type-check@0.3.2:
     dependencies:
