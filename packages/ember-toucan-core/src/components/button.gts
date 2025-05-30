@@ -121,6 +121,7 @@ export default class Button extends Component<ButtonSignature> {
   <template>
     <button
       aria-disabled={{if @isDisabled "true"}}
+      disabled={{@isDisabled}}
       class={{this.styles}}
       type="button"
       {{on "click" this.onClick}}
