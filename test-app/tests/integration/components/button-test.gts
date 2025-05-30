@@ -125,35 +125,67 @@ module('Integration | Component | button', function (hooks) {
     let handleClick = () => assert.step('clicked');
 
     await render(<template>
-      <Button @isDisabled={{true}} @onClick={{handleClick}} data-button>
-        button
-      </Button>
+        <Button @isDisabled={{true}} @onClick={{handleClick}} data-button>
+          button
+        </Button>
     </template>);
 
     assert.verifySteps([]);
 
-    await click('[data-button]');
+    // Verify the button is disabled
+    const buttonElement = document.querySelector('[data-button]');
+    assert.true(buttonElement.disabled, 'Button is correctly disabled');
 
+    // Try to click the button, but expect an error
+    try {
+      await click('[data-button]');
+      assert.ok(false, 'Should not be able to click a disabled button');
+    } catch (error) {
+      assert.ok(
+        error.message.includes('disabled'),
+        `Expected error about disabled button: ${error.message}`,
+      );
+    }
+
+    // Manually trigger the click event to verify the handler isn't called
+    // This bypasses the disabled check that the click helper performs
+    buttonElement.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    // Verify the click handler wasn't called
     assert.verifySteps([]);
   });
 
   test('it does NOT submit the form if `@isDisabled={{true}}`', async function (assert) {
     let handleSubmit = () => {
       assert.step('submitted');
-    }
+    };
 
     await render(<template>
-      <form {{on "submit" handleSubmit}}>
-        <Button @isDisabled={{true}} type="submit" data-button>
-          button
-        </Button>
-      </form>
+        <form {{on "submit" handleSubmit}}>
+          <Button @isDisabled={{true}} type="submit" data-button>
+            button
+          </Button>
+        </form>
     </template>);
 
     assert.verifySteps([]);
 
-    await click('[data-button]');
+    // Verify the button is disabled
+    const buttonElement = document.querySelector('[data-button]');
+    assert.true(buttonElement.disabled, 'Button is correctly disabled');
 
+    // Try to click the button, but expect an error
+    try {
+      await click('[data-button]');
+      assert.ok(false, 'Should not be able to click a disabled button');
+    } catch (error) {
+      assert.ok(
+        error.message.includes('disabled'),
+        `Expected error about disabled button: ${error.message}`,
+      );
+    }
+
+    // Verify the form wasn't submitted
     assert.verifySteps([]);
   });
 
