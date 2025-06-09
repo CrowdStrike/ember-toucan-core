@@ -692,10 +692,10 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
       this.args.options && this.args.onFilter
         ? this.args.onFilter(value)
         : this.args.options
-        ? this.args.options.filter((option) => {
-            return option.toLowerCase().startsWith(value.toLowerCase());
-          })
-        : [];
+          ? this.args.options.filter((option) => {
+              return option.toLowerCase().startsWith(value.toLowerCase());
+            })
+          : [];
 
     if (this.filteredOptions?.length > 0) {
       this.activeIndex = 0;
@@ -717,9 +717,10 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
    * directly on the input tag itself.
    */
   @action
-  handleContainerClick() {
+  handleContainerClick(event: MouseEvent) {
     if (!this.isPopoverOpen) {
-      const inputElement = document.querySelector(
+      const container = event.currentTarget as HTMLElement;
+      const inputElement = container.querySelector(
         '[data-toucan-multiselect-input]',
       );
 
@@ -768,7 +769,7 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
         @placement="bottom-start"
         as |velcro|
       >
-      <div data-multiselect>
+        <div data-multiselect>
           {{! Disabling this rule as the user interacts with the input directly. The click on the div is simply for convenience. }}
           {{! template-lint-disable no-invalid-interactive }}
           <div
@@ -902,14 +903,18 @@ export default class ToucanFormMultiselectControlComponent extends Component<Tou
                       (hash
                         Option=(component
                           this.Option
-                          isActive=(this.isEqual generatedIndex this.activeIndex)
+                          isActive=(this.isEqual
+                            generatedIndex this.activeIndex
+                          )
                           isDisabled=@isDisabled
                           isSelected=(this.isSelected option)
                           isReadOnly=@isReadOnly
                           onClick=this.onChange
                           onMouseover=(fn this.onOptionMouseover generatedIndex)
                           popoverId=this.popoverId
-                          index=(if this.isSelectAllEnabled generatedIndex index)
+                          index=(if
+                            this.isSelectAllEnabled generatedIndex index
+                          )
                         )
                         option=option
                       )
