@@ -1959,9 +1959,92 @@ module('Integration | Component | Multiselect', function (hooks) {
         </:chip>
 
         <:default as |multiselect|>
-          <multiselect.Option>{{multiselect.option}}</multiselect.Option>
-        </:default>
-      </Multiselect>
+            <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+          </:default>
+        </Multiselect>
     </template>);
+  });
+
+  test('when multiple multiselect controls are on a page, clicking on a container opens the correct popover', async function (assert) {
+    await render(
+      <template>
+        <div class="first-multiselect">
+          <Multiselect
+            @noResultsText="No results"
+            @options={{testColors}}
+            data-input="first"
+          >
+            <:chip as |chip|>
+              <chip.Chip>
+                {{chip.option}}
+                <chip.Remove @label="Remove" />
+              </chip.Chip>
+            </:chip>
+
+            <:default as |multiselect|>
+              <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+            </:default>
+          </Multiselect>
+        </div>
+
+        <div class="second-multiselect">
+          <Multiselect
+            @noResultsText="No results"
+            @options={{testColors}}
+            data-input="second"
+          >
+            <:chip as |chip|>
+              <chip.Chip>
+                {{chip.option}}
+                <chip.Remove @label="Remove" />
+              </chip.Chip>
+            </:chip>
+
+            <:default as |multiselect|>
+              <multiselect.Option>{{multiselect.option}}</multiselect.Option>
+            </:default>
+          </Multiselect>
+        </div>
+      </template>,
+    );
+
+    // Create page objects for both multiselects
+    let firstMultiselect = new MultiselectPageObject('[data-input="first"]');
+    let secondMultiselect = new MultiselectPageObject('[data-input="second"]');
+
+    // Initially, both popovers should be closed
+    assert.dom(firstMultiselect.list).doesNotExist();
+    assert.dom(secondMultiselect.list).doesNotExist();
+
+    // Click on the container of the second multiselect
+    await click(secondMultiselect.container as Element);
+
+    // The second multiselect's popover should be open
+    assert.dom(secondMultiselect.list).exists();
+
+    // The first multiselect's popover should remain closed
+    assert.dom(firstMultiselect.list).doesNotExist();
+
+    // The second multiselect's input should be focused
+    assert.dom(secondMultiselect.element).isFocused();
+
+    // Close the second multiselect's popover
+    await triggerKeyEvent(
+      secondMultiselect.element as Element,
+      'keydown',
+      'Escape',
+    );
+
+    // Now click on the container of the first multiselect
+    await click(firstMultiselect.container as Element);
+
+    // The first multiselect's popover should be open
+    assert.dom(firstMultiselect.list).exists();
+
+    // The second multiselect's popover should remain closed
+    assert.dom(secondMultiselect.list).doesNotExist();
+
+    // The first multiselect's input should be focused
+    assert.dom(firstMultiselect.element).isFocused();
   });
 });
