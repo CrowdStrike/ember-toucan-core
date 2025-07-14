@@ -33,7 +33,7 @@
     "_syncPnpm": "pnpm sync-dependencies-meta-injected"
   },
   "peerDependencies": {
-    "@crowdstrike/ember-toucan-core": "^0.4.4",
+    "@crowdstrike/ember-toucan-core": "^0.4.5",
     "@crowdstrike/ember-toucan-styles": "^2.0.1",
     "@ember/test-helpers": "^2.8.1 || ^3.0.0",
     "@glimmer/tracking": "^1.1.2",

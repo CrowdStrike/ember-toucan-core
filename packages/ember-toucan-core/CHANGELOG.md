@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.5
+
+### Patch Changes
+
+- [#643](https://github.com/CrowdStrike/ember-toucan-core/pull/643) [`181a62c`](https://github.com/CrowdStrike/ember-toucan-core/commit/181a62c9661a0c51325a63fe4dd9ade71848be45) Thanks [@ryan-nauman-cs](https://github.com/ryan-nauman-cs)! - Fixed multiselect container click handler to properly focus the correct input element when multiple components are present
+
 ## 0.4.4
 
 ### Patch Changes
