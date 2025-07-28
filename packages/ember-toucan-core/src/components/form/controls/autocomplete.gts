@@ -70,7 +70,7 @@ export interface ToucanFormAutocompleteControlComponentSignature {
     /**
      * The currently selected option.
      */
-    selected?: string;
+    selected?: string | null;
   };
   Blocks: {
     default: [
@@ -372,10 +372,10 @@ export default class ToucanFormAutocompleteControlComponent extends Component<To
       this.args.options && this.args.onFilter
         ? this.args.onFilter(value)
         : this.args.options
-        ? this.args.options.filter((option) => {
-            return option.toLowerCase().startsWith(value.toLowerCase());
-          })
-        : null;
+          ? this.args.options.filter((option) => {
+              return option.toLowerCase().startsWith(value.toLowerCase());
+            })
+          : null;
 
     if (this.filteredOptions !== null && this.filteredOptions.length > 0) {
       this.activeIndex = 0;
@@ -531,7 +531,9 @@ export default class ToucanFormAutocompleteControlComponent extends Component<To
             {{on
               "keydown"
               (if
-                this.isDisabledOrReadOnlyOrWithoutOptions this.noop this.onKeydown
+                this.isDisabledOrReadOnlyOrWithoutOptions
+                this.noop
+                this.onKeydown
               )
             }}
             {{on
