@@ -1,5 +1,14 @@
 # @crowdstrike/ember-toucan-form
 
+## 0.5.1
+
+### Patch Changes
+
+- [#645](https://github.com/CrowdStrike/ember-toucan-core/pull/645) [`7a923dc`](https://github.com/CrowdStrike/ember-toucan-core/commit/7a923dce34d6609670b5f5b6f06f22da2f379103) Thanks [@ryan-nauman-cs](https://github.com/ryan-nauman-cs)! - fix(autocomplete): fix assertion to accept null
+
+- Updated dependencies [[`227c6d5`](https://github.com/CrowdStrike/ember-toucan-core/commit/227c6d59ec5d94f265198cd25d2376f957d6fe73)]:
+  - @crowdstrike/ember-toucan-core@0.4.6
+
 ## 0.5.0
 
 ### Minor Changes
