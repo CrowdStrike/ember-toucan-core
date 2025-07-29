@@ -1,5 +1,11 @@
 # @crowdstrike/ember-toucan-core
 
+## 0.4.6
+
+### Patch Changes
+
+- [#645](https://github.com/CrowdStrike/ember-toucan-core/pull/645) [`227c6d5`](https://github.com/CrowdStrike/ember-toucan-core/commit/227c6d59ec5d94f265198cd25d2376f957d6fe73) Thanks [@ryan-nauman-cs](https://github.com/ryan-nauman-cs)! - fix(autocomplete): allow null type
+
 ## 0.4.5
 
 ### Patch Changes
