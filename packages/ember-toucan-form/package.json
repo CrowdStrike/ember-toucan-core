@@ -89,7 +89,7 @@
     "@typescript-eslint/parser": "^5.30.5",
     "autoprefixer": "^10.0.2",
     "concurrently": "^9.0.0",
-    "ember-async-data": "^1.0.3",
+    "ember-async-data": "^2.0.0",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-headless-form": "^1.0.0-beta.3",
     "ember-source": "~5.12.0",
