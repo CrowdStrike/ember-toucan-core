@@ -50,7 +50,7 @@
     "@html-next/vertical-collection": "^4.0.0",
     "@nullvoxpopuli/eslint-configs": "^3.0.4",
     "@tailwindcss/typography": "^0.5.7",
-    "@tsconfig/ember": "^2.0.0",
+    "@tsconfig/ember": "^3.0.0",
     "@types/dompurify": "^3.0.0",
     "@types/ember": "^4.0.1",
     "@types/ember-resolver": "^9.0.0",
