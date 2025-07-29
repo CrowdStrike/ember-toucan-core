@@ -51,7 +51,7 @@ export default class ToucanFormAutocompleteFieldComponent<
   @action
   assertSelected(value: unknown) {
     assert(
-      `A string or \`undefined\` or \`null\` is expected for ${String(
+      `A string, \`undefined\`, or \`null\` is expected for ${String(
         this.args.name,
       )}, but you passed ${typeof value}`,
       typeof value === 'string' || value === undefined || value === null,
